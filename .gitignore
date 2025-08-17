@@ -1,0 +1,8 @@
+# archivos que se generan al compilar un archivo.tex desde neovim
+*.log
+*.aux
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.toc
+*.out
