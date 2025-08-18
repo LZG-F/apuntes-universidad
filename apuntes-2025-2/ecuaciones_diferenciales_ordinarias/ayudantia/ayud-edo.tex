@@ -9,9 +9,8 @@
 \DeclareMathOperator{\SL}{SL}
 \DeclareMathOperator{\Mat}{Mat}
 
-\title{Topología}
+\title{Ayudantías Ecuaciones Diferenciales Ordinarias}
 \author{}
-\date{Basado en las clases impartidas por Eduardo Oregón en el segundo semeste del 2025}
 \begin{document}
     \maketitle
     \tableofcontents
@@ -19,578 +18,97 @@
 
     \chapter{}
     \setcounter{section}{0}
-	\section{Clase 1 (04/08): Espacios Topológicos [12]}
+	\section{Ayudantía 2 (18/08)}
 
-	\begin{definition}[sistema de vecindades]
-		X conjunto no vacío. Si $x\in X$, consideramos $\mathcal{V}_x \subset 2^{X}$, tal que:
-
-		\begin{enumerate}
-			\item $\forall x \in X$, $\forall V \in \mathcal{V}_x$, $x \in \mathcal{V}_x$;
-
-			\item $\forall x \in X$, $\forall V \in \mathcal{V}$, si $V' \supset V \Rightarrow V' \in \mathcal{V}_x$;
-
-			\item Si $V_1,V_2 \in \mathcal{V} \Rightarrow V_1 \cap V_2 \in \mathcal{V}_x$.
-		\end{enumerate}
-
-		\noindent El sistema de vecindades es $\{ \mathcal{V}_x \}_{x \in X}$. Si $V \in \mathcal{V}_x$, $V$ es vecindad de $x$.  
-	\end{definition}
-
-	\begin{eg}
-		\begin{enumerate}
-			\item $(X,d)$ espacio métrico $\mathcal{V}_x \coloneq \{ V \subset X | \exists \varepsilon > 0 \text{ tal que } B_{\varepsilon} (x) \subset V \}$. Verificamos que sea sistema de vecindad.
-
-			\begin{proof}[Proof]
-				Verificamos $1),2)$ y $3)$:
-				\begin{enumerate}
-					\item[1)] $x \in X$, $V \in \mathcal{V}_x \Rightarrow x \in B_{\varepsilon} (x) \subset V$;
-
-					\item[2)] $X$ $x \in X$, $V \in \mathcal{V}_x$, $V' \supset V \Rightarrow x \in B_{\varepsilon} (x) \subset V \subset V' \Rightarrow V' \in \mathcal{V}_x$;
-
-					\item[3)] $\begin{aligned}[t]
-						x \in V_1 \cap V_2, V_1,V_2 \in \mathcal{V}_x & \Rightarrow B_{\varepsilon_1} (x) \subset V_1, B_{\varepsilon_2} (x) \subset V_2  \\ & \Rightarrow B_{\min \{ \varepsilon_1, \varepsilon_2 \}} (x) \subset V_1 \cap V_2 \\ & \Rightarrow V_1 \cap V_2 \in \mathcal{V}_x.
-					\end{aligned}$
-				\end{enumerate}
-			\end{proof}
-
-			\item $X$ arbitrario, $\forall x \in X$, sea $\mathcal{V}_x = \{ X \}$ es sistema de vecindades (vacuidad).
-
-			\item $X$ arbitrario $\mathcal{V}_x = \{ V \subset X \text{ } | \text{ } x \in V \text{ y } X \textbackslash V \text{ sea finito} \}$ (queda como ejercicio chequear que esto define un sistema de vecindades).  
-		\end{enumerate}
-	\end{eg}
-
-	\begin{definition}[topología desde sistema de vecindades]
-		Tenemos $X$, $\{ \mathcal{V}_x \}_{x \in X}$ sistema de vecindades. Definimos, $\tau = \{ U \subset X \text{ } | x \in U \Rightarrow U \in \mathcal{V}_x \}$.    
-	\end{definition}
-
-	\begin{lemma}
-		$\tau$ cumple lo siguiente:
-
-		\begin{enumerate}
-			\item $\varnothing, X \in \tau$;
-
-			\item $U_{\alpha} \in \tau, \alpha \in A \Rightarrow \bigcup_{\alpha \in A} U_{\alpha} \in \tau$;
-
-			\item $U_1,\dots,U_n \in \tau \Rightarrow U_1 \cap \cdots \cap U_n \in \tau$.
-		\end{enumerate}
-	\end{lemma}
-
-	$\tau$ es la topología inducida por $\{ \mathcal{V}_x \}$. Elementos de $\tau$ (subconjuntos de $X$) se llamarán abiertos.
-
-
-	\section{Clase 2 (06/08): Topología, Base [12, 13]}
-
-	\begin{proof}[Proof ] (último lema de la clase anterior)
-		\begin{enumerate}
-			\item $\varnothing \in \tau$ por vacuidad.
-			\begin{align*}
-				X \in \tau : x \in X & \Rightarrow \exists V \in \mathcal{V}_x \quad (1) x \in V; (2) x \in V \subset X \\ & \Rightarrow X \in \mathcal{V}_x. \quad \forall x : X \in \tau 
-			\end{align*}
-
-			\item Tomar $\{ U_{\alpha} \}_{\alpha \in A}, \text{ } U_{\alpha} \in \tau, \text{ } \mathcal{U} = \bigcup_{\alpha \in A} U_{\alpha}$. Si $x \in \mathcal{U} \Rightarrow x \in U_{\alpha} \in \mathcal{V}_x$ para algún $\alpha$. Como $U_{\alpha} \in \tau \Rightarrow U_{\alpha} \in \mathcal{V}_x$. Luego, si $x \in U_{\alpha} \subset \mathcal{U} \Rightarrow \mathcal{U} \in \mathcal{V}_x$, $\forall x \in \mathcal{U}$. Por lo tanto, $\mathcal{U} \in \tau$.
-
-			\item Tomamos $U_1,\dots,U_n \in \tau$, $\mathcal{U} = U_1 \cap \cdots \cap U_n$ y $x \in \mathcal{U}$. Luego, $x \in U_i \quad \forall i$. Como $U_i \in \tau \Rightarrow U_i \in \mathcal{V}_x, \quad \forall i$. Por inducción (con las intersecciones), podemos afirmar que $\mathcal{U} \in \mathcal{V}_x, \text{ } \forall x \in \mathcal{U}$. Por lo tanto, $\mathcal{U} \in \tau$. 
-		\end{enumerate}
-	\end{proof}
-
-	\subsection{Topología}
-
-	\begin{definition}[topología]
-		$X$ conjunto no vacío, $\tau \subset 2^X$ es una topología si cumple:
-
-		\begin{enumerate}
-			\item $\varnothing, X \in \tau$;
-
-			\item $U_{\alpha} \in \tau, \text{ } \alpha \in A \Rightarrow \bigcup_{\alpha \in A} U_{\alpha} \in \tau$;
-
-			\item $U_1,\dots,U_n \in \tau \Rightarrow U_1 \cap \cdots \cap U_n \in \tau$.
-		\end{enumerate}
-	\end{definition}
-
-	\begin{remark}
-		Se utilizará la siguiente notación:
-		\begin{itemize}
-			\item $(X,\tau)$ se llama espacio topológico.
-
-			\item $U \in \tau \Rightarrow U$ se llama abierto (con respecto a la topología).
-		\end{itemize}
-	\end{remark}
-
-	\begin{lemma}
-		$\tau$ topología en $X \Rightarrow$ Inducida por un único sistema de vecindades.
-	\end{lemma}
-
-	\begin{proof}[Proof ]
-		Para $x \in X$, definir $\mathcal{V}_x = \{ V \subset X \text{ } | \text{ } \exists U \in \tau \text{ con } x \in U \subset V \}$. Verificamos que $\{ \mathcal{V}_x \}_x$ es sistema de vecindades:
-
-		\begin{enumerate}
-			\item La definición implica $V \in \mathcal{V}_x \Rightarrow x \text{ } (\in U \subset) \text{ } \in V$;
-
-			\item $\begin{aligned}[t]
-				\text{Si } V \in \mathcal{V}_x \text{ y } V' \supset V & \Rightarrow (V \in \mathcal{V}_x) \text{ } x \in U \subset \text{ } (U \in \tau) \\
-				& \Rightarrow x \in U \subset V' \Rightarrow V' \in \mathcal{V}_x;
-			\end{aligned}$
-
-			\item $\begin{aligned}[t]
-				\text{Tomar } V_1,V_2 \in \mathcal{V}_x & \Rightarrow x \in U_1 \subset V_1, \quad x \in U_2 \subset V_2 \text{ con } U_1,U_2 \in \tau \\
-				& \Rightarrow x \in \underbrace{U_1 \cap U_2}_{\in \text{ } \tau} \subset V_1 \cap V_2 \Rightarrow V_1 \cap V_2 \in \mathcal{V}_x;
-			\end{aligned}$
-		\end{enumerate}
-
-		(falta demostrar unicidad).
-	\end{proof}
-
-	\begin{eg}[de espacios topológicos] \text{}
-		\begin{enumerate}
-			\item (Topología métrica): $(X,d)$ espacio métrico. Abierto es $U \in X$ tal que $\forall x \in U, \exists \varepsilon > 0$ tal que $x \in B_{\varepsilon} (x) \subset U$.
-			\begin{enumerate}
-				\item $X = \R^n, \text{ } d((x_i),(y_i)) = \sqrt{ \\sum_{i=1}^{n} (x_i - y_i)^2 }$. Así, se obtiene la topología estándar.
-
-				\item $X$ arbitrario, $d$ métrica discreta $d(x,y) = \begin{cases}
-					1 \quad x \neq y \\
-					0 \quad x = y.
-				\end{cases}$ Así, se obtiene la topología discreta: $\tau = 2^X$.
-			\end{enumerate}
-
-			\item (Topología indiscreta): $X$ arbitrario, $\tau = \{ \varnothing , X \}$;
-
-			\item (Topología cofinita): $X$ arbitrario, $\tau_{cof} = \{ U \subset X \text{ | } X \textbackslash U \text{ es finito} \} \cap \{ \varnothing \}$ (queda como ejercicio verificar que es topología).
-		\end{enumerate}
-	\end{eg}
-
-	\subsection{Base de una topología}
-
-	Una base es un subconjunto "manejable" de $\tau$ que la describe completamente!
-
-	\begin{definition}[base]
-		$X$ es conjunto. $\mathcal{B} \subset 2^X$ es base para alguna topología si:
-		\begin{enumerate}
-			\item $\forall x \in X, \exists B \in \mathcal{B}$ tal que $x \in B \text{ } \left( \bigcup_{B \in \mathcal{B}} B = X \right)$.
-
-			\item $\forall B_1, B_2 \in \mathcal{B}, \forall x \in B_1 \cap B_2, \exists B_3 \in \mathcal{B}$ tal que $x \in B_3 \subset B_1 \cap B_2$.
-		\end{enumerate}
-	\end{definition}
-
-	\begin{definition}[topología inducida]
-		La topología inducida por la base $\mathcal{B}$ en $X$ es:
-
+	\begin{enumerate}
+		\item Considere la ecuación canónica
 		\[
-		\tau = \{ U \subset X \text{ | } \forall x \in U, \exists B \in \mathcal{B} \text{ tal que } x \in B \subset U \}.
+		y^{n} = f(t,y,y',\dots,y^{(n-1)}) \tag{1}
 		\]
-	\end{definition}
+		\begin{proof}[Proof ]
+			Como $y$ es solución de $(1)$, en particular $y \in C^n(I)$. Por lo tanto la función $t \mapsto (t,y(t),y'(t),\dots,y^{(n-1)}(t)) \in C^1 (I,\R^n)$, y luego  $f(t,y(t),\dots, y^{(n-1)}(t) \in C^1(I)$. Por lo tanto $y \in C^{n+1}(I)$. \\
+			\noindent \fbox{Por inducción en $k \in \N$} \textbf{Caso base:} Facil! \\
+			\noindent \textbf{Paso inductivo:} Suponer que $\exists\ k \in \N$ tal que se cumple lo anterior y que $f \in C^{k+1}(\R^n)$. Por hipótesis, $y \in C^{n+k}(I)$, y por lo tanto $g(t) = (t,y,y',\dots,y^{(n-1)}) \in C^{n+k-(n-1)}(I) = C^{k+1}(I;\R^n)$. Luego , la composición $(y^{(n)}(t) =)\ f \circ g (t) \in C(I)^{k+1}$, por lo que $y \in C^{n+k+1}(I)$. Concluimos que si $f \in C^{\infty}(\R^n)$, entonces $y \in C^{\infty}(I)$.
+		\end{proof}
 
-	\begin{note}
-		$\mathcal{B} \subset \tau$.
-	\end{note}
-
-	\begin{lemma}
-		$\tau$, definido arriba, es una topología.
-	\end{lemma}
-
-	\begin{eg}
-		$(X,d)$ espacio métrico $\Rightarrow \mathcal{B} = \{ B_{\varepsilon} (x) \text{ | } x \in X, \varepsilon > 0 \}$ es base de la topología métrica.
-	\end{eg}
-
-	\section{Clase 3 (08/08): Bases, Topología producto [13,15]}
-
-	\begin{proof}[Proof ] (lema 1.8)
-		\begin{enumerate}
-			\item $\varnothing, X \in \tau \text{ : } \varnothing \in \tau$ por vacuidad y $X \in \tau$ por propiedad $(1)$ de $\mathcal{B}$.
-
-			\item $\tau$ cerrado bajo unión: $\{ U_{\alpha} \}_{\alpha \in A}$ colección con $U_{\alpha} \in \tau, \text{ } \mathcal{U} = \bigcup_{\alpha} U_{\alpha}$.
-			\begin{align*}
-				\text{Si } x \in \mathcal{U} & \Rightarrow x \in U_{\alpha} \text{ para algún } \alpha \\
-				& \Rightarrow x \in B \subset U_{\alpha} \text{ para algún } B \in \mathcal{B} \\
-				& \Rightarrow x \in B \subset \mathcal{U}.
-			\end{align*}
-			Por lo tanto, $\mathcal{U} \in \tau$.
-
-			\item $\tau$ cerrado bajo intersección finita: $U_1,\dots,U_n \in \tau, \mathcal{U} = U_1 \cap \cdots \cap U_n$. Sea $x \in \mathcal{U} \Rightarrow x \in U_i \text{ } \forall i \text{ } (U_i \in \tau) \Rightarrow x \in B_i \subset U_i \text{ } \forall \text{ } i, B_i \in \mathcal{B}$. Propiedad $(2)$ implica $x \in B \subset B_1 \cap \cdots \cap B_n \subset U_1 \cap \cdots \cap U_n = \mathcal{U}$. Por lo tanto, $\mathcal{U} \in \tau$.
-		\end{enumerate}
-	\end{proof}
-
-	\begin{note}
-		Si $B$ base genera $\tau \Rightarrow B \subset \tau$.
-	\end{note}
-
-	\begin{definition}[topología generada]
-		$\tau$ topología está generada por una base $B$ sin $B$ es base, y $\tau$ es topología generada por $B$.
-	\end{definition}
-
-	Utilidad: Dada $\tau$ topología a estudiar, queremos encontrar base $B$ que la describa.
-
-	\begin{eg}
-		$(X,d)$ espacio métrico, $\mathcal{B} = \{ B_{\varepsilon} (x) \text{ | } \varepsilon > 0, x \in X \}$ es base para la topología métrica.  
-	\end{eg}
-
-	\begin{proof}[Proof ] Probamos que $B$ es base.
-		\begin{enumerate}
-			\item Notar $X = \bigcup_{x \in X} B_1 (x)$. Por lo tanto, $\bigcup_{B \in \mathcal{B}} B = X$.
-
-			\item $B_1,B_2 \in \mathcal{B}, B_1 = B_{\varepsilon_1} (x_1), B_2 = B_{\varepsilon_2} (x_2)$. Sea $x \in B_1 \cap B_2$. Queremos encontrar $\varepsilon > 0$ tal que $B_{\varepsilon} (x) \subset B_1 \cap B_2$. Por desigualdad triangular, tenemos que $\varepsilon = \min \{ \varepsilon_1 - d(x,x_1), \varepsilon_2 - d(x,x_2) \}$ sirve.  
-		\end{enumerate}
-	\end{proof}
-
-	\begin{note}
-		\begin{enumerate}
-			\item Una base no es necesariamente una topología ($(1)$ y $(2)$ pueden fallar).
-
-			\item Si $B$ es base y $\tau$ topología, $B \subset \tau \nRightarrow \tau$ es generada por $B$.
-		\end{enumerate}
-	\end{note}
-
-	\begin{eg}
-		Topología del límite inferior en $\R \text{ : } B_l = \{ [a,b) \text{ | } a,b \in \R , a < b \}$ (se deja como ejercicio demostrar que $B_l$ es base).
-	\end{eg}
-
-	\begin{definition}[topología del límite inferior]
-		$B_l$ genera la topología del límite inferior $\tau_l$.
-	\end{definition}
-
-	\begin{remark} \text{}
-		\begin{enumerate}
-			\item $\tau_l$ no es $\tau_{std}$ ($[a,b)$ abierto en $\tau_l$ pero no en $\tau_{std}$
-
-			\item $\tau_{std} \subset \tau_l$ (la demostración de esto queda como ejercicio).
-
-			\item (Intuición): Si $0 \in \R, y \in \R$ (para $\tau_{std}$, $y$ cerda de $0$ si $|y| < \varepsilon$). Para $\tau_l$, $y$ cerca de $0$, si $y \in [0,\varepsilon)$ ($0\leq y < \varepsilon$ para $\varepsilon > 0$ chiquito).
-		\end{enumerate}
-	\end{remark}
-
-	\subsection{Comparación de topologías}
-
-	\begin{definition}[topologías finas]
-		$\tau,\tau'$ topologías en $X$, decimos que $\tau'$ es más fina que $\tau$ si $\tau' \supset \tau$. Decimos que $\tau$ y $\tau'$ son comparables si $\tau' \supset \tau$ o $\tau \supset \tau'$. 
-	\end{definition}
-
-	\begin{eg}
-		$\tau_l$ es más fina que $\tau'$.
-	\end{eg}
-
-	\begin{eg}
-		$\forall \tau$ topología en $X$, $\{ \varnothing, X \} \subset \tau \subset 2^X$. Donde $\{ \varnothing, X \}$ es llamada la topología indiscreta (todos cercanos entre sí) y $2^X$ la topología discreta (todos lejanos entre sí).    
-	\end{eg}
-
-	En conclusión, si $\tau'$ es más fina que $\tau$, los puntos están más lejanos respecto a $\tau'$ que a $\tau$
-
-	\section{Clase 4 (11/08): Topología producto [15] e inducida [16]}
-
-	\begin{lemma}
-		$\mathcal{B},\mathcal{B}'$ bases en $X$ que generan la topología $\tau,\tau'$ respectivamente. Entonces
-		\begin{align*}
-			\tau' \supset \tau & \iff (\text{todo elemento de } \mathcal{B} \text{ está en } \tau'); \\
-			& \iff \forall B \in \mathcal{B}, B \text{ es unión de elementos de } \mathcal{B}'; \\
-			& \iff \forall B \in \mathcal{B}, \forall x \in B, \exists B' \in \mathcal{B}' \text{ tal que } x \in B' \subset B
-		.\end{align*}
-	\end{lemma}
-
-	\begin{lemma}
-		$\mathcal{B}_{X \times Y} \coloneq \{ U \times U' \text{ | } U \text{ abierto en } X, U' \text{ abierto en } Y \}$ es una base para una topología.
-	\end{lemma}
-
-	\begin{definition}[topología producto]
-		Topología producto en $X \times Y$ es la generada por $\mathcal{B}_{X \times Y}$.
-	\end{definition}
-
-	\begin{proof}[Proof ] (lemma 1.13.)
-		\begin{enumerate}
-			\item Como $X \times Y \in \mathcal{B}_{X \times Y} \Rightarrow \bigcup_{B \in \mathcal{B}_{X \times Y}} B = X \times Y$.
-
-			\item Tomar $B_1 = U_1 \times U_1' \in \mathcal{B}_{X \times Y}, B_2 = U_2 \times U_2' \in \mathcal{B}_{X \times Y}, (x,y) \in B_1 \cap B_2 \text{ } (U_1,U_2 \text{ abiertos en } X \text{ y } U_1',U_2' \text{ abiertos en } Y)$. Notar que:
+		\item Considere el sistema
+		\[
+		(*) \begin{cases}
+			y''(t) + y(t)^2 = 0 \quad \forall\ t \in [0,1]; \\
+			y(0) = y(1) = 0.
+		\end{cases}
+		\]
+		Demuestre que si $y$ es una solución no trivial de $(*)$, entonces $y(t) > 0 \ \forall t \in (0,1)$.
+		\begin{proof}[Proof ]
+			Notemos que $y''(t) = -y(t)^2 \leq 0$. Entonces, $y$ es convava; es decir, $\forall a,b\in [0,1]$, y $\forall s \in [0,1]$ se tiene la desigualdad
 			\[
-			B_1 \cap B_2 = (U_1 \times U_1') \cap (U_2 \times U_2') = \underbrace{(U_1 \cap U_2)}_{\text{abto. en } X} \times \underbrace{(U_1' \cap U_2')}_{\text{abto. en } Y} \in \mathcal{B}_{X \times Y}.
+			y(a+(b-a)s) \geq y(a) + (y(b)-y(a))s. \tag{$C$}
 			\]
-		\end{enumerate}
-	\end{proof}
+			\noindent Con $a=0,\ b=1$, tenemos que $\forall \ t \in [0,1]$,
+			\[
+			y(t) \geq 0 + t(0 - 0) = 0.
+			\]
+			\noindent Ahora, como $y \not\equiv 0,\ \exists t_0 \in (0,1)$ tal que $y(t_0) > 0$. Sea $t_1 \in (0,t_0)$, y $s = \frac{t_1}{t_1} \in (0,1)$. Por $(C)$, con $a = 0,\ b=t_0$, tenemos que
+			\begin{align*}
+				y(t_1) = y(0 + t_0\cdot s) & \stackrel{(C)}{\geq} y(0) + s(y(t_0)-y(0)) \\
+				& = 0 + s \cdot y(t_0) > 0
+			.\end{align*}
+			\noindent Por lo tanto, $y > 0$ en $(0,t_0)$. Por otro lado, para $t_1 \in (t_0, 1)$, definimos $s = \frac{t_1 - t_0}{1-t_0}$, y ocupando $(C)$ con $a = t_0$ y $b = 1$ obtenemos
+			\begin{align*}
+				y(t_1) = y(t_0 + s(1-t_0)) & \stackrel{(C)}{\geq} y(t_0) + s(y(1)-y(t_0)) \\
+				& = (1-s)y(t_0) > 0
+			.\end{align*}
+		\end{proof}
 
-	\begin{note}
-		Misma demostración (salvo modificaciones esperables) implica que si $\mathcal{B}_X$ es base de $X$, $\mathcal{B}_Y$ base de $Y$, $\mathcal{B}_{X \times Y}' \coloneq \{ B \times B' \text{ | } B \in \mathcal{B}_X, B' \in \mathcal{B}_Y \}$ es base y genera la misma topología generada por $\mathcal{B}_{X \times Y}$.  
-	\end{note}
-
-	\begin{eg}[importante]
-		$\R^2 = \R \times \R$. Propiedad: topología estándar de $\R^2$ (métrica euclidiana) es igual a la topología producto en $\R \times \R$ (cada uno con su topología estándar).
-		\begin{itemize}
-			\item Topología estándar en $\R^2$: generada por base $\mathcal{B} = \{ B_{\varepsilon} (x,y) \text{ | } (x,y) \in \R^2, \varepsilon > 0 \}$.
-
-			\item Topología producto en $\R^2$: generada por base $\mathcal{B}' = \{ (a,b) \times (c,d) \text{ | } a < b, c < d \}$.  
-		\end{itemize}
-	\end{eg}
-
-	\begin{ex}
-		Verificar para $\R^n$.
-	\end{ex}
-
-	\begin{definition}[topología inducida]
-		$\tau|_Y \coloneq \{ Y \cap U \text{ | } U \in \tau \}$ es topología en $Y$. La llamamos topología en $Y$ inducida por $X$.  
-	\end{definition}
-
-	\begin{proof}[Proof ] (topología inducida es topología)
-		\begin{enumerate}
-			\item $\varnothing = \varnothing \cap Y, Y = X \cap Y$.
-
-			\item Si $U_{\alpha} \in \tau|_Y, \alpha \in A \Rightarrow U_{\alpha} = U_{\alpha}' \cap Y$ con $U_{\alpha}' \in \tau \Rightarrow \bigcup_{\alpha \in A} U_{\alpha} = \bigcup_{\alpha \in A} (U_{\alpha \in A} \cap Y) = \left[ \bigcup_{\alpha \in A} U_{\alpha} \right] \times Y \in \tau|_Y$.
-
-			\item $U_1,\dots,U_n \in \tau|_Y, U_i = U_i' \cap Y \Rightarrow U_1 \cap \cdots \cap U_n = (U_1' \cap Y) \cap \cdots \cap (U_n' \cap Y) = (U_1' \cap \cdots \cap U_n') \cap Y \in \tau|_Y$.
-		\end{enumerate}
-	\end{proof}
-
-	\begin{lemma}
-		$\mathcal{B}|_Y \coloneq \{ Y \cap B \text{ | } B \in \mathcal{B} \}$ es base para la topología en $Y$ inducida por $X$.  
-	\end{lemma}
-
-	\begin{remark}
-		Cuidado: La noción de abierto depende de la topología a especificar.
-	\end{remark}
-
-	\begin{eg}
-		En $X = \R, Y = [0,1] \cup (2,3) \cup \{ 4 \}$. Notar que:
-		\begin{itemize}
-			\item $Y$ es abierto en $Y$, pero no es abierto en $X$.
-
-			\item $[0,1]$ también abierto en $Y : [0,1] = Y \cap (-1,2)$.
-
-			\item $\{ 4 \}$ también abierto en $Y : \{ 4 \} = Y \cap (3,5)$.
-		\end{itemize}
-	\end{eg}
-
-	\begin{note}
-		Si $U \subset Y$ es abierto en $X \Rightarrow$ abierto en $Y$.
-	\end{note}
-
-	\begin{lemma}
-		$Y \subset X, \tau|_Y \subset \tau \iff Y \text{ es abierto en } X$.
-	\end{lemma}
-
-	\begin{prop}
-		$X,Y$ espacios topológicos, $A \subset X, B \subset Y$.
-		\begin{align*}
-			\text{En } A \times B \rightarrow & \text{ topología inducida desde } X \times Y \text{ (con topología producto) } \\
-			\rightarrow & \text{ topología producto desde } A \text{ y } B \text{ (con topología inducida} \\
-			& \text{ por } X,Y \text{ respectivamente)}
-		.\end{align*}
-		\noindent Estas topologías son la misma.
-	\end{prop}
-
-	\begin{proof}[Proof ]
-		Elemento de topología primera: $U = U' \cap A \times B$ \\
-		Elemento de topología segunda: $U$ es unión de productos $V \times V'$ con $V$ abierto en $A$, $V'$ abierto en $B$. Notar que $V \times V' = (W \cap A) \times (W' \cap B) = (W \times W') \cap A \times B$.
-	\end{proof}
-
-	\section{Clase 5 (13/08): Cerrados, clausura, puntos límites [17]}
-
-	\begin{definition}[conjunto cerrado]
-		$X$ espacio topológico, $C \subset X$ es cerrado si $X \textbackslash C$ es abierto. 
-	\end{definition}
-
-	\begin{lemma}
-		\text{}
-		\begin{enumerate}
-			\item $X, \varnothing$ son cerrados;
-
-			\item Si $C_{\alpha} \subset X$ cerrados, $\alpha \in A \Rightarrow \bigcap_{\alpha} C_{\alpha}$ es cerrado;
-
-			\item Si $C_1, \dots, C_n$ cerrados, entonces $C_1 \cup \cdots \cup C_n$ es cerrado.
-		\end{enumerate}
-	\end{lemma}
-
-	\begin{proof}[Proof ]
-		\text{}
-		\begin{enumerate}
-			\item $X = X \textbackslash \varnothing, \text{ } \varnothing = X \textbackslash X$;
-
-			\item $C_{\alpha} = \displaystyle\bigcap_{\alpha \in A} C_{\alpha} \Rightarrow X \textbackslash C = X \textbackslash \displaystyle\bigcap_{\alpha \in A} C_{\alpha} = \underbrace{\displaystyle\bigcup_{\alpha \in A} (\overbrace{X \textbackslash C_{\alpha}}^{\text{abto}})}_{\text{abto}}$;
-
-			\item $C = C_1 \cup \cdots \cup C_n \Rightarrow X \textbackslash C = X \textbackslash (C_1 \cup \cdots \cup C_n) = \underbrace{(\overbrace{X \textbackslash C_1}^{\text{abto}}) \cap \cdots \cap (\overbrace{X \textbackslash C_n}^{\textrm{abto}})}_{\text{abto}}$.
-		\end{enumerate}
-	\end{proof}
-
-	\begin{eg}
-		\text{}
-		\begin{enumerate}
-			\item $X = \R, [a,b]$ es cerrado ($\R \textbackslash [a,b] = (-\infty, a) \cup (b, \infty)$);
-
-			\item $(X,d)$ espacio métrico (+ topología métrica) $\Rightarrow \overline{B_{\varepsilon}} (x)$ es cerrado. Luego, $X \textbackslash \overline{B_{\varepsilon}} (x) = \bigcup_{y \in X \textbackslash \displaystyle\overline{B_{\varepsilon}} (x)} B_{d(x,y)-\varepsilon} (y)$ (abierto en topología métrica);
-
-			\item $X$ con la topología discreta $\Rightarrow$ todo subconjunto de $X$ es abierto y cerrado!
-		\end{enumerate}
-	\end{eg}
-
-	\begin{definition}[cerrado topología inducida]
-		$X$ espacio topológico, $Y \subset X$ (con la topología inducida), $C \subset Y$ es cerrado en $Y$ si es cerrado en la topología inducida.
-	\end{definition}
-
-	\begin{lemma}
-		$C$ es cerrado en $Y$ si y solo si $C = C' \cap Y$ con $C'$ cerrado en $X$.
-	\end{lemma}
-
-	\begin{proof}[Proof ]
-		$\begin{aligned}[t]
-			C \subset Y \text{ es cerrado en } Y \iff \ & Y \textbackslash C \text{ es abierto en } Y \\
-			\iff \ & Y \textbackslash C = U \cap C \text{ con } U \subset X \text{ abierto} \\
-			\iff \ & C = (X \textbackslash U) \cap Y = C' \cap Y \text{, con } \\
-			& C' = X \textbackslash U \text{ cerrado}
-		.\end{aligned}$
-	\end{proof}
-
-	\begin{definition}[clausura e interior]
-		$X$ espacio topológico, $A \subset X$:
-		\begin{enumerate}
-			\item El interior de $A$ es $\mathring{A} =$ unión de todos los abiertos contenidos en $A$;
-
-			\item La clausura de $A$ es $\overline{A} =$ intersección de todos los cerrados que contienen $A$.
-		\end{enumerate}
-	\end{definition}
-
-	\begin{remark}
-		\text{ }
-		\begin{enumerate}
-			\item $\mathring{A}$ es abierto, $\overline{A}$ es cerrada, $\mathring{A} \subset A \subset \overline{A}$;
-
-			\item $A$ es abierto si y solo si $\mathring{A} = A$. $A$ es cerrado si y solo si $\overline{A} = A$;
-
-			\item $\overline{\overline{A}} = \overline{A}, \ \mathring{\mathring{A}} = \mathring{A}$;
-
-			\item El interior $\mathring{A}$ es el abierto mas grande contenido en $A$ y la clausura $\overline{A}$ es el cerrado mas pequeño que contiene a $A$.
-		\end{enumerate}
-	\end{remark}
-
-	\begin{prop}
-		$X$ espacio topológico, $A \subset X$ cualquiera, $x \in X$.
-		\begin{align*}
-			x \in \overline{A} & \iff \forall U \text{ abierto conteniendo a } X \text{, se tiene } A \cap U \neq \varnothing \tag*{($*$)} \\
-			& \iff \text{ toda vecindad de } x \text{ interseca a } A \\
-			& \iff A \text{ contiene puntos arbitrariamente cercanos a } X \text{ (según la topología)}
-		.\end{align*}
-	\end{prop}
-
-	\begin{corollary}
-		$C \subset X$ es cerrado si y solo si $\forall x \in X$, si toda vecindad de $x$ contiene un punto de $C$, entonces $x \in X$.
-	\end{corollary}
-
-	\begin{proof}[Proof ] (proposición 1.24) \\
-		\Ifstep Suponer que $x \not\in \overline{A}$. Entonces $\exists C$ cerrado con $A \subset C$ y $x \not\in C$. Luego, tomar $U \coloneq C \textbackslash C$ abierto. Entonces, $A \cap U = \varnothing$ y $x \in U$. Es decir, negamos $(*)$.
-
-		\noindent \Onlyifstep Negamos $(*) \implies \exists U$ abierto con $x \in U$ y $U \cap A = \varnothing$. Luego, $C = X \textbackslash U$ cerrado con $A \subset C$ y $x \not\in C$. Entonces, $x \not\in A$.
-	\end{proof}
-
-	\begin{definition}[puntos de acumulación]
-		$A \subset X$. Decimos que $x \in X$ es punto límite/de acumulación de $A$ si $\forall \ U$ abierto conteniendo a $x$, se tiene que $U \cap ( A \textbackslash \{ x \} ) \neq \varnothing$. Escribimos $A' \coloneq \{ \text{puntos límite de } A \}$.
-	\end{definition}
-
-	\begin{eg}
-		En $\R$, tenemos lo siguiente:
-		\begin{center}
-		\begin{tabular}{ | c | c | c | c | }
-			\hline
-			$A$ & $\mathring{A}$ & $\overline{A}$ & $A'$ \\
-			\hline
-			$(a,b)$ & $(a,b)$ & $[a,b]$ & $[a,b]$ \\
-			$[a,b)$ & $(a,b)$ & $[a,b]$ & $[a,b]$ \\
-			$[a,b]$ & $(a,b)$ & $[a,b]$ & $[a,b]$ \\
-			$[0,1] \cup \{2\}$ & $(0,1)$ & $[0,1] \cup \{2\}$ & $(0,1)$ \\
-			\hline
-		\end{tabular}
-		\end{center}
-		\noindent Notar que $2$ no es punto de acumulación.
-	\end{eg}
-
-
-	\section{Clase 6 (18/08): Espacios Hausdorff, convergencia [17]}
-
-	\begin{remark}
-		$x \in A' \iff x \in \overline{A \setminus \{x\}}$. 
-	\end{remark}
-
-	\begin{lemma}
-		$\forall \ A \subset X,\ \overline{A} = A \cup A'$.
-	\end{lemma}
-
-	\begin{proof}[Proof ]
-		\fbox{$\supset$} Notar que $A \subset \overline{A}$. Si $x \in A' \implies x \in \overline{A \setminus \{x\}} \subset \overline{A} \ (*)$. Notar que $(*) A \subset B \implies \overline{A} \subset \overline{B}$. Por lo tanto $A' \subset \overline{A}$. Entonces, $A \cup A' \subset \overline{A}$.
-
-		\noindent \fbox{$\subset$} $\ (\overline{A} \subset A \cup A', \text{ equiv: } \overline{A}\setminus A \subset A')$ Si $x \in \overline{A} \setminus A$. Entonces, $x \not\in A$ y $\forall \ U \ni x$ abierto se tiene $A \cap U \neq \varnothing$. Como $x \not\in A \implies (A \setminus \{x\}) \cap U \neq \varnothing$. Entonces, $x \in A'$.  
-	\end{proof}
-
-	\begin{remark}
-		$A'$ no es necesariamente cerrado.
-	\end{remark}
-
-	\begin{eg}
-		$X = \{ a,b \};\ \tau = \{ \varnothing, X \}$ ($a,b$ indistinguibles desde el punto de vista de $\tau$). $A = \{ b \} \implies A' = \{b\} $ (no es cerrado). $a \not\in A' \iff a \not\in \overline{A \setminus \{a\} } = \overline{\varnothing} = \varnothing$. $b \in A \iff b \in \overline{A \setminus \{b\} } = \overline{\{a\}} = \{a,b\}$.      
-	\end{eg}
-
-	\noindent \textbf{Problemas:}
-	\begin{itemize}
-		\item Subconjuntos finitos no tienen topología discreta;
-
-		\item Subconjuntos finitos no son cerrados.
-	\end{itemize}
-
-	\begin{lemma}
-		Si $X$ es espacio topológico arbitrario. Son equivalentes:
-		\begin{enumerate}
-			\item Todos los subconjuntos finitos de $X$ tienen la topología discreta.
-
-			\item Todos los subconjuntos finitos de $X$ son cerrados.
-		\end{enumerate}
-	\end{lemma}
-
-	\begin{definition}[espacios $T_1$]
-		Un espacio topológico $X$ es $T_1$ (cumple el axioma $T_1$) si sus subconjuntos finitos son cerrados.
-	\end{definition}
-
-	\begin{eg}
-		$X$ con la topología indiscreta NO es $T_1$ si $\# X \geq 2$.
-	\end{eg}
-
-	\begin{eg}
-		$X$ con topología cofinita es $T_1$. En la topología
+		\item Considere
 		\[
-		\{ \text{subconjuntos cerrados} \} = \{ \text{conjuntos finitos} \}
+		(+) \begin{cases}
+			y' = \sqrt{|y|}; \\
+			y(t_0) = y_0.
+		\end{cases}
 		\]
-	\end{eg}
-
-	\begin{lemma}
-		$X$ es $T_1,\ A \subset X \implies A'$ es cerrado.
-	\end{lemma}
-
-	\begin{proof}[Proof ]
-		(Queremos $\overline{A'} = A'$, i.e. $\overline{A'} \setminus A' = \varnothing$) Suponer que $x \in \overline{A'},\ x \not\in A'$. Si $x \not\in A'$, entonces $\exists\ U$ abierto con $x\in U$ y $U\cap A \subset \{x\}$. Si $x \in \overline{A'}$, entonces $A'\cap U \neq \varnothing$. Luego, $\exists\ y \in U \cap A' \ (y\neq x)$. Como $X$ es $T_1$, entonces $\{x\}$ es cerrado. Luego, $X \setminus \{x\}$ es abierto, y con ello tenemos que $U \setminus \{x\}$ es abierto. Si $V = U \setminus \{x\}$ abierto que contiene a $y \ (y\in A')$, entonces $V$ contiene puntos de $A$, distintos de $y$. Luego, $\exists\ z \in A \cap V$. Así, $z \in A \cap U$ y $z \neq x$. Contradicción! \textreferencemark
-	\end{proof}
-
-	\begin{definition}[espacios $T_2$ o Haussdorff]
-		Un espacio topológico $X$ es $T_2$ (o Hausdorff), si $\forall \ x \neq y$ en $X$ existen $U,U' \subset X$ abiertos \underline{disjuntos} con $x \in U,\ y \in U'$.
-	\end{definition}
-
-	\begin{eg}
-		$X$ con la topología cofinita, con $\# X = \infty$ es $T_1$ pero no es Hausdorff. Veamos que esto es así. Si $x \neq y \in X,\ x \in U,\ y \in U'$ abiertos ($X \setminus U,\ X \setminus U'$ finitos), entonces $(X \setminus U) \cup (X \setminus U')$ finito. Luego, $X \setminus (U \cap U')$ finito. Así, $U \cap U'$ infinito, por lo que $U \cap U'$ no puede ser disjunto.  
-	\end{eg}
-
-	\begin{lemma}
-		$X$ Hausdorff $\implies X$ es $T_1$.
-	\end{lemma}
-
-	\begin{proof}[Proof ]
-		($X$ es $T_1 \iff$ subconjuntos finitos son cerrados $\iff$ singletons son cerrados) $\rightarrow$ (veremos el último si y solo si) Sea $x \in X$, queremos que $X \setminus \{x\}$ sea abierto. Si $y \neq x$, dado que $X$ es Hausdorff, $\exists\ U_y, U_y'$ abiertos disjuntos con $y \in U_y,\ x \in U_y'$. Luego, $x \not\in U_y$. Por lo tanto, $X \setminus \{ x \} = \displaystyle\bigcup_{y \neq x} U_y$ es abierto.
-	\end{proof}
-
-	\begin{eg}
-		$(X,d)$ espacio métrico, $X$ es Hausdorff con la topología métrica.
-	\end{eg}
-
-	\begin{corollary}[secreto]
-		Existen topologías que no vienen de métricas.
-	\end{corollary}
-
-	\begin{proof}[Proof ][del ejemplo]
-		Para la topología métrica, bolas abiertas son abiertos. Si $x \neq y$, entonces $U = B_{\frac{d(x,y)}{2}}(x),\ U' = B_{\frac{d(x,y)}{2}}(y)$.
-	\end{proof}
-
-	En $X$ con la topología cofinita, $X = \{ x_1, x_2, x_3,\dots \}$ infinito contable. Definimos $y_n = x_n$ con $n \geq 1$ (cada elemento de $X$ aparece exactamente una vez). Cada abierto $\varnothing \neq U \subset X$ contiene a $y_n \ \forall n \geq \N$ ($N$ depende de $U$). (próxima clase: $y_n \to x \ \forall x \in X$). 
-	
+		\begin{enumerate}
+			\item Resuelva el sistema para $y_0 \neq 0$ y determine el invervalo maximal de la solución.
+		\end{enumerate}
+		\begin{proof}[Proof ]~
+			\begin{enumerate}
+				\item Primero asumamos que $y_0 > 0$. Dividiendo la EDO por $\sqrt{y}$ e integrando alrededor de $t_0$, obtenemos
+				\begin{align*}
+					(t-t_0) & = \int_{t_0}^{t} 1 ds = \int_{t_0}^{t} \frac{y'(s)}{\sqrt{y(s)}} ds \stackrel{(c.v.)}{=} \int_{y_0}^{y(t)} \frac{1}{\sqrt{u}} du \\
+					& = 2 (\sqrt{y(t)} - \sqrt{y_0}) \\
+					\implies y(t) & = \left( \frac{t-t_0}{2} + \sqrt{y_0} \right)^2
+				.\end{align*}
+				\noindent Para $y_0 < 0$
+				\[
+				(t-t_0) = \int_{|y_0|}^{|y(t)|} \frac{-1}{\sqrt{v}} dv = -2 (|\sqrt{y(t)|} - \sqrt{|y_0|})
+				\]
+				\noindent Por lo tanto, $y(t) = \left( \sqrt{|y_0|} - \frac{t-t_0}{2} \right)^2$. Sea 
+				\[
+				F_1(r) = \int_{y_0}^{r} \frac{dx}{\sqrt{x}} = 2 (\sqrt{r} - \sqrt{y_0}).
+				\]
+				\noindent Esta función es monótona (estricta) en el intervalo $(0,\infty)$ y por lo tanto biyectiva. $F_1(y(t)) = t-t_0$. Calculamos
+				\begin{align*}
+					T_{+} & = \lim_{r \to \infty} F_1(r) = \infty \\
+					T_{-} & = \lim_{r \to 0} F_1(r) = -2 \sqrt{y_0}
+				.\end{align*}
+				\noindent Entonces $t-t_0 \in (-2 \sqrt{y_0},\infty),\ t \in (t_0-2 \sqrt{y_0}, \infty)$.
+				\[
+				F_2(r) = 2 ( \sqrt{|y_0|} - \sqrt{|r|}, \quad r \in (-\infty, 0)
+				\]
+				\begin{align*}
+					T_{-} & = \lim_{r \to -\infty} F_2(r) = \infty \\
+					T_{+} & = \lim_{r \to \infty} 
+				.\end{align*}
+			\end{enumerate}
+		\end{proof}
 
 
-	
 
+
+
+
+
+	\end{enumerate}
 
 
 
