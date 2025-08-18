@@ -1,0 +1,368 @@
+\documentclass[a4paper]{report}
+\input{preamble.tex}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\spann}{span}
+\DeclareMathOperator{\Id}{Id}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\Mat}{Mat}
+\title{Teoría de Integración}
+\author{}
+\date{Basado en las clases impartidas por Santiago Saglietti en el segundo semeste del 2025}
+\begin{document}
+    \maketitle
+    \tableofcontents
+    % start lessons
+
+    \chapter{Integral de Riemann}
+    \setcounter{section}{0}
+	\section{Clase 1 (04/08)}
+
+	\begin{definition}[partición + intervalos]
+		Una partición de un intervalo $[a,b]\subseteq\R$ es un subconjunto finito $\Pi\subseteq[a,b]$ tal que $a,b\in\Pi$. Denotaremos a las particiones como $\Pi=\{x_0,\dots,x_n\}$, donde $a=x_0<x_1<\cdots<x_n=b$. Los intervalos $I_i=[x_{i-1},x_i]$, $i=1,\dots,n$ serán llamados intervalos de la partición.
+	\end{definition}
+
+	\begin{remark}
+		A veces, identificaremos la partición $\Pi$ con $(I_i)_{i=1,\dots,n}$. En tal caso, abusando de la notación, escribiremos $I_i\in\Pi$ cuando queramos hablar de los intervalos de $\Pi$.
+	\end{remark}
+
+	\begin{definition}[norma de particiones]
+		La norma de una partición $\Pi$ como $\|\Pi\|\coloneqq \max_{i=1,\dots,n}(x_i-x_{i-1})=\max_{I_i\in\Pi}|I_i|$.
+	\end{definition}
+
+	\begin{definition}[partición marcada]
+		Una partición marcada de $[a,b]$ es un par $\Pi^*\coloneqq(\Pi,\varepsilon)$ donde:
+		\begin{itemize}
+			\item $\Pi = \{x_0,\dots,x_n\}$ es una partición de $[a,b]$;
+			\item $\varepsilon = \{x_1^*,\dots,x_n^*\}$ es una colección de puntos tal que $x_i^*\in I_i$ para cada $i=1,\dots,n$.
+		\end{itemize}
+	\end{definition}
+
+	\begin{remark}
+		Dada una partición marcada $\Pi^*=(\Pi,\varepsilon)$, definimos $\|\Pi^*\|\coloneqq \|\Pi\|$.
+	\end{remark}
+
+	\begin{definition}[Suma de Riemann]
+		Sean $f:[a,b]\to\R$ acotada y $\Pi^*=(\Pi,\varepsilon)$ una partición marcada. Definimos la suma de Riemann de $f$ asociada a $\Pi^*$ como:
+		\[
+		S_R(f;\Pi^*)\coloneqq \sum_{n=1}^{n} f(x_i^*)(x_i-x_{i-1})= \sum_{I_i\in\Pi}^{} f(x_i^*)|I_i|.
+		\]
+	\end{definition}
+
+	\section{Clase 2 (06/08)}
+
+	\begin{definition}[Riemann integrable]
+		Dada $f:[a,b]\to\R$ acotada, decimos que es Riemann integrable si existe el límite $\lim_{\|\Pi^*\|\to 0} S_R(f;\Pi^*)$. \\
+		Equivalentemente, $\exists L\in\R$, tal que dado cualquier $\varepsilon>0$, existe $\delta=\delta(\varepsilon)>0$ tal que $\|\Pi^*\|<\delta\Rightarrow|S_R(f;\Pi^*)-L|<\varepsilon$.
+	\end{definition}
+
+	\begin{remark}
+		Cuando el límite existe, lo llamamos la integral de Riemann de $f$ en $[a,b]$ y lo notamos $\int_{a}^{b} f(x) dx$.
+	\end{remark}
+
+	\begin{definition}[Sumas superior e inferior de Darboux]
+		Dadas $f:[a,b]\to\R$ acotada y $\Pi=(I_i)_{i=1,\dots,n}$ una partición de $[a,b]$, definimos 
+	
+		\begin{align*}
+			m_{I_i}\coloneqq\inf_{x\in I_i} f(x) &,\quad M_{I_i}\coloneqq\sup_{x\in I_i} f(x) \quad \text{y} \\
+			\underline{S}(f;\Pi)\coloneqq\sum_{I_i\in\Pi}^{} m_{I_i}|I_i|&,\quad \overline{S}(f;\Pi)\coloneqq\sum_{I_i\in\Pi}^{} M_{I_i}|I_i|
+		.\end{align*}
+
+		Llamamos a $\underline{S}(f;\Pi)$ y $\overline{S}(f;\Pi)$ las sumas inferior y superior de Darboux de $f$ con respecto a $\Pi$, respectivamente.
+	\end{definition}
+
+	\begin{note}
+		Como $m_{I_i}\leq f(x)\leq M_{I_i}$, $\forall x\in I_i$ para toda partición marcada $\Pi^*=(\Pi;\varepsilon)$, tenemos $\underline{S}(f;\Pi)\leq S_R(f;\Pi^*)\leq \overline{S}(f;\Pi)$.
+	\end{note}
+
+	\begin{definition}[refinamiento]
+		Diremos que una partición $\Pi'$ de $[a,b]$ es un refinamiento de otra partición de $[a,b]$, $\Pi$, si $\Pi\subseteq\Pi'$. \\
+		Equivalentemente, si para todo $J_i\in\Pi'$ existe $I_i\in\Pi$ tal que $J_i\subseteq I_i$.
+	\end{definition}
+
+	\begin{prop}
+		Sea $f:[a,b]\to\R$ acotada. Entonces,
+		\begin{itemize}
+			\item Si $\Pi\subseteq\Pi'$ son particiones de $[a,b]$,
+
+			\[
+			\underline{S}(f;\Pi)\leq\underline{S}(f;\Pi'),\quad\overline{S}(f;\Pi)\geq\overline{S}(f;\Pi').
+			\]
+
+			\item Si $\Pi_1,\Pi_2$ son particiones de $[a,b]$ cualesquiera,
+
+			\[
+			\underline{S}(f;\Pi_1)\leq\overline{S}(f;\Pi_2)
+			\]
+		\end{itemize}
+	\end{prop}
+
+	\begin{definition}
+		Sea $f:[a,b]\to\R$ acotada. Definimos:
+		\begin{itemize}
+			\item La integral superior (de Darboux) de $f$ como $\overline{\int_{a}^{b}} f(x) dx \coloneq \displaystyle{\inf_{\Pi}} \overline{S}(f;\Pi)$.
+			
+			\item La integral inferior (de Darboux) de $f$ como $\underline{\int_{a}^{b}} f(x) dx \coloneq \displaystyle{\sup_{\Pi}} \underline{S}(f;\Pi)$.
+		\end{itemize}
+	\end{definition}
+
+	\begin{theorem}
+		Sea $f:[a,b]\to\R$ acotada. Entonces,
+		\[
+		\underline{\int_{a}^{b}} f(x) dx = \displaystyle{\lim_{\|\Pi\|\to 0}} \underline{S}(f;\Pi)\quad \text{y} \quad \overline{\int_{a}^{b}} f(x) dx = \displaystyle{\lim_{\|\Pi\|\to 0}}\overline{S}(f;\Pi).
+		\]
+	\end{theorem}
+
+	\begin{remark}
+		Equivalentemente, para cualquier sucesión $(\Pi_n)_{n\in\N}$ de partición de $[a,b]$ tal que $\|\Pi_n\|\xrightarrow{n\to\infty} 0$, se tiene que 
+
+		\[
+		\underline{\int_{a}^{b}} f(x) dx = \lim_{n\to\infty} \underline{S}(f;\Pi_n)\quad\text{y}\quad \overline{\int_{a}^{b}} f(x) dx = \lim_{n\to \infty} \overline{S}(f;\Pi_n).
+		\]
+	\end{remark}
+
+	\begin{theorem}
+		Dada $f:[a,b]\to\R$ acotada, son equivalentes:
+
+		\begin{enumerate}
+			\item $\underline{\int_{a}^{b}} f(x) dx = \overline{\int_{a}^{b}} f(x) dx$ (i.e., $f$ es Darboux integrable).
+
+			\item $f$ es Riemann integrable.
+
+			\item $\lim_{\|\Pi\|\to 0} \overline{S}(f;\Pi)-\underline{S}(f;\Pi)=0$.
+
+			\item $\forall (\Pi_n)_{n\in\N}$ sucesión de particiones de $[a,b]$ tal que $\|\Pi_n\|\to 0$, 
+
+			\[
+			\lim_{n \to \infty} \overline{S}(f;\Pi_n)-\underline{S}(f;\Pi_n)=0.
+			\]
+
+			\item $\exists (\Pi_n)_{n\in\N}$ sucesión de particiones de $[a,b]$ tal que 
+
+			\[
+			\lim_{n \to \infty}\overline{S}(f;\Pi_n)-\underline{S}(f;\Pi_n)=0.
+			\]
+		\end{enumerate}
+	\end{theorem}
+
+	\section{Clase 3 (07/08)}
+
+	\begin{note}
+		Las integrales en el sentido de Darboux y el de Riemann coinciden.
+	\end{note}
+
+	\begin{prop}
+		Si $f:[a,b]\to\R$ es monótona, entonces es Riemann integrable.
+	\end{prop}
+
+	\begin{remark}
+		Una función monótona tiene discontinuidades numerables.
+	\end{remark}
+
+	\begin{prop}
+		Si $f:[a,b]\to\R$ es continua, entonces es Riemann integrable.
+	\end{prop}
+
+	En particular, existen funciones Riemann integrables con numerables discontinuiodades. De hecho, hay ejemplos con $c$ (cardinal del continuo) discontinuidades. No obstante, si $f$ es integral de Riemann, su conjunto de discontinuidades tiene que ser "pequeño".
+
+	\begin{theorem}
+		Sea $f:[a,b]\to\R$ acotada. Entonces, $f$ es integral de Riemann si y sólo si su conjunto de discontinuidades tiene medida nula.
+	\end{theorem}
+
+	\begin{definition}[intervalo]
+		Decimos que un conjunto $I\subseteq\overline{\R}\coloneq\R\cup \{-\infty,\infty\}$ es un intervalo si satisface
+
+		\[
+		x,y\in I \Rightarrow z\in I \text{ para todo } \min x,y\leq z\leq\max x,y.
+		\]
+	\end{definition}
+
+	\begin{eg}
+		(y propiedades)
+		\begin{itemize}
+			\item Dados $a\leq b$ ($a,b\in\R$), los conjuntos $(a,b),(a,b],[a,b],[a,b)$ son intervalos;
+
+			\item El conjunto vacío es un intervalo ($\varnothing = (a,a)$);
+
+			\item Los puntos son intervalos. $I = [\lambda,\lambda]$;
+
+			\item La intersección son intervalos de intervalos.
+		\end{itemize}
+	\end{eg}
+
+	\begin{definition}[intervalo generalizado]
+		Decimos que un conjunto $I\subseteq\R^d$ es un intervalo si puede escribirse como
+
+		\[
+		I=\prod_{k=1}^{d} I_k
+		\]
+
+		donde cada $I_r$ es un intervalo en $\R$. La medida de un intervalo $I\subseteq\R^d$ se define como
+		
+		\[
+		|I|\coloneq\prod_{k=1}^{d} |I_k|.
+		\]
+	\end{definition}
+
+	\begin{note}
+		Los intervalos en $\R^d$ heredan las mismas pripiedades en $\R$:
+
+		\begin{itemize}
+			\item Intersección de intervalos en $\R^d$ es intervalo.
+
+			\item Si $I\subseteq J\subseteq\R^d$ son intervalos, entonces $|I|\leq|J|$.
+		\end{itemize}
+	\end{note}
+
+	\begin{definition}[medida nula]
+		Un conjunto $E\subseteq\R^d$ se dice de medida nula si, dado $\varepsilon>0$, existe una sucesión $(I_n)_{n\in\N}$ de intervalos de $\R^d$ tal que
+
+		\[
+		E\subseteq\bigcup_{n\in\N} I_n\quad\text{ y }\quad \sum_{n\in\N}^{}|I_n|<\varepsilon.
+		\]
+	\end{definition}
+
+	\begin{eg}
+		(y propiedades)
+		\begin{enumerate}
+			\item Todo conjunto unitario $\{x\}, (x\in\R^d)$ tiene medida nula;
+
+			\item Toda unión numerable de conjuntos de medida nula tiene medida nula;
+
+			\item Cualquier conjunto numerable tiene medida nula;
+			
+			\item Cualquier subconjunto de un conjunto de medida nula tiene medida nula;
+
+			\item Existen conjuntos no numerables de medida nula:
+
+			\begin{itemize}
+				\item En $\R^d$ con $d\geq 2$, los ejes $\{x:x_1=0\}, i=1,\dots,d$ tiene medida nula.
+
+				\item En $\R$, el conjunto de cantor tiene medida nula.
+			\end{itemize}
+
+			\item $E\subseteq\R^d$ es de medida nula, entonces $\alpha\dot E$ tiene medida nula $\forall\alpha\in\R$.
+			
+			\item $E\subseteq\R^d$ es de medida nula, entonces $E + v$ tiene medida nula $\forall v\in\R^d$.
+
+			\item Si $E$ contiene un intervalo no unitario, entonces no tiene medida nula. Notar que:
+
+			\begin{itemize}
+				\item La vuelta no es válida: $\R\textbackslash\Q$ no contiene untervalos no unitarios pero no puede tener medida nula.
+
+				\item De esto se deduce que si $E\subseteq\R^d$ tiene medida nula. Entonces $E^c$ es denso (no vale la vuelta: $E^c=\Q$).
+			\end{itemize}
+
+			\item $E\subseteq\R^d$ tiene medida nula si y sólo si
+
+			\[
+			|E|_e\coloneq\inf \{ \sum_{n\in\N} |I_n| : E \subseteq \bigcup_{n\in\N} I_n \} = 0, \quad I_n \text{ intervalo } \forall n \in \N.
+			\]
+		\end{enumerate}
+	\end{eg}
+
+	\section{Clase 4 (08/08)}
+
+	\begin{theorem}
+		Sea $f:[a,b]\to\R$ acotada. Entonces
+		\begin{align*}
+			f \text{ Riemann integrable}\Longleftrightarrow & D_f=\{x\in[a,b]:f\text{ discontinua en } x\} \\ & \text{ tiene medida nula.}
+		\end{align*}
+	\end{theorem}
+
+	\subsection{Limitaciones de la integral de Riemann}
+
+	\begin{enumerate}
+		\item Sólo está definida para $f$ acotada y sobre intervalos $[a,b]$ acotados. La teoría de integrales impropias resuelve esto.
+
+		\item Propiedades del espacio $\mathcal{R}([a,b])=\{f:[a,b]\to\R:f\text{ Riemann integrable}\}$: Nos gustaría poder definir una noción de convergencia en $\mathcal{R}([a,b])$ tal que
+		\[
+		f_n\to f \text { en } \mathcal{R}([a,b]) \Rightarrow \int_{a}^{b} f_n\to \int_{a}^{b} f \quad \left( \lim \int_{a}^{b} f_n = \int_{a}^{b} \lim f_n \right).
+		\]
+	\end{enumerate}
+
+	\begin{remark}
+		La convergencia puntal NO cumple esto (punto 2).
+	\end{remark}
+
+	\begin{eg}[1]~
+		\begin{itemize}
+			\item $f_n \coloneq n \chi_{(0,\frac{1}{n}]}$ es Riemann integrable en $[0,1],\ \forall n \in \N$;
+
+			\item $f_n \to f \cong 0$ puntualmente en $[0,1]$;
+
+			\item $\int_{0}^{1} f_n = 1 \not\to 0 = \int_{0}^{1} f$.
+		\end{itemize}
+	\end{eg}
+
+	\begin{eg}[2]~
+		\begin{itemize}
+			\item Sea $(Q_n)_{n \in \N}$ una enumeración de $\Q \cap [0,1]$;
+
+			\item $f_n \coloneq \chi_{\{ Q_1,\dots,Q_n \}}$ es Riemann integrable en $[0,1],\ \forall n \in \N$;
+
+			\item $f_n \to f \coloneq \chi_{\Q \cap [0,1]}$ puntualmente en $[0,1]$;
+
+			\item $f$ no es Riemann integrable. $\underline{\int_{0}^{1}} f = 0 \neq 1 = \overline{\int_{0}^{1}} f$.
+		\end{itemize}
+	\end{eg}
+
+	\begin{remark}
+		La convergencia uniforme SÍ cumple esto, pero es demasiado fuerte.
+	\end{remark}
+
+	\begin{ex}[Guía 1]
+		Sean $(f_n)_{n \in \N} \subset \mathcal{R}([a,b])$ tales que $f_n \to f$ uniformemente en $[a,b]$. Entonces, $f \in \mathcal{R}([a,b])$ y $\lim_{n \to \infty} \int_{a}^{b} f_n = \int_{a}^{b} f$.
+	\end{ex}
+
+	\begin{eg}[3]~
+		\begin{itemize}
+			\item $f_n (x) \coloneq x^n$ en $[0,1],\ f_n \in \mathcal{R}([a,b]),\ \forall n \in \N,\ f_n \to \chi = f$ puntualmente;
+
+			\item $f \in \mathcal{R}([a,b])$ y $\int_{0}^{1} f_n (x) dx = \frac{1}{n+1} \to 0 = \int_{0}^{1}$;
+
+			\item $f_n$ no converge uniformemente a $f$.
+		\end{itemize}
+	\end{eg}
+
+	Resulta que la noción de convergencia "óptima" (la más "débil" que cumple lo que queremos) es la de convergencia en $L'$:
+
+	\[
+	f_n \xrightarrow{L'} f \text{ si } \lim_{n \to \infty} \int_{a}^{b} | f_n - f | = 0.
+	\]
+
+	Esta noción de convergencia viene dada por una "norma":
+
+	\begin{itemize}
+		\item $\| f \|_{L'} \coloneq \int_{a}^{b} |f|$ (recordar que $f \in \mathcal{R}([a,b]) \implies |f| \in \mathcal{R}([a,b])$);
+
+		\item $d_{L'} (f,g) \coloneq \| f - g \|_{L'} = \int_{a}^{b} |f-g|$.
+	\end{itemize}
+
+	\begin{remark}
+		$\| \cdot \|_{L'}$ no es una norma porque $\| f \|_{L'} = 0 \nRightarrow f = 0$. Decimos que es una \textit{pseudo-norma} y $d$ una \textit{pseudo-métrica}.
+	\end{remark}
+
+	Para arreglar esto, dadas $f,g : [a,b] \to \R$, decimos que son \textit{equivalentes} y lo notamos $f \sim g$ si $\{ x \in [a,b] \ : \ f(x) \neq g(x) \}$ tiene medida nula. Resulta que $\sim$ es una relación de equivalencia y, además,
+
+	\[
+	f,g \in \mathcal{R} ([a,b]),\ f \sim g \implies \int_{a}^{b} f = \int_{a}^{b} g.
+	\]
+
+	Sea $\overline{\mathcal{R}}([a,b])$ el conjunto de clases de equivalencia de $\mathcal{R}([a,b])$, y denotamos por $\overline{f}$ a la clase de equivalencia de $f \in \mathcal{R}([a,b])$. Con esto, $\| \overline{f} \|_{L'} \coloneq \int_{a}^{b} |f| dx$ define una norma en $\overline{\mathcal{R}} ([a,b])$ que se llama la \textbf{norma $L'$}.
+
+	\begin{remark}
+		Hay un problema: $(\overline{\mathcal{R}} ([a,b]), \| \cdot \|_{L'})$ NO ES COMPLETO!
+	\end{remark}
+
+	\begin{enumerate}
+		\item[3.] \textbf{TFC:} Si $f \in \mathcal{R} ([a,b])$ es continua en $x_0 \in [a,b]$, entonces $F(x) \coloneq \int_{a}^{x} f(t) dt$ es derivable en $x_0$ y $F'(x_0) = f(x_0)$. En particular, $F$ es derivable en $x$ y $F'(x)=f(x)$ para todo $x$ salvo un conjunto de medida nula.
+	\end{enumerate}
+
+
+
+
+% end lessons
+\end{document}
