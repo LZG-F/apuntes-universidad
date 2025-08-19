@@ -18,7 +18,8 @@
 \tableofcontents
 % start lessons
 
-\chapter{Ayudantía 1 (12/08)}
+\chapter{Interrogación N°1}
+\section{Ayudantía 1 (12/08)}
 
 \begin{enumerate}
 	\item Sea $X$ un conjunto infinito.
@@ -120,7 +121,98 @@
 		Pero $W^c = X \times \{a\}$ no es finito. Por lo tanto $W \in \tau_{\text{cof}} (X \times Y)$. Entonces $\tau_{\text{cof}} (X \times Y) \subsetneq \tau_{\text{cof}}(X) \times \tau_{\text{cof}}(Y)$.
 	\end{proof}
 
+\end{enumerate}
 
+	%#############################################################################################%
+	%#############################################################################################%
+	%#############################################################################################%
+
+\section{Ayudanía 2 (19/08)}
+
+\begin{enumerate}
+	\item Considere $W \subseteq Y \subseteq X$, $\tau$ topología en $X$, $\tau'$ topología inducida en $X$. Pruebe que las topologías inducidas por $\tau$ y $\tau'$ sen $W$ son iguales.
+	\begin{proof}[Proof ]
+		$U$ abierto en $\tau|_{W} \iff U = U_X \cap W$.\\
+		$\begin{aligned}
+			U \text{ abierto en } \tau'|_{W} & \iff U = \overbrace{(U_X \cap Y)}^{\text{abierto en } \tau'} \cap W \\
+			& \iff U_X \cap W
+		.\end{aligned}$
+	\end{proof}
+
+	\item Considere $\Z$ con la topología profinita y $H \leq \Z$. Pruebe que la topología inducida en $H$ es igual a la topología profinita en $H$.
+	\begin{remark}
+		Topología profinita: $G,\ \tau (G).\ \mathcal{B} = \{ gH \ : \ H \lhd G, \ [G : H] < \infty \}$. \\
+		\noindent Caso de $Z$: si $a,b \in \Z,\ b\neq 0$, entonces $S(a,b) = \{ a+bn \ : \ n \in \Z \}$. Luego, $G = \Z,\ H = (b),\ b\neq 0$.
+		\begin{align*}
+			\mathcal{B} & = \{ a(b) \ : \ b \neq 0 \} \\
+			& = \{ a+bn \ : \ n \neq 0 \} \\
+			& = \{ S(a,b) \}  
+		.\end{align*}
+	\end{remark}
+	\begin{proof}[Proof ]
+		$\tau (\Z) =$ topología profinita en $\Z$. Si $H \leq \Z,\ H = (m),\ m \neq 0,1$. Notar que se debe demostrar $\tau (H) = \tau (\Z)|_{H}$. (Afirmamos que $\mathcal{B}(H) = \{ S(sm,tm) \ : \ t \neq 0 \}$ es base de $\tau (H)$ y que $\mathcal{B}(Z) \cap H$ es base de $\tau(\Z)|_{H}$) \\
+		\noindent \fbox{$\supseteq$} Sea $x \in  B \in \mathcal{B}(\Z) \cap H,\ B = S(a,b) \cap (m)$. Luego, $x = a + bn \in (m)$. $x \in S(x,bm) \subseteq S(a,b) \cap (m)$. Si $y \in S(x,bm)$, entonces
+		\begin{align*}
+			y & = x + bmk \\
+			& = a + bn + bmk \\
+			& = a + b(n+mk) \in S(a,b)
+		.\end{align*}
+		\noindent \fbox{$\subseteq$} Sea $B \in \mathcal{B}(H)$. Luego $B= S(tm,sm),\ s \neq 0$. Notar que $B$ es un abierto de la base de $\tau(\Z)$ y que $B \subseteq H = (m)$. Entonces, $B \in \tau (\Z)|_{H}$.
+	\end{proof}
+
+	\item $X$ espacio topológico, $A \subseteq X$. Definimos la frontera de $A$ por
+	\[
+	\partial A \coloneq \overline{A} \cap \overline{X \setminus A}.
+	\]
+	\begin{enumerate}
+		\item $\partial A = \overline{A} \setminus int(A)$;
+
+		\item Demuestre que $int(A),\ \partial A$ son disjuntos y $\overline{A} = int(A) \cup \partial A$;
+
+		\item $\partial A = \varnothing \iff A$ abierto y cerrado;
+
+		\item $U$ abierto $\iff \partial U = \overline{U} \setminus U$;
+
+		\item $U$ abierto ¿$U = int(\overline{U})$?
+	\end{enumerate}
+	\begin{proof}[Proof ]
+		\begin{enumerate}
+			\item Notar que
+			\[
+			\overline{A} \setminus int(A) = \overline{A} \cap int(A)^c.
+			\]
+			Basta ver que $int(A)^c = \overline{X \setminus A}$.
+			\begin{align*}
+				x \in int(A)^c & \iff \forall \ U(X),\ U(X) \not\subseteq A \\
+				& \iff \forall \ U(X),\ U(X) \cap (X-A) \neq \varnothing. \\
+				x \in \overline{X \setminus A} & \iff \forall \ U(X),\ U(X) \cap (X \setminus A) \neq \varnothing.
+			.\end{align*}
+
+			\item $\partial A = \overline{A} \setminus int(A) \implies \partial A \cap int(A) = \varnothing$. Luego, $(\bigcup int(A)),\ partial A \cup int(A) = \overline{A}$.
+
+			\item $\partial A = \varnothing \iff A$ abierto y cerrado.\\
+			\Onlyifstep Basta ver que \begin{align*}
+				\partial A & = \overline{A} \cap \overline{X \setminus A} \\
+				& = A \cap X \setminus A \\
+				& = \varnothing.
+			\end{align*}
+
+			\Ifstep Basta ver que
+			\begin{align*}
+				\partial A = \varnothing = \overline{A}\setminus int(A) & \implies int(A) = \overline{A} \quad (int(A) \subseteq A \subseteq \overline{A}) \\
+				& \implies A = \overline{A} = int(A) \\
+				& \implies A \text{ abierto y cerrado}
+			.\end{align*}
+
+			\item $U$ abierto $\iff \partial U = \overline{U} \setminus U$
+
+			\Onlyifstep $\partial U = \overline{U} \setminus int(U) = \overline{U} \setminus U$.
+
+			\Ifstep $\overline{U} =  int(U) \cup \partial U = int(U) \cup (\overline{U} \setminus U)$. $\overline{U} \cap (\overline{U} \cap U^c)^c = \overline{U} \setminus (\overline{U}\setminus U) = int(U)$. (terminar dem)
+
+			\item La igualdad es falsa, pero una de las contenciones es real.
+		\end{enumerate}
+	\end{proof}
 
 
 
@@ -131,6 +223,20 @@
 
 
 \end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 % end lessons
 \end{document}

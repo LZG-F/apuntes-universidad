@@ -33,6 +33,23 @@
 \let\iff\Leftrightarrow
 \let\epsilon\varepsilon
 
+% demostraciones bidireccionales
+
+\newcommand{\Onlyifstep}{%
+	\begingroup
+	\fboxsep=1pt
+	\raisebox{1.2ex}{\fbox{\raisebox{-1.2ex}{$\Rightarrow$\hspace{-0.05em}}}}%
+	\endgroup
+	\hspace{0.5em}%
+	}
+\newcommand{\Ifstep}{%
+	\begingroup
+	\fboxsep=1pt
+	\raisebox{1.2ex}{\fbox{\raisebox{-1.2ex}{\hspace{-0.05ex}$\Leftarrow$}}}%
+	\endgroup
+	\hspace{0.5em}%
+	}
+
 % horizontal rule
 \newcommand\hr{
     \noindent\rule[0.5ex]{\linewidth}{0.5pt}
