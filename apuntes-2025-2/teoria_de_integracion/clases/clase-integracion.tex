@@ -432,22 +432,100 @@
 	\begin{enumerate}
 		\item $\lambda (\varnothing) = 0$;
 
-		\item $I_1,I_2 \in \mathcal{I},\ I_1\subseteq I_2 \implies \lambda (I_1) \leq \lambda (I_2) (\text{Monotonía de } \lambda)$;
+		\item $I_1,I_2 \in \mathcal{I},\ I_1\subseteq I_2 \implies \lambda (I_1) \leq \lambda (I_2) \ (\text{Monotonía de } \lambda)$;
 
 		\item (Aditividad finita de $\lambda$) Si $I \in \mathcal{I}$ es tal que $I = \displaystyle\bigcup_{i=1}^{n} J_i$ (la union tiene la D en medio) con $J_i \in \mathcal{I},\ \forall i = 1,\dots,n,\ J_i \cap J_j = \varnothing$ sin $i\neq j$, entonces
 		\[
-		\lambda (I) = \sum_{i=1}^{n} \lambda (J_i)
+		\lambda (I) = \sum_{i=1}^{n} \lambda (J_i);
 		\]
 
-		\item ($r$-aditividad de $\lambda$) Si $I \in \mathcal{I}$ es tal que $I = \displaystyle\bigcup_{i=1}^{\infty} I_i $, con $(I_i)_{i} \in \N \subseteq \mathcal{I}$ disjuntos, entonces
+		\item ($\sigma$-aditividad de $\lambda$) Si $I \in \mathcal{I}$ es tal que $I = \displaystyle\bigcup_{i=1}^{\infty} I_i $, con $(I_i)_{i} \in \N \subseteq \mathcal{I}$ disjuntos, entonces
 		\[
 		\lambda(I) = \sum_{i=1}^{\infty} \lambda (I_i)
-		\]
+		;\]
 
-		\item ($r$-subaditividad de $\lambda$) Si $I \in \mathcal{I}$ verifica $I \subseteq \displaystyle\bigcup_{i=1}^{\infty} I_i, \ (I_1)_{i \in \N})$ intervalos (no necesariamente disjuntos), entonces $\lambda (I) \leq \sum_{i=1}^{\infty} \lambda (I_i)$
+		\item ($\sigma$-subaditividad de $\lambda$) Si $I \in \mathcal{I}$ verifica $I \subseteq \displaystyle\bigcup_{i=1}^{\infty} I_i, \ (I_1)_{i \in \N})$ intervalos (no necesariamente disjuntos), entonces $\lambda (I) \leq \sum_{i=1}^{\infty} \lambda (I_i)$;
 
-		\item $\lambda (I + x) = \lambda (I), \ \forall x \in \R, \ I+x \coloneq \{a + x \ : \ a \in I \}  $
+		\item $\lambda (I + x) = \lambda (I), \ \forall x \in \R, \ I+x \coloneq \{a + x \ : \ a \in I \} $;
+
+		\item $\lambda(\{x\}) = 0 \ \forall \ x \in \R$.  
 	\end{enumerate}
+
+
+	\section{Clase 6 (20/08)}
+
+	Nos gustaría extender $\lambda$ a una clase más grande que $\mathcal{I}$. Más precisamente, nos gustaría definir una aplicación $m : \mathcal{M} \to [0,\infty]$, donde $\mathcal{M}$ es una coleccción de subconjuntos de $\R$ tal que $\mathcal{I} \subseteq \mathcal{M}$, de manera tal que, dado $E \in \mathcal{M},\ m(E)$ represente la "longitud" de $E$. Idealmente, nos gustaría que $m$ cumpla lo siguiente:
+
+	\begin{enumerate}
+		\item $\mathcal{M} = \mathcal{P}(\R)$;
+
+		\item Si $I \in \mathcal{I}$, entonces $m(I) = |I|$;
+
+		\item $m$ es $\sigma$-aditiva ($E,\ (E_n)_{n\in\N}\ in \mathcal{M},\ E = \displaystyle\bigcup_{n=1}^{\infty} E_n \implies m(E) = \sum_{n=1}^{\infty} m(E_n)$) (la union tiene la D adentro);
+	\end{enumerate}
+
+	\begin{ex}
+		$(1)+(2)+(3) \implies m$ es monóton, $\sigma$-subaditiva y finitamente aditiva. 
+	\end{ex}
+
+	\begin{enumerate}
+		\item[4] Si $E \in \mathcal{M}$, entonces $E + x \in \mathcal{M}$ y $m(E + x) = m(E)\ \forall x \in \R$.
+	\end{enumerate}
+
+	\noindent El problema es que, si asumimos el Axioma de Elección, uno puede mostrar que no existe una tal $m$ que cumpla $(1)-(2)-(3)-(4)$ y, de hecho, no se sabe si existe $m$ que cumpla $(1)-(2)-(3)$. (Si asumimos la hipótesis del continuo, entonces no existe $m$ que cumpla $(1)-(2)-(3)$). \\
+
+	\noindent Luego, para construir $m$ debemos debilitar alguna de las propiedades:
+	\begin{itemize}
+		\item Si debilitamos $(1) \implies$ TEORÍA DE LA MEDIDA;
+		
+		\item Si debilitamos $(3)$ pidiento solo (hay dos opciones):
+
+		\begin{itemize}
+			\item[$\rightarrow$] aditividad finita $ \implies$ "medidas finitamente aditivas";
+		
+			\item[$\rightarrow$] $\sigma$-subaditividad $\implies$ "medidas exteriores".
+		\end{itemize}
+	\end{itemize}
+
+	\noindent Vamos a optar por debilitar $(1)$. \\\\
+	\noindent Una manera de extender $\lambda$ es la siguiente:
+	\begin{enumerate}
+		\item[i.] Si $E = \displaystyle\bigcup_{i=1}^{n} I_i$ (la unión tiene la D en medio) entonces defninimos $\lambda(E) \coloneq \sum_{i=1}^{n} \lambda (I_i)$;
+
+		\item[ii.] Si $E \displaystyle\bigcup_{i=1}^{\infty} I_i$ (la unión tiene la D en medio) entonces definimos $\lambda(E) \coloneq \sum_{i=1}^{\infty} \lambda (I_i)$;
+
+		\item[iii.] La fórmula anterior nos permite definir $\lambda (6)$ para todo $6$ abierto en $\R$;
+
+		\item[iv.] Para conjuntos mas generales, "aproximar" por abiertos. 
+	\end{enumerate}
+
+	\begin{definition}[premedida]
+		Sea $X$ un conjunto no vacío y $\xi$ una colección de subconjuntos de $X$ tal que $\varnothing \in \xi$. Diremos que una aplicación $\Tau : \xi \to [0,\infty]$ es una premedida si $\Tau (\varnothing)=0$.
+	\end{definition}
+
+	\begin{remark}
+		El conjunto no vacío $X$ será llamado un espacio y la colección $\xi$ será llamada una clase (de subconjuntos de $X$).
+	\end{remark}
+
+	\noindent Intuitivamente, $\xi$ representa la colección de subconjuntos cuyo "tamaño" sabemos medir y $\Tau$ nos da su medida.
+
+	\begin{eg}
+		\begin{enumerate}
+			\item \textbf{Premedida de Lebesgue: } $\xi \coloneq \mathcal{I} \coloneq \{ I \subseteq \R \ : \ I \text{ intervalo}\}, \ \Tau(I) \coloneq |I|$.
+
+			\item \textbf{Premedidas de Lebesgue-Stieltjes: } Sea $F:\R \to \R$ monótona creciente y continua a derecha ($\lim_{x \to x_0}^{+} F(x) = F(x_0)$). Una función tal se dice una función de Lebesgue-Stieltjes. 
+		\end{enumerate}
+	\end{eg}
+
+	\noindent Observemos que, por monotonía, existen límites $\left\{ \begin{aligned}
+		F(\infty) & \coloneq \lim_{x \to \infty} F(x) \\ 
+		F(-\infty) & \coloneq \lim_{x \to -\infty} F(x) 
+	\end{aligned} \right\} \in \R$
+
+
+
+
+
 
 
 
