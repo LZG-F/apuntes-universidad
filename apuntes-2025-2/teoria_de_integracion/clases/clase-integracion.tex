@@ -9,10 +9,16 @@
 \DeclareMathOperator{\SL}{SL}
 \DeclareMathOperator{\Mat}{Mat}
 
+%MIS PAQUETES
+
+\newcommand{\bigcupd}{\mathop{\ensurestackMath{\stackinset{l}{}{c}{+.25ex}{\hspace{3pt}{\text{\tiny{D}}}}{\displaystyle{\bigcup}}}}}
+
 \usepackage{stackengine,scalerel}
 
-\newcommand{\bigcupcolon}{\mathop{\ThisStyle{%
-  \ensurestackMath{\stackinset{c}{-0.4pt}{c}{+.25\LMex}{\tiny{D}}{\SavedStyle\bigcup}}}}}
+%\newcommand{\bigcupcolon}{\mathop{\ThisStyle{%
+%  \ensurestackMath{\stackinset{c}{-0.4pt}{c}{+.25\LMex}{\tiny{D}}{\SavedStyle\bigcup}}}}}
+
+%MIS PAQUETES
 
 \title{Teoría de Integración}
 \author{}
@@ -416,14 +422,12 @@
 		\Phi (x) & \coloneq \sum_{i=1}^{n} c_i \cdot \chi_{(x_{i-1},x_i}(x) + \sum_{i=0}^{n} \Phi(x_i) \cdot \chi_{\{x_i\}}(x) \\
 		& = \sum_{i=1}^{k} c_j \cdot \chi_{A_j}(x).
 	.\end{align*}
-	\noindent donde los $A_j$ son intervalos disjuntos tales que $\displaystyle\bigcup_{j=1}^{k} A_j = [a,b]$ (se pone una "D" dentro de la "U" de unión para denotar que estamos haciendo una unión disjunta).
+	\noindent donde los $A_j$ son intervalos disjuntos tales que $\displaystyle\bigcupd_{j=1}^{k} A_j = [a,b]$ (se pone una "D" dentro de la unión para denotar que estamos haciendo una unión disjunta).
 
-	Si tomamos $\Phi$ de la forma $\Phi = \sum_{j=1}^{k} c_j \cdot \chi_{A_j}$ con $(A_j)_{j=1,\dots,k}$ disjuntos, $\displaystyle\bigcup_{j=1}^{k} A_j = [a,b]$ (la U tiene la D en medio) pero $A_j$  no son necesariamente intervalos, diremos que $\Phi$ es una función escalonada generalizada. Como para funciones escalonadas "normales", tenemos
+	Si tomamos $\Phi$ de la forma $\Phi = \sum_{j=1}^{k} c_j \cdot \chi_{A_j}$ con $(A_j)_{j=1,\dots,k}$ disjuntos, $\displaystyle\bigcupd_{j=1}^{k} A_j = [a,b]$ pero $A_j$  no son necesariamente intervalos, diremos que $\Phi$ es una función escalonada generalizada. Como para funciones escalonadas "normales", tenemos
 	\[
 	\int_{a}^{b} \Phi (x) dx = \sum_{j=1}^{k} c_j \cdot |A_j| \left( = \sum_{i=1}^{n} c_i \cdot |I_i| \right)
 	\]
-
-	$\bigcupcolon$
 
 	\noindent \textbf{La función longitud}
 	Sea $\mathcal{I}$ la colección de los intervalos en $\R$. Definimos la función longitud $\lambda : \mathcal{I} \to [0,\infty]$ como $\lambda (I) \coloneq |I|$.
@@ -434,7 +438,7 @@
 
 		\item $I_1,I_2 \in \mathcal{I},\ I_1\subseteq I_2 \implies \lambda (I_1) \leq \lambda (I_2) \ (\text{Monotonía de } \lambda)$;
 
-		\item (Aditividad finita de $\lambda$) Si $I \in \mathcal{I}$ es tal que $I = \displaystyle\bigcup_{i=1}^{n} J_i$ (la union tiene la D en medio) con $J_i \in \mathcal{I},\ \forall i = 1,\dots,n,\ J_i \cap J_j = \varnothing$ sin $i\neq j$, entonces
+		\item (Aditividad finita de $\lambda$) Si $I \in \mathcal{I}$ es tal que $I = \displaystyle\bigcupd_{i=1}^{n} J_i$ con $J_i \in \mathcal{I},\ \forall i = 1,\dots,n,\ J_i \cap J_j = \varnothing$ sin $i\neq j$, entonces
 		\[
 		\lambda (I) = \sum_{i=1}^{n} \lambda (J_i);
 		\]
@@ -461,7 +465,7 @@
 
 		\item Si $I \in \mathcal{I}$, entonces $m(I) = |I|$;
 
-		\item $m$ es $\sigma$-aditiva ($E,\ (E_n)_{n\in\N}\ in \mathcal{M},\ E = \displaystyle\bigcup_{n=1}^{\infty} E_n \implies m(E) = \sum_{n=1}^{\infty} m(E_n)$) (la union tiene la D adentro);
+		\item $m$ es $\sigma$-aditiva ($E,\ (E_n)_{n\in\N}\in \mathcal{M},\ E = \displaystyle\bigcupd_{n=1}^{\infty} E_n \implies m(E) = \sum_{n=1}^{\infty} m(E_n)$);
 	\end{enumerate}
 
 	\begin{ex}
@@ -490,9 +494,9 @@
 	\noindent Vamos a optar por debilitar $(1)$. \\\\
 	\noindent Una manera de extender $\lambda$ es la siguiente:
 	\begin{enumerate}
-		\item[i.] Si $E = \displaystyle\bigcup_{i=1}^{n} I_i$ (la unión tiene la D en medio) entonces defninimos $\lambda(E) \coloneq \sum_{i=1}^{n} \lambda (I_i)$;
+		\item[i.] Si $E = \displaystyle\bigcupd_{i=1}^{n} I_i$ entonces defninimos $\lambda(E) \coloneq \sum_{i=1}^{n} \lambda (I_i)$;
 
-		\item[ii.] Si $E \displaystyle\bigcup_{i=1}^{\infty} I_i$ (la unión tiene la D en medio) entonces definimos $\lambda(E) \coloneq \sum_{i=1}^{\infty} \lambda (I_i)$;
+		\item[ii.] Si $E = \displaystyle\bigcupd_{i=1}^{\infty} I_i$ entonces definimos $\lambda(E) \coloneq \sum_{i=1}^{\infty} \lambda (I_i)$;
 
 		\item[iii.] La fórmula anterior nos permite definir $\lambda (6)$ para todo $6$ abierto en $\R$;
 
@@ -500,31 +504,52 @@
 	\end{enumerate}
 
 	\begin{definition}[premedida]
-		Sea $X$ un conjunto no vacío y $\xi$ una colección de subconjuntos de $X$ tal que $\varnothing \in \xi$. Diremos que una aplicación $\Tau : \xi \to [0,\infty]$ es una premedida si $\Tau (\varnothing)=0$.
+		Sea $X$ un conjunto no vacío y $\mathscr{C}$ una colección de subconjuntos de $X$ tal que $\varnothing \in \mathscr{C}$. Diremos que una aplicación $\mathcal{T} : \mathscr{C} \to [0,\infty]$ es una premedida si $\mathcal{T} (\varnothing)=0$.
 	\end{definition}
 
 	\begin{remark}
-		El conjunto no vacío $X$ será llamado un espacio y la colección $\xi$ será llamada una clase (de subconjuntos de $X$).
+		El conjunto no vacío $X$ será llamado un espacio y la colección $\mathscr{C}$ será llamada una clase (de subconjuntos de $X$).
 	\end{remark}
 
-	\noindent Intuitivamente, $\xi$ representa la colección de subconjuntos cuyo "tamaño" sabemos medir y $\Tau$ nos da su medida.
+	\noindent Intuitivamente, $\mathscr{C}$ representa la colección de subconjuntos cuyo "tamaño" sabemos medir y $\mathcal{T}$ nos da su medida.
 
-	\begin{eg}
+	\begin{eg}~
 		\begin{enumerate}
-			\item \textbf{Premedida de Lebesgue: } $\xi \coloneq \mathcal{I} \coloneq \{ I \subseteq \R \ : \ I \text{ intervalo}\}, \ \Tau(I) \coloneq |I|$.
+			\item \textbf{Premedida de Lebesgue:} $\mathscr{C} \coloneq \mathcal{I} \coloneq \{ I \subseteq \R \ : \ I \text{ intervalo}\}, \ \mathcal{T}(I) \coloneq |I|$.
 
-			\item \textbf{Premedidas de Lebesgue-Stieltjes: } Sea $F:\R \to \R$ monótona creciente y continua a derecha ($\lim_{x \to x_0}^{+} F(x) = F(x_0)$). Una función tal se dice una función de Lebesgue-Stieltjes. 
+			\item \textbf{Premedidas de Lebesgue-Stieltjes:} Sea $F:\R \to \R$ monótona creciente y continua a derecha ($\lim_{x \to x_0}^{+} F(x) = F(x_0)$). Una función tal se dice una función de Lebesgue-Stieltjes. 
 		\end{enumerate}
 	\end{eg}
 
-	\noindent Observemos que, por monotonía, existen límites $\left\{ \begin{aligned}
+	\noindent Observemos que, por monotonía, existen límites \[ \left\{ \begin{aligned}
 		F(\infty) & \coloneq \lim_{x \to \infty} F(x) \\ 
 		F(-\infty) & \coloneq \lim_{x \to -\infty} F(x) 
-	\end{aligned} \right\} \in \R$
+	\end{aligned} \right\} \in \R \]
 
+	\noindent Sea además la clase $\widetilde{\mathcal{I}}$ de intervalos de $\R$ dada por
+	\begin{align*}
+		\widetilde{\mathcal{I}} & \coloneq \{ I(a,b) \ : \ \} \text{ donde } I(a,b) \coloneq (a,b] \cap \R \\
+		& = \{ (a,b] \ : \ -\infty \leq a \leq b \} \cup \{ (a,\infty) \ : \ -\infty \leq a < \infty \}. 
+	.\end{align*}
 
+	\noindent Definimos la premedida $\mathcal{T}_F$ de Lebesgue-Stieltjes asociada a $F$ como la aplicación $\mathcal{T}_F: \widetilde{\mathcal{I}} \to [0, \infty]$, dada por
+	\[ \mathcal{T}_F (I(a,b)) = F(b) - F(a) .\]
 
+	\begin{note}
+		Observar que si $F(x)=x$ entonces $\mathcal{T}_F$ es la premedida de Lebesgue (sobre $\widetilde{\mathcal{I}}$.
+	\end{note}
 
+	\begin{enumerate}
+		\item[3.] \textbf{Premedidas de Probabilidad:} Si $F$ es una función de L-S tal que $F(\infty) = 1$ y $F(-\infty) = 0$, decimos que $F$ es una función de distribución (acumulada). En tal caso, la premedida $\mathcal{T}_F$ se conoce como premedida de probabilidad o predistribución (en $\R$).
+	\end{enumerate}
+
+	\begin{remark}
+		$\mathcal{T}_F (\R) = \mathcal{T}_F (I(-\infty,\infty)) = F(\infty) - F(-\infty) = 1 - 0 = 1$.
+	\end{remark}
+
+	\begin{enumerate}
+		\item[4.] \textbf{Premedida...}
+	\end{enumerate}
 
 
 
