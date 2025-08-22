@@ -127,10 +127,116 @@
 		
 		\noindent Por el lema precedente, es evidente que $\varphi \in C(\R;\R^n)$ es solución de (PC) si y sólo si $T(\varphi) \equiv \varphi$ (i.e., $\varphi$ es punto fijo de $T$).
 
+%############################################################################################%
+%############################################################################################%
+%############################################################################################%
+
+\section{Clase (22/08)}
+
+$\Omega \subset \R^{n+1},\ \Omega = I \times \widetilde{\Omega}$ con $I \subset \R$ intervalo abierto y $\widetilde{\Omega} \subset \R^n$ conjunto abierto.
+\[ (PC) \ \begin{cases}
+	y'(x) = f(x, y(x))\quad \forall x \in I, \\
+	y(x_0) = y_0 \quad (x_0 \in I, y_0 \in \R^n)
+\end{cases} \]
+
+\begin{enumerate}
+	\item[(i)] Resolver \underline{localmente} el problema (PC) corresponde a encontrar un intervalo $J \subset I$ y una función $\varphi \in C^1 (J;\R^n)$ tales que:
+	\[ x_0 \in J,\ (x,\varphi(x)) \in \Omega \ \forall x \in J,\ \varphi'(x) = f(x,\varphi(x))\ \forall x \in J; \]
+
+	\item[(ii)] Si $J_1,\ J_2 \subset I$ son intervalos abiertos que contienen a $x_0$, y $\phi_1 \in C^1(J_1;\R^n)$ y $\phi_2 \in C^1(J_2; \R^n)$ son soluciones locales de (PC), decimos que $\phi_2$ \underline{extiende} a $\phi_{1}$ es una restricción de $\phi_{2}$;
+
+	\item[(iii)] Una solución es \underline{maximal} cuando no admite extensiones;
+
+	\item[(iv)] Una solución local, definida sobre $J \subset I$, es \underline{global} si $J = I$.
+\end{enumerate}
+
+\noindent \textbf{Recuerdo.} Dados $a<b$ números reales, el espaacio vectorial
+\[ C([a,b];\R^n) \]
+\noindent dotado de la norma $\| \varphi \|_{\infty} = \max_{x \in [a,b]} |\varphi(x)| \quad \forall \varphi \in C([a,b];\R^n)$, es un espacio de Banach.
+
+\begin{itemize}
+	\item Todo sub-conjunto cerradeo de $(C([a,b];\R^n);\| \cdot \|_{\infty})$ es un espacio métrico completo.
+
+	\item Todo sub-conjunto vectorial cerrado de $(C([a,b];\R^n);\| \cdot \|_{\infty})$ es un espacio de Banach.
+\end{itemize}
 
 
+\subsection{Aplicaciones contractivas: teorema del punto fijo de Baanch}
+
+\begin{definition}[aplicación contractiva]
+	Sea $(X,d)$ un espacio métrico completo. Decimos que una aplicación $T: X \to X$ es \underline{contractiva} si existe $\alpha \in [0,1)$ tal que
+	\[ d(T(x),T(y)) \leq \alpha d(x,y) \quad \forall x,y \in X \]
+\end{definition}
+
+\begin{theorem}[punto fijo de Banach]
+	Sea $(X,d)$ un espacio métrico completo y $T: X \to X$ una aplicación contractiva. Entonces, existe un único $\hat{x} \in X$ tal que $T(\hat{x}) = \hat{x}$.
+\end{theorem}
 
 
+\subsection{Funciones Lipschitz}
+
+\begin{note}
+	$\Omega \subset \R^{n+1},\ (x,y) \in \Omega,\ x \in \R$, y $y \in \R^n$
+\end{note}
+
+\begin{definition}[función globalmente Lipschitz]
+	Sea $\Omega \subset \R^{n+1}$ abierto, y $f : \Omega \to \R^n$ una función. Decimos que $f$ es \underline{globalmente} Lipschitz respecto a la variable $y$ en $\Omega$ si existe una constante $L>0$ tal que
+	\[ |f(x,y_1) - f(x,y_2)| \leq L | y_1 - y_2 | \quad \forall (x,y_1), (x,y_2) \in \Omega \]
+\end{definition}
+
+\begin{note}
+	Lip$(y;\Omega)$ denota el espacio vectorial de todas las funciones $f:\Omega\to\R^n$ que son globalmente Lipschitz respecto a $y$ en $\Omega$.
+\end{note}
+
+\begin{definition}[función localmente Lipschitz]
+	Sea $\Omega \subset \R^n$ abierto. Se dice que una función $f: \Omega \to \R^n$ es \underline{localmente} Lipschitz respecto a la variable $y$ en $\Omega$ si: para cualquier punto $(\overline{x}, \overline{y})\in\Omega$, existe $\varepsilon>0$ y una constante $L>0$ tales que $B((\overline{x},\overline{y}),\varepsilon) \subset \Omega$, y 
+	\[ |f(x,y_1) - f(x,y_2)| \leq L |y_1 - y_2| \quad \forall (x,y_1),(x,y_2) \in B((\overline{x},\overline{y},\varepsilon). \]
+\end{definition}
+
+\begin{note}
+	$\text{Lip}_{\textit{loc}}(y;\Omega)$.
+\end{note}
+
+\begin{prop}~
+	\begin{enumerate}
+		\item[(A)] Si $f \in \text{ Lip}(y;\Omega)$, entonces $f$ es uniformemente continua respecto a $y$ en $\Omega$: $(\forall \varepsilon > 0)(\exists \delta > 0)(\forall (x,y_1),(x,y_2) \in \Omega,$
+		\[ |y_1-y_2|\leq\delta \implies |f(x,y_1)-f(x,y_2)| \leq \varepsilon \]
+
+		\item[(B)] Si $f\in \text{ Lip}_{\textit{loc}}(y;\Omega)$, entonces $f$ es continua respecto a la variable $y$ en $\Omega$: para todo $(\overline{x},\overline{y})\in\Omega$:
+		\[ (\forall \varepsilon > 0)(\exists \delta > 0)\ |y-\overline{y}|\leq \delta \implies (\overline{x},\overline{y})\in\Omega \text{ y } |f(\overline{x},\overline{y}) - f(\overline{x},y)| \leq \varepsilon \]
+	\end{enumerate}
+\end{prop}
+
+\begin{remark}
+	En general, Lip$(y;\Omega) \not\subseteq C(\Omega;\R^n)$. Por ejemplo,
+	\[ f(x,y) = \begin{cases}
+		0 \text{ si } x \leq 0 \\
+		y \text{ si } x > 0
+	\end{cases} \]
+	pertenece a Lip$(y;\R^2)$, pero es discontinua en el conjunto $\{ (x,y) \in \R^2 \ | \ x = 0 \}$. Recíprocamente, la continuidad ("en pareja") de una función no implica ningún tipo de Lipschitzianidad (local o global).
+\end{remark}
+
+\begin{eg}
+	$\hat{f}(x,y) = \sqrt{|y|}\quad \forall (x,y) \in \R^2$. Vemos que no es localmente Lipszhitz: $\hat{f} \not\in \text{ Lip}_{\textit{loc}}(y;\R^2)$: por contradicción, debiese existir $\varepsilon > 0$ tal que $f \in \text{ Lip}(y; B((0,0),\varepsilon))$. Por ende, existe una constante $L>0$ tal que
+	\begin{align*}
+		\left|f(0,0)-f \left(0,\frac{\varepsilon}{n}\right)\right| & \leq L \cdot \frac{\varepsilon}{n} \quad \forall n \geq 2, \\
+		& \iff \sqrt{\frac{\varepsilon}{n}} \leq \frac{L \varepsilon}{n} \\
+		& \iff \sqrt{n} \leq L \sqrt{\varepsilon} \quad \forall n \geq 2,
+	\end{align*}
+	\noindent lo cual es absurdo!
+\end{eg}
+
+\begin{theorem}
+	Sea $\Omega\subset\R^{n+1}$ un conjunto abierto y
+	\[ f = (f_1,f_2,\dots,f_n):\ \Omega \to \R^n \]
+	\noindent una función tal que las derivadas parciales $\frac{\partial f_i}{\partial y_j}\ \forall i,j \in \{1,\dots,n\}$ existen y son continuas en $\Omega$. Entonces:
+	\begin{enumerate}
+		\item[(A)] $f \in \text{Lip}_{\textit{loc}}(y;\Omega)$;
+
+		\item[(B)] Si, además, $\Omega$ es convexo, $f \in \text{Lip}(y;\Omega)$ si y sólo si
+		\[ \sup_{(x,y)\in\Omega} \left| \frac{\partial f_i}{\partial y_j}(x,y) \right| < \infty \quad \forall i,j \in \{ 1,\dots, n \} \]
+	\end{enumerate}
+\end{theorem}
 
 
 
