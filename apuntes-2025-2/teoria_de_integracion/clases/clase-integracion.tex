@@ -676,10 +676,125 @@
 
 			\item[(iii)] \textbf{$\mu$ es $\sigma$-aditiva} si $(A_n)_{n\in\N} \subseteq \mathscr{C}$ disjuntos $\implies \mu (\bigcupd_{i=1}^{\infty} A_i ) = \sum_{i=1}^{\infty} \mu(A_i)$;
 
-			\item[(iv)] \textbf{$\mu$ es $\sigma$-aditiva} si $\mu(A)\leq \sum_{i=1}^{\infty}\mu(A_n)$, para todo $A \in \mathscr{C}$ y $(A_n)_{n\in\N}\subseteq\mathscr{C}$ tal que $A \subseteq \bigcup_{n\in\N} A_n$
+			\item[(iv)] \textbf{$\mu$ es $\sigma$-subaditiva} si $\mu(A)\leq \sum_{i=1}^{\infty}\mu(A_n)$, para todo $A \in \mathscr{C}$ y $(A_n)_{n\in\N}\subseteq\mathscr{C}$ tal que $A \subseteq \bigcup_{n\in\N} A_n$
 		\end{enumerate}
 	\end{definition}
 
+%##################################################################%
+%##################################################################%
+%##################################################################%
+
+\section{Clase 8 (25/08)}
+
+\begin{remark}
+	Rana da una definición más débil de (4):
+	\[ A \in \mathscr{C},\ A = \bigcup_{i=1}^{\infty} A_i,\ A_i \in \mathscr{C}\ \forall i \implies \mu(A) \leq \sum_{i=1}^{\infty}\mu(A_i) \]
+	\noindent Ambas definiciones son equivalentes si $\mathscr{C}$ es una semiálgebra y $\mu$ es monótona (siempre será el caso para nosotros).
+\end{remark}
+
+\begin{definition}[premedida finita y $\sigma$-finita]
+	Una premedida $\mathcal{T} : \mathscr{C} \to [0,\infty]$ se dice:
+	\begin{enumerate}
+		\item \textbf{finita} si $X \in \mathscr{C}$ y $\mathcal{T} < \infty$;
+
+		\item \textbf{$\sigma$-finita} si existen $(C_n)_{n\in\N} \subseteq \mathscr{C}$ \underline{disjuntos} tales que $\bigcupd_{n=1}^{\infty} C_n = X$ y $\mathcal{T} (C_n) < \infty\ \forall n \in \N$.
+	\end{enumerate}
+\end{definition}
+
+\begin{eg}~
+	\begin{enumerate}
+		\item finita $\implies \sigma$-finita;
+
+		\item La función longitud $\lambda : \mathcal{I} \to [0,\infty]$ es $\sigma$-finita pero no finita;
+
+		\item Si $F$ es una función de L-S, entonces $\mathcal{T}_F : \widetilde{\mathcal{I}} \to [0,\infty]$ es siempre $\sigma$-finita $(\mathcal{T}_F ((n,n+1]) = F(n+1) - F(n) < \infty\ \forall n \in \Z)$ y es finita si y sólo si $\mathcal{T}_F (\R) = \mathcal{T}_F ((-\infty,\infty]\cap\R) = F(\infty)-F(-\infty) < \infty$.
+	\end{enumerate}
+\end{eg}
+
+\begin{definition}[medida]
+	Sea $(X,\mathscr{M})$ es un espacio medible. Diremos que $\mu : \mathscr{M} \to [0,\infty]$ es una \underline{medida} (en $(X,\mathscr{M})$) si:
+	\begin{enumerate}
+		\item $\mu (\varnothing) = 0$;
+		
+		\item $\mu$ es $\sigma$-subaditiva en $\mathscr{M}\ \left( \mu \left(\bigcupd_{i=1}^{\infty} A_i \right) = \sum_{i=1}^{\infty} \mu(A_i) \right)$.
+	\end{enumerate}
+	\noindent Llamamos a la terna $(X,\mathscr{M},\mu)$ un \underline{epacio de medida}.
+\end{definition}
+
+\noindent \textbf{Objetivo.} Construir un espacio de medida $(\R,\mathscr{M},\mu)$ tal que $\mathcal{I} \subseteq \mathscr{M}$ y
+\[ \begin{cases}
+	\mu(I) = |I|\ \forall I \in \mathcal{I}, \\
+	\mu(E+x) = \mu(E) \ \forall E \in \mathscr{M}.
+\end{cases} \]
+
+\begin{eg}[Espacios de Probabilidad]
+	Si $(X,\mathscr{M},\mu)$ es un EdM tal que $\mu(X)=1,\ (X,\mathscr{M},\mu)$ recibe el nombre de \underline{espacios de probabilidad}.
+\end{eg}
+
+\begin{itemize}
+	\item $X$ recibe el nombre de \underline{espacio muestral}, y se lo nota $\Omega$ (en lugar de $X$);
+
+	\item $\mathscr{M}$ se suele notar como $\mathscr{F}$ (ó $\mathscr{Y}$). Sus elementos se dicen \underline{eventos};
+
+	\item $\mu$ recibe el nombre de \underline{medida de probabilidad} ó \underline{distribución} y se la nota $\mathbb{P}$.
+\end{itemize}
+
+\noindent En probabilidad, típicamente se estudian $2$ tipos de distribuciones en $\R$ (o en $\R^d$).
+
+\begin{enumerate}
+	\item \textbf{Distribuciones discretas:} $\exists S \subseteq \R$ numerable y $(p_x)_{x \in S} \subseteq [0,1]$ tal que $\mathbb{P}(A) = \sum_{x \in A \cap S} p_x$.
+	\begin{eg}
+		Binomial, Geométrica, Poisson,...
+	\end{eg}
+
+	\item \textbf{Distribuciones (absolutamente) continuas:} $\exists f : \R \to \R_{\geq 0}$ "integrable" tal que $\mathbb{P}(A) = \int_{A} f(x) dx$.
+	\begin{eg}
+		Uniforme, Exponencial, Normal,...
+	\end{eg}
+\end{enumerate}
+
+\noindent \textbf{Propiedades generales de una medida.} Si $\mu$ es una medida sobre $(X,\mathscr{M})$, entonces:
+\begin{enumerate}
+	\item $\mu$ es monótona (en $\mathscr{M}$);
+
+	\item $\mu$ es $\sigma$-subaditiva;
+
+	\item $\mu$ es \textbf{continua por debajo}: si $(A_n)_{n\in\N} \subseteq \mathscr{M}$ es \underline{creciente} $(A_n \subseteq A_{n+1}\ \forall n)$ entonces
+	\[ \mu \left( \bigcup_{n\in\N} A_n \right) = \lim_{n \to \infty} \mu(A_n). \]
+
+	\item $\mu$ es \textbf{continua por arriba}: si $(A_n)_{n\in\N} \subseteq \mathscr{M}$ es \underline{decreciente} $(A_{n+1} \subseteq A_n\ \forall n)$ y $\mu(A_{n_0})<\infty$ para algún $n_0\ (\implies \mu(A_n)<\infty\ \forall n\geq n_0)$, entonces
+	\[ \mu \left( \bigcap_{n\in\N}A_n \right) = \lim_{n \to \infty} \mu(A_n). \]
+
+	\noindent (\textbf{Cuidado!} (4) puede no valer si $\mu (A_n) = \infty \ \forall n \in \N$)
+\end{enumerate}
+
+\begin{definition}[premedida extendible y unívocamente extendible]
+	Una premedida $\mathcal{T} : \mathscr{S} \to [0,\infty]$ definida sobre una semiálgebra de subconjunto de $X$, se dice:
+	\begin{enumerate}
+		\item \textbf{Extendible} si es
+		\begin{enumerate}
+			\item[(E1)] finitamente aditiva en $\mathscr{S}$;
+
+			\item[(E2)] $\sigma$-subaditiva en $\mathscr{S}$.
+		\end{enumerate}
+
+		\item \textbf{Unívocamente extendible} si es extendible y se cumple
+		\begin{enumerate}
+			\item[(E3)] $\sigma$-finita
+		\end{enumerate}
+	\end{enumerate}
+\end{definition}
+
+\begin{remark}
+	Los nombres de extendible y unívocamente extendible no se encontrarán en el Rana (los puso el profe).
+\end{remark}
+
+\begin{theorem}[Extensión de Carathéodory]
+	Dados un espacio $X$ y una premedida $\mathcal{T}$ sobre una semiálgebra $\mathscr{S}$ de subconjuntos de $X$ tal que $\mathcal{T}$ es extendible, existe una extensión de $\mathcal{T}$ a una medida $\mu_{\mathcal{T}}$ definida sobre $\sigma(\mathscr{S})$ la $\sigma$-álgebra generada por $\mathscr{S}$. Más aún, si $\mathcal{T}$ es unívocamente extendible, entonces la extensión $\mu_{\mathcal{T}}$ a $\sigma(\mathscr{S})$ es \underline{única}. \\
+	Por último, si $\mathcal{T}$ es unívocamente extendible, entonces se puede extender de manera única a una medida $\overline{\mu_{\mathcal{T}}}$ sobre la $\mu_{\mathcal{T}}$-completación de $\sigma(\mathscr{S})$, i.e. la $\sigma$-álgebra $\overline{\sigma(\mathscr{S})}$ dada por
+	\[ \overline{\sigma(\mathscr{S})} \coloneq \{ B \cup N : B \in \sigma(\mathscr{S}), \exists \widetilde{N} \in \sigma(\mathscr{S}) \text{ con } N \subseteq \widetilde{N} \text{ y } \mu_{\mathcal{T}} (\widetilde{N}) = 0 \} \]
+	\noindent mediante la fórmula $\overline{\mu_{\mathcal{T}}}(B\cap N) \coloneq \mu_{\mathcal{T}}(B)$.
+\end{theorem}
 
 
 % end lessons
