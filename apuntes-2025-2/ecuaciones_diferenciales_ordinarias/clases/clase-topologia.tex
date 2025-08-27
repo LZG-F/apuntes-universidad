@@ -238,6 +238,90 @@ $\Omega \subset \R^{n+1},\ \Omega = I \times \widetilde{\Omega}$ con $I \subset 
 	\end{enumerate}
 \end{theorem}
 
+%##################################################################%
+%##################################################################%
+%##################################################################%
+
+
+\section{Clase (25/08)}
+
+\begin{remark}
+	Consideramos las funciones $f_1,f_2,f_3:\R^2 \to \R$ definidos por:
+	\[ f_1(x,y)  = \frac{1}{1+y^2},\ f_2(x,y) = \frac{x}{1+y^2},\ f_3(x,y)= \begin{cases}
+		xy \quad \text{si } x>0; \\
+		y \quad \text{ si } x\leq 0.
+	\end{cases} \]
+	Se puede demostrar que:
+	\begin{enumerate}
+		\item[(i)] $f_1 \in \text{Lip}(y;\R^2)$;
+		
+		\item[(ii)] $f_2 \in \text{Lip}(y;\R^2)$, pero $f_2 \in \text{Lip}(y;\Omega)$ para cualquir dominio $\Omega \subset \R^2$ que sea acorada en al dirección de $x$;
+
+		\item[(iii)] $f_3 \in \text{Lip}(y;\R^2)$ y $f_3 \in \text{Lip}(y;\Omega)$ para cualquier dominio $\Omega \subset \R^2$ que sea acotado en la dirección de $x$. No obstante, $\frac{\partial f_3}{\partial y}$ \underline{no} es continua en $\R^2$.
+	\end{enumerate}
+\end{remark}
+
+\begin{theorem}
+	Sea $\Omega \subset \R^{n+1}$ un conjunto abierto. Si $f \in \text{Lip}_{\text{loc}}(y;\Omega)$ y $K \subset \Omega$ es un conjunto compacto tal que $\sup_{(x,y) \in K} |f(x,y)| < \infty$, entonces $f \in \text{Lip}(y;K)$.
+\end{theorem}
+
+\begin{theorem}[Picard-Lindelöf]
+	Sea $\Omega \subset \R^{n+1}$ un conjunto abierto y $f\in C(\Omega; \R^n) \cap \text{Lip}_{\text{loc}}(y;\Omega)$. Entonces, para cada $(x_0,y_0) \in \Omega$, existe un $\delta > 0$ tal que, si denotamos
+	\[ I_{\delta} = [x_0 - \delta, x_0 + \delta], \]
+	\noindent el problema de Cauchy
+	\[ (PC)\ \begin{cases}
+		y'(x) = f(x,y(x))\quad \forall x \in I_{\delta}, \\
+		y(x_0) = y_0
+	\end{cases} \]
+	\noindent admite una única solución.
+\end{theorem}
+\begin{proof}[Proof ]
+	Como $\Omega$ es abierto y $(x_0,y_0) \in \Omega$, existen $a_0>0$ y $b_{0}>0$ tal que, si ponemos
+	\[ R = [x_0-a_0,x_{0}-a_{0}] \times \overline{B(y_0,b_0)}, \]
+	entonces $R \subset \Omega$ y $f \in \text{Lip}(y;R)$.
+	\begin{itemize}
+		\item Sea $L>0$ una constante de Lipschitsz para $f$ en $R$ (respecto a $y$):
+		\[ |f(x,y_{1}) - f(x,y_{2})| \leq L |y_{1} - y_{2}|\quad \forall (x,y_{1}),(x,y_{2})\in R. \]
+
+		\item Denotemos por $M = \max_{(x,y)\in R} |f(x,y)|$.
+	\end{itemize}
+	Fijemos un número $\delta>0$ tal que 
+	\[ 0 < \delta < \min \left\{a_0, \frac{b_0}{M}, \frac{1}{L} \right\} \]
+	y consideremos el conjunto:
+	\[ X = \{ \varphi \in C(I_{\delta};\R^n) \ \big{|} \ |\varphi(x) - y_{0}| \leq b_{0} \quad \forall x \in I_{\delta} \} \]  
+	donde $(X,d)$ es un espacio métrico completo con la distancia usual en $C(I_{\delta},\R^n)$. \\
+	Definimos la aplicación $T: X \to C(I_{\delta};\R^n)$ por
+	\[ T(\varphi)(x) = y_{0} + \int_{x_{0}}^{x} f(s,\varphi(s))ds \quad \forall \varphi \in X,\ \forall x \in I_{\delta}. \]
+	Notemos que, dado $\varphi \in X, \ \varphi$ es solución de (PC) en $I_{\delta}$ si y sólo si $\varphi$ es un punto fijo de la aplicación $T$ en $X$.
+	\[ \varphi \in C(I_{\delta};\R^n)\ : \ (x,\varphi(x)) \in \Omega \quad \forall x \in I_{\delta};\ \varphi(x_{0})=y_{0} \]
+	\textbf{PDQ:} $|\varphi(x)-y_{0}| \leq b_{0}\quad \forall x \in I_{\delta}$.
+	\begin{proof}[Proof ]
+		Por contradicción, supongamos que $\exists \hat{x} \in I_{\delta}:\ |\varphi(x)-y_{0}| > b_{0}$. Por continuidad, existe $\hat{x}_0 \in I_{\delta}$ tal que 
+		\[ |\varphi(\hat{x}_{0} - y_{0}| = b_{0} \text{ y } |\varphi(x) -y_{0}\quad x \in (x_{0},\hat{x}_0). \]
+		\begin{align*}
+			b_{0} & = |\varphi(\hat{x}_0)-y_{0}| \\ 
+			& = \left| \int_{x_0}^{\hat{x}_0} f(s,\varphi(s))ds \right| \\
+			& \leq \left| \int_{x_0}^{\hat{x}_0 } |f(s,\varphi(s))| ds \right| \\
+			& \leq M |\hat{x}_0 - x_{0}| \leq M \delta < b_0 
+		.\end{align*}
+	\end{proof}
+	\noindent Dada $\varphi \in X$, ciertamente $T(\varphi) \in C(I_{\delta};\R^n)$. Además, $\forall x \in I_{\delta}$,
+	\begin{align*}
+		|T(\varphi)(x)-y_{0}| & = \left| \int_{x_{0}}^{x} f(s,\varphi(s))ds \right| \\ 
+		& \leq \left| \int_{x_{0}}^{x} |f(s,\varphi(s))ds| \right| \\
+		& \leq M |x-x_{0}| \leq M\delta < b_0
+	.\end{align*}
+	entonces, $T(\varphi) \in X$.
+	Demostremos ahora que $T$ es una contracción: dados $\varphi,\psi \in X$, 
+	\begin{align*}
+		|T(\varphi)(x)-T(\psi)(x)| & = \left| \int_{x_{0}}^{x} (f(s,\varphi(s))-f(s,\psi(s)))ds \right| \\
+		& \leq \left| \int_{x_{0}}^{x} |f(s,\varphi(s))-f(s,\psi(s))| ds \right| \\
+		& \leq L \left| \int_{x_{0}}^{x}|\varphi(s)-\psi(s)|ds \right| \\
+		& \leq L|x-x_{0}| \| \varphi - \psi_0 \|_{\infty} \leq L \delta \| \varphi - \psi \|_{\infty},
+	\end{align*}
+	con $L\delta<1$. Luego, $T: X \to X$ es una contracción, y entonces admite un único punto fijo $\hat{\varphi} \in X$, que constituye la única solución del (PC) en $I_{\delta}$. 
+\end{proof}
+
 
 
 
