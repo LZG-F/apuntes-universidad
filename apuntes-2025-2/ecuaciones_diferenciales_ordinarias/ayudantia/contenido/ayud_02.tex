@@ -1,0 +1,85 @@
+
+	\section{Ayudantía 2 (18/08)}
+
+	\begin{enumerate}
+		\item Considere la ecuación canónica
+		\[
+		y^{n} = f(t,y,y',\dots,y^{(n-1)}) \tag{1}
+		\]
+		\begin{proof}[Proof ]
+			Como $y$ es solución de $(1)$, en particular $y \in C^n(I)$. Por lo tanto la función $t \mapsto (t,y(t),y'(t),\dots,y^{(n-1)}(t)) \in C^1 (I,\R^n)$, y luego  $f(t,y(t),\dots, y^{(n-1)}(t) \in C^1(I)$. Por lo tanto $y \in C^{n+1}(I)$. \\
+			\noindent \fbox{Por inducción en $k \in \N$} \textbf{Caso base:} Facil! \\
+			\noindent \textbf{Paso inductivo:} Suponer que $\exists\ k \in \N$ tal que se cumple lo anterior y que $f \in C^{k+1}(\R^n)$. Por hipótesis, $y \in C^{n+k}(I)$, y por lo tanto $g(t) = (t,y,y',\dots,y^{(n-1)}) \in C^{n+k-(n-1)}(I) = C^{k+1}(I;\R^n)$. Luego , la composición $(y^{(n)}(t) =)\ f \circ g (t) \in C(I)^{k+1}$, por lo que $y \in C^{n+k+1}(I)$. Concluimos que si $f \in C^{\infty}(\R^n)$, entonces $y \in C^{\infty}(I)$.
+		\end{proof}
+
+		\item Considere el sistema
+		\[
+		(*) \begin{cases}
+			y''(t) + y(t)^2 = 0 \quad \forall\ t \in [0,1]; \\
+			y(0) = y(1) = 0.
+		\end{cases}
+		\]
+		Demuestre que si $y$ es una solución no trivial de $(*)$, entonces $y(t) > 0 \ \forall t \in (0,1)$.
+		\begin{proof}[Proof ]
+			Notemos que $y''(t) = -y(t)^2 \leq 0$. Entonces, $y$ es convava; es decir, $\forall a,b\in [0,1]$, y $\forall s \in [0,1]$ se tiene la desigualdad
+			\[
+			y(a+(b-a)s) \geq y(a) + (y(b)-y(a))s. \tag{$C$}
+			\]
+			\noindent Con $a=0,\ b=1$, tenemos que $\forall \ t \in [0,1]$,
+			\[
+			y(t) \geq 0 + t(0 - 0) = 0.
+			\]
+			\noindent Ahora, como $y \not\equiv 0,\ \exists t_0 \in (0,1)$ tal que $y(t_0) > 0$. Sea $t_1 \in (0,t_0)$, y $s = \frac{t_1}{t_1} \in (0,1)$. Por $(C)$, con $a = 0,\ b=t_0$, tenemos que
+			\begin{align*}
+				y(t_1) = y(0 + t_0\cdot s) & \stackrel{(C)}{\geq} y(0) + s(y(t_0)-y(0)) \\
+				& = 0 + s \cdot y(t_0) > 0
+			.\end{align*}
+			\noindent Por lo tanto, $y > 0$ en $(0,t_0)$. Por otro lado, para $t_1 \in (t_0, 1)$, definimos $s = \frac{t_1 - t_0}{1-t_0}$, y ocupando $(C)$ con $a = t_0$ y $b = 1$ obtenemos
+			\begin{align*}
+				y(t_1) = y(t_0 + s(1-t_0)) & \stackrel{(C)}{\geq} y(t_0) + s(y(1)-y(t_0)) \\
+				& = (1-s)y(t_0) > 0
+			.\end{align*}
+		\end{proof}
+
+		\item Considere
+		\[
+		(+) \begin{cases}
+			y' = \sqrt{|y|}; \\
+			y(t_0) = y_0.
+		\end{cases}
+		\]
+		\begin{enumerate}
+			\item Resuelva el sistema para $y_0 \neq 0$ y determine el invervalo maximal de la solución.
+		\end{enumerate}
+		\begin{proof}[Proof ]~
+			\begin{enumerate}
+				\item Primero asumamos que $y_0 > 0$. Dividiendo la EDO por $\sqrt{y}$ e integrando alrededor de $t_0$, obtenemos
+				\begin{align*}
+					(t-t_0) & = \int_{t_0}^{t} 1 ds = \int_{t_0}^{t} \frac{y'(s)}{\sqrt{y(s)}} ds \stackrel{(c.v.)}{=} \int_{y_0}^{y(t)} \frac{1}{\sqrt{u}} du \\
+					& = 2 (\sqrt{y(t)} - \sqrt{y_0}) \\
+					\implies y(t) & = \left( \frac{t-t_0}{2} + \sqrt{y_0} \right)^2
+				.\end{align*}
+				\noindent Para $y_0 < 0$
+				\[
+				(t-t_0) = \int_{|y_0|}^{|y(t)|} \frac{-1}{\sqrt{v}} dv = -2 (|\sqrt{y(t)|} - \sqrt{|y_0|})
+				\]
+				\noindent Por lo tanto, $y(t) = \left( \sqrt{|y_0|} - \frac{t-t_0}{2} \right)^2$. Sea 
+				\[
+				F_1(r) = \int_{y_0}^{r} \frac{dx}{\sqrt{x}} = 2 (\sqrt{r} - \sqrt{y_0}).
+				\]
+				\noindent Esta función es monótona (estricta) en el intervalo $(0,\infty)$ y por lo tanto biyectiva. $F_1(y(t)) = t-t_0$. Calculamos
+				\begin{align*}
+					T_{+} & = \lim_{r \to \infty} F_1(r) = \infty \\
+					T_{-} & = \lim_{r \to 0} F_1(r) = -2 \sqrt{y_0}
+				.\end{align*}
+				\noindent Entonces $t-t_0 \in (-2 \sqrt{y_0},\infty),\ t \in (t_0-2 \sqrt{y_0}, \infty)$.
+				\[
+				F_2(r) = 2 ( \sqrt{|y_0|} - \sqrt{|r|}, \quad r \in (-\infty, 0)
+				\]
+				\begin{align*}
+					T_{-} & = \lim_{r \to -\infty} F_2(r) = \infty \\
+					T_{+} & = \lim_{r \to \infty} 
+				.\end{align*}
+			\end{enumerate}
+		\end{proof}
+	\end{enumerate}

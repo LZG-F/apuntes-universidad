@@ -14,105 +14,12 @@
 \author{}
 
 \begin{document}
-\maketitle
-\tableofcontents
+	\maketitle
+	\tableofcontents
     % start lessons
 
-\section{Ayudantia 14 de Agosto}
+	\input{contenido/ayud_14_08.tex}
+	\input{contenido/ayud_21_08.tex}
 
-\subsection{Ejercicio 11 (Guia) (i)}  
-
-\begin{proof}
-	$(A)$ Para ver que $C$ es cerrado, veremos que cada $C_n$ lo se. Notamos que si $f:\R \to \R, g:\R\to\R$ tales que $f(x)\coloneqq frac{1}{3} x$ y $g(x)\coloneqq frac{2}{3} + frac{1}{3}$ son continuas y $C_n=f(C_{n-1})\cup g(C_{n-1})\Rightarrow C_n$ es compacto $\Rightarrow$ es cerrado, $\forall n$ \\
-
-	$(B)$ Para ver que es no numerable, vamos a construir una inyeccion $\Phi : X\to X$ con $X$ no numerable. Sea entonces $X\coloneqq {0,2}^{\N}$ y dado $w\in X$, definimos:
-
-	\[
-		C_n(w)\coloneqq\frac{C_0}{3^n} + \sum_{k=1}{n}\frac{w_k}{3^k}
-	\]
-
-	Si $n=2$: $C_2(w) = [0,\frac{1}{9}] + \frac{w_1}{3} + \frac{w_2}{9} = \begin{cases}
-		[0,\frac{1}{9}] \\
-		[\frac{2}{3},\frac{7}{9}] \\
-		[\frac{2}{9},\frac{1}{3}] \\
-		[\frac{8}{9},1]
-	\end{cases}$ \\
-
-	Basicamente, $C_n(w)$ referencia siempre a alguno de los $2^n$ intervalos de $C_n$. Luego, es claro que para $w$ fijo, $C_{n+1}(w)\subseteq C_n(w)\subseteq C_n (*)$ y $diam(C_n(w))\xrightarrow{n\to\infty} 0$. Por el Teorema de interseccion de Cantor: $|\cap_{n\in\N} C_n(w)|=1$. Sea $C(w)$ tal elemento. Luego, por $(*)$, $C(w)\in C$. \\
-
-	Sea entonces $\Phi : {0,2}^{\N}\to C$ tal que $\Phi(w)\coloneqq C(w)$ y $\Phi$ es inyectiva (basta ver que pasa si $w^{(1)},w^{(2)}$ difieren en una coordenada). Como $|{0,2}^{\N}|=C$, se concluye.
-
-	$(C)$ Si suponemos que existe $(a,b)\subset C$. SPG, $a=0$. Consideremos $n\in\N$ suficientemente grande.
-
-	\[
-	3^{-n}<b  \Rightarrow (0,b) \nsubseteq [0,\frac{1}{3^n}]\cup[\frac{2}{3^n},\frac{3}{3^n}]\subseteq C_n
-	\]
-
-	Luego, $\exists z \in (0,b): z\not\in C_n, \text{ para algun } n \implies z\not\in C$ (Contradiccion).
-\end{proof}
-
-\subsection{Ejercicio 11 (Guia) (ii)}  
-
-%\begin{proof}
-%	Por $(i)$, sabemos que $C=\overline{C}=\partial C$. El resultado se sigue de lo siguiente: Si $(X,d)$ espacio metrico y $A\subseteq X \then D = \partial A$ (donde $D$ son los puntos de discontinuidad de $X_A$.
-%\end{proof}
-
-\subsection{Ejercicio 11 (Guia) (iii)}  
-
-%\begin{proof}
-%	Consideremos entonces $\mathds{1}_C$. Veamos sus integrales superior e inferior.
-
-%	\[
-%  \underline{\int_{0}^{1}} \mathds{1}_C(x) dx = sup \{L(P,\mathds{1}_C) \quad : \quad P \text{ particion de } [0,1] \}
-%	\]
-
-%	$L(P,\mathds{1}_C) = \sum m_i (x_{i+1}-x_i)=0 \text{ siempre, } \forall P$.\\
-
-%	Por lo tanto, $\underline{\int_{0}^{1}} \mathds{1}_C (x) dx =0 $.\\
-
-	Ahora, para la integral superior:
-
-%	\[
-%	\overline{\int_{0}^{1}} \mathds{1}_C (x) dx = \inf \{U(P,mathds{1}_X) \quad : \quad P \text{ particion} \}
-%	\]
-%\end{proof}
-
-\section{Ayudantía 21/08}
-
-\begin{enumerate}
-	\item Sea $f: [a,b] \to \R$ continua. Probar que su gráfico en $\R^2$:
-	\[ \mathcal{G} \colon \{ (x,f(x)) \ : \ x \in [a,b] \} \subseteq \R^2 \]
-	\noindent tiene medida nula.
-	\begin{proof}[Proof ]
-		Sea $\varepsilon > 0$, debemos contruir una familia de cuadrados en $\R^2$ que verifique $\mathcal{G} \subseteq  \displaystyle\bigcup_{i \in \N} Q_i$ y $\sum_{i \in \N} |Q_i| < \varepsilon$. Como $f: [a,b] \to \R$ es continua, entonces $f$ es uniformemente continnua. Así. si $\varepsilon,\ \exists \delta > 0 \ : \text{ si } |x-y| < \delta \implies |f(x)-f(y)| < \varepsilon$. Sin pérdida de generalidad, sea $S \leq 1$ y empezamos a particionar $[a,b]$. Sea $n \coloneq \lceil \frac{b-a}{\delta} \rceil$ y consideramos la partición $\{ I_j \}_{j=1}^{n}$ tales que $I_j \coloneq [x_{j},x_{j+1}]$ con $x_0 = a,\ x_n = b$ y $0<x_{j+1}-x_j\leq\delta$. Con esto, tenemos que:
-		\begin{enumerate}
-			\item Por construcción, $diam (I_j) \leq \delta,\ \forall 0 \leq j \leq n$;
-
-			\item En particular, si $x \in I_j \implies I_j \subseteq B(x,\delta),\ \forall j \in \{1,\dots,n\}$. Luego, en cada $j \in \{1,\dots,n\}$ elegimos $x_j \in I_j$ y cumple que $I_j \subseteq B(x_j,\delta)$. Además, $f(I_j) \subseteq B(f(x_j),\varepsilon)$.
-		\end{enumerate}
-		\noindent Ahora definimos los cuadrados: Dado $(x,f(x)) \in \mathcal{G} \implies x \in I_j \subseteq B(x_j,\delta),\ \text{ para algún } j$ y $f(x) \in B(f(x_j),\varepsilon)$. Por lo tanto, $(x,f(x)) \in B(x_j, \delta) \times B(f(x),\varepsilon)$. Luego, $\mathcal{G} \subseteq \displaystyle{\bigcup_{j=1}^{n}} B(x_j,\delta) \times B(f(x_j),\varepsilon)$. Además:
-		\begin{align*}
-			\sum_{j=1}^{n} |B(x_j,\delta) \times B(f(x_j),\varepsilon)| & = n(2\delta)(2\varepsilon) = 4\varepsilon n \delta \\
-			& = 4 \varepsilon \lceil \frac{b-a}{\delta} \rceil \delta \\
-			& \leq 4 \varepsilon \left( \frac{b-a}{\delta} + 1 \right) \delta \\
-			& = 4 \varepsilon ([b-a] + \delta) \\ 
-			& \underbrace{\leq}_{\delta\leq 1} 4 \varepsilon (b-1 + 1)
-		.\end{align*}
-	\end{proof}
-
-	\item Sean $\alpha \in (0,1]$ y $C_0 \coloneq [0,1]$. Para cada $n\geq 1$, defina recursivamente, el conjunto $C_n$ que resulta de retirar el intervalo central de largo $\alpha 3^{-n}$ a $C_{n-1}$. Por ejemplo, $C_1 \coloneq \left[ 0,\frac{3-2}{6} \right] \cup \left[ \frac{3+2}{6},1 \right]$. Defina $C_{\alpha} \coloneq \displaystyle\bigcap_{n\geq 0} C_n$.
-	\begin{enumerate}
-		\item Pruebe que $C_{\alpha}$ tiene medida nula $\iff \alpha = 1$. [Con esto (y mas resultados) $\chi_{C_{\alpha}}$ es R-integrable $\iff \alpha = 1$.]
-	\end{enumerate}
-	\begin{proof}[Proof ]
-		Primero, estudiemos un poco mas de la construcción de los $C_{\alpha}$. Para construir $C_n$, debemos retirar $2^{n-1}$ intevalos de largo $\alpha 3^{-n}$. Así, si sumamos los largos de los intervalos retirados hasta $n$ obtenemos:
-		\begin{align*}
-			\sum_{k=1}^{n} 2^{k-1}(\alpha 3^{-k}) = \frac{\alpha}{2} \sum_{n=1}^{k} \left( \frac{2}{3} \right)^k \frac{\alpha}{2} \left( \sum_{k=0}^{n} \left( \frac{2}{3} \right)^k - 1 \right)
-		.\end{align*}
-		Por lo tanto, el largo neto al sustraer todos los intervalos es 
-		\[ \lim_{n \to \infty} \sum_{k=1}^{n} 2^{k-1} (\alpha 3^{-k}) = \frac{\alpha}{2}  \lceil \frac{1}{1-\frac{2}{3}} -1 \rceil = \alpha. \]
-		Supongamos que $\alpha < 1$. Supongamos que $\forall \varepsilon > 0,\ \exists \{ I_j \}_{j=1}^{\infty}$ tal que $C_{\alpha} \subseteq \displaystyle\bigcup_{j=1}^{\infty} I_j$ y $\sum_{j=1}^{\infty} |I_j| < \varepsilon$ (i.e., $C_{\alpha}$ tiene medida nula). En particular, si consideramos $\varepsilon \coloneq 1 \alpha > 0$, obtenemos un cubrimiento de $C_{\alpha},\ \{I_k\}_{k\in\N}\ : \ \sum_{k=1}^{\infty} |I_k| < 1 - \alpha$. Si ahora añadimos a esta colección todos los inrevalos sustraidos, entonces puedo cubrir $[0,1]$. Como el largo es numerablemente sub-aditivo, entonces $1 = |[0,1]| = | I_k \cup \{\text{lo que quite}\}|< (1-\alpha) + \alpha = 1$.      
-	\end{proof}
-\end{enumerate}
-
+	% end lessons
 \end{document}

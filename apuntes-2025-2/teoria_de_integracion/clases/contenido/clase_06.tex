@@ -1,0 +1,95 @@
+
+	\section{Clase 6 (20/08)}
+
+	Nos gustaría extender $\lambda$ a una clase más grande que $\mathcal{I}$. Más precisamente, nos gustaría definir una aplicación $m : \mathcal{M} \to [0,\infty]$, donde $\mathcal{M}$ es una coleccción de subconjuntos de $\R$ tal que $\mathcal{I} \subseteq \mathcal{M}$, de manera tal que, dado $E \in \mathcal{M},\ m(E)$ represente la "longitud" de $E$. Idealmente, nos gustaría que $m$ cumpla lo siguiente:
+
+	\begin{enumerate}
+		\item $\mathcal{M} = \mathcal{P}(\R)$;
+
+		\item Si $I \in \mathcal{I}$, entonces $m(I) = |I|$;
+
+		\item $m$ es $\sigma$-aditiva ($E,\ (E_n)_{n\in\N}\in \mathcal{M},\ E = \displaystyle\bigcupd_{n=1}^{\infty} E_n \implies m(E) = \sum_{n=1}^{\infty} m(E_n)$);
+	\end{enumerate}
+
+	\begin{ex}
+		$(1)+(2)+(3) \implies m$ es monóton, $\sigma$-subaditiva y finitamente aditiva. 
+	\end{ex}
+
+	\begin{enumerate}
+		\item[4] Si $E \in \mathcal{M}$, entonces $E + x \in \mathcal{M}$ y $m(E + x) = m(E)\ \forall x \in \R$.
+	\end{enumerate}
+
+	\noindent El problema es que, si asumimos el Axioma de Elección, uno puede mostrar que no existe una tal $m$ que cumpla $(1)-(2)-(3)-(4)$ y, de hecho, no se sabe si existe $m$ que cumpla $(1)-(2)-(3)$. (Si asumimos la hipótesis del continuo, entonces no existe $m$ que cumpla $(1)-(2)-(3)$). \\
+
+	\noindent Luego, para construir $m$ debemos debilitar alguna de las propiedades:
+	\begin{itemize}
+		\item Si debilitamos $(1) \implies$ TEORÍA DE LA MEDIDA;
+		
+		\item Si debilitamos $(3)$ pidiento solo (hay dos opciones):
+
+		\begin{itemize}
+			\item[$\rightarrow$] aditividad finita $ \implies$ "medidas finitamente aditivas";
+		
+			\item[$\rightarrow$] $\sigma$-subaditividad $\implies$ "medidas exteriores".
+		\end{itemize}
+	\end{itemize}
+
+	\noindent Vamos a optar por debilitar $(1)$. \\\\
+	\noindent Una manera de extender $\lambda$ es la siguiente:
+	\begin{enumerate}
+		\item[i.] Si $E = \displaystyle\bigcupd_{i=1}^{n} I_i$ entonces defninimos $\lambda(E) \coloneq \sum_{i=1}^{n} \lambda (I_i)$;
+
+		\item[ii.] Si $E = \displaystyle\bigcupd_{i=1}^{\infty} I_i$ entonces definimos $\lambda(E) \coloneq \sum_{i=1}^{\infty} \lambda (I_i)$;
+
+		\item[iii.] La fórmula anterior nos permite definir $\lambda (6)$ para todo $6$ abierto en $\R$;
+
+		\item[iv.] Para conjuntos mas generales, "aproximar" por abiertos. 
+	\end{enumerate}
+
+	\begin{definition}[premedida]
+		Sea $X$ un conjunto no vacío y $\mathscr{C}$ una colección de subconjuntos de $X$ tal que $\varnothing \in \mathscr{C}$. Diremos que una aplicación $\mathcal{T} : \mathscr{C} \to [0,\infty]$ es una premedida si $\mathcal{T} (\varnothing)=0$.
+	\end{definition}
+
+	\begin{remark}
+		El conjunto no vacío $X$ será llamado un espacio y la colección $\mathscr{C}$ será llamada una clase (de subconjuntos de $X$).
+	\end{remark}
+
+	\noindent Intuitivamente, $\mathscr{C}$ representa la colección de subconjuntos cuyo "tamaño" sabemos medir y $\mathcal{T}$ nos da su medida.
+
+	\begin{eg}~
+		\begin{enumerate}
+			\item \textbf{Premedida de Lebesgue:} $\mathscr{C} \coloneq \mathcal{I} \coloneq \{ I \subseteq \R \ : \ I \text{ intervalo}\}, \ \mathcal{T}(I) \coloneq |I|$.
+
+			\item \textbf{Premedidas de Lebesgue-Stieltjes:} Sea $F:\R \to \R$ monótona creciente y continua a derecha ($\lim_{x \to x_0}^{+} F(x) = F(x_0)$). Una función tal se dice una función de Lebesgue-Stieltjes. 
+		\end{enumerate}
+	\end{eg}
+
+	\noindent Observemos que, por monotonía, existen límites \[ \left\{ \begin{aligned}
+		F(\infty) & \coloneq \lim_{x \to \infty} F(x) \\ 
+		F(-\infty) & \coloneq \lim_{x \to -\infty} F(x) 
+	\end{aligned} \right\} \in \R \]
+
+	\noindent Sea además la clase $\widetilde{\mathcal{I}}$ de intervalos de $\R$ dada por
+	\begin{align*}
+		\widetilde{\mathcal{I}} & \coloneq \{ I(a,b) \ : \ \} \text{ donde } I(a,b) \coloneq (a,b] \cap \R \\
+		& = \{ (a,b] \ : \ -\infty \leq a \leq b \} \cup \{ (a,\infty) \ : \ -\infty \leq a < \infty \}. 
+	.\end{align*}
+
+	\noindent Definimos la premedida $\mathcal{T}_F$ de Lebesgue-Stieltjes asociada a $F$ como la aplicación $\mathcal{T}_F: \widetilde{\mathcal{I}} \to [0, \infty]$, dada por
+	\[ \mathcal{T}_F (I(a,b)) = F(b) - F(a) .\]
+
+	\begin{note}
+		Observar que si $F(x)=x$ entonces $\mathcal{T}_F$ es la premedida de Lebesgue (sobre $\widetilde{\mathcal{I}}$.
+	\end{note}
+
+	\begin{enumerate}
+		\item[3.] \textbf{Premedidas de Probabilidad:} Si $F$ es una función de L-S tal que $F(\infty) = 1$ y $F(-\infty) = 0$, decimos que $F$ es una función de distribución (acumulada). En tal caso, la premedida $\mathcal{T}_F$ se conoce como premedida de probabilidad o predistribución (en $\R$).
+	\end{enumerate}
+
+	\begin{remark}
+		$\mathcal{T}_F (\R) = \mathcal{T}_F (I(-\infty,\infty)) = F(\infty) - F(-\infty) = 1 - 0 = 1$.
+	\end{remark}
+
+	\begin{enumerate}
+		\item[4.] \textbf{Premedida...}
+	\end{enumerate}

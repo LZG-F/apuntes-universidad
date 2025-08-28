@@ -1,0 +1,104 @@
+
+\section{Ayudantía 1 (12/08)}
+
+\begin{enumerate}
+	\item Sea $X$ un conjunto infinito.
+	\begin{enumerate}
+		\item Sea $p \in X$ un punto arbitrario en $X$, demuestre que
+		\[
+		\tau_1 = \{ U \subset X \ : \ U = \varnothing \text{ o } p \in U \}
+		\]
+		es una topología en $X$. Esta es conocida como \textbf{topología del punto particular}.
+		\begin{proof}~
+			\begin{itemize}
+				\item Claramente $\varnothing, X \in \tau_1$.
+
+				\item $U_{\alpha} \in \tau_1 \implies p \in U_{\alpha} \implies p \in \bigcup_{\alpha \in I} U_{\alpha} \implies \bigcup U_{\alpha} \in \tau_1$.
+
+				\item $U_1,\dots,U_n \in \tau_1 \implies p \in U_i \implies p \in \displaystyle\bigcap_{i=1}^{n} U_i \implies \displaystyle\bigcap_{i=1}^{n} U_i \in \tau_1$.
+			\end{itemize}
+		\end{proof}
+
+		\item Sea $p \in X$ un punto arbitrario en $X$, demuestre que
+		\[
+		\tau_2 = \{ U \subset X \ : \ U = X \text{ o } p \not\in U \}
+		\]
+		es una topología en $X$. Esta es conocida como \textbf{topología del punto excluido}.
+		\begin{proof}~
+			\begin{itemize}
+				\item Claramente $\varnothing, X \in \tau_2 \ (p \not\in \varnothing)$.
+
+				\item $U_{\alpha} \in \tau_2 \implies p \not\in U_{\alpha} \implies p \not\in \bigcup U_{\alpha} \implies \bigcup U_{\alpha} \in \tau_2$.
+
+				\item $U_1,\dots,U_n \in \tau_2 \implies p \not\in U_i \implies p \not\in \displaystyle\bigcap_{i=1}^{n} U_i \implies \displaystyle\bigcap_{i=1}^{n} U_i \in \tau_2$.
+			\end{itemize}
+		\end{proof}
+
+		\item Determine cuando
+		\[
+		\tau_3 = \{ U \subset X \ : \ U = X \text{ o } X \setminus U \text{ es infinito} \}
+		\]
+		es una topología en $X$.
+		\begin{proof}~
+			Si $p \in X \implies \{ p \}^c$ es infinito $\implies \{ p \}$ es abierto. Si $\tau_3$ es topología y $q \in X$, entonces
+			\[
+			\bigcup_{p \neq q} \{ p \} = X \setminus \{ q \} \implies (X \setminus \{ q \})^c = \{ q \}
+			\]
+			es infinito. Contradicción! \textreferencemark \ Es decir, $\tau_3$ no es topología.
+		\end{proof}
+	\end{enumerate}
+
+	\item Sea $K = \{ \frac{1}{n} \ : \ n \in \N \}$ y $\mathcal{B}_K$ la colección de intervalos abiertos $(a,b) \subset \R$ y de conjuntos de la forma $(a,b) - K$. Es decir,
+	\[
+	\mathcal{B}_K = \{ (a,b) \ : \ a,b \in \R \} \cup \{ (a,b)-K \}.
+	\]
+	\begin{enumerate}
+		\item Pruebe que $\mathcal{B}_K$ es una base para $X$. Denotamos por $\R_K$ la topología generada.
+		\begin{proof}~
+			\begin{itemize}
+				\item $t \in \R,\ \exists (a,b) \subset \R \ : \ t \in (a,b) \subset \mathcal{B}_K$;
+
+				\item Notar que la intersección de elementos de la base es un elemento de la base
+				\begin{align*}
+					(a,b) & \cap (c,d)  = (c,b) \\
+					(a,b)-K & \cap (c,d)  = (c,b)-K \\
+					(a,b)-K & \cap (c,d)-K  = (c,b)-K
+				.\end{align*}
+			\end{itemize}
+		\end{proof}
+
+		\item Considere las siguientes topologías en $\R$:
+		\begin{align*}
+			\tau_1 & = \text{ topología estándar en } \R \\
+			\tau_2 & = \text{ topología } \R_K \\
+			\tau_3 & = \text{ topología cofinita en } \R \\
+			\tau_4 & = \text{ topología con } (-\infty, a) = \{ x \ : \ x < a \} \text{ como base}  
+		.\end{align*}
+		Determine, para cada una de estas topologías, cual de las otras contiene.
+		%\begin{proof}~
+		%	$\tau_{std} = \tau_1 \subsetneq \tau_2 = \R_K$ ya que $(a,b) \in \R_K$ para todo intervalo abierto, y a su vez estas forman una base de $\tau_1$. 
+		%\end{proof}
+	\end{enumerate}
+
+	\item Sea $X$ conjunto, denotamos por $\tau_{\text{cof}}(X)$ a la topología cofinita en $X$. Demuestre que
+	\[
+	\tau_{\text{cof}} (X \times Y) \subseteq \tau_{\text{cof}} (X) \times \tau_{\text{cof}} (Y),
+	\]
+	es decir, la topología producto de las topologías cofinitas es más finita que la topología cofinita en $X \times Y$. De un ejemplo en que estas topologías no son iguales.
+	\begin{proof}
+		Sea $U \in \tau_{\text{cof}} (X \times Y)$ Entonces,
+		\[
+		U = X \times Y - \{ (a_1,b_1),\dots,(a_n,b_n) \} = \displaystyle\bigcap_{i=1}^{n} X \times Y - \{ (a_i,b_i) \}.
+		\]
+		Queremos ver que $X \times Y - \{ (a,b) \}$ es abierto en $\tau_{\text{cof}}(X)\times\tau_{\text{cof}}(Y)$. Notar que $\mathcal{B} = \{ U \times V \ : \ U \in \tau_{\text{cof}}(X), V \in \tau_{\text{cof}}(Y) \}$ es una base para $\tau_{\text{cof}}(X) \times \tau_{\text{cof}}(Y)$. Sea $(c,d) \in X \times Y - \{ (a,b) \}$. Supongamos que $c \neq a$.
+		\[
+		(c,d) \in \underbrace{X \setminus \{a\}}_{\in \tau_{\text{cof}}(X)} \times \underbrace{Y}_{\in\tau_{\text{cof}}(Y)} \subseteq X \times Y - \{(a,b)\}.  
+		\]
+		$X$ infinito. Luego,
+		\[
+		W = X \times Y \setminus \{a\} \in \tau_{\text{cof}}(X) \times \tau_{\text{cof}}(Y).
+		\]
+		Pero $W^c = X \times \{a\}$ no es finito. Por lo tanto $W \in \tau_{\text{cof}} (X \times Y)$. Entonces $\tau_{\text{cof}} (X \times Y) \subsetneq \tau_{\text{cof}}(X) \times \tau_{\text{cof}}(Y)$.
+	\end{proof}
+
+\end{enumerate}

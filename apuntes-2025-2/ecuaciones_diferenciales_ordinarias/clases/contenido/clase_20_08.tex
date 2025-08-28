@@ -1,0 +1,110 @@
+
+\section{Clase (20/08)}
+\subsection{Algunas ecuaciones no-lineales}
+
+\begin{eg}
+	Considere la EDO:
+	\[
+	y' = -\frac{t^2 + y^2}{t^2 - ty} = -\frac{M(t,y)}{N(t,y)}, \quad t > 0
+	\]
+	Sean $M(t,y) =  t^2 + y^2$ y $N(t,y) = t^2 - ty, \quad \forall (t,y) \in \R^2$, y así:
+	\[
+	M(st,sy) = s^2 M(t,y) \text{ y } N(st,sy) = s^2 N(t,y), \quad s,t,y \in \R.
+	\]
+	En tal caso, conviene introductir el cambio de variable $y = ty$, y así:
+	\[
+	u+tu' = -\frac{t^2+t^2u^2}{t^2-t^2u} = - \frac{1+u^2}{1-u},
+	\]
+	y así
+	\begin{align*}
+		u' = -\frac{1}{t}\cdot \frac{1+u}{1-u} &\iff \frac{du}{dt} = -\frac{1}{t}\cdot \frac{1+u}{1-u} \\
+		& \iff \frac{1-u}{1+u} du = - \frac{1}{t} dt \\
+		& \iff log ((1+u)^2)-u = -log (t) + C \\
+		& \iff (1+u)^2 = \frac{C}{t} e^u \\
+		& \iff (t + y(t))^2 = Ct e^{y(t)/t} \quad \text{(solución definida implícitamente)}
+	.\end{align*}
+\end{eg}
+	\noindent En general, si $M,N : \R^2 \to \R$ son dos funciones tales que
+	\[
+	M(st,sy)= s^{\alpha} M(t,y) \text{ y } N(st,sy) = s^{\alpha} N(t,y),\quad \forall s,t,y\in \R,
+	\]
+	\noindent para cierto $\alpha> 0$, se sugiere utilizar el cambio de variable $y = tu$.\\
+
+	\noindent \textbf{Ecuación de Bernoulli:} tiene la forma
+	\[
+	y'(t) + P(t)y(t) = f(t)(y(t))^n \quad \text{con } n \in \N
+	\]
+	\begin{note}
+		los casos $n=0$ y $n=1$ ya han sido estudiados.
+	\end{note}
+
+	\noindent Para $n\geq 2$ conviene utilizar el cambio de variable $u = y^{1-n}$. Luego, $u' = (1-n)y^{-n}y'$, es decir: $y' = \frac{1}{1-n} y^n u'$, y así:
+	\begin{align*}
+		\frac{y^n}{1-n} u' + P(t)y(t) = f(t)(y(t))^n & \iff \frac{1}{1-n} u' + P(t) y^{1-n} = f(t) \\
+		& \iff u'(t) + (1-n) P(t) u(t) = (1-n) f(t) \\ 
+		& \qquad \text{(se resuelve con factor integrante)}
+	.\end{align*}
+
+	\noindent \textbf{Ecuación de Ricatti:} es de la forma
+	\[ y' = P(t) + Q(t)y(t) + R(t)(y(t))^2 \]
+	\noindent Supongamos que se conoce una solución $y_1(t)$ de esta EDO, es decir:
+	\[ y_1'(t) - P(t) - Q(t)y_1(t) - R(t)(y_1(t))^2 = 0\]
+	\noindent Luego, definimos $z(t) = y(t) - y_1(t)$, y así:
+	\[ y'(t) = z'(t) + y_1'(t) = P(t) + Q(t)(z(t) + y_1(t)) + R(t)(z(t) + y_1(t))^2 \\
+	\iff z'(t) - [Q(t) + 2y_1(t) R(t)] z(t) = R(t)(z(t))^2 \ (\text{ecuación de bernoulli con } n=2) \]
+
+	\begin{eg}
+		Resolver la EDO:
+		\[ y'(t) = 6 + 5y(t) + (y(t))^2 \]
+		\noindent Corresponde a una ecuación de Ricatti con:
+		\[ P(t)=6, \quad Q(t)=5,\quad R(t)=1,\quad \forall t \in \R \]
+		\noindent Nótese que $y_1(t) = -2,\ \forall t \in \R$ es solución. Luego, definimos:
+		\begin{align*}
+			& z(t) = y(t) - y_1(t) = y(t) + 2 \quad \forall t \in \R \\
+			\implies & z'(t) - z(t) = (z(t))^2
+		.\end{align*}
+
+		\noindent Luego,
+		\begin{align*}
+			u'(t) + u(t) = -1 & \implies u(t) = C e^{-t} - 1 \quad \forall t \in \R \ (C \in \R) \\
+			& \implies z(t) = \frac{1}{u(t)} = \frac{1}{C e^{-t} -1} \\
+			& \implies y(t) = z(t) - 2 = \frac{1}{C e^{-t} -1 }-2
+		.\end{align*}
+	\end{eg}
+		\begin{note}
+			Si $C>0$, la solución "explota" cuando $ t = \log (C)$. 
+		\end{note}
+
+		\subsection{III. Problema de Cauchy: existencia y unicidad}
+
+		Sea $\Omega \subset \R^{n+1}$ un conjunto abierto, que por lo general será de la forma $ \Omega = I \times \widetilde{\Omega}$, con $I \subset \R$ un intervalo abierto y $\widetilde{\Omega}\subset \R^{n}$ un conjunto abierto. Dada una función
+		\[ f \in C (\Omega;\R^n) \]
+		\noindent consideramos nuevamente el problema de Cauchy
+		\begin{align*} (PC) \ \begin{cases}
+			 y'(x) = f(x,y(x)), \quad \forall x \in I \text{ con } & x_0 \in I \text{ y} \\
+			 y(x_0) = y_0, & y \in \R^n
+		\end{cases} \end{align*}
+
+		\noindent El (PC) puede ser formulado de manera equivalente, pero "relativamente" más débil:
+
+		\begin{lemma}
+			Sea $\Omega \subset \R^{n+1}$ un conjunto abierto de la forma $\Omega = I \times \widetilde{\Omega},\ I \subset \R$ intervalo abierto y $\widetilde{\Omega} \subset \R^n$ conjunto abierto. Dados $x_0 \in I,\ y_0 \in \R^n$ y $f \in C(\Omega;\R^n)$, una función $\varphi : I \to \R^n$ es solución de (PC) si y sólo si:
+			\begin{enumerate}
+				\item[(i)] $\varphi \in C(I;\R^n)$;
+
+				\item[(ii)] $(x,\varphi(x)) \in \Omega \quad \forall x \in I$;
+
+				\item[(iii)] $\varphi (x) = y_0 + \int_{x_0}^{x} f(s,\varphi(s)) ds \quad \forall x \in I$.
+			\end{enumerate}
+			(i, ii y iii es formulación integral del (PC)).
+		\end{lemma}
+
+		\begin{remark}
+			La formulación integral nos permite estudiar el (PC) desde una perspectiva más abstracta. Supongamos por ahora que
+			\[ \Omega = \R^{n+1},\ I = \R,\ \widetilde{\Omega} = \R^n \text{ y } f \in C(\R^{n+1};\R^n). \]
+		\end{remark}
+
+		\noindent Dados $y_0 \in \R^n$ y $x_0 \in \R$, consideramos la aplicación $T: C(\R;\R^n) \to C(\R;\R^n)$.
+		\[ T(\varphi)(x) = y_0 + \int_{x_0}^{x} f(s,\varphi(s)) ds \quad \forall x \in \R \]
+		
+		\noindent Por el lema precedente, es evidente que $\varphi \in C(\R;\R^n)$ es solución de (PC) si y sólo si $T(\varphi) \equiv \varphi$ (i.e., $\varphi$ es punto fijo de $T$).

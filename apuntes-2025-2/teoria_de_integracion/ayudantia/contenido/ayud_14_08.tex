@@ -1,0 +1,59 @@
+
+\section{Ayudantia 14 de Agosto}
+
+\subsection{Ejercicio 11 (Guia) (i)}  
+
+\begin{proof}
+	$(A)$ Para ver que $C$ es cerrado, veremos que cada $C_n$ lo se. Notamos que si $f:\R \to \R, g:\R\to\R$ tales que $f(x)\coloneqq frac{1}{3} x$ y $g(x)\coloneqq frac{2}{3} + frac{1}{3}$ son continuas y $C_n=f(C_{n-1})\cup g(C_{n-1})\Rightarrow C_n$ es compacto $\Rightarrow$ es cerrado, $\forall n$ \\
+
+	$(B)$ Para ver que es no numerable, vamos a construir una inyeccion $\Phi : X\to X$ con $X$ no numerable. Sea entonces $X\coloneqq {0,2}^{\N}$ y dado $w\in X$, definimos:
+
+	\[
+		C_n(w)\coloneqq\frac{C_0}{3^n} + \sum_{k=1}{n}\frac{w_k}{3^k}
+	\]
+
+	Si $n=2$: $C_2(w) = [0,\frac{1}{9}] + \frac{w_1}{3} + \frac{w_2}{9} = \begin{cases}
+		[0,\frac{1}{9}] \\
+		[\frac{2}{3},\frac{7}{9}] \\
+		[\frac{2}{9},\frac{1}{3}] \\
+		[\frac{8}{9},1]
+	\end{cases}$ \\
+
+	Basicamente, $C_n(w)$ referencia siempre a alguno de los $2^n$ intervalos de $C_n$. Luego, es claro que para $w$ fijo, $C_{n+1}(w)\subseteq C_n(w)\subseteq C_n (*)$ y $diam(C_n(w))\xrightarrow{n\to\infty} 0$. Por el Teorema de interseccion de Cantor: $|\cap_{n\in\N} C_n(w)|=1$. Sea $C(w)$ tal elemento. Luego, por $(*)$, $C(w)\in C$. \\
+
+	Sea entonces $\Phi : {0,2}^{\N}\to C$ tal que $\Phi(w)\coloneqq C(w)$ y $\Phi$ es inyectiva (basta ver que pasa si $w^{(1)},w^{(2)}$ difieren en una coordenada). Como $|{0,2}^{\N}|=C$, se concluye.
+
+	$(C)$ Si suponemos que existe $(a,b)\subset C$. SPG, $a=0$. Consideremos $n\in\N$ suficientemente grande.
+
+	\[
+	3^{-n}<b  \Rightarrow (0,b) \nsubseteq [0,\frac{1}{3^n}]\cup[\frac{2}{3^n},\frac{3}{3^n}]\subseteq C_n
+	\]
+
+	Luego, $\exists z \in (0,b): z\not\in C_n, \text{ para algun } n \implies z\not\in C$ (Contradiccion).
+\end{proof}
+
+\subsection{Ejercicio 11 (Guia) (ii)}  
+
+%\begin{proof}
+%	Por $(i)$, sabemos que $C=\overline{C}=\partial C$. El resultado se sigue de lo siguiente: Si $(X,d)$ espacio metrico y $A\subseteq X \then D = \partial A$ (donde $D$ son los puntos de discontinuidad de $X_A$.
+%\end{proof}
+
+\subsection{Ejercicio 11 (Guia) (iii)}  
+
+%\begin{proof}
+%	Consideremos entonces $\mathds{1}_C$. Veamos sus integrales superior e inferior.
+
+%	\[
+%  \underline{\int_{0}^{1}} \mathds{1}_C(x) dx = sup \{L(P,\mathds{1}_C) \quad : \quad P \text{ particion de } [0,1] \}
+%	\]
+
+%	$L(P,\mathds{1}_C) = \sum m_i (x_{i+1}-x_i)=0 \text{ siempre, } \forall P$.\\
+
+%	Por lo tanto, $\underline{\int_{0}^{1}} \mathds{1}_C (x) dx =0 $.\\
+
+	Ahora, para la integral superior:
+
+%	\[
+%	\overline{\int_{0}^{1}} \mathds{1}_C (x) dx = \inf \{U(P,mathds{1}_X) \quad : \quad P \text{ particion} \}
+%	\]
+%\end{proof}

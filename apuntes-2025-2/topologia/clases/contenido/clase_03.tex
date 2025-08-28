@@ -1,0 +1,82 @@
+
+	\section{Clase 3 (08/08): Bases, Topología producto [13,15]}
+
+	\begin{proof}[Proof ] (lema 1.8)
+		\begin{enumerate}
+			\item $\varnothing, X \in \tau \text{ : } \varnothing \in \tau$ por vacuidad y $X \in \tau$ por propiedad $(1)$ de $\mathcal{B}$.
+
+			\item $\tau$ cerrado bajo unión: $\{ U_{\alpha} \}_{\alpha \in A}$ colección con $U_{\alpha} \in \tau, \text{ } \mathcal{U} = \bigcup_{\alpha} U_{\alpha}$.
+			\begin{align*}
+				\text{Si } x \in \mathcal{U} & \Rightarrow x \in U_{\alpha} \text{ para algún } \alpha \\
+				& \Rightarrow x \in B \subset U_{\alpha} \text{ para algún } B \in \mathcal{B} \\
+				& \Rightarrow x \in B \subset \mathcal{U}.
+			\end{align*}
+			Por lo tanto, $\mathcal{U} \in \tau$.
+
+			\item $\tau$ cerrado bajo intersección finita: $U_1,\dots,U_n \in \tau, \mathcal{U} = U_1 \cap \cdots \cap U_n$. Sea $x \in \mathcal{U} \Rightarrow x \in U_i \text{ } \forall i \text{ } (U_i \in \tau) \Rightarrow x \in B_i \subset U_i \text{ } \forall \text{ } i, B_i \in \mathcal{B}$. Propiedad $(2)$ implica $x \in B \subset B_1 \cap \cdots \cap B_n \subset U_1 \cap \cdots \cap U_n = \mathcal{U}$. Por lo tanto, $\mathcal{U} \in \tau$.
+		\end{enumerate}
+	\end{proof}
+
+	\begin{note}
+		Si $B$ base genera $\tau \Rightarrow B \subset \tau$.
+	\end{note}
+
+	\begin{definition}[topología generada]
+		$\tau$ topología está generada por una base $B$ sin $B$ es base, y $\tau$ es topología generada por $B$.
+	\end{definition}
+
+	Utilidad: Dada $\tau$ topología a estudiar, queremos encontrar base $B$ que la describa.
+
+	\begin{eg}
+		$(X,d)$ espacio métrico, $\mathcal{B} = \{ B_{\varepsilon} (x) \text{ | } \varepsilon > 0, x \in X \}$ es base para la topología métrica.  
+	\end{eg}
+
+	\begin{proof}[Proof ] Probamos que $B$ es base.
+		\begin{enumerate}
+			\item Notar $X = \bigcup_{x \in X} B_1 (x)$. Por lo tanto, $\bigcup_{B \in \mathcal{B}} B = X$.
+
+			\item $B_1,B_2 \in \mathcal{B}, B_1 = B_{\varepsilon_1} (x_1), B_2 = B_{\varepsilon_2} (x_2)$. Sea $x \in B_1 \cap B_2$. Queremos encontrar $\varepsilon > 0$ tal que $B_{\varepsilon} (x) \subset B_1 \cap B_2$. Por desigualdad triangular, tenemos que $\varepsilon = \min \{ \varepsilon_1 - d(x,x_1), \varepsilon_2 - d(x,x_2) \}$ sirve.  
+		\end{enumerate}
+	\end{proof}
+
+	\begin{note}
+		\begin{enumerate}
+			\item Una base no es necesariamente una topología ($(1)$ y $(2)$ pueden fallar).
+
+			\item Si $B$ es base y $\tau$ topología, $B \subset \tau \nRightarrow \tau$ es generada por $B$.
+		\end{enumerate}
+	\end{note}
+
+	\begin{eg}
+		Topología del límite inferior en $\R \text{ : } B_l = \{ [a,b) \text{ | } a,b \in \R , a < b \}$ (se deja como ejercicio demostrar que $B_l$ es base).
+	\end{eg}
+
+	\begin{definition}[topología del límite inferior]
+		$B_l$ genera la topología del límite inferior $\tau_l$.
+	\end{definition}
+
+	\begin{remark} \text{}
+		\begin{enumerate}
+			\item $\tau_l$ no es $\tau_{std}$ ($[a,b)$ abierto en $\tau_l$ pero no en $\tau_{std}$
+
+			\item $\tau_{std} \subset \tau_l$ (la demostración de esto queda como ejercicio).
+
+			\item (Intuición): Si $0 \in \R, y \in \R$ (para $\tau_{std}$, $y$ cerda de $0$ si $|y| < \varepsilon$). Para $\tau_l$, $y$ cerca de $0$, si $y \in [0,\varepsilon)$ ($0\leq y < \varepsilon$ para $\varepsilon > 0$ chiquito).
+		\end{enumerate}
+	\end{remark}
+
+	\subsection{Comparación de topologías}
+
+	\begin{definition}[topologías finas]
+		$\tau,\tau'$ topologías en $X$, decimos que $\tau'$ es más fina que $\tau$ si $\tau' \supset \tau$. Decimos que $\tau$ y $\tau'$ son comparables si $\tau' \supset \tau$ o $\tau \supset \tau'$. 
+	\end{definition}
+
+	\begin{eg}
+		$\tau_l$ es más fina que $\tau'$.
+	\end{eg}
+
+	\begin{eg}
+		$\forall \tau$ topología en $X$, $\{ \varnothing, X \} \subset \tau \subset 2^X$. Donde $\{ \varnothing, X \}$ es llamada la topología indiscreta (todos cercanos entre sí) y $2^X$ la topología discreta (todos lejanos entre sí).    
+	\end{eg}
+
+	En conclusión, si $\tau'$ es más fina que $\tau$, los puntos están más lejanos respecto a $\tau'$ que a $\tau$

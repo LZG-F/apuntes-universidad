@@ -1,0 +1,81 @@
+
+	\subsection{Clase 5 (18/08)}
+
+	\noindent \textbf{Teorema Fundamental del Cálculo: } Si $f \in \mathcal{R}([a,b])$ es continua en $x_0 \in [a,b]$, entonces $F: [a,b] \to \R$ dada por $F(x) \coloneq \int_{a}^{x} f(t) dt$ es derivable en $x=x_0$ y vale $F'(x_0) = f(x_0)$. En particular, $F'(x) = f(x)$ salvo quizás por un conjunto de $x \in [a,b]$ de medida nula. O sea, podemos integrar y luego derivar y esto es "casi" como no hacer nada. Pero, tenemos problemas:
+
+	\begin{enumerate}
+		\item \textbf{Este "casi" no puede removerse}
+		\begin{theorem}[Hankel, 1871]
+			Dado $[a,b] \subseteq \R$, existe $f\in\mathcal{R}([a,b])$ tal que $F(x) \coloneq \int_{a}^{x} f(t) dt$ no es derivable para ningún $x$ en un subconjunto denso en $[a,b]$ (y, en particular, infinito).
+		\end{theorem}
+
+		\item \textbf{A veces no podemos componer en el orden inverso}
+		\begin{theorem}[Volterra, 1881]
+			Dado $[a,b]\subseteq\R$, existe $f: [a,b]\to\R$ derivable en $[a,b]$, tal que $f'$ es acotada en $[a,b]$ pero $f' \not\in \mathcal{R} ([a,b])$.
+		\end{theorem}
+	\end{enumerate}
+
+	\noindent \textbf{Extendiendo la integral de Riemann}
+
+	Sean $f:[a,b]\to\R$ acotada y $\Pi = \{ x_0,\dots,x_n \}$ una partición de $[a,b]$. Definimos:
+	\begin{align*}
+		\Phi_{f,\Pi}(x) & \coloneq m_{I_1} \chi_{[x_0,x_i]} (x) + \sum_{i=2}^{n} m_{I_i} \chi_{(x_{i-1},x_i]}(x), \quad m_{I_i} = \inf_{t \in I_i} f(t) \\
+		& = m_{I_1} \chi_{\{x_0\}}(x) + \sum_{i=1}^{n} m_{I_i} \chi_{(x_{i-1},x_i]}(x) \\
+		\psi_{f,\Pi} & \coloneq M_{I_1} \chi_{\{x_0\}}(x) + \sum_{i=1}^{n} M_{I_i} \chi_{(x_{i-1},x_i]}(x), \quad M_{I_i} = \sup_{t\in I_i} f(t)
+	.\end{align*}
+
+	Observemos que $\Phi_{f,\Pi}(x) \leq f(x) \leq \psi_{f,\Pi}(x) \quad \forall x \in [a,b]$. Además, 
+	\[
+	\int_{a}^{b} \Phi_{f,\Pi}(x) dx = \underline{S}(f,\Pi) \\
+	\int_{a}^{b} \psi_{f,\Pi}(x) dx = \overline{S}(f,\Pi).
+	\]
+	\noindent En particular, si $f$ es Riemann integrable,
+	\begin{align*}
+		\int_{a}^{b} f(x) dx & = \overline{\int_{a}^{b}} f(x) dx = \inf \left\{ \int_{a}^{b} \psi_{f,\Pi} \ : \ \Pi \text{ partición} \right\} \\
+		& = \underline{ \int_{a}^{b} } f(x) dx = \sup \left\{ \int_{a}^{b} \Phi_{f,\Pi} \ : \ \Pi \text{ partición} \right\}
+	.\end{align*}
+
+	\begin{definition}[función escalonada]
+		Una función $\Phi : [a,b] \to \R$ se dice escalonada si existen $\Pi = \{ x_0,\dots,x_n \}$ partición de $[a,b]$ y $c_1,\dots,c_n \in \R$ tales que
+		\[
+		\Phi |_{(x_{i-1},x_i)} \equiv c_i \quad \forall i = 1,\dots,n
+		\]
+	\end{definition}
+
+	Notemos que podemos escribir a cualquier función $\Phi$ escalonada como
+	\begin{align*}
+		\Phi (x) & \coloneq \sum_{i=1}^{n} c_i \cdot \chi_{(x_{i-1},x_i}(x) + \sum_{i=0}^{n} \Phi(x_i) \cdot \chi_{\{x_i\}}(x) \\
+		& = \sum_{i=1}^{k} c_j \cdot \chi_{A_j}(x).
+	.\end{align*}
+	\noindent donde los $A_j$ son intervalos disjuntos tales que $\displaystyle\bigcupd_{j=1}^{k} A_j = [a,b]$ (se pone una "D" dentro de la unión para denotar que estamos haciendo una unión disjunta).
+
+	Si tomamos $\Phi$ de la forma $\Phi = \sum_{j=1}^{k} c_j \cdot \chi_{A_j}$ con $(A_j)_{j=1,\dots,k}$ disjuntos, $\displaystyle\bigcupd_{j=1}^{k} A_j = [a,b]$ pero $A_j$  no son necesariamente intervalos, diremos que $\Phi$ es una función escalonada generalizada. Como para funciones escalonadas "normales", tenemos
+	\[
+	\int_{a}^{b} \Phi (x) dx = \sum_{j=1}^{k} c_j \cdot |A_j| \left( = \sum_{i=1}^{n} c_i \cdot |I_i| \right)
+	\]
+
+	\noindent \textbf{La función longitud}
+	Sea $\mathcal{I}$ la colección de los intervalos en $\R$. Definimos la función longitud $\lambda : \mathcal{I} \to [0,\infty]$ como $\lambda (I) \coloneq |I|$.
+	
+	\noindent \textbf{Propiedades:}
+	\begin{enumerate}
+		\item $\lambda (\varnothing) = 0$;
+
+		\item $I_1,I_2 \in \mathcal{I},\ I_1\subseteq I_2 \implies \lambda (I_1) \leq \lambda (I_2) \ (\text{Monotonía de } \lambda)$;
+
+		\item (Aditividad finita de $\lambda$) Si $I \in \mathcal{I}$ es tal que $I = \displaystyle\bigcupd_{i=1}^{n} J_i$ con $J_i \in \mathcal{I},\ \forall i = 1,\dots,n,\ J_i \cap J_j = \varnothing$ sin $i\neq j$, entonces
+		\[
+		\lambda (I) = \sum_{i=1}^{n} \lambda (J_i);
+		\]
+
+		\item ($\sigma$-aditividad de $\lambda$) Si $I \in \mathcal{I}$ es tal que $I = \displaystyle\bigcup_{i=1}^{\infty} I_i $, con $(I_i)_{i} \in \N \subseteq \mathcal{I}$ disjuntos, entonces
+		\[
+		\lambda(I) = \sum_{i=1}^{\infty} \lambda (I_i)
+		;\]
+
+		\item ($\sigma$-subaditividad de $\lambda$) Si $I \in \mathcal{I}$ verifica $I \subseteq \displaystyle\bigcup_{i=1}^{\infty} I_i, \ (I_1)_{i \in \N})$ intervalos (no necesariamente disjuntos), entonces $\lambda (I) \leq \sum_{i=1}^{\infty} \lambda (I_i)$;
+
+		\item $\lambda (I + x) = \lambda (I), \ \forall x \in \R, \ I+x \coloneq \{a + x \ : \ a \in I \} $;
+
+		\item $\lambda(\{x\}) = 0 \ \forall \ x \in \R$.  
+	\end{enumerate}

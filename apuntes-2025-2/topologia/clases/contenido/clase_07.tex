@@ -1,0 +1,72 @@
+
+	\section{Clase 7 (20/08): }
+
+	\begin{remark}
+		$\mathcal{B} \subset \tau \implies$ quizás $\tau_{\mathcal{B}} \neq \tau$. Solo es cierto $\tau_{\mathcal{B}} \subset \tau$.
+	\end{remark}
+
+	\begin{remark}
+		Existe una noción más débil ($T_0$): $\forall \ x \neq y \in X,\ \exists \ U$ abierto tal que, o bien $x \in U,\ y \not\in U$ o $y \in U,\ x \not\in U$. Se puede demostrar que $T_1 \implies T_0$. Además, $\exists\ X,\ T_0$, no $T_1$, tal que $1.30$ se cumple.
+	\end{remark}
+
+	\begin{definition}[convergencia de suceciones]
+		$X$ espacio topológico, $(X_n)_n$ sucesión en $X,\ x \in X$. Decimos que $x_n$ converge a $x$ (con respecto a la topología) $[x_n \to x]$ si: $\forall \ U$ abierto con $x\in U$ existe $N$ tal que $n\geq N$ implica $x_n \in U$.
+	\end{definition}
+
+	\begin{note}
+		Si $\mathcal{B}$ base para topología en $X,\ x_n \to x$ equivale a: $\forall B \in \mathcal{B}$ con $x \in B, \ \exists N$ tal que $n\geq N$ se tiene $x_n \in B$.
+	\end{note}
+
+	\begin{eg}
+		$(X,d)$ espacio métrico. $x_n \to x$ (topología métrica) $\longleftrightarrow$ $x_n \to x$ (análisis real): $\forall \varepsilon > 0,\ \exists N$ tal que $n \geq N \implies d(x_n,x)<\varepsilon \ (x_n \in B_{\varepsilon} (x)$). 
+	\end{eg}
+
+	\begin{eg}
+		$X$ con la topología indiscreta ($\tau = \{\varnothing, X\}$). Entonces, para cualquier suceción $(x_n)_n$, para cualquier $x \in X, \ x_n \to x$ (solo se debe verificar $U = X$).  
+	\end{eg}
+
+	\begin{eg}
+		$X$ con la topología discreta, entonces ($x_n \to x$) $\longleftrightarrow x_n = x$ para todo $n\gg 0 \ [\text{Caso } U=\{x\}]$. 
+	\end{eg}
+
+	\begin{eg}
+		$X$ infinito contable con topología cofinita [$T_1$, no $T_2$], $X = \{ a_1, a_2, \dots \}$. Si $x_n = a_n \implies x_n \to x$ para todo $x \in X$ [Si $U$ abierto, $x \in U \not\implies U = X \setminus \{a_{i_1},\dots, a_{i_k} \} (i_1<\cdots<i_k) \implies n \geq N = i_k + 1$ implica $x_n \to x$].   
+	\end{eg}
+
+	\begin{lemma}
+		Si $T_2,\ (x_n)_n$ sucesión con $x_n \to x,\ x_n \to y$, entonces $x = y$.
+	\end{lemma}
+
+	\begin{proof}[Proof ]
+		Si $x \neq y$, dado que es $T_2$, entonces existen $U,\ U'$ abiertos disjuntos con $x \in U,\ y \in U'$. Si $x_n \to x$, entonces existe $N_1$ tal que $n \geq N_1$ implica $x_n \in U$. Si $x_n \to y$, entonces existe $N_2$ tal que $n\geq N_2$ implica $x_n \in U$. Por lo tanto $n \geq N_1$ y $n \geq N_2$, entonces $x_n \in U \cap U'$. Contradicción! \textreferencemark
+	\end{proof}
+
+	\noindent \textbf{Continuidad: } $f: X \to Y,\ X,Y$ espacios topológicos.
+	\begin{itemize}
+		\item $[\text{No Def}]$: Si $x_n \to x$ en $X \implies f(x_n) \to f(x)$ en $Y$.
+	\end{itemize}
+	\begin{definition}[continuidad]
+		$f$ es continua si $\forall \ U \subset Y$ abierto, se tiene $f^{-1} (U)$ es abierto en $X$.
+	\end{definition}
+
+	\begin{eg}
+		Si $(X,d),\ (Y,d')$ son espacios métricos, entonces $f:X \to Y$ continua (respecto a topologías métricas) $\longleftrightarrow f(\varepsilon - \delta)$ continua: $\forall\ x \in X,\ \forall \ \varepsilon > 0;\ \exists \ \delta > 0$ tal que $d(x,y) < \delta \implies d'(f(x),f(y)) < \varepsilon$.
+	\end{eg}
+	\begin{remark}
+		$d(x,y)<\delta$ es lo mismo que pedir $y \in B_{\delta}(x)$. Similarmente $d'(f(x),f(y))<\varepsilon$ es lo mismo que $\delta (y) \in B_{\varepsilon}(f(x)), \ y \in f^{-1}(B_{\varepsilon}(f(x))$.
+	\end{remark}
+
+	\begin{lemma}
+		$X \xrightarrow{f} Y,\ \mathcal{B}'$ base de $Y, \ \mathcal{B}$ base de $X$. Entonces
+		\begin{align*}
+			f \text{ continua} & \iff [\text{Si } B' \in \mathcal{B}' \implies f^{-1}(B') \text{ es abierto} \\
+			& \iff \text{Si } B' \in \mathcal{B}',\ \forall\ y \in f^{-1}(B'), \text{ existe } B \in \mathcal{B} \text{ con } y \in B \subset f^{-1}(B')
+		.\end{align*}
+	\end{lemma}
+
+	\begin{lemma}[continuidad secuencial]
+		Si $f: X \to Y$ continua (hay top. dadas). Entonces, si $x_n \to x$ en $X \implies f(x_n) \to f(x)$ en $Y$.
+	\end{lemma}
+	\begin{proof}[Proof ]
+		Suponer $x_n \to x$ en $X$. Queremos que $f(x_n) \to f(x)$ en $Y$. Tomar $U \subset Y$ abierto con $f(x) \in U$. Luego, $f$ continua implica que $f^{-1}(U)$ abierto con $x \in f^{-1}(U)$. Si $x_n \to x$, entonces existe $N$ tal que $n\geq N$ implica $x_n \in f^{-1}(U)$. Entonces, existe $N$ tal que $n\geq N$ implica $f(x_n) \in U$. Por lo tanto, $f(x_n) \to f(x)$.
+	\end{proof}

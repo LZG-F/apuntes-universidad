@@ -1,0 +1,93 @@
+
+	\section{Clase 6 (18/08): Espacios Hausdorff, convergencia [17]}
+
+	\begin{remark}
+		$x \in A' \iff x \in \overline{A \setminus \{x\}}$. 
+	\end{remark}
+
+	\begin{lemma}
+		$\forall \ A \subset X,\ \overline{A} = A \cup A'$.
+	\end{lemma}
+
+	\begin{proof}[Proof ]
+		\fbox{$\supset$} Notar que $A \subset \overline{A}$. Si $x \in A' \implies x \in \overline{A \setminus \{x\}} \subset \overline{A} \ (*)$. Notar que $(*) A \subset B \implies \overline{A} \subset \overline{B}$. Por lo tanto $A' \subset \overline{A}$. Entonces, $A \cup A' \subset \overline{A}$.
+
+		\noindent \fbox{$\subset$} $\ (\overline{A} \subset A \cup A', \text{ equiv: } \overline{A}\setminus A \subset A')$ Si $x \in \overline{A} \setminus A$. Entonces, $x \not\in A$ y $\forall \ U \ni x$ abierto se tiene $A \cap U \neq \varnothing$. Como $x \not\in A \implies (A \setminus \{x\}) \cap U \neq \varnothing$. Entonces, $x \in A'$.  
+	\end{proof}
+
+	\begin{remark}
+		$A'$ no es necesariamente cerrado.
+	\end{remark}
+
+	\begin{eg}
+		$X = \{ a,b \};\ \tau = \{ \varnothing, X \}$ ($a,b$ indistinguibles desde el punto de vista de $\tau$). $A = \{ b \} \implies A' = \{b\} $ (no es cerrado). $a \not\in A' \iff a \not\in \overline{A \setminus \{a\} } = \overline{\varnothing} = \varnothing$. $b \in A \iff b \in \overline{A \setminus \{b\} } = \overline{\{a\}} = \{a,b\}$.      
+	\end{eg}
+
+	\noindent \textbf{Problemas:}
+	\begin{itemize}
+		\item Subconjuntos finitos no tienen topología discreta;
+
+		\item Subconjuntos finitos no son cerrados.
+	\end{itemize}
+
+	\begin{lemma}
+		Si $X$ es espacio topológico arbitrario. Son equivalentes:
+		\begin{enumerate}
+			\item Todos los subconjuntos finitos de $X$ tienen la topología discreta.
+
+			\item Todos los subconjuntos finitos de $X$ son cerrados.
+		\end{enumerate}
+	\end{lemma}
+
+	\begin{definition}[espacios $T_1$ o Frechet]
+		Un espacio topológico $X$ es $T_1$ (cumple el axioma $T_1$) si sus subconjuntos finitos son cerrados.
+	\end{definition}
+
+	\begin{eg}
+		$X$ con la topología indiscreta NO es $T_1$ si $\# X \geq 2$.
+	\end{eg}
+
+	\begin{eg}
+		$X$ con topología cofinita es $T_1$. En la topología
+		\[
+		\{ \text{subconjuntos cerrados} \} = \{ \text{conjuntos finitos} \}
+		\]
+	\end{eg}
+
+	\begin{lemma}
+		$X$ es $T_1,\ A \subset X \implies A'$ es cerrado.
+	\end{lemma}
+
+	\begin{proof}[Proof ]
+		(Queremos $\overline{A'} = A'$, i.e. $\overline{A'} \setminus A' = \varnothing$) Suponer que $x \in \overline{A'},\ x \not\in A'$. Si $x \not\in A'$, entonces $\exists\ U$ abierto con $x\in U$ y $U\cap A \subset \{x\}$. Si $x \in \overline{A'}$, entonces $A'\cap U \neq \varnothing$. Luego, $\exists\ y \in U \cap A' \ (y\neq x)$. Como $X$ es $T_1$, entonces $\{x\}$ es cerrado. Luego, $X \setminus \{x\}$ es abierto, y con ello tenemos que $U \setminus \{x\}$ es abierto. Si $V = U \setminus \{x\}$ abierto que contiene a $y \ (y\in A')$, entonces $V$ contiene puntos de $A$, distintos de $y$. Luego, $\exists\ z \in A \cap V$. Así, $z \in A \cap U$ y $z \neq x$. Contradicción! \textreferencemark
+	\end{proof}
+
+	\begin{definition}[espacios $T_2$ o Haussdorff]
+		Un espacio topológico $X$ es $T_2$ (o Hausdorff), si $\forall \ x \neq y$ en $X$ existen $U,U' \subset X$ abiertos \underline{disjuntos} con $x \in U,\ y \in U'$.
+	\end{definition}
+
+	\begin{eg}
+		$X$ con la topología cofinita, con $\# X = \infty$ es $T_1$ pero no es Hausdorff. Veamos que esto es así. Si $x \neq y \in X,\ x \in U,\ y \in U'$ abiertos ($X \setminus U,\ X \setminus U'$ finitos), entonces $(X \setminus U) \cup (X \setminus U')$ finito. Luego, $X \setminus (U \cap U')$ finito. Así, $U \cap U'$ infinito, por lo que $U \cap U'$ no puede ser disjunto.  
+	\end{eg}
+
+	\begin{lemma}
+		$X$ Hausdorff $\implies X$ es $T_1$.
+	\end{lemma}
+kk
+	\begin{proof}[Proof ]
+		($X$ es $T_1 \iff$ subconjuntos finitos son cerrados $\iff$ singlietons son cerrados) $\rightarrow$ (veremos el último si y solo si) Sea $x \in X$, queremos que $X \setminus \{x\}$ sea abierto. Si $y \neq x$, dado que $X$ es Hausdorff, $\exists\ U_y, U_y'$ abiertos disjuntos con $y \in U_y,\ x \in U_y'$. Luego, $x \not\in U_y$. Por lo tanto, $X \setminus \{ x \} = \displaystyle\bigcup_{y \neq x} U_y$ es abierto.
+	\end{proof}
+
+	\begin{eg}
+		$(X,d)$ espacio métrico, $X$ es Hausdorff con la topología métrica.
+	\end{eg}
+
+	\begin{corollary}[secreto]
+		Existen topologías que no vienen de métricas.
+	\end{corollary}
+
+	\begin{proof}[Proof ][del ejemplo]
+		Para la topología métrica, bolas abiertas son abiertos. Si $x \neq y$, entonces $U = B_{\frac{d(x,y)}{2}}(x),\ U' = B_{\frac{d(x,y)}{2}}(y)$.
+	\end{proof}
+
+	En $X$ con la topología cofinita, $X = \{ x_1, x_2, x_3,\dots \}$ infinito contable. Definimos $y_n = x_n$ con $n \geq 1$ (cada elemento de $X$ aparece exactamente una vez). Cada abierto $\varnothing \neq U \subset X$ contiene a $y_n \ \forall n \geq \N$ ($N$ depende de $U$). (próxima clase: $y_n \to x \ \forall x \in X$). 

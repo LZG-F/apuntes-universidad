@@ -1,0 +1,92 @@
+
+	\section{Clase 8 (22/08): Continuidad, homeomorfismos [18]}
+
+	\subsection{Observaciones clase pasada}
+
+	\begin{remark}~
+		\begin{itemize}
+			\item $f^{-1}\left( \displaystyle\bigcap_{\alpha\in I} A_{\alpha} \right) = \displaystyle\bigcap_{\alpha\in I} f^{-1}(A_{\alpha})$;
+
+			\item $f^{-1}\left( \displaystyle\bigcup_{\alpha \in I} A_{\alpha} \right) = \displaystyle\bigcup_{\alpha \in I} f^{-1}(A_{\alpha})$.
+		\end{itemize}
+		\noindent Estas identidades no son necesariamente ciertas si se ocupa $f$ en vez de $f^{-1}$.
+	\end{remark}
+
+	\begin{remark}[Tarea 2]
+		Coninuidad secuencial $\not\implies$ Continuidad.
+	\end{remark}
+
+	\subsection{Clase 8}
+
+	\begin{lemma}
+		$f:X\to Y,\ X,\ Y$ espacios topológicos.
+		\[ f \text{ continua } \iff \ \forall C \subset Y \text{ cerrado, se tiene } f^{-1}(C) \text{ cerrado en } X \]
+	\end{lemma}
+	\begin{proof}[Proof ]~
+		\Onlyifstep Suponer que $f$ continua. Tomamos $C \subset Y$ cerrado [queremos $X\setminus f^{-1}(C)$ abierto]. Notar que
+		\begin{align*}
+			X\setminus f^{-1}(C) = \{ x \in X \ : \ x \not\in f^{-1}(C) \} & = \{ x \in X \ : \ f(x) \in Y\setminus C \} \\
+			& = \underbrace{f^{-1}\underbrace{(Y\setminus C)}_{\text{abierto en } X}}_{\text{abierto en } X \text{ pq } f \text{ continua}}
+		.\end{align*}
+		
+		\noindent \Ifstep Análogo.
+	\end{proof}
+
+	\begin{eg}
+		Si $f:X\to Y,\ X,\ Y$ espacios topológicos
+		\begin{enumerate}
+			\item Si $Y$ con topología indiscreta $(\{\varnothing,Y\})\implies f$ automáticamente continua. Notar que $f^{-1}(\varnothing) = \varnothing,\ f^{-1}(Y) = X$.
+
+			\item Si $X$ tiene topología discreta $(2^X) \implies f$ continua. Notar que $f^{-1}(U)$ es abierto para todo subconjunto $U \subset Y$.
+
+			\item Si $A\subset X$ y $f$ continua. Entonces $f|_A:A\to Y$ también es continua [$A$ co top. inducida]. Notar que $U \subset Y$ abierto, entonces
+			\begin{align*}
+				(f|_A)^{-1}(U) = \{ x \in A \ | \ f|_A(x) & = f(x) \in U \} \\
+				& = \underbrace{A \cap \underbrace{f^{-1}(U)}_{\text{abierto en } X}}_{\text{abierto en} A}
+			\end{align*}
+
+			\item Si $X_1,X_2$ espacios topológicos, entonces $\pi_1 : X_1 \times X_2 \to X_1$ es continua. Notar que si $U\subset X_1$ abierto, entonces $\pi_{1}^{-1}(U) = \{ (x_1,x_2) \ | \ x_1 \in U \} = U \times X_2$ abierto en $X_1\times X_2$.  
+		\end{enumerate}
+	\end{eg}
+
+	\noindent \textbf{Propiedades.} $X,Y,Z$ espacios topológicos
+	\begin{enumerate}
+		\item Fijar $y_0\in Y.\ f: X \to Y,\ f(x) = y_0\ \forall x$, es continua. Notar que $U \subset Y$ abierto, entonces
+		\[ f^{-1} (U) = \begin{cases}
+			X \text{ si } y_0\in U \\
+			\varnothing \text{ si } y_0 \not\in U
+		\end{cases} \]
+
+		\item Si $f: X \to Y,\ g: Y \to Z$ continuas, entonces $g\circ f : X \to Z$ continuas. Notar que $V \subset Z$ abierto, entonces $(g\circ f)^{-1}(V) = \underbrace{f^{-1}\underbrace{(g^{-1}(V))}_{\text{abierto en } Y}}_{\text{abierto en } X}$
+
+		\item Si $f: X \to Y$ continua y $f(X) \subset Z \subset Y$, entonces $f: X \to Z$ continua. Notar que $U \subset Z$ abierto en $Z$, entonces $U=Z \cap V,\ V\subset Y$ abierto. Dado que $f(X) \subset Z$, tenemos que $f^{-1}(U) = f^{-1}(V)$ abierto en $X$ [$f:X \to Y$ continua]. Luego, $f^{-1}(U)$ abierto en $X$.
+
+		\item (Continuidad es propiedad local): Si $f: X \to Y,\ (B_{\alpha})_{\alpha \in I}$ abiertos en $X$ tal que $\displaystyle\bigcup_{\alpha \in I} B_{\alpha} \stackrel{(*)}{=} X$. Entonces
+		\[ f \text{ continua} \iff f|_{B_{\alpha}} \to Y \text{ es continua para todo } \alpha \]
+		\noindent \Ifstep Tomamos $U \subset Y$ abierto (queremos $f^{-1}(U)$ abierto en $X$). Usar $f^{-1}(U) = \bigcup_{\alpha\in I} (f|_{B_{\alpha}})^{-1}(U)$. Vamos a demostrar esta igualdad:
+
+		\fbox{$\subset$} $x \in f^{-1}(U)$ y $x \in B_{\alpha}$, entonces $x \in (f|_{B_{\alpha}})^{-1}(U)$.
+
+		\fbox{$\supset$} Hacer!
+
+		Luego, tenemos que $(f|_{B_{\alpha}})^{-1}(U)$ es abierto en $B_{\alpha}$ y que $B_{\alpha}$ es abierto, entonces $(f|_{B_{\alpha}})^{-1}(U)$ abierto en $X \ \forall \alpha$. Por $(*)$, tenemos que $f^{-1}(U)$ es abierto en $X$.
+	\end{enumerate}
+
+	\begin{note}
+		Si se reemplaza "$B_{\alpha}$ abiertos" por "$B_{\alpha}$ cerrados", 4. igual se cumple + $I$ finito (cjto. de indices de la unión) [Lema del pegado en Munkres]
+	\end{note}
+
+	\begin{definition}[homeomorfismo]
+		$X,\ Y$ espacios topológicos. $f:X \to Y$ es homeomorfismo si
+		\begin{enumerate}
+			\item $f$ es continua;
+
+			\item $f$ es biyectiva (existe $f^{-1}:Y \to X$);
+
+			\item $f^{-1}$ es continua.
+		\end{enumerate}
+	\end{definition}
+
+	\begin{remark}
+		Propiedades topológicas (como $T_1$, Hausdorff, etc...) son invariantes por homeomorfismos.
+	\end{remark}

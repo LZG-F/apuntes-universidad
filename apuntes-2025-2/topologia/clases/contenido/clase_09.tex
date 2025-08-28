@@ -1,0 +1,77 @@
+
+\section{Clase 9: Homemomorfismos, Productos infinitos [18, 19]}
+
+\begin{eg}~
+	\begin{enumerate}
+		\item $f: (-1,1) \to (-\infty,\infty),\ f(x) = \frac{x}{1-x^2}$ es homeomorfismo. La inversa es $g(y) = \frac{2y}{1+(1+4y^2)^{1/2}}$. Notar que $f$ y $g$ son $\varepsilon-\delta$ continuas (i.e. con topologías métricas). Observamos que $(X,d)$ espacio métrico, $Y\subset X$ subconjunto, entonces la topología inducida en $Y$ es igual a la topología métrica dada por $d|_{Y}$.
+
+		\item $id : (\R,\tau_{\text{discr}})\to(\R,\tau_{\text{std}})$ continuo. $(id)^{-1} = id: (\R,\tau_{\text{std}}) \to (\R, \tau_{\text{discr}})$ no es continua. Si tomamos $U = \{0\}$, es abierto en $\tau_{\text{discr}}$, pero no abierto en $\tau_{\text{std}}$. Moral: $f$ continua y biyectiva $\not\implies f^{-1}$ continua. 
+		\begin{remark}
+			$id: (X,\tau) \to (X,\tau')$ es continua si y sólo si $\tau' \subset \tau$ ($\tau$ más fina que $\tau'$).
+		\end{remark}
+
+		\item $X = [0,2\pi],\ Y = \mathbb{S}^1 = \{(x,y) \in \R^2 \ | \ x^2 + y^2 = 1 \},\ f: X \to Y,\ t \mapsto (\cos t,\sin t)$. $f$ es continua (es $\varepsilon-\delta$ continua) y biyectiva. Si $f^{-1}$ no es continua, queremos $U\subset X$ tal que $(f^{-1})^{-1}(U) = f(U)$ no es abierto en $Y$. Notar que un intervalo de la forma $U = [0,t)$ es abierto en $X$, pero $f(U)$ no es abierto en $Y$ (el punto $(1,0) \in f(U)$ no está en el interior). Moral: "despegar/cortar" no es operación continua.
+	\end{enumerate}
+\end{eg}
+
+\subsection{Productios cartesianos arbitrarios}
+
+\noindent \textbf{Recuerdo.} $X,Y$ espacios topológicos, en $X\times Y$ tenemos \underline{topología producto} con base $\mathcal{B} = \{ U\times U' \ | \ U \subset X,\ U'\subset Y \text{ abiertos} \}$. En general, si $X_1,dots,X_n$ (finitos) espacios topológicos, la \underline{topología producto} en $X_1\times \cdots \times X_n$ tiene base
+\[ \mathcal{B} = \{ U_1 \times \cdots \times U_n \ | \ U_i \subset X_i \text{ abierto para cada } i \}. \]
+
+\begin{lemma}
+	Topología producto en $X_1 \times \cdots \times X_n$ es la \underline{menor} topología tal que $\pi_i :X_1 \times \cdots \times X_n \to X_i$ tal que $(x_1,\dots,x_n) \mapsto x_i$, es continua para cada $i$. \\
+	(Menor: si $\tau'$ topología en $X_1\times\cdots\times X_n$ tal que $\pi_i$ continua $\forall i$, entonces $\tau' \supset \tau=$topología producto)
+\end{lemma}
+\begin{proof}[Proof ]
+	Si $\tau'$ topología en $\underline{\overline{X}}$ tal que $\pi_i : \underline{\overline{X}} \to X_i$ continuas, entonces $\forall 1 \leq i \leq n$, si $U_i \subset X_i$ abierto. Luego $\pi_i^{-1}(U_i)$ abierto en $\tau'$, donde $\pi_i^{-1} = X_1 \times \cdots \times X_{i-1} \times U_i \times X_{i+1} \times \cdots \times X_n$. Si queremos $\tau \subset \tau'$, basta que $\mathcal{B} \subset \tau'$. Si $U_1 \subset X_1, \dots, U_n\subset X_n$ son abiertos, entonces $\mathcal{B} \ni U_1 \times \cdots \times U_n = \pi_{1}^{-1}(U_1) \cap \pi_{2}^{-1}(U_2) \cap \cdots \cap \pi_{n}^{-1}(U_n)$ es abierto en $\tau'$ (usamos que $n$ es finito!!!).
+\end{proof}
+
+\begin{definition}[producto]
+	Una familia indexada de conjuntos es $\{ X_{\alpha} \}_{\alpha\in J}$. Si $\underline{\overline{X}} \bigcup_{\alpha\in J} X_{\alpha}$, el producto cartesiano es $\prod_{\alpha\in J} X_{\alpha}$ es el conjunto de funciones $x : J \to \underline{\overline{X}}$ tal que para $\alpha \in J,\ x_{\alpha} \coloneq x(\alpha) \in X_{\alpha}$ [$x_{\alpha}$ es la $\alpha$-coordenada de $x$]
+\end{definition}
+
+\begin{eg}~
+	\begin{itemize}
+		\item Si $J = \{1,\dots,n\} \implies \prod_{\alpha\in J} X_{\alpha} = X_1 \times \cdots \times X_n$;
+
+		\item Si $X_{\alpha} = X$ para todo $\alpha \implies \prod_{\alpha \in J} X_{\alpha} = X^J = \{ \text{funciones } f:J\to X\}$;
+
+		\item Si $J= \Z_{>0},\ X_{\alpha}=X\ \forall \alpha \implies \prod_{\alpha\in J} X_{\alpha} = \{\text{sucesiones } x=(x_1,x_2,\dots) \text{ en } X \}$ 
+	\end{itemize}
+\end{eg}
+
+\subsection{Topologías en $\Pi_{\alpha\in J} X_{\alpha}$}
+
+\begin{definition}[Topología de cajas]
+	Topología con base 
+	\[ \mathcal{B} = \{ \prod_{\alpha\in J} U_{\alpha} \ | \ U_{\alpha} \subset X_{\alpha} \text{ es abierto para cada } \alpha \} \]
+\end{definition}
+
+\begin{definition}[Topología producto]
+	Es la \underline{menor} topología tal que las proyecciones $\pi_{\beta}: \prod_{\alpha \in J} X_{\alpha} \to X_{\beta},\ x=(x_{\alpha})_{\alpha\in J} \mapsto x_{\beta}$ sean continuas para cada $\beta \in J$.
+\end{definition}
+
+\begin{remark}
+	Si $\underline{\overline{X}}$ conjunto, $f_{\alpha} : \underline{\overline{X}} \to X_{\alpha}$ espacios topológicos, entonces existe una menor topología tal que $f_{\alpha}$ continua para todo $\alpha$. Es la menor topología tal que $f_{\alpha}^{-1}(U_{\alpha})$ sea abierta para cada $U_{\alpha} \subset X_{\alpha}$ abierto, para cada $\alpha \in J$ (existe por tarea 1).
+\end{remark}
+
+\begin{remark}
+	Para $\underline{\overline{X}} = \prod_{\alpha \in J} X_{\alpha}$ una base es $\mathcal{B}' = \{ \prod_{\alpha\in J} U_{\alpha} \ | \ U_{\alpha} \subset X_{\alpha} \text{ abierto, y } U_{\alpha} = X_{\alpha} \text{ salvo en un conjunto finito de índices } \alpha \}$.
+\end{remark}
+
+\begin{corollary}
+	$\mathcal{B}' \subset \mathcal{B}$, por lo tanto $\tau_{\text{prod}} \subset \tau_{\text{cajas}}$.
+\end{corollary}
+
+\begin{corollary}
+	Para topología de cajas, proyecciones $\pi_{\alpha}$ también son continuas.
+\end{corollary}
+
+\begin{eg}[Próxima clase]~
+	\begin{enumerate}
+		\item $\underline{\overline{X}} = \R^{\Z_{>0}}$ y $f : \R \to \R^{\Z_{>0}}$ tal que $t \mapsto (t,t,t,t,\dots)$. Se puede ver que $f$ continua para la topología producto, pero no es continua para la topología de cajas.
+
+		\item $\underline{\overline{X}} = \{ 0,1 \}^{\Z_{>0}}$. En $\underline{\overline{X}}$ con topología de cajas, es la topología discreta. $\underline{\overline{X}}$ es homeomorfo al conjunto de Cantor con la topología producto.  
+	\end{enumerate}
+\end{eg}
