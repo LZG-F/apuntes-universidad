@@ -1,0 +1,68 @@
+\section{Ayudantía N°3}
+
+\subsection*{Ejercicio 1}
+
+\noindent $y' = \sin (t) e^y$.
+
+\begin{proof}[Proof 1]
+	\begin{align*}
+		e^{-y} y' = \sin (t) & \implies \int e^{-y}dy = \int \sin t dt \\
+		& \implies -e^{-y} = - \cos t + C
+	.\end{align*}
+	Donde $C \coloneq -e^{y(t_0)} + \cos (t_0)$, y $e^{-y(t)} = \cos t - C$. Buscamos ahora el intervalo: $y(t)  = - \log ( \cos t + e^{y(t_0)} - \cos (t_0) )$, $y' = f(y)g(t),\ f(y) \neq 0$. Se trabaja en un intervalo $I$ tal que $f(y(t)) \neq 0 \quad \forall t \in I$.
+\end{proof}
+
+\subsection*{Ejercicio 2}
+
+\noindent $x' = x(1-x)$
+
+\begin{proof}[Proof 2]
+	Hay dos formas de ver esto, como separable y como Bernoulli. Para separable hay que asumir $x \neq 0,1$ y para Bernoulli sólo $x \neq 0$. Para este ejercicio, lo veremos como Bernoulli. Sea $y \coloneq x^{-1} \quad (x \neq 0, y \neq 0)$. Con esto
+	\begin{align*}
+		y' &= -\frac{x'}{x^2} \\
+		&= \frac{-x(1-x)}{x^2} \\
+		&= -\left( \frac{1}{x}-1 \right) \\
+		&= 1-y
+	.\end{align*}
+	Por lo tanto
+	\begin{align*}
+		y' + y = 1 \implies \ & e^t y' + e^t y = e^t \\
+		\implies \ & \int (e^t y)' dt = \int e^t dt \\
+		\implies \ & y = e^{-t} (e^t + c) = 1 + ce^{-t} \\
+		\ & c = y(0) - 1 \\
+		\ & x = \frac{1}{1 + ce^{-t}}
+	.\end{align*}
+	Si $-1<c<0 \implies 0 < y(0) < 1 \implies x(0) > 1$. Luego, la solución tiene intervalo de definición de la forma $(T,\infty)$, con $T$ tal que $1 + ce^{-T} = 0$, que equivale a $T = \log (-c)$. \newline
+
+	\noindent Si $y(0) -1 = c < -1$, entonces $y(0) < 0 \implies x(0) < 0$. En este caso, la solución tiene intervalo de definición $(\infty,\log (-c))$. \newline
+
+	\noindent En otro caso $(C \geq 0)$, el intervalo de definición es $\R$.
+\end{proof}
+
+\subsection*{Ejercicio 3}
+
+\noindent $x' = x(1-x) - x$.
+
+\begin{proof}[Proof 3]
+	Esto tiene una solución estacionaria cuando la ecuacuión $x - x^2 - c = 0$ tiene solución real. El determinante es $\Delta = 1 - 4c$, por lo que lo anterior pasa si $c \leq \frac{1}{4}$
+	\begin{itemize}
+		\item Si $c \leq \frac{1}{4}$, tenemos las soluciones estacionarias $x \equiv \frac{1 \pm \sqrt{1-4c}}{2}$. Tomando $y = x - \frac{1}{2} - \frac{\sqrt{1-4c}}{2}$.Luego,
+		\begin{align*}
+			y' & =  x' = - \left( x - \frac{1 + \sqrt{1-4c}}{2} \right)\left(x - \frac{1-\sqrt{1-4c}}{2} \right) \\
+			& = -y \left( y + \frac{1}{2} + \frac{\sqrt{1-4c}}{2} - \frac{1}{2} + \frac{\sqrt{1-4c}}{2} \right) \\
+			& = -y (y + \sqrt{1-4c}) 
+		\end{align*}
+
+		\item Si $c > \frac{1}{4}$,
+		\begin{align*}
+			\int \frac{dx}{x(1-x)-c} &= \int 1 dt, \qquad y = x-\frac{1}{2} \\
+			\implies t-t_0 &= \int \frac{dy}{\left(y+\frac{1}{2}\right)\left(1-y-\frac{1}{2}\right)-c} \\
+			&= \int \frac{dy}{\left(\frac{1}{4}-x\right)-y^2} \\
+			&= -\int \frac{dy}{y^2 + \left(c-\frac{1}{4}\right)}, \qquad y = \sqrt{c-\frac{1}{4}}z \\
+			&= -\int \frac{dz}{z^2+1}\cdot\sqrt{c-\frac{1}{4}}^{-1} \\
+			&= \frac{1}{\sqrt{c-\frac{1}{3}}}(\arctan (z(t_0)) - \arctan (z(t)))
+		\end{align*}
+	\end{itemize}
+\end{proof}
+
+

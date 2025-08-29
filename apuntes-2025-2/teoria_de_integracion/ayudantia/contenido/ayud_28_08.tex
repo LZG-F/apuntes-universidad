@@ -1,0 +1,75 @@
+\section{Ayudantía 28 de Agosto}
+
+\subsection*{Ejercicio N°1}
+
+\noindent Sea $\mu$ una medida sobre $(X, \beta)$ ($\beta$ una $\sigma$-álgebra). Pruebe que:
+
+\begin{enumerate}
+	\item Si $A,B \in \beta \ : \ A \subseteq B \implies  \mu(A) \leq \mu(B)$/
+	
+	\item Si $(A_n)_n \subseteq \beta$ y $A \in \beta$ tales que $A \subseteq \bigcup_{n} A_n \implies \mu(A) \leq \sum_{n\in\N} \mu(A_n)$
+
+	\item Sea $(A_n)_n \subseteq \beta$ tal que $A_n \subseteq A_{n+1},\ \forall n \in \N$. Luego:
+	\[ \mu\left( \bigcup_{n} A_n \right) = \lim_{n \to \infty} \mu(A_n) \]
+
+	\item Si $(A_n)_n \subseteq \beta$ cumple que $A_{n+1} \subseteq A_n \ \forall n$, entonces:
+	\[ \mu \left( \bigcap_{n} A_n \right) = \lim_{n \to \infty} \mu(A_n) \quad \text{si } \exists n_0 \in \N \ : \ \mu(A_{n_0}) < \infty \]
+\end{enumerate}
+
+\begin{proof}[Proof][1.]
+	Basta notar que:
+	\begin{align*}
+		B = A \cupd (B \setminus A) & \implies \mu(B) = \mu(A) + \underbrace{\mu(B\setminus A)}_{\geq 0} \\
+		& \geq \mu(A)
+	.\end{align*}
+\end{proof}
+
+\begin{proof}[Proof][2.]
+	Por (1.) tenemos que $\mu(A) \leq \mu\left( \bigcup_{n} A_n \right)$. ¿$\mu\left(\bigcup_{n}A_n\right) \leq \sum_{n} \mu(A_n)$?\newline
+
+	\noindent \textbf{Idea.} Descomponer $\bigcup_{n} A_n$ en otra unión que sea disjunta y que permita acotar? \newline
+
+	\noindent Sea $B_1 \coloneq A_1,\ B_2 \coloneq A_2 \setminus A_1 = A_2 \setminus B_1,\dots,\ B_n \coloneq A_n \setminus \bigcup_{k=1}^{n-1} B_k$. Luego, $(B_n)_n$ es disjunta y $\bigcup_{n} A_n = \bigcupd_{n} B_n$. Finalmente:
+	\[ \mu \left( \bigcup_{n} A_n \right) = \mu \left( \bigcupd_{n} B_n \right) = \sum_{n} \mu(B_n) \leq \sum_{n} \mu(A_n) \]
+	Notar que la última desigualdad es por (1.) y $B_n \subseteq A_n$.
+\end{proof}
+
+\begin{proof}[Proof Other Information][3.]
+	Nuevamente, vamos a apelar a una descomposición disjunta: Sean
+	\[ B_1 \coloneq A_1,\ B_2 \coloneq A_2 \setminus A_1,\dots,\ B_n \coloneq A_n \setminus A_{n-1} \]
+	Como la sucesión es creciente, $\bigcup_{n} A_n = \bigcupd_{n} B_n$. Luego,
+	\begin{align*}
+		\mu \left( \bigcup_{n} A_n \right) & = \mu \left( \bigcupd_{n} B_n \right) = \sum_{n} \mu(B_n) \\
+		& = \mu(B_1) + \sum_{n\geq 2} \mu(B_n) \\
+		& = \mu(A_1) + \sum_{n\geq 2} [\mu(A_n)-\mu(A_{n-1})] \tag{$*$} \\
+		& = \mu(A_1) + \lim_{n \to \infty} \sum_{k=2}^{n} \mu(A_k)-\mu(A_{k-1}) \\
+		& = \mu(A_1) + \lim_{n \to \infty} \mu(A_n) - \mu(A_1) \\
+		& = \lim_{n \to \infty} \mu(A_n)
+	\end{align*}
+	Donde $(*)$ es cierto, pues $B_n \coloneq A_n \setminus A_{n-1}$ cumple que $A_n = A_{n-1} \cupd B_n$. Queda como ejercicio probar la continuidad si el espacio es $\sigma$-finito
+\end{proof}
+
+\begin{proof}[Proof Other Information][4.]
+	Notamos primero que como $A_{n+1} \subseteq A_n \stackrel{(i)}{\implies} \mu(A_{n+1}) \leq \mu(A_n) \implies (\mu(A_n))_n \subset \R$ es monótona decreciente y acotada por abajo. Entonces, es convergente. Notemos que, siendo $n$ fijo
+	\begin{align*}
+		\mu(A_n)-\mu\left(\bigcap_{k\geq 1} A_k \right) & = \mu\left( A_n \setminus \bigcap_{k=1}^{\infty} A_k \right) \\
+		& = \mu\left( \bigcup_{k=1}^{\infty}(A_n \setminus A_k) \right) \\
+		& = \mu \left( \bigcup_{k\geq n+1} \underbrace{(A_n \setminus A+k)}_{\text{creciente en } k} \right) \\
+		& = \lim_{k \to \infty} \mu(A_n \setminus A_k) \\
+		& = \lim_{k \to \infty} \mu(A_n) - \mu(A_k)
+	.\end{align*}
+	y esto concluye.
+\end{proof}
+
+\subsection*{Ejercicio N°2}
+
+\noindent Pruebe que la medida de LEbesgue del triángulo en $\R^2$ coincide con el area usual.
+
+\begin{proof}[Proof Other Information]
+	$(0)$ \textbf{Los triángulos son Lebesgue medibles:} Como los triángulos son cerrados, entonces son Borelianos y por lo tanto Lebesgue.
+	
+	$(1)$ Tomar $P_n = ( 0 < \frac{a}{n} < \frac{2a}{n} < \cdots < \frac{(n-1)a}{n} < a)$ para una suma de Riemann y luego utilizar los rectángulos, que sabemos, son medibles, para llegar a la conclusión (¿¡?!). Como $f$ (funcion que parametriza a un triángulo con vértices $(0,0), (a,0), (c,d)$) es Riemann Integrable:
+	\[ A(T) = \int_{0}^{\infty} f(x)dx = \lim_{n \to \infty} \overline{S} (f;P_n) = \lim_{n \to \infty}  \underline{S}(f;P_n) \]
+	Además, es claro que:
+	\[ \overline{S_n}(f;P_n) = \lambda \left( \bigcup_{i=0}^{n-1}\left[ \frac{ia}{n},\frac{(i+1)a}{n} \right] \times \left[ 0,\sup_{x\in I_i} f(x) \right] \right) \geq \labda(T) \]
+\end{proof}

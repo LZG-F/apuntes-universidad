@@ -37,7 +37,14 @@
 
 \newcommand{\bigcupd}{\mathop{\ensurestackMath{\stackinset{l}{}{c}{+.25ex}{\hspace{3pt}{\text{\tiny{D}}}}{\displaystyle{\bigcup}}}}}
 
+\newcommand{\cupd}{\mathop{\ensurestackMath{\stackinset{l}{}{c}{+.25ex}{\hspace{0.7pt}{\text{\tiny{D}}}}{\cup}}}}
+
 \usepackage{stackengine,scalerel}
+
+\newcommand{\uwithtext}[1]{\DOTSB\mathbin{\text{\tikz{%
+    \node (a) {#1};
+    \draw[black, rounded corners=1.2ex] 
+        ([yshift=-2pt]a.north west) -- (a.south west) -- (a.south east) -- ([yshift=-2pt]a.north east);}}}}
 
 % demostraciones bidireccionales
 
