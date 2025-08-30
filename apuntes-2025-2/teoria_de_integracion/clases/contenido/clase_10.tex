@@ -98,6 +98,7 @@ no tienen por qué cumplirse ninguna de la 2:
 		es una medida exterior (Ej. Guía 3).
 
 		\item \textbf{Medida exterior $s$-dimensional de Hausdorff en $\R^d$.}
+	\end{enumerate}
 		\begin{itemize}
 			\item Si $I$ es un intervalo en $\R^d$, entonces $|rI| = r^d|I|$;
 
@@ -106,7 +107,9 @@ no tienen por qué cumplirse ninguna de la 2:
 			\item En particular, si $E = B(x,r)$, entonces
 			\[ |E| = |B(0,r)| = |rB(0,1)| = r^d|B(0,1)| = C_d (diam E)^d,\quad C_d \coloneq \frac{|B(0,1)|}{2^d} \]
 
-			\item Si $E \subseteq \R^d$ es "s-dimensional" y $\mathscr{H}_s$ es la mdeida que queremos, entonces debería valer que...
+			\item Si $E \subseteq \R^d$ es "s-dimensional" y $\mathscr{H}_s$ es la medida que queremos, entonces debería valer que
+			\[ \mathscr{H}_s(E\cap B(x,r)) = \mathscr{H}_s(\text{entorno s-dimensional}) \approx (diam \text{ (entorno)})^s \]
+			Luego, si cubrimos a $E$ por entornos pequeños $(E \cap B(x,r))_{i\in\N}$, entonces
+				\[ \mathscr{H}_s(E) \approx \sum_{i\in\N}\mathscr{H}_s (E \cap B(x_i,r_i)) \approx \sum_{i\in\N} (diam(E \cap B(x_i,r_i)))^s .\]
 		\end{itemize}
-	\end{enumerate}
 \end{eg}

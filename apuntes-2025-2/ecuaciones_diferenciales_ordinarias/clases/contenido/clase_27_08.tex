@@ -1,0 +1,60 @@
+\section{Clase (27/08)}
+
+\begin{theorem}[Picard-Lindelöf para EDOs de orden superior] 
+  Sea $\Omega \subset \R^{n+1}$ un conjunto abierto y $g \in C(\Omega;\R)\cap lip_{loc}(y,y',\cdots, y^{n-1};\R)$. dado cualquier punto $(x_0,y_0,y'_0,\cdots,y_0^{n-1})\in \Omega$, existe $\delta > 0$ tal que, si ponemos $I_{\delta}=[x_i -\delta, x_0+ \delta]$, el problema de Cauchy
+  \[
+    \begin{cases}
+      y^{m}(x)=g(x,y(x),y'(x),\ldots,y^{n-1}(x)) \quad \forall x \in I_{\delta} \\
+      y(x_0)=y_0, y'(x_o)=y'_o,\ldots, y^{n-1}(x_o)=y_0^{n-1},
+    \end{cases}
+  \]
+       
+  admite una única solución.
+\end{theorem}
+
+\begin{eg}[Ecuaciones integrales] 
+    Sea $a<b$ números reales, $I=[a,b], f\in C(I;\R), k\in C(I\times I:\R)$ y $\lambda \in \R$ elementos dados. El problema de Volterra (de segunda especie) consiste en hallar una función $\varphi_{\lambda}\in C(I;\R)$ tal que 
+  \[
+    \varphi_{\lambda}(x)=f(x)+\lambda\int_{a}^{x}k(x,t)\varphi_{\lambda}(t)dt.\quad \forall x \in [a,b].
+  \]
+\end{eg}
+
+Un poco más de análisis Funcional.
+Recordamos que en cualquier espacio métrico, un sub-conjunto es compacto si y sólo si es secuecialmente compacto.
+
+\begin{definition}
+  Sean $a<b$ números reales, $I=[a,b]$ Dada una familia de funciones $  F\subset C(I;\R)$, decimos que
+  \begin{enumerate}
+    \item $F$ es relativamente compacto si $\overline{F}$ es compacto, vale decir para cualquier sucesión $(\varphi_n)_{n\in \N} \subset F$, existen $\varphi \in C(I;\R)$ y una sub-sucesión $(\varphi_{n}_k)_{k\in \N}$ tales que $\varphi_{n}_k \xrightarrow{k\to \infty}\varphi$ es $C(I;\R)$
+    \item $F$ es equicontinua si $(\forall \epsilon >9)(\exists \delta > 0)(\forall x_1,x_2 \in I) \quad |x_1-x_2|<\delta \Rightarrow |\varphi(x_1)-\Phi(x_2)|<\epsilon \forall \varphi \in F$ 
+    \item $F$ es acotada si $\sup_{\varphi \in F}|\varphi|_{\infty} < \infty $ 
+  \end{enumerate}
+\end{definition}
+
+\begin{theorem}[Arzela-Ascoli] 
+  Sean $a<b$ números reales y $I=[a,b]$. Dada una familia $F\subset C(I;\R)$, se tiene que $F$ es relativamente compacto si y sólo si $F$ es equicontinua y acotada.
+\end{theorem}
+
+\begin{theorem}[Punto fijo de Brower] 
+  Sea $K\subset \R^n$ un conjunto compacto, conexo y no-vácio. Sea $T:K\rightarrow K$ una aplicación continua. Entonces existe, al menos, un punto fijo de $T$ en $K$
+\end{theorem}
+
+\begin{theorem}[Punto fijo de Schauder]
+  Sea $\mathcal{X}$ un espacio de Banach sobre $\R$, y $K\subset \mathcal{X}$ un conjunto conexo, cerrado, acotado y no vacío. Consideremos una aplicación $T:K\rightarrow K$  continua y tal que $T(K)$ es relativamente compacto, entonces existe, al menos, un punto fijo de $T$ en $K$.
+\end{theorem}
+
+\begin{remark}
+  $T(k)$ es relativamente compactio si y sólo si $\overline{T(K)}$ es compacto, si y sólo si cualquier sucesión $(X_n)_{n\in \N}\subset \mathcal{X}$ resulta que $(T(X_n))_{n\in \N}$ admite una sub-sucesión convergente (a un límite que no necesariamente pertenece a $T(K)$).
+\end{remark}
+\begin{theorem}[Peano] Sea $\Omega \subset \R^{n+1}$ un conjunto abierto y $f \in C(\Omega;\R^n)$. Entonces, para cualquier $(x_0,y_0)\in \Omega$, existe $\delta>0$ tal que, si ponemos $I_{\delta}=[x_o-\delta,x_o+\delta]$, el problema de Cauchy
+  \[
+    \begin{cases}
+      y´(x)=f(x,y(z)) \quad x \in I_{\delta} \\ y(x_0)=y_0
+    \end{cases}
+  \]
+  admite (al menos) una solución.
+\end{theorem}
+
+\begin{proof}
+	completar
+\end{proof}
