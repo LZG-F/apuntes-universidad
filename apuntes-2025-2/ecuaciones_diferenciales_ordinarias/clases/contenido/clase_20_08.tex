@@ -50,8 +50,10 @@
 	\noindent Supongamos que se conoce una solución $y_1(t)$ de esta EDO, es decir:
 	\[ y_1'(t) - P(t) - Q(t)y_1(t) - R(t)(y_1(t))^2 = 0\]
 	\noindent Luego, definimos $z(t) = y(t) - y_1(t)$, y así:
-	\[ y'(t) = z'(t) + y_1'(t) = P(t) + Q(t)(z(t) + y_1(t)) + R(t)(z(t) + y_1(t))^2 \\
-	\iff z'(t) - [Q(t) + 2y_1(t) R(t)] z(t) = R(t)(z(t))^2 \ (\text{ecuación de bernoulli con } n=2) \]
+	\begin{align*}
+		 & y'(t) = z'(t) + y_1'(t) = P(t) + Q(t)(z(t) + y_1(t)) + R(t)(z(t) + y_1(t))^2 \\
+		\iff \ & z'(t) - [Q(t) + 2y_1(t) R(t)] z(t) = R(t)(z(t))^2 \ (\text{ecuación de bernoulli con } n=2)
+	\end{align*}
 
 	\begin{eg}
 		Resolver la EDO:
