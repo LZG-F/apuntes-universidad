@@ -1,6 +1,6 @@
 \section{Clase 11 (29/08)}
 
-\noindent \textbf{Contexto.} $\rho:X \to A$ sobreyectiva, $X$ espacio topológico. Uno quiere dar una topología "natural" a $A$ tal que $\rho$ sea continua.
+\noindent \textbf{Contexto.} $p:X \to A$ sobreyectiva, $X$ espacio topológico. Uno quiere dar una topología "natural" a $A$ tal que $\rho$ sea continua.
 
 \begin{eg}[estándar]
 	Si $\sim$ relación de equivalencia en $X$, con $X \setminus \sim =$ \textit{conjunto de clases de equivalencia}
@@ -39,48 +39,48 @@
 
 Notar que si tenemos $\Gamma \curvearrowright X$ acción, nos da $\sim_{\Gamma}$ tal que $x \sim_{\Gamma} y$ si y sólo si $y = g\cdot x$ para algún $g \in \Gamma$ ($x,y$ en la misma órbita). Además, $X \setminus \Gamma \coloneq X \setminus \sim_{\Gamma}$ espacio de órbitas, o cociente de $X$ por la acción de $\Gamma$. \newline
 
-\noindent \textbf{Contexto.} $\rho : X \to A$ sobreyectiva, $X$ espacio topológico.
+\noindent \textbf{Contexto.} $p : X \to A$ sobreyectiva, $X$ espacio topológico.
 
 \begin{definition}[topología cociente en $A$]
-	\[ \tau = \{ U \subset A \ \big| \ \rho^{-1}(U) \text{ es abierto en } X \} \]
+	\[ \tau = \{ U \subset A \ \big| \ p^{-1}(U) \text{ es abierto en } X \} \]
 \end{definition}
 
 \noindent \textbf{Esto es topología:} Viene de que
 \begin{align*}
-	\rho^{-1}\left(\bigcup_{\alpha} U_{\alpha}\right) & = \bigcup_{\alpha} \rho^{-1}(U_{\alpha}) \\
-	\rho^{-1}\left(\bigcap_{\alpha} U_{\alpha}\right) & = \bigcap_{\alpha} \rho^{-1}(U_{\alpha})
+	p^{-1}\left(\bigcup_{\alpha} U_{\alpha}\right) & = \bigcup_{\alpha} p^{-1}(U_{\alpha}) \\
+	p^{-1}\left(\bigcap_{\alpha} U_{\alpha}\right) & = \bigcap_{\alpha} p^{-1}(U_{\alpha})
 .\end{align*}
 
 \begin{observe}~
 	\begin{enumerate}
-		\item $\rho$ es continua si $A$ tiene topología cociente;
+		\item $p$ es continua si $A$ tiene topología cociente;
 
 		\item Se cumple algo más fuerte
-		\[ U \subset A \text{ abierto} \iff \rho^{-1}(U) \subset X \text{ abierto} \tag{$*$} \]
-		[top. cociente es topología más grande tal que $\rho$ es continua]
+		\[ U \subset A \text{ abierto} \iff p^{-1}(U) \subset X \text{ abierto} \tag{$*$} \]
+		[top. cociente es topología más grande tal que $p$ es continua]
 	\end{enumerate}
 \end{observe}
 
 \begin{definition}[mapa cociente]
-	Si $X,A$ son espacios topológicos $\rho:X \to A$ es \underline{mapa cociente} si es sbore y se cumple $(*)$.
+	Si $X,A$ son espacios topológicos $p:X \to A$ es \underline{mapa cociente} si es sbore y se cumple $(*)$.
 \end{definition}
 
 \begin{observe}
-	$X \stackrel{\rho}{\twoheadrightarrow},\ A$ con topología cociente
+	$X \stackrel{p}{\twoheadrightarrow},\ A$ con topología cociente
 	\begin{enumerate}
-		\item Si $\rho$ es continua respecto a $\tau'$ otra topología en $A$, entonces $\tau' \subset \tau_{\text{coc}}$;
+		\item Si $p$ es continua respecto a $\tau'$ otra topología en $A$, entonces $\tau' \subset \tau_{\text{coc}}$;
 
-		\item $\rho$ es mapa cociente con respecto a $\tau_{\text{coc}}$. Si $\rho$ es mapa cociente con respecto a topología $\tau$ en $A$, entonces $\tau = \tau_{\text{coc}}$.
+		\item $p$ es mapa cociente con respecto a $\tau_{\text{coc}}$. Si $p$ es mapa cociente con respecto a topología $\tau$ en $A$, entonces $\tau = \tau_{\text{coc}}$.
 	\end{enumerate}
-	$ [ X \stackrel{\rho}{\to} \text{ mapa cociente } \equiv X \stackrel{\rho}{\to} A \text{ sobre y } A \text{ tiene top. cociente.} ] $
+	$ [ X \stackrel{p}{\to} \text{ mapa cociente } \equiv X \stackrel{p}{\to} A \text{ sobre y } A \text{ tiene top. cociente.} ] $
 \end{observe}
 
 \begin{property}
-	Suponer que $\rho: X \to A$ mapa cociente, $Y$ espacio topológico, $f: A \to Y$. Sea $g = f \circ \rho : X \to Y$. Luego,
+	Suponer que $p: X \to A$ mapa cociente, $Y$ espacio topológico, $f: A \to Y$. Sea $g = f \circ p : X \to Y$. Luego,
 	\[ f \text{ es continua} \iff g \text{ es continua} \]
 \end{property}
 \begin{proof}[Proof ]
-	\Ifstep Si $U\subset Y$ abierto (queremos $f^{-1}(U) \subset A$ abierto). Luego, $g$ continua implica que $g^{-1}(U)\subset X$ abierto. Notar que $g^{-1}(U) = (f\circ g)^{-1}(U) = \rho^{-1}(f^{-1}(U)) \subset X$ abierto. Dado que $\rho$ es mapa cociente, entonces $f^{-1}(U) \subset A$ abierto.
+	\Ifstep Si $U\subset Y$ abierto (queremos $f^{-1}(U) \subset A$ abierto). Luego, $g$ continua implica que $g^{-1}(U)\subset X$ abierto. Notar que $g^{-1}(U) = (f\circ g)^{-1}(U) = p^{-1}(f^{-1}(U)) \subset X$ abierto. Dado que $p$ es mapa cociente, entonces $f^{-1}(U) \subset A$ abierto.
 \end{proof}
 
 \begin{eg}
@@ -88,22 +88,22 @@ Notar que si tenemos $\Gamma \curvearrowright X$ acción, nos da $\sim_{\Gamma}$
 	\begin{itemize}
 		\item $A = [0,2\pi] \setminus \{0,2\pi\}$;
 
-		\item $\rho: X \to A$.
+		\item $p: X \to A$.
 	\end{itemize}
-	Entonces, hay una función $f: A \to \mathbb{S}^1$ tal que 
+	$(g$ cumple $(*)) \implies$ hay una función $f: A \to \mathbb{S}^1$ tal que 
 
 	\[
 	\begin{tikzcd}
-		{[0,2\pi]} \arrow[d, "\rho"'] \arrow[rd, "g \text{ (continua sobre } y)"] &              \\
+		{[0,2\pi]} \arrow[d, "p"'] \arrow[rd, "g \text{ (continua sobre } y)"] &              \\
 		A \arrow[r, "\text{biyección}"']                                                 & \mathbb{S}^1
 	\end{tikzcd}
 	\]
 \end{eg}
 
-\noindent Propiedad $\implies f$ continua (y biyectiva) \newline
+\noindent Propiedad anterior $\implies f$ continua (y biyectiva) \newline
 
-\noindent \textbf{Clave.} $f^{-1}$ es continua! [$U\subset A$ abierto $\implies f(U)$ abierto en $\mathbb{S}^1$]
+\noindent \textbf{Clave.} $f^{-1}$ es continua! $\leadsto$ [$U\subset A$ abierto $\implies f(U)$ abierto en $\mathbb{S}^1$]
 
 \begin{proof}
-	Suponer $U$ que contiene a $\rho(0) = \rho(2\pi) \implies \rho^{-1}(U)$ abierto que contiene a $0$ y a $2\pi$. Entonces, $U$ contiene a $[0,\varepsilon)\cup (2\pi-\varepsilon,2\pi]$ para algún $\varepsilon$ chiquito. Luego $g(U)$ contiene vecindad de $g(\rho(0))$.
+	Suponer $U$ que contiene a $p(0) = p(2\pi) \implies p^{-1}(U)$ abierto que contiene a $0$ y a $2\pi$. Entonces, $U$ contiene a $[0,\varepsilon)\cup (2\pi-\varepsilon,2\pi]$ para algún $\varepsilon$ chiquito. Luego $g(U)$ contiene vecindad de $g(p(0))$.
 \end{proof}

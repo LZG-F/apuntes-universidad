@@ -1,0 +1,89 @@
+\section{Clase 12 (01/09): Grupos Topológicos (pp 145, Lee pp 77)}
+
+\subsection*{}
+
+\begin{property}[clase pasada]
+	Si $f:X \to Y$ continua tal que $p(x) = p(y) \implies f(x) = f(y)$ (con $p$ mapa cociente). Además, junto con el siguiente diagrama
+	\[
+	\begin{tikzcd}
+		{X} \arrow[d, "p"'] \arrow[rd, "f"] & \\
+		A \arrow[r, dashrightarrow, "g"']                                                 & Y
+	\end{tikzcd}
+	\]
+	afirmamos que $\exists ! g : A \to Y$ continua tal que $g \circ p = f$
+\end{property}
+
+\begin{eg}
+	Cociente de Hausdorff no tiene que ser Hausdorff.
+	\[
+	X = \R,\ A = \{0,1\},\ p : \R \to \{0,1\},\ p(x) = \begin{cases}
+		0 \quad \text{si } x \geq 0 \\
+		1 \quad \text{si } x < 0
+	\end{cases}
+	\]
+	Topología en $A:\ p^{-1}(\varnothing) = \varnothing,\ p^{-1}(\{0,1\})=\R,\ p^{-1}(\{0\}) = (-\infty,0),\ p^{-1}(\{1\}) = [0,\infty)$ (notar que este último no es abierto). Luego, $\tau_{\text{coc}} = \{\varnothing, \{0,1\}, \{0\} \} \leadsto$ No es Hausdorff (ni $T1$).
+\end{eg}
+
+\begin{definition}[grupo topológico]
+	Un grupo topológico es un grupo $\Gamma$ con una topología tal que $v: \Gamma \to \Gamma$ y $*:\Gamma \times \Gamma \to \Gamma$ sean continuas.
+\end{definition}
+
+\begin{observe}
+	En la definición, el dominio de $*$, $\Gamma \times \Gamma$ viene con la topología producto respecto a la topología en $\Gamma$.
+\end{observe}
+
+\begin{eg}~
+	\begin{itemize}
+		\item $(\R,+)$ es un grupo topológico con la topología estándar $(v(x) = -x,\ *(x,y) = x + y)$;
+
+		\item $(\R^n,+)$ es un grupo topológico con la topología estándar (cualquier isomorfismo $\R$-lineal es homeomorfismo);
+
+		\item $\Gamma $ cualquiera con la topología discreta. Decimos que $\Gamma $ es grupo discreto;
+
+		\item Grupo lineal: ${GL}_{n}(\R) = \{A \in \underbrace{\text{Mat}_{n \times n}(\R)}_{\cong \R^{n^2}} \ | \ \text{det}A \neq 0 \}$;
+
+		\item $\R^{n^2}$ nos da una topología de subespacio desde $\R^{n^2}$. Si usamos el isomorfismo $[a_{i,j}]_{i,j} \mapsto (a_{i,j})_{i,j=1}^{n} \in \R^{n^2}$. ¿Cómo se ven $v$ y $*$? $\leadsto v:A \to A^{-1} = \frac{1}{\text{det}A}\text{adj}(A)$ (matriz con cada entrada un polonomio en coef de $A$). Por lo tanto, $*$ es función racional y por ende, continua. Luego, $*:(A,B) \to AB$ (cada entrada es un polinomio en las entradas de $A$ y $B$);
+
+		\item ${SL}_{n}(\R) = \{A \in {GL}_{n}(\R) \ \big| \ \text{det}A = 1\} < {GL}_{n}(\R)$.
+	\end{itemize}
+\end{eg}
+
+\begin{property}
+	$\Gamma$ grupo topológico y $H < \Gamma $ subgrupo. Entonces, $H$ es grupo topológico con topología inducida.
+\end{property}
+
+\noindent Notar que, si $\Gamma $ cualquiera con topología profinita (topología con base $\mathcal{B} = \{a \Gamma' \ \big| \ \Gamma' \lhd \Gamma \text{ subgrupo normal de índice finito, } a \in \Gamma \}$).
+\begin{itemize}
+	\item $v$ es continua (basta $v^{-1}(a \gamma')$ abierto): $v^{-1}(a \Gamma') = \{x^{-1} \ \big| \ x \in a \Gamma' \} = \{(ag)^{-1} \ \big| \ g \in \Gamma' \} = \{ g^{-1} a^{-1} \ \big| \ g \in \Gamma' \} = \Gamma' a^{-1} \stackrel{\Gamma' \lhd}{=} a^{-1} \Gamma' \in \mathcal{B}$. 
+
+	\item Si $a \in \Gamma,\ L_a : \Gamma \to \Gamma,\ g \mapsto ag$ es continua: si $a'\Gamma'$ elemento arbitrario de $\mathcal{B}$, entonces $(L_a)^{-1}(a'\Gamma') = (L_{a^{-1}})(a'\Gamma') = a^{-1} a \Gamma' \ni \mathcal{B}\ (\#)$.
+\end{itemize}
+
+\begin{observe}
+	$(\#)$ es más débil que probar que $*: \Gamma \times \Gamma \to \Gamma,\ (g,h) \mapsto gh$ es continua.
+\end{observe}
+
+\begin{property}
+	$\Gamma, \Gamma'$ grupos topológicos.
+	\begin{enumerate}
+		\item $\Gamma \times \Gamma'$ es grupo topológico von la topología producto.
+		\begin{eg}[1.1]
+			$\mathbb{S}^{-1} = \{z \in \C \ \big| \ |z| = 1 \}$ es un grupo topológico con producto usual y topología inducida;
+		\end{eg}
+		\begin{eg}[1.2]
+			$\Pi^n = \underbrace{\mathbb{S}^{-1} \times \cdots \times \mathbb{S}^{-1}}_{n-\text{veces}}\ n$-toro es grupo topológico.
+		\end{eg}
+
+		\item $H \lhd \Gamma $ subgrupo normal. Entonces, $\overline{\Gamma} \coloneq \Gamma / H$ grupo cociente y $p: \Gamma \to \overline{\Gamma}$ homomorfismo cociente.
+		\begin{enumerate}
+			\item $p$ es abierta ($U \subset \Gamma \implies p(U)$ es abierto en $\overline{\Gamma}$ con la topología cociente);
+
+			\item $\overline{\Gamma}$ es grupo topológico;
+
+			\item $\overline{\Gamma}$ es Hausforff ssi $H < \Gamma$ cerrado.
+		\end{enumerate}
+		\begin{eg}[2.1]
+			$\R / \Z$ es Hausdorff con la topología cociente ($\R$ con la topología estándar).
+		\end{eg}
+	\end{enumerate}
+\end{property}
