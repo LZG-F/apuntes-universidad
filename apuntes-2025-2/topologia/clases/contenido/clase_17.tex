@@ -1,0 +1,79 @@
+\section{Clase 17 (12/09): (Arco)conexidad local, Componentes (25)}
+
+\begin{observe}
+	Conexidad $\not\implies$ Arcoconexidad.
+\end{observe}
+\begin{eg}
+	$Y = \{(t,\sin(\frac{1}{t}) \ \big| \ t > 0\} \subset \R^2$ arcoconexo. $X = \overline{Y}$ conexo! Pero no es arcoconexo! 
+\end{eg}
+
+\begin{lemma}
+	$Y \subset A$ espacios topológicos tal que $Y \subset X \subset \overline{Y}$. Si $Y$ es conexo $\implies X$ conexo.
+\end{lemma}
+\begin{note}
+	El $A$ es simplemente porque $Y$ tiene que estar dentro de un espacio para poder tomar su clausura.
+\end{note}
+
+\subsection*{Componentes}
+
+\begin{definition}[componentes conexa y arcoconexa]
+	Sea $X$ espacio topológico, $C \subset X$ es componente conexa (resp. arcoconexa) si:
+	\begin{enumerate}
+		\item $C$ es conexo (resp. arcoconexo);
+
+		\item $C$ es maximal respecto a $(1)$: Si $C'$ es (arco)conexo y $C \subset C' \implies C = C'$.
+	\end{enumerate}
+\end{definition}
+
+\begin{observe}~
+	\begin{enumerate}
+		\item Componentes existen: Si $x \in X$
+		\[ C_x \coloneq \bigcup \{C \subset X \ \big| \ C \text{ conexo, } x \in C\} \]
+		($C_x$ componente de $x$ en $X$). Esto es conexo (criterio) y \underline{maximal}.
+
+		\item Lo mismo vale para arcoconexidad (Existe versión del criterio).
+
+		\item Componentes conexas forman una partición de $X$. Si $C_x \neq C_y \implies C_x \cap C_y = \varnothing$. En efecto, si $C_x \cap C_y \neq \varnothing,\ C_x \neq C_y \implies C_x \cup C_y$ es conexo aún más grande.
+
+		\item Si $C \subset X$ componente conexa $\implies C$ es cerrado $\implies C = \overline{C}$ ($\overline{C}$ conexo + $C$ conexo maximal) (esto es falso si se reemplaza por componente arcoconexa).
+	\end{enumerate}
+\end{observe}
+
+\begin{eg}~
+	\begin{enumerate}
+		\item $X$ es (arco)conexo si $X$ es componente (arco)conexa;
+
+		\item En $X = \Q$ con topología inducida de $\R$, componentes son los singleton. En particular, notar que componentes no son abiertas;
+
+		\item $X = [0,1] \cup (2,3) \cup \{4\}$ (y es claro que $[0,1],\ (2,3)$ y $\{4\}$ son componentes) (aquí componentes son abiertas);
+
+		\item Subconjuntos conexos de $\R$
+		\begin{itemize}
+			\item $[a,b],\ (a,b],\ [a,b),\ (a,b) \qquad a<b$;
+
+			\item $(-\infty,a),\ (-\infty,a],\ (b,\infty),\ [b,\infty)$;
+
+			\item $\R$;
+
+			\item $\{x\}$.  
+		\end{itemize}
+		(todos arcoconexos!!!)
+
+		\item $X = \overline{Y} \subset \R^2$. Componentes conexas de $X$: es sólo $X$. Componentes arcoconexas de $X$: $Y,\ \{0\} \times [-1,1]$.
+	\end{enumerate}
+\end{eg}
+
+\begin{definition}[localmente (arco)conexo]
+	$X$ espacio topológico es \uline{localmente} (arco)conexo si $\forall x \in X$, para todo abierto $U \subset X$ tal que $x \in U$, va a existir $V \subset U$ abierto (arco)conexo con $x \in V$.
+\end{definition}
+\text{}
+
+\textbf{Criterio.} $X$ localmente (arco)conexo si y sólo si $\forall U \subset X$ abierto, componentes (arco)conexas de $U$ (respecto a la topología inducida) son abiertos en $X$.
+
+\begin{corollary}~
+	\begin{enumerate}
+		\item Si $X$ es localmente arcoconexo, componentes conexas son igual a componentes arcoconexas y viceversa;
+
+		\item $X$ localmente arcoconexo y conexo $\implies X$ es arcoconexo.
+	\end{enumerate}
+\end{corollary}

@@ -1,0 +1,77 @@
+\section{Clase 16 (12/09)}
+
+\textbf{Comentario.} Si queremos definir una medida \underline{finita} sobre $(\R,\beta(\R))$, por el comentario de la vez pasada, basta predefinirla en un $\pi$-sistema $\mathcal{P}$ que genere a $\beta(\R)$ (si queremos unicidad de la extensión a $\beta(\R)$). \\
+
+\noindent Una elección natural es tomar $\mathcal{P} \coloneq \{ (-\infty,x] \ : \ x \in \R \} \ (\sigma(\mathcal{P}) = \beta(\R))$. \\
+
+\noindent Luego, si $\mu$ es una medida que extiende a una premedida $\tau$ sobre $\mathcal{P}$, entonces $\mu$ queda unívocamente determinada sobre $\widetilde{\mathcal{I}}$:
+
+\begin{itemize}
+	\item $\mu(\R) = \mu\left( \bigcup_{n\in\N} (-\infty,n] \right) = \lim_{n \to \infty} \mu((-\infty,n]) = \lim_{n \to \infty} \tau((-\infty,n])$.
+
+	\item $\mu((a,b]) = \mu((-\infty,b] \setminus (-\infty,b]) = \tau((-\infty,b]) - \tau((-\infty,a])$.
+
+	\item $\mu((a,\infty)) = \mu(\R-(-\infty,a]) = \lim_{n \to \infty} \tau((-\infty,n]) - \tau((-\infty,a])$.
+\end{itemize}
+
+\noindent En conclusión, $\widetilde{\mathcal{I}}$ es la semiálgebra natural que aparece cuando buscamos extender un apremedida definida sobre $\mathcal{P}$ (y necesitamos definirla al menos sobre un $\pi$-sistema como $\mathcal{P}$ si queremos unicidad). \\
+
+\noindent Luego, la idea será:
+\begin{align*}
+	\tau \text{ sobre } \mathcal{P} &\implies \text{ extensión automática a } \widetilde{\mathcal{I}} \\
+	&\implies \text{ extensión a } \beta(\R) \text{ por Carathéodory.}
+.\end{align*}
+$\tau((-\infty,x]) =: F_{\tau}(x)$.
+
+\begin{theorem}
+	Sea $F: \R \to \R$ monótona creciente. Entonces, $\tau_F: \widetilde{\mathcal{I}} \to [0,\infty]$ dada por $\tau(I(a,b)) = F(b) - F(a) \ (-\infty\leq a \leq b \leq \infty)$ cumple que:
+	\begin{enumerate}
+		\item[E1)] $\tau_F$ es finitamente aditiva;
+
+		\item[E2)] Si $F$ es continua a derecha, $\tau_F$ es $\sigma$-subaditiva.
+	\end{enumerate}
+	Es decir, si $F$ es de L-S entonces $\tau_F$ es extendible (de hecho, es unívocamente extendible)
+\end{theorem}
+\begin{proof}~
+	\begin{enumerate}
+		\item[E1)] Sea $I \in \widetilde{\mathcal{I}}$. Luego, $I = I(a,b)$ para ciertos $-\infty\leq a \leq b \leq \infty$ y $\tau(I) = F(b) - F(a)$. Ahora, si $I = \bigcupd_{i=1}^{n} J_i$ entonces, eventualmente reordenando los $J_i$, podemos suponer que $J_i = I(a_i,b_i)$ para cada $i = 1,\dots,n$, donde $a = a_1 \leq b_1 = a_2 \leq \cdots \leq b_{n-1} = a_n \leq b_n = b$. Luego, $\tau(I) = F(b) - F(a) = \sum_{i=1}^{n} F(b_i) - F(a_i) = \sum_{i=1}^{n} \tau(J_i)$.
+
+		\item[E2)] Supongamos primero que $I = (a,b]$ con $-\infty < a < b < \infty$. Si $I \subseteq \bigcup_{i=1}^{\infty} J_i$ con $J_i \in \widetilde{\mathcal{I}}$, entonces $J_i = (a_i,b_i] \cap \R$ con $-\infty\leq a_i \leq b_i \leq \infty$. Eventualmente, cambiando $a_i \longrightarrow \max \{a,a_i\},\ b_i \longrightarrow \min \{b,b_i\}$, puedo suponer que $-\infty < a_i \leq b_i < \infty$. Ahora, como $F$ es continua a derecha, dado $\varepsilon > 0$, existen
+		\begin{itemize}
+			\item $\delta > 0$ tal que $a + \delta < b$ y $F(a + \delta) < F(a) + \varepsilon$;
+
+			\item $\eta_i > 0$ tal que $F(b_i + \eta_i) < F(b_i) + \frac{\varepsilon}{2^i}$ para cada $i \in \N$.
+		\end{itemize}
+		Luego, los intervalos de la forma $((a_i,b_i + \eta_i))_{i\in\N}$ cubren $[a + \delta, b]$, con lo cual, existe $N \in \N$ tal que $[a + \delta,b] \subseteq \bigcup_{i=1}^{N} (a_i, b_i + \eta_i)$. Como $a + \delta \in [a + \delta,b]$, existe $i_1 \in \{1,\dots,N\}$ tal que $a + \delta \in (a_i,b_i + \eta_i) =: I_1$.
+		\begin{enumerate}
+			\item[1.] Si $b \in I_1$, entonces
+			\begin{align*}
+				F(b) - F(a + \delta) &\leq F(b_{i_1} + \eta_{i_1}) - F(a_{i_1}) \\
+				&\leq F(b_{i_1}) + \frac{\varepsilon}{2^{i_{1}}} - F(a_{i_{1}}) \\
+				&\leq \sum_{i\in\N} \left(F(b_i) + \frac{\varepsilon}{2^i} - F(a_i)\right) \\
+				&= \sum_{i\in\N} F(b_i) - F(a_i) + \varepsilon
+			.\end{align*}
+			de modo que $F(b) - F(a) \leq F(b) - F(a + \delta) + \varepsilon \leq \sum_{i\in\N}^{} F(b_i) + 2 \varepsilon$. Tomando $\varepsilon \longrightarrow 0^+$, resulta $\tau(I) \leq \sum_{i=1}^{\infty} \tau(J_i)$. \checkmark
+
+			\item[2.] Si $b \not\in I_1$, entonces $b_{i_{1}} + \eta_{i_{1}} \leq b$ y, luego, $b_{i_{1}} + \eta_{i_{1}} \in [a+\delta,b]$, de modo tal que existe $i_{2} \in \{1,\dots,N\} \setminus \{i_{1}\}$ tal que $b_{i_{1}} + \eta_{i_{1}} \in (a_{i_{2}},b_{i_{2}}+\eta_{i_{2}}) = I_2$. En general, existen $m \leq N$ e $i_1,\dots,i_m \in \{1,\dots,N\}$ tales que
+			\[ a_{i_{1}} < a + \delta < b_{i_{1}} + \eta_{i_{1}} < \cdots < b_{i_{m-1}} - \eta_{i_{m-1}} \leq b < b_{i_m} + \eta_{i_m} \]
+			con $b_{i_k} + \eta_{i_k} \in (a_{i_{k+1}}, b_{i_{k+1}} + \eta_{i_{k+1}}) \quad \forall k = 1,\dots,m$. Luego,
+			\begin{align*}
+				F(b) - F(a + \delta) &\leq F(b_{i_m} + \eta_{i_m}) - F(a_{i_1}) \\
+				&= \left( \sum_{k=1}^{m-1} F(b_{i_{k+1}} + \eta_{i_{k+1}}) - F(b_{i_k} + \eta_{i_k}) \right) \\
+				& \quad + F(b_{i_{1}} + \eta_{i_{1}}) - F(a_{i_{1}}) \\
+				&\leq \left( \sum_{k=1}^{m-1} F(b_{i_{k+1}} + \eta_{i_{k+1}}) - F(a_{i_{k+1}}) \right) \\
+				& \quad + F(b_{i_{1}} + \eta_{i_{1}}) - F(a_{i_{1}}) \\
+				&\leq \sum_{i=1}^{\infty} F(b_i + \eta_i) - F(a_i) \\
+				&\leq \sum_{i\in\N} F(b_i) - F(a_{i_{1}}) + \varepsilon
+			.\end{align*}
+			Con lo cual, $\tau(I) = F(b) - F(a) \leq \sum_{i\in\N} \tau(j_i) + 2\varepsilon$. Tomando $\varepsilon \longrightarrow 0^+$, obtenemos el resultado (en el caso $-\infty < a < b < \infty$).
+
+			\item[3.] Si $a=b$ entonces $I = \varnothing$ y el resultado es inmediato.
+
+			\item[4.] Si $a = -\infty$ ó $b = \infty$ y $a\neq b$, entonces
+			\[ ( \max \{a,-N\}, \min \{b,N\} \subseteq I \quad \forall N \in \N \]
+			de modo que, si $I \subseteq \bigcup_{i\in\N} J_i$, por el caso anterior,
+		\end{enumerate}
+	\end{enumerate}
+\end{proof}

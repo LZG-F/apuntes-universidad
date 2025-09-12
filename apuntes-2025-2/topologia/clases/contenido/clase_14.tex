@@ -1,0 +1,65 @@
+\section{Clase 14 (05/09): Acciones topológicas/continuas (Lee p.77)}
+
+\textbf{Recuerdo.} $\Gamma \curvearrowright X$ acción $\leadsto \ \sim_{\Gamma}$ en $X: \ x \sim_{\Gamma} y$ si $p: X \to X / \Gamma \coloneq X / \sim_{\Gamma}$ espacio de órbitas (con top. cociente). $x \in \Gamma $, su órbita (denotada) $\Gamma \cdot x$ es $\{g \cdot x \ \big| \ g \in \Gamma \}$. \newline
+
+\begin{eg}~
+	\begin{enumerate}
+		\item $\R^+ \curvearrowright \R^n \setminus \{0\},\ (t,x) \mapsto tx$ es continua! Luego, cociente $(\R^n \setminus \{0\}) / \R^+ \approx \mathbb{S}^{n-1} \coloneq \{z \in \R^n \ \big| \ |z| = 1\}\ n$-esfera! (el $\approx$ es de homeomorfo)   
+
+		\item $\R \setminus \{0\}  \curvearrowright \R^n \setminus \{0\},\ (t,x) \mapsto tx$. Luego, cociente es el \underline{espacio proyectivo}  $\R P^{n-1}$.
+
+		\item $\Gamma$ grupo topológico arbitrario, $H < \Gamma $ subgrupo (no necesariamente normal). Entonces, hay dos acciones topológicas $H \curvearrowright \Gamma$
+		\begin{enumerate}
+			\item[i)] $(h,g) \mapsto hg$.
+
+			\item[ii)] $(h,g) \mapsto hgh^{-1}$.
+		\end{enumerate}
+		 Continuo porque $(g_{1},g_{2}) \mapsto g_{1}g_{2}$ y $g \mapsto g^{-1}$ continuo en $\Gamma$. Estas acciones son distintas: $(i) \ H \cdot 1 = H,\ (ii) \ H \cdot 1 = \{1\}$.  
+	\end{enumerate}
+	\textbf{Convención.} $\Gamma / H =$ espacio de órbitas de $H \curvearrowright \Gamma ,\ h\cdot g = hg$.
+
+	\begin{enumerate}
+		\item[3*.] $(GL_n(\R)>SL_n(\R)>)\ SO(n) \coloneq \{ A \in SL_n(\R) \ \big| \ A^t A  = \mathds{1} \}$ grupo ortogonal especial. Notar que $SL_2(\R) / SO(2) \approx \R^2$ plano hiperbólico ($n\geq 3$: espacios simétricos de tipo no compacto.
+	\end{enumerate}
+\end{eg}
+
+\begin{remark}
+	$SO(n) < SL_n(\R)$ es cerrado.
+\end{remark}
+
+\subsection*{Criterio para $X / \Gamma$ Hausdorff}
+
+\begin{prop}
+	$\Gamma \curvearrowright X$ continua si
+	\[ \Delta = \{ (x,g \cdot x) \ \big| \ x \in X,\ g \in \Gamma \} \subset X \times X \]
+	es cerrado en $X \times X$, entonces $X / \Gamma$ Hausdorff.
+\end{prop}
+
+\begin{eg}
+	$\Gamma$ grupo topológico arbitrario, $H < \Gamma$ subgrupo (no necesariamente normal). Si $H \subset \Gamma$ es cerrado, entonces $\Gamma / H$ es Hausdorff.
+\end{eg}
+
+\begin{proof}[Proof ][ejemplo]
+	Queremos
+	\[ \Delta = \{ (g,\underbrace{hg}_{g'}) \ \big| \ g \in \Gamma, h \in H \} \subset \Gamma \times \Gamma \]
+	Luego, $\Delta = \{ (g,g') \ \big| \ g'g^{-1} \in H \}$. Si llamamos $f(g,g') = g'g^{-1}$, entonces $f : \Gamma \times \Gamma \to \Gamma$ continua. Luego
+	\[ \Delta =  \{ (g,g') \ \big| \ f(g,g') \in H \} = f^{-1}(H) \]
+	Por lo tanto, $\Delta$ es cerrado si $H$ es cerrado. Así, podemos aplicar la proposición.
+\end{proof}
+
+\begin{lemma}
+	$\Gamma \curvearrowright X$ acción continua ($p : X \to X / \Gamma$). Entonces, $p$ es función abierta; i.e. si $U \subset X$ abierto $\implies p(U)$ abierto en $X / \Gamma$.
+\end{lemma}
+\begin{proof}[Proof ][lema]
+	$U \subset X$ abierto (queremos $p(U) \subset X / \Gamma$ abierto). Luego, $p(U) \subset X / \Gamma$ abierto $\leftrightarrow p^{-1}(p(U)) \subset X$ abierto.
+	\begin{align*}
+		p^{-1}(p(U)) &= \{ x \in X \ \big| \ p(x) \in p(U) \} \\
+		&= \{ x \in X \ \big| \ g\cdot x \in U \text{ para algún } g \in \Gamma \} \\
+		&= \{ x \in X \ \big| \ x \in g^{-1} \cdot U \text{ para } g \in \Gamma \}, \quad (g \cdot U = \{g \cdot y \ | \ y \in U \})  \\
+		&= \underbrace{\bigcup_{g\in\Gamma} \underbrace{g^{-1} \cdot U}_{\text{abiertos.}}}_{\text{abierto!}} \coloneq \Gamma \cdot U
+	.\end{align*}
+\end{proof}
+
+\begin{proof}[Proof ][proposición]
+	Queremos $p(x) \neq p(y)$ en $X / \Gamma \implies \exists \hat{U}, \hat{U}' \subset X / \Gamma$ abiertos disjuntos tal que $p(x) \in \hat{U},\ p(y) \in \hat{U}'$. En efecto, asumamos que $\Delta \subset X \times X$ cerrado. Notar que $p(x) \neq p(y) \implies (x,y) \in X \times X \setminus \Delta$ abierto! Por la definición de topología producto, $\exists U,U' \subset X$ abiertos tal que $(x,y) \in U \times U' \times  X \times X \setminus \Delta$ (donde $U \times U'$ es un elemento de la base). Por el lema, $p(x) \in p(U) \coloneq \hat{U},\ p(y) \in p(U') \coloneq \hat{U}'$, abiertos en $X / \Gamma$. Solo falta verificar que $p(U), p(U)$ disjuntos: (usar que $U \times U' \cap \Delta = \varnothing$) Si $z \in p(U) \cap p(U') \implies z = p(u) = p(u'),\ u \in U,\ u' \in U' \implies u' = g \cdot u,\ g \in \Gamma \implies (u,u') \in U \times U' \cap \Delta$, lo que es una contradicción!
+\end{proof}

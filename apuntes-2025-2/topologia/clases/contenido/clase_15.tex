@@ -1,0 +1,85 @@
+\section{Clase 15 (08/09): Conexidad (23, 24)}
+
+\textbf{Recuerdo (TVI).} $f: [a,b] \to \R$ continua. Si $f(a) < 0$ y $f(b) > 0$, entonces $f(c) = 0$ para algún $c \in [a,b]$. \newline
+
+\noindent \textbf{Conexidad.} Es una condición topológica en $X$ tal que $f: X \to \R$ cumple versión esperable del TVI!
+
+\begin{definition}[separación y conexidad]
+	$X$ espacio topológico.
+	\begin{enumerate}
+		\item[i.] Una separación de $X$ es $X = U \cup V$, con $U,V \subset X$ abiertos disjuntos, no vacíos;
+
+		\item[ii.] $X$ es conexo si no tiene separación. Equivalentemente, $X = U \cup V,\ U,V \subset X$ abiertos disjuntos, entonces $\varnothing \in \{ U, V \}$.
+	\end{enumerate}
+\end{definition}
+
+
+\begin{eg}[i.]to
+	$X = [0,1] \cup [2,3] \cup \{5\} \leadsto U = [0,1],\ V = [2,3] \cup \{5\}$ es separación.   
+\end{eg}
+
+\begin{eg}[ii.]
+	$[0,1]$ es conexo!!! (Magia del axioma del supremo) \\
+\end{eg}
+
+\begin{observe}
+	$X = U \cup V$ separación $\longleftrightarrow U \neq \varnothing$ clopen (abierto + cerrado) y $X \setminus U \neq \varnothing$.
+\end{observe}
+
+\begin{lemma}
+	$X$ espacio topológico. $X$ conexo $\longleftrightarrow \forall f: X \to \R$ tal que $f(x) > 0,\ f(y) < 0$ para algún $x,y \in X \implies f(z) = 0$ para algún $z \in X$.
+\end{lemma}
+
+\text{}
+
+\noindent \textbf{Propiedad ganadora.} Si $f: X \to Y$ continua. $X$ conexo $\implies f(X)$ conexo (respecto a la topología inducida).
+
+\begin{corollary}
+	Si $p:X \to A$ mapa cociente, $X$ conexo $\implies A$ conexo.
+\end{corollary}
+
+\begin{corollary}
+	$X,Y$ espacios homeomorfos. $X$ conexo $\longleftrightarrow Y$ conexo.
+\end{corollary}
+
+\begin{proof}[Proof ][propiedad ganadora]
+	Quremos $f(X)$ conexo (no hay separación). Suponer que $f(X) = U \cup V$ separación ($U,V \subset f(X)$ abiertos, disjuntos y no vacíos). Luego, $X = f^{-1}(f(X)) = f^{-1}(U) \cup f^{-1}(V)$ separación. Pero esto es una contradicción, pues $X$ es conexo!
+\end{proof}
+
+\begin{note}
+	Se utilizó que la preimagen de abierto es abierto y que siguien siendo disjuntos los abiertos bajo la preimagen.
+\end{note}
+
+\begin{lemma}
+	$Y \subset X$ espacios topológicos. $Y$ conexo $\longleftrightarrow \forall A,B \subset X$ abiertos tales que:
+	\begin{enumerate}
+		\item[i.] $Y \subset A \cup B$;
+
+		\item[ii.] $Y \cap A \cap B = \varnothing$;
+	\end{enumerate}
+	$\implies Y \subset A$ ó $Y \subset B$.
+\end{lemma}
+
+\text{}
+
+\noindent \textbf{Criterio Conexidad.} $(Y_{\alpha})_{\alpha \in J}$ familia de subespacioes de $X$ tal que:
+\begin{enumerate}
+	\item Cada $Y_{\alpha}$ conexo;
+
+	\item $\bigcap_{\alpha \in J} Y_{\alpha} \neq \varnothing$;
+\end{enumerate}
+$\implies Z = \bigcup_{\alpha \in J} Y_{\alpha}$ conexo.
+
+\begin{observe}
+	$\bigcap_{\alpha \in J} Y_{\alpha}$ no necesariamente conexa si cada $Y_{\alpha}$ conexo.
+\end{observe}
+
+\begin{eg}~
+	\begin{enumerate}
+		\item $B = \{x \in \R^n \ \big| \ |x| \leq 1\}$ conexo. En efecto, si $v \in \mathbb{S}^{n-1} \leadsto Y_v = \{tv + (1-t)(-v) \ \big| \ t \in [0,1]\} \approx [0,1]$. Por lo tanto, cada $Y_v$ es conexo. Luego, $0 \in Y_v, \quad \forall v \in \mathbb{S}^{n-1} \implies B = \bigcup_{v \in \mathbb{S}^{n-1}} Y_v$ conexo;
+
+		\item $\R$ es conexo. $\R = \bigcup_{\varepsilon>0} [-\varepsilon,\varepsilon],\ 0 \in [-\varepsilon,\varepsilon]\quad \forall \varepsilon < 0$;
+
+		\item $\mathbb{S}^{n-1}$ conexo si $n\geq 2$ ($\mathbb{S}^{0} = \{-1,1\}$ no conexo (disconexo)). Para $n=2$, recordar que $[0,1] / \sim \to \mathbb{S}^{1}$ homeomorfismo. Por lo tanto, $\mathbb{S}^{1}$ conexo. Para $n$ arbitrario, sean $X = [0,1]^n,\ Y = \partial X \leadsto X / Y \stackrel{\sim}{\longrightarrow} \mathbb{S}^{n}$ homeomorfismo. Otra forma: sea $f: \R^n \setminus \{0\} \to \mathbb{S}^{n-1}$ tal que $v \mapsto \frac{v}{|v|}$ continua y sobre. Luego, es suficiente probar que $\R^n \setminus \{0\}$ conexo si $n \geq 2$.  
+	\end{enumerate}
+\end{eg}
