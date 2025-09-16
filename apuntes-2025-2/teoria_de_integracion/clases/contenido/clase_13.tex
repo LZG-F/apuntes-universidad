@@ -2,11 +2,11 @@
 
 \begin{proof}[Proof ][Continuación clase anterior]
 	\text{} \par
-	\noindent \fbox{$(1) \implies (2)$} Si $\mu_{\tau}^{*}(A) < \infty$ (LISTO!). Si $\mu_{\tau}^{*}(A) = \infty$, tomamos $(E_n)_{n\in\N} \subseteq \mathscr{S}$ disjuntos tal que $X = \bigcupd_{n\in\N} E_n$ y $\tau(E_n) < \infty$. Luego, $\mu_{\tau}^{*}(A \cap E_n) \leq \mu_{\tau}^{*} (E_n) = \tau(E_n) < \infty$ (La igualdad es, pues $E_n \in \mathscr{S}, \tau \ \sigma$-sub). Por ende, por lo ya probado, existe $B_n \in \sigma(\mathscr{S})$ tal que $A \cap E_n \subseteq B_n$ y $\mu_{\tau}(B_n) = \mu_{\tau}(A \cap E_n) < \infty$. Luego, $B \coloneq \bigcup_{n\in\N} B_n$ y $N \coloneq B-A$ cumplen lo pedido pues $A = \bigcupd_{n\in\N} A \cap E_n \subseteq \bigcup_{n\in\N} B_n = B$ y
+	\noindent \fbox{$(1) \implies (2)$} Si $\mu_{\tau}^{*}(A) < \infty$ (LISTO!). Si $\mu_{\tau}^{*}(A) = \infty$, tomamos $(E_n)_{n\in\N} \subseteq \mathscr{S}$ disjuntos tal que $X = \textbigcupd_{n\in\N} E_n$ y $\tau(E_n) < \infty$. Luego, $\mu_{\tau}^{*}(A \cap E_n) \leq \mu_{\tau}^{*} (E_n) = \tau(E_n) < \infty$ (La igualdad es, pues $E_n \in \mathscr{S}, \tau \ \sigma$-sub). Por ende, por lo ya probado, existe $B_n \in \sigma(\mathscr{S})$ tal que $A \cap E_n \subseteq B_n$ y $\mu_{\tau}(B_n) = \mu_{\tau}(A \cap E_n) < \infty$. Luego, $B \coloneq \bigcup_{n\in\N} B_n$ y $N \coloneq B-A$ cumplen lo pedido pues $A = \textbigcupd_{n\in\N} A \cap E_n \subseteq \bigcup_{n\in\N} B_n = B$ y
 	\begin{align*}
 		\mu_{\tau}(B\setminus A) = \mu_{\tau}\left( \bigcup_{n\in\N} B_n \setminus A \right) & \leq \sum_{n\in\N} \mu_{\tau}(B_n \setminus A) \\
 		& \leq \sum_{n\in\N} \mu_{\tau}(B_n \setminus (A \cap E_n)) \\
-		&= \sum_{n\in\N} \underbrace{\mu_{\tau}(B_n) - \mu_{\tau}(A \cap E_n)}_{0} = 0 \\
+		&= \sum_{n\in\N} \underbrace{\mu_{\tau}(B_n) - \mu_{\tau}(A \cap E_n)}_{0} = 0 
 	.\end{align*}
 
 	\noindent \fbox{$(2) \implies (3)$} Notemos que por $(2) \implies (1),\ A \in \mathscr{M}_{\mu_{\tau}^{*}}$ si vale $(2)$. En particular, $A^c \in \mathscr{M}_{\mu_{\tau}^{*}}$. Luego, por $(1) \implies (2)$ para $A^c,\ \exists \widetilde{B} \in \sigma(\mathscr{S})$ y $N_2 \in \mathscr{M}_{\mu_{\tau}^{*}}$ con $\mu_{\tau}(N_{2}) = 0$ tal que $A^c = \widetilde{B} - N_{2}$. Pero entonces, tomando $C \coloneq \widetilde{B}^c$, vemos que $C \in \sigma(\mathscr{S})$ y $A = (A^c)^c = (\widetilde{B} \cap N_{2}^c)^c = \widetilde{B}^c \cup (N_{2}^c)^c = C \cup N_2$.
@@ -53,9 +53,9 @@
 	\end{enumerate}
 	Si $V$ fuera medible, por $(V2)$ y el Lema,
 	\[ 1 = = |[0,1)| \leq \sum_{Q \in \Q} |V+Q| = \sum_{Q\in\Q} |V| \implies |V| > 0 \]
-	Por otro lado, por $(V1),\ \bigcupd_{Q \in \Q \cap [0,1)} V+Q \subseteq [0,2)$, y luego, por el Lema y como $|V| > 0$,
+	Por otro lado, por $(V1),\ \textbigcupd_{Q \in \Q \cap [0,1)} V+Q \subseteq [0,2)$, y luego, por el Lema y como $|V| > 0$,
 	\begin{align*}
-		\infty = \sum_{Q \in \Q \cap [0,1)} |V| &= \left| \bigcupd_{Q\in\Q\cap[0,1)} V+Q \right| \\
+		\infty = \sum_{Q \in \Q \cap [0,1)} |V| &= \Big| \bigcupd_{Q\in\Q\cap[0,1)} V+Q \Big| \\
 		& \leq |[0,2)| = |[0,1)| + |[1,2)| \\
 		&= |[0,1)| + | 1 + [0,1)| = 2|[0,1)| \\
 		&= 2 < \infty

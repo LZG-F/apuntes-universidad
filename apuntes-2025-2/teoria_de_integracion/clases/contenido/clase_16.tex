@@ -34,7 +34,7 @@ $\tau((-\infty,x]) =: F_{\tau}(x)$.
 \end{theorem}
 \begin{proof}~
 	\begin{enumerate}
-		\item[E1)] Sea $I \in \widetilde{\mathcal{I}}$. Luego, $I = I(a,b)$ para ciertos $-\infty\leq a \leq b \leq \infty$ y $\tau(I) = F(b) - F(a)$. Ahora, si $I = \bigcupd_{i=1}^{n} J_i$ entonces, eventualmente reordenando los $J_i$, podemos suponer que $J_i = I(a_i,b_i)$ para cada $i = 1,\dots,n$, donde $a = a_1 \leq b_1 = a_2 \leq \cdots \leq b_{n-1} = a_n \leq b_n = b$. Luego, $\tau(I) = F(b) - F(a) = \sum_{i=1}^{n} F(b_i) - F(a_i) = \sum_{i=1}^{n} \tau(J_i)$.
+		\item[E1)] Sea $I \in \widetilde{\mathcal{I}}$. Luego, $I = I(a,b)$ para ciertos $-\infty\leq a \leq b \leq \infty$ y $\tau(I) = F(b) - F(a)$. Ahora, si $I = \textbigcupd_{i=1}^{n} J_i$ entonces, eventualmente reordenando los $J_i$, podemos suponer que $J_i = I(a_i,b_i)$ para cada $i = 1,\dots,n$, donde $a = a_1 \leq b_1 = a_2 \leq \cdots \leq b_{n-1} = a_n \leq b_n = b$. Luego, $\tau(I) = F(b) - F(a) = \sum_{i=1}^{n} F(b_i) - F(a_i) = \sum_{i=1}^{n} \tau(J_i)$.
 
 		\item[E2)] Supongamos primero que $I = (a,b]$ con $-\infty < a < b < \infty$. Si $I \subseteq \bigcup_{i=1}^{\infty} J_i$ con $J_i \in \widetilde{\mathcal{I}}$, entonces $J_i = (a_i,b_i] \cap \R$ con $-\infty\leq a_i \leq b_i \leq \infty$. Eventualmente, cambiando $a_i \longrightarrow \max \{a,a_i\},\ b_i \longrightarrow \min \{b,b_i\}$, puedo suponer que $-\infty < a_i \leq b_i < \infty$. Ahora, como $F$ es continua a derecha, dado $\varepsilon > 0$, existen
 		\begin{itemize}
@@ -53,7 +53,7 @@ $\tau((-\infty,x]) =: F_{\tau}(x)$.
 			.\end{align*}
 			de modo que $F(b) - F(a) \leq F(b) - F(a + \delta) + \varepsilon \leq \sum_{i\in\N}^{} F(b_i) + 2 \varepsilon$. Tomando $\varepsilon \longrightarrow 0^+$, resulta $\tau(I) \leq \sum_{i=1}^{\infty} \tau(J_i)$. \checkmark
 
-			\item[2.] Si $b \not\in I_1$, entonces $b_{i_{1}} + \eta_{i_{1}} \leq b$ y, luego, $b_{i_{1}} + \eta_{i_{1}} \in [a+\delta,b]$, de modo tal que existe $i_{2} \in \{1,\dots,N\} \setminus \{i_{1}\}$ tal que $b_{i_{1}} + \eta_{i_{1}} \in (a_{i_{2}},b_{i_{2}}+\eta_{i_{2}}) = I_2$. En general, existen $m \leq N$ e $i_1,\dots,i_m \in \{1,\dots,N\}$ tales que
+			\item[2.] Si $b \not\in I_1$, entonces $b_{i_{1}} + \eta_{i_{1}} \leq b$ y, luego, $b_{i_{1}} + \eta_{i_{1}} \in [a+\delta,b]$, de modo tal que existe $i_{2} \in \{1,\dots,N\} \setminus \{i_{1}\}$ tal que $b_{i_{1}} + \eta_{i_{1}} \in (a_{i_{2}},b_{i_{2}}+\eta_{i_{2}}) = I_2$. En general, existen $m \leq N$ e $i_1,\dots,i_m \in \{1,\dots,N\}$ tales que:
 			\[ a_{i_{1}} < a + \delta < b_{i_{1}} + \eta_{i_{1}} < \cdots < b_{i_{m-1}} - \eta_{i_{m-1}} \leq b < b_{i_m} + \eta_{i_m} \]
 			con $b_{i_k} + \eta_{i_k} \in (a_{i_{k+1}}, b_{i_{k+1}} + \eta_{i_{k+1}}) \quad \forall k = 1,\dots,m$. Luego,
 			\begin{align*}
