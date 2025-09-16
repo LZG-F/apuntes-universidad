@@ -19,16 +19,16 @@
 
 	Sean $f:[a,b]\to\R$ acotada y $\Pi = \{ x_0,\dots,x_n \}$ una partición de $[a,b]$. Definimos:
 	\begin{align*}
-		\Phi_{f,\Pi}(x) & \coloneq m_{I_1} \chi_{[x_0,x_i]} (x) + \sum_{i=2}^{n} m_{I_i} \chi_{(x_{i-1},x_i]}(x), \quad m_{I_i} = \inf_{t \in I_i} f(t) \\
+		\Phi_{f,\Pi}(x) & \coloneq m_{I_1} \chi_{[x_0,x_1]} (x) + \sum_{i=2}^{n} m_{I_i} \chi_{(x_{i-1},x_i]}(x), \quad m_{I_i} = \inf_{t \in I_i} f(t) \\
 		& = m_{I_1} \chi_{\{x_0\}}(x) + \sum_{i=1}^{n} m_{I_i} \chi_{(x_{i-1},x_i]}(x) \\
-		\psi_{f,\Pi} & \coloneq M_{I_1} \chi_{\{x_0\}}(x) + \sum_{i=1}^{n} M_{I_i} \chi_{(x_{i-1},x_i]}(x), \quad M_{I_i} = \sup_{t\in I_i} f(t)
+		\psi_{f,\Pi}(x) & \coloneq M_{I_1} \chi_{\{x_0\}}(x) + \sum_{i=1}^{n} M_{I_i} \chi_{(x_{i-1},x_i]}(x), \quad M_{I_i} = \sup_{t\in I_i} f(t)
 	.\end{align*}
 
 	Observemos que $\Phi_{f,\Pi}(x) \leq f(x) \leq \psi_{f,\Pi}(x) \quad \forall x \in [a,b]$. Además, 
-	\[
-	\int_{a}^{b} \Phi_{f,\Pi}(x) dx = \underline{S}(f,\Pi) \\
-	\int_{a}^{b} \psi_{f,\Pi}(x) dx = \overline{S}(f,\Pi).
-	\]
+	\begin{align*}
+		&\int_{a}^{b} \Phi_{f,\Pi}(x) dx = \underline{S}(f,\Pi), \\
+		&\int_{a}^{b} \psi_{f,\Pi}(x) dx = \overline{S}(f,\Pi).
+	\end{align*}
 	\noindent En particular, si $f$ es Riemann integrable,
 	\begin{align*}
 		\int_{a}^{b} f(x) dx & = \overline{\int_{a}^{b}} f(x) dx = \inf \left\{ \int_{a}^{b} \psi_{f,\Pi} \ : \ \Pi \text{ partición} \right\} \\
@@ -41,15 +41,15 @@
 		\Phi |_{(x_{i-1},x_i)} \equiv c_i \quad \forall i = 1,\dots,n
 		\]
 	\end{definition}
-
+	\bigskip
 	Notemos que podemos escribir a cualquier función $\Phi$ escalonada como
 	\begin{align*}
-		\Phi (x) & \coloneq \sum_{i=1}^{n} c_i \cdot \chi_{(x_{i-1},x_i}(x) + \sum_{i=0}^{n} \Phi(x_i) \cdot \chi_{\{x_i\}}(x) \\
-		& = \sum_{i=1}^{k} c_j \cdot \chi_{A_j}(x).
+		\Phi (x) & \coloneq \sum_{i=1}^{n} c_i \cdot \chi_{(x_{i-1},x_i)}(x) + \sum_{i=0}^{n} \Phi(x_i) \cdot \chi_{\{x_i\}}(x) \\
+		& = \sum_{i=1}^{k} c_j \cdot \chi_{A_j}(x)
 	.\end{align*}
-	\noindent donde los $A_j$ son intervalos disjuntos tales que $\displaystyle\bigcupd_{j=1}^{k} A_j = [a,b]$ (se pone una "D" dentro de la unión para denotar que estamos haciendo una unión disjunta).
-
-	Si tomamos $\Phi$ de la forma $\Phi = \sum_{j=1}^{k} c_j \cdot \chi_{A_j}$ con $(A_j)_{j=1,\dots,k}$ disjuntos, $\displaystyle\bigcupd_{j=1}^{k} A_j = [a,b]$ pero $A_j$  no son necesariamente intervalos, diremos que $\Phi$ es una función escalonada generalizada. Como para funciones escalonadas "normales", tenemos
+	\noindent donde los $A_j$ son intervalos disjuntos tales que $\textbigcupd_{j=1}^{k} A_j = [a,b]$ (se pone una "D" dentro de la unión para denotar que estamos haciendo una unión disjunta). \par
+	\medskip
+	Si tomamos $\Phi$ de la forma $\Phi = \sum_{j=1}^{k} c_j \cdot \chi_{A_j}$ con $(A_j)_{j=1,\dots,k}$ disjuntos, $\textbigcupd_{j=1}^{k} A_j = [a,b]$ pero $A_j$  no son necesariamente intervalos, diremos que $\Phi$ es una función escalonada generalizada. Como para funciones escalonadas "normales", tenemos
 	\[
 	\int_{a}^{b} \Phi (x) dx = \sum_{j=1}^{k} c_j \cdot |A_j| \left( = \sum_{i=1}^{n} c_i \cdot |I_i| \right)
 	\]
@@ -63,12 +63,12 @@
 
 		\item $I_1,I_2 \in \mathcal{I},\ I_1\subseteq I_2 \implies \lambda (I_1) \leq \lambda (I_2) \ (\text{Monotonía de } \lambda)$;
 
-		\item (Aditividad finita de $\lambda$) Si $I \in \mathcal{I}$ es tal que $I = \displaystyle\bigcupd_{i=1}^{n} J_i$ con $J_i \in \mathcal{I},\ \forall i = 1,\dots,n,\ J_i \cap J_j = \varnothing$ sin $i\neq j$, entonces
+		\item (Aditividad finita de $\lambda$) Si $I \in \mathcal{I}$ es tal que $I = \textbigcupd_{i=1}^{n} J_i$ con $J_i \in \mathcal{I},\ \forall i = 1,\dots,n,\ J_i \cap J_j = \varnothing$ con $i\neq j$, entonces
 		\[
 		\lambda (I) = \sum_{i=1}^{n} \lambda (J_i);
 		\]
 
-		\item ($\sigma$-aditividad de $\lambda$) Si $I \in \mathcal{I}$ es tal que $I = \displaystyle\bigcup_{i=1}^{\infty} I_i $, con $(I_i)_{i} \in \N \subseteq \mathcal{I}$ disjuntos, entonces
+		\item ($\sigma$-aditividad de $\lambda$) Si $I \in \mathcal{I}$ es tal que $I = \bigcup_{i=1}^{\infty} I_i $, con $(I_i)_{i \in \N} \subseteq \mathcal{I}$ disjuntos, entonces
 		\[
 		\lambda(I) = \sum_{i=1}^{\infty} \lambda (I_i)
 		;\]

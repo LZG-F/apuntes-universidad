@@ -1,12 +1,11 @@
-
 \section{Clase 9 (27/08)}
 
 \begin{remark}
-	Si $\mathcal{T} : \mathscr{S} \to [0,\infty]$ es $\sigma$-aditiva en $\mathscr{S}$ y $\mathscr{S}$ es una semiálgebra, entonces $\mathcal{T}$ es extendible.
+	Si $\tau : \mathscr{S} \to [0,\infty]$ es $\sigma$-aditiva en $\mathscr{S}$ y $\mathscr{S}$ es una semiálgebra, entonces $\tau$ es extendible.
 \end{remark}
 
 \begin{remark}
-	La extensión puede no ser única si $\mathcal{T}$ no es $\sigma$-finita.
+	La extensión puede no ser única si $\tau$ no es $\sigma$-finita.
 \end{remark}
 \begin{eg}
 	$\widetilde{\mathcal{I}}_{\Q} \coloneq \widetilde{\mathcal{I}} \cap \Q = \{ (a,b] \cap \Q \ : \ -\infty \leq a \leq b \leq \infty \}$ 
@@ -18,12 +17,12 @@
 
 		\item $\sigma (\widetilde{\mathcal{I}}_{\Q}) = \sigma (\widetilde{\mathcal{I}} \cap \Q) \stackrel{\text{Ej!}}{=} \sigma (\widetilde{\mathcal{I}}) \cap \Q = \beta(\R) \cap \Q = \mathcal{P}(\Q)$ (9.52)
 
-	\item $\mathcal{T} : \widetilde{\mathcal{I}}_{\Q} \to [0,\infty]$, dada por $\mathcal{T}(A) \coloneq \begin{cases}
+	\item $\tau : \widetilde{\mathcal{I}}_{\Q} \to [0,\infty]$, dada por $\tau(A) \coloneq \begin{cases}
 			0 \quad A = \varnothing \\
 			\infty \quad A \neq \varnothing,\ A \in \widetilde{\mathcal{I}}_{\Q}
-		\end{cases}$ (Observar que $\mathcal{T}$ no es $\sigma$-finita)
+		\end{cases}$ (Observar que $\tau$ no es $\sigma$-finita)
 
-		\item Para cada $r > 0,\ \mu_r : \mathcal{P}(\Q) \to [0,\infty]$ dada por $\mu_r(A) \coloneq r(\# A)$ es una extensión de $\mathcal{T}$ (y es una medida)
+		\item Para cada $r > 0,\ \mu_r : \mathcal{P}(\Q) \to [0,\infty]$ dada por $\mu_r(A) \coloneq r(\# A)$ es una extensión de $\tau$ (y es una medida)
 	\end{itemize}
 \end{note}
 
@@ -52,7 +51,7 @@
 \begin{corollary}
 	Para cada función $F$ de Lebesgue-Stieltjes, existe una $\sigma$-álgebra $\mathscr{M}_F$ sobre $\R$ y una única medida $\mu_F$ en $(\R,\mathscr{M}_F)$ tal que
 	\[ \mu_F = (I(a,b)) = F(b) - F(a) \quad \forall -\infty \leq a \leq b \leq \infty \]
-	Además, $\beta(\R) \subseteq \mathscr{M}_F$. Es decir, $\mu_F$ es una medida que extiende a $\mathcal{T}_F$, a todo $\mathscr{M}_F$ (y en particular, a todo $\beta(\R)$). Además, $(\R, \mathscr{M}_F, \mu_F)$ es un EdM completo. ($\mathscr{M}_F \coloneq \overline{\sigma(\widetilde{\mathcal{I}})^F},\ \mu_F \coloneq \overline{\mu_{\mathcal{T}_F}}$). La medida $\mu_F$ se conoce como \underline{medida de L-S asociada a $F$}. En particular, para cualquier función de distribución $F$, existe una única medida de probabilidad $\mathbb{P}_F$ en $(\R,\beta(\R))$ tal que 
+	Además, $\beta(\R) \subseteq \mathscr{M}_F$. Es decir, $\mu_F$ es una medida que extiende a $\tau_F$, a todo $\mathscr{M}_F$ (y en particular, a todo $\beta(\R)$). Además, $(\R, \mathscr{M}_F, \mu_F)$ es un EdM completo. ($\mathscr{M}_F \coloneq \overline{\sigma(\widetilde{\mathcal{I}})^F},\ \mu_F \coloneq \overline{\mu_{\tau_F}}$). La medida $\mu_F$ se conoce como \underline{medida de L-S asociada a $F$}. En particular, para cualquier función de distribución $F$, existe una única medida de probabilidad $\mathbb{P}_F$ en $(\R,\beta(\R))$ tal que 
 	\[ \mathbb{P}_F(I(a,b)) = F(b) - F(a) \quad \forall -\infty \leq a \leq b \leq \infty \]
 	(En la guía 3 veremos que $F \to \mathbb{P}_F$ es una biyección)
 \end{corollary}
@@ -66,5 +65,5 @@
 \end{eg}
 
 \begin{eg}[Medida de Lebesgue en $\R^d$]
-	Si $\mathcal{I}_d$ son los intervalos en $\R^d$ y definimos $\mathcal{T}:\mathcal{I}_d \to [0,\infty]$ como $\mathcal{T}(I)\coloneq|I|$, entonces $\mathcal{I}_d$ es una semiálgebra y $\mathcal{T}$ es una premedida $\sigma$-aditiva en $\mathcal{I}_d$ (lo veremos después). Por lo tanto, $\mathcal{T}$ se puede extender (de manera única, pues $\mathcal{T}$ es $\sigma$-finita) a una medida $\mu_{\delta}$ sobre la $\sigma$-álgebra $\mathscr{L}(\R^d) = \overline{\sigma(\mathcal{I}_d)^{\mathcal{T}}}$, llamada \underline{medida de Lebesgue en $\R^d$} y $\mathscr{L}(\R^d)$ es la clase de \underline{conjuntos medibles Lebesgue en $\R^d$}. Al igual que antes, dado $E \in \mathscr{L}(\R^d)$, notamos $|E| \coloneq \mu_{\mathcal{T}}(E)$.
+	Si $\mathcal{I}_d$ son los intervalos en $\R^d$ y definimos $\tau:\mathcal{I}_d \to [0,\infty]$ como $\tau(I)\coloneq|I|$, entonces $\mathcal{I}_d$ es una semiálgebra y $\tau$ es una premedida $\sigma$-aditiva en $\mathcal{I}_d$ (lo veremos después). Por lo tanto, $\tau$ se puede extender (de manera única, pues $\tau$ es $\sigma$-finita) a una medida $\mu_{\delta}$ sobre la $\sigma$-álgebra $\mathscr{L}(\R^d) = \overline{\sigma(\mathcal{I}_d)^{\tau}}$, llamada \underline{medida de Lebesgue en $\R^d$} y $\mathscr{L}(\R^d)$ es la clase de \underline{conjuntos medibles Lebesgue en $\R^d$}. Al igual que antes, dado $E \in \mathscr{L}(\R^d)$, notamos $|E| \coloneq \mu_{\tau}(E)$.
 \end{eg}

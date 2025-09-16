@@ -1,0 +1,107 @@
+\section{Clase 15 (10/09)}
+
+\begin{theorem}[Dynkin]
+	Si $\mathscr{L}$ es un $\lambda$-sistema que contiene un $\pi$-sistema $\mathcal{P}$ entonces $\sigma(\mathcal{P}) \subseteq \mathscr{L}$
+\end{theorem}
+\begin{proof}[Proof ][continuación]
+	Bastaba con probar que $\lambda{}(\mathcal{P})$ es un $\pi $-sistema. Esto es equivalente a probar que
+	\[ \lambda(\mathcal{P}) \subseteq \mathscr{L}_A \coloneq \{B \subseteq X \ : \ A \cap B \in \lambda(\mathcal{P})\} \quad \forall A \in \lambda(\mathcal{P}). \]
+	A su vez, para esto basta probar que:
+	\[ \begin{cases}
+		(1) \ \mathscr{L}_A \text{ es un } \lambda \text{-sistema } \forall A \in \lambda(\mathcal{P}) \\
+		(2) \ \mathcal{P} \subseteq \mathscr{L}_A.
+	\end{cases} \]
+	\textbf{Veamos (1).}
+	\begin{enumerate}
+		\item[($\lambda_{1}$)] $X \in \mathscr{L}_A$: Como $A \in \lambda(\mathcal{P})$, se tiene que $A \cap X = A \in \lambda(\mathcal{P}) \quad (\implies X \in \mathscr{L}_A)$ \checkmark
+
+		\item[($\lambda_{2}$)] $B \in \mathscr{L}_A \implies B^c \in \mathscr{L}_A$: Notar que
+		\begin{align*}
+			A \cap B^c \in \lambda(\mathcal{P}) & \iff (A \cap B^c)^c = A^c \cup B \in \lambda(\mathcal{P}) \\
+			& \iff A^c \cup B^c = \underbrace{A^c}_{\mathclap{\substack{\in \lambda(\mathcal{P}) \\ \text{pues} \\ A \in \lambda(\mathcal{P})}}} \cupd \underbrace{(B \cap A)}_{\mathclap{\substack{\in \lambda(\mathcal{P}) \\ \text{pues} \\ B \in \mathscr{L}_A}}} \in \lambda(\mathcal{P}) \ \big(\substack{\text{cierto pues } \lambda(\mathcal{P}) \\ \text{es } \lambda \text{-sistema}}\big)
+		.\end{align*}
+
+		\item[($\lambda_{3}$)] Si $(B_n)_{n\in\N} \subseteq \mathscr{L}_A$ disjuntos, entonces $(A \cap B_n)_{n\in\N}$ también. Además, cada $A \cap B_n \in \lambda(\mathcal{P})$ pues $B_n \in \mathscr{L}_A$. Luego,
+		\[ A \cap \Big( \bigcupd_{n\in\N} B_n \Big) = \bigcupd_{n\in\N} A \cap B_n \in \lambda(\mathcal{P}) \quad \Big(\implies \bigcupd_{n\in\N} B_n \in \mathscr{L}_A\Big) \]
+	\end{enumerate}
+	\textbf{Veamos (2).} Vamos por casos
+	\begin{enumerate}
+		\item $(A \in \mathcal{P})$: Si $B \in \mathcal{P}$, entonces $A \cap B \in \mathcal{P}$, pues $\mathcal{P}$ es un $\pi$-sistema, y entonces $A \cap B \in \mathcal{P} \subseteq \lambda(\mathcal{P})$ y así resulta $B \in \mathscr{L}_A$. Como $B \in \mathcal{P}$ era arbitrario, esto nos dice que $\mathcal{P} \subseteq \mathscr{L}_A$. En particular, por (1) resulta que $\lambda(\mathcal{P}) \subseteq \mathscr{L}_A$.
+
+		\item ($A \in \lambda(\mathcal{P})$ general): Si tomamos $B \in \mathcal{P}$, entonces $B \in \mathscr{L}_A \iff A \cap B \in \lambda(\mathscr{P}) \iff A \in \mathscr{L}_B$. Luego, lo que queremos mostrar es que, para todo $B \in \mathcal{P},\ \lambda(\mathcal{P}) \subseteq \mathscr{L}_B$. Pero esto vale por el caso 1. \checkmark
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}[extensión de una premedida]
+	Sean $\tau : \mathscr{S} \to [0,\infty]$ una premedida sobre $\mathscr{S} \subseteq \mathcal{P}(X)$ y $\mathcal{F} \subseteq \mathcal{P}(X)$ una $\sigma$-álgebra. Decimos que una medida $\mu: \mathcal{F} \to [0,\infty]$ es una extensión de $\tau$ (sobre $\mathcal{F}$) si:
+	\begin{enumerate}
+		\item $\mathscr{S} \subseteq \mathcal{F} \quad (\implies \sigma(\mathscr{S}) \subseteq \mathcal{F})$;
+
+		\item $\mu(A) = \tau(A) \quad \forall A \in \mathscr{S}$.
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Unicidad de Extensión de Carathéodory]
+	Sea $\tau$ una premedida definida sobre una semiálgebra $\mathscr{S}$ de subconjuntos de un espacio $X$. Si $\tau$ es $\sigma$-finita, entonces existe a lo sumo una extensión de $\mu$ sobre $\sigma(\mathscr{S})$. En particular, si $\tau$ es UE, entonces admite \underline{exactamente}:
+	\begin{itemize}
+		\item una extensión sobre $\sigma(\mathscr{S})$, i.e. $\mu_{\tau} \coloneq \mu^{*}_{\tau}\big|_{\sigma(\mathscr{S})}$;
+
+		\item una extensión sobre $\mathscr{M}_{\mu^{*}_{\tau}}$, i.e., $\mu^{*}_{\tau}\big|_{\mathscr{M}_{\mu^{*}_{\tau}}}$.
+	\end{itemize}
+\end{theorem}
+\begin{proof}[Proof ]
+	Sean $\mu,\mu'$ medidas sobre $(X, \mathscr{M})$ tal que $\mu(B) = \mu'(B) \quad \forall B \in \mathscr{S}$. Queremos ver que $\mu(A) = \mu'(A) \quad \forall A \in \mathscr{M}$ (primero cuando $\mathscr{M} = \sigma(\mathscr{S})$ y luego con $\mathscr{M} = \mathscr{M}_{\mu^{*}_{\tau}}$): \par
+	\smallskip
+	\underline{Caso $\mathscr{M} = \sigma(\mathscr{S})$}: Tomamos $(E_n)_n \subseteq \mathscr{S}$ disjuntos tal que $X = \bigcupd_{n\in\N} E_n$ y $\tau(E_n) < \infty \quad \forall n\in\N$ (podemos, pues $\tau$ es $\sigma$-finita). Observemos que, por ser $\mu$ y $\mu'$ medidas en $\sigma(\mathscr{S})$ si $A \in \sigma(\mathscr{S})$, entonces:
+	\[ \mu(A) = \mu \left( \bigcupd_{n\in\N} A \cap E_n \right) = \sum_{n\in\N} \mu(A \cap E_n) \quad \text{y} \quad \mu'(A) = \sum_{n\in\N} \mu'(A \cap E_n). \]
+	Luego, bastará con ver que $\mu(A \cap E_n) = \mu'(A \cap E_n) \quad \forall n \in \N,\ A \in \sigma(\mathscr{S})$. Luego, fijemos $n\in\N$ y definamos
+	\[ \xi_n \coloneq \{A \in \sigma(\mathscr{S}) \ : \ \mu(A \cap E_n) = \mu'(A \cap E_n)\}. \]
+	Queremos ver que $\sigma(\mathscr{S}) \subseteq \xi_n$. Para ello, como $\mathscr{S}$ es un $\pi$-sistema, por Dynkin bastará con ver que
+	\begin{enumerate}
+		\item $\xi_n$ es un $\lambda$-sistema;
+
+		\item $\mathscr{S} \subseteq \xi_n$.
+	\end{enumerate}
+	\textbf{Veamos 1.}
+	\begin{enumerate}
+		\item[($\lambda_{1}$)] $X \in \xi_n$: Es cierto, pues $\mu(X \cap E_n) = \mu(E_n) = \tau(E_n) = \mu'(E_n) = \mu'(X \cap E_n)$;
+
+		\item[($\lambda_{2}$)] $A \in \xi_n \implies A^c \in \xi_n$: $\mu(A^c \cap E) = \mu(E_n \setminus A) = \mu(E_n) - \mu(A \cap E_n)$ (la última igualdad se da pues $\mu(E_n) < \infty$). Luego, por $(\lambda_{1})$, esto último es igual a $\mu'(E_n) - \mu'(A \cap E_n) = \mu'(A^c \cap E_n)$;
+
+		\item[($\lambda_{3}$)] Si $(A_k)_{k\in\N} \subseteq \xi_n$ son disjuntos, entonces
+		\begin{align*}
+			\mu \left( \left( \bigcupd_{k\in\N} A_k \right) \cap E_n \right) = \mu \left( \bigcupd_{k\in\N} A_k \cap E_n \right) &= \sum_{k\in\N} \mu(A_k \cap E_n) \\
+			&= \sum_{k\in\N} \mu'(A_k \cap E_n) \\
+			&= \mu' \left( \left( \bigcupd_{k\in\N} A_k \right) \cap E_n \right)
+		.\end{align*}
+		Luego, $\bigcupd_{k\in\N} A_k \in \xi_n$
+	\end{enumerate}
+	\textbf{Veamos 2.} Si $A \in \mathscr{S}$ entonces $A \cap E_n \in \mathscr{S}$ pues $\mathscr{S}$ es un $\pi$-sistema, y entonces $\mu(A \cap E_n) = \tau(A \cap E_n) = \mu'(A \cap E_n)$. \checkmark \par
+	\medskip
+	\underline{Caso cuando $\mathscr{M} = \mathscr{M}_{\mu^{*}_{\tau}}$} ($\tau$ unívocamente extendible): Sea $A \in \mathscr{M}_{\mu^{*}_{\tau}}$. Como $\tau$ es $\sigma$-finita en $\mathscr{S}$, existen $B,C \in \sigma(\mathscr{S})$ tales que $C \subseteq A \subseteq B$ y $\mu^{*}_{\tau}(C) = \mu^{*}_{\tau}(A) = \mu^{*}_{\tau}(B)$. Entonces, si $\mu$ es una extensión de $\tau$ sobre $\mathscr{M}_{\mu^{*}_{\tau}}$, tenemos que
+	\[ \mu^{*}_{\tau}(A) \tikzmark{a}= \mu^{*}_{\tau}(C) \leq \mu(C) \leq \mu(A) \leq \mu(B) \tikzmark{b}= \mu^{*}_{\tau}(B) = \mu^{*}_{\tau}(A) \]
+
+	\begin{tikzpicture}[remember picture, overlay]
+		\draw[arrows=->]
+			( $ (pic cs:a) + (6pt,-1ex) $ ) --
+			( $ (pic cs:a) +(6pt,-4ex) $ );
+			\node [anchor=north]
+			at ( $ (pic cs:a) +(19pt,-4ex) $ )
+			{$C \in \sigma(\mathscr{S}) \text{ y } \exists ! \text{ ext. en } \sigma(\mathscr{S})$};
+		\draw[arrows=->]
+			( $ (pic cs:b) + (6pt,-1ex) $ ) --
+			( $ (pic cs:b) +(6pt,-4ex) $ );
+			\node [anchor=north]
+			at ( $ (pic cs:b) +(6pt,-4ex) $ )
+			{$B \in \sigma(\mathscr{S})$};
+	\end{tikzpicture}
+
+	\bigskip
+	\noindent de donde resulta que $\mu(A) = \mu^{*}_{\tau}(A)$ y la extensión es única. Además, satisface $\mu(A) = \mu_{\tau}(B) = \mu_{\tau}(C)$ para cualquier $C,B \in \sigma(\mathscr{S})$ tal que $C \subseteq A \subseteq B,\ N_{1} = A \setminus C$ y $N_{2} = B \setminus A$ son $\mu_{\tau}$-nulos. Luego, $\mu = \overline{\mu_{\tau}}$, donde $\overline{\mu_{\tau}}$ es la "completación" de $\mu_{\tau}$ definida en el Teorema de Extensión de Carathéodory.
+\end{proof}
+
+\begin{note}
+	De la demostración se deduce que si $\mu$ y $\nu$ son medidas finitas sobre $(X, \mathscr{M})$, entonces 
+	\[ \mathscr{L} \coloneq \{A \in \mathscr{M} \ : \ \mu(A) = \nu(A)\} \]
+	es un $\lambda$-sistema si y solo si $X \in \mathscr{L}$. En particular, si dos medidas fnitas coinciden en un $\pi$-sistema $\mathcal{P}$ que  contiene a $X$, entonces coinciden en $\sigma(\mathcal{P})$.
+\end{note}

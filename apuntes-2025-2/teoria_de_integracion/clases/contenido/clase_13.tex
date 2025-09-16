@@ -1,20 +1,21 @@
 \section{Clase 13 (05/09)}
 
 \begin{proof}[Proof ][Continuación clase anterior]
-	$1) \implies 2)$ Si $\mu_{\mathcal{T}}^{*}(A) < \infty$ (LISTO!). Si $\mu_{\mathcal{T}}^{*}(A) = \infty$, tomamos $(E_n)_{n\in\N} \subseteq \mathscr{S}$ disjuntos tal que $X = \bigcupd_{n\in\N} E_n$ y $\mathcal{T}(E_n) < \infty$. Luego, $\mu_{\mathcal{T}}^{*}(A \cap E_n) \leq \mu_{\mathcal{T}}^{*} (E_n) = \mathcal{T}(E_n) < \infty$ (La igualdad es, pues $E_n \in \mathscr{S}, \mathcal{T} \ \sigma$-sub). Por ende, por lo ya probado, existe $B_n \in \sigma(\mathscr{S})$ tal que $A \cap E_n \subseteq B_n$ y $\mu_{\mathcal{T}}(B_n) = \mu_{\mathcal{T}}(A \cap E_n) < \infty$. Luego, $B \coloneq \bigcup_{n\in\N} B_n$ y $N \coloneq B-A$ cumplen lo pedido pues $A = \bigcupd_{n\in\N} A \cap E_n \subseteq \bigcup_{n\in\N} B_n = B$ y
+	\text{} \par
+	\noindent \fbox{$(1) \implies (2)$} Si $\mu_{\tau}^{*}(A) < \infty$ (LISTO!). Si $\mu_{\tau}^{*}(A) = \infty$, tomamos $(E_n)_{n\in\N} \subseteq \mathscr{S}$ disjuntos tal que $X = \bigcupd_{n\in\N} E_n$ y $\tau(E_n) < \infty$. Luego, $\mu_{\tau}^{*}(A \cap E_n) \leq \mu_{\tau}^{*} (E_n) = \tau(E_n) < \infty$ (La igualdad es, pues $E_n \in \mathscr{S}, \tau \ \sigma$-sub). Por ende, por lo ya probado, existe $B_n \in \sigma(\mathscr{S})$ tal que $A \cap E_n \subseteq B_n$ y $\mu_{\tau}(B_n) = \mu_{\tau}(A \cap E_n) < \infty$. Luego, $B \coloneq \bigcup_{n\in\N} B_n$ y $N \coloneq B-A$ cumplen lo pedido pues $A = \bigcupd_{n\in\N} A \cap E_n \subseteq \bigcup_{n\in\N} B_n = B$ y
 	\begin{align*}
-		\mu_{\mathcal{T}}(B\setminus A) = \mu_{\mathcal{T}}\left( \bigcup_{n\in\N} B_n \setminus A \right) & \leq \sum_{n\in\N} \mu_{\mathcal{T}}(B_n \setminus A) \\
-		& \leq \sum_{n\in\N} \mu_{\mathcal{T}}(B_n \setminus (A \cap E_n)) \\
-		&= \sum_{n\in\N} \underbrace{\mu_{\mathcal{T}}(B_n) - \mu_{\mathcal{T}}(A \cap E_n)}_{0} = 0 \\
+		\mu_{\tau}(B\setminus A) = \mu_{\tau}\left( \bigcup_{n\in\N} B_n \setminus A \right) & \leq \sum_{n\in\N} \mu_{\tau}(B_n \setminus A) \\
+		& \leq \sum_{n\in\N} \mu_{\tau}(B_n \setminus (A \cap E_n)) \\
+		&= \sum_{n\in\N} \underbrace{\mu_{\tau}(B_n) - \mu_{\tau}(A \cap E_n)}_{0} = 0 \\
 	.\end{align*}
 
-	$2) \implies 3)$ Notemos que por $(2) \implies (1),\ A \in \mathscr{M}_{\mu_{\mathcal{T}}^{*}}$ si vale $(2)$. En particular, $A^c \in \mathscr{M}_{\mu_{\mathcal{T}}^{*}}$. Luego, por $(1) \implies (2)$ para $A^c,\ \exists \widetilde{B} \in \sigma(\mathscr{S})$ y $N_2 \in \mathscr{M}_{\mu_{\mathcal{T}}^{*}}$ con $\mu_{\mathcal{T}}(N_{2}) = 0$ tal que $A^c = \widetilde{B} - N_{2}$. Pero entonces, tomando $C \coloneq \widetilde{B}^c$, vemos que $C \in \sigma(\mathscr{S})$ y $A = (A^c)^c = (\widetilde{B} \cap N_{2}^c)^c = \widetilde{B}^c \cup (N_{2}^c)^c = C \cup N_2$.
+	\noindent \fbox{$(2) \implies (3)$} Notemos que por $(2) \implies (1),\ A \in \mathscr{M}_{\mu_{\tau}^{*}}$ si vale $(2)$. En particular, $A^c \in \mathscr{M}_{\mu_{\tau}^{*}}$. Luego, por $(1) \implies (2)$ para $A^c,\ \exists \widetilde{B} \in \sigma(\mathscr{S})$ y $N_2 \in \mathscr{M}_{\mu_{\tau}^{*}}$ con $\mu_{\tau}(N_{2}) = 0$ tal que $A^c = \widetilde{B} - N_{2}$. Pero entonces, tomando $C \coloneq \widetilde{B}^c$, vemos que $C \in \sigma(\mathscr{S})$ y $A = (A^c)^c = (\widetilde{B} \cap N_{2}^c)^c = \widetilde{B}^c \cup (N_{2}^c)^c = C \cup N_2$.
 \end{proof}
 
 \begin{observe}
-	$\mathscr{M}_{\mu_{\mathcal{T}}^{*}} = \overline{\sigma(\mathscr{S})}$ (con resp. a $\mu_{\mathcal{T}}^{*}|_{\sigma(\mathscr{S})}$). En efecto, si $A \in \mathscr{M}_{\mu_{\mathcal{T}}^{*}}$ entonces, por $(1) \implies (3)$, existen $C \in \sigma(\mathscr{S})$ y $N \in \mathscr{M}_{\mu_{\mathcal{T}}^{*}}$ tal que $A = C \cup N$ y $\mu_{\mathcal{T}}^{*}(N) = 0$. Como $N \in \mathscr{M}_{\mu^{*}}$, por $(1) \implies (2)$ para $N$, existe $\widetilde{N} \in \sigma(\mathscr{S})$ tal que $N \subseteq \widetilde{N}$ y $0 = \mu_{\mathcal{T}}(N) = \mu_{\mathcal{T}}(\widetilde{N})$. Luego, $N$ resulta $\mu_{\mathcal{T}}^{*}\big{|}_{\sigma(\mathscr{S})}$-nulo y, por lo tanto, $N \in \overline{\sigma(\mathscr{S})^{\mu_{\mathcal{T}}^{*}|_{\sigma(\mathscr{S})}}}$. \newline
-
-	\noindent Por otro lado, si $A \in \overline{\sigma(\mathscr{S})}$ (resp. a $\mu_{\mathcal{T}}^{*}|_{\sigma(\mathscr{S})}$), entonces $A = B \cup N$ donde $B \in \sigma(\mathscr{S})$ y $\exists \widetilde{N} \in \sigma(\mathscr{S})$ tal que $N \subseteq \widetilde{N}$ y $\mu_{\mathcal{T}}^{*}(N) = 0$, y entonces $A = B \cup N \in \mathscr{M}_{\mu_{\mathcal{T}}^{*}}$ (pues $\sigma(\mathscr{S}) \subseteq \mathscr{M}_{\mu_{\mathcal{T}}^{*}}$).
+	$\mathscr{M}_{\mu_{\tau}^{*}} = \overline{\sigma(\mathscr{S})}$ (con resp. a $\mu_{\tau}^{*}|_{\sigma(\mathscr{S})}$). En efecto, si $A \in \mathscr{M}_{\mu_{\tau}^{*}}$ entonces, por $(1) \implies (3)$, existen $C \in \sigma(\mathscr{S})$ y $N \in \mathscr{M}_{\mu_{\tau}^{*}}$ tal que $A = C \cup N$ y $\mu_{\tau}^{*}(N) = 0$. Como $N \in \mathscr{M}_{\mu^{*}}$, por $(1) \implies (2)$ para $N$, existe $\widetilde{N} \in \sigma(\mathscr{S})$ tal que $N \subseteq \widetilde{N}$ y $0 = \mu_{\tau}(N) = \mu_{\tau}(\widetilde{N})$. Luego, $N$ resulta $\mu_{\tau}^{*}\big{|}_{\sigma(\mathscr{S})}$-nulo y, por lo tanto, $N \in \overline{\sigma(\mathscr{S})^{\mu_{\tau}^{*}|_{\sigma(\mathscr{S})}}}$. \par
+	\medskip
+	Por otro lado, si $A \in \overline{\sigma(\mathscr{S})}$ (resp. a $\mu_{\tau}^{*}|_{\sigma(\mathscr{S})}$), entonces $A = B \cup N$ donde $B \in \sigma(\mathscr{S})$ y $\exists \widetilde{N} \in \sigma(\mathscr{S})$ tal que $N \subseteq \widetilde{N}$ y $\mu_{\tau}^{*}(N) = 0$, y entonces $A = B \cup N \in \mathscr{M}_{\mu_{\tau}^{*}}$ (pues $\sigma(\mathscr{S}) \subseteq \mathscr{M}_{\mu_{\tau}^{*}}$).
 \end{observe}
 
 \begin{observe}
@@ -22,10 +23,10 @@
 \end{observe}
 
 \begin{prop}
-	Si $\mathcal{T}$ es una premedida UE sobre una semiálgebra $\mathscr{S}$ entonces, dado $A \subseteq X$ (no necesariamente $\mu_{\mathcal{T}}^{*}$-medible),
+	Si $\tau$ es una premedida UE sobre una semiálgebra $\mathscr{S}$ entonces, dado $A \subseteq X$ (no necesariamente $\mu_{\tau}^{*}$-medible),
 	\begin{align*}
-		\mu_{\mathcal{T}}^{*}(A) & \coloneq \min \{ \mu_{\mathcal{T}}(B) \ \big| \ B \in \sigma(\mathscr{S}),\ A \subseteq B \} \\
-		& = \max \{ \mu_{\mathcal{T}}(C) \ \big| \ C \in \sigma(\mathscr{S}),\ C \subseteq A \}  
+		\mu_{\tau}^{*}(A) & \coloneq \min \{ \mu_{\tau}(B) \ \big| \ B \in \sigma(\mathscr{S}),\ A \subseteq B \} \\
+		& = \max \{ \mu_{\tau}(C) \ \big| \ C \in \sigma(\mathscr{S}),\ C \subseteq A \}  
 	.\end{align*}
 \end{prop}
 
@@ -40,10 +41,10 @@
 \begin{lemma}
 	$|E + x|_{e} = |E|_{e} \quad \forall E \subseteq \R,\ x \in \R$. Además, si $E \in \mathscr{L}(\R)$, entonces $E+x \in \mathscr{L}(\R)$ y $|E| = |E + x| \quad \forall x \in \R$.
 \end{lemma}
-
+\medskip
 \noindent \textbf{Axioma de Elección.} Si $(A_{\gamma})_{\gamma\in\Gamma}$ es una familia de conjuntos disjuntos, no vacíos, entonces existe un conjunto $A$ tal que $A \cap A_{\gamma}$ tiene exactamente $1$ elemento $\forall \gamma \in \Gamma$.
 
-\begin{proof}[Proof][lema 1.43]
+\begin{proof}[Proof][lema 1.47]
 	Definimos una relación de equivalencia $\sim$ en $[0,1)$ decretando que $x \sim y$ si $x-y \in \Q$. Por el Axioma de Elección, existe un conjunto $V \subseteq \R$ que tiene exactamente $1$ elemento de cada clase de equivalencia de $\sim$. Observemos que:
 	\begin{enumerate}
 		\item[V1)] $(V + Q_1) \cap (V + Q_2) = \varnothing \quad \forall Q_1,Q_2 \in \Q$ distintos. En efecto, si $v_1 + Q_1 = v_2 + Q_2$ con $v_1,v_2 \in V \implies v_1 - v_2 = Q_2 - Q_1 \in \Q \implies v_1 \sim v_2 \implies v_1 = v_2 \implies Q_1 = Q_2$.

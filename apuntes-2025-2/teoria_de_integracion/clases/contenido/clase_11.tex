@@ -12,7 +12,7 @@ Teniendo esto en cuenta, dados $d \in \N,\ s \in [0,d],\ \delta > 0$, definimos:
 \begin{itemize}
 	\item $C_{\delta} \coloneq \{ A \subseteq \R^d \ : \ \text{diam}A < \delta \}$;
 
-	\item $\mathscr{H}_{s}^{(\delta)} (E) \coloneq \inf \{ \sum_{n\in\N} (\text{diam}A_n)^s \ : \ (A_n)_{n\in\N} \subseteq C_{\delta},\ E \subseteq \bigcup_{n\in\N} A_n \}$. Donde $\mathscr{H}_{s}^{(\delta)} (E)$ es la medida exterior inducida por $\mathcal{T}_{s}^{(\delta)}$ y $\mathcal{T}_{s}^{(\delta)}(A) \coloneq (\text{diam}A)^s$ la $\delta$-premedida de Hausdorff s-dimensional en $\R^d$ con $\mathcal{T}_{s}^{(\delta)} : C_{\delta} \to [0,\infty]$.
+	\item $\mathscr{H}_{s}^{(\delta)} (E) \coloneq \inf \{ \sum_{n\in\N} (\text{diam}A_n)^s \ : \ (A_n)_{n\in\N} \subseteq C_{\delta},\ E \subseteq \bigcup_{n\in\N} A_n \}$. Donde $\mathscr{H}_{s}^{(\delta)} (E)$ es la medida exterior inducida por $\tau_{s}^{(\delta)}$ y $\tau_{s}^{(\delta)}(A) \coloneq (\text{diam}A)^s$ la $\delta$-premedida de Hausdorff s-dimensional en $\R^d$ con $\tau_{s}^{(\delta)} : C_{\delta} \to [0,\infty]$.
 \end{itemize}
 
 \begin{observe}
@@ -65,7 +65,8 @@ donde $\mathscr{H}_s$ es la medida exterior de Hausdorff s-dimensional en $\R^d$
 			.\end{align*}
 			Notar que la primera igualdad se tiene por $E_1 \in \mathscr{M}_{\mu^{*}}$ y la segunda por $E_2 \in \mathscr{M}_{\mu^{*}}$. Esto implica que $E_1 \cap E_2 \in \mathscr{M}_{\mu^{*}}$. Pero entonces $E_1 \cap E_2 = ((E_1 \cap E_2)^c)^c = (\underbrace{\underbrace{E_{1}^c}_{\in \mathscr{M}_{\mu^{*}}} \cup \underbrace{E_{2}^c}_{\in \mathscr{M}_{\mu^{*}}}}_{\in \mathscr{M}_{\mu^{*}}})^c \in \mathscr{M}_{\mu^{*}}$
 		\end{proof}
-		Para el segundo paso, demostramos que si $E_1,\dots,E_n \in \mathscr{M}_{\mu^{*}}$ disjuntos, entonces $\mu^{*}\left(A \cap \left(\displaystyle\bigcupd_{i=1}^{n} E_i \right)\right) = \displaystyle\sum_{i=1}^{n} \mu^{*}(A \cap E_i)$.
+		Para el segundo paso, demostramos que si $E_1,\dots,E_n \in \mathscr{M}_{\mu^{*}}$ disjuntos, entonces 
+		\[ \mu^{*}\left(A \cap \left(\displaystyle\bigcupd_{i=1}^{n} E_i \right)\right) = \displaystyle\sum_{i=1}^{n} \mu^{*}(A \cap E_i). \]
 		\begin{proof}
 			La idea es probarlo por inducción. Basta ver el caso $n=2$ (los otros casos salen iterando éste)
 			\begin{align*}
@@ -83,7 +84,11 @@ donde $\mathscr{H}_s$ es la medida exterior de Hausdorff s-dimensional en $\R^d$
 				& \ \vdots \\
 				& E_{n+1}' \coloneq E_{n+1} \setminus \bigcup_{i=1}^{n} E_i \in \mathscr{M}_{\mu^{*}}
 			,\end{align*}
-			y $\displaystyle\bigcup_{n\in\N} E_n = \displaystyle\bigcupd_{n=1}^{\infty} E_{n}'$. Sea $F_n \coloneq \displaystyle\bigcupd_{i=1}^{n} E_i \longrightarrow E \coloneq \displaystyle\bigcupd_{n\in\N} E_n$. Notar que si $F_n \subseteq E$, entonces $E^c \subseteq F_{n}^{c}$. Luego, dado $A \subseteq X$, como $F_n \in \mathscr{M}_{\mu^{*}}$, se tiene
+			y 
+			\[ \displaystyle\bigcup_{n\in\N} E_n = \displaystyle\bigcupd_{n=1}^{\infty} E_{n}'. \]
+			Sea 
+			\[ F_n \coloneq \displaystyle\bigcupd_{i=1}^{n} E_i \longrightarrow E \coloneq \displaystyle\bigcupd_{n\in\N} E_n. \]
+			Notar que si $F_n \subseteq E$, entonces $E^c \subseteq F_{n}^{c}$. Luego, dado $A \subseteq X$, como $F_n \in \mathscr{M}_{\mu^{*}}$, se tiene
 			\begin{align*}
 				\mu^{*}(A) &= \underbrace{\mu^{*}(A \cap F_n)}_{= \sum_{i=1}^{n} \mu^{*}(A \cap E_i)} + \mu^{*}(\underbrace{A \cap F_{n}^{c}}_{\subseteq A \cap E^c}) \\
 				& \geq \sum_{i=1}^{n} \mu^{*}(A \cap E_i) + \mu^{*}(A \cap E^c)

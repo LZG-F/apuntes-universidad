@@ -1,4 +1,3 @@
-
 \section{Clase 8 (25/08)}
 
 \begin{remark}
@@ -8,21 +7,22 @@
 \end{remark}
 
 \begin{definition}[premedida finita y $\sigma$-finita]
-	Una premedida $\mathcal{T} : \mathscr{C} \to [0,\infty]$ se dice:
+	Una premedida $\tau : \mathscr{C} \to [0,\infty]$ se dice:
 	\begin{enumerate}
-		\item \textbf{finita} si $X \in \mathscr{C}$ y $\mathcal{T} < \infty$;
+		\item \textbf{finita} si $X \in \mathscr{C}$ y $\tau < \infty$;
 
-		\item \textbf{$\sigma$-finita} si existen $(C_n)_{n\in\N} \subseteq \mathscr{C}$ \underline{disjuntos} tales que $\bigcupd_{n=1}^{\infty} C_n = X$ y $\mathcal{T} (C_n) < \infty\ \forall n \in \N$.
+		\item \textbf{$\sigma$-finita} si existen $(C_n)_{n\in\N} \subseteq \mathscr{C}$ \underline{disjuntos} tales que 
+		\[ \bigcupd_{n=1}^{\infty} C_n = X \quad \text{y} \quad \tau (C_n) < \infty\quad \forall n \in \N. \]
 	\end{enumerate}
 \end{definition}
-
+\bigskip
 \begin{eg}~
 	\begin{enumerate}
 		\item finita $\implies \sigma$-finita;
 
 		\item La función longitud $\lambda : \mathcal{I} \to [0,\infty]$ es $\sigma$-finita pero no finita;
 
-		\item Si $F$ es una función de L-S, entonces $\mathcal{T}_F : \widetilde{\mathcal{I}} \to [0,\infty]$ es siempre $\sigma$-finita $(\mathcal{T}_F ((n,n+1]) = F(n+1) - F(n) < \infty\ \forall n \in \Z)$ y es finita si y sólo si $\mathcal{T}_F (\R) = \mathcal{T}_F ((-\infty,\infty]\cap\R) = F(\infty)-F(-\infty) < \infty$.
+		\item Si $F$ es una función de L-S, entonces $\tau_F : \widetilde{\mathcal{I}} \to [0,\infty]$ es siempre $\sigma$-finita $(\tau_F ((n,n+1]) = F(n+1) - F(n) < \infty\ \forall n \in \Z)$ y es finita si y sólo si $\tau_F (\R) = \tau_F ((-\infty,\infty]\cap\R) = F(\infty)-F(-\infty) < \infty$.
 	\end{enumerate}
 \end{eg}
 
@@ -31,7 +31,7 @@
 	\begin{enumerate}
 		\item $\mu (\varnothing) = 0$;
 		
-		\item $\mu$ es $\sigma$-subaditiva en $\mathscr{M}\ \left( \mu \left(\bigcupd_{i=1}^{\infty} A_i \right) = \sum_{i=1}^{\infty} \mu(A_i) \right)$.
+		\item $\mu$ es $\sigma$-aditiva en $\mathscr{M}\ \left( \mu \left(\textbigcupd_{i=1}^{\infty} A_i \right) = \sum_{i=1}^{\infty} \mu(A_i) \right)$.
 	\end{enumerate}
 	\noindent Llamamos a la terna $(X,\mathscr{M},\mu)$ un \underline{epacio de medida}.
 \end{definition}
@@ -84,7 +84,7 @@
 \end{enumerate}
 
 \begin{definition}[premedida extendible y unívocamente extendible]
-	Una premedida $\mathcal{T} : \mathscr{S} \to [0,\infty]$ definida sobre una semiálgebra de subconjunto de $X$, se dice:
+	Una premedida $\tau : \mathscr{S} \to [0,\infty]$ definida sobre una semiálgebra de subconjunto de $X$, se dice:
 	\begin{enumerate}
 		\item \textbf{Extendible} si es
 		\begin{enumerate}
@@ -105,8 +105,8 @@
 \end{remark}
 
 \begin{theorem}[Extensión de Carathéodory]
-	Dados un espacio $X$ y una premedida $\mathcal{T}$ sobre una semiálgebra $\mathscr{S}$ de subconjuntos de $X$ tal que $\mathcal{T}$ es extendible, existe una extensión de $\mathcal{T}$ a una medida $\mu_{\mathcal{T}}$ definida sobre $\sigma(\mathscr{S})$ la $\sigma$-álgebra generada por $\mathscr{S}$. Más aún, si $\mathcal{T}$ es unívocamente extendible, entonces la extensión $\mu_{\mathcal{T}}$ a $\sigma(\mathscr{S})$ es \underline{única}. \\
-	Por último, si $\mathcal{T}$ es unívocamente extendible, entonces se puede extender de manera única a una medida $\overline{\mu_{\mathcal{T}}}$ sobre la $\mu_{\mathcal{T}}$-completación de $\sigma(\mathscr{S})$, i.e. la $\sigma$-álgebra $\overline{\sigma(\mathscr{S})}$ dada por
-	\[ \overline{\sigma(\mathscr{S})} \coloneq \{ B \cup N : B \in \sigma(\mathscr{S}), \exists \widetilde{N} \in \sigma(\mathscr{S}) \text{ con } N \subseteq \widetilde{N} \text{ y } \mu_{\mathcal{T}} (\widetilde{N}) = 0 \} \]
-	\noindent mediante la fórmula $\overline{\mu_{\mathcal{T}}}(B\cap N) \coloneq \mu_{\mathcal{T}}(B)$.
+	Dados un espacio $X$ y una premedida $\tau$ sobre una semiálgebra $\mathscr{S}$ de subconjuntos de $X$ tal que $\tau$ es extendible, existe una extensión de $\tau$ a una medida $\mu_{\tau}$ definida sobre $\sigma(\mathscr{S})$ la $\sigma$-álgebra generada por $\mathscr{S}$. Más aún, si $\tau$ es unívocamente extendible, entonces la extensión $\mu_{\tau}$ a $\sigma(\mathscr{S})$ es \underline{única}. \\
+	Por último, si $\tau$ es unívocamente extendible, entonces se puede extender de manera única a una medida $\overline{\mu_{\tau}}$ sobre la $\mu_{\tau}$-completación de $\sigma(\mathscr{S})$, i.e. la $\sigma$-álgebra $\overline{\sigma(\mathscr{S})}$ dada por
+	\[ \overline{\sigma(\mathscr{S})} \coloneq \{ B \cup N : B \in \sigma(\mathscr{S}), \exists \widetilde{N} \in \sigma(\mathscr{S}) \text{ con } N \subseteq \widetilde{N} \text{ y } \mu_{\tau} (\widetilde{N}) = 0 \} \]
+	\noindent mediante la fórmula $\overline{\mu_{\tau}}(B\cap N) \coloneq \mu_{\tau}(B)$.
 \end{theorem}

@@ -1,125 +1,125 @@
+\section{Clase 7 (22/08)}
 
-	\section{Clase 7 (22/08)}
+\begin{definition}[semiálgebra]
+	Sea $X$ un espacio y $\mathscr{C}$ una clase de subconjuntos de $X$. Decimos que $\mathscr{C}$ es una semiálgebra (de subconjuntos de $X$) si cumple:
+	\begin{enumerate}
+		\item $\varnothing \in \mathscr{C}$;
 
-	\begin{definition}[semiálgebra]
-		Sea $X$ un espacio y $\mathscr{C}$ una clase de subconjuntos de $X$. Decimos que $\mathscr{C}$ es una semiálgebra (de subconjuntos de $X$) si cumple:
-		\begin{enumerate}
-			\item $\varnothing \in \mathscr{C}$;
-
-			\item ($\mathscr{C}$ es cerrada por intesecciones finitas) $A,B\in\mathscr{C} \implies A \cap B \in \mathscr{C}$;
-			
-			\item Si $A \in \mathscr{C}$, existen $C_1,\dots,C_n \in \mathscr{C}$ disjuntos tal que $A^c = \displaystyle\bigcupd_{i=1}^{n} C_i$.
-		\end{enumerate}
-	\end{definition}
+		\item ($\mathscr{C}$ es cerrada por intesecciones finitas) $A,B\in\mathscr{C} \implies A \cap B \in \mathscr{C}$;
+		
+		\item Si $A \in \mathscr{C}$, existen $C_1,\dots,C_n \in \mathscr{C}$ disjuntos tal que $A^c = \textbigcupd_{i=1}^{n} C_i$.
+	\end{enumerate}
+\end{definition}
 	
-	\begin{eg}~
+\begin{eg}~
+	\begin{enumerate}
+		\item La clase $\mathcal{I}_d$ de intervalos en $\R^d$ es una semiálgebra.
+
+		\item La clase $\widetilde{\mathcal{I}} \coloneq \{ (a,b] \cap \R \ : \ -\infty \leq a \leq b \leq \infty \}$ es una semiálgebra.
+
+		\item Si $X$ e $Y$ son espacios y $\mathscr{C}_X, \mathscr{C}_Y$ son semiálgebras en $X$ e $Y$ respectivamente, entonces
+		\[ \mathscr{C}_X \times \mathscr{C}_Y \coloneq \{ F \times G \ : \ F \in \mathscr{C}_X,\ G \in \mathscr{C}_Y \} \]
+		es una semiálgebra en $X \times Y$, llamada "semiálgebra producto".
+	\end{enumerate}
+\end{eg}
+
+\begin{definition}[álgebra]
+	Sean $X$ un espacio y $\mathscr{A}$ una clase de subconjuntos de $X$. Decimos que $\mathscr{A}$ es un álgebra (de subconjuntos de $X$) si cumple que:
+	\begin{enumerate}
+		\item[(i)] $\varnothing \in \mathscr{A}$;
+		
+		\item[(ii)] $\mathscr{A}$ es cerrado por intersecciones finitas;
+
+		\item[(iii)] ($\mathscr{A}$ es cerrada por complementos) $A \in \mathscr{A} \implies A^c \in \mathscr{A}$. 
+	\end{enumerate}	
+		\noindent Equivalentemente, en presencia de (iii), (ii) se puede reemplazar por:	
+	\begin{enumerate}
+		\item[(ii')] ($\mathscr{A}$ es cerrada por uniones finitas) $A,B\in \mathscr{A} \implies A \cup B \in \mathscr{A}$. (\textbf{Dem:} Ejercicio!)
+	\end{enumerate}
+\end{definition}
+
+\begin{eg}~
+	\begin{enumerate}
+		\item $X$ espacio, $\mathscr{A}_1 \coloneq \{\varnothing, X\},\ \mathscr{A}_2 \coloneq \mathcal{P}(X)$ son álgebras (donde $\mathscr{A}$ es llamada el álgebra trivial);
+
+		\item Sea $\mathscr{S}$ una semiálgebra de subconjuntos de un espacio $X$. Entonces 
+		\[ \mathscr{A} \coloneq \left\{ E \subseteq X \ : \ \exists S_1,\dots,S_n \in \mathscr{S} \text{ disjuntos tal que } E = \displaystyle\bigcupd_{i=1}^{n} S_i \right\} \] 
+		es un álgebra, llamada el álgebra generada por $\mathscr{S}$. Notemos que $\mathscr{A}(\mathscr{S})$ es el menor álgebra que contiene a $\mathscr{S}$:
 		\begin{enumerate}
-			\item La clase $\mathcal{I}_d$ de intervalos en $\R^d$ es una semiálgebra.
+			\item[(i)] $\mathscr{A}(\mathscr{S})$ es un álgebra y $\mathscr{S} \subseteq \mathscr{A}(\mathscr{S})$;
 
-			\item La clase $\widetilde{\mathcal{I}} \coloneq \{ (a,b] \cap \R \ : \ -\infty \leq a \leq b \leq \infty \}$ es una semiálgebra.
-
-			\item Si $X$ e $Y$ son espacios y $\mathscr{C}_X, \mathscr{C}_Y$ son semiálgebras en $X$ e $Y$ respectivamente, entonces
-			\[ \mathscr{C}_X \times \mathscr{C}_Y \coloneq \{ F \times G \ : \ F \in \mathscr{C}_X,\ G \in \mathscr{C}_Y \} \]
-			es una semiálgebra en $X \times Y$, llamada "semiálgebra producto".
+			\item[(ii)] Si $\mathscr{A}'$ es un álgebra con $\mathscr{S} \subseteq \mathscr{A}'$ entonces $\mathscr{A}(\mathscr{S}) \subseteq \mathscr{A}'$.
 		\end{enumerate}
-	\end{eg}
+	\end{enumerate}
+\end{eg}
+\begin{note}
+	Toda álgebra es una semiálgebra.
+\end{note}
 
-	\begin{definition}[álgebra]
-		Sean $X$ un espacio y $\mathscr{A}$ una clase de subconjuntos de $X$. Decimos que $\mathscr{A}$ es un álgebra (de subconjuntos de $X$) si cumple que:
-		\begin{enumerate}
-			\item[(i)] $\varnothing \in \mathscr{A}$;
-			
-			\item[(ii)] $\mathscr{A}$ es cerrado por intersecciones finitas;
+\begin{definition}[$\sigma$-álgebra]
+	Una clase (no vacía) $\mathscr{M}$ de subconjuntos de un espacio $X$ se dice una $\sigma$-álgebra si cumple:
+	\begin{enumerate}
+		\item $\varnothing \in \mathscr{M}$;
 
-			\item[(iii)] ($\mathscr{A}$ es cerrada por complementos) $A \in \mathscr{A} \implies A^c \in \mathscr{A}$. 
-		\end{enumerate}	
-			\noindent Equivalentemente, en presencia de (iii), (ii) se puede reemplazar por:	
+		\item $E \in \mathscr{M} \implies E^c \in \mathscr{M}$;
+
+		\item $(E_n)_{n\in\N} \subseteq \mathscr{M} \implies \bigcup_{n\in\N} E_n \in \mathscr{M}$.
+	\end{enumerate}
+	\noindent Llamamos al par $(X,\mathscr{M})$ un \underline{espacio medible} y a los elementos de $\mathscr{M}$, \underline{conjuntos medibles}.
+\end{definition}
+
+\begin{note}~
+	\begin{enumerate}
+		\item Todo $\sigma$-álgebra es un álgebra;
+
+		\item Equivalentemente, en presencia de (1), (3) se puede reemplazar por
 		\begin{enumerate}
-			\item[(ii')] ($\mathscr{A}$ es cerrada por uniones finitas) $A,B\in \mathscr{A} \implies A \cup B \in \mathscr{A}$. (\textbf{Dem:} Ejercicio!)
+			\item[(3'.)] $(E_n)_{n\in\N} \subseteq \mathscr{M} \implies \bigcap_{n\in\N} E_n \in \mathscr{M}$.
 		\end{enumerate}
-	\end{definition}
+	\end{enumerate}
+\end{note}
 
-	\begin{eg}~
+\begin{eg}~
+	\begin{enumerate}
+		\item $\sigma$-álgebra $\implies$ álgebra $\implies$ semiálgebra (no valen las recíprocas);
+
+		\item $\{\varnothing,X\},\mathcal{P}(X)$ son $\sigma$-álgebras;
+
+		\item Si $(\mathscr{M}_{\gamma})_{\gamma \in \Gamma}$ son $\sigma$-álgebras, entonces
+		\[ \displaystyle\bigcap_{\gamma\in\Gamma} \mathscr{M}_{\gamma} \coloneq \{ E \subseteq X \ : \ E \in \mathscr{M}_{\gamma},\ \forall \gamma \in \Gamma \} \]
+		es una $\sigma$-álgebra.
+		
+		\item Si $\mathscr{M}$ es una clase de subconjuntos de $X$, entonces
+		\[ \sigma(\mathscr{M}) \coloneq \displaystyle\bigcap_{\begin{aligned}
+			\mathscr{M}& \ \sigma\text{-álgebra} \\
+			& \mathscr{C}\subseteq\mathscr{M}
+		\end{aligned}} \mathscr{M} \]
+		es la $\sigma$-álgebra generada por $\mathscr{M}$. De hecho, $\sigma(\mathscr{M})$ es la menor $\sigma$-álgebra que contiene a $\mathscr{C}$:
 		\begin{enumerate}
-			\item $X$ espacio, $\mathscr{A}_1 \coloneq \{\varnothing, X\},\ \mathscr{A}_2 \coloneq \mathcal{P}(X)$ son álgebras (donde $\mathscr{A}$ es llamada el álgebra trivial);
+			\item $\sigma(\mathscr{C})$ es $\sigma$-álgebra y $\mathscr{C} \subseteq \sigma(\mathscr{C})$;
 
-			\item Sea $\mathscr{S}$ una semiálgebra de subconjuntos de un espacio $X$. Entonces 
-			\[ \mathscr{A} \coloneq \{ E \subseteq X \ : \ \exists S_1,\dots,S_n \in \mathscr{S} \text{ disjuntos tal que } E = \displaystyle\bigcupd_{i=1}^{n} S_i \} \] 
-			es un álgebra, llamada el álgebra generada por $\mathscr{S}$. Notemos que $\mathscr{A}(\mathscr{S}$ es el menor álgebra que contiene a $\mathscr{S}$:
-			\begin{enumerate}
-				\item[(i)] $\mathscr{A}(\mathscr{S})$ es un álgebra y $\mathscr{S} \subseteq \mathscr{A}(\mathscr{S})$;
-
-				\item[(ii)] Si $\mathscr{A}'$ es un álgebra con $\mathscr{S} \subseteq \mathscr{A}'$ entonces $\mathscr{A}(\mathscr{S} \subseteq \mathscr{A}'$.
-			\end{enumerate}
+			\item Si $\mathscr{F}$ es $\sigma$-álgebra y $\mathscr{C} \subset \mathscr{F}$ entonces $\sigma(\mathscr{C}) \subseteq \mathscr{F}$.
 		\end{enumerate}
-	\end{eg}
 
-	\begin{note}
-		Toda álgebr es una semiálgebra.
-	\end{note}
-
-	\begin{definition}[$\sigma$-álgebra]
-		Una clase (no vacía) $\mathscr{M}$ de subconjuntos de un espacio $X$ se dice una $\sigma$-álgebra si cumple:
-		\begin{enumerate}
-			\item $\varnothing \in \mathscr{M}$;
-
-			\item $E \in \mathscr{M} \implies E^c \in \mathscr{M}$;
-
-			\item $(E_n)_{n\in\N} \subseteq \mathscr{M} \implies \displaystyle\bigcup_{n\in\N} E_n \in \mathscr{M}$.
-		\end{enumerate}
-		\noindent Llamamos al par $(X,\mathscr{M})$ un \underline{espacio medible} y a los elementos de $\mathscr{M}$, \underline{conjuntos medibles}.
-	\end{definition}
-
-	\begin{note}~
-		\begin{enumerate}
-			\item Todo $\sigma$-álgebra es un álgebra;
-
-			\item Equivalentemente, en presencia de (1), (3) se puede reemplazar por
-			\begin{enumerate}
-				\item[(iii')] $(E_n)_{n\in\N} \subseteq \mathscr{M} \implies \displaystyle\bigcap_{n\in\N} E_n \in \mathscr{M}$.
-			\end{enumerate}
-		\end{enumerate}
-	\end{note}
-
-	\begin{eg}~
-		\begin{enumerate}
-			\item $\sigma$-álgebra $\implies$ álgebra $\implies$ semiálgebra (no valen las recíprocas);
-
-			\item $\{\varnothing,X\},\mathcal{P}(X)$ son $\sigma$-álgebras;
-
-			\item Si $(\mathscr{M}_{\gamma})_{\gamma \in \Gamma}$ son $\sigma$-álgebras, entonces
-			\[ \displaystyle\bigcap_{\gamma\in\Gamma} \mathscr{M}_{\gamma} \coloneq \{ E \subseteq X \ : \ E \in \mathscr{M}_{\gamma},\ \forall \gamma \in \Gamma \} \]
-			es una $\sigma$-álgebra.
-			
-			\item Si $\mathscr{M}$ es una clase de subconjuntos de $X$, entonces
-			\[ \sigma(\mathscr{M}) \coloneq \displaystyle\bigcap_{\begin{aligned}
-				\mathscr{M}& \ \sigma\text{-álgebra} \\
-				& \mathscr{C}\subseteq\mathscr{M}
-			\end{aligned}} \mathscr{M} \]
-			es la $\sigma$-álgebra generada por $\mathscr{C}$. De hecho, $\sigma(\mathscr{M})$ es la menor $\sigma$-álgebra que contiene a $\mathscr{C}$:
-			\begin{enumerate}
-				\item $\sigma(\mathscr{C})$ es $\sigma$-álgebra y $\mathscr{C} \subseteq \sigma(\mathscr{C})$;
-
-				\item Si $\mathscr{F}$ es $\sigma$-álgebra y $\mathscr{C} \subset \mathscr{F}$ entonces $\sigma(\mathscr{C}) \subseteq \mathscr{F}$.
-			\end{enumerate}
-
-			\item Si $(X,\mathscr{T})$ es un espacio topológico, $\sigma(\mathscr{T})$ se conoce como la \underline{$\sigma$-álgebra} \underline{de Borel}, y sus elementos se llaman \underline{Borelianos}. La notamos $\beta(X)\ (= \sigma(\mathscr{T}))$.
-		\end{enumerate}
-	\end{eg}
+		\item Si $(X,\mathscr{T})$ es un espacio topológico, $\sigma(\mathscr{T})$ se conoce como la \underline{$\sigma$-álgebra} \underline{de Borel}, y sus elementos se llaman \underline{Borelianos}. La notamos $\beta(X)\ (= \sigma(\mathscr{T}))$.
+	\end{enumerate}
+\end{eg}
 	
-	\begin{eg}
-		$\beta(\R)$ contiene a tods los abiertos, cerrados, intervalos, conjuntos de tipo $G_{\delta}$ y $F_{\sigma},\dots$ De hecho, $\beta(\R)=\sigma(\text{cerrados})=\sigma(\text{compactos})=\sigma(\mathcal{I})=\sigma(\widetilde{\mathcal{I}})$.
-	\end{eg}
+\begin{eg}
+	$\beta(\R)$ contiene a todos los abiertos, cerrados, intervalos, conjuntos de tipo $G_{\delta}$ y $F_{\sigma},\dots$ De hecho, $\beta(\R)=\sigma(\text{cerrados})=\sigma(\text{compactos})=\sigma(\mathcal{I})=\sigma(\widetilde{\mathcal{I}})$.
+\end{eg}
 
-	\begin{definition}
-		Sea $\mathscr{C}$ una clase (no vacía) de subconjuntos de $X$ y $\mu : \mathscr{C} \to [0,\infty]$ una función (la llamamos una \underline{función de conjuntos}). Diremos que:
-		\begin{enumerate}
-			\item[(i)] \textbf{$\mu$ es monótona} (en $\mathscr{M}$) si $A,B\in\mathscr{C},\ A \subseteq B \implies \mu(A)\leq\mu(B)$;
+\begin{definition}
+	Sea $\mathscr{C}$ una clase (no vacía) de subconjuntos de $X$ y $\mu : \mathscr{C} \to [0,\infty]$ una función (la llamamos una \underline{función de conjuntos}). Diremos que:
+	\begin{enumerate}
+		\item[(i)] \textbf{$\mu$ es monótona} (en $\mathscr{C}$) si $A,B\in\mathscr{C},\ A \subseteq B \implies \mu(A)\leq\mu(B)$;
 
-			\item[(ii)] \textbf{$\mu$ es finitamente aditiva} si $(A_i)_{i=1,\dots,n} \subseteq \mathscr{C}$ disjuntos $\implies \mu(\bigcupd_{i=1}^{n} A_i) = \sum_{i=1}^{n} \mu(A_i)$;
+		\item[(ii)] \textbf{$\mu$ es finitamente aditiva} si $(A_i)_{i=1,\dots,n} \subseteq \mathscr{C}$, entonces
+		\[ \mu(\bigcupd_{i=1}^{n} A_i) = \sum_{i=1}^{n} \mu(A_i); \]
 
-			\item[(iii)] \textbf{$\mu$ es $\sigma$-aditiva} si $(A_n)_{n\in\N} \subseteq \mathscr{C}$ disjuntos $\implies \mu (\bigcupd_{i=1}^{\infty} A_i ) = \sum_{i=1}^{\infty} \mu(A_i)$;
+		\item[(iii)] \textbf{$\mu$ es $\sigma$-aditiva} si $(A_n)_{n\in\N} \subseteq \mathscr{C}$ disjuntos, entonces
+		\[ \mu (\bigcupd_{i=1}^{\infty} A_i ) = \sum_{i=1}^{\infty} \mu(A_i); \]
 
-			\item[(iv)] \textbf{$\mu$ es $\sigma$-subaditiva} si $\mu(A)\leq \sum_{i=1}^{\infty}\mu(A_n)$, para todo $A \in \mathscr{C}$ y $(A_n)_{n\in\N}\subseteq\mathscr{C}$ tal que $A \subseteq \bigcup_{n\in\N} A_n$
-		\end{enumerate}
-	\end{definition}
+		\item[(iv)] \textbf{$\mu$ es $\sigma$-subaditiva} si $\mu(A)\leq \sum_{i=1}^{\infty}\mu(A_n)$, para todo $A \in \mathscr{C}$ y $(A_n)_{n\in\N}\subseteq\mathscr{C}$ tal que $A \subseteq \bigcup_{n\in\N} A_n$
+	\end{enumerate}
+\end{definition}

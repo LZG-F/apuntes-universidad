@@ -1,0 +1,111 @@
+\section{Clase 12 (03/09)}
+
+\begin{theorem}
+	Si $\mu^*$ es una medida exterior sobre un espacio $X$, entonces:
+	\begin{enumerate}
+		\item $\mu^*(E) = 0 \implies E$ es $\mu^*$-medible;
+
+		\item $\mathscr{M}_{\mu^*} \coloneq \{E \subseteq X \ \big| \ E \text{ es } \mu^* \text{-medible}\}$ es $\sigma$-álgebra;
+
+		\item $\mu \coloneq \mu^* \big|_{\mathscr{M}_{\mu^{*}}}$ es una medida y $(X, \mathscr{M}_{\mu^{*}}, \mu)$ es completo.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}[Proof 3][3]
+	Debemos ver que si $(E_n)_{n\in\N} \subseteq \mathscr{M}_{\mu^*}$ son disjuntos entonces
+	\[ \mu \left( \displaystyle\bigcupd_{n=1}^{\infty} \right) = \sum_{n\in\N} \mu(E_n) \]
+	La desigualdad ($\leq$) viene dada ya que $\mu^*$ es $\sigma$-aditiva. Entonces, basta ver la desigualdad ($\geq$). Para esto, notamos que:
+	\[
+	\mu^{*} \left( \displaystyle\bigcupd_{n=1}^{\infty} E_n \right) \tikzmark{c}\geq \mu^* \left( \displaystyle\bigcupd_{n=1}^{M} E_n \right) \tikzmark{d}= \sum_{n=1}^{M}  \mu^*(E_n)
+	\]
+
+	\begin{tikzpicture}[remember picture, overlay]
+	\draw[arrows=->]
+		( $ (pic cs:c) + (6pt,-1ex) $ ) --
+		( $ (pic cs:c) +(6pt,-4ex) $ );
+		\node [anchor=north]
+		at ( $ (pic cs:c) +(6pt,-4ex) $ )
+		{$\mu^* \text{-monótona}$};
+	\draw[arrows=->]
+		( $ (pic cs:d) + (6pt,-1ex) $ ) --
+		( $ (pic cs:d) +(6pt,-4ex) $ );
+		\node [anchor=north]
+		at ( $ (pic cs:d) +(20pt,-4ex) $ )
+		{$E_n \text{ es } \mu^* \text{-medible } \forall n$};
+	\end{tikzpicture}
+
+	\bigskip
+	\noindent Si tomamos $M \longrightarrow \infty$, resulta que 
+	\[ \mu^*\left( \bigcupd_{n=1}^{\infty} E_n \right) \geq \sum_{n=1}^{\infty} \mu^* (E_n). \]
+	Entonces, $\mu$ es medida. Ahora, tenemos que ver que $(X, \mathscr{M}_{\mu^*}, \mu)$ es completo. Notamos que si $E \subseteq X$ es $\mu$-nulo, es decir, $\exists N \in \mathscr{M}_{\mu^*}$ tal que $E \subseteq N$ y $\mu(N) = 0$, entonces
+	\[ \mu^*(E) \leq \mu^*(N) = 0 \]
+	Por lo tanto, $\mu^*(E) = 0$ y, por $(1),\ E \in \mathscr{M}_{\mu^*}$.
+\end{proof}
+
+\begin{observe}
+	Esto muestra que si $\mu$ es finitamente aditiva ($\implies$ monótona) y $\sigma$-subaditiva, entonces es $\sigma$-aditiva (es un si y sólo si).
+\end{observe}
+
+\begin{prop}
+	Si $\tau$ es una premedida sobre la semiálgebra $\mathscr{S}$ que es extendible $(E_1 + E_2)$ entonces su medida exterior asociada $\mu^{*}_{\tau}$ cumple que:
+	\begin{enumerate}
+		\item[C1)] $\mathscr{S} \subseteq \mathscr{M}_{\mu^*} \quad (\implies \sigma(\mathscr{S}) \subseteq \mathscr{M}_{\mu^{*}})$;
+
+		\item[C2)] $\mu^{*}_{\tau}(A) = \tau(A) \quad \forall A \in \mathscr{S} \iff \mu(A) = \tau(A) \quad \forall A \in \mathscr{S}$ por (C1).
+	\end{enumerate}
+\end{prop}
+\begin{proof}
+	(C2) ya se ha visto antes, entonces queda demostrar (C1). Necesitamos ver que si $A \in \mathscr{S}$ entonces
+	\[ \mu^{*}_{\tau}(F) \geq \mu^{*}_{\tau}(F \cap A) + \mu^{*}_{\tau}(F \cap A^c) \quad \forall F \subseteq X. \]
+	En efecto, si $\mu^{*}_{\tau}(F) = \infty$, es evidente. Si $\mu^{*}_{\tau}(F) < \infty$, dado $\varepsilon > 0$, existen $(B_i)_{i\in\N} \subseteq \mathscr{S}$ tal que $F \subseteq \bigcup_{i\in\N} B_i$ y $\sum_{i\in\N} \leq \mu^{*}_{\tau}(F) + \varepsilon$. Por otro lado, como $A \in \mathscr{S}$, existen $S_{1},\dots,S_{k}$ disjuntos tales que $A^c = \bigcupd_{j=1}^{k} S_j$. Como $B_i = \bigcup_{j=1}^{k} B_i \cap S_j$, donde $S_0 \coloneq A$, por (E1)
+	\[ \tau(B_i) = \sum_{j=0}^{k} \tau(B_i \cap S_j). \]
+	Sumando en $i$, resulta
+	\begin{align*}
+		\mu^{*}_{\tau}(F) + \varepsilon \geq \sum_{i\in\N} \tau(B_i) &= \sum_{i\in\N}\sum_{i=0}^{k} \tau(B_i \cap S_j) \\
+		&= \sum_{j=0}^{k} \sum_{i\in\N}\tau(B_i \cap S_j) \\
+		\left(\substack{B_i \cap S_j \in \mathscr{S} \\
+					\text{y } (C2)}\right) &= \sum_{j=0}^{k} \sum_{i\in\N} \mu^{*}_{\tau}(B_i \cap S_j) \\
+		\left(F \cap S_j \subseteq \textstyle\bigcup_{i\in\N} B_i \cap S_j \Rightarrow\right) & \geq \sum_{j=0}^{k} \mu^{*}_{\tau}(F \cap S_j) \\
+		&= \mu^{*}_{\tau}(F \cap A) + \sum_{j=1}^{k} \mu^{*}_{\tau}(F \cap S_j) \\
+		\left(F \cap S^c \subseteq \textstyle\bigcup_{j=1}^{k} F \cap S_j \Rightarrow \right) & \geq \mu^{*}_{\tau}(F \cap A) + \mu^{*}_{\tau}(F \cap A^c)
+	.\end{align*}
+	Luego, $A$ es $\mu^{*}_{\tau}$-medible (y se cumple $(C1)$).
+\end{proof}
+
+\begin{corollary}[Carathéodory hasta ahora - Versión 1]
+	Si $\mu^{*}$ es una medida exterior en $X$, entonces
+	\[ \mathscr{M}_{\mu^{*}} \coloneq \{E \subseteq X \ : \ E \text{ es } \mu^{*} \text{-medible}\} \]
+	es $\sigma$-álgebra y $(X, \mathscr{M}_{\mu^{*}}, \mu^{*}\big|_{\mathscr{M}_{\mu^*}})$ es un espacio de medida completo. \\
+	\indent Además, si $\tau$ es una premedida en una semiálgebra $\mathscr{S}$ que es extendible y $\mu^{*}_{\tau}$ es su medida exterior asociada, entonces $\sigma(\mathscr{S}) \subseteq \mathscr{M}_{\mu^{*}_{\tau}}$ y $\mu_{\tau} \coloneq \mu^{*}_{\tau}\big|_{\mathscr{M}_{\mu^{*}}}$ es una medida que se extiende a $\tau$.
+\end{corollary}
+
+\begin{theorem}
+	Si $\tau$ es una premedida sobre una semiálgebra $\mathscr{S}$ que es unívocamente extendible $(E1 + E2 + E3)$ entonces $\sigma(\mathscr{S}) \subseteq \mathscr{M}_{\mu^{*}_{\tau}}$ y además son equivalentes:
+	\begin{enumerate}
+		\item $A \in \mathscr{M}_{\mu^{*}_{\tau}}$;
+
+		\item $\exists B \in \sigma(\mathscr{S}),\ N_1 \in \mathscr{M}_{\mu^{*}_{\tau}}$ con $\mu^{*}_{\tau}(N_1) = 0$ tal que $A = B - N_{1}$;
+
+		\item $\exists C \in \sigma(\mathscr{S}),\ N_{2} \in \mathscr{M}_{\mu^{*}_{\tau}}$ con $\mu^{*}_{\tau}(N_{2}) = 0$ tal que $A = C \cup N_{2}$.
+	\end{enumerate}
+\end{theorem}
+\begin{observe}
+	$\mu^{*}_{\tau}(A) = \mu^{*}_{\tau}(B) = \mu^{*}_{\tau}(C)$ y $\mathscr{M}_{\mu^{*}_{\tau}}$ es la $\mu^{*}_{\tau}\big|_{\sigma(\mathscr{S})}$-completación.
+\end{observe}
+\begin{proof}
+	Que $(2) \implies (1)$ y $(3) \implies (1)$ es inmediato. Veamos que $(1) \implies (2) \implies (3)$. \par
+	\medskip
+	\noindent\fbox{$(1) \implies (2)$} Supongamos primero que $\mu^{*}_{\tau}(A) < \infty$. Dado $\varepsilon > 0$, existen $(B^{(\varepsilon{})}_{n})_{n\in\N} \subseteq \mathscr{S}$ tal que $A \subseteq \bigcup_{n\in\N} B^{(\varepsilon{})}_{n}$ y $\sum_{n\in\N}\tau(B^{(\varepsilon)}_{n}) \leq \mu^{*}_{\tau}(A) + \varepsilon{}$. En praticular,
+	\begin{align*}
+		\mu^{*}_{\tau}(A) \leq \mu^{*}_{\tau}\left( \bigcup_{n\in\N} B^{(\varepsilon)}_{n} \right) & \leq \sum_{n\in\N} \mu^{*}_{\tau}(B^{(\varepsilon)}_{n}) \\
+		\Big( \substack{\mu^{*}_{\tau} \text{ extiende a} \\
+			\tau \text{ si es extendible}} \Big) &= \sum_{n\in\N} \tau(B^{(\varepsilon{})}_{n}) \leq \mu^{*}_{\tau}(A) + \varepsilon{} \tag{$*$}
+	.\end{align*}
+	Sea $B \coloneq \bigcap_{k\in\N} \bigcup_{n\in\N} B^{(\frac{1}{k})}_{n}$. Notemos que $B \in \sigma(\mathscr{S})$ y que $A \subseteq B$. Además, como $A,B \in \mathscr{M}_{\mu^{*}}$ por hipótesis y $\sigma(\mathscr{S}) \subseteq \mathscr{M}_{\mu^{*}}$ y $\mu_{\tau} = \mu^{*}_{\tau}\big|_{\mathscr{M}_{\mu^{*}_{\tau}}}$ es finitamente aditiva y si definimos $N_{1} \coloneq B \setminus A$ y $B^{(\frac{1}{k})} \coloneq \bigcup_{n\in\N}B^{(\frac{1}{k})}_{n}$, entonces $N_{1} \in \mathscr{M}_{\mu^{*}_{\tau}},\ A \coloneq B - N_{2}$, y para todo $k_{0} \in \N$
+	\begin{align*}
+		\mu^{*}_{\tau}(N_{1}) = \mu^{*}_{\tau}(B - A) &= \mu^{*}_{\tau} \Big( \bigcap_{k\in\N} (B^{(\frac{1}{k})} \setminus A) \Big) \\
+		& \leq \mu^{*}_{\tau}(B^{(\frac{1}{k_{0}})}-A)
+	.\end{align*}
+	Luego,
+	\[ A \subseteq B^{(\frac{1}{k_{0}})} \implies \mu^{*}_{\tau}(B^{(\frac{1}{k_{0}})}) - \mu^{*}_{\tau}(A) \leq \frac{1}{k_{0}} \tag{$*$} \]
+	Tomando $k_{0} \longrightarrow{} \infty$, resulta $(1) \implies (2)$.
+\end{proof}
