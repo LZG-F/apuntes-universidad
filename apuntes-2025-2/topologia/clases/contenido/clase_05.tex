@@ -1,118 +1,119 @@
+\clase{5}{13 de Agosto}{}
 
-	\section{Clase 5 (13/08): Cerrados, clausura, puntos límites [17]}
+\section{Cerrados, clausura, puntos límites (17)}
 
-	\begin{definition}[conjunto cerrado]
-		$X$ espacio topológico, $C \subset X$ es cerrado si $X \textbackslash C$ es abierto. 
-	\end{definition}
+\begin{definition}[conjunto cerrado]
+	$X$ espacio topológico, $C \subset X$ es cerrado si $X \textbackslash C$ es abierto. 
+\end{definition}
 
-	\begin{lemma}
-		\text{}
-		\begin{enumerate}
-			\item $X, \varnothing$ son cerrados;
+\begin{lemma}
+	\text{}
+	\begin{enumerate}
+		\item $X, \varnothing$ son cerrados;
 
-			\item Si $C_{\alpha} \subset X$ cerrados, $\alpha \in A \Rightarrow \bigcap_{\alpha} C_{\alpha}$ es cerrado;
+		\item Si $C_{\alpha} \subset X$ cerrados, $\alpha \in A \Rightarrow \bigcap_{\alpha} C_{\alpha}$ es cerrado;
 
-			\item Si $C_1, \dots, C_n$ cerrados, entonces $C_1 \cup \cdots \cup C_n$ es cerrado.
-		\end{enumerate}
-	\end{lemma}
+		\item Si $C_1, \dots, C_n$ cerrados, entonces $C_1 \cup \cdots \cup C_n$ es cerrado.
+	\end{enumerate}
+\end{lemma}
 
-	\begin{proof}[Proof ]
-		\text{}
-		\begin{enumerate}
-			\item $X = X \setminus \varnothing, \text{ } \varnothing = X \setminus X$;
+\begin{proof}[Proof ]
+	\text{}
+	\begin{enumerate}
+		\item $X = X \setminus \varnothing, \text{ } \varnothing = X \setminus X$;
 
-			\item $C_{\alpha} = \displaystyle\bigcap_{\alpha \in A} C_{\alpha} \Rightarrow X \setminus C = X \setminus \displaystyle\bigcap_{\alpha \in A} C_{\alpha} = \underbrace{\displaystyle\bigcup_{\alpha \in A} (\overbrace{X \setminus C_{\alpha}}^{\text{abto}})}_{\text{abto}}$;
+		\item $C_{\alpha} = \displaystyle\bigcap_{\alpha \in A} C_{\alpha} \Rightarrow X \setminus C = X \setminus \displaystyle\bigcap_{\alpha \in A} C_{\alpha} = \underbrace{\displaystyle\bigcup_{\alpha \in A} (\overbrace{X \setminus C_{\alpha}}^{\text{abto}})}_{\text{abto}}$;
 
-			\item $C = C_1 \cup \cdots \cup C_n \Rightarrow X \setminus C = X \setminus (C_1 \cup \cdots \cup C_n) = \underbrace{(\overbrace{X \setminus C_1}^{\text{abto}}) \cap \cdots \cap (\overbrace{X \setminus C_n}^{\textrm{abto}})}_{\text{abto}}$.
-		\end{enumerate}
-	\end{proof}
+		\item $C = C_1 \cup \cdots \cup C_n \Rightarrow X \setminus C = X \setminus (C_1 \cup \cdots \cup C_n) = \underbrace{(\overbrace{X \setminus C_1}^{\text{abto}}) \cap \cdots \cap (\overbrace{X \setminus C_n}^{\textrm{abto}})}_{\text{abto}}$.
+	\end{enumerate}
+\end{proof}
 
-	\begin{eg}
-		\text{}
-		\begin{enumerate}
-			\item $X = \R, [a,b]$ es cerrado ($\R \setminus [a,b] = (-\infty, a) \cup (b, \infty)$);
+\begin{eg}
+	\text{}
+	\begin{enumerate}
+		\item $X = \R, [a,b]$ es cerrado ($\R \setminus [a,b] = (-\infty, a) \cup (b, \infty)$);
 
-			\item $(X,d)$ espacio métrico (+ topología métrica) $\Rightarrow \overline{B_{\varepsilon}} (x)$ es cerrado. Luego, $X \setminus \overline{B_{\varepsilon}} (x) = \bigcup_{y \in X \setminus \displaystyle\overline{B_{\varepsilon}} (x)} B_{d(x,y)-\varepsilon} (y)$ (abierto en topología métrica);
+		\item $(X,d)$ espacio métrico (+ topología métrica) $\Rightarrow \overline{B_{\varepsilon}} (x)$ es cerrado. Luego, $X \setminus \overline{B_{\varepsilon}} (x) = \bigcup_{y \in X \setminus \displaystyle\overline{B_{\varepsilon}} (x)} B_{d(x,y)-\varepsilon} (y)$ (abierto en topología métrica);
 
-			\item $X$ con la topología discreta $\Rightarrow$ todo subconjunto de $X$ es abierto y cerrado!
-		\end{enumerate}
-	\end{eg}
+		\item $X$ con la topología discreta $\Rightarrow$ todo subconjunto de $X$ es abierto y cerrado!
+	\end{enumerate}
+\end{eg}
 
-	\begin{definition}[cerrado topología inducida]
-		$X$ espacio topológico, $Y \subset X$ (con la topología inducida), $C \subset Y$ es cerrado en $Y$ si es cerrado en la topología inducida.
-	\end{definition}
+\begin{definition}[cerrado topología inducida]
+	$X$ espacio topológico, $Y \subset X$ (con la topología inducida), $C \subset Y$ es cerrado en $Y$ si es cerrado en la topología inducida.
+\end{definition}
 
-	\begin{lemma}
-		$C$ es cerrado en $Y$ si y solo si $C = C' \cap Y$ con $C'$ cerrado en $X$.
-	\end{lemma}
+\begin{lemma}
+	$C$ es cerrado en $Y$ si y solo si $C = C' \cap Y$ con $C'$ cerrado en $X$.
+\end{lemma}
 
-	\begin{proof}[Proof ]
-		$\begin{aligned}[t]
-			C \subset Y \text{ es cerrado en } Y \iff \ & Y \textbackslash C \text{ es abierto en } Y \\
-			\iff \ & Y \textbackslash C = U \cap C \text{ con } U \subset X \text{ abierto} \\
-			\iff \ & C = (X \textbackslash U) \cap Y = C' \cap Y \text{, con } \\
-			& C' = X \textbackslash U \text{ cerrado}
-		.\end{aligned}$
-	\end{proof}
+\begin{proof}[Proof ]
+	$\begin{aligned}[t]
+		C \subset Y \text{ es cerrado en } Y \iff \ & Y \textbackslash C \text{ es abierto en } Y \\
+		\iff \ & Y \textbackslash C = U \cap C \text{ con } U \subset X \text{ abierto} \\
+		\iff \ & C = (X \textbackslash U) \cap Y = C' \cap Y \text{, con } \\
+		& C' = X \textbackslash U \text{ cerrado}
+	.\end{aligned}$
+\end{proof}
 
-	\begin{definition}[clausura e interior]
-		$X$ espacio topológico, $A \subset X$:
-		\begin{enumerate}
-			\item El interior de $A$ es $\mathring{A} =$ unión de todos los abiertos contenidos en $A$;
+\begin{definition}[clausura e interior]
+	$X$ espacio topológico, $A \subset X$:
+	\begin{enumerate}
+		\item El interior de $A$ es $\mathring{A} =$ unión de todos los abiertos contenidos en $A$;
 
-			\item La clausura de $A$ es $\overline{A} =$ intersección de todos los cerrados que contienen $A$.
-		\end{enumerate}
-	\end{definition}
+		\item La clausura de $A$ es $\overline{A} =$ intersección de todos los cerrados que contienen $A$.
+	\end{enumerate}
+\end{definition}
 
-	\begin{remark}
-		\text{ }
-		\begin{enumerate}
-			\item $\mathring{A}$ es abierto, $\overline{A}$ es cerrada, $\mathring{A} \subset A \subset \overline{A}$;
+\begin{remark}
+	\text{ }
+	\begin{enumerate}
+		\item $\mathring{A}$ es abierto, $\overline{A}$ es cerrada, $\mathring{A} \subset A \subset \overline{A}$;
 
-			\item $A$ es abierto si y solo si $\mathring{A} = A$. $A$ es cerrado si y solo si $\overline{A} = A$;
+		\item $A$ es abierto si y solo si $\mathring{A} = A$. $A$ es cerrado si y solo si $\overline{A} = A$;
 
-			\item $\overline{\overline{A}} = \overline{A}, \ \mathring{\mathring{A}} = \mathring{A}$;
+		\item $\overline{\overline{A}} = \overline{A}, \ \mathring{\mathring{A}} = \mathring{A}$;
 
-			\item El interior $\mathring{A}$ es el abierto mas grande contenido en $A$ y la clausura $\overline{A}$ es el cerrado mas pequeño que contiene a $A$.
-		\end{enumerate}
-	\end{remark}
+		\item El interior $\mathring{A}$ es el abierto mas grande contenido en $A$ y la clausura $\overline{A}$ es el cerrado mas pequeño que contiene a $A$.
+	\end{enumerate}
+\end{remark}
 
-	\begin{prop}
-		$X$ espacio topológico, $A \subset X$ cualquiera, $x \in X$.
-		\begin{align*}
-			x \in \overline{A} & \iff \forall U \text{ abierto conteniendo a } X \text{, se tiene } A \cap U \neq \varnothing \tag*{($*$)} \\
-			& \iff \text{ toda vecindad de } x \text{ interseca a } A \\
-			& \iff A \text{ contiene puntos arbitrariamente cercanos a } X \text{ (según la topología)}
-		.\end{align*}
-	\end{prop}
+\begin{prop}
+	$X$ espacio topológico, $A \subset X$ cualquiera, $x \in X$.
+	\begin{align*}
+		x \in \overline{A} & \iff \forall U \text{ abierto conteniendo a } X \text{, se tiene } A \cap U \neq \varnothing \tag*{($*$)} \\
+		& \iff \text{ toda vecindad de } x \text{ interseca a } A \\
+		& \iff A \text{ contiene puntos arbitrariamente cercanos a } X \text{ (según la topología)}
+	.\end{align*}
+\end{prop}
 
-	\begin{corollary}
-		$C \subset X$ es cerrado si y solo si $\forall x \in X$, si toda vecindad de $x$ contiene un punto de $C$, entonces $x \in X$.
-	\end{corollary}
+\begin{corollary}
+	$C \subset X$ es cerrado si y solo si $\forall x \in X$, si toda vecindad de $x$ contiene un punto de $C$, entonces $x \in X$.
+\end{corollary}
 
-	\begin{proof}[Proof ] (proposición 1.24) \\
-		\Ifstep Suponer que $x \not\in \overline{A}$. Entonces $\exists C$ cerrado con $A \subset C$ y $x \not\in C$. Luego, tomar $U \coloneq C \textbackslash C$ abierto. Entonces, $A \cap U = \varnothing$ y $x \in U$. Es decir, negamos $(*)$.
+\begin{proof}[Proof ] (proposición 1.24) \\
+	\Ifstep Suponer que $x \not\in \overline{A}$. Entonces $\exists C$ cerrado con $A \subset C$ y $x \not\in C$. Luego, tomar $U \coloneq C \textbackslash C$ abierto. Entonces, $A \cap U = \varnothing$ y $x \in U$. Es decir, negamos $(*)$.
 
-		\noindent \Onlyifstep Negamos $(*) \implies \exists U$ abierto con $x \in U$ y $U \cap A = \varnothing$. Luego, $C = X \textbackslash U$ cerrado con $A \subset C$ y $x \not\in C$. Entonces, $x \not\in A$.
-	\end{proof}
+	\noindent \Onlyifstep Negamos $(*) \implies \exists U$ abierto con $x \in U$ y $U \cap A = \varnothing$. Luego, $C = X \textbackslash U$ cerrado con $A \subset C$ y $x \not\in C$. Entonces, $x \not\in A$.
+\end{proof}
 
-	\begin{definition}[puntos de acumulación]
-		$A \subset X$. Decimos que $x \in X$ es punto límite/de acumulación de $A$ si $\forall \ U$ abierto conteniendo a $x$, se tiene que $U \cap ( A \textbackslash \{ x \} ) \neq \varnothing$. Escribimos $A' \coloneq \{ \text{puntos límite de } A \}$.
-	\end{definition}
+\begin{definition}[puntos de acumulación]
+	$A \subset X$. Decimos que $x \in X$ es punto límite/de acumulación de $A$ si $\forall \ U$ abierto conteniendo a $x$, se tiene que $U \cap ( A \textbackslash \{ x \} ) \neq \varnothing$. Escribimos $A' \coloneq \{ \text{puntos límite de } A \}$.
+\end{definition}
 
-	\begin{eg}
-		En $\R$, tenemos lo siguiente:
-		\begin{center}
-		\begin{tabular}{ | c | c | c | c | }
-			\hline
-			$A$ & $\mathring{A}$ & $\overline{A}$ & $A'$ \\
-			\hline
-			$(a,b)$ & $(a,b)$ & $[a,b]$ & $[a,b]$ \\
-			$[a,b)$ & $(a,b)$ & $[a,b]$ & $[a,b]$ \\
-			$[a,b]$ & $(a,b)$ & $[a,b]$ & $[a,b]$ \\
-			$[0,1] \cup \{2\}$ & $(0,1)$ & $[0,1] \cup \{2\}$ & $(0,1)$ \\
-			\hline
-		\end{tabular}
-		\end{center}
-		\noindent Notar que $2$ no es punto de acumulación.
-	\end{eg}
+\begin{eg}
+	En $\R$, tenemos lo siguiente:
+	\begin{center}
+	\begin{tabular}{ | c | c | c | c | }
+		\hline
+		$A$ & $\mathring{A}$ & $\overline{A}$ & $A'$ \\
+		\hline
+		$(a,b)$ & $(a,b)$ & $[a,b]$ & $[a,b]$ \\
+		$[a,b)$ & $(a,b)$ & $[a,b]$ & $[a,b]$ \\
+		$[a,b]$ & $(a,b)$ & $[a,b]$ & $[a,b]$ \\
+		$[0,1] \cup \{2\}$ & $(0,1)$ & $[0,1] \cup \{2\}$ & $(0,1)$ \\
+		\hline
+	\end{tabular}
+	\end{center}
+	\noindent Notar que $2$ no es punto de acumulación.
+\end{eg}

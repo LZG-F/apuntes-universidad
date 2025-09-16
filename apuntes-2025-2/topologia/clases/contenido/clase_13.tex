@@ -1,13 +1,15 @@
-\section{Clase 13 (03/09): Acciones Topológicas (Lee p.77)}
+\clase{13}{3 de Septiembre}{}
+\section{Acciones Topológicas (Lee p.77)}
 
 \begin{eg}[última propiedad clase pasada, punto 2]
 	Sea $\Gamma = \R,\ H = \Q \leadsto \overline{\Gamma} = \R / \Q$. Como $\Q$ no es cerrado en $\R$, entonces $\R / \Q$ no es Hausdorff. Además, veremos que la topología cociente en $\R / \Q$ es la indiscreta. Notar que $U \subset \R / \Q$ es abierto no vacío $\iff p^{-1}(U) \subset \R$ abierto no vacío. Tomar $U \subset \R / \Q$ no vacío, $\exists [x] = p(x) \in U (x \in \R) \implies p^{-1}(U)$ contiene a $x,y$; y de hecho contiene a $x$ tal que $\forall q \in \Q \ (p(x+q) = p(x))$. Por lo tanto, $p^{-1}(U)$ abierto (en $\R$) y $x+\Q \subset p^{-1}(U)$ (denso). $p^{-1}(U)$ es invariante por trasladar por $\Q$: si $y \in p^{-1}(U),\ q \in \Q \implies y+q \in p^{-1}(U)$. Como $x \in p^{-1}(U)$ abierto, entonces $\exists \varepsilon > 0$ tal que $(x-\varepsilon, x + \varepsilon) \subset p^{-1}(U)$. Luego, $(x - \varepsilon + q, x + \varepsilon + q) \subset p^{-1}(U)\ \forall q \in \Q$. En conclusión, $p^{-1}(U) = \R$ y $U = \R / \Q$, $\therefore$ la topología en $\R / \Q $ es $\{ \varnothing, \R / \Q \}$.
 \end{eg}
-
+\medskip
 \begin{eg}[Furstenberg]
 	Se puede probar que existen infinitos primos de manera puramente topológica (usando topología profinita en $\Z$).
 \end{eg}
-\begin{proof}[Proof ]
+
+\begin{proof}
 	Base: $\mathcal{B} = \{ \underbrace{\overbrace{a\Z}^{\Gamma'} + b}_{b\Gamma'} \ \big| \ a \neq 0,\ b \in \Z \}$. Observar que, cada $a\Z + b$ es infinito. Esto implica que cada abierto con la topología profinita es o bien vacío, o infinito. En $\Z$, todo número no primo es o bien $1$ o $-1$, o $p\cdot a$ con $p$ primo y $a \in \Z$. Entonces, 
 	\[ \Z = \{-1,1\} \ \sqcup \bigcup_{p\text{ primo}} p\Z \tag{$*$} \]
 	Notar que cada $p\Z$ es cerrado:

@@ -1,103 +1,104 @@
+\clase{4}{11 de Agosto}{}
 
-	\section{Clase 4 (11/08): Topología producto [15] e inducida [16]}
+\section{Topología producto (15) e inducida (16)}
 
-	\begin{lemma}
-		$\mathcal{B},\mathcal{B}'$ bases en $X$ que generan la topología $\tau,\tau'$ respectivamente. Entonces
-		\begin{align*}
-			\tau' \supset \tau & \iff (\text{todo elemento de } \mathcal{B} \text{ está en } \tau'); \\
-			& \iff \forall B \in \mathcal{B}, B \text{ es unión de elementos de } \mathcal{B}'; \\
-			& \iff \forall B \in \mathcal{B}, \forall x \in B, \exists B' \in \mathcal{B}' \text{ tal que } x \in B' \subset B
-		.\end{align*}
-	\end{lemma}
+\begin{lemma}
+	$\mathcal{B},\mathcal{B}'$ bases en $X$ que generan la topología $\tau,\tau'$ respectivamente. Entonces
+	\begin{align*}
+		\tau' \supset \tau & \iff (\text{todo elemento de } \mathcal{B} \text{ está en } \tau'); \\
+		& \iff \forall B \in \mathcal{B}, B \text{ es unión de elementos de } \mathcal{B}'; \\
+		& \iff \forall B \in \mathcal{B}, \forall x \in B, \exists B' \in \mathcal{B}' \text{ tal que } x \in B' \subset B
+	.\end{align*}
+\end{lemma}
 
-	\begin{lemma}
-		$\mathcal{B}_{X \times Y} \coloneq \{ U \times U' \text{ | } U \text{ abierto en } X, U' \text{ abierto en } Y \}$ es una base para una topología.
-	\end{lemma}
+\begin{lemma}
+	$\mathcal{B}_{X \times Y} \coloneq \{ U \times U' \text{ | } U \text{ abierto en } X, U' \text{ abierto en } Y \}$ es una base para una topología.
+\end{lemma}
 
-	\begin{definition}[topología producto]
-		Topología producto en $X \times Y$ es la generada por $\mathcal{B}_{X \times Y}$.
-	\end{definition}
+\begin{definition}[topología producto]
+	Topología producto en $X \times Y$ es la generada por $\mathcal{B}_{X \times Y}$.
+\end{definition}
 
-	\begin{proof}[Proof ] (lemma 1.13.)
-		\begin{enumerate}
-			\item Como $X \times Y \in \mathcal{B}_{X \times Y} \Rightarrow \bigcup_{B \in \mathcal{B}_{X \times Y}} B = X \times Y$.
+\begin{proof}[Proof ] (lemma 1.13.)
+	\begin{enumerate}
+		\item Como $X \times Y \in \mathcal{B}_{X \times Y} \Rightarrow \bigcup_{B \in \mathcal{B}_{X \times Y}} B = X \times Y$.
 
-			\item Tomar $B_1 = U_1 \times U_1' \in \mathcal{B}_{X \times Y}, B_2 = U_2 \times U_2' \in \mathcal{B}_{X \times Y}, (x,y) \in B_1 \cap B_2 \text{ } (U_1,U_2 \text{ abiertos en } X \text{ y } U_1',U_2' \text{ abiertos en } Y)$. Notar que:
-			\[
-			B_1 \cap B_2 = (U_1 \times U_1') \cap (U_2 \times U_2') = \underbrace{(U_1 \cap U_2)}_{\text{abto. en } X} \times \underbrace{(U_1' \cap U_2')}_{\text{abto. en } Y} \in \mathcal{B}_{X \times Y}.
-			\]
-		\end{enumerate}
-	\end{proof}
+		\item Tomar $B_1 = U_1 \times U_1' \in \mathcal{B}_{X \times Y}, B_2 = U_2 \times U_2' \in \mathcal{B}_{X \times Y}, (x,y) \in B_1 \cap B_2 \text{ } (U_1,U_2 \text{ abiertos en } X \text{ y } U_1',U_2' \text{ abiertos en } Y)$. Notar que:
+		\[
+		B_1 \cap B_2 = (U_1 \times U_1') \cap (U_2 \times U_2') = \underbrace{(U_1 \cap U_2)}_{\text{abto. en } X} \times \underbrace{(U_1' \cap U_2')}_{\text{abto. en } Y} \in \mathcal{B}_{X \times Y}.
+		\]
+	\end{enumerate}
+\end{proof}
 
-	\begin{note}
-		Misma demostración (salvo modificaciones esperables) implica que si $\mathcal{B}_X$ es base de $X$, $\mathcal{B}_Y$ base de $Y$, $\mathcal{B}_{X \times Y}' \coloneq \{ B \times B' \text{ | } B \in \mathcal{B}_X, B' \in \mathcal{B}_Y \}$ es base y genera la misma topología generada por $\mathcal{B}_{X \times Y}$.  
-	\end{note}
+\begin{note}
+	Misma demostración (salvo modificaciones esperables) implica que si $\mathcal{B}_X$ es base de $X$, $\mathcal{B}_Y$ base de $Y$, $\mathcal{B}_{X \times Y}' \coloneq \{ B \times B' \text{ | } B \in \mathcal{B}_X, B' \in \mathcal{B}_Y \}$ es base y genera la misma topología generada por $\mathcal{B}_{X \times Y}$.  
+\end{note}
 
-	\begin{eg}[importante]
-		$\R^2 = \R \times \R$. Propiedad: topología estándar de $\R^2$ (métrica euclidiana) es igual a la topología producto en $\R \times \R$ (cada uno con su topología estándar).
-		\begin{itemize}
-			\item Topología estándar en $\R^2$: generada por base $\mathcal{B} = \{ B_{\varepsilon} (x,y) \text{ | } (x,y) \in \R^2, \varepsilon > 0 \}$.
+\begin{eg}[importante]
+	$\R^2 = \R \times \R$. Propiedad: topología estándar de $\R^2$ (métrica euclidiana) es igual a la topología producto en $\R \times \R$ (cada uno con su topología estándar).
+	\begin{itemize}
+		\item Topología estándar en $\R^2$: generada por base $\mathcal{B} = \{ B_{\varepsilon} (x,y) \text{ | } (x,y) \in \R^2, \varepsilon > 0 \}$.
 
-			\item Topología producto en $\R^2$: generada por base $\mathcal{B}' = \{ (a,b) \times (c,d) \text{ | } a < b, c < d \}$.  
-		\end{itemize}
-	\end{eg}
+		\item Topología producto en $\R^2$: generada por base $\mathcal{B}' = \{ (a,b) \times (c,d) \text{ | } a < b, c < d \}$.  
+	\end{itemize}
+\end{eg}
 
-	\begin{ex}
-		Verificar para $\R^n$.
-	\end{ex}
+\begin{ex}
+	Verificar para $\R^n$.
+\end{ex}
 
-	\begin{definition}[topología inducida]
-		$\tau|_Y \coloneq \{ Y \cap U \text{ | } U \in \tau \}$ es topología en $Y$. La llamamos topología en $Y$ inducida por $X$.  
-	\end{definition}
+\begin{definition}[topología inducida]
+	$\tau|_Y \coloneq \{ Y \cap U \text{ | } U \in \tau \}$ es topología en $Y$. La llamamos topología en $Y$ inducida por $X$.  
+\end{definition}
 
-	\begin{proof}[Proof ] (topología inducida es topología)
-		\begin{enumerate}
-			\item $\varnothing = \varnothing \cap Y, Y = X \cap Y$.
+\begin{proof}[Proof ] (topología inducida es topología)
+	\begin{enumerate}
+		\item $\varnothing = \varnothing \cap Y, Y = X \cap Y$.
 
-			\item Si $U_{\alpha} \in \tau|_Y, \alpha \in A \Rightarrow U_{\alpha} = U_{\alpha}' \cap Y$ con $U_{\alpha}' \in \tau \Rightarrow \bigcup_{\alpha \in A} U_{\alpha} = \bigcup_{\alpha \in A} (U_{\alpha \in A} \cap Y) = \left[ \bigcup_{\alpha \in A} U_{\alpha} \right] \times Y \in \tau|_Y$.
+		\item Si $U_{\alpha} \in \tau|_Y, \alpha \in A \Rightarrow U_{\alpha} = U_{\alpha}' \cap Y$ con $U_{\alpha}' \in \tau \Rightarrow \bigcup_{\alpha \in A} U_{\alpha} = \bigcup_{\alpha \in A} (U_{\alpha \in A} \cap Y) = \left[ \bigcup_{\alpha \in A} U_{\alpha} \right] \times Y \in \tau|_Y$.
 
-			\item $U_1,\dots,U_n \in \tau|_Y, U_i = U_i' \cap Y \Rightarrow U_1 \cap \cdots \cap U_n = (U_1' \cap Y) \cap \cdots \cap (U_n' \cap Y) = (U_1' \cap \cdots \cap U_n') \cap Y \in \tau|_Y$.
-		\end{enumerate}
-	\end{proof}
+		\item $U_1,\dots,U_n \in \tau|_Y, U_i = U_i' \cap Y \Rightarrow U_1 \cap \cdots \cap U_n = (U_1' \cap Y) \cap \cdots \cap (U_n' \cap Y) = (U_1' \cap \cdots \cap U_n') \cap Y \in \tau|_Y$.
+	\end{enumerate}
+\end{proof}
 
-	\begin{lemma}
-		$\mathcal{B}|_Y \coloneq \{ Y \cap B \text{ | } B \in \mathcal{B} \}$ es base para la topología en $Y$ inducida por $X$.  
-	\end{lemma}
+\begin{lemma}
+	$\mathcal{B}|_Y \coloneq \{ Y \cap B \text{ | } B \in \mathcal{B} \}$ es base para la topología en $Y$ inducida por $X$.  
+\end{lemma}
 
-	\begin{remark}
-		Cuidado: La noción de abierto depende de la topología a especificar.
-	\end{remark}
+\begin{remark}
+	Cuidado: La noción de abierto depende de la topología a especificar.
+\end{remark}
 
-	\begin{eg}
-		En $X = \R, Y = [0,1] \cup (2,3) \cup \{ 4 \}$. Notar que:
-		\begin{itemize}
-			\item $Y$ es abierto en $Y$, pero no es abierto en $X$.
+\begin{eg}
+	En $X = \R, Y = [0,1] \cup (2,3) \cup \{ 4 \}$. Notar que:
+	\begin{itemize}
+		\item $Y$ es abierto en $Y$, pero no es abierto en $X$.
 
-			\item $[0,1]$ también abierto en $Y : [0,1] = Y \cap (-1,2)$.
+		\item $[0,1]$ también abierto en $Y : [0,1] = Y \cap (-1,2)$.
 
-			\item $\{ 4 \}$ también abierto en $Y : \{ 4 \} = Y \cap (3,5)$.
-		\end{itemize}
-	\end{eg}
+		\item $\{ 4 \}$ también abierto en $Y : \{ 4 \} = Y \cap (3,5)$.
+	\end{itemize}
+\end{eg}
 
-	\begin{note}
-		Si $U \subset Y$ es abierto en $X \Rightarrow$ abierto en $Y$.
-	\end{note}
+\begin{note}
+	Si $U \subset Y$ es abierto en $X \Rightarrow$ abierto en $Y$.
+\end{note}
 
-	\begin{lemma}
-		$Y \subset X, \tau|_Y \subset \tau \iff Y \text{ es abierto en } X$.
-	\end{lemma}
+\begin{lemma}
+	$Y \subset X, \tau|_Y \subset \tau \iff Y \text{ es abierto en } X$.
+\end{lemma}
 
-	\begin{prop}
-		$X,Y$ espacios topológicos, $A \subset X, B \subset Y$.
-		\begin{align*}
-			\text{En } A \times B \rightarrow & \text{ topología inducida desde } X \times Y \text{ (con topología producto) } \\
-			\rightarrow & \text{ topología producto desde } A \text{ y } B \text{ (con topología inducida} \\
-			& \text{ por } X,Y \text{ respectivamente)}
-		.\end{align*}
-		\noindent Estas topologías son la misma.
-	\end{prop}
+\begin{prop}
+	$X,Y$ espacios topológicos, $A \subset X, B \subset Y$.
+	\begin{align*}
+		\text{En } A \times B \rightarrow & \text{ topología inducida desde } X \times Y \text{ (con topología producto) } \\
+		\rightarrow & \text{ topología producto desde } A \text{ y } B \text{ (con topología inducida} \\
+		& \text{ por } X,Y \text{ respectivamente)}
+	.\end{align*}
+	\noindent Estas topologías son la misma.
+\end{prop}
 
-	\begin{proof}[Proof ]
-		Elemento de topología primera: $U = U' \cap A \times B$ \\
-		Elemento de topología segunda: $U$ es unión de productos $V \times V'$ con $V$ abierto en $A$, $V'$ abierto en $B$. Notar que $V \times V' = (W \cap A) \times (W' \cap B) = (W \times W') \cap A \times B$.
-	\end{proof}
+\begin{proof}[Proof ]
+	Elemento de topología primera: $U = U' \cap A \times B$ \\
+	Elemento de topología segunda: $U$ es unión de productos $V \times V'$ con $V$ abierto en $A$, $V'$ abierto en $B$. Notar que $V \times V' = (W \cap A) \times (W' \cap B) = (W \times W') \cap A \times B$.
+\end{proof}

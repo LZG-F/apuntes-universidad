@@ -1,113 +1,114 @@
+\clase{2}{6 de Agosto}{}
 
-	\section{Clase 2 (06/08): Topología, Base [12, 13]}
+\section{Topología, Base (12, 13)}
+\medskip
+\begin{proof}[Proof ] (último lema de la clase anterior)
+	\begin{enumerate}
+		\item $\varnothing \in \tau$ por vacuidad.
+		\begin{align*}
+			X \in \tau : x \in X & \Rightarrow \exists V \in \mathcal{V}_x \quad (1) x \in V; (2) x \in V \subset X \\ & \Rightarrow X \in \mathcal{V}_x. \quad \forall x : X \in \tau 
+		\end{align*}
 
-	\begin{proof}[Proof ] (último lema de la clase anterior)
+		\item Tomar $\{ U_{\alpha} \}_{\alpha \in A}, \text{ } U_{\alpha} \in \tau, \text{ } \mathcal{U} = \bigcup_{\alpha \in A} U_{\alpha}$. Si $x \in \mathcal{U} \Rightarrow x \in U_{\alpha} \in \mathcal{V}_x$ para algún $\alpha$. Como $U_{\alpha} \in \tau \Rightarrow U_{\alpha} \in \mathcal{V}_x$. Luego, si $x \in U_{\alpha} \subset \mathcal{U} \Rightarrow \mathcal{U} \in \mathcal{V}_x$, $\forall x \in \mathcal{U}$. Por lo tanto, $\mathcal{U} \in \tau$.
+
+		\item Tomamos $U_1,\dots,U_n \in \tau$, $\mathcal{U} = U_1 \cap \cdots \cap U_n$ y $x \in \mathcal{U}$. Luego, $x \in U_i \quad \forall i$. Como $U_i \in \tau \Rightarrow U_i \in \mathcal{V}_x, \quad \forall i$. Por inducción (con las intersecciones), podemos afirmar que $\mathcal{U} \in \mathcal{V}_x, \text{ } \forall x \in \mathcal{U}$. Por lo tanto, $\mathcal{U} \in \tau$. 
+	\end{enumerate}
+\end{proof}
+
+\subsection{Topología}
+
+\begin{definition}[topología]
+	$X$ conjunto no vacío, $\tau \subset 2^X$ es una topología si cumple:
+
+	\begin{enumerate}
+		\item $\varnothing, X \in \tau$;
+
+		\item $U_{\alpha} \in \tau, \text{ } \alpha \in A \Rightarrow \bigcup_{\alpha \in A} U_{\alpha} \in \tau$;
+
+		\item $U_1,\dots,U_n \in \tau \Rightarrow U_1 \cap \cdots \cap U_n \in \tau$.
+	\end{enumerate}
+\end{definition}
+
+\begin{remark}
+	Se utilizará la siguiente notación:
+	\begin{itemize}
+		\item $(X,\tau)$ se llama espacio topológico.
+
+		\item $U \in \tau \Rightarrow U$ se llama abierto (con respecto a la topología).
+	\end{itemize}
+\end{remark}
+
+\begin{lemma}
+	$\tau$ topología en $X \Rightarrow$ Inducida por un único sistema de vecindades.
+\end{lemma}
+
+\begin{proof}[Proof ]
+	Para $x \in X$, definir $\mathcal{V}_x = \{ V \subset X \text{ } | \text{ } \exists U \in \tau \text{ con } x \in U \subset V \}$. Verificamos que $\{ \mathcal{V}_x \}_x$ es sistema de vecindades:
+
+	\begin{enumerate}
+		\item La definición implica $V \in \mathcal{V}_x \Rightarrow x \text{ } (\in U \subset) \text{ } \in V$;
+
+		\item $\begin{aligned}[t]
+			\text{Si } V \in \mathcal{V}_x \text{ y } V' \supset V & \Rightarrow (V \in \mathcal{V}_x) \text{ } x \in U \subset \text{ } (U \in \tau) \\
+			& \Rightarrow x \in U \subset V' \Rightarrow V' \in \mathcal{V}_x;
+		\end{aligned}$
+
+		\item $\begin{aligned}[t]
+			\text{Tomar } V_1,V_2 \in \mathcal{V}_x & \Rightarrow x \in U_1 \subset V_1, \quad x \in U_2 \subset V_2 \text{ con } U_1,U_2 \in \tau \\
+			& \Rightarrow x \in \underbrace{U_1 \cap U_2}_{\in \text{ } \tau} \subset V_1 \cap V_2 \Rightarrow V_1 \cap V_2 \in \mathcal{V}_x;
+		\end{aligned}$
+	\end{enumerate}
+
+	(falta demostrar unicidad).
+\end{proof}
+
+\begin{eg}[de espacios topológicos] \text{}
+	\begin{enumerate}
+		\item (Topología métrica): $(X,d)$ espacio métrico. Abierto es $U \in X$ tal que $\forall x \in U, \exists \varepsilon > 0$ tal que $x \in B_{\varepsilon} (x) \subset U$.
 		\begin{enumerate}
-			\item $\varnothing \in \tau$ por vacuidad.
-			\begin{align*}
-				X \in \tau : x \in X & \Rightarrow \exists V \in \mathcal{V}_x \quad (1) x \in V; (2) x \in V \subset X \\ & \Rightarrow X \in \mathcal{V}_x. \quad \forall x : X \in \tau 
-			\end{align*}
+			\item $X = \R^n, \text{ } d((x_i),(y_i)) = \sqrt{ \\sum_{i=1}^{n} (x_i - y_i)^2 }$. Así, se obtiene la topología estándar.
 
-			\item Tomar $\{ U_{\alpha} \}_{\alpha \in A}, \text{ } U_{\alpha} \in \tau, \text{ } \mathcal{U} = \bigcup_{\alpha \in A} U_{\alpha}$. Si $x \in \mathcal{U} \Rightarrow x \in U_{\alpha} \in \mathcal{V}_x$ para algún $\alpha$. Como $U_{\alpha} \in \tau \Rightarrow U_{\alpha} \in \mathcal{V}_x$. Luego, si $x \in U_{\alpha} \subset \mathcal{U} \Rightarrow \mathcal{U} \in \mathcal{V}_x$, $\forall x \in \mathcal{U}$. Por lo tanto, $\mathcal{U} \in \tau$.
-
-			\item Tomamos $U_1,\dots,U_n \in \tau$, $\mathcal{U} = U_1 \cap \cdots \cap U_n$ y $x \in \mathcal{U}$. Luego, $x \in U_i \quad \forall i$. Como $U_i \in \tau \Rightarrow U_i \in \mathcal{V}_x, \quad \forall i$. Por inducción (con las intersecciones), podemos afirmar que $\mathcal{U} \in \mathcal{V}_x, \text{ } \forall x \in \mathcal{U}$. Por lo tanto, $\mathcal{U} \in \tau$. 
-		\end{enumerate}
-	\end{proof}
-
-	\subsection{Topología}
-
-	\begin{definition}[topología]
-		$X$ conjunto no vacío, $\tau \subset 2^X$ es una topología si cumple:
-
-		\begin{enumerate}
-			\item $\varnothing, X \in \tau$;
-
-			\item $U_{\alpha} \in \tau, \text{ } \alpha \in A \Rightarrow \bigcup_{\alpha \in A} U_{\alpha} \in \tau$;
-
-			\item $U_1,\dots,U_n \in \tau \Rightarrow U_1 \cap \cdots \cap U_n \in \tau$.
-		\end{enumerate}
-	\end{definition}
-
-	\begin{remark}
-		Se utilizará la siguiente notación:
-		\begin{itemize}
-			\item $(X,\tau)$ se llama espacio topológico.
-
-			\item $U \in \tau \Rightarrow U$ se llama abierto (con respecto a la topología).
-		\end{itemize}
-	\end{remark}
-
-	\begin{lemma}
-		$\tau$ topología en $X \Rightarrow$ Inducida por un único sistema de vecindades.
-	\end{lemma}
-
-	\begin{proof}[Proof ]
-		Para $x \in X$, definir $\mathcal{V}_x = \{ V \subset X \text{ } | \text{ } \exists U \in \tau \text{ con } x \in U \subset V \}$. Verificamos que $\{ \mathcal{V}_x \}_x$ es sistema de vecindades:
-
-		\begin{enumerate}
-			\item La definición implica $V \in \mathcal{V}_x \Rightarrow x \text{ } (\in U \subset) \text{ } \in V$;
-
-			\item $\begin{aligned}[t]
-				\text{Si } V \in \mathcal{V}_x \text{ y } V' \supset V & \Rightarrow (V \in \mathcal{V}_x) \text{ } x \in U \subset \text{ } (U \in \tau) \\
-				& \Rightarrow x \in U \subset V' \Rightarrow V' \in \mathcal{V}_x;
-			\end{aligned}$
-
-			\item $\begin{aligned}[t]
-				\text{Tomar } V_1,V_2 \in \mathcal{V}_x & \Rightarrow x \in U_1 \subset V_1, \quad x \in U_2 \subset V_2 \text{ con } U_1,U_2 \in \tau \\
-				& \Rightarrow x \in \underbrace{U_1 \cap U_2}_{\in \text{ } \tau} \subset V_1 \cap V_2 \Rightarrow V_1 \cap V_2 \in \mathcal{V}_x;
-			\end{aligned}$
+			\item $X$ arbitrario, $d$ métrica discreta $d(x,y) = \begin{cases}
+				1 \quad x \neq y \\
+				0 \quad x = y.
+			\end{cases}$ Así, se obtiene la topología discreta: $\tau = 2^X$.
 		\end{enumerate}
 
-		(falta demostrar unicidad).
-	\end{proof}
+		\item (Topología indiscreta): $X$ arbitrario, $\tau = \{ \varnothing , X \}$;
 
-	\begin{eg}[de espacios topológicos] \text{}
-		\begin{enumerate}
-			\item (Topología métrica): $(X,d)$ espacio métrico. Abierto es $U \in X$ tal que $\forall x \in U, \exists \varepsilon > 0$ tal que $x \in B_{\varepsilon} (x) \subset U$.
-			\begin{enumerate}
-				\item $X = \R^n, \text{ } d((x_i),(y_i)) = \sqrt{ \\sum_{i=1}^{n} (x_i - y_i)^2 }$. Así, se obtiene la topología estándar.
+		\item (Topología cofinita): $X$ arbitrario, $\tau_{cof} = \{ U \subset X \text{ | } X \setminus U \text{ es finito} \} \cap \{ \varnothing \}$ (queda como ejercicio verificar que es topología).
+	\end{enumerate}
+\end{eg}
 
-				\item $X$ arbitrario, $d$ métrica discreta $d(x,y) = \begin{cases}
-					1 \quad x \neq y \\
-					0 \quad x = y.
-				\end{cases}$ Así, se obtiene la topología discreta: $\tau = 2^X$.
-			\end{enumerate}
+\subsection{Base de una topología}
 
-			\item (Topología indiscreta): $X$ arbitrario, $\tau = \{ \varnothing , X \}$;
+Una base es un subconjunto "manejable" de $\tau$ que la describe completamente!
 
-			\item (Topología cofinita): $X$ arbitrario, $\tau_{cof} = \{ U \subset X \text{ | } X \setminus U \text{ es finito} \} \cap \{ \varnothing \}$ (queda como ejercicio verificar que es topología).
-		\end{enumerate}
-	\end{eg}
+\begin{definition}[base]
+	$X$ es conjunto. $\mathcal{B} \subset 2^X$ es base para alguna topología si:
+	\begin{enumerate}
+		\item $\forall x \in X, \exists B \in \mathcal{B}$ tal que $x \in B \text{ } \left( \bigcup_{B \in \mathcal{B}} B = X \right)$.
 
-	\subsection{Base de una topología}
+		\item $\forall B_1, B_2 \in \mathcal{B}, \forall x \in B_1 \cap B_2, \exists B_3 \in \mathcal{B}$ tal que $x \in B_3 \subset B_1 \cap B_2$.
+	\end{enumerate}
+\end{definition}
 
-	Una base es un subconjunto "manejable" de $\tau$ que la describe completamente!
+\begin{definition}[topología inducida]
+	La topología inducida por la base $\mathcal{B}$ en $X$ es:
 
-	\begin{definition}[base]
-		$X$ es conjunto. $\mathcal{B} \subset 2^X$ es base para alguna topología si:
-		\begin{enumerate}
-			\item $\forall x \in X, \exists B \in \mathcal{B}$ tal que $x \in B \text{ } \left( \bigcup_{B \in \mathcal{B}} B = X \right)$.
+	\[
+	\tau = \{ U \subset X \text{ | } \forall x \in U, \exists B \in \mathcal{B} \text{ tal que } x \in B \subset U \}.
+	\]
+\end{definition}
 
-			\item $\forall B_1, B_2 \in \mathcal{B}, \forall x \in B_1 \cap B_2, \exists B_3 \in \mathcal{B}$ tal que $x \in B_3 \subset B_1 \cap B_2$.
-		\end{enumerate}
-	\end{definition}
+\begin{note}
+	$\mathcal{B} \subset \tau$.
+\end{note}
 
-	\begin{definition}[topología inducida]
-		La topología inducida por la base $\mathcal{B}$ en $X$ es:
+\begin{lemma}
+	$\tau$, definido arriba, es una topología.
+\end{lemma}
 
-		\[
-		\tau = \{ U \subset X \text{ | } \forall x \in U, \exists B \in \mathcal{B} \text{ tal que } x \in B \subset U \}.
-		\]
-	\end{definition}
-
-	\begin{note}
-		$\mathcal{B} \subset \tau$.
-	\end{note}
-
-	\begin{lemma}
-		$\tau$, definido arriba, es una topología.
-	\end{lemma}
-
-	\begin{eg}
-		$(X,d)$ espacio métrico $\Rightarrow \mathcal{B} = \{ B_{\varepsilon} (x) \text{ | } x \in X, \varepsilon > 0 \}$ es base de la topología métrica.
-	\end{eg}
+\begin{eg}
+	$(X,d)$ espacio métrico $\Rightarrow \mathcal{B} = \{ B_{\varepsilon} (x) \text{ | } x \in X, \varepsilon > 0 \}$ es base de la topología métrica.
+\end{eg}

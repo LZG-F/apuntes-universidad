@@ -1,57 +1,58 @@
+\clase{1}{4 de Agosto}{}
 
-	\section{Clase 1 (04/08): Espacios Topológicos [12]}
+\section{Espacios Topológicos (12)}
 
-	\begin{definition}[sistema de vecindades]
-		X conjunto no vacío. Si $x\in X$, consideramos $\mathcal{V}_x \subset 2^{X}$, tal que:
+\begin{definition}[sistema de vecindades]
+	X conjunto no vacío. Si $x\in X$, consideramos $\mathcal{V}_x \subset 2^{X}$, tal que:
 
-		\begin{enumerate}
-			\item $\forall x \in X$, $\forall V \in \mathcal{V}_x$, $x \in \mathcal{V}_x$;
+	\begin{enumerate}
+		\item $\forall x \in X$, $\forall V \in \mathcal{V}_x$, $x \in \mathcal{V}_x$;
 
-			\item $\forall x \in X$, $\forall V \in \mathcal{V}$, si $V' \supset V \Rightarrow V' \in \mathcal{V}_x$;
+		\item $\forall x \in X$, $\forall V \in \mathcal{V}$, si $V' \supset V \Rightarrow V' \in \mathcal{V}_x$;
 
-			\item Si $V_1,V_2 \in \mathcal{V} \Rightarrow V_1 \cap V_2 \in \mathcal{V}_x$.
-		\end{enumerate}
+		\item Si $V_1,V_2 \in \mathcal{V} \Rightarrow V_1 \cap V_2 \in \mathcal{V}_x$.
+	\end{enumerate}
 
-		\noindent El sistema de vecindades es $\{ \mathcal{V}_x \}_{x \in X}$. Si $V \in \mathcal{V}_x$, $V$ es vecindad de $x$.  
-	\end{definition}
+	\noindent El sistema de vecindades es $\{ \mathcal{V}_x \}_{x \in X}$. Si $V \in \mathcal{V}_x$, $V$ es vecindad de $x$.  
+\end{definition}
 
-	\begin{eg}
-		\begin{enumerate}
-			\item $(X,d)$ espacio métrico $\mathcal{V}_x \coloneq \{ V \subset X | \exists \varepsilon > 0 \text{ tal que } B_{\varepsilon} (x) \subset V \}$. Verificamos que sea sistema de vecindad.
+\begin{eg}
+	\begin{enumerate}
+		\item $(X,d)$ espacio métrico $\mathcal{V}_x \coloneq \{ V \subset X | \exists \varepsilon > 0 \text{ tal que } B_{\varepsilon} (x) \subset V \}$. Verificamos que sea sistema de vecindad.
 
-			\begin{proof}[Proof]
-				Verificamos $1),2)$ y $3)$:
-				\begin{enumerate}
-					\item[1)] $x \in X$, $V \in \mathcal{V}_x \Rightarrow x \in B_{\varepsilon} (x) \subset V$;
+		\begin{proof}[Proof]
+			Verificamos $1),2)$ y $3)$:
+			\begin{enumerate}
+				\item[1)] $x \in X$, $V \in \mathcal{V}_x \Rightarrow x \in B_{\varepsilon} (x) \subset V$;
 
-					\item[2)] $X$ $x \in X$, $V \in \mathcal{V}_x$, $V' \supset V \Rightarrow x \in B_{\varepsilon} (x) \subset V \subset V' \Rightarrow V' \in \mathcal{V}_x$;
+				\item[2)] $X$ $x \in X$, $V \in \mathcal{V}_x$, $V' \supset V \Rightarrow x \in B_{\varepsilon} (x) \subset V \subset V' \Rightarrow V' \in \mathcal{V}_x$;
 
-					\item[3)] $\begin{aligned}[t]
-						x \in V_1 \cap V_2, V_1,V_2 \in \mathcal{V}_x & \Rightarrow B_{\varepsilon_1} (x) \subset V_1, B_{\varepsilon_2} (x) \subset V_2  \\ & \Rightarrow B_{\min \{ \varepsilon_1, \varepsilon_2 \}} (x) \subset V_1 \cap V_2 \\ & \Rightarrow V_1 \cap V_2 \in \mathcal{V}_x.
-					\end{aligned}$
-				\end{enumerate}
-			\end{proof}
+				\item[3)] $\begin{aligned}[t]
+					x \in V_1 \cap V_2, V_1,V_2 \in \mathcal{V}_x & \Rightarrow B_{\varepsilon_1} (x) \subset V_1, B_{\varepsilon_2} (x) \subset V_2  \\ & \Rightarrow B_{\min \{ \varepsilon_1, \varepsilon_2 \}} (x) \subset V_1 \cap V_2 \\ & \Rightarrow V_1 \cap V_2 \in \mathcal{V}_x.
+				\end{aligned}$
+			\end{enumerate}
+		\end{proof}
 
-			\item $X$ arbitrario, $\forall x \in X$, sea $\mathcal{V}_x = \{ X \}$ es sistema de vecindades (vacuidad).
+		\item $X$ arbitrario, $\forall x \in X$, sea $\mathcal{V}_x = \{ X \}$ es sistema de vecindades (vacuidad).
 
-			\item $X$ arbitrario $\mathcal{V}_x = \{ V \subset X \ | \ x \in V \text{ y } X \setminus V \text{ sea finito} \}$ (queda como ejercicio chequear que esto define un sistema de vecindades).  
-		\end{enumerate}
-	\end{eg}
+		\item $X$ arbitrario $\mathcal{V}_x = \{ V \subset X \ | \ x \in V \text{ y } X \setminus V \text{ sea finito} \}$ (queda como ejercicio chequear que esto define un sistema de vecindades).  
+	\end{enumerate}
+\end{eg}
 
-	\begin{definition}[topología desde sistema de vecindades]
-		Tenemos $X$, $\{ \mathcal{V}_x \}_{x \in X}$ sistema de vecindades. Definimos, $\tau = \{ U \subset X \text{ } | x \in U \Rightarrow U \in \mathcal{V}_x \}$.    
-	\end{definition}
+\begin{definition}[topología desde sistema de vecindades]
+	Tenemos $X$, $\{ \mathcal{V}_x \}_{x \in X}$ sistema de vecindades. Definimos, $\tau = \{ U \subset X \text{ } | x \in U \Rightarrow U \in \mathcal{V}_x \}$.    
+\end{definition}
 
-	\begin{lemma}
-		$\tau$ cumple lo siguiente:
+\begin{lemma}
+	$\tau$ cumple lo siguiente:
 
-		\begin{enumerate}
-			\item $\varnothing, X \in \tau$;
+	\begin{enumerate}
+		\item $\varnothing, X \in \tau$;
 
-			\item $U_{\alpha} \in \tau, \alpha \in A \Rightarrow \bigcup_{\alpha \in A} U_{\alpha} \in \tau$;
+		\item $U_{\alpha} \in \tau, \alpha \in A \Rightarrow \bigcup_{\alpha \in A} U_{\alpha} \in \tau$;
 
-			\item $U_1,\dots,U_n \in \tau \Rightarrow U_1 \cap \cdots \cap U_n \in \tau$.
-		\end{enumerate}
-	\end{lemma}
+		\item $U_1,\dots,U_n \in \tau \Rightarrow U_1 \cap \cdots \cap U_n \in \tau$.
+	\end{enumerate}
+\end{lemma}
 
-	$\tau$ es la topología inducida por $\{ \mathcal{V}_x \}$. Elementos de $\tau$ (subconjuntos de $X$) se llamarán abiertos.
+$\tau$ es la topología inducida por $\{ \mathcal{V}_x \}$. Elementos de $\tau$ (subconjuntos de $X$) se llamarán abiertos.

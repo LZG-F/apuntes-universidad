@@ -45,6 +45,8 @@
 
 \usepackage[normalem]{ulem}
 
+\usepackage{dsfont}
+
 % demostraciones bidireccionales
 
 \newcommand{\Onlyifstep}{%
@@ -171,7 +173,7 @@
 \declaretheorem[style=thmblueline, numbered=no, name=Observación]{remark}
 \declaretheorem[style=thmblueline, numbered=no, name=Nota]{note}
 
-\renewenvironment{proof}[1][\proofname]{\vspace{-10pt}\begin{replacementproof}}{\end{replacementproof}}
+\renewenvironment{proof}[1][\proofname]{\begin{replacementproof}}{\end{replacementproof}}
 
 %\AtEndEnvironment{eg}{\null\hfill$\diamond$}%
 
