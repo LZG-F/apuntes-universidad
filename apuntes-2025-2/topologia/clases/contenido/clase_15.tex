@@ -12,26 +12,23 @@
 		\item[ii.] $X$ es conexo si no tiene separación. Equivalentemente, $X = U \cup V,\ U,V \subset X$ abiertos disjuntos, entonces $\varnothing \in \{ U, V \}$.
 	\end{enumerate}
 \end{definition}
-
-
-\begin{eg}[i.]to
+\smallskip
+\begin{eg}[i.]
 	$X = [0,1] \cup [2,3] \cup \{5\} \leadsto U = [0,1],\ V = [2,3] \cup \{5\}$ es separación.   
 \end{eg}
-
+\smallskip
 \begin{eg}[ii.]
-	$[0,1]$ es conexo!!! (Magia del axioma del supremo) \\
+	$[0,1]$ es conexo!!! (Magia del axioma del supremo)
 \end{eg}
-
-\begin{observe}
+\smallskip
+\begin{remark}
 	$X = U \cup V$ separación $\longleftrightarrow U \neq \varnothing$ clopen (abierto + cerrado) y $X \setminus U \neq \varnothing$.
-\end{observe}
+\end{remark}
 
 \begin{lemma}
 	$X$ espacio topológico. $X$ conexo $\longleftrightarrow \forall f: X \to \R$ tal que $f(x) > 0,\ f(y) < 0$ para algún $x,y \in X \implies f(z) = 0$ para algún $z \in X$.
 \end{lemma}
-
-\text{}
-
+\medskip
 \noindent \textbf{Propiedad ganadora.} Si $f: X \to Y$ continua. $X$ conexo $\implies f(X)$ conexo (respecto a la topología inducida).
 
 \begin{corollary}
@@ -59,21 +56,20 @@
 	\end{enumerate}
 	$\implies Y \subset A$ ó $Y \subset B$.
 \end{lemma}
-
-\text{}
-
-\noindent \textbf{Criterio Conexidad.} $(Y_{\alpha})_{\alpha \in J}$ familia de subespacioes de $X$ tal que:
+\begin{criterio}[Conexidad]
+$(Y_{\alpha})_{\alpha \in J}$ familia de subespacioes de $X$ tal que:
 \begin{enumerate}
 	\item Cada $Y_{\alpha}$ conexo;
 
 	\item $\bigcap_{\alpha \in J} Y_{\alpha} \neq \varnothing$;
 \end{enumerate}
-$\implies Z = \bigcup_{\alpha \in J} Y_{\alpha}$ conexo.
-
-\begin{observe}
+$\implies Z = \bigcup_{\alpha \in J} Y_{\alpha}$ conexo.\par
+\end{criterio}
+\medskip
+\begin{remark}
 	$\bigcap_{\alpha \in J} Y_{\alpha}$ no necesariamente conexa si cada $Y_{\alpha}$ conexo.
-\end{observe}
-
+\end{remark}
+\smallskip
 \begin{eg}~
 	\begin{enumerate}
 		\item $B = \{x \in \R^n \ \big| \ |x| \leq 1\}$ conexo. En efecto, si $v \in \mathbb{S}^{n-1} \leadsto Y_v = \{tv + (1-t)(-v) \ \big| \ t \in [0,1]\} \approx [0,1]$. Por lo tanto, cada $Y_v$ es conexo. Luego, $0 \in Y_v, \quad \forall v \in \mathbb{S}^{n-1} \implies B = \bigcup_{v \in \mathbb{S}^{n-1}} Y_v$ conexo;

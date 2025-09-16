@@ -1,113 +1,112 @@
+\clase{3}{7 de Agosto}{}
 
-	\section{Clase 3 (07/08)}
+\begin{note}
+	Las integrales en el sentido de Darboux y el de Riemann coinciden.
+\end{note}
 
-	\begin{note}
-		Las integrales en el sentido de Darboux y el de Riemann coinciden.
-	\end{note}
+\begin{prop}
+	Si $f:[a,b]\to\R$ es monótona, entonces es Riemann integrable.
+\end{prop}
 
-	\begin{prop}
-		Si $f:[a,b]\to\R$ es monótona, entonces es Riemann integrable.
-	\end{prop}
+\begin{remark}
+	Una función monótona tiene discontinuidades numerables.
+\end{remark}
 
-	\begin{remark}
-		Una función monótona tiene discontinuidades numerables.
-	\end{remark}
+\begin{prop}
+	Si $f:[a,b]\to\R$ es continua, entonces es Riemann integrable.
+\end{prop}
 
-	\begin{prop}
-		Si $f:[a,b]\to\R$ es continua, entonces es Riemann integrable.
-	\end{prop}
+En particular, existen funciones Riemann integrables con numerables discontinuidades. De hecho, hay ejemplos con $c$ (cardinal del continuo) discontinuidades. No obstante, si $f$ es integral de Riemann, su conjunto de discontinuidades tiene que ser "pequeño".
 
-	En particular, existen funciones Riemann integrables con numerables discontinuidades. De hecho, hay ejemplos con $c$ (cardinal del continuo) discontinuidades. No obstante, si $f$ es integral de Riemann, su conjunto de discontinuidades tiene que ser "pequeño".
+\begin{theorem}
+	Sea $f:[a,b]\to\R$ acotada. Entonces, $f$ es Riemann Integrable si y sólo si su conjunto de discontinuidades tiene medida nula.
+\end{theorem}
 
-	\begin{theorem}
-		Sea $f:[a,b]\to\R$ acotada. Entonces, $f$ es Riemann Integrable si y sólo si su conjunto de discontinuidades tiene medida nula.
-	\end{theorem}
+\begin{definition}[intervalo]
+	Decimos que un conjunto $I\subseteq\overline{\R}\coloneq\R\cup \{-\infty,\infty\}$ es un intervalo si satisface
 
-	\begin{definition}[intervalo]
-		Decimos que un conjunto $I\subseteq\overline{\R}\coloneq\R\cup \{-\infty,\infty\}$ es un intervalo si satisface
+	\[
+	x,y\in I \Rightarrow z\in I \text{ para todo } \min x,y\leq z\leq\max x,y.
+	\]
+\end{definition}
 
-		\[
-		x,y\in I \Rightarrow z\in I \text{ para todo } \min x,y\leq z\leq\max x,y.
-		\]
-	\end{definition}
+\begin{eg}
+	(y propiedades)
+	\begin{itemize}
+		\item Dados $a\leq b$ ($a,b\in\R$), los conjuntos $(a,b),(a,b],[a,b],[a,b)$ son intervalos;
 
-	\begin{eg}
-		(y propiedades)
+		\item El conjunto vacío es un intervalo ($\varnothing = (a,a)$);
+
+		\item Los puntos son intervalos. $I = [\lambda,\lambda]$;
+
+		\item La intersección de intervalos es intervalos.
+	\end{itemize}
+\end{eg}
+
+\begin{definition}[intervalo generalizado]
+	Decimos que un conjunto $I\subseteq\R^d$ es un intervalo si puede escribirse como
+	\[
+	I=\prod_{k=1}^{d} I_k
+	\]
+	donde cada $I_r$ es un intervalo en $\R$. La medida de un intervalo $I\subseteq\R^d$ se define como
+	\[
+	|I|\coloneq\prod_{k=1}^{d} |I_k|.
+	\]
+\end{definition}
+
+\begin{note}
+	Los intervalos en $\R^d$ heredan las mismas pripiedades en $\R$:
+
+	\begin{itemize}
+		\item Intersección de intervalos en $\R^d$ es intervalo.
+
+		\item Si $I\subseteq J\subseteq\R^d$ son intervalos, entonces $|I|\leq|J|$.
+	\end{itemize}
+\end{note}
+
+\begin{definition}[medida nula]
+	Un conjunto $E\subseteq\R^d$ se dice de medida nula si, dado $\varepsilon>0$, existe una sucesión $(I_n)_{n\in\N}$ de intervalos de $\R^d$ tal que
+
+	\[
+	E\subseteq\bigcup_{n\in\N} I_n\quad\text{ y }\quad \sum_{n\in\N}^{}|I_n|<\varepsilon.
+	\]
+\end{definition}
+
+\begin{eg}
+	(y propiedades)
+	\begin{enumerate}
+		\item Todo conjunto unitario $\{x\}, (x\in\R^d)$ tiene medida nula;
+
+		\item Toda unión numerable de conjuntos de medida nula tiene medida nula;
+
+		\item Cualquier conjunto numerable tiene medida nula;
+		
+		\item Cualquier subconjunto de un conjunto de medida nula tiene medida nula;
+
+		\item Existen conjuntos no numerables de medida nula:
+
 		\begin{itemize}
-			\item Dados $a\leq b$ ($a,b\in\R$), los conjuntos $(a,b),(a,b],[a,b],[a,b)$ son intervalos;
+			\item En $\R^d$ con $d\geq 2$, los ejes $\{x:x_1=0\}, i=1,\dots,d$ tiene medida nula.
 
-			\item El conjunto vacío es un intervalo ($\varnothing = (a,a)$);
-
-			\item Los puntos son intervalos. $I = [\lambda,\lambda]$;
-
-			\item La intersección de intervalos es intervalos.
+			\item En $\R$, el conjunto de cantor tiene medida nula.
 		\end{itemize}
-	\end{eg}
 
-	\begin{definition}[intervalo generalizado]
-		Decimos que un conjunto $I\subseteq\R^d$ es un intervalo si puede escribirse como
-		\[
-		I=\prod_{k=1}^{d} I_k
-		\]
-		donde cada $I_r$ es un intervalo en $\R$. La medida de un intervalo $I\subseteq\R^d$ se define como
-		\[
-		|I|\coloneq\prod_{k=1}^{d} |I_k|.
-		\]
-	\end{definition}
+		\item $E\subseteq\R^d$ es de medida nula, entonces $\alpha\dot E$ tiene medida nula $\forall\alpha\in\R$.
+		
+		\item $E\subseteq\R^d$ es de medida nula, entonces $E + v$ tiene medida nula $\forall v\in\R^d$.
 
-	\begin{note}
-		Los intervalos en $\R^d$ heredan las mismas pripiedades en $\R$:
+		\item Si $E$ contiene un intervalo no unitario, entonces no tiene medida nula. Notar que:
 
 		\begin{itemize}
-			\item Intersección de intervalos en $\R^d$ es intervalo.
+			\item La vuelta no es válida: $\R\textbackslash\Q$ no contiene untervalos no unitarios pero no puede tener medida nula.
 
-			\item Si $I\subseteq J\subseteq\R^d$ son intervalos, entonces $|I|\leq|J|$.
+			\item De esto se deduce que si $E\subseteq\R^d$ tiene medida nula. Entonces $E^c$ es denso (no vale la vuelta: $E^c=\Q$).
 		\end{itemize}
-	\end{note}
 
-	\begin{definition}[medida nula]
-		Un conjunto $E\subseteq\R^d$ se dice de medida nula si, dado $\varepsilon>0$, existe una sucesión $(I_n)_{n\in\N}$ de intervalos de $\R^d$ tal que
+		\item $E\subseteq\R^d$ tiene medida nula si y sólo si
 
 		\[
-		E\subseteq\bigcup_{n\in\N} I_n\quad\text{ y }\quad \sum_{n\in\N}^{}|I_n|<\varepsilon.
+		|E|_e\coloneq\inf \{ \sum_{n\in\N} |I_n| : E \subseteq \bigcup_{n\in\N} I_n \} = 0, \quad I_n \text{ intervalo } \forall n \in \N.
 		\]
-	\end{definition}
-
-	\begin{eg}
-		(y propiedades)
-		\begin{enumerate}
-			\item Todo conjunto unitario $\{x\}, (x\in\R^d)$ tiene medida nula;
-
-			\item Toda unión numerable de conjuntos de medida nula tiene medida nula;
-
-			\item Cualquier conjunto numerable tiene medida nula;
-			
-			\item Cualquier subconjunto de un conjunto de medida nula tiene medida nula;
-
-			\item Existen conjuntos no numerables de medida nula:
-
-			\begin{itemize}
-				\item En $\R^d$ con $d\geq 2$, los ejes $\{x:x_1=0\}, i=1,\dots,d$ tiene medida nula.
-
-				\item En $\R$, el conjunto de cantor tiene medida nula.
-			\end{itemize}
-
-			\item $E\subseteq\R^d$ es de medida nula, entonces $\alpha\dot E$ tiene medida nula $\forall\alpha\in\R$.
-			
-			\item $E\subseteq\R^d$ es de medida nula, entonces $E + v$ tiene medida nula $\forall v\in\R^d$.
-
-			\item Si $E$ contiene un intervalo no unitario, entonces no tiene medida nula. Notar que:
-
-			\begin{itemize}
-				\item La vuelta no es válida: $\R\textbackslash\Q$ no contiene untervalos no unitarios pero no puede tener medida nula.
-
-				\item De esto se deduce que si $E\subseteq\R^d$ tiene medida nula. Entonces $E^c$ es denso (no vale la vuelta: $E^c=\Q$).
-			\end{itemize}
-
-			\item $E\subseteq\R^d$ tiene medida nula si y sólo si
-
-			\[
-			|E|_e\coloneq\inf \{ \sum_{n\in\N} |I_n| : E \subseteq \bigcup_{n\in\N} I_n \} = 0, \quad I_n \text{ intervalo } \forall n \in \N.
-			\]
-		\end{enumerate}
-	\end{eg}
+	\end{enumerate}
+\end{eg}

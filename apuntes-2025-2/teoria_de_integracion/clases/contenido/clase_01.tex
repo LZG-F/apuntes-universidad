@@ -1,34 +1,33 @@
+\clase{1}{4 de Agosto}{}
 
-	\section{Clase 1 (04/08)}
+\begin{definition}[partición + intervalos]
+	Una partición de un intervalo $[a,b]\subseteq\R$ es un subconjunto finito $\Pi\subseteq[a,b]$ tal que $a,b\in\Pi$. Denotaremos a las particiones como $\Pi=\{x_0,\dots,x_n\}$, donde $a=x_0<x_1<\cdots<x_n=b$. Los intervalos $I_i=[x_{i-1},x_i]$, $i=1,\dots,n$ serán llamados intervalos de la partición.
+\end{definition}
 
-	\begin{definition}[partición + intervalos]
-		Una partición de un intervalo $[a,b]\subseteq\R$ es un subconjunto finito $\Pi\subseteq[a,b]$ tal que $a,b\in\Pi$. Denotaremos a las particiones como $\Pi=\{x_0,\dots,x_n\}$, donde $a=x_0<x_1<\cdots<x_n=b$. Los intervalos $I_i=[x_{i-1},x_i]$, $i=1,\dots,n$ serán llamados intervalos de la partición.
-	\end{definition}
+\begin{remark}
+	A veces, identificaremos la partición $\Pi$ con $(I_i)_{i=1,\dots,n}$. En tal caso, abusando de la notación, escribiremos $I_i\in\Pi$ cuando queramos hablar de los intervalos de $\Pi$.
+\end{remark}
 
-	\begin{remark}
-		A veces, identificaremos la partición $\Pi$ con $(I_i)_{i=1,\dots,n}$. En tal caso, abusando de la notación, escribiremos $I_i\in\Pi$ cuando queramos hablar de los intervalos de $\Pi$.
-	\end{remark}
+\begin{definition}[norma de particiones]
+	La norma de una partición $\Pi$ como $\|\Pi\|\coloneqq \max_{i=1,\dots,n}(x_i-x_{i-1})=\max_{I_i\in\Pi}|I_i|$.
+\end{definition}
 
-	\begin{definition}[norma de particiones]
-		La norma de una partición $\Pi$ como $\|\Pi\|\coloneqq \max_{i=1,\dots,n}(x_i-x_{i-1})=\max_{I_i\in\Pi}|I_i|$.
-	\end{definition}
+\begin{definition}[partición marcada]
+	Una partición marcada de $[a,b]$ es un par $\Pi^*\coloneqq(\Pi,\varepsilon)$ donde:
+	\begin{itemize}
+		\item $\Pi = \{x_0,\dots,x_n\}$ es una partición de $[a,b]$;
+		\item $\varepsilon = \{x_1^*,\dots,x_n^*\}$ es una colección de puntos tal que $x_i^*\in I_i$ para cada $i=1,\dots,n$.
+	\end{itemize}
+\end{definition}
 
-	\begin{definition}[partición marcada]
-		Una partición marcada de $[a,b]$ es un par $\Pi^*\coloneqq(\Pi,\varepsilon)$ donde:
-		\begin{itemize}
-			\item $\Pi = \{x_0,\dots,x_n\}$ es una partición de $[a,b]$;
-			\item $\varepsilon = \{x_1^*,\dots,x_n^*\}$ es una colección de puntos tal que $x_i^*\in I_i$ para cada $i=1,\dots,n$.
-		\end{itemize}
-	\end{definition}
+\begin{remark}
+	Dada una partición marcada $\Pi^*=(\Pi,\varepsilon)$, definimos $\|\Pi^*\|\coloneqq \|\Pi\|$.
+\end{remark}
 
-	\begin{remark}
-		Dada una partición marcada $\Pi^*=(\Pi,\varepsilon)$, definimos $\|\Pi^*\|\coloneqq \|\Pi\|$.
-	\end{remark}
-
-	\begin{definition}[Suma de Riemann]
-		Sean $f:[a,b]\to\R$ acotada y $\Pi^*=(\Pi,\varepsilon)$ una partición marcada. Definimos la suma de Riemann de $f$ asociada a $\Pi^*$ como:
-		\[
-		S_R(f;\Pi^*)\coloneqq \sum_{n=1}^{n} f(x_i^*)(x_i-x_{i-1})= \sum_{I_i\in\Pi}^{} f(x_i^*)|I_i|.
-		\]
-	\end{definition}
+\begin{definition}[Suma de Riemann]
+	Sean $f:[a,b]\to\R$ acotada y $\Pi^*=(\Pi,\varepsilon)$ una partición marcada. Definimos la suma de Riemann de $f$ asociada a $\Pi^*$ como:
+	\[
+	S_R(f;\Pi^*)\coloneqq \sum_{n=1}^{n} f(x_i^*)(x_i-x_{i-1})= \sum_{I_i\in\Pi}^{} f(x_i^*)|I_i|.
+	\]
+\end{definition}
 

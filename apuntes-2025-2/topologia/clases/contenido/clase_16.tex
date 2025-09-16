@@ -1,0 +1,47 @@
+\section{Clase 16 (10/09): Arcoconexidad (23, 24)}
+
+\begin{proof}[Proof ][criterio conexidad clase pasada]
+	Sean $A,B \subset X$ abiertos con $Z \subset A \cup B$. Queremos $Z \subset A$ o $Z \subset B$. Fijando $\alpha_{0} \in J$, se tiene $X_{\alpha_{0}} \subset A \cup B$. Dado que $X_{\alpha_{0}}$ es conexo, podemos suponer que $X_{\alpha_{0}} \subset A$. Tomar $\alpha \in J,\ \alpha \neq \alpha_{0}$, queremos $X_{\alpha} \subset A$, y si no pasa, $X_{\alpha} \subset B$. En efecto, como $X_{\alpha},\ X_{\alpha_{0}} \subset Z,\ Z \cap A \cap B = \varnothing$, entonces $X_{\alpha} \cap X_{\alpha_{0}} = \varnothing$, lo que es una contradicción. Por lo tanto, $X_{\alpha} \subset A \quad \forall \alpha$. Luego, $Z \subset A$.
+\end{proof}
+
+\begin{lemma}
+	Si $X,Y$ conexos, entonces $X \times Y$ conexo.
+\end{lemma}
+
+\begin{observe}
+	Si $X \times Y$ conexo, entonces $X = \prod_{X} (X \times Y)$ conexo.
+\end{observe}
+
+\begin{observe}
+	Si $X_{\alpha}$ conexo, entonces $\prod_{\alpha} X_{\alpha}$ conexo con la topología producto (tarea 3).
+\end{observe}
+
+\begin{proof}[Proof ][lema]
+	Dado $(x,y) \in X \times Y$, definimos $T_{(x,y)} = \{x\} \times Y \cup X \times \{y\}$. Si $X,Y$ conexos, entonces $T_{(x,y)}$ conexo $\forall (x,y) \in X \times Y$. Notar que $T_{(a,y)} \cap T_{(x,y)} \neq \varnothing \quad \forall a,x \in X$. Por el criterio, tenemos que $\bigcup_{x\in X} T_{(x,y)}$ conexo para cada $y$ fijo, pero $\bigcup_{x \in X} T_{(x,y)} = X \times Y$.
+\end{proof}
+
+\subsection{Arcoconexidad (conexidad por caminos)}
+
+\begin{definition}[curva]
+	$X$ espacio topológico es arcoconexo si $\forall x,y \in X$, existe una función continua $\alpha : [0,1] \to X$ tal que $\alpha(0) = x,\ \alpha(1) = y$. Llamaremos \underline{curva} con extremos $\alpha(0)$ y $\alpha(1)$ a $\alpha$.
+\end{definition}
+
+\begin{eg}~
+	\begin{itemize}
+		\item $[0,1]$ arcoconexo
+
+		\item $\mathbb{S}^{n-1},\ \R^n \setminus \{0\}$ arcoconexo si $n \geq 2$.
+	\end{itemize}
+\end{eg}
+
+\begin{prop}
+	Si $X$ arcoconexo, entonces $X$ conexo.
+\end{prop}
+\begin{proof}[Proof ]
+	Sea $X$ arcoconexo. Procedemos por contradicción. Supongamos que $X$ no es conexo. Entonces, existe separación $X = U \sqcup V$, con $U,V$ abiertos no vacíos. Tomamos $x \in U,\ y \in V$. Luego, existe una curva $\alpha : [0,1] \to X$ tal que $0 \mapsto x$ y $1 \mapsto y$. Tomar $g : X \to \{-1,1\} \subset \R$ tal que
+	\[ g(w) = \begin{cases}
+		-1, \quad w \in U \\
+		1, \quad w \in V
+	\end{cases} \]
+	es continua. Entonces $f = g \circ \alpha : [0,1] \to \R$ continua tal que $f(0) = -1,\ f(1) = 1$, pero no existe $c \in [0,1]$ con $f(c) = 0$, lo que contradice el TVI!
+\end{proof}

@@ -1,98 +1,97 @@
+\clase{4}{8 de Agosto}{}
+\medskip
+\begin{theorem}
+	Sea $f:[a,b]\to\R$ acotada. Entonces
+	\begin{align*}
+		f \text{ Riemann integrable}\Longleftrightarrow & D_f=\{x\in[a,b]:f\text{ discontinua en } x\} \\ & \text{ tiene medida nula.}
+	\end{align*}
+\end{theorem}
 
-	\section{Clase 4 (08/08)}
+\section{Limitaciones de la integral de Riemann}
 
-	\begin{theorem}
-		Sea $f:[a,b]\to\R$ acotada. Entonces
-		\begin{align*}
-			f \text{ Riemann integrable}\Longleftrightarrow & D_f=\{x\in[a,b]:f\text{ discontinua en } x\} \\ & \text{ tiene medida nula.}
-		\end{align*}
-	\end{theorem}
+\begin{enumerate}
+	\item Sólo está definida para $f$ acotada y sobre intervalos $[a,b]$ acotados. La teoría de integrales impropias resuelve esto.
 
-	\subsection{Limitaciones de la integral de Riemann}
-
-	\begin{enumerate}
-		\item Sólo está definida para $f$ acotada y sobre intervalos $[a,b]$ acotados. La teoría de integrales impropias resuelve esto.
-
-		\item Propiedades del espacio $\mathcal{R}([a,b])=\{f:[a,b]\to\R:f\text{ Riemann integrable}\}$: Nos gustaría poder definir una noción de convergencia en $\mathcal{R}([a,b])$ tal que
-		\[
-		f_n\to f \text { en } \mathcal{R}([a,b]) \Rightarrow \int_{a}^{b} f_n\to \int_{a}^{b} f \quad \left( \lim \int_{a}^{b} f_n = \int_{a}^{b} \lim f_n \right).
-		\]
-	\end{enumerate}
-
-	\begin{remark}
-		La convergencia puntal NO cumple esto (punto 2).
-	\end{remark}
-
-	\begin{eg}[1]~
-		\begin{itemize}
-			\item $f_n \coloneq n \chi_{(0,\frac{1}{n}]}$ es Riemann integrable en $[0,1],\ \forall n \in \N$;
-
-			\item $f_n \to f \cong 0$ puntualmente en $[0,1]$;
-
-			\item $\int_{0}^{1} f_n = 1 \not\to 0 = \int_{0}^{1} f$.
-		\end{itemize}
-	\end{eg}
-
-	\begin{eg}[2]~
-		\begin{itemize}
-			\item Sea $(Q_n)_{n \in \N}$ una enumeración de $\Q \cap [0,1]$;
-
-			\item $f_n \coloneq \chi_{\{ Q_1,\dots,Q_n \}}$ es Riemann integrable en $[0,1],\ \forall n \in \N$;
-
-			\item $f_n \to f \coloneq \chi_{\Q \cap [0,1]}$ puntualmente en $[0,1]$;
-
-			\item $f$ no es Riemann integrable. $\underline{\int_{0}^{1}} f = 0 \neq 1 = \overline{\int_{0}^{1}} f$.
-		\end{itemize}
-	\end{eg}
-
-	\begin{remark}
-		La convergencia uniforme SÍ cumple esto, pero es demasiado fuerte.
-	\end{remark}
-
-	\begin{ex}[Guía 1]
-		Sean $(f_n)_{n \in \N} \subset \mathcal{R}([a,b])$ tales que $f_n \to f$ uniformemente en $[a,b]$. Entonces, $f \in \mathcal{R}([a,b])$ y $\lim_{n \to \infty} \int_{a}^{b} f_n = \int_{a}^{b} f$.
-	\end{ex}
-
-	\begin{eg}[3]~
-		\begin{itemize}
-			\item $f_n (x) \coloneq x^n$ en $[0,1],\ f_n \in \mathcal{R}([a,b]),\ \forall n \in \N,\ f_n \to \chi = f$ puntualmente;
-
-			\item $f \in \mathcal{R}([a,b])$ y $\int_{0}^{1} f_n (x) dx = \frac{1}{n+1} \to 0 = \int_{0}^{1}$;
-
-			\item $f_n$ no converge uniformemente a $f$.
-		\end{itemize}
-	\end{eg}
-
-	Resulta que la noción de convergencia "óptima" (la más "débil" que cumple lo que queremos) es la de convergencia en $L'$:
-
+	\item Propiedades del espacio $\mathcal{R}([a,b])=\{f:[a,b]\to\R:f\text{ Riemann integrable}\}$: Nos gustaría poder definir una noción de convergencia en $\mathcal{R}([a,b])$ tal que
 	\[
-	f_n \xrightarrow{L'} f \text{ si } \lim_{n \to \infty} \int_{a}^{b} | f_n - f | = 0.
+	f_n\to f \text { en } \mathcal{R}([a,b]) \Rightarrow \int_{a}^{b} f_n\to \int_{a}^{b} f \quad \left( \lim \int_{a}^{b} f_n = \int_{a}^{b} \lim f_n \right).
 	\]
+\end{enumerate}
 
-	Esta noción de convergencia viene dada por una "norma":
+\begin{remark}
+	La convergencia puntal NO cumple esto (punto 2).
+\end{remark}
 
+\begin{eg}[1]~
 	\begin{itemize}
-		\item $\| f \|_{L'} \coloneq \int_{a}^{b} |f|$ (recordar que $f \in \mathcal{R}([a,b]) \implies |f| \in \mathcal{R}([a,b])$);
+		\item $f_n \coloneq n \chi_{(0,\frac{1}{n}]}$ es Riemann integrable en $[0,1],\ \forall n \in \N$;
 
-		\item $d_{L'} (f,g) \coloneq \| f - g \|_{L'} = \int_{a}^{b} |f-g|$.
+		\item $f_n \to f \cong 0$ puntualmente en $[0,1]$;
+
+		\item $\int_{0}^{1} f_n = 1 \not\to 0 = \int_{0}^{1} f$.
 	\end{itemize}
+\end{eg}
 
-	\begin{remark}
-		$\| \cdot \|_{L'}$ no es una norma porque $\| f \|_{L'} = 0 \nRightarrow f = 0$. Decimos que es una \textit{pseudo-norma} y $d$ una \textit{pseudo-métrica}.
-	\end{remark}
+\begin{eg}[2]~
+	\begin{itemize}
+		\item Sea $(Q_n)_{n \in \N}$ una enumeración de $\Q \cap [0,1]$;
 
-	Para arreglar esto, dadas $f,g : [a,b] \to \R$, decimos que son \textit{equivalentes} y lo notamos $f \sim g$ si $\{ x \in [a,b] \ : \ f(x) \neq g(x) \}$ tiene medida nula. Resulta que $\sim$ es una relación de equivalencia y, además,
+		\item $f_n \coloneq \chi_{\{ Q_1,\dots,Q_n \}}$ es Riemann integrable en $[0,1],\ \forall n \in \N$;
 
-	\[
-	f,g \in \mathcal{R} ([a,b]),\ f \sim g \implies \int_{a}^{b} f = \int_{a}^{b} g.
-	\]
+		\item $f_n \to f \coloneq \chi_{\Q \cap [0,1]}$ puntualmente en $[0,1]$;
 
-	Sea $\overline{\mathcal{R}}([a,b])$ el conjunto de clases de equivalencia de $\mathcal{R}([a,b])$, y denotamos por $\overline{f}$ a la clase de equivalencia de $f \in \mathcal{R}([a,b])$. Con esto, $\| \overline{f} \|_{L'} \coloneq \int_{a}^{b} |f| dx$ define una norma en $\overline{\mathcal{R}} ([a,b])$ que se llama la \textbf{norma $L'$}.
+		\item $f$ no es Riemann integrable. $\underline{\int_{0}^{1}} f = 0 \neq 1 = \overline{\int_{0}^{1}} f$.
+	\end{itemize}
+\end{eg}
 
-	\begin{remark}
-		Hay un problema: $(\overline{\mathcal{R}} ([a,b]), \| \cdot \|_{L'})$ NO ES COMPLETO!
-	\end{remark}
+\begin{remark}
+	La convergencia uniforme SÍ cumple esto, pero es demasiado fuerte.
+\end{remark}
 
-	\begin{enumerate}
-		\item[3.] \textbf{TFC:} Si $f \in \mathcal{R} ([a,b])$ es continua en $x_0 \in [a,b]$, entonces $F(x) \coloneq \int_{a}^{x} f(t) dt$ es derivable en $x_0$ y $F'(x_0) = f(x_0)$. En particular, $F$ es derivable en $x$ y $F'(x)=f(x)$ para todo $x$ salvo un conjunto de medida nula.
-	\end{enumerate}
+\begin{ex}[Guía 1]
+	Sean $(f_n)_{n \in \N} \subset \mathcal{R}([a,b])$ tales que $f_n \to f$ uniformemente en $[a,b]$. Entonces, $f \in \mathcal{R}([a,b])$ y $\lim_{n \to \infty} \int_{a}^{b} f_n = \int_{a}^{b} f$.
+\end{ex}
+
+\begin{eg}[3]~
+	\begin{itemize}
+		\item $f_n (x) \coloneq x^n$ en $[0,1],\ f_n \in \mathcal{R}([a,b]),\ \forall n \in \N,\ f_n \to \chi = f$ puntualmente;
+
+		\item $f \in \mathcal{R}([a,b])$ y $\int_{0}^{1} f_n (x) dx = \frac{1}{n+1} \to 0 = \int_{0}^{1}$;
+
+		\item $f_n$ no converge uniformemente a $f$.
+	\end{itemize}
+\end{eg}
+
+Resulta que la noción de convergencia "óptima" (la más "débil" que cumple lo que queremos) es la de convergencia en $L'$:
+
+\[
+f_n \xrightarrow{L'} f \text{ si } \lim_{n \to \infty} \int_{a}^{b} | f_n - f | = 0.
+\]
+
+Esta noción de convergencia viene dada por una "norma":
+
+\begin{itemize}
+	\item $\| f \|_{L'} \coloneq \int_{a}^{b} |f|$ (recordar que $f \in \mathcal{R}([a,b]) \implies |f| \in \mathcal{R}([a,b])$);
+
+	\item $d_{L'} (f,g) \coloneq \| f - g \|_{L'} = \int_{a}^{b} |f-g|$.
+\end{itemize}
+
+\begin{remark}
+	$\| \cdot \|_{L'}$ no es una norma porque $\| f \|_{L'} = 0 \nRightarrow f = 0$. Decimos que es una \textit{pseudo-norma} y $d$ una \textit{pseudo-métrica}.
+\end{remark}
+
+Para arreglar esto, dadas $f,g : [a,b] \to \R$, decimos que son \textit{equivalentes} y lo notamos $f \sim g$ si $\{ x \in [a,b] \ : \ f(x) \neq g(x) \}$ tiene medida nula. Resulta que $\sim$ es una relación de equivalencia y, además,
+
+\[
+f,g \in \mathcal{R} ([a,b]),\ f \sim g \implies \int_{a}^{b} f = \int_{a}^{b} g.
+\]
+
+Sea $\overline{\mathcal{R}}([a,b])$ el conjunto de clases de equivalencia de $\mathcal{R}([a,b])$, y denotamos por $\overline{f}$ a la clase de equivalencia de $f \in \mathcal{R}([a,b])$. Con esto, $\| \overline{f} \|_{L'} \coloneq \int_{a}^{b} |f| dx$ define una norma en $\overline{\mathcal{R}} ([a,b])$ que se llama la \textbf{norma $L'$}.
+
+\begin{remark}
+	Hay un problema: $(\overline{\mathcal{R}} ([a,b]), \| \cdot \|_{L'})$ NO ES COMPLETO!
+\end{remark}
+
+\begin{enumerate}
+	\item[3.] \textbf{TFC:} Si $f \in \mathcal{R} ([a,b])$ es continua en $x_0 \in [a,b]$, entonces $F(x) \coloneq \int_{a}^{x} f(t) dt$ es derivable en $x_0$ y $F'(x_0) = f(x_0)$. En particular, $F$ es derivable en $x$ y $F'(x)=f(x)$ para todo $x$ salvo un conjunto de medida nula.
+\end{enumerate}

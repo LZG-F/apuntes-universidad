@@ -1,5 +1,5 @@
-\section{Clase 15 (10/09)}
-
+\clase{15}{10 de Septiembre}{}
+\medskip
 \begin{theorem}[Dynkin]
 	Si $\mathscr{L}$ es un $\lambda$-sistema que contiene un $\pi$-sistema $\mathcal{P}$ entonces $\sigma(\mathcal{P}) \subseteq \mathscr{L}$
 \end{theorem}
@@ -52,7 +52,7 @@
 \begin{proof}[Proof ]
 	Sean $\mu,\mu'$ medidas sobre $(X, \mathscr{M})$ tal que $\mu(B) = \mu'(B) \quad \forall B \in \mathscr{S}$. Queremos ver que $\mu(A) = \mu'(A) \quad \forall A \in \mathscr{M}$ (primero cuando $\mathscr{M} = \sigma(\mathscr{S})$ y luego con $\mathscr{M} = \mathscr{M}_{\mu^{*}_{\tau}}$): \par
 	\smallskip
-	\underline{Caso $\mathscr{M} = \sigma(\mathscr{S})$}: Tomamos $(E_n)_n \subseteq \mathscr{S}$ disjuntos tal que $X = \textbigcupd_{n\in\N} E_n$ y $\tau(E_n) < \infty \quad \forall n\in\N$ (podemos, pues $\tau$ es $\sigma$-finita). Observemos que, por ser $\mu$ y $\mu'$ medidas en $\sigma(\mathscr{S})$ si $A \in \sigma(\mathscr{S})$, entonces:
+	(i) $\mathscr{M} = \sigma(\mathscr{S})$: Tomamos $(E_n)_n \subseteq \mathscr{S}$ disjuntos tal que $X = \textbigcupd_{n\in\N} E_n$ y $\tau(E_n) < \infty \quad \forall n\in\N$ (podemos, pues $\tau$ es $\sigma$-finita). Observemos que, por ser $\mu$ y $\mu'$ medidas en $\sigma(\mathscr{S})$ si $A \in \sigma(\mathscr{S})$, entonces:
 	\[ \mu(A) = \mu \left( \bigcupd_{n\in\N} A \cap E_n \right) = \sum_{n\in\N} \mu(A \cap E_n) \quad \text{y} \quad \mu'(A) = \sum_{n\in\N} \mu'(A \cap E_n). \]
 	Luego, bastará con ver que $\mu(A \cap E_n) = \mu'(A \cap E_n) \quad \forall n \in \N,\ A \in \sigma(\mathscr{S})$. Luego, fijemos $n\in\N$ y definamos
 	\[ \xi_n \coloneq \{A \in \sigma(\mathscr{S}) \ : \ \mu(A \cap E_n) = \mu'(A \cap E_n)\}. \]
@@ -63,7 +63,7 @@
 		\item $\mathscr{S} \subseteq \xi_n$.
 	\end{enumerate}
 	\textbf{Veamos 1.}
-	\begin{enumerate}
+	\begin{description}
 		\item[($\lambda_{1}$)] $X \in \xi_n$: Es cierto, pues $\mu(X \cap E_n) = \mu(E_n) = \tau(E_n) = \mu'(E_n) = \mu'(X \cap E_n)$;
 
 		\item[($\lambda_{2}$)] $A \in \xi_n \implies A^c \in \xi_n$: $\mu(A^c \cap E) = \mu(E_n \setminus A) = \mu(E_n) - \mu(A \cap E_n)$ (la última igualdad se da pues $\mu(E_n) < \infty$). Luego, por $(\lambda_{1})$, esto último es igual a $\mu'(E_n) - \mu'(A \cap E_n) = \mu'(A^c \cap E_n)$;
@@ -75,10 +75,10 @@
 			&= \mu' \left( \left( \bigcupd_{k\in\N} A_k \right) \cap E_n \right)
 		.\end{align*}
 		Luego, $\bigcupd_{k\in\N} A_k \in \xi_n$
-	\end{enumerate}
+	\end{description}
 	\textbf{Veamos 2.} Si $A \in \mathscr{S}$ entonces $A \cap E_n \in \mathscr{S}$ pues $\mathscr{S}$ es un $\pi$-sistema, y entonces $\mu(A \cap E_n) = \tau(A \cap E_n) = \mu'(A \cap E_n)$. \checkmark \par
 	\medskip
-	\underline{Caso cuando $\mathscr{M} = \mathscr{M}_{\mu^{*}_{\tau}}$} ($\tau$ unívocamente extendible): Sea $A \in \mathscr{M}_{\mu^{*}_{\tau}}$. Como $\tau$ es $\sigma$-finita en $\mathscr{S}$, existen $B,C \in \sigma(\mathscr{S})$ tales que $C \subseteq A \subseteq B$ y $\mu^{*}_{\tau}(C) = \mu^{*}_{\tau}(A) = \mu^{*}_{\tau}(B)$. Entonces, si $\mu$ es una extensión de $\tau$ sobre $\mathscr{M}_{\mu^{*}_{\tau}}$, tenemos que
+	(ii) $\mathscr{M} = \mathscr{M}_{\mu^{*}_{\tau}}$ ($\tau$ unívocamente extendible): Sea $A \in \mathscr{M}_{\mu^{*}_{\tau}}$. Como $\tau$ es $\sigma$-finita en $\mathscr{S}$, existen $B,C \in \sigma(\mathscr{S})$ tales que $C \subseteq A \subseteq B$ y $\mu^{*}_{\tau}(C) = \mu^{*}_{\tau}(A) = \mu^{*}_{\tau}(B)$. Entonces, si $\mu$ es una extensión de $\tau$ sobre $\mathscr{M}_{\mu^{*}_{\tau}}$, tenemos que
 	\[ \mu^{*}_{\tau}(A) \tikzmark{a}= \mu^{*}_{\tau}(C) \leq \mu(C) \leq \mu(A) \leq \mu(B) \tikzmark{b}= \mu^{*}_{\tau}(B) = \mu^{*}_{\tau}(A) \]
 
 	\begin{tikzpicture}[remember picture, overlay]
@@ -99,7 +99,7 @@
 	\bigskip
 	\noindent de donde resulta que $\mu(A) = \mu^{*}_{\tau}(A)$ y la extensión es única. Además, satisface $\mu(A) = \mu_{\tau}(B) = \mu_{\tau}(C)$ para cualquier $C,B \in \sigma(\mathscr{S})$ tal que $C \subseteq A \subseteq B,\ N_{1} = A \setminus C$ y $N_{2} = B \setminus A$ son $\mu_{\tau}$-nulos. Luego, $\mu = \overline{\mu_{\tau}}$, donde $\overline{\mu_{\tau}}$ es la "completación" de $\mu_{\tau}$ definida en el Teorema de Extensión de Carathéodory.
 \end{proof}
-
+\medskip
 \begin{note}
 	De la demostración se deduce que si $\mu$ y $\nu$ son medidas finitas sobre $(X, \mathscr{M})$, entonces 
 	\[ \mathscr{L} \coloneq \{A \in \mathscr{M} \ : \ \mu(A) = \nu(A)\} \]

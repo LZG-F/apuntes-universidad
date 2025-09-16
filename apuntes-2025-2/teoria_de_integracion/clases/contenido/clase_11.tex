@@ -1,5 +1,4 @@
-\section{Clase 11 (01/09)}
-
+\clase{11}{1 de Septiembre}{}
 \subsection*{Medida exterior de Hausdorff}
 
 $\mathscr{H}_s =$ medida que "mide" el tamaño de objetos s-dimensionales en $\R^d$. \newline
@@ -50,33 +49,32 @@ donde $\mathscr{H}_s$ es la medida exterior de Hausdorff s-dimensional en $\R^d$
 \begin{proof}~
 	\begin{enumerate}
 		\item Si $A \subseteq X,\ \mu^{*}(A \cap E) \leq \mu^{*}(E) = 0$. Además, por monotonía, $\mu^{*}(A \cap E^c) \leq \mu^{*}(A)$. Luego, $\mu^{*}(A \cap E) + \mu^{*}(A \cap E^c) = 0 + \mu^{*}(A \cap E^c) \leq \mu^{*}(A)$.
+	\end{enumerate}
+	\hr
+	\begin{enumerate}
+		\item[2.] ($\varnothing \in \mathscr{M}_{\mu^{*}}$): Se sigue de (1), pues $\mu^{*}(\varnothing) = 0$, por definición.\par
+		\smallskip
+		($E \in \mathscr{M}_{\mu^{*}}$): Directo de la definición de $\mathscr{M}_{\mu^{*}}$, puesto que es simétrica en $E$ y $E^c$. \par
+		\smallskip
+		($(E_n)_{n\in\N} \subseteq \mathscr{M}_{\mu^{*}} \implies \bigcup_{n\in\N} E_n \in \mathscr{M}_{\mu^{*}}$): Esto lo demostramos en tres pasos.
 
-		\item \underline{$\varnothing \in \mathscr{M}_{\mu^{*}}$:} Se sigue de (1), pues $\mu^{*}(\varnothing) = 0$, por definición.
-
-		\underline{$E \in \mathscr{M}_{\mu^{*}}$:} Directo de la definición de $\mathscr{M}_{\mu^{*}}$, puesto que es simétrica en $E$ y $E^c$.
-
-		\underline{$(E_n)_{n\in\N} \subseteq \mathscr{M}_{\mu^{*}} \implies \bigcup_{n\in\N} E_n \in \mathscr{M}_{\mu^{*}}$:} Esto lo demostramos en tres pasos. En primer lugar, demostramos que si $E_1,E_2 \in \mathscr{M}_{\mu^{*}}$, entonces $E_1 \cap E_2, E_1 \cup E_2 \in \mathscr{M}_{\mu^{*}}$.
-		\begin{proof}
-			Si $A \subseteq X$, entonces
+		\begin{itemize}
+		\item En primer lugar, demostramos que si $E_1,E_2 \in \mathscr{M}_{\mu^{*}}$, entonces $E_1 \cap E_2, E_1 \cup E_2 \in \mathscr{M}_{\mu^{*}}$. Si $A \subseteq X$, entonces
 			\begin{align*}
 				\mu^{*}(A) & = \mu^{*}(A \cap E_1) + \mu^{*}(A \cap E_1^c) \\
 				& = \mu^{*}(A \cap E_1) + \mu^{*}(A \cap \overbrace{E_1^c \cap E_2}^{E_2 \setminus E_1}) + \mu^{*}(A \cap \underbrace{E_1^c \cap E_2^c}_{(E_1 \cup E_2)^c}) \\
 				& \geq \mu^{*}(A \cap (E_1 \cup E_2)) + \mu^{*}(A \cap (E_1 \cup E_2)^c) 
 			.\end{align*}
 			Notar que la primera igualdad se tiene por $E_1 \in \mathscr{M}_{\mu^{*}}$ y la segunda por $E_2 \in \mathscr{M}_{\mu^{*}}$. Esto implica que $E_1 \cap E_2 \in \mathscr{M}_{\mu^{*}}$. Pero entonces $E_1 \cap E_2 = ((E_1 \cap E_2)^c)^c = (\underbrace{\underbrace{E_{1}^c}_{\in \mathscr{M}_{\mu^{*}}} \cup \underbrace{E_{2}^c}_{\in \mathscr{M}_{\mu^{*}}}}_{\in \mathscr{M}_{\mu^{*}}})^c \in \mathscr{M}_{\mu^{*}}$
-		\end{proof}
-		Para el segundo paso, demostramos que si $E_1,\dots,E_n \in \mathscr{M}_{\mu^{*}}$ disjuntos, entonces 
+		\item Para el segundo paso, demostramos que si $E_1,\dots,E_n \in \mathscr{M}_{\mu^{*}}$ disjuntos, entonces 
 		\[ \mu^{*}\left(A \cap \left(\displaystyle\bigcupd_{i=1}^{n} E_i \right)\right) = \displaystyle\sum_{i=1}^{n} \mu^{*}(A \cap E_i). \]
-		\begin{proof}
 			La idea es probarlo por inducción. Basta ver el caso $n=2$ (los otros casos salen iterando éste)
 			\begin{align*}
 				& \mu^{*}(A \cap (E_1 \cupd E_2)) \\
 				= \ & \mu^{*}(\underbrace{A \cap (E_1 \cupd E_2) \cap E_1}_{A \cap E_1}) + \mu^{*}(\underbrace{A \cap (E_1 \cupd E_2) \cap E_1^c}_{A \cap E_2}) 
 			.\end{align*}
 			pues $E_2 \subseteq E_1^c$ por ser disjuntos.
-		\end{proof}
 		Por último, vemos que si $(E_n)_{n\in\N} \subseteq \mathscr{M}_{\mu^{*}}$, entonces $\bigcup_{n\in\N} E_n \in \mathscr{M}_{\mu^{*}}$.
-		\begin{proof}
 			Podemos suponer que los $E_n$ son disjuntos. Si no, los cambiamos por
 			\begin{align*}
 				& E_{1}' \coloneq E_{1} \in \mathscr{M}_{\mu^{*}} \\
@@ -99,6 +97,9 @@ donde $\mathscr{H}_s$ es la medida exterior de Hausdorff s-dimensional en $\R^d$
 				& \geq \mu^{*}(A \cap E) + \mu^{*}(A \cap E^c) \tag{$\mu^{*}\ \sigma$-subad.} \\
 				& \quad A \cap E = \bigcup_{i=1}^{\infty} A \cap E_i
 			.\end{align*}
-		\end{proof}
+			Que era lo que necesitabamos. \checkmark{}
+		\end{itemize}
+		Con esto, tenemos que $\mathscr{M}_{\mu^{*}}$ es, en efecto, $\sigma$-álgebra.
 	\end{enumerate}
 \end{proof}
+

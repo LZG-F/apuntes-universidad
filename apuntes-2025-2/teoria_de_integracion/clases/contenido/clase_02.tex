@@ -1,96 +1,95 @@
+\clase{2}{6 de Agosto}{}
 
-	\section{Clase 2 (06/08)}
+\begin{definition}[Riemann integrable]
+	Dada $f:[a,b]\to\R$ acotada, decimos que es Riemann integrable si existe el límite $\lim_{\|\Pi^*\|\to 0} S_R(f;\Pi^*)$. \\
+	Equivalentemente, $\exists L\in\R$, tal que dado cualquier $\varepsilon>0$, existe $\delta=\delta(\varepsilon)>0$ tal que $\|\Pi^*\|<\delta\Rightarrow|S_R(f;\Pi^*)-L|<\varepsilon$.
+\end{definition}
 
-	\begin{definition}[Riemann integrable]
-		Dada $f:[a,b]\to\R$ acotada, decimos que es Riemann integrable si existe el límite $\lim_{\|\Pi^*\|\to 0} S_R(f;\Pi^*)$. \\
-		Equivalentemente, $\exists L\in\R$, tal que dado cualquier $\varepsilon>0$, existe $\delta=\delta(\varepsilon)>0$ tal que $\|\Pi^*\|<\delta\Rightarrow|S_R(f;\Pi^*)-L|<\varepsilon$.
-	\end{definition}
+\begin{remark}
+	Cuando el límite existe, lo llamamos la integral de Riemann de $f$ en $[a,b]$ y lo notamos $\int_{a}^{b} f(x) dx$.
+\end{remark}
 
-	\begin{remark}
-		Cuando el límite existe, lo llamamos la integral de Riemann de $f$ en $[a,b]$ y lo notamos $\int_{a}^{b} f(x) dx$.
-	\end{remark}
+\begin{definition}[Sumas superior e inferior de Darboux]
+	Dadas $f:[a,b]\to\R$ acotada y $\Pi=(I_i)_{i=1,\dots,n}$ una partición de $[a,b]$, definimos 
 
-	\begin{definition}[Sumas superior e inferior de Darboux]
-		Dadas $f:[a,b]\to\R$ acotada y $\Pi=(I_i)_{i=1,\dots,n}$ una partición de $[a,b]$, definimos 
-	
-		\begin{align*}
-			m_{I_i}\coloneqq\inf_{x\in I_i} f(x) &,\quad M_{I_i}\coloneqq\sup_{x\in I_i} f(x) \quad \text{y} \\
-			\underline{S}(f;\Pi)\coloneqq\sum_{I_i\in\Pi}^{} m_{I_i}|I_i|&,\quad \overline{S}(f;\Pi)\coloneqq\sum_{I_i\in\Pi}^{} M_{I_i}|I_i|
-		.\end{align*}
+	\begin{align*}
+		m_{I_i}\coloneqq\inf_{x\in I_i} f(x) &,\quad M_{I_i}\coloneqq\sup_{x\in I_i} f(x) \quad \text{y} \\
+		\underline{S}(f;\Pi)\coloneqq\sum_{I_i\in\Pi}^{} m_{I_i}|I_i|&,\quad \overline{S}(f;\Pi)\coloneqq\sum_{I_i\in\Pi}^{} M_{I_i}|I_i|
+	.\end{align*}
 
-		Llamamos a $\underline{S}(f;\Pi)$ y $\overline{S}(f;\Pi)$ las sumas inferior y superior de Darboux de $f$ con respecto a $\Pi$, respectivamente.
-	\end{definition}
+	Llamamos a $\underline{S}(f;\Pi)$ y $\overline{S}(f;\Pi)$ las sumas inferior y superior de Darboux de $f$ con respecto a $\Pi$, respectivamente.
+\end{definition}
 
-	\begin{note}
-		Como $m_{I_i}\leq f(x)\leq M_{I_i}$, $\forall x\in I_i$ para toda partición marcada $\Pi^*=(\Pi;\varepsilon)$, tenemos $\underline{S}(f;\Pi)\leq S_R(f;\Pi^*)\leq \overline{S}(f;\Pi)$.
-	\end{note}
+\begin{note}
+	Como $m_{I_i}\leq f(x)\leq M_{I_i}$, $\forall x\in I_i$ para toda partición marcada $\Pi^*=(\Pi;\varepsilon)$, tenemos $\underline{S}(f;\Pi)\leq S_R(f;\Pi^*)\leq \overline{S}(f;\Pi)$.
+\end{note}
 
-	\begin{definition}[refinamiento]
-		Diremos que una partición $\Pi'$ de $[a,b]$ es un refinamiento de otra partición de $[a,b]$, $\Pi$, si $\Pi\subseteq\Pi'$. \\
-		Equivalentemente, si para todo $J_i\in\Pi'$ existe $I_i\in\Pi$ tal que $J_i\subseteq I_i$.
-	\end{definition}
+\begin{definition}[refinamiento]
+	Diremos que una partición $\Pi'$ de $[a,b]$ es un refinamiento de otra partición de $[a,b]$, $\Pi$, si $\Pi\subseteq\Pi'$. \\
+	Equivalentemente, si para todo $J_i\in\Pi'$ existe $I_i\in\Pi$ tal que $J_i\subseteq I_i$.
+\end{definition}
 
-	\begin{prop}
-		Sea $f:[a,b]\to\R$ acotada. Entonces,
-		\begin{itemize}
-			\item Si $\Pi\subseteq\Pi'$ son particiones de $[a,b]$,
-
-			\[
-			\underline{S}(f;\Pi)\leq\underline{S}(f;\Pi'),\quad\overline{S}(f;\Pi)\geq\overline{S}(f;\Pi').
-			\]
-
-			\item Si $\Pi_1,\Pi_2$ son particiones de $[a,b]$ cualesquiera,
-
-			\[
-			\underline{S}(f;\Pi_1)\leq\overline{S}(f;\Pi_2)
-			\]
-		\end{itemize}
-	\end{prop}
-
-	\begin{definition}
-		Sea $f:[a,b]\to\R$ acotada. Definimos:
-		\begin{itemize}
-			\item La integral superior (de Darboux) de $f$ como $\overline{\int_{a}^{b}} f(x) dx \coloneq \displaystyle{\inf_{\Pi}} \overline{S}(f;\Pi)$.
-			
-			\item La integral inferior (de Darboux) de $f$ como $\underline{\int_{a}^{b}} f(x) dx \coloneq \displaystyle{\sup_{\Pi}} \underline{S}(f;\Pi)$.
-		\end{itemize}
-	\end{definition}
-
-	\begin{theorem}
-		Sea $f:[a,b]\to\R$ acotada. Entonces,
-		\[
-		\underline{\int_{a}^{b}} f(x) dx = \displaystyle{\lim_{\|\Pi\|\to 0}} \underline{S}(f;\Pi)\quad \text{y} \quad \overline{\int_{a}^{b}} f(x) dx = \displaystyle{\lim_{\|\Pi\|\to 0}}\overline{S}(f;\Pi).
-		\]
-	\end{theorem}
-
-	\begin{remark}
-		Equivalentemente, para cualquier sucesión $(\Pi_n)_{n\in\N}$ de partición de $[a,b]$ tal que $\|\Pi_n\|\xrightarrow{n\to\infty} 0$, se tiene que 
+\begin{prop}
+	Sea $f:[a,b]\to\R$ acotada. Entonces,
+	\begin{itemize}
+		\item Si $\Pi\subseteq\Pi'$ son particiones de $[a,b]$,
 
 		\[
-		\underline{\int_{a}^{b}} f(x) dx = \lim_{n\to\infty} \underline{S}(f;\Pi_n)\quad\text{y}\quad \overline{\int_{a}^{b}} f(x) dx = \lim_{n\to \infty} \overline{S}(f;\Pi_n).
+		\underline{S}(f;\Pi)\leq\underline{S}(f;\Pi'),\quad\overline{S}(f;\Pi)\geq\overline{S}(f;\Pi').
 		\]
-	\end{remark}
 
-	\begin{theorem}
-		Dada $f:[a,b]\to\R$ acotada, son equivalentes:
+		\item Si $\Pi_1,\Pi_2$ son particiones de $[a,b]$ cualesquiera,
 
-		\begin{enumerate}
-			\item $\underline{\int_{a}^{b}} f(x) dx = \overline{\int_{a}^{b}} f(x) dx$ (i.e., $f$ es Darboux integrable).
+		\[
+		\underline{S}(f;\Pi_1)\leq\overline{S}(f;\Pi_2)
+		\]
+	\end{itemize}
+\end{prop}
 
-			\item $f$ es Riemann integrable.
+\begin{definition}
+	Sea $f:[a,b]\to\R$ acotada. Definimos:
+	\begin{itemize}
+		\item La integral superior (de Darboux) de $f$ como $\overline{\int_{a}^{b}} f(x) dx \coloneq \displaystyle{\inf_{\Pi}} \overline{S}(f;\Pi)$.
+		
+		\item La integral inferior (de Darboux) de $f$ como $\underline{\int_{a}^{b}} f(x) dx \coloneq \displaystyle{\sup_{\Pi}} \underline{S}(f;\Pi)$.
+	\end{itemize}
+\end{definition}
 
-			\item $\lim_{\|\Pi\|\to 0} \overline{S}(f;\Pi)-\underline{S}(f;\Pi)=0$.
+\begin{theorem}
+	Sea $f:[a,b]\to\R$ acotada. Entonces,
+	\[
+	\underline{\int_{a}^{b}} f(x) dx = \displaystyle{\lim_{\|\Pi\|\to 0}} \underline{S}(f;\Pi)\quad \text{y} \quad \overline{\int_{a}^{b}} f(x) dx = \displaystyle{\lim_{\|\Pi\|\to 0}}\overline{S}(f;\Pi).
+	\]
+\end{theorem}
 
-			\item $\forall (\Pi_n)_{n\in\N}$ sucesión de particiones de $[a,b]$ tal que $\|\Pi_n\|\to 0$, 
+\begin{remark}
+	Equivalentemente, para cualquier sucesión $(\Pi_n)_{n\in\N}$ de partición de $[a,b]$ tal que $\|\Pi_n\|\xrightarrow{n\to\infty} 0$, se tiene que 
 
-			\[
-			\lim_{n \to \infty} \overline{S}(f;\Pi_n)-\underline{S}(f;\Pi_n)=0.
-			\]
+	\[
+	\underline{\int_{a}^{b}} f(x) dx = \lim_{n\to\infty} \underline{S}(f;\Pi_n)\quad\text{y}\quad \overline{\int_{a}^{b}} f(x) dx = \lim_{n\to \infty} \overline{S}(f;\Pi_n).
+	\]
+\end{remark}
 
-			\item $\exists (\Pi_n)_{n\in\N}$ sucesión de particiones de $[a,b]$ tal que 
+\begin{theorem}
+	Dada $f:[a,b]\to\R$ acotada, son equivalentes:
 
-			\[
-			\lim_{n \to \infty}\overline{S}(f;\Pi_n)-\underline{S}(f;\Pi_n)=0.
-			\]
-		\end{enumerate}
-	\end{theorem}
+	\begin{enumerate}
+		\item $\underline{\int_{a}^{b}} f(x) dx = \overline{\int_{a}^{b}} f(x) dx$ (i.e., $f$ es Darboux integrable).
+
+		\item $f$ es Riemann integrable.
+
+		\item $\lim_{\|\Pi\|\to 0} \overline{S}(f;\Pi)-\underline{S}(f;\Pi)=0$.
+
+		\item $\forall (\Pi_n)_{n\in\N}$ sucesión de particiones de $[a,b]$ tal que $\|\Pi_n\|\to 0$, 
+
+		\[
+		\lim_{n \to \infty} \overline{S}(f;\Pi_n)-\underline{S}(f;\Pi_n)=0.
+		\]
+
+		\item $\exists (\Pi_n)_{n\in\N}$ sucesión de particiones de $[a,b]$ tal que 
+
+		\[
+		\lim_{n \to \infty}\overline{S}(f;\Pi_n)-\underline{S}(f;\Pi_n)=0.
+		\]
+	\end{enumerate}
+\end{theorem}

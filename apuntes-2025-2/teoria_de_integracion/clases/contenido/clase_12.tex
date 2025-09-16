@@ -1,5 +1,5 @@
-\section{Clase 12 (03/09)}
-
+\clase{12}{3 de Septiembre}{}
+\medskip
 \begin{theorem}
 	Si $\mu^*$ es una medida exterior sobre un espacio $X$, entonces:
 	\begin{enumerate}
@@ -40,10 +40,10 @@
 	\[ \mu^*(E) \leq \mu^*(N) = 0 \]
 	Por lo tanto, $\mu^*(E) = 0$ y, por $(1),\ E \in \mathscr{M}_{\mu^*}$.
 \end{proof}
-
-\begin{observe}
+\medskip
+\begin{remark}
 	Esto muestra que si $\mu$ es finitamente aditiva ($\implies$ monótona) y $\sigma$-subaditiva, entonces es $\sigma$-aditiva (es un si y sólo si).
-\end{observe}
+\end{remark}
 
 \begin{prop}
 	Si $\tau$ es una premedida sobre la semiálgebra $\mathscr{S}$ que es extendible $(E_1 + E_2)$ entonces su medida exterior asociada $\mu^{*}_{\tau}$ cumple que:
@@ -88,13 +88,15 @@
 		\item $\exists C \in \sigma(\mathscr{S}),\ N_{2} \in \mathscr{M}_{\mu^{*}_{\tau}}$ con $\mu^{*}_{\tau}(N_{2}) = 0$ tal que $A = C \cup N_{2}$.
 	\end{enumerate}
 \end{theorem}
-\begin{observe}
+\medskip
+\begin{remark}
 	$\mu^{*}_{\tau}(A) = \mu^{*}_{\tau}(B) = \mu^{*}_{\tau}(C)$ y $\mathscr{M}_{\mu^{*}_{\tau}}$ es la $\mu^{*}_{\tau}\big|_{\sigma(\mathscr{S})}$-completación.
-\end{observe}
+\end{remark}
 \begin{proof}
 	Que $(2) \implies (1)$ y $(3) \implies (1)$ es inmediato. Veamos que $(1) \implies (2) \implies (3)$. \par
 	\medskip
-	\noindent\fbox{$(1) \implies (2)$} Supongamos primero que $\mu^{*}_{\tau}(A) < \infty$. Dado $\varepsilon > 0$, existen $(B^{(\varepsilon{})}_{n})_{n\in\N} \subseteq \mathscr{S}$ tal que $A \subseteq \bigcup_{n\in\N} B^{(\varepsilon{})}_{n}$ y $\sum_{n\in\N}\tau(B^{(\varepsilon)}_{n}) \leq \mu^{*}_{\tau}(A) + \varepsilon{}$. En praticular,
+	\begin{description}
+		\item[$\boxed{(1) \implies (2)}$] Supongamos primero que $\mu^{*}_{\tau}(A) < \infty$. Dado $\varepsilon > 0$, existen $(B^{(\varepsilon{})}_{n})_{n\in\N} \subseteq \mathscr{S}$ tal que $A \subseteq \bigcup_{n\in\N} B^{(\varepsilon{})}_{n}$ y $\sum_{n\in\N}\tau(B^{(\varepsilon)}_{n}) \leq \mu^{*}_{\tau}(A) + \varepsilon{}$. En praticular,
 	\begin{align*}
 		\mu^{*}_{\tau}(A) \leq \mu^{*}_{\tau}\left( \bigcup_{n\in\N} B^{(\varepsilon)}_{n} \right) & \leq \sum_{n\in\N} \mu^{*}_{\tau}(B^{(\varepsilon)}_{n}) \\
 		\Big( \substack{\mu^{*}_{\tau} \text{ extiende a} \\
@@ -108,4 +110,5 @@
 	Luego,
 	\[ A \subseteq B^{(\frac{1}{k_{0}})} \implies \mu^{*}_{\tau}(B^{(\frac{1}{k_{0}})}) - \mu^{*}_{\tau}(A) \leq \frac{1}{k_{0}} \tag{$*$} \]
 	Tomando $k_{0} \longrightarrow{} \infty$, resulta $(1) \implies (2)$.
+	\end{description}
 \end{proof}
