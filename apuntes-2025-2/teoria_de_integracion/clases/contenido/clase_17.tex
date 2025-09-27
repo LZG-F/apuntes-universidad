@@ -1,0 +1,78 @@
+\clase{17}{22 de Septiembre}{}
+
+\begin{eg}
+	Medida de Lebesgue en $\R$. Se obtiene tomando $F \coloneq x \ (x \in \R)$. La medida $\mu_{\id}$ resultante cumple $\mu_{\id}((a,b]) = b-a \ \forall -\infty \leq a \leq b \leq \infty$. A partir de esta propiedad, se obtiene que $\mu_{\id}$ coincide con $\lambda$ en todo $\mcal{I}.\ (\mu_{\id}(I) = |I|)$. En particular, es la extensión buscada.
+\end{eg}
+
+\begin{eg}[¿?]
+	Medida de Lebesgue en $\R^d$.
+\end{eg}
+
+\begin{eg}
+	Medida de Hausdorff $s$-dimensional en $\R^d$. La restricción de $\mscr{H}_{s}^{*}$ a los conjuntos medibles $\mscr{H}_{s}^{*}$-medibles ($\mscr{H}_{s}^{*} =$ medida exterior de Hausdorff $s$-dimensional en $\R^d$) es la medida $\mscr{H}_{s}$ conocida como medida de Hausdorff $s$-dimensional en $\R^d$.
+\end{eg}
+
+\noindent \textbf{Datazo.} Si $\mu_{\xi}$ es la distribución de Cantor, $\mu_{\xi} = \mscr{H}_{\frac{\log 2}{\log 3}} \big|_{\xi}$. Notar que $\mu_{\xi}(A) = \mscr{H}_{\frac{\log 2}{\log 3}} (A \cap \xi)$, donde $\xi =$ conjunto de Cantor.
+
+\begin{remark}
+	Los $\beta(\R^d)$ son medibles porque $\mscr{H}_{s}^{*}$ es "medida exterior métrica" (Ejercicio guía 3).
+\end{remark}
+
+\section{Unidad 2 - Funciones Medibles}
+
+\begin{definition}[función medible]
+	Sean $(X, \mscr{M}),\ (Y, \Sigma)$ espacios medibles. Decimos que $f : X \to Y$ es $(\mscr{M}, \Sigma)$-medible (o sólo medible si $\mscr{M}$ y $\Sigma$ están claros) si $f^{-1}(B) \in \mscr{M} \ \forall B \in \Sigma$. Si $f : E \subseteq \R^n \to \R^m$, decimos que:
+	\begin{enumerate}[i.]
+		\item $f$ es medible Lebesgue si $f^{-1}(B) \in \mscr{L}(\R^n) \ \forall B \in \beta(\R^m)$;
+
+		\item $f$ es medible Borel si $f^{-1}(B) \in \beta(\R^n) \ \forall B \in \beta(\R^m)$.
+	\end{enumerate}
+\end{definition}
+
+\begin{remark}
+	$f$ es medible Borel implica $f$ medible Lebesgue.
+\end{remark}
+
+\textbf{Aclaración.} A veces necesitaremos trabajar con funciones $f : E \subseteq \R^n \to \overline{\R}$. Para ello dotamos a $\overline{\R}$ con la $\sigma$-álgebra $\beta(\overline{\R}) \coloneq \{A \cup B \ : \ A \in \beta(\R),\ B \subseteq \{-\infty,\infty\} \}$. 
+
+\begin{lemma}
+	$\beta(\overline{\R})$ es una $\sigma$-álgebra y
+	\begin{align*}
+		\beta(\overline{\R}) &= \sigma((a,\infty] \ : \ a \in \R) = \sigma([a,\infty] \ : \ a \in \R) \\
+		&= \sigma([-\infty,b) \ : \ b \in \R) = \sigma([-\infty,b] \ : \ b \in \R)
+	.\end{align*}
+\end{lemma}
+\begin{proof}[Proof ]
+	Ejercicio!
+\end{proof}
+
+\begin{definition}[funciones medibles Lebesgue y Borel]
+	Dada $f : E \subseteq \R^n \to \overline{\R}$, decimos que:
+	\begin{enumerate}[i.]
+		\item $f$ es medible Lebesgue si $f^{-1}(B) \in \mscr{L}(\R^n) \ \forall B \in \beta(\overline{\R})$;
+
+		\item $f$ es medible Borel si $f^{-1}(B) \in \beta(\R^n) \ \forall B \in \beta(\overline{\R})$.
+	\end{enumerate}
+	Es decir, si es medible cuando tomamos $\Sigma = \beta(\overline{\R})$ es la definición anterior.
+\end{definition}
+
+\begin{prop}
+	Sean ($X_{1}, \mscr{M}$) y ($X_{2}, \mscr{M}$) espacios medibles y $\xi$ una clase de subconjuntos de $X_{1}$ tal que $\xi \subseteq \mscr{M}_{2}$ y $\sigma(\xi) = \mscr{M}_{2}$. Entonces, dada $f : X_{1} \to X_{2}$ tenemos que
+	\[ f \text{ es } (\mscr{M}_{1}, \mscr{M}_{2}) \text{-medible} \iff f^{-1}(C) \in \mscr{M}_{1} \ \forall C \in \xi \]
+\end{prop}
+\begin{proof}[Proof ]
+	$\boxed{\Rightarrow}$ Inmediato de la definición de $f$ función medible. \par
+	\medskip
+	$\boxed{\Leftarrow}$ Si definimos $f^{-1}(\mscr{M}_{2}) \coloneq \{f^{-1}(B) \ : \ B \in \mscr{M}_{2}\}$, debemos ver que $f^{-1}(\mscr{M}_{2}) \subseteq \mscr{M}_{1}$. Pero por ejercicio de la guía 3, $\{f^{-1}(C) \ : \ C \in \xi\}$.
+	\[ f^{-1}(\mscr{M}_{2}) = f^{-1}(\sigma(\xi)) = \sigma(f^{-1}(\xi)). \]
+	Pero $f^{-1}(\xi) \subseteq \mscr{M}_{1}$ y esto es exactamente lo que queríamos ver.
+\end{proof}
+
+\begin{corollary}
+	Si $f : E \subseteq \R^n \to \R^n$ es continua, entonces es medible Borel.
+\end{corollary}
+\begin{proof}[Proof ]
+	Por la proposición, basta ver que $f^{-1}(G) \in \beta(\R^n) \ \forall G \subseteq \R^n$ abierto. Pero $f$ es continua y $G$ abierto, entonces $f^{-1}(G)$ abierto y, en particular, Boreliano en $\R^n$.
+\end{proof}
+
+\textbf{Pregunta.} ¿Por qué tomamos $\Sigma = \beta(\R^m)$ y no $\Sigma = \mscr{L}(\R^n)$ en la definición de función medible? Pues las funciones medibles son las candidatas a ser integrables en el sentido más amplio que buscamos construir. En particular, toda función continua $f : E \subseteq \R^n \to \R$ debería ser medible. Por la proposición, esto implica que $f^{-1}$ debe ser medible $\forall B \in \beta(\R)$. Pero si tomamos $\Sigma = \mscr{L}(\R)$ esto ya no sirve, i.e., existe $f$ continua y $E \subseteq \mscr{L}(\R)$ tal que $f^{-1}(E) \not\in \mscr{L}(\R^n)$.

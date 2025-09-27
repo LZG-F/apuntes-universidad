@@ -1,0 +1,124 @@
+\clase{18}{24 de Septiembre}{}
+
+\textbf{Fé de erratas.} Dada $f : E \subseteq \R^n \to \R^m$, decimos que
+\begin{itemize}
+	\item $f$ es mdeible Lebesgue si $f^{-1}(B) \in \mscr{L}(E) \quad \forall B \in \beta(\R^m)$;
+
+	\item $f$ es medible Borel si $f^{-1}(B) \in \beta(E) \quad \forall B \in \beta(\R^m)$,
+\end{itemize}
+donde $\mscr{L}(E) \coloneq \mscr{L}(\R^n) \cap E \coloneq \{A \cap E \ : \ A \in \mscr{L}(\R^n) \},\ \beta(E) \coloneq \beta(\R^n) \cap E \coloneq \{ B \cap E \ : \ B \in \beta(\R^n) \}$.
+
+\begin{remark}
+	Si $f : X \to \R$ es una función, entonces por el Lema de la clase pasada,
+	\begin{align*}
+		f( \mcal{F}, \beta(\R) ) - \text{medible} & \iff \{f>a\} \in \mcal{F} \quad \forall a \in \R \\
+		&\iff \{f \geq a\} \in \mcal{F} \quad \forall  a \in \R   \\
+		&\iff \{f<b\}   \in \mcal{F} \quad \forall b \in \R \\
+		&\iff \{f \leq b\}  \in \mcal{F} \quad \forall b \in \R
+	.\end{align*}
+\end{remark}
+
+\begin{prop}
+	Sea $(X, \mscr{M})$ es un espacio medible y $f,g : X \to \R$ funciones medibles (i.e. ($\mscr{M},\beta(\R)$)-medible). Entonces:
+	\begin{enumerate}[i)]
+		\item $f+g$ es medible;
+
+		\item $\alpha \cdot f$ es medible para todo $\alpha \in \R$;
+
+		\item $| f |, \ \max \{f,g\},\ \min \{f,g\}$ son medibles;
+
+		\item $f \cdot g$ es medible;
+
+		\item Si $g(x) \neq 0 \ \forall x \in X,\ \frac{f}{g}$ es medible.
+	\end{enumerate}
+	Además, si $f_n : X \to \R$ es medible para cada $n \in \N$ entonces las funciones $h_i : X \to \overline{\R},\ i=1,2,3,4$, dadas por
+	\begin{align*}
+		h_{1}(x) \coloneq \sup_{n\in\N} (f_n(x)) \quad & h_{2}(x) \coloneq \inf_{n\in\N} (f_n(x)) \\
+		h_{3}(x) \coloneq \limsup_{n \to \infty} (f_n(x)) \quad & h_{4}(x) \coloneq \liminf_{n \to \infty} (f_n(x))
+	.\end{align*}
+	son $(\mscr{M}, \beta(\overline{\R}))$-medibles.
+\end{prop}
+\begin{proof}[Proof Other Information]
+	Por la observación, para ver que $h : X \to \R$ es medible bastará con ver que $\{h > a\} = \{x \ : \ h(x) > a\} = h^{-1}((a,\infty]) \in \mscr{M} \ \forall a \in \R$. Veamos esto en cada caso:
+	\begin{enumerate}[i)]
+		\item Notamos que 
+		\begin{align*}
+			\{x \ : \ f(x) + g(x) > a\} &= \{x \ : \ f(x) > a - g(x)\} \\
+			&=\bigcup_{Q \in \Q} \{x \ : \ f(x) > Q > a - g(x)\} \\
+			&=\bigcup_{Q \in \Q} \{x \ : \ f(x) > Q\} \cap \{x \ : \ g(x) > a - Q\}  
+		\end{align*}
+
+		\item Si $\alpha > 0$,
+		\[ \{\alpha \cdot f > a\} = \left\{f > \frac{a}{\alpha}\right\} \in \mscr{M}.\]
+		Si $\alpha < 0$,
+		\[ \{\alpha \cdot f > a\} = \left\{f < \frac{a}{\alpha}\right\} \in \mscr{M}.\]
+		Si $\alpha = 0$,
+		\[ \{\alpha \cdot f > a\} = \{0 > a\} = \begin{cases}
+			\varnothing \quad \text{si } a \geq 0 \\
+			X \quad \text{si } a < 0
+		\end{cases} \]
+
+		\item $\{ |f| > a \} = \{ -a < f < a \} = f^{-1}((-a,a)) \in \mscr{M}$. Para ver que $\max \{f,g\} $ y $\min \{f,g\}$ son medibles, notamos que
+		\[ \max \{f,g\} = \frac{f+g}{2} + \frac{|f-g|}{2}, \quad \min \{f,g\} = \frac{f+g}{2} - \frac{|f-g|}{2}. \]
+		
+		\item Primero, notemos que $f^2$ es medible pues
+		\begin{itemize}
+			\item si $a < 0,\ \{f^2 > a\} = X \in \mscr{M}$,
+
+			\item si $a \geq 0, \ \{f^2 > a\} = \{|f| > \sqrt{a}\} \in \mscr{M}$.
+		\end{itemize}
+		De aquí se deduce que $f \cdot g$ es medible pues
+		\[ f \cdot g = \frac{(f+g)^2 - f^2 - g^2}{2} \]
+
+		\item Por (iv), bastará  con ver que $\frac{1}{g}$ es medible. Para esto,
+		\begin{align*}
+			\left\{\frac{1}{g} > a\right\} &= \left\{\frac{1}{g}>a\right\} \cap \{g>0\} \cup \left\{\frac{1}{g}>a\right\} \cap \{g<0\} \\
+			&= \{1 > ag\} \cap \{g>0\} \cup \{1<ag\} \cap \{g<0\} \in \mscr{M}
+		.\end{align*}
+		Por último, para ver que las $h_i$ son medibles, notemos que
+		\[ \{h_{1}>a\} = \{x \ : \ \sup_{n\in\N} f_n(x) > a\} = \bigcup_{n\in\N} \{f_n > a\} \in \mscr{M} \]
+		pues $f_n$ medible $\forall n$. Pero entonces,
+		\begin{align*}
+			h_{2} &\coloneq \inf_{n\in\N} f_n = -\sup_{n\in\N}(-f_n) \\
+			h_{3} &\coloneq \limsup_{n \to \infty} f_n = \inf_{n\in\N}(\sup_{k\geq n} f_k) \\
+			h_{4} &\coloneq \liminf_{n \to \infty} f_n = -\limsup_{n \to \infty} (-f_n)
+		.\end{align*}
+		son todas medibles.
+	\end{enumerate}
+\end{proof}
+
+\textbf{Comentario} Las mismas propiedades valen si $f,g$ toman valores en $\overline{\R}$, excepto la (i), pues $f+g$ no está bien definida en $x$ tales que $f(x) + g(x)$ sea $\infty-\infty$ ó $-\infty+\infty$. No obstante, $f+g$ resulta medible si la redefinimos de manera constante en donde no esté bien definida.
+
+\begin{prop}
+	Sean $(X_i, \mscr{M}_i),\ i = 1,2,3$, espacios medibles. Si $f : X_{1} \to X_{2}$ es $(\mscr{M}_{1}, \mscr{M}_2)$-medible y $g : X_{2} \to X_{3}$ es $(\mscr{M}_2, \mscr{M}_3)$-medible, entonces, $g \circ f : X_{1} \to X_{3}$ es $(\mscr{M}_1, \mscr{M}_3)$-medible.
+\end{prop}
+\begin{proof}[Proof Other Information]
+	Si $B \in \mscr{M}_3,\ g \circ f^{-1}(B) = f^{-1}(g^{-1}(B)) \in \mscr{M}_1$ pues $f$ es $(\mscr{M}_1, \mscr{M}_2)$-medible y $g^{-1}(B) \in \mscr{M}_2$ pues $g$ es $(\mscr{M}_2,\mscr{M}_3)$-medible.
+\end{proof}
+
+\begin{corollary}
+	Si $f,g : \R \to \R$ son funciones, entonces
+	\begin{enumerate}[i)]
+		\item $f,g$ medibles Borel $(\mscr{M}_1 = \mscr{M}_2 = \mscr{M}_3 = \beta(\R)) \implies g\circ f$ medible Borel;
+
+		\item $f$ meible Lebesgue $(\mscr{M}_1 = \mscr{L}(\R),\ \mscr{M}_2 = \beta(\R))$ y $g$ medible Borel $(\mscr{M}_2 = \beta(\R),\ \mscr{M}_3 = \beta(\R)) \implies g \circ f$ es medible Lebesgue.
+	\end{enumerate}
+\end{corollary}
+
+\begin{remark}
+	Si $f,g$ son medibles Lebesgue, entonces $g \circ f$ no tiene por qué ser medible Lebesgue.
+\end{remark}
+
+\begin{definition}
+	Dado un espacio de medida $(X, \mscr{M}, \mu)$, diremos que una cierta propiedad vale en casi todo punto de $X$ respecto a $\mu$, o que vale $\mu$-C.T.P (ó $\mu$-a.e), si el subconjunto de $X$ en donde dicha propiedad no vale es un conjunto $\mu$-nulo.
+\end{definition}
+
+\begin{prop}
+	Si $(X, \mscr{M}, \mu)$ es un espacio de medida completo, y $f,g : X \to \overline{\R}$ son funciones que coinciden $\mu$-C.T.P, entonces
+	\[ f \text{ medible} \iff g \text{ medible}. \]
+\end{prop}
+\begin{proof}[Proof ]
+	Si $f$ es medible, entonces
+	\[ \{g > a\} = (\{g > a\} \cap \{f=g\}) \cup (\underbrace{\{g>a\} \cap \{f \neq g\}}_{\mu \text{-nulo}}) \]
+	Dado que este conjunto es $\mu$-nulo junto con que el espacio es completo, entonces el conjunto pertenece a $\mscr{M}$. Como $\{f \neq g\} \in \mscr{M}$ por ser $\mu$-nulo, entonces $\{f=g\} = \{f \neq g\}^c \in \mscr{M}$. Como $\{f>a\} \in \mscr{M},\ g$ resulta medible. Luego, probamos $\implies)$ y la otra implicación es igual.
+\end{proof}

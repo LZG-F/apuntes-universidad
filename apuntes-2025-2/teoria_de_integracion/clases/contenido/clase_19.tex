@@ -1,0 +1,235 @@
+\clase{19}{26 de Septiembre}{}
+
+\begin{remark}
+	Si $(X, \mscr{M}, \mu)$ no necesariamente completo, entonces si $f : X \to \overline{\R}$ es $\mscr{M}$-medible y $N \in \mscr{M}$ con $\mu(N) = 0$, para cualquier $C \in \overline{\R},\ g : X \to \overline{\R}$ dada por 
+	\[ g(x) \coloneq \begin{cases}
+		f(x) \quad x \not\in N \\
+		C \quad x \in N
+	\end{cases} \]
+	es también medible. A modo de paréntesis, notemos que
+	\[ \{g > a\} = \underbrace{\{f > a\}}_{\in \mscr{M}} \cap \underbrace{N^c}_{\in\mscr{M}} \cup \{C > a\} \cap N, \]
+	donde
+	\[ \{C > a\} \cap N = \begin{cases}
+		\varnothing \quad \text{si } C \leq a \\
+		N \quad \text{si } C > a
+	\end{cases} \in \mscr{M} \]
+\end{remark}
+
+\begin{definition}[convergencia $\mu$-CTP]
+	Sean $(X, \mscr{M}, \mu)$ es un espacio de medida y, para cada $n\in\N$, una función $f_n : X \to \overline{\R}$ (no necesariamente medibles). Dada otra función $f : X \to \overline{\R}$ (no necesariamente medible) decimos que $f_n$ converge a $f$ en $\mu$-casi todo punto (ó $\mu$-CTP, ó $\mu$-ae) y lo notamos $f_n \rightarrow f \ \mu$-CTP (ó $f_n \stackrel{\text{ae}}{\longrightarrow}$) si $\{x \in X \ : \ f_n(x) \longarrownot\longrightarrow f \text{ cuando } n \to \infty \}$ es $\mu$-nulo.
+\end{definition}
+
+\begin{remark}
+	Si $(f_n)_{n\in\N},\ f : X \to \R$ son $\mscr{M}$-medibles, entonces el conjunto
+	\begin{align*}
+		\{x \in X \ : \ f_n(x) \longarrownot\longrightarrow f(x)\} &= \bigcup_{\delta > 0} \bigcap_{N \in \N} \bigcup_{n \geq N} \{x \in X \ : \ | f_n(x) - f(x) | > \delta\} \\
+		&= \bigcup_{k \in \N} \bigcap_{M \in \N} \bigcup_{n \geq M} \underbrace{\left\{x \in X \ : \ | f_n(x) - f(x) | > \frac{1}{k}\right\}}_{\in\mscr{M}} \\
+		&\implies \ \in \mscr{M}
+	\end{align*}
+	Ver el caso en que sea $\overline{\R}$ en el codominio.
+\end{remark}
+
+\begin{definition}[convergencia en medida]
+	Sean $(X, \mscr{M}, \mu)$ un espacio de medida y $f_{n}, f : X \to \R \ (n \in \N)$, funciones $\mscr{M}$-medibles. Decimos que $f_{n}$ converge en medida a $f$ respecto a $\mu$, y lo notamos $f_{n} \stackrel{\mu}{\longrightarrow} f$, si para cada $\varepsilon > 0$ vale que
+	\[ \lim_{n \to \infty} \mu(\{x \in X \ : \ | f_{n}(x) - f(x) | > \varepsilon\}) = 0 \]
+\end{definition}
+\medskip
+\noindent \textbf{Comentarios.}
+\begin{enumerate}
+	\item La definición se puede extender a funciones medibles a valores en $\overline{\R}$, redefiniendo $f_{n}(x) - f(x) \coloneq \infty$ cuando no está bien definida.
+
+	\item $f_{n} \longrightarrow f \ \mu$-CTP $\not\implies f_{n} \stackrel{\mu}{\longrightarrow} f$
+	\begin{eg}
+		$(X, \mscr{M}, \mu) \coloneq (\R, \mscr{L}, \lambda)$, donde $\lambda$ es la medida de Lebesgue. $f_{n}(x) \coloneq \chi_{[n,\infty)}(x),\ f(x) \coloneq 0$. Entonces, $f_n(x) \longrightarrow f(x) \ \forall x \in \R$, pero si $\varepsilon \in (0,1)$
+		\begin{align*}
+			\lambda(\{x \ : \ | f_n(x) - f(x) | > \varepsilon\}) &= \lambda(\{x \ : \ f_n(x) = 1\}) \\
+			&= | [n, \infty) | = \infty \longarrownot\longrightarrow 0.
+		\end{align*}
+	\end{eg}
+
+	\item $f_n \stackrel{\mu}{\longrightarrow} f \not\implies f_n \longrightarrow f \ \mu$-CTP.
+	\begin{eg}
+		$(X, \mscr{M}, \mu) \coloneq ([0,1], \mscr{L}([0,1]), \lambda \big|_{[0,1]})$ y las funcions $f_n$ dadas por seguir el mismo proceso (de manera inductiva) que los gráficos de $f_{1},f_{2},f_{3}$ y $f_{4}$ (dados en Fig 1.1 y 1.2). Entonces $f_n \stackrel{\mu}{\longrightarrow} 0$, pero $f_n \longarrownot\longrightarrow 0$ para todo $x$.
+		\begin{figure}
+			\centering
+			\begin{subfigure}[b]{0.3\textwidth}
+				\centering
+				\resizebox{\linewidth}{!}{
+				\begin{tikzpicture}
+					\begin{axis}[
+						axis x line=middle,
+						axis y line=middle,
+						xtick={0,0.5,1},
+						xticklabels={0,$\frac{1}{2}$,1},
+						x label style={anchor=west},
+						xlabel={$x$},
+						%xlabel near ticks,
+						ytick={0,1},
+						yticklabels={0,1},
+						y label style={anchor=south},
+						ylabel={$f_{1}$},
+						%ylabel near ticks,
+						xmax=1.5,
+						ymax=1.5,
+						xmin=0,
+						ymin=0
+					]
+					% Plots
+					\addplot[domain=0:0.5, blue] {1}; 
+					\addplot[domain=0.5:1, blue] {0};
+					\draw[dotted, blue] (axis cs: 0.5, 1) -- (axis cs: 0.5, 0);
+					\addplot[only marks, mark=*, blue] coordinates{(0,1)(0.5,1)(1,0)};
+					\addplot[blue, fill=white, only marks, mark=*] coordinates{(0.5,0)};
+					\end{axis}
+				\end{tikzpicture}
+				}
+			\end{subfigure}
+			\begin{subfigure}[b]{0.3\textwidth}
+				\centering
+				\resizebox{\linewidth}{!}{
+				\begin{tikzpicture}
+					\begin{axis}[
+						axis x line=middle,
+						axis y line=middle,
+						xtick={0,0.5,1},
+						xticklabels={0,$\frac{1}{2}$,1},
+						x label style={anchor=west},
+						xlabel={$x$},
+						%xlabel near ticks,
+						ytick={0,1},
+						yticklabels={0,1},
+						y label style={anchor=south},
+						ylabel={$f_{2}$},
+						%ylabel near ticks,
+						xmax=1.5,
+						ymax=1.5,
+						xmin=0,
+						ymin=0
+					]
+					% Plots
+					\addplot[domain=0:0.5, blue] {0}; 
+					\addplot[domain=0.5:1, blue] {1};
+					\draw[dotted, blue] (axis cs: 0.5, 1) -- (axis cs: 0.5, 0);
+					\draw[dotted, blue] (axis cs: 1, 1) -- (axis cs: 1, 0);
+					\addplot[only marks, mark=*, blue] coordinates{(0,0)(0.5,1)(1,1)};
+					\addplot[blue, fill=white, only marks, mark=*] coordinates{(0.5,0)};
+					
+					\end{axis}
+				\end{tikzpicture}
+				}
+			\end{subfigure}	
+			\caption{gráficos de $f_{1}$ y $f_{2}$}
+		\end{figure}
+		\begin{figure}
+			\centering
+			\begin{subfigure}[b]{0.3\textwidth}
+				\centering
+				\resizebox{\linewidth}{!}{
+				\begin{tikzpicture}
+					\begin{axis}[
+						axis x line=middle,
+						axis y line=middle,
+						xtick={0,0.25,0.5,0.75,1},
+						xticklabels={0,$\frac{1}{4}$,{ },{ },1},
+						x label style={anchor=west},
+						xlabel={$x$},
+						%xlabel near ticks,
+						ytick={0,1},
+						yticklabels={0,1},
+						y label style={anchor=south},
+						ylabel={$f_{3}$},
+						%ylabel near ticks,
+						xmax=1.5,
+						ymax=1.5,
+						xmin=0,
+						ymin=0
+					]
+					% Plots
+					\addplot[domain=0:0.25, blue] {1}; 
+					\addplot[domain=0.25:1, blue] {0};
+					\draw[dotted,blue] (axis cs: 0.25, 1) -- (axis cs: 0.25, 0);
+					\addplot[only marks,mark=*,blue] coordinates{(0,1)(0.25,1)(1,0)};
+					\addplot[blue,fill=white,only marks,mark=*] coordinates{(0.25,0)};
+					\end{axis}
+				\end{tikzpicture}
+				}
+			\end{subfigure}
+			\begin{subfigure}[b]{0.3\textwidth}
+				\centering
+				\resizebox{\linewidth}{!}{
+				\begin{tikzpicture}
+					\begin{axis}[
+						axis x line=middle,
+						axis y line=middle,
+						xtick={0,0.25,0.5,0.75,1},
+						xticklabels={0,$\frac{1}{4}$,$\frac{1}{2}$,{ },1},
+						x label style={anchor=west},
+						xlabel={$x$},
+						%xlabel near ticks,
+						ytick={0,1},
+						yticklabels={0,1},
+						y label style={anchor=south},
+						ylabel={$f_{4}$},
+						%ylabel near ticks,
+						xmax=1.5,
+						ymax=1.5,
+						xmin=0,
+						ymin=0
+					]
+					% Plots
+					\addplot[domain=0:0.25, blue] {0}; 
+					\addplot[domain=0.25:0.5, blue] {1};
+					\addplot[domain=0.5:1, blue] {0};
+					\draw[dotted, blue] (axis cs: 0.5, 1) -- (axis cs: 0.5, 0);
+					\draw[dotted, blue] (axis cs: 0.25, 1) -- (axis cs: 0.25, 0);
+					\addplot[only marks, mark=*, blue] coordinates{(0,0)(0.25,1)(0.5,1)(1,0)};
+					\addplot[blue, fill=white, only marks, mark=*] coordinates{(0.25,0)(0.5,0)};
+					\end{axis}
+				\end{tikzpicture}
+				}
+			\end{subfigure}
+			\caption{gráficos $f_{3}$ y $f_{4}$}
+		\end{figure}
+	\end{eg}
+\end{enumerate}
+
+\begin{prop}
+	Sean $(X, \mscr{M}, \mu)$ un espacio de medida y $f_n, f : X \to \R$ funciones medibles. Entonces, si $\mu$ es finita ($\mu(X) < \infty$), vale la implicación
+	\[ f_n \longrightarrow f \ \mu \text{-CTP} \implies f_n \stackrel{\mu}{\longrightarrow} f. \]
+\end{prop}
+\begin{proof}[Proof ]
+	Por la observación anterior, que $f_n \longrightarrow f \ \mu$-CTP significa que
+	\[ \mu \left( \bigcup_{k\in\N} bigcap_{M\in\N} \bigcup_{n \geq M} \left\{x \in X \ : \ | f_n(x) - f(x) | > \frac{1}{k}\right\} \right) = 0 \tag{$*$} \]
+	Pero ($*$) sucederá si y sólo si
+	\[ \mu \left( \bigcap_{M\in\N} \left( \bigcup_{n \geq M} \left\{x \in X \ : \ | f_n(x) - f(x) | > \frac{1}{k}\right\} \right) \right) = 0 \quad \forall k \in \N \tag{$**$} \]
+	Luego, dado que  es $\mu$-finita (por ende, continua por arriba)
+	\[ (**) \iff \lim_{M \to \infty} \mu \left( \bigcup_{n \geq M} \left\{x \ : \ | f_n(x) - f(x) | > \frac{1}{k}\right\} \right) = 0 \quad \forall k \in \N \]
+	Como
+	\[ \left\{x \ : \ | f_M(x) - f(x) | > \frac{1}{k}\right\} \subseteq \bigcup_{n \geq M} \left\{x \ : \ | f_n(x) - f(x) | > \frac{1}{k}\right\}, \]
+	entonces lo anterior implica que
+	\[ \lim_{M \to \infty} \mu \left( \left\{x \ : \ |f_M(x) - f(x) | > \frac{1}{k}\right\} \right) = 0 \quad \forall k \in \N \]
+	Por lo tanto, si $\varepsilon > 0$ entonces
+	\[ \lim_{M \to \infty} \mu(\{x \ : \ | f_M(x) - f(x) | > \varepsilon\}) = 0 \]
+	(tomando $k$ tal que $\frac{1}{k} < \varepsilon$). Luego, $f_n \stackrel{\mu}{\longrightarrow}$.
+\end{proof}
+
+\begin{remark}
+	Probamos que si $\mu$ es finita, entonces
+	\[ f_n \longrightarrow{} f \ \mu \text{-CTP} \iff \lim_{M \to \infty} \mu \left( \bigcup_{n \geq M} \{| f_n - f | > \varepsilon\} \right) = 0 \quad \forall \varepsilon > 0 \]
+	Comparar con
+	\[ f_n \stackrel{\mu}{\longrightarrow} f \iff \lim_{M \to \infty} \mu(\{| f_M - f | > \varepsilon\} = 0 \ \forall \varepsilon > 0 \]
+\end{remark}
+
+\begin{lemma}(Borel-Cantelli)
+	Sean $(X, \mscr{M}, \mu)$ un espacio de medida y $(A_n)_{n\in\N} \subseteq \mscr{M}$. Entonces,
+	\[ \sum_{n=1}^{\infty} \mu(A_n) < \infty \implies \mu(\limsup_{n \to \infty} A_n) = 0 \]
+	donde $\limsup_{n \to \infty} A_n \coloneq \bigcap_{n\in\N} \bigcup_{k \geq n} A_k$.
+\end{lemma}
+\begin{proof}[Proof ]
+	Notar que
+	\begin{align*}
+		\mu(\limsup_{n \to \infty} A_n) &\leq \mu \left( \bigcup_{k \geq n} A_k \right) \quad \forall n \in \N \\
+		&\leq \sum_{k=n}^{\infty} \mu(A_k) \stackrel{n \to \infty}{\longrightarrow} 0
+	\end{align*}
+	si $\sum_{n=1}^{\infty} \mu(A_{n}) < \infty$.
+\end{proof}
