@@ -1,0 +1,75 @@
+\clase{20}{29 de Septiembre}{}
+
+A partir de esto, podemos extender la noción de convergencia en casi todo punto y en medida, respectivamente, reemplazando 
+\[ \lim_{n \to \infty} f_n(x) = f(x) \text{ por } \lim_{n \to \infty} \overline{d}(f_n(x), f(x)) = 0 \]
+y
+\[ |f_n(x) - f(x)| \text{ por } \overline{d}(f_n(x), f(x)). \]
+Con este cambio, los resultados que vimos la clase pasada para funcione a valores en $\R$, también valen si toman valores en $\overline{\R}$. Notar que $\overline{d}(f(x), g(x))$ es medible (como función de $x$) pues $\overline{d}(f(x), g(x)) = |r \circ f(x) - r \circ g(x)|$, y $r \circ f, r \circ g$ son medibles porque $r$ es continua.
+
+\begin{lemma}
+	Si $(A_n)_{n\in\N} \subseteq \mscr{M}$, entonces
+	\[ \sum_{n\in\N} \mu(A_n) < \infty \implies \mu(\limsup A_n) = 0. \]
+\end{lemma}
+
+\noindent \textbf{Aclaración} ¿Qué interpretación le damos a $\limsup_{n \to \infty} A_n$?
+\begin{align*}
+	\limsup_{n \to \infty} A_n &= \bigcap_{M\in\N} \bigcup_{n \geq M} A_n \\
+	&= \{x \in X \ : \ x \in A_n \text{ para infinitos valores de } n\}   \\
+	&= \{x \in X \ : \ \exists \text{ subsucesión } (A_{n_k})_{k\in\N} \text{ tq } x \in A_{n_k} \ \forall k \in \N\}.
+\end{align*}
+¿Por qué se llama límite superior? Porque $\chi_{\limsup_{n \to \infty} A_n} = \limsup_{n \to \infty} \chi_{A_n}$.
+
+\begin{prop}
+	Sean ($X, \mscr{M}, \mu$) un espacio de medida y $(f_n)_{n\in\N}, f : X \to \overline{\R}$ funciones medibles. Entonces, si $f_n \stackrel{\mu}{\longrightarrow} f$, existe una subsucesión $(f_{n_k})_{k\in\N}$ tal que $f_{n_k} \longrightarrow f \ \mu$-CTP.
+\end{prop}
+\begin{proof}[Proof ]
+	Como $f_n \stackrel{\mu}{\longrightarrow} f$, para cada $k \in \N$ podemos elegir $n_k \in \N$ tal que
+	\[ \mu \left(\left\{\overline{d}(f_{n_k}, f) > \frac{1}{k}\right\}\right) \leq \frac{1}{2^k}\]
+	Si llamamos 
+	\[ A_k \coloneq \left\{\overline{d}(f_{n_k}, f) > \frac{1}{k}\right\}, \]
+	entonces $\sum_{k=1}^{\infty} \mu(A_k) < \infty$ y, luego, por el lema de Borel-Cantelli
+	\[ \mu(\limsup_{k \to \infty} A_k) = 0. \]
+	Pero, por otro lado, si $x \not\in \limsup_{k \to \infty} A_k$, entonces $f_{n_k}(x) \longrightarrow f(x)$. En efecto, si $x \not\in \limsup_{k \to \infty} A_k = \bigcap_{M\in\N} \bigcup_{k \geq M} A_k$, esto quiere decir que existe $M_0 \in \N$ tal que $x \not\in \bigcup_{k \geq M_0} A_k$, i.e., $x \not\in A_k \ \forall k \geq M_{0}$. En particular, $\overline{d}(f_{n_k}(x), f(x)) \leq \frac{1}{k} \ \forall k \geq M_{0}$. Luego, $\lim_{k \to \infty} \overline{d}(f_{n_k}(x), f(x)) = 0$ y entonces $f_{n_k}(x) \longrightarrow f(x)$. En particular, $\{x \ : \ f_{n_k}(x) \longarrownot\longrightarrow f(x)\} \subseteq \limsup_{k \to \infty} A_k$, y por lo tanto $\{x \ : \ f_{n_k}(x) \longarrownot\longrightarrow f(x)\}$ es $\mu$-nulo, lo cual prueba que $f_{n_k} \longrightarrow f \ \mu$-CTP.
+\end{proof}
+
+\begin{corollary}
+	Si $(X, \mscr{M}, \mu)$ es un espacio de medida completo y $(f_n)_{n\in\N} : X \to \overline{\R}$ es una sucesión de funciones medibles que convergen $\mu$-CTP a una función límite $f$, entonces $f$ es medible también.
+\end{corollary}
+\begin{proof}[Proof ]
+	Basta observar que $f = \limsup_{n \to \infty} f_n$ en $\mu$-casi todo punto, y usar que $\limsup_{n \to \infty} f_n$ es, como ya vimos, medible.
+\end{proof}
+
+\subsection{Principios de Littlewood}
+
+\textbf{Primer Principio} (Todo conjunto medible es casi un abierto).
+\begin{theorem}
+	Dado un conjunto $E \subseteq \R^n$, son equivalentes:
+	\begin{enumerate}
+		\item $E$ medible Lebesgue;
+
+		\item Dado $\varepsilon > 0$, existe $G$ abierto tal que $E \subseteq G$ y $|G - E|_{e} < \varepsilon$;
+
+		\item Dado $\varepsilon > 0$, existe $F$ cerrado tal que $F \subseteq E$ y $|E - F|_{e} < \varepsilon$.
+	\end{enumerate}
+	Además, si $|E|_{e} < \infty$, entonces estas afirmaciones son equivalentes a
+	\begin{enumerate}
+		\item[4.] Dado $\varepsilon > 0$, existen intervalos abiertos $I_1,\dots,I_n$ tal que
+		\[ \left|E \Delta \left(\bigcup_{k=1}^{n} I_k\right)\right|_{e} < \varepsilon. \]
+	\end{enumerate}
+\end{theorem}
+
+\begin{remark}
+	Podemos reemplazar (4) por una condición (4') en donde los intervalos puedan ser tomados semiabiertos, cerrados, disjuntos, etc.
+\end{remark}
+
+\noindent \textbf{Segundo Principio} (Toda sucesión convergente de funciones medibles, es "casi" uniformemente convergente).
+\begin{theorem}[Egorov]
+	Sean $(X, \mscr{M}, \mu)$ un espacio de medida finita y $(f_n)_{n\in\N\cup\{\infty\}} : X \to \R$ tales que $f_n \longrightarrow f_{\infty} \ \mu$-CTP. Entonces, dado $\varepsilon > 0$, existe $E_{\varepsilon} \in \mscr{M}$ tal que $f_n \longrightarrow f$ uniformemente en $E_{\varepsilon}$ y $\mu(E_{\varepsilon}^{c}) < \varepsilon$.
+\end{theorem}
+\medskip{}
+\noindent \textbf{Tercer Principio} (Toda función medible es "casi" continua).
+\begin{theorem}[Lusin]
+	Sea $f : [a,b] \to \overline{\R}$ una función medible Lebesgue finita en casi todo punto (resp. de la medida de Lebesgue). Entonces, dado $\varepsilon > 0$, existe $g : [a,b] \to \R$ continua tal que
+	\[ |\{x \in [a,b] \ : \ f(x) \neq g(x)\}| < \varepsilon. \]
+\end{theorem}
+

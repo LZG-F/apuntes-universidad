@@ -1,0 +1,76 @@
+\clase{18}{22 de Septiembre}{}
+
+\section{Compacidad (26)}
+
+\textbf{Moral.} Los conjuntos compactos se comportan como conjuntos finitos.
+
+\begin{definition}[cubrimientos]
+	Sean $X$ espacio topológico y $C \subset X$.
+	\begin{enumerate}
+		\item Un cubriente de $C$ (por subconjuntos de $X$) es un conjunto de subconjuntos de $X$ tal que su unión contiene a $C$. Si $\mcal{A}$ es cubriente, se pide $\bigcup_{A\in\mcal{A}} A \supset C$.
+
+		\item Si cada elemento de $\mcal{A}$ es abierto en $X$ decimos que $\mcal{A}$ es cubrimiento de $C$ por abiertos de $X$.
+
+		\item Si $C = X$, simplemente decimos que $\mcal{A}$ es cubriente (abierto) de $X$.
+	\end{enumerate}
+\end{definition}
+
+\begin{eg}
+	$X = \R,\ \mcal{A}_1 = \{(-n,n) \ \big| \ n \in \Z^{+}\}$ es cubriente abierto y $\mcal{A}_2 = \{(n,n+2) \ \big| \ n \in \Z\}$ es cubriente abierto.
+\end{eg}
+
+\begin{eg}
+	Toda base de $X$ es cubriente abierto.
+\end{eg}
+
+\begin{definition}[compacidad]
+	$X$ espacio topológico es compacto si para cada cubriente abierto $\mcal{A}$ existe un subconjunto $\mcal{A}' \subset \mcal{A}$ que también es cubriente (decimos que $\mcal{A}'$ es subcubriente) y tal que $\mcal{A}'$ es finito.
+\end{definition}
+
+\begin{eg}
+	$\R$ no es compacto!
+\end{eg}
+
+\begin{eg}[Axioma]
+	$[0,1]$ es compacto!!! (Notar que $\forall f : [0,1] \to \R,\ f([0,1])$ alcanza su supremo)
+\end{eg}
+
+\begin{eg}
+	Todo conjunto finito es compacto (todo cubriente es finito)
+\end{eg}
+
+\begin{criterio}
+	Si $X$ espacio topológico, $C \subset X$. $C$ es compacto (con topología inducida) $\iff$ para todo cubriente $\mcal{A}$ de $C$ por abiertos de $X$, $\mcal{A}$ tiene un subconjunto dinito cuya unión contiene a $C$.
+\end{criterio}
+
+\begin{property}[ganadora]
+	Si $X$ compacto y $f : X \to Y$ continua, entonces $f(X)$ compacto.
+\end{property}
+
+\begin{corollary}
+	$P : X \to A$ mapa cociente, $X$ compacto. Entonces, $A$ es compacto.
+\end{corollary}
+
+\begin{eg}
+	$\mathbb{S}^1$ es compacto (homeomorfo a $[0,1] / \sim$, con $0 \sim 1$)
+\end{eg}
+
+\begin{proof}[Proof ][propiedad ganadora]
+	Tomamos $\mcal{A}$ cubriente de $f(X)$ por abiertos de $Y$ (i.e. $\bigcup_{A\in\mcal{A}} A \supset f(X)$.) Queremos encontrar $\mcal{A}' \subset \mcal{A}$ finito con $\bigcup_{A\in\mcal{A}'} A \supset f(X)$. Definimos $\mcal{B} = \{f^{-1}(A) \ \big| \ A \in \mcal{A}\}$ esto es un conjunto de abiertos de $X$. De hecho, $\bigcup_{A\in\mcal{A}} f^{-1}(A) = \bigcup_{B\in\mcal{B}} B = X$ (porque $\bigcup_{A\in\mcal{A}} A \subset f(X)$). Por lo tanto $\mcal{B}$ es cubriente abierto de $X$. Luego, $X$ compacto implica que existe subconjunto finito $\mcal{B}' \subset \mcal{B}$.
+	\[ \mcal{B}' = \{f^{-1}(A_{1}),\dots,f^{-1}(A_{n})\} \]
+	con $A_{1},\dots,A_{n} \in \mcal{A}$. Luego, como $\mcal{B}'$ cubriente, entonces $X = f^{-1}(A_{1}) \cup \cdots \cup f^{-1}(A_{n})$. Entonces
+	\[ f(X) = f(f^{-1}(A_{1})) \cup \cdots \cup f(f^{-1}(A_{n})) \subset A \cup \cdots \cup A_{n}. \]
+	Por lo tanto, $\mcal{A}' = \{A_{1},\dots,A_{n}\}$ subcubriente finito de $\mcal{A}$.
+\end{proof}
+
+\begin{eg}
+	$X = \{0\} \cup \{\frac{1}{n} \ : \ n \in \N\}$ es compacto. En efecto, si $\mcal{A}$ es cubriente de $X$ por abiertos de $\R$, entonces existe $A \in \mcal{A}$ tal que $0 \in A$. Esto implica que $\exists \varepsilon > 0$ tal que $0 \in (-\varepsilon, \varepsilon) \subset A$. Luego, si $N > \frac{1}{\varepsilon}$, entonces $\frac{1}{n} \in (-\varepsilon, \varepsilon) \subset A \ \forall n \geq N$. Entonces, $A$ contiene todo salvo finitos puntos $x_{1},\dots,x_{m}$ de $X$. Luego, existen $A_{1},\dots,A_{n} \in \mcal{A}$ con $x_{i} \in A_{i}$. Con esto, $\mcal{A}' = \{A_{1},\dots,A_{n}\}$ es subconjunto finito.
+\end{eg}
+
+\begin{prop}
+	$X$ compacto, $C \subset X$ cerrado, entonces $C$ compacto.
+\end{prop}
+
+\begin{eg}
+	El conjunto de Cantor es compacto! En efecto, $\mcal{C} = \bigcap_{n \geq 1} E_{n}$, con cada $E_{n}$ cerrado. Por lo tanto $\mcal{C}$ es cerrado en $[0,1]$. Entonces, $\mcal{C}$ es compacto!
+\end{eg}

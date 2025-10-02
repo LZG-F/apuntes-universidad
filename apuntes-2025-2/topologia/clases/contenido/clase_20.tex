@@ -1,0 +1,71 @@
+\clase{20}{26 de Septiembre}{}
+
+\begin{eg}[en línea con el último ejemplo de la clase pasada]
+	$S^n \subset \R^{n+1}$ compacto.
+\end{eg}
+
+\begin{eg}
+	$X$ discreto y compacto, entonces $X$ es finito.
+\end{eg}
+\begin{proof}[Proof ]
+	Sea $\{\{x\}\}_{x \in X}$ cubierta abierta de $X$. Luego, $\exists \{x_{1}\},\dots,\{x_{r}\}$ tal que $X = \bigcup_{i=1}^{r} \{x_{i}\}$. Entonces, $X$ es finito.
+\end{proof}
+
+\subsection*{Aplicación de Compacidad a homeomorfismos}
+
+\textbf{Contexto.}
+\begin{itemize}
+	\item Álgebra lineal: Sea $f : X \to Y$ biyección lineal, entonces $f^{-1}$ es lineal.
+
+	\item Grupos, Anillos: $f : X \to Y$ homomorfismo biyectivo, entonces $f^{-1}$ es homomorfismo.
+
+	\item ¿Espacios Topológicos: $f : X \to Y$ biyección continua, entonces $f^{-1}$ es continua? ¡NO! Por ejemplo, si $X \neq \varnothing$,  $X^{\delta}$ con topología discreta, $X^{i}$ con topología indiscreta. Entonces, $X^{\delta} \stackrel{\id}{\longrightarrow} X^{i}$ es continua biyectiva pero $\id^{-1}$ no es continua. Otro ejemplo es $f : [0,1) \to S^{1} = \{z \in \C \ \big| \ |z| = 1\}$ tal que $t \mapsto e^{2 \pi i t}$. $f$ biyección continua, pero $f^{-1}$ no es continua porque $[0,1)$ no es compacto y $S^{1}$ sí.
+\end{itemize}
+
+\begin{theorem}
+	$X$ compacto, $Y$ Hausdorff, $f : X \to Y$ biyección continua. Entonces, $f$ es homeomorfismo.
+\end{theorem}
+\begin{proof}[Proof ]
+	Queremos ver que $f^{-1}$ es continua. Basta con ver que $f$ es una función cerrada. En efecto, $A \subset X$ cerrado implica que $A$ es compacto (por prop. 1 clase pasada). Luego, $f(A) \subset Y$ compacto (por continuidad). Entonces, $f(A)$ es cerrado (por prop. 2 clase pasada).
+\end{proof}
+
+\begin{eg}
+	$f : [0,1] \to S^1,\ f(t) = e^{2 \pi i t}$. $\overline{f}[t] = e^{2 \pi i t}$ es biyección continua. $[0,1] / (0 \sim 1)$ es compacto, $S^1$ es Hausdorff. Entonces, $\overline{f}$ es homeomorfismo. (ver foto)
+\end{eg}
+
+\begin{eg}
+	Existen funciones continuas sobreyectivas $[0,1] \to [0,1] \times [0,1]$. Estas curvas (de Peano) (o curvas que cubren) no pueden ser inyectivas porque de lo contrario, $[0,1]$ sería homeomorfo a $[0,1] \times [0,1]$, pero esto es imposible (se puede ver por un argumento por conexidad).
+\end{eg}
+
+\begin{eg}
+	Pensar en $O(2)$ como subgrupo de $O(3)$, mediante el homomorfismo inyectivo $O(2) \xhookrightarrow O(3)$ tal que $A \mapsto$ (hacer la matriz).
+	\begin{itemize}
+		\item $O(3) / O(2) =$ clases laterales izquierdas.
+	\end{itemize}
+	La sobreyección $O(3) \doublearrow{} O(3) / O(2)$ tal que $A \mapsto A\cdot O(2)$, hace de $O(3) / O(2)$ en un espacio cociente. Como $O(3)$ es compacto, entonces $O(3) / O(2)$ es compacto. ¿Quién es $O(3) / O(2)$?
+	\[ f : O(3) \to S^2 = \{(x,y,z) \in \R^3 \ \big| \ x^2 + y^2 + z^2 = 1\} \]
+	$f$ es continua: es restricción de $\Mat_{3 \times 3}(\R) \to \R^3$ (la proyección es continua, por lo que es restricción de continua). Notar que si $A \in O(3),\ B \in O(2),\ f(AB) = f(A)$. Entonces, $f$ "desciende" al cociente. $\overline{f} : O(3) / O(2) \to S^2$ tal que $A \cdot O(2) \mapsto f(A)$.
+	\begin{itemize}
+		\item $\overline{f}$ es sobre por Gram-Schmidt.
+		
+		\item $\overline{f}$ es inyectiva: $\overline{f}(A \cdot O(2)) = \overline{f}(B \cdot O(2))$.
+		
+		\item Por el teorema, $\overline{f} : O(3) / O(2) \to S^2$ es homeromorfismo.
+
+		\item En general, $O(n) / O(n-1) \cong S^{n-1}$
+	\end{itemize}
+\end{eg}
+
+\begin{eg}[pensar]~
+	\begin{enumerate}
+		\item $\R P^1 \cong S^1$;
+
+		\item $\R P^n \cong S^n / (\vec{x} \sim -\vec{x})$;
+
+		\item $\R P^3 \cong SO(3)$;
+
+		\item $S^3 \cong SU(2)$;
+
+		\item $D^n / \partial D^n \cong S^n$.
+	\end{enumerate}
+\end{eg}

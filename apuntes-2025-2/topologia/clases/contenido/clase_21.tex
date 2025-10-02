@@ -1,0 +1,104 @@
+\clase{21}{29 de Septiembre}{}
+
+\section{Espacios localmente compactos y compactificación por un punto}
+\textbf{El ejemplo clave:} La esfera de Riemann.
+
+\begin{recordar}[Proyección estereográfica]
+	$\pi : S^2 \setminus \{N\} \to \C$ (donde $N$ es el polo norte) es un homeomorfismo (ejercicio). 
+\end{recordar}
+
+\begin{pregunta}
+	¿Cómo extender $\pi$ a $S^2$?
+\end{pregunta}
+\begin{idea}
+	Agregamos un "punto al infinito a $\C$
+	\[ \hat{\C} = \C \cup \{\infty\}. \]
+	Declaramos $\pi(N) = \infty$.
+\end{idea}
+
+\begin{pregunta}
+	¿Qué topología le damos a $\hat{\C}$ de modo que $\pi : S^2 \to \hat{\C}$ sea un homeomorfismo?
+\end{pregunta}
+\begin{enumerate}[i.]
+	\item Como $\pi : S^2 \setminus \{N\} \to \C$ es homeomorfism. Los abiertos de $\C$ deben ser abiertos de $\hat{\C}$.
+	
+	\item $\hat{\C} \setminus K \ (= \C \setminus K \cup \{\infty\})$ con $K$ compacto en $\C$.
+\end{enumerate}
+
+\begin{prop}
+	Los subconjuntos de $\hat{\C}$ de la forma:
+	\begin{itemize}
+		\item $U$ abierto en $\C$, ó
+
+		\item $\hat{\C} \setminus K$ con $K$ compacto en $\C$.
+	\end{itemize}
+	forman una topología para $\hat{\C} = \C \cup \{\infty\}$. Con esta topología $\hat{\C}$ es compacto, Hausdorff y contiene a $\C$ como subsepacio.
+\end{prop}
+\begin{proof}[Proof ]
+	Veamos que es topología: 
+	\begin{enumerate} 
+		\item $\hat{\C} = \hat{\C} \setminus \varnothing$ y $\varnothing$ es abierto en $\C$
+		
+		\item $\bigcap$ cerrados: Vamos por casos
+		\begin{itemize}
+			\item $U_{1}, U_{2}$ abiertos $\C,\ U_{1} \cap U_{2}$ abierto en $\C$;
+
+			\item $U_{1}$ abierto en $\C,\ U_{2} = \hat{\C} \setminus K,\ K$ compacto en $\C$, entonces $U_{1} \cap U_{2} = U_{1} \setminus K$ y $K$ es compacto;
+
+			\item $(\hat{\C} \setminus K_{1}) \cap (\hat{\C} \setminus K_{2}) = \hat{\C} \setminus K_{1} \cup K_{2}$ y $K_{1} \cup K_{2}$ es compacto.
+		\end{itemize}
+		
+		\item $\bigcup$ abiertos: $U = \bigcup_{\alpha\in\Lambda} U_{\alpha}$ unión de abiertos en $\hat{\C}$. Notemos que:
+		\begin{itemize}
+			\item Si todos los $U_{\alpha}$ son abiertos en $\C$, $U$ es abierto en $\C$;
+
+			\item Si hay al menos un $U_{\beta} = \hat{\C} \setminus K,\ K \subset \C$ compacto. Entonces, $\hat{\C} \setminus U = \bigcap_{\alpha} (\C \setminus U_{\alpha}) = K \cap (\bigcap_{\alpha \neq \beta} (\C \setminus U_{\alpha}))$ es cerrado en $K$. Luego, $\hat{\C} \setminus U$ es compacto. Así, $\hat{\C} \setminus (\hat{\C} \setminus U) = U$ es abierto en $\hat{\C}$.
+		\end{itemize}
+	\end{enumerate}
+	\hspace{4mm} Para ver Hausdorff: Sea $z \in \C$. Veamos que existen abiertos disjuntos $U$ y $V$ en $\hat{\C}$ con $z \in U,\ \infty \in V$. Sea $U = B_{\varepsilon}(z)$ y $V = \hat{\C} \setminus \overline{B_{\varepsilon}(z)}$. Entonces, $U$ y $V$ satisfacen $U \cap V = \varnothing,\ z \in U$ e $\infty \in V$.\par
+	Para ver compacidad: $\{U_{\alpha}\}_{\alpha\in\Lambda}$ cubierta de $\hat{\C}$. Luego, $\infty \in U_{\beta}$ para algún $\beta \in \Lambda$. Así, $\hat{\C} \setminus U_{\beta}$ es compacto en $\C$. Entonces, existen finitos $\alpha_{1},\dots,\alpha_{r}$ tal que
+	\[ U_{1} \cup \cdots \cup U_{\alpha_r} = \hat{\C} \setminus U_{\beta} \]
+	Y entonces, $\{U_{1},\dots,U_{\alpha_{r}},U_{\beta}\}$ es cubierta abierta de $\hat{\C}$.
+\end{proof}
+
+\begin{definition}[localmente compacto]
+	Un espacio topológico $X$ es localmente compacto si $\forall x \in X$ y todo abierto $U$ que contiene a $x$, existe abierto $V$ tal que $x \in V \subset \overline{V} \subset U$ y $\overline{V}$ compacto (i.e. $V$ es precompacto).
+\end{definition}
+
+\begin{eg}~
+	\begin{enumerate}
+		\item $\R,\C,\R^n,\N,\Z$ son localmente compactos;
+
+		\item Compactos + Hausdorff son localmente compactos;
+
+		\item $\Q \subseteq \R$ no es localmente compacto;
+
+		\item $\{0\} \cup H = \{z \in \C \ : \ \Im(z) > 0\}$ no localmente compacto.
+	\end{enumerate}
+\end{eg}
+
+\begin{theorem}
+	Sea $X$ un espacio Hausdorff localmente compacto. Escribimos $\hat{X} = X \cup \{\infty\},\ \infty \not\in X$. Definimos abiertos en $\hat{X}$ como, o un abierto de $X$, o un $\hat{X} \setminus K$ con $K$ compacto en $X$. Entonces, esto define una topología para $\hat{X}$ con la cual es Hausdorff y compacto. Además, contiene a $X$ como subespacio.
+\end{theorem}
+
+\begin{definition}[compactificación por un punto]
+	$X$ Hausdorff y localmente compacto. $\hat{X}$ se llama la compactificación de $X$ por un punto (o de Alexandrov).
+\end{definition}
+
+\begin{theorem}
+	$f : X \to Y$ es un homeomorfismo entre espacios Hausdorff y localmente compactos, entonces $\hat{f} : \hat{X} \to \hat{Y}$, dada por $\hat{f}(x) = f(x)$ si $x \in X$ y $\hat{f}(\infty_X) = \infty_Y$, es un homeomorfismo
+\end{theorem}
+
+\begin{eg}~
+	\begin{enumerate}
+		\item $\widehat{\R} \cong S^1$;
+
+		\item $\widehat{\R^n} \cong S^n$;
+		
+		\item $\widehat{(S^1 \subset \R)} \cong S^1 \vee S^2$;
+
+		\item $X$ compacto, entonces en $\widehat{X} = X \cup \{\infty\}$, $X$ y $\{\infty\}$ son clopens;
+
+		\item $\widehat{\N} \cong \left\{\frac{1}{n} \ \big| \ n \in \N\right\} \cup \{0\} \subset \R$ (y $\N$ con la topología discreta).
+	\end{enumerate}
+\end{eg}

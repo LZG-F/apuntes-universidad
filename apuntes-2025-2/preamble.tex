@@ -37,6 +37,8 @@
 \newcommand{\mcal}[1]{\mathcal{#1}}
 \newcommand{\mscr}[1]{\mathscr{#1}}
 \newcommand{\ceq}{\coloneq}
+\DeclareMathOperator{\id}{id}
+\newcommand{\doublearrow}[1]{\xrightarrow[]{#1}\mathrel{\mkern-14mu}\rightarrow}
 
 \newcommand{\bigcupd}{\mathop{\ensurestackMath{\stackinset{l}{}{c}{+.25ex}{\hspace{3pt}{\text{\tiny{D}}}}{\displaystyle{\bigcup}}}}}
 
@@ -51,6 +53,8 @@
 \usepackage{dsfont}
 
 \usepackage{enumerate}
+
+\usepackage{stmaryrd}
 
 % demostraciones bidireccionales
 
@@ -71,7 +75,14 @@
 
 \usepackage{tikz}
 \usepackage{tikz-cd}
+\usepackage{tkz-tab}
+\usepackage{caption}
+\usepackage{subcaption}
+\renewcommand{\figurename}{Fig.}
 \usetikzlibrary{calc, tikzmark}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
 
 %MIS AGREGADOS
 
@@ -167,6 +178,7 @@
 \declaretheorem[sibling=definition, style=thmredbox, name=Lema]{lemma}
 %AGREGADO
 \declaretheorem[sibling=definition, style=thmredbox, name=Criterio]{criterio}
+\declaretheorem[sibling=definition, style=thmredbox, name=Propiedad]{property}
 %AGREGADO
 
 
@@ -184,11 +196,15 @@
 
 \newtheorem*{uovt}{UOVT}
 \newtheorem*{notation}{Notación}
-\newtheorem*{previouslyseen}{As previously seen}
+\newtheorem*{recordar}{Recordar}
 \newtheorem*{problem}{Problema}
 \newtheorem*{observe}{Observar}
-\newtheorem*{property}{Propiedad}
+%\newtheorem*{property}{Propiedad}
 \newtheorem*{intuition}{Intuición}
+% AGREGADO
+\newtheorem*{pregunta}{Pregunta}
+\newtheorem*{idea}{Idea}
+% AGREGADO
 
 
 \usepackage{etoolbox}

@@ -16,7 +16,7 @@
 \end{remark}
 
 \begin{definition}[convergencia $\mu$-CTP]
-	Sean $(X, \mscr{M}, \mu)$ es un espacio de medida y, para cada $n\in\N$, una función $f_n : X \to \overline{\R}$ (no necesariamente medibles). Dada otra función $f : X \to \overline{\R}$ (no necesariamente medible) decimos que $f_n$ converge a $f$ en $\mu$-casi todo punto (ó $\mu$-CTP, ó $\mu$-ae) y lo notamos $f_n \rightarrow f \ \mu$-CTP (ó $f_n \stackrel{\text{ae}}{\longrightarrow}$) si $\{x \in X \ : \ f_n(x) \longarrownot\longrightarrow f \text{ cuando } n \to \infty \}$ es $\mu$-nulo.
+	Sean $(X, \mscr{M}, \mu)$ es un espacio de medida y, para cada $n\in\N$, una función $f_n : X \to \overline{\R}$ (no necesariamente medibles). Dada otra función $f : X \to \overline{\R}$ (no necesariamente medible) decimos que $f_n$ converge a $f$ en $\mu$-casi todo punto (ó $\mu$-CTP, ó $\mu$-ae) y lo notamos $f_n \longrightarrow f \ \mu$-CTP (ó $f_n \stackrel{\text{ae}}{\longrightarrow} f$) si $\{x \in X \ : \ f_n(x) \longarrownot\longrightarrow f \text{ cuando } n \to \infty \}$ es $\mu$-nulo.
 \end{definition}
 
 \begin{remark}
@@ -49,7 +49,7 @@
 
 	\item $f_n \stackrel{\mu}{\longrightarrow} f \not\implies f_n \longrightarrow f \ \mu$-CTP.
 	\begin{eg}
-		$(X, \mscr{M}, \mu) \coloneq ([0,1], \mscr{L}([0,1]), \lambda \big|_{[0,1]})$ y las funcions $f_n$ dadas por seguir el mismo proceso (de manera inductiva) que los gráficos de $f_{1},f_{2},f_{3}$ y $f_{4}$ (dados en Fig 1.1 y 1.2). Entonces $f_n \stackrel{\mu}{\longrightarrow} 0$, pero $f_n \longarrownot\longrightarrow 0$ para todo $x$.
+		$(X, \mscr{M}, \mu) \coloneq ([0,1], \mscr{L}([0,1]), \lambda \big|_{[0,1]})$ y las funcions $f_n$ dadas por seguir el mismo proceso (de manera inductiva) que $f_{1},f_{2},f_{3}$ y $f_{4}$ en los gráficos (dados en Fig 1.1 y 1.2). Entonces $f_n \stackrel{\mu}{\longrightarrow} 0$, pero $f_n \longarrownot\longrightarrow 0$ para todo $x$.
 		\begin{figure}
 			\centering
 			\begin{subfigure}[b]{0.3\textwidth}
@@ -199,7 +199,7 @@
 \end{prop}
 \begin{proof}[Proof ]
 	Por la observación anterior, que $f_n \longrightarrow f \ \mu$-CTP significa que
-	\[ \mu \left( \bigcup_{k\in\N} bigcap_{M\in\N} \bigcup_{n \geq M} \left\{x \in X \ : \ | f_n(x) - f(x) | > \frac{1}{k}\right\} \right) = 0 \tag{$*$} \]
+	\[ \mu \left( \bigcup_{k\in\N} \bigcap_{M\in\N} \bigcup_{n \geq M} \left\{x \in X \ : \ | f_n(x) - f(x) | > \frac{1}{k}\right\} \right) = 0 \tag{$*$} \]
 	Pero ($*$) sucederá si y sólo si
 	\[ \mu \left( \bigcap_{M\in\N} \left( \bigcup_{n \geq M} \left\{x \in X \ : \ | f_n(x) - f(x) | > \frac{1}{k}\right\} \right) \right) = 0 \quad \forall k \in \N \tag{$**$} \]
 	Luego, dado que  es $\mu$-finita (por ende, continua por arriba)
@@ -210,7 +210,7 @@
 	\[ \lim_{M \to \infty} \mu \left( \left\{x \ : \ |f_M(x) - f(x) | > \frac{1}{k}\right\} \right) = 0 \quad \forall k \in \N \]
 	Por lo tanto, si $\varepsilon > 0$ entonces
 	\[ \lim_{M \to \infty} \mu(\{x \ : \ | f_M(x) - f(x) | > \varepsilon\}) = 0 \]
-	(tomando $k$ tal que $\frac{1}{k} < \varepsilon$). Luego, $f_n \stackrel{\mu}{\longrightarrow}$.
+	(tomando $k$ tal que $\frac{1}{k} < \varepsilon$). Luego, $f_n \stackrel{\mu}{\longrightarrow} f$.
 \end{proof}
 
 \begin{remark}

@@ -1,0 +1,48 @@
+\clase{21}{1 de Octubre}{}
+
+\begin{proof}[Proof ][Primer Principio, 1.72]
+	Veamos sólo $(2) \iff (4)$, si $|E|_e < \infty$. El resto son ejercicios de la guía 4. \par
+	$\boxed{\Rightarrow}$ Dado $\varepsilon > 0$, sea $G$ abierto tal que $E \subseteq G$ y $|G - E|_e < \frac{\varepsilon}{2}$. Notar que $|G|_e < \infty$, pues $|G|_e \leq |E|_e + |G - E|_e < \infty$. Como $G$ es abierto y $\R$ es separable, entonces existen $(I_i)_{i\in\N}$ intervalos abiertos tales que $G = \bigcup_{i\in\N} I_i$. Sea $A_n \coloneq \bigcup_{i=1}^{n} I_i$. Notar que $A_n \nearrow G$ (i.e. $A_n \subseteq A_{n+1} \ \forall n \in \N,\ \bigcup_{n\in\N} A_n = G$). Como la medida de Lebesgue es "continua inferior", $|G| = \lim_{n \to \infty} |A_n|$. Tomemos $n_{0} \in \N$ tal que $|A_{n_{0}}| > |G| - \frac{\varepsilon}{2}$ (puedo, pues $|G| < \infty$). Entonces, $E \Delta A_n = (E - A_n) \cup (A_n - E) \subseteq (G - A_n) \cup (G - E)$ (notar que en la inclusión estamos usando que $E,A_n \subseteq G$) de modo que, notando primero $|G - A_{n_{0}}|_e = |G - A_{n_{0}}| = |G| - |A_{n_{0}}| < \frac{\varepsilon}{2}$ (notar que en la útlima igualdad usamos que $A_n \subseteq G,\ |G| < \infty$), entonces
+	\[ |E \Delta A_{n_{0}}|_e \leq |G - A_{n_{0}}|_e + |G - E|_e < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon. \]
+	Luego, $A_n$ es el conjunto buscado. \par
+	$\boxed{\Leftarrow}$ Dado $\varepsilon > 0$, existen abiertos $I_{1},\dots,I_{n}$ tal que
+	\[ \left| E \Delta \left( \bigcup_{i=1}^{n} I_{i} \right) \right|_e < \frac{\varepsilon}{4}. \]
+	Por otro lado, por el ejercicio 1 de la guía 4, existe $V \subseteq \R^n$ abierto tal que
+	\[ E \Delta \bigcup_{i=1}^{n} I_{i} \subseteq V \quad \text{y} \quad |V| \leq \left| E \Delta \left( \bigcup_{i=1}^{n} I_{i} \right) \right|_e + \frac{\varepsilon}{4} < \frac{\varepsilon}{2}. \]
+	Luego, si tomamos $G = V \cup I_{1} \cup \cdots \cup I_{n}$, entonces:
+	\begin{enumerate}
+		\item $G$ es abierto,
+
+		\item $E \subseteq G$,
+
+		\item $G - E \subseteq V \cup (\bigcup_{i=1}^{n} I_{i} \setminus E) \subseteq (E \Delta \bigcup_{i=1}^{n} I_{i})$,
+	\end{enumerate}
+	con lo cual:
+	\begin{align*}
+		|G - E|_e &\leq |V|_e + \left| E \Delta \left( \bigcup_{i=1}^{n} I_{i} \right) \right|_e \\
+		&= |V| + \left| E \Delta \left( \bigcup_{i=1}^{n} I_{i} \right) \right|_e \\
+		&< \frac{\varepsilon}{2} + \frac{\varepsilon}{4} < \varepsilon
+	.\qedhere\end{align*}
+\end{proof}
+
+\begin{proof}[Proof ][Segundo Principio, 1.73, Egorov]
+	Para cada $k,n \in \N$ definamos
+	\[ E_{n}^{(k)} \coloneq \left\{x \ : \ \overline{d}(f_{n}(x),f(x))> \frac{1}{k}\right\}. \]
+	Observar que $\limsup_{n \to \infty} E_{n}^{(k)} \subseteq \{x \ : \ f_n(x) \longarrownot\longrightarrow f(x)\}$. Por lo tanto, $\limsup_{n \to \infty} E_{n}^{(k)}$ es $\mu$-nulo y, como $f_{n},f$ son medibles, $\limsup_{n \to \infty} E_{n}^{(k)}$ es medible y $\mu(\limsup_{n \to \infty} E_{n}^{(k)}) = 0$. Luego, definimos $B_{M}^{(k)} \searrow \limsup_{n \to \infty} E_{n}^{(k)}$ donde $M \to \infty$ ($B_{M+1}^{(k)} \subseteq B_{M}^{(k)} \ \forall M,\ \bigcap_{M\in\N} B_{M}^{(k)} = \limsup_{n \to \infty} E_{n}^{(k)}$). Como $\mu$ es finita, $\mu$ es "continua superior" y entonces
+	\[ \mu \left(\limsup_{n \to \infty} E_{n}^{(k)}\right) = \lim_{M \to \infty} \mu\left(B_{M}^{(k)}\right) \ \forall k \in \N. \]
+	En particular, dado $\varepsilon{} > 0$, podemos tomar $M_{k} \in \N$ grande, de modo que
+	\[ \mu \left( B_{M_{k}}^{(k)} \right) < \frac{\varepsilon}{2^{k}}. \]
+	Luego, si definimos $E_{\varepsilon} \coloneq \bigcap_{k\in\N} (B_{M_{k}}^{(k)})^{c}$, entonces
+	\[ \mu\left(E_{\varepsilon}^{c}\right) = \mu\left(\bigcup_{k\in\N} B_{M_{k}}^{(k)}\right) \leq \sum_{k\in\N} \mu\left(B_{M_{k}}^{(k)}\right) < \varepsilon. \]
+	Por otro lado, si $x \in E_{\varepsilon}$, entonces, dado $k \in \N$,
+	\[ \overline{d}(f_n(x), f(x)) \leq \frac{1}{k} \quad \forall n \geq M_{k}. \]
+	Es decir, dado $k \in \N$, existe $M_{k} \in \N$ tal que
+	\[ \sup_{x \in E_{\varepsilon}} \overline{d}(f_n(x), f(x)) \leq \frac{1}{k} \quad \forall n \geq M_{k}. \]
+	Esto prueba que $f_n$ "converge uniformemente" sobre $E_{\varepsilon}$.
+\end{proof}
+
+\begin{remark}[Importante!]
+	Si las $f_{n},f$ son finitas $\mu$-CTP, entonces la misma demostración prueba que, dado $\varepsilon > 0$, existe $E_{\varepsilon} \in \mscr{M}$ tal que
+	\[ \mu(E_{\varepsilon}^{c}) < \varepsilon \quad \text{y} \quad \sup_{x \in E_{\varepsilon}} |f_n(x) - f(x)| \stackrel{n \to \infty}{\longrightarrow} 0. \]
+	Sólo hay que cambiar $\overline{d}$ por $d(x,y) \coloneq |x-y|$ y trabajar en el conjunto en donde $f_{n},f$ son finitas.
+\end{remark}

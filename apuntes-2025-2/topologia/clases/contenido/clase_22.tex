@@ -1,0 +1,65 @@
+\clase{22}{1 de Octubre}{}
+
+\section{Compacidad secuencial (28), Teorema de Tychonoff (37)}
+
+\subsection*{Vimos}
+
+\begin{theorem}[Tychonoff]
+	$(X_{\alpha})_{\alpha \in J}$ familia indexada de espacios compactos. Entonces, $Z = \prod_{\alpha \in J} X_{\alpha}$ es compacto (con la topología producto).
+\end{theorem}
+
+\begin{definition}[compactificación de un punto]
+	$X$ localmente compacto Hausdorff $\leadsto \hat{X} = X \cup \{\infty\}$
+	\begin{itemize}
+		\item $\hat{X}$ compacto tal que $X \hookrightarrow \hat{X}$ es continua;
+
+		\item Si $X$ no es compacto $\implies X$ es denso en $\hat{X}$.
+	\end{itemize}
+\end{definition}
+
+\subsection{Compacidad Secuencial}
+
+\begin{definition}[espacio secuencialmente compacto]
+	$X$ espacio topológico es secuencialmente compacto si cada sucesión $(x_{n})_{n}$ en $X$ tiene subsucesión convergente.
+\end{definition}
+
+\begin{theorem}
+	$X$ espacio métrico con topología métrica. $X$ compacto $\iff X$ secuencialmente compacto.
+\end{theorem}
+
+\begin{remark}
+	En general, compacidad $\not\implies$ compacidad secuencial. Similiarmente, compacidad secuencial $\not\implies$ compacidad.
+\end{remark}
+
+\begin{eg}[Compacto, no secuencialmente compacto]
+	$X = [0,1]^{[0,1]} = \{\text{funciones } x : [0,1] \to [0,1]\}$. El $[0,1]^{[0,1]}$ con la topología producto. Es compacto por Tychonoff. No es secuencialmente compacto. En efecto, considerar la siguiente construcción de la sucesión $(x_{n})_{n}$ sin subsucesion convergente. $(x_{n}(\alpha))_{\alpha \in [0,1]}$ tal que $x_{n}(\alpha) = n$-ésimo valor en expansión binaria de $\alpha;\ \alpha = 0.b_{1}b_{2} \dots b_{n}\dots;\ x_{n}(\alpha) = b_{n}$ sin subsucesion convergente.
+\end{eg}
+
+\begin{eg}[Secuencialmente compacto, no compacto]
+	$X = \omega_{1} \times [0,1),\ \omega_{1}$ primer ordinal incontable con topología del orden lexicográfico (diccionario).
+\end{eg}
+
+\noindent \textbf{Preliminar (a Tychonoff):} (propiedad de intersección finita (PIF))
+
+\begin{definition}[PIF]
+	$X$ espacio topológico, $\mcal{C}$ colección de subconjuntos de $X$. $\mcal{C}$ tiene la propiedad de intersección finita si
+	\[ C_{1},\dots,C_{n} \in \mcal{C} \implies C_{1} \cap \cdots \cap C_{n} \neq \varnothing. \]
+\end{definition}
+
+\begin{eg}
+	Si $\bigcap_{C \in \mcal{C}} C \neq \varnothing \implies \mcal{C}$ tiene PIF.
+\end{eg}
+
+\begin{lemma}
+	$X$ espacio topológico. $X$ compacto $\leftrightarrow$ si $\mcal{C}$ colección arbitraria de cerrados de $X$ con PIF $\implies \bigcap_{C \in \mcal{C}} C \neq \varnothing$.
+\end{lemma}
+
+\begin{eg}
+	Si $\mcal{C} = \{C_{1},C_{2},\dots,C_{n},\dots\}$ tal que
+	\begin{itemize}
+		\item Cada $C_{n}$ cerrado no vacío,
+
+		\item $C_{1} \supset C_{2} \supset C_{3} \supset \cdots \supset C_{n}$,
+	\end{itemize}
+	entonces tiene PIF. Si $X$ es compacto, el lema implica que $\bigcap_{n \geq 1} C_{n}$ es no vacía.
+\end{eg}

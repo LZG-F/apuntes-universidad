@@ -1,0 +1,82 @@
+\clase{19}{24 de Septiembre}{}
+
+\begin{prop}
+	Subespacios cerrados de espacios compactos son compactos.
+\end{prop}
+\begin{proof}[Proof ]
+	Sean $X$ espacio topológico compacto y $A \subset X$ cerrado. Sea $\{U_\alpha\}_{\alpha \in \Lambda}$ una cubierta de $A$. Entonces, por definición de subespacio, existe $V_\alpha \subset X$ abierto tal que $V_\alpha \cap A = U_\alpha$. Como $A$ es cerrado, $X \setminus A$ es abierto. Luego, $\{ X \setminus A,\ \{V_\alpha\}_{\alpha\in\Lambda}\}$  es una cubierta abierta de $X$. Entonces existen $\alpha_{1},\dots,\alpha_{r}$ tal que
+	\[ X \setminus A \cup V_{\alpha_{1}} \cup \cdots \cup V_{\alpha_{r}} = X \]
+	Luego, intersectando con $A$,
+	\[ U_{\alpha_{1}} \cup \cdots \cup U_{\alpha_{r}} = A \qedhere \]
+\end{proof}
+
+\begin{prop}
+	Sean $X,Y$ espacios topológicos. $X \times Y$ es compacto si y sólo si $X$ e $Y$ son compactos.
+\end{prop}
+\begin{proof}[Proof ]
+	\fbox{$\Rightarrow$} Ejercicio. \par
+	\medskip
+	\fbox{$\Leftarrow$} $X, Y$ compactos. Queremos demostrar que $X \times Y$ compacto. Sea $\{W_{\alpha}\}_{\alpha\in\Lambda}$ cubierta abierta de $X \times Y$.
+	\begin{description}
+		\item[Paso 1.] $\forall (x,y) \in X \times Y,\ \exists \alpha(x,y) \in \Lambda$ y $(x,y) \in W_{\alpha(x,y)}$. Entonces, existe una caja $(x,y) \in U_{(x,y)} \times V_{(x,y)} \subset W_{\alpha(x,y)}$.
+
+		\item[Paso 2.] $\forall x \in X,\ \{V_{(x,y)}\}_{y \in Y}$ es una cubierta de $Y$. Por compacidad de $Y$, existen $y_{1}(x), y_{2}(x),\dots,y_{r}(x) \in Y$ tales que
+		\begin{align*}
+			V_{(x,y_{1}(x))} \cup \cdots \cup V_{(x,y_{r}(x))} &= Y, \\
+			U_{(x,y_{1}(x))} \cap \cdots \cup U_{(x,y_{r}(x))} &\coloneq U_{x}
+		,\end{align*}
+		donde $U_x$ es abierto en $X$.
+
+		\item[Paso 3.] Como $X$ es compacto, existen $x_{1},\dots, x_{n}$ tal que
+		\[ U_{x_{1}} \cup \cdots \cup U_{x_{n}} = X. \]
+		Por construcción, $\{W_{\lambda(x_{i}, y_{j}(x_{i}))}\}$ tal que $1 \leq i \leq n,\ 1 \leq j \leq r_{i}$ es subcubierta abierta finita de $\{W_{\alpha}\}$. Entonces, $X \times Y$ es compacto. \qedhere
+	\end{description}
+\end{proof}
+
+\begin{corollary}
+	$X_{1} \times \cdots \times X_{n}$ es compacto si y sólo si $X_{i}$ es compacto $\forall i = 1,\dots,n$.
+\end{corollary}
+
+\begin{theorem}[Tychonoff]
+	$\prod_{\lambda\in\Lambda} X_{\lambda}$ es compacto (con topología producto) si y sólo si $X_{\lambda}$ es compacto $\forall \lambda$.
+\end{theorem}
+
+\begin{lemma}[útil]
+	Sean $X$ espacio Hausdorff y $A \subset X$ subespacio compacto. Entonces, $A$ es cerrado.
+\end{lemma}
+\begin{proof}[Proof ]
+	Queremos demostrar que $X \setminus A$ es abierto. Sea $x \in X \setminus A$ y $p \in A$. Como $X$ es Hausdorff, existen $U_p$ abierto en $X,\ x \in U_p$, y $V_p$ abierto en $X,\ p \in V_p$, tal que $U_p \cap V_p = \varnothing$. Entonces $\{V_p \cap A\}_{p\in A}$ es cubierta abierta de $A$. Luego, por la compacidad de $A$, $\exists p_{1},\dots,p_{r}$ tal que
+	\[ (V_{p_1} \cap A) \cup \cdots \cup (V_{p_r} \cap A) = A \]
+	Entonces,
+	\[ U = U_{p_{1}} \cap \cdots \cap U_{p_{r}} \]
+	es abierto tal que $x \in U$ y $U \cap A = \varnothing$.
+\end{proof}
+
+\begin{corollary}
+	\begin{enumerate}[i.]
+		\item $a \in \R_{+},\ I_a \coloneq [-a,a]$ es compacto. $I_{a}^{n} = I_a \times \cdots \times I_a$ es compacto (prop 1.70);
+
+		\item $X \subset \R^n$ cerrado y acotado. Entonces, $X$ es compacto;
+		
+		\item $X \subset \R^n$ compacto. Entonces, $X$ es cerrado y acotado.
+	\end{enumerate}
+\end{corollary}
+\begin{proof}[Proof ]
+	\begin{enumerate}
+		\item[(ii)] Al ser acotado, entonces $\exists a$ tal que $X \subset I_{a}^{n} \subset \R^n$. Como $X$ es cerrado e $I_{a}^{n}$ es compacto, entonces $X$ es compacto.
+		
+		\item[(iii)] $\R^n$ Hausdorff, implica $X$ cerrado por ser compacto (lema útil). Para ver acotado, notamos que $\| \cdot \| : X \to \R$ es continua. Entonces, es localmente acotada y, por compacidad, es acotada.
+	\end{enumerate}
+\end{proof}
+
+\begin{remark}~
+	\begin{itemize}
+		\item (ii) y (iii) es el Teorema de Heine-Borel.
+
+		\item (iii) es un argumento "local $\rightarrow$ global"
+	\end{itemize}
+\end{remark}
+
+\begin{eg}
+	$O(n) = \{A \in \Mat_{n \times n}(\R) \ \big| \ A^{T}A = \Id \}$. $O(n) \subset \Mat_{n \times n}(\R) = \R^{n^2}$ es cerrado y acotado, y por lo tanto, compacto.
+\end{eg}
