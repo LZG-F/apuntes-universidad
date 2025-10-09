@@ -24,14 +24,14 @@
 
 		\item Notar que $\mu_{f}(\varnothing) = \int_{\varnothing} f d\mu = 0$, pues $\mu(\varnothing) = 0$ y $f$ débil $\mu$-int. Además, si $(E_{j})_{j\in\N} \subseteq \mscr{M}$ son disjuntos,
 		\begin{align*}
-			\mu_{f}\left(\bigcupd_{j=1}^{\infty} E_{j} \right) &= \int_{\bigcupd_{j=1}^{\infty}} f d\mu = \int_{X} f \chi_{\bigcupd_{j=1}^{\infty} E_{j}} d\mu \\
+			\mu_{f}\left(\bigcupd_{j=1}^{\infty} E_{j} \right) &= \int_{\textbigcupd_{j=1}^{\infty}} f d\mu = \int_{X} f \chi_{\textbigcupd_{j=1}^{\infty} E_{j}} d\mu \\
 			&= \int_{X} f \left( \sum_{j=1}^{\infty} \chi_{E_{j}} \right) d\mu = \int_{X} \left( \sum_{j=1}^{\infty} f \chi_{E_{j}} \right) d\mu \\
 			(\text{por } 1.) &= \sum_{j=1}^{\infty} \int_{X} f \chi_{E_{j}} d\mu = \sum_{j=1}^{\infty} \mu_{f}(E_{j}) \\
 		.\end{align*}	
 		Luego,
 		\begin{align*}
 			\sum_{j=1}^{\infty} \mu(E_{j}) &= \mu \left( \bigcupd_{j=1}^{\infty} E_{j} \right) \\
-			&= \int_{X} \chi_{\bigcupd_{j=1}^{\infty} E_{j}} \\
+			&= \int_{X} \chi_{\textbigcupd_{j=1}^{\infty} E_{j}} \\
 			&= \sum_{j=1}^{\infty} \int_{X} \chi_{E_{j}} d\mu
 		.\qedhere\end{align*}
 	\end{enumerate}
@@ -98,7 +98,7 @@
 	\medskip
 	\underline{Desigualdad Triangular} Si $f$ es débil $\mu$-integrable, pero $\int_{X}|f| d\mu = \infty$, entonces la desigualdad es inmediata. Por otro lado, si $f$ es $\mu$-integrable, entonces, por la desigualdad triangular en $\R$
 	\begin{align*}
-		\left| \int_{X} f d\mu \right| &= \left| \int_{X} f^{+} d\mu - \int_{X} f^{-} d\mu \\
+		\left| \int_{X} f d\mu \right| &= \left| \int_{X} f^{+} d\mu - \int_{X} f^{-} d\mu \right| \\
 		&\leq \left| \int f^{+} \right| + \left| \int f^{-} \right| \\
 		&= \int f^{+} + \int f^{-} = \int |f|
 	.\end{align*}
@@ -107,6 +107,7 @@
 	\begin{align*}
 		\int_{X} f d\mu &= \int_{X} f( \chi_{\{f \leq g\}} + \chi_{\{f > g\} }) d\mu \\
 		&= \int_{X} f \chi_{\{f \leq g\}  } + \int_{X} f \chi_{\{f > g\}  } \\
-		&= \int_{\{f \leq g\}  } f d\mu = 
-	.\end{align*}
+		&= \int_{\{f \leq g\}  } f \leq \int_{f \leq g} g = \int_{X} g d\mu
+	\end{align*}
+	(notar que la última desigualdad está dada por una propiedad de la clase pasada).
 \end{proof}

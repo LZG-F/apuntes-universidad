@@ -1,0 +1,107 @@
+\clase{23}{6 de Octubre}{}
+
+\begin{recordar}~
+	\begin{itemize}
+		\item $f \ \mu$-integrable $\iff \int_{X} |f| d\mu < \infty$.
+
+		\item $f$ débilmente $\mu$-integrable si $\int_{X} f^{+} d\mu < \infty$ y/o $\int_{X} f^{-} d\mu < \infty$.
+	\end{itemize}
+\end{recordar}
+
+\begin{theorem}
+	Sean $(X, \mscr{M}, \mu)$ un Edm y $f,g : X \to \overline{\R}$ débilmente $\mu$-integrables. Entonces, valen las siguientes
+	\begin{enumerate}[i)]
+		\item Dado $\alpha \in \R,\ \alpha \cdot f$ es débilmente $\mu$-integrable y $\int_{X} \alpha \cdot f d\mu = \alpha \int_{X} f d\mu$. (con la convención de que $\alpha \cdot \infty = 0$)
+
+		\item Si $f + g$ es débilmente $\mu$-integrable, entonces 
+		\[ \int_{X} (f + g) d\mu = \int_{X} f d\mu + \int_{X} g d\mu. \tag{$*$} \]
+
+		\item (Monotonía) Si $f \leq g \ \mu$-CTP, entonces $\int_{X} f d\mu \leq \int_{X} g d\mu$.
+
+		\item (Desigualdad Triangular) $\big| \int_{X} f d\mu \big| \leq \int_{X} |f| d\mu$.
+
+		\item Si $\mu(E) = 0 \implies \int_{E} f d\mu = 0$.
+	\end{enumerate}
+	En particular,
+	\begin{enumerate}
+		\item Si $f,g$ son $\mu$-integrables, entonces $f + g$ es $\mu$-integrable y vale $(*)$.
+
+		\item $f$ es $\mu$-integrable si y sólo si $\int_{X} |f| d\mu < \infty$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{note}
+	(i) + (ii) se conocen como la propiedad de "linealidad" de la integral.
+\end{note}
+
+\begin{remark}
+	Si $f$ es $\mscr{M}$-medible y no negativa, entonces es débilmente $\mu$-integrable pue $f^{-} \cong 0$ y entonces $\int f^{-} = 0 < \infty$. Lo mismo si no es positiva. Asi que todas estas propiedades valen para funciones que no cambian de signo.
+\end{remark}
+
+\begin{note}
+	La siguiente proposición es un caso particular de (iii).
+\end{note}
+
+\begin{prop}
+	Si $f,g : X \to \overline{\R}$ son débilmente $\mu$-integrables y $f \leq g$ en todo punto, entonces $\int_{X} f d\mu \leq \int_{X} g d\mu$.
+\end{prop}
+\begin{proof}[Proof ]
+	Si $f,g$ son no negativas, entonces
+	\begin{align*}
+		\int_{X} f \ d\mu &= \sup \left\{\int_{X} \varphi \ d\mu \ : \ 0 \leq \varphi \leq f,\ \varphi \text{ simple}\right\} \\
+		(f \leq g \implies) &\leq \sup \left\{\int_{X} \varphi \ d\mu \ : \ 0 \leq \varphi \leq g,\ \varphi \text{ simple}\right\} = \int_{X} g \ d\mu.
+	\end{align*}
+	(el caso general de éste, se demuestra usando que $f^{+} \leq g^{+}$ y $g^{-} \leq f^{-}$).
+\end{proof}
+
+\begin{lemma}
+	Si $\varphi : X \to \R_{\geq 0}$ es función simple no negativa, entonces la aplicación $\mu_{\varphi} : \mscr{M} \to \R$ dada por $\mu_{\varphi}(E) = \int_{E} \varphi \ d\mu$ es una medida en $(X, \mscr{M})$.
+\end{lemma}
+\begin{proof}[Proof ]
+	\begin{enumerate}
+		\item $\mu_{\varphi}(\varnothing) = \int_{\varnothing} \varphi \ d\mu = \int_{X} \varphi \chi_{\varnothing} \ d\mu = \int_{X} 0 \ d\mu = 0 \cdot \mu(X) = 0$.
+
+		\item Sean $(E_{i})_{i\in\N} \subseteq \mscr{M}$ disjuntos y supongamos que $\varphi$ tiene RC $\varphi = \sum_{i=1}^{n} \alpha_{i} \varphi_{A_{i}}$. Entonces,
+		\begin{align*}
+			\mu_{\varphi}\left(\bigcupd_{i\in\N} E_{i}\right) &= \int_{\bigcup_{j} E_{j}} \varphi \ d\mu = \int_{X} \varphi \chi_{\bigcup_{j} E_{j}} \ d\mu \\
+			&= \int_{X} \sum_{i=1}^{n} \alpha_{i} \chi_{A_{i}} \chi_{\bigcup_{j} E_{j}} \ d\mu = \int_{X} \sum_{i=1}^{n} \alpha_{i} \chi_{A_{i} \cap \bigcup_{i} E_{i}} \ d\mu \\
+			&= \int_{X} \sum_{i=1}^{n} \alpha_{i} \chi_{\textbigcupd_{j} A_{i} \cap E_{j}} \ d\mu = \sum_{i=1}^{n} \alpha_{i} \int_{X} \chi_{\textbigcupd_{j} A_{i} \cap E_{j}} \ d\mu \\
+			&= \sum_{i=1}^{n} \alpha_{i} \mu\left( \bigcupd_{j=1}^{\infty} A_{i} \cap E_{j} \right) d\mu = \sum_{i=1}^{n} \alpha_{i} \sum_{j=1}^{\infty} \mu(A_{i} \cap E_{j}) \\
+			(\alpha > 0) &= \sum_{j=1}^{\infty} \sum_{i=1}^{n} \alpha_{i} \mu(A_{i} \cap E_{j}) = \sum_{j=1}^{\infty} \sum_{i=1}^{n} \alpha_{i} \int_{X} \chi_{A_{i} \cap E_{j}} \ d\mu \\
+			&= \sum_{j=1}^{\infty} \int_{X} \left( \sum_{i=1}^{n} \alpha_{i} \chi_{A_{i}} \chi_{E_{j}} \right) d\mu \\
+			&= \sum_{j=1}^{\infty} \int_{E_{j}} \varphi \ d\mu \\
+			&= \sum_{j=1}^{\infty} \mu_{\varphi}(E_{j})
+		.\qedhere\end{align*}
+	\end{enumerate}
+\end{proof}
+
+\begin{remark}
+	Lo que tuvimos que demostrar fue:
+	\[ \int_{X} \varphi \chi_{\textbigcupd_{j} E_{j}} \ d\mu = \sum_{j=1}^{\infty} \int_{X} \varphi \chi_{E_{j}} \ d\mu, \]
+	es decir
+	\[ \int \sum_{j=1}^{\infty} \varphi \chi_{E_{j}} = \sum_{j=1}^{\infty} \int \varphi \chi_{E_{j}}. \]
+\end{remark}
+
+\begin{theorem}[Convergencia Monótona]
+	Sean $(X, \mscr{M}, \mu)$ un Edm y $(f_{n})_{n}$ una sucesión de funciones $f_{n} : X \to [0,\infty] \ \mscr{M}$-medibles no negativas tales que $f_{n} \leq f_{n+1} \ \forall n \in \N$. Entonces
+	\begin{enumerate}
+		\item $\lim_{n \to \infty} f_{n}$ existe y es $\mscr{M}$-medible.
+
+		\item $\int_{X} (\lim_{n \to \infty} f_{n}) d\mu = \lim_{n \to \infty} \int_{X} f_{n} \ d\mu$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}[Proof ]
+	\begin{enumerate}
+		\item Como $0 \leq f_{n}(x) \leq f_{n+1}(x) \ \forall x \in X$ y $n \in \N$, entonces $f(x) \coloneq \lim_{n \to \infty} f_{n}(x) \in [0,\infty]$ existe $\forall x \in X$, y es medible porque $f \cong \sup_{n \in \N} f_{n}$. Como $f \geq 0$, es también débil $\mu$-integrable.
+
+		\item Notemos que por monotonía de la integral, $\big( \int_{X} f_{n} \ d\mu \big)_{n\in\N} \subseteq [0,\infty]$ es una sucesión creciente y, como tal, tiene límite $L \in [0,\infty]$. Queremos ver que $L = \int_{X} f \ d\mu$. Para ello, notemos que $f_{n} \leq f \ \forall n \in \N$
+		\[ \int_{X} f_{n} \ d\mu \leq \int_{X} f \ d\mu \quad \forall n \in \N \]
+		Tomando supremo, $L \leq \int_{X} f \ d\mu$. Para la otra desigualdad, sea $\varphi$ simple tal que $0 \leq \varphi \leq f$. Bastará ver que $\int_{X} \varphi \ d\mu \leq L$. Si tomamos $\alpha \in (0,1)$ y definimos
+		\[ E_{n} \coloneq \{x \ : \ f_{n}(x) \geq \alpha \varphi(x)\}, \]
+		entonces $E_{n} \nearrow X$ pues $f_{n} \longrightarrow f$ puntualmente. Luego, para cada $n \in \N$,
+		\[ L \geq \int_{X} f_{n} \ d\mu \geq \int_{E_{n}} f_{n} \ d\mu \geq \int_{E_{n}} \alpha \varphi \ d\mu = \alpha \int_{E_{n}} \varphi \ d\mu = \alpha \mu_{\varphi}(E_{n}). \]
+		Por continuidad por debajo, $\mu_{\varphi}(E_{n}) \nearrow \mu_{\varphi}(X) = \int_{X} \varphi \ d\mu$. Tomando $n \rightarrow \infty$ en la desigualdad anterior,
+		\[ L \geq \alpha \int_{X} \varphi \ d\mu \quad (\forall \alpha \in (0,1)). \]
+		Tomando $\alpha \rightarrow 1^{-}$, resulta $L \geq \int_{X} \varphi \ d\mu$.
+	\end{enumerate}
+\end{proof}
