@@ -1,0 +1,112 @@
+\clase{24}{8 de Octubre}{}
+
+\textbf{Aplicación.} Sea $(X, \mscr{M}, \mu)$ un espacio de medida.
+\begin{enumerate}
+	\item Si $(f_{n})_{n\in\N} : X \to \overline{\R}$ son $\mscr{M}$-medibles no negativas, entonces $\sum_{n\in\N}^{} f_{n}$ es $\mscr{M}$-medible (y, por ende, débil $\mu$-integrable, pues es no negativa) y vale que
+	\[ \int_{X} \left( \sum_{n\in\N}^{} f_{n} \right) d\mu = \sum_{n\in\N}^{} \int_{X} f_{n} d\mu \]
+	(i.e., vale integrar la serie término a término).
+
+	\item Si $f : X \to \overline{\R}$ es $\mscr{M}$-medible no negativa, entonces $\mu_{f} : \mscr{M} \to [0,\infty]$ dada por
+	\[ \mu_{f}(A) \coloneq \int_{A} f d\mu, \]
+	es una medida.
+\end{enumerate}
+\begin{proof}[Proof ]
+	\begin{enumerate}
+		\item Si definimos $S_{n} \coloneq \sum_{k=1}^{n} f_{k}$, entonces $S_{n}$ es $\mscr{M}$-medible $\forall n\in\N$ (suma finita de medibles) y $0 \leq S_{n} \leq S_{n+1} \ \forall n \in \N$ (pues $f_{n+1} \geq 0$). Por convergencia monótona,
+		\[ \sum_{n\in\N}^{} f_{n} = \lim_{n \to \infty} S_{n} \]
+		es $\mscr{M}$-medible y
+		\begin{align*}
+			\int_{X} \left( \sum_{n\in\N}^{} f_n \right) d\mu &= \int_{X} \left(\lim_{n \to \infty} S_{n} \right) d\mu \\
+			(\text{por C. Mon.}) &= \lim_{n \to \infty} \int_{X} S_{n} d\mu \\
+			(\text{por linealidad}) &= \lim_{n \to \infty} \sum_{k=1}^{n} \int_{X} f_{n} d\mu \\
+			&= \sum_{n\in\N}^{} \int_{X} f_{n} d\mu.
+		\end{align*}
+
+		\item Notar que $\mu_{f}(\varnothing) = \int_{\varnothing} f d\mu = 0$, pues $\mu(\varnothing) = 0$ y $f$ débil $\mu$-int. Además, si $(E_{j})_{j\in\N} \subseteq \mscr{M}$ son disjuntos,
+		\begin{align*}
+			\mu_{f}\left(\bigcupd_{j=1}^{\infty} E_{j} \right) &= \int_{\bigcupd_{j=1}^{\infty}} f d\mu = \int_{X} f \chi_{\bigcupd_{j=1}^{\infty} E_{j}} d\mu \\
+			&= \int_{X} f \left( \sum_{j=1}^{\infty} \chi_{E_{j}} \right) d\mu = \int_{X} \left( \sum_{j=1}^{\infty} f \chi_{E_{j}} \right) d\mu \\
+			(\text{por } 1.) &= \sum_{j=1}^{\infty} \int_{X} f \chi_{E_{j}} d\mu = \sum_{j=1}^{\infty} \mu_{f}(E_{j}) \\
+		.\end{align*}	
+		Luego,
+		\begin{align*}
+			\sum_{j=1}^{\infty} \mu(E_{j}) &= \mu \left( \bigcupd_{j=1}^{\infty} E_{j} \right) \\
+			&= \int_{X} \chi_{\bigcupd_{j=1}^{\infty} E_{j}} \\
+			&= \sum_{j=1}^{\infty} \int_{X} \chi_{E_{j}} d\mu
+		.\qedhere\end{align*}
+	\end{enumerate}
+\end{proof}
+
+\begin{lemma}
+	Sea $f: X \to [0,\infty]$ una función no negativa. Entonces, $f$ es $\mscr{M}$-medible si y sólo si existe una sucesión $(\varphi_{n})_{n\in\N}$ de funciones simples $\mscr{M}$-medibles tales que
+	\begin{enumerate}[i)]
+		\item $0 \leq \varphi_{n}(x) \leq \varphi_{n+1}(x) \quad \forall x \in X,\ n \in \N$;
+
+		\item $f(x) = \lim_{n \to \infty} \varphi_{n}(x) \quad \forall x \in X$.
+	\end{enumerate}
+	En particular, por Convergencia Monótona,
+	\[ \int_{X} f(x) d\mu = \lim_{n \to \infty} \int_{X} \varphi_{n} d\mu. \]
+\end{lemma}
+\begin{proof}[Proof ]
+	$\boxed{\Leftarrow}$ Inmediato, pues límite puntual de medibles es medible (ó $f = \sup \varphi_{n}$). \par
+	\medskip
+	$\boxed{\Rightarrow}$ Definimos
+	\[ \varphi_{n} \coloneq \sum_{k=0}^{n 2^{n} - 1} \frac{k}{2^{n}} \chi_{A_{k}^{(n)}} + n \chi_{B^{(n)}}, \]
+	donde 
+	\[ A_{k}^{(n)} \coloneq \left\{x \ : \ \frac{k}{2^{n}} \leq f(x) < \frac{k+1}{2^{n}}\right\},\ B^{(n)} \coloneq \{x \ : \ f(x) \geq n\} \]
+	Observar que cada $\varphi_{n}$ es simple y $\mscr{M}$-medible (pues $f$ es $\mscr{M}$-medible) y
+	\begin{align*}
+		\varphi_{n}(x) = \begin{cases}
+			\frac{\big[2^{n} f(x)\big]}{2^{n}} & \quad \text{si } 0 \leq f(x) < n \\
+			n & \quad \text{si } f(x) \geq n,
+		\end{cases}
+	\end{align*}
+	de donde se sigue que $\varphi_{n}(x) \stackrel{n \to \infty}{\longrightarrow} f(x) \ \forall x \in X$. Por otro lado, como $A_{k}^{(n)} = A_{2k}^{(n+1)} \cupd A_{2k+1}^{(n+1)}$, entonces, si $x \in A_{k}^{(n)}$,
+	\begin{align*}
+		\varphi_{n}(x) = \frac{k}{2^{n}} \leq \begin{cases}
+			\frac{2k}{2^{n+1}} \ \left( =\frac{k}{2^{n}} \right) & \quad \text{si } x \in A_{2k}^{(n+1)} \\
+			\frac{2k+1}{2^{n+1}} \ \left( =\frac{k}{2^{n}} + \frac{1}{2^{n+1}} \right) & \quad \text{si } x \in A_{2k+1}^{(n+1)}
+		\end{cases} \Biggl\} = \varphi_{n+1}(x).
+	\end{align*}
+	Si $x \in B^{(n)}$, la demostración es similar.
+\end{proof}
+
+\begin{proof}[Proof ][propiedades de la integral]
+	\underline{Linealidad} Lo vemos sólo en el caso $\alpha \geq 0$ y funciones no negativas. El caso general, se deduce de éste, trabajando con partes pos/neg. En efecto, sean $f,g : X \to [0,\infty] \ \mscr{M}$-medibles no negativas. Por el lema, existen $(\varphi_{n})_{n\in\N},\ (\psi_{n})_{n\in\N}$ simples $\mscr{M}$-medibles tales que
+	\begin{itemize}
+		\item $0 \leq \varphi_{n} \nearrow f$;
+
+		\item $0 \leq \psi_{n} \nearrow g$.
+	\end{itemize}
+	Como $\alpha \geq 0$, tenemos que
+	\[ \begin{cases}
+			0 \leq \alpha \varphi_{n} \nearrow \alpha f \\
+			0 \leq \alpha \psi_{n} \nearrow \alpha g \\
+			0 \leq \varphi_{n} + \psi_{n} \nearrow f + g.
+		\end{cases} \]
+	Por Convergencia Monótona, y la linealidad para simples,
+	\[ \int_{X} \alpha f d\mu = \lim_{n \to \infty} \int_{X} \alpha \varphi_{n}d\mu = \lim_{n \to \infty} \int_{X} \varphi_{n} d\mu = \alpha \int_{X} f d\mu \]
+	y
+	\begin{align*}
+		\int_{X} (f + g) d\mu &= \lim_{n \to \infty} \int_{X} (\varphi_{n} + \psi_{n}) d\mu \\
+		&= \lim_{n \to \infty} \left( \int_{X} \varphi_{n} d\mu + \int_{X} \psi_{n} d\mu \right) \\
+		&= \int_{X} f d\mu + \int_{X} g d\mu. 
+	\end{align*}
+	Esto prueba linealidad. En particular, vemos que
+	\[ \int_{X} |f| d\mu = \int_{X} f^{+} d\mu + \int_{X} f^{-} d\mu \]
+	y, por ende, $f$ es $\mu$-integrable si y sólo si $\int_{X} |f| d\mu < \infty$. \par
+	\medskip
+	\underline{Desigualdad Triangular} Si $f$ es débil $\mu$-integrable, pero $\int_{X}|f| d\mu = \infty$, entonces la desigualdad es inmediata. Por otro lado, si $f$ es $\mu$-integrable, entonces, por la desigualdad triangular en $\R$
+	\begin{align*}
+		\left| \int_{X} f d\mu \right| &= \left| \int_{X} f^{+} d\mu - \int_{X} f^{-} d\mu \\
+		&\leq \left| \int f^{+} \right| + \left| \int f^{-} \right| \\
+		&= \int f^{+} + \int f^{-} = \int |f|
+	.\end{align*}
+	\par
+	\underline{Monotonía.} Si $f \leq g \ \mu$-CTP, entonces, como $f, f \chi_{\{f \leq g\}}$ son débil $\mu$-int. (y lo mismo para $g$) y $\mu(\{f > g\} ) = 0$,
+	\begin{align*}
+		\int_{X} f d\mu &= \int_{X} f( \chi_{\{f \leq g\}} + \chi_{\{f > g\} }) d\mu \\
+		&= \int_{X} f \chi_{\{f \leq g\}  } + \int_{X} f \chi_{\{f > g\}  } \\
+		&= \int_{\{f \leq g\}  } f d\mu = 
+	.\end{align*}
+\end{proof}

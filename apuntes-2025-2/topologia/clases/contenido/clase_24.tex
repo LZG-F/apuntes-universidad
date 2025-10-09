@@ -1,0 +1,98 @@
+\clase{24}{6 de Octubre}{}
+
+\section{Axiomas de Numerabilidad/Contabilidad (30)}
+
+\textbf{Axiomas de numerabilidad:} Buscamos codificar la topología con información contable. Además, la topología estará "caracterizada" por convergencia de sucesiones.
+
+\begin{definition}[base de un punto]
+	$X$ espacio topológico. Una base de el punto $x \in X$ es un conjunto $\mcal{B}_{x}$ de abiertos, tal que $x \in B \ \forall B \in \mcal{B}_{x}$ y tal que si $U$ abierto con $x \in U$, existe $B \in \mcal{B}_{x}$ con $x \in B \subset U$.
+\end{definition}
+
+\begin{eg}
+	Si $\mcal{B}$ base de la topología, entonces podemos tomar $\mcal{B}_{x} = \{B \in \mcal{B} \ \big| \ x \in B\}$ base en $x$.
+\end{eg}
+
+\begin{definition}[espacio primer contable]
+	$X$ cumple el 1er axioma de numerabilidad ($X$ es 1er contable/numerable) si para cada $x \in X$ existe una base contable en $x$.
+\end{definition}
+
+\begin{eg}
+	$X$ espacio métrico (con topología métrica). Luego, $\forall x \in X \leadsto \mcal{B}_{x} = \{B_{\varepsilon}(x) \ \big| \ \varepsilon \in \Q^{+}\}$, por lo que $X$ es 1er contable.
+\end{eg}
+
+\begin{lemma}
+	$X$ es 1er contable.
+	\begin{enumerate}[a)]
+		\item $A \subset X$. Si $x \in \overline{A} \implies$ existe sucesión $(x_{n})_{n}$ en $A$ si $x_{n} \longrightarrow x$.
+
+		\item $f : X \to Y$ es continua $\leftrightarrow \big[ x_{n} \longrightarrow x \text{ en } X \implies f(x_{n}) \longrightarrow f(x) \text{ en } Y \big]$
+	\end{enumerate}
+\end{lemma}
+\begin{proof}[Proof ]
+	\begin{enumerate}[a)]
+		\item Sea $x \in \overline{A}$, sea $\mcal{B}_{x} = \{B_{1},B_{2},\dots\}$ base numerable en $x \in X$. Tomar $C_{i} = B_{1} \cap \cdots \cap B_{i}$ (notar que $C_{1} \supset C_{2} \supset C_{3} \supset \cdots$). Así, $x \in \overline{A} \implies \forall i,\ A \cap C_{i} \neq \varnothing$. Luego, existe $x_{i} \in A \cap C_{i}$. Falta ver que $x_{i} \longrightarrow x$. Sea $U$ abierto con $x \in U$. Existe $N$ con $x \in B_{N} \in U$. Si $n \geq N \implies x_{n} \in C_{n} \subset C_{N} \subset B_{N} \subset U$. Por lo tanto, $x_{n} \in U$ para $n \geq N$.
+
+		\item Asumir $f$ secuencialmente continua. Podemos utilizar el siguiente criterio: $f$ continua si y sólo si $f(\overline{A}) \subset \overline{f(A)} \ \forall A \subset X$ (su demostración queda como ejericio, aunque también está en el Munkres). Tomamos $A \subset X$ (queremos $f(\overline{A}) \subset \overline{f(A)}$). Tomamos $x \in \overline{A}$ (queremos $f(x) \in \overline{f(A)}$). Por a., existe $(x_{n})_{n}$ en $A$ con $x_{n} \longrightarrow x$. $f$ secuencialmente continua: $f(x_{n}) \longrightarrow f(x)$; donde $f(x_{n}) \in f(A)$ y $f(x) \in \overline{f(A)}$.
+	\end{enumerate}
+\end{proof}
+
+\begin{remark}
+	El converso en la parte a. del lema también es cierto.
+\end{remark}
+
+\begin{corollary}
+	$X$ no-numerable con topología co-numerable (abiertos no vacíos  son complementos de numerables). Entonces, $X$ no es 1er contable (viene de la Tarea 1).
+\end{corollary}
+
+\begin{definition}[espacio segundo contable]
+	$X$ es 2do contable/numerable, si posee una base numerable.
+\end{definition}
+
+\begin{remark}
+	2do contable $\implies$ 1ro contable.
+\end{remark}
+
+\begin{definition}[subconjunto denso y espacio separable]~
+	\begin{enumerate}[1)]
+		\item $A \subset X$ es denso si $\overline{A} = X$.
+
+		\item $X$ es separable si posee un subconjunto numerable y denso.
+	\end{enumerate}
+\end{definition}
+
+\begin{lemma}
+	$X$ 2do contable $\implies X$ separable.
+\end{lemma}
+\begin{proof}[Proof ]
+	Sea $\mcal{B} = \{B_{1},B_{2},\dots\}$ base numerable de $X$. Tomamos $x_{n} \in B_{n} \ \forall n$, definimos $A = \{x_{1},x_{2},\dots\}$. Queremos probar que $A$ es denso. Dado $x \in X$, queremos $x \in \overline{A}$. Dado $U \subset X$ abierto con $x \in U,\ U$ es unión de elementos de $\mcal{B}$. Luego, $B_{n} \subset U$ para algún $n$. Luego, $x_{n} \in B_{n} \subset U$, por lo que $U \cap A \neq \varnothing \ \forall U$ abierto. Por lo tanto, $x \in \overline{A}$.
+\end{proof}
+
+\begin{eg}~
+	\begin{itemize}
+		\item $\R^n$ es 2do contable. En efecto, $\mcal{B} = \{B_{\varepsilon}(x) \ \big| \ \varepsilon \text{ racional positivo, } x \in \Q^n\}$ es base numerable. 
+
+		\item $X$ separable + 1er contable $\implies$ 2do contable (queda como ejericio).
+	\end{itemize}
+\end{eg}
+
+\begin{prop}~
+	\begin{enumerate}[1)]
+		\item $X$ 1er (2do) contable, $A \subset X \implies A$ 1er (2do) contable.
+
+		\item Si $X_{1},X_{2},\dots,X_{n},\dots$ espacioes 1er (2do) contables $\implies Z = \prod_{n \geq 1} X_{n}$ es 1er (2do) contable.
+	\end{enumerate}
+\end{prop}
+\begin{proof}[Proof ]
+	\begin{enumerate}[1)]
+		\item (para 2do) $\mcal{B}$ base de $X \implies \mcal{B}\big|_{A} = \{B \cap A \ \big| \ B \in \mcal{B}\} \setminus \{\varnothing\}$ base de $A$ (numerable).
+
+		\item (para 2do) Sea $\mcal{B}_{n}$ base numerable de $X_{n} \ \forall n$. Base para la topología producto es 
+		\[ B = \left\{\prod_{i \geq 1} B_{i} \ \big| \ B_{i} \in \mcal{B}_{i} \cup \{X_{i}\}, \text{ tq } B_{i} = X_{i} \text{ para todos salvo finitos } i\right\} \]
+		Se tiene que
+		\[ \mcal{B} = \bigcup_{F \subset Z^{+} \text{ finito}} \left\{ "\prod_{i \in F} B_{i}" \times \prod_{i \not\in F} X_{i} \ \big| \ B_{i} \in \mcal{B}_{i} \right\} \]
+	\end{enumerate}
+\end{proof}
+
+\begin{remark}
+	Axiomas de numerabilidad no se preservan bajo productos no numerables.
+\end{remark}

@@ -1,0 +1,99 @@
+\clase{22}{3 de Octubre}{}
+
+\chapter{Unidad 3: Integración}
+
+\begin{definition}[función simple]
+	Sea $(X, \mscr{M})$ un espacio medible. Una función $\varphi : X \to \R$ se dice simple si existen $\alpha_{1},\dots,\alpha_{n} \in \R$, distintos y no nulos, y $A_{1},\dots,A_{n} \in \mscr{M}$ disjuntos y no vacíos tales que
+	\[ \varphi = \sum_{i=1}^{n} \alpha_{i} \chi_{A_{i}} \quad \left( \varphi(x) = \begin{cases}
+		\alpha_{i} \quad \text{si } x \in A_{i} \\
+		0 \quad \ \text{si } x \not\in \bigcup A_{i}
+	\end{cases} \right) \tag{$*$} \]
+\end{definition}
+\begin{remark}~
+	\begin{enumerate}
+		\item $\varphi$ simple $\implies \varphi \ \mscr{M}$-medible, pues $\chi_{A_{i}} \ \mscr{M}$-medible $\forall i$.
+
+		\item $\im(\varphi) - \{0\} = \{\alpha_{1},\dots,\alpha_{n}\}$ y $A_{i} = \varphi^{-1}(\{\alpha_{i}\}) \ \forall i = 1, \dots, n$, de modo tal que la representación en $(*)$ es única salvo reordenamiento de los $\alpha_{i}$ (siempre que los $\alpha_{i}$ sean disjuntos y distintos de $0$, y los $A_{i}$ sean disjuntos y distintos de $\varnothing$). Llamamos a $(*)$, la representación canónica de $\varphi$ (abreviado RC).
+
+		\item Si $\varphi$ es $\mscr{M}$-medible y toma finitos valores, entonces es simple. En particular, si $\varphi$ es combinación linea (finita) de $\chi_{A_{i}}$ con $A_{i} \in \mscr{M}$ (no necesariamente disjuntos, ni no vacíos), entonces es simple.
+	\end{enumerate}
+\end{remark}
+
+\begin{definition}
+	Dado un espacio de medida $(X, \mscr{M}, \mu)$ y $\varphi : X \to \R_{\geq 0}$ una función simple no negativa, definimos la integral de $\varphi$ respecto a $\mu$ como:
+	\[ \int_{X} \varphi d\mu \coloneq \sum_{i=1}^{n} \alpha_{i} \mu(A_{i}), \]
+	si $\varphi$ tiene RC, $\varphi = \sum_{i=1}^{n} \alpha_{i} \chi_{A_{i}}$.
+\end{definition}
+
+\begin{prop}[Propiedades de la integral para funciones simples]
+	Si $\varphi_{1}, \varphi_{2} : X \to \R_{\geq 0}$ son simples no negativas, entonces
+	\begin{enumerate}
+		\item Si $\alpha \geq 0,\ \alpha \cdot \varphi$ es simple no negativa y $\int_{X} \alpha \varphi d\mu = \alpha \int_{X} \varphi d\mu$;
+
+		\item $\varphi_{1} + \varphi_{2}$ es simple no negativa y $\int_{X} (\varphi_{1} + \varphi_{2}) d\mu = \int_{X} \varphi_{1} d\mu + \int_{X} \varphi_{2} d\mu$;
+
+		\item Si $\varphi_{1} \leq \varphi_{2} \ \mu$-CTP, entonces $\int_{X} \varphi_{1} d\mu \leq \int_{X} \varphi_{2} d\mu$.
+	\end{enumerate}
+\end{prop}
+\begin{proof}[Proof ]
+	Ver Canvas
+\end{proof}
+
+\begin{definition}
+	Dados $(X, \mscr{M}, \mu)$ un espacio de medida y $f : X \to [0,\infty] \ \mscr{M}$-medible no negativa, definimos la integral de $f$ con respecto a $\mu$ como
+	\[ \int_{X} f d\mu \coloneq \sup \left\{\int_{X} \varphi d\mu \ : \ \varphi \text{ simple, } 0 \leq \varphi \leq f\right\} \in [0,\infty]. \]
+\end{definition}
+
+\begin{remark}
+	Si $f : X \to \R_{\geq 0}$ es simple no negativa, entonces esta definición es consistente con la anterior, pues \par
+	\smallskip
+	$\boxed{\leq}$ Si $\varphi : X \to \R$ es simple tal que $0 \leq \varphi \leq f$ y $f$ tiene RC $f = \sum_{i=1}^{n} \alpha_{i} \chi_{A_{i}}$ entonces por la proposición,
+	\[ \int_{X} \varphi d\mu \leq \sum_{i=1}^{n} \alpha_{i} \mu(A_{i}). \]
+	Tomando supremo en $\varphi$, resulta DEF NUEVA $\leq$ DEF ORIGINAL. \par
+	\smallskip
+	$\boxed{\geq}$ Tomando $\varphi = f$ en la definición nueva, resulta DEF NUEVA $\geq$ DEF ORIGINAL.
+\end{remark}
+
+\begin{definition}[partes negativa y positiva de $f$]
+	Dados $(X, \mscr{M}, \mu)$ un espacio de medida y $f : X \to \overline{\R} \ \mscr{M}$-medible, definimos:
+	\begin{itemize}
+		\item la parte positiva de $f$ como $f^{+} \coloneq \max \{f,0\}$.
+
+		\item la parte negativa de $f$ como $f^{-} \coloneq -\min \{f,0\}$.
+	\end{itemize}
+\end{definition}
+
+\begin{remark}
+	Notar que $f^{+}$ y $f^{-}$ son $\mscr{M}$-medibles, no negativas y $f = f^{+} - f^{-}, \ |f| = f^{+} + f^{-}$.
+\end{remark}
+
+\begin{definition}
+	Diremos que $f$ es integrable con respecto a $\mu$ (o $\mu$-integrable) si
+	\[ \max \left\{\int_{X} f^{+} d\mu,\ \int_{X} f^{-} d\mu\right\} < \infty \]
+	y diremos que es débilmente integrable respecto a $\mu$ si
+	\[ \min \left\{\int_{X} f^{+} d\mu,\ \int_{X} f^{-} d\mu\right\} < \infty. \]
+\end{definition}
+
+\begin{definition}
+	Si $f$ es (al menos) débilmente $\mu$-integrable, definimos su integral respecto de $\mu$ como
+	\[ \int_{X} f d\mu \coloneq \int_{X} f^{+} d\mu - \int_{X} f^{-} d\mu \in [-\infty,\infty] \]
+\end{definition}
+
+\begin{definition}
+	Si $f$ es débilmente $\mu$-integrable y $E \in \mscr{M}$, definimos
+	\[ \int_{E} f d\mu \coloneq \int_{X} f \chi_{E} d\mu \]
+\end{definition}
+
+\begin{remark}
+	La integral está bien definida, pues $f \chi_{E}$ resulta débilmente $\mu$-integrable.
+\end{remark}
+
+\begin{lemma}
+	Si $f$ es débilmente $\mu$-integrable y $\mu(E) = 0$, entonces
+	\[ \int_{E} f d\mu = 0. \]
+\end{lemma}
+\begin{proof}[Proof ]
+	Supongamos primero que $f \geq 0$. En tal caso, $f \chi_{E} = 0 \ \mu$-CTP. En particular, si $\varphi$ es simple tal que $0 \leq \varphi \leq f \chi_{E}$,
+	\[ 0 \leq \int_{X} \varphi d\mu \leq \int_{X} (\max \varphi) \chi_{E} d\mu = (\max \varphi) \mu(E) = 0. \]
+	Entonces, $\int_{X} \varphi d\mu = 0$, lo que implica $\int_{X} f \chi_{E} = 0$. Para el caso general, usamos este caso y el hecho de que $(f \chi_{E})^{\pm} = f^{\pm} \chi_{E}$.
+\end{proof}

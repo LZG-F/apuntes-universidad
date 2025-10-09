@@ -1,0 +1,77 @@
+\clase{25}{8 de Octubre}{}
+
+\textbf{Axiomas de separación.} permite distinguir subconjuntos usando topología.
+
+\begin{definition}[espacio T3 y T4]
+	Suponer que $X$ es T1.
+	\begin{itemize}
+		\item $X$ es T3 (o Regular), si $\forall x \in X,\ \forall A \subset X$ cerrado con $x \not\in A,\ \exists U,V$ abiertos disjuntos con $x \in U,\ A \subset V$.
+		
+		\item $X$ es T4 (o Normal), si $\forall A,B \subset X$ cerrados disjuntos, existen $U, V$ abiertos disjuntos con $A \subset U,\ B \subset V$.
+	\end{itemize}
+\end{definition}
+\medskip
+Nuestro objetivo ahora es el lema de Urysohn.
+
+\begin{lemma}[Urysonhn]
+	$X$ espacio normal, $A,B \subset X$ cerrados disjuntos $\implies \exists f : X \to [0,1]$ continua con $f(A) = \{0\}, f(B) = \{1\}$. 
+\end{lemma}
+
+\begin{remark}
+	T4 $\rightarrow$ T3 $\rightarrow$ T2 $\rightarrow$ T1, pero ningun converso es cierto.
+\end{remark}
+
+\begin{eg}~
+	\begin{enumerate}
+		\item \textbf{T1, no Hausdorff:} $X$ infinito con la topología cofinita (cerrado $\leftrightarrow$ finito)
+
+		\item \textbf{Hausdorff, no Regular:} $\R_{K},\R$ con topologíade base $\{(a,b), (a,b)\setminus \{1,\frac{1}{2},\frac{1}{3},\dots\}\}$.
+		\begin{itemize}
+			\item $\R_{K}$ no regular: $K = \{1, \frac{1}{2}, \frac{1}{3}, \dots\}$ es cerrado pero $K$ no se puede "separar" de un punto.
+
+			\item $R_{K}$ Hausdorff: contiene a la topología estándar.
+		\end{itemize}
+
+		\item \textbf{Regular, no Normal:} Plano de Sorgenfrey $\R_{l}^{2},\ \R_{l}^{2} = \R_{l} \times \R_{l}$, con $\R_{l}$ con topología del límite inferior (base $= \{[a,b)\}$). ($\R_{l}$ es regular).
+	\end{enumerate}
+\end{eg}
+
+\begin{property}~
+	\begin{enumerate}[a)]
+		\item $X$ regular, $A \subset X \implies A$ regular.
+
+		\item $Z = \prod_{\alpha} X_{\alpha}$, cada $X_{\alpha}$ regular $\implies Z$ regular.
+	\end{enumerate}
+\end{property}
+
+\begin{remark}
+	b) es falso si se reemplaza regular por normal.
+\end{remark}
+
+\begin{lemma}
+	Suponer que $X$ es T1
+	\begin{enumerate}[a)]
+		\item $X$ regular si y sólo si $\forall x \in X,\ \big[\forall U \subset X$ abierto con $x \in U$ \big] (si $[\cdots]$ se cumple, decimos que $U$ es vecindad de $x$), $\exists V$ vecindad de $x$ con $x \in V \subset \overline{V} \subset U$.
+
+		\item $X$ normal si y sólo si $\forall A \subset X$ cerrado, $\forall U \subset X$ abierto con $A \subset U,\ \exists V$ abierto con $A \subset V \subset \overline{V} \subset U$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}[Proof ]
+	Probamos sólo a), pues b) es similar. \par
+	$\boxed{\Rightarrow}$ Sea $x \in X,\ U$ vecindad de $x$. Sea $B = X \setminus U \ (\implies B \text{ cerrado y } x \not\in B)$. $X$ regular $\implies \exists V_{1},V_{2}$ abiertos disjuntos con $x \in V_{1},\ B \subset V_{2}$. Consideramos $V = V_{1}$ (queremos $\overline{V} \subset U$). $V_{1},V_{2}$ disjutos $\implies V_{1} \subset X \setminus V_{2} \subset X \setminus B = U$. \par
+	$\boxed{\Leftarrow}$ Sean $x \in X,\ B \subset X$ cerrado con $x \not\in B$. Si $U = X \setminus B \implies U$ vecindad de $x$. Por hipótesis, nos da vecindad $V$ de $x$ con $x \in V \subset \overline{V} \subset U$. Si $\widehat{V} = X \setminus \overline{V} \implies V \cap \widehat{V} = \varnothing,\ x \in V,\ B = X \setminus U \subset X \setminus \overline{V} = \widehat{V}$ (con $V, \widehat{V}$ abiertos).
+\end{proof}
+
+\begin{proof}[Proof Other Information][propiedades]
+	\begin{enumerate}[a)]
+		\item $X$ regular, $A \subset X$. (notar que $X$ T1 $\implies A$ T1). Sea $x \in A,\ B \subset A$ cerrado (en $A$!!!) con $x \not\in B$. Notar que $B = C \cap A$ con $C$ cerrado en $X$. Luego, $X$ regular $\implies$ existen $U,V \subset X$ abiertos disjuntos con $x \in U,\ C \subset V$. Tomamos $\widehat{U} = U \cap A,\ \widehat{V} = V \cap A$, abiertos disjuntos de $A$ con $x \in \widehat{U},\ B \subset \widehat{V}$.
+
+		\item Sea $Z = \prod_{\alpha \in J} X_{\alpha}$, con cada $X_{\alpha}$ regular. Queremos usar lema previo. Para ello, sea $x = (x_{\alpha})_{\alpha},\ U \subset Z$ abierto con $x \in U$ (queremos $V$ abierto con $x \in V \subset \overline{V} \subset U$). No perdemos generalidad en asumir que $U$ es abierto en la base. Es decir, $U = \prod_{\alpha \in J} U_{\alpha}$, y $K \subset J$ finito con $U_{\alpha} = X_{\alpha}$ si $\alpha \not\in K$. Dado $\alpha \in K,\ x_{\alpha} \in U_{\alpha}$. Luego, $X_{\alpha}$ regular + lema, nos da $V_{\alpha} \subset X_{\alpha}$ abierto con $(*)\ x_{\alpha} \in V_{\alpha} \subset \overline{V_{\alpha}} \subset U_{\alpha} \ (\forall \alpha \in K)$. Sea $V = \prod_{\alpha \in J} V_{\alpha}$, donde $V_{\alpha}$ dado por $(*)$ si $\alpha \in K$ y $V_{\alpha} = X_{\alpha}$ si $\alpha \not\in K$. Luego, $x \in V \subset  \overline{V}$. Además,
+		\[ \overline{V} = \overline{\prod_{\alpha} V_{\alpha}} = \prod \overline{V_{\alpha}} \subset \prod U_{\alpha} = U \]
+		(la segunda igualdad se vió en la ayudantía 3).
+	\end{enumerate}
+\end{proof}
+
+\begin{remark}
+	La demostración de a) no cumple si se reemplaza regular por normal.
+\end{remark}

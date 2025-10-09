@@ -1,0 +1,64 @@
+\clase{23}{3 de Octubre}{}
+
+\section{Teorema de Tychonoff (37)}
+
+\begin{proof}[Proof ][lema clase anterior]
+	$\boxed{\rightarrow}$ Sea $\mcal{C}$ colección arbitraria de cerrados en $X$ con PIF. Queremos $\bigcap \mcal{C} \coloneq \bigcap_{C \in \mcal{C}} C \neq \varnothing$. Sea $\mcal{A} = \{X \setminus C \ \big| \ C \in \mcal{C}\}$ colección de abiertos. Si $\bigcap \mcal{C} = \varnothing$, entonces $\bigcup \mcal{A} = \bigcup_{A \in \mcal{A}} A = \bigcup_{C \in \mcal{C}} (X \setminus C) = (\bigcap_{C \in \mcal{C}} C)^c = X$. Es decir, $\mcal{A}$ cubriente abierto de $X$. Como $X$ es compacto, etnonces existen $A_{1},\dots,A_{n} \in \mcal{A}$ con $A_{1} \cup \cdots \cup A_{n} = X$. Luego, existen $C_{1},\dots,C_{n} = \varnothing$ ($C_{i} = X \setminus A_{i}$) con $C_{1} \cap \cdots \cap C_{n} = \varnothing$. Pero esto contradice que $\mcal{C}$ tenga la PIF.\par
+	$\boxed{\leftarrow}$ Análogo.
+\end{proof}
+
+\subsection{Demostración Tychonoff}
+
+\begin{theorem}[Tychonoff]
+	$Z = \prod_{\alpha \in J} X_{\alpha}$ producto arbitrario de espacios compactos. Entonces $Z$ compacto.
+\end{theorem}
+
+Fijamos $\mcal{C}$ colección arbitraria de cerrados en $X$ con PIF.\par
+\textit{Objetivo 1:} Encontrar $x$ en $Z$ tal que $x \in C$ para cada $C \in \mcal{C}$.\par
+\noindent \textbf{Suposición:} Existe colección $\mcal{D}$ de subconjuntos de $X$ tal que:
+\begin{enumerate}[i.]
+	\item $\mcal{C} \subset \mcal{D}$;
+
+	\item $\mcal{D}$ tenga PIF;
+
+	\item $\mcal{D}$ es maximal respecto a $ii.$ (es decir, si $\mcal{D}' \supset \mcal{D}$ y $\mcal{D}'$ tiene PIF, entonces $\mcal{D}' = \mcal{D}$).
+\end{enumerate}
+\begin{remark}~
+	\begin{enumerate}
+		\item Existencia de $\mcal{D}$ proviene del lema de Zorn (equivalente al axioma de elección).
+
+		\item En ZF, teorema de Tychonoff es equivalente al axioma de elección.
+
+		\item No pedimos que conjuntos de $\mcal{D}$ sean cerrados.
+	\end{enumerate}
+\end{remark}
+\par
+\textit{Objetivo 2:} Encontrar $x$ en $Z$ tal que $x \in \overline{\mcal{D}} \ \forall D \in \mcal{D}$ (notar que Objetivo 2 $\implies$ Objetivo 1)\par
+
+\begin{lemma}~
+	\begin{enumerate}[a.]
+		\item $\mcal{D}$ es cerrado bajo intersección finita.
+
+		\item Si $A \subset Z$ tal que $A \cap \mcal{D} \neq \varnothing$ para cada $D$ en $\mcal{D}$, entonces $A \in \mcal{D}$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}[Proof ][lema]
+	\hfill{}
+	\begin{enumerate}[a.]
+		\item Sea $D = D_{1} \cap \cdots \cap D_{n}$, tal que $D_{1},\dots,D_{n} \in \mcal{D}$ y sea $\mcal{D}' = \mcal{D} \cup \{D\}$. Notamos que $\mcal{D}'$ tiene PIF. Si $C_{1},\dots,C_{m} \in \mcal{D}$, entonces 
+		\[ D \cap C_{1} \cap \cdots \cap C_{m} = D_{1} \cap \cdots \cap D_{n} \cap C_{1} \cap \cdots \cap C_{m} \neq \varnothing \]
+		($\mcal{D}$ tiene la PIF). Luego, como $\mcal{D}$ es maximal, $\mcal{D}' = \mcal{D}$. Entonces, $D \in \mcal{D}' \subset \mcal{D}$.
+
+		\item Sea $\mcal{D}' = \mcal{D} \cup \{A\}$. Parte a) + hipótesis, implica que $\mcal{D}'$ tiene la PIF. Por maximalidad, tenemos que $\mcal{D}' = \mcal{D} \implies A \in \mcal{D}$.
+	\end{enumerate}
+\end{proof}
+
+\begin{proof}[Proof ][Objetivo 2]
+	Encontrar candidato $x$: En coordenada $\alpha$, sea $\mcal{D}_{\alpha} \coloneq \{\overline{\pi_{\alpha}(D)} \ \big| \ D \in \mcal{D}\} \implies D_{\alpha}$ tiene PIF (viene de $\mcal{D}$ con PIF) y colección de cerrados. $X_{\alpha}$compacto + lema $\implies$ existe $x_{\alpha}$ en $\overline{\pi_{\alpha}(D)} \ \forall D \in \mcal{D}$. Definimos $x = (x_{\alpha})_{\alpha \in J} \in Z$. Dado $U$ abierto en que contiene a $X$ ($U$ en base de topología producto en $Z$), queremos $U \cap D \neq \varnothing$ para cada $D \in \mcal{D}$ ($*$). (esto implica Objetivo 2 al mover $U$ y fijar $D \in \mcal{D}$). Nos basta probar que $U \in \mcal{D}$ (luego $(*)$ sigue por PIF de $\mcal{D}$). \par
+	\textit{Recuerdo.} $U = \bigcap_{\beta \in K} \pi_{\beta}^{-1}(U_{\beta}) \ ("=" \prod_{\beta \in K} U_{\beta} \times \prod_{\alpha \not\in K} X_{\alpha}),\ K \subset J$ finito y $\bigcup_{\beta} \subset X_{\beta}$ abierto que contiene a $x_{\beta}$. \par
+	Luego, $x_{\beta} \in \overline{\pi_{\beta}(D)} \implies \pi_{\beta}(D) \cap U_{\beta} \neq \varnothing \implies D \cap \pi_{\beta}^{-1}(U_{\beta}) \neq \varnothing \ \forall D \in \mcal{D}$. Ahora, lema b) $\implies \pi_{\beta}^{-1}(U_{\beta}) \in \mcal{D}$. Luego, por lema a), $U = \bigcap_{\beta \in K} \pi_{\beta}^{-1}(U_{\beta}) \in \mcal{D}$.
+\end{proof}
+
+\begin{proof}[Proof ][Tychonoff]
+	Objetivo 2 $\implies$ Objetivo 1 $\implies$ Tychonoff.
+\end{proof}
