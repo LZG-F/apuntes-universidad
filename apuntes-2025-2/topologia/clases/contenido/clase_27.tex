@@ -1,0 +1,71 @@
+\clase{27}{13 de Octubre}{}
+
+\section{Lema de Urysonhn (33)}
+
+\textbf{Aclaración.} Separable + 1er contable $\not\implies$ 2do contable.
+
+\begin{eg}
+	$\R_{l} = \R$ + topología del límite inferior.
+\end{eg}
+
+\begin{lemma}[de Urysonhn]
+	$X$ normal, $A,B \subset X$ cerrados disjuntos. Entonces, existe $f : X \to [0,1]$ continua tal que $f(A) = \{0\},\ f(B) = \{1\}$.  
+\end{lemma}
+
+\begin{remark}
+	Si $X$ es metrizable (distancia $d$), entonces $f(x) = \frac{d(x,A)}{d(x,A) + d(x,B)}$ cumple.
+\end{remark}
+
+\noindent \textbf{Idea de demostración.} \big[$X$ normal, $A,B \subset X$ cerrados disjuntos\big]
+
+\begin{enumerate}
+	\item Construir "conjuntos de subnivel" $U_{p} \subset X$ abiertos indexados por $p \in \Q$ tal que $p < q \implies \overline{U}_{p} \subset U_{q} \ \big[ "U_{p} = \{x \ \big| \ f(x) < p\}" \big]$.
+
+	\item Usar $\{U_{p}\}_{p \in \Q}$ para construir $f$.
+
+	\item Verificar que $f$ cumple lo que queremos.
+\end{enumerate}
+
+\begin{lemma}[se utilizará en la demostración]
+	$X$ normal, $C \subset V, \ C$ cerrado, $V$ abierto. Entonces, $\exists W$ abierto con $C \subset W \subset \overline{W} \subset V$.
+\end{lemma}
+
+\begin{lemma}
+	$y \in X$
+	\begin{enumerate}[a)]
+		\item $y \in U_{p} \implies f(y) \leq p$
+
+		\item $y \not\in U_{p} \implies f(y) \geq p$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}[Proof ]
+	\begin{enumerate}[a)]
+		\item $y \in \overline{U}_{p} \implies y \in U_{q} \ \forall q > p \implies f(y) \leq p$.
+
+		\item $y \not\in U_{p} \implies y \not\in U_{q} \ \forall q < p \implies f(y) \geq p$.
+	\end{enumerate}
+\end{proof}
+
+\begin{proof}[Proof ][Urysohn]
+	(1) Sea $P = \Q \cap [0,1]$, ordenado tal que $P = \{1,0,p_{3},p_{4},\dots\}$. Definimos $P \ni p \mapsto U_{p}$ inductivamente. Sea $U_{1} \coloneq X \setminus B$. Usamos que $X$ es normal + lema para encontrar $U_{0} \subset X$ abierto tal que $A \subset U_{0} \subset \overline{U}_{0} \subset U_{1}$. Por inducción, asumimos que hemos encontrado $U_{p}$ para $p \in \{p_{1},\dots,p_{n}\}$ y que cumplen $p < q \implies \overline{U}_{p} \subset U_{q} \ (*)$ en este conjunto. Dado $p_{n+1} \in P \ (n \geq 2,\text{ i.e. } p_{n+1} \neq 0,1)$, sea $s$ el predecesor de $p_{n+1}$ en $\{p_{1},\dots,p_{n}\}$ y $t$ el sucesor de $p_{n+1}$ en $\{p_{1},\dots,p_{n+1}\}$, entonces $\overline{U}_{s} \subset U_{t}$. Usando lema + $X$ normal + $\overline{U}_{s} \subset U_{t}$, encontramos $U_{p_{n+1}} \subset X$ abierto con $\overline{U}_{s} \subset U_{p_{n+1}} \subset \overline{U}_{p_{n+1}} \subset U_{t}$. Verificar: $(*)$ se sigue compliendo para $p,q$ en $\{p_{1},\dots,p_{n+1}\}$. \par
+	\smallskip
+	(1.5) Extender construcción para $p \in \Q$:
+	\[ U_{p} = \begin{cases}
+		\varnothing \quad \text{si} p < 0 \\
+		X \quad \text{si} p > 1
+	\end{cases} \]
+	y $(*)$ ahora se cumple para todo $p,q \in \Q$. \par
+	\smallskip
+	(2) Construir $f$. Dado $x \in X$, sea $\Q(x) = \{p \ \big| \ x \in U_{p}\} \implies \Q(x)$ es no vacío y acotado por abajo ($1000 \in \Q(X)$, y $p \not\in \Q(x)$ para $p < 0$). Definimos $f(x) \coloneq \inf \Q(x) = \inf \{p \in \Q \ \big| \ x \in U_{p}\}$. \par
+	\smallskip
+	(3) Ver que $f$ funciona:
+	\begin{enumerate}[i.]
+		\item ($f(A) = \{0\}$) Si $x \in A \subset U_{0}, \ (*) \implies x \in U_{p} \ \forall p \geq 0,\ x \not\in U_{p} \ \forall p < 0 \implies f(x) = 0$.
+
+		\item ($f(B) = \{1\}$) Si $x \in B \implies x \not\in U_{1} \implies x \not\in U_{p},\ \forall p < 1 \ \& \ x \in U_{p} \ \forall p > 1 \implies f(x) = 1$.
+
+		\item ($f(X) \subset [0,1]$) Si $x \in X \ \& \ U_{p} = X$ para $p > 1 \implies p \in \Q(x) \ \forall p \in \Q_{> 1} \implies f(x) \leq 1 \ \& \ U_{p} = \varnothing$ para $p < 0 \implies p \not\in \Q(x) \ \forall p \in \Q_{< 0} \implies f(x) \geq 0$.
+
+		\item ($f$ continua) Verificar que $f$ continua en $x_{0}\ \forall x_{0} \in X$. Dado $V \subset \R$ abierto que contiene a $f(x_{0})$, queremos $U$ vecindad de $x_{0}$ tal que $f(U) \subset V$. En efecto, asumir que $V = (c,d)$ (i.e. tomamos $c < f(x_{0}) < d$). Sean $p,q \in \Q$ tal que $c < p < f(x_{0}) < q < d$. Por lema (2) tenemos $p < f(x_{0}) \implies x_{0} \not\in \overline{U}_{p}$ y $q > f(x_{0}) \implies x_{0} \in U_{q}$. Por lo tanto, $x_{0} \in U_{q} \setminus \overline{U}_{p}$ (esto es abierto). Definimos $V = U_{q} \setminus \overline{U}_{p}$, vecindad de $x_{0}$. Queremos $f(V) \subset (c,d)$. En efecto, sea $y \in V$. Entonces $y \in U_{q} \subset \overline{U}_{q} \implies f(y) \leq q$ (lema parte a.) y $y \not\in \overline{U}_{p} \supset U_{p} \implies f(y) \geq p$ (lema parte b.). En conclusión, $c < p \leq f(y) \leq q < d$. Por lo tanto, $f(y) \in (c,d) \ \forall y \in V$.
+	\end{enumerate}
+\end{proof}

@@ -1,0 +1,131 @@
+\clase{26}{13 de Octubre}{}
+
+\begin{remark}
+	$f : \R \to \R$ medible si $f^{-1}(B) \in \mscr{L}(\R) \quad \forall B \in \beta(\R)$.
+\end{remark}
+
+\begin{prop}
+	Sean $(X, \mscr{M}, \mu)$ un espacio de medida y $(f_{n})_{n\in\N} : X \to \overline{\R}$ funciones $\mscr{M}$-medibles. Entonces, si $f_{n} \geq 0 \ \mu$-CTP $\forall n \in \N$ ó $\int(\sum_{n\in\N}^{} |f_{n}|) \ d\mu < \infty$, vale que $\sum_{n\in\N}^{} f_{n}$ converge $\mu$-CTP (en $\overline{\R}$), es $\mscr{M}$-medible, (definida como $0$ donde no converge) y, además,
+	\[ \int_{X} \left(\sum_{n\in\N}^{} f_{n}\right) \ d\mu = \sum_{n\in\N}^{} \int_{X} f_{n} \ d\mu. \]
+\end{prop}
+
+\section{Integración de funciones a valores en $\C$}
+
+Sean $(X, \mscr{M}, \mu)$ un espacio de medida y $f : X \to \C$ una función. Notemos que $f = \Re(f) + i\Im(f)$ donde $\Re(f), \Im(f) : X \to \R$ están definidas por
+\[ \Re(f)(x) \coloneq \Re(f(x)), \quad \Im(f)(x) \coloneq \Im(f(x)). \]
+
+\begin{definition}[función medible]
+	Una función $f : X \to \C$ se dice medible si $\Re(f),\ \Im(f)$ lo son (en el sentido usual). Decimos que $f$ es $\mu$-integrable si $\Re(f),\ \Im(f)$ lo son. En ese caso, definimos
+	\[ \int_{X} f \ d\mu \coloneq \int_{X} \Re(f) \ d\mu + i \int_{X} \Im(f) \ d\mu \ \in \C. \]
+\end{definition}
+
+\begin{theorem}
+	Sean $(X, \mscr{M}, \mu)$ un espacio de medida y $f,g : X \to \C$ funciones $\mscr{M}$-medibles. Entonces:
+	\begin{enumerate}
+		\item Si $f,g$ son $\mu$-integrables, entonces $\alpha f + \beta g$ es $\mu$-integrable $\forall \alpha, \beta \in \C$ y
+		\[ \int_{X} (\alpha f + \beta g) \ d\mu = \alpha \int_{X} f \ d\mu + \beta \int_{X} g \ d\mu. \]
+
+		\item $f$ es $\mu$-integrable (en $\C$) si y sólo si $|f|$ es $\mu$-integrable (en $\R$) y, en tal caso,
+		\[ \left| \int_{X} f \ d\mu \right| \leq \int_{X} |f| \ d\mu. \]
+
+		\item Si $f$ es $\mu$-integrable y $E \in \mscr{M}$, entonces $f \chi_{E}$ es $\mu$-integrable. En particular, si definimos $\int_{E} f \ d\mu \coloneq \int_{X} f \cdot \chi_{E} \ d\mu$, entonces si $E_{1},E_{2} \in \mscr{M}$ son disjuntos,
+		\[ \int_{E_{1} \cupd E_{2}} f \ d\mu = \int_{E_{1}} f \ d\mu + \int_{E_{2}} f \ f\mu. \]
+	\end{enumerate}
+	Además, si $\mu(E) = 0$, entonces $\int_{E} f \ d\mu = 0$ y, por lo tanto, $\int_{X} f \ d\mu = \int_{E^{c}} f \ d\mu$.
+\end{theorem}
+\begin{proof}[Proof ]
+	Teorema $8.12$ del Rana.
+\end{proof}
+
+\subsection{Caso particular: Integral de Lebesgue}
+
+\begin{notation}~
+	\begin{itemize}
+		\item $\int f(x) \ dx =$ integral de $f$ respecto a la medida de Lebesgue.
+
+		\item $\int_{a}^{b} f(x) \ dx \coloneq \int_{[a,b]} f(x) \ dx$.
+
+		\item C.T.P. = C.T.P. respecto de la medida de Lebesgue.
+
+		\item integrable = integrable respecto de la medida de Lebesgue.
+
+		\item $\int_{X} f(x) \ d\mu(x)$ cuando queramos destacar la variable de integración.
+	\end{itemize}
+\end{notation}
+
+\begin{theorem}
+	Sea $f : [a,b] \to \R$ acotada. Entonces,
+	\begin{enumerate}
+		\item $f$ es integrable Riemann si y sólo si $f$ es continua C.T.P.
+
+		\item Si $f$ es integrable Riemann, entonces $f$ es integrable Lebesgue y
+		\[ \int_{a}^{b} f(x) \ dx(R) = \int_{a}^{b} f(x) \ dx(L). \]
+	\end{enumerate}
+\end{theorem}
+
+\begin{definition}[envolventes de Baire]
+	Dada $f : [a,b] \to \R$ acotada, definimos:
+	\begin{enumerate}
+		\item La envolvente superior de Baire de $f$ como $M : [a,b] \to \R$ dada por 
+		\[ M(x) \coloneq \limsup_{y \to x} f(y) \coloneq \inf_{\delta > 0}\left(\sup_{y : |y - x| < \delta} f(y)\right). \]
+
+		\item La envolvente inferior de Baire de $f$ como $m : [a,b] \to \R$ dada por
+		\[ m(x) \coloneq \liminf_{y \to x} f(y) \coloneq \sup_{\delta > 0} \left(\inf_{y : |y - x| < \delta} f(y) \right). \]
+	\end{enumerate}
+\end{definition}
+
+\begin{lemma}
+	Si $f : [a,b] \to \R$ es acotada, entonces:
+	\begin{enumerate}
+		\item $m(x) \leq f(x) \leq M(x) \quad \forall x \in [a,b]$.
+
+		\item $f$ es continua en $x \iff m(x) = M(x)$.
+
+		\item $M$ es semicontinua superior, i.e. $\{M < \alpha\}$ es abierto $\forall \alpha \in \R$.
+
+		\item $m$ es semicontinua inferior, i.e. $\{m > \alpha\}$ es abierto $\forall \alpha \in \R$. 
+	\end{enumerate}
+	En particular, $M$ y $m$ son medibles Borel.
+\end{lemma}
+\begin{proof}[Proof Other Information]
+	Ver Canvas.
+\end{proof}
+
+\begin{lemma}
+	Sean $f : [a,b] \to \R$ acotada y $(\pi_{n})_{n\in\N}$ una sucesión de particiones de $[a,b]$ tales que $\| \pi_{n} \| \stackrel{n \to \infty}{\longrightarrow} 0$. Entonces, si definimos $\underline{s}_{\pi_{n}}, \overline{s}_{\pi_{n}} : [a,b] \to \R$ por
+	\[ \underline{s}_{\pi_{n}} \coloneq \sum_{I \in \pi_{n}}^{} m_{I}(f) \chi_{I}, \quad \overline{s}_{\pi_{n}} \coloneq \sum_{I \in \pi_{n}}^{} M_{I}(f) \chi_{I}. \]
+	vale que 
+	\[ \begin{array}{l}
+		\underline{s}_{\pi_{n}}(x) \longrightarrow m(x) \\
+		\overline{s}_{\pi_{n}}(x) \longrightarrow M(x)
+	\end{array} \forall x \not\in \bigcup_{n\in\N} \pi_{n}. \]
+	En particular, $\underline{s}_{\pi_{n}} \longrightarrow m,\ \overline{s}_{\pi_{n}} \longrightarrow M$ C.T.P.
+\end{lemma}
+\begin{proof}[Proof ]
+	Dado $x_{0} \in [a,b] \setminus \bigcup_{n\in\N} \pi_{n}$ y $\varepsilon > 0$, existe $\delta > 0$ tal que
+	\[ \sup_{y : |y-x_{0}| < \delta} f(y) < M(x_{0}) + \varepsilon. \]
+	Sea $n_{0} \in \N$ tal que $\| \pi_{n} \| < \delta \ \forall n \geq n_{0}$. Luego, para cada $n \geq n_{0}$, existe $I_{n} \in \pi_{n}$ tal que $x_{0} \in \mathring{I}_{n} \subseteq B(x_{0},\delta)$. En particular,
+	\[ \overline{s}_{\pi_{n}}(x_{0}) = \sup_{y \in I_{n}} f(y) \leq \sup_{y : |y-x_{0}| < \delta} f(y) < M(x_{0}) + \varepsilon. \]
+	Por otro lado, existe $\delta^{*} > 0$ tal que $B(x_{0},\delta^{*}) \subseteq I_{n}$, de modo que
+	\[ \overline{s}_{\pi_{n}}(x_{0}) = \sup_{y \in I_{n}} f(y) \geq \sup_{y : |y-x_{0}| < \delta^{*}} f(y) \geq M(x_{0}). \]
+	Luego, $\forall n \geq n_{0},\ M(x_{0}) \leq \overline{s}_{\pi_{n}}(x_{0}) \leq M(x_{0}) + \varepsilon$. Como $\varepsilon > 0$ es arbitrario, resulta $\lim_{n \to \infty} \overline{s}_{\pi_{n}}(x_{0}) = M(x_{0})$.
+\end{proof}
+
+\begin{note}
+	La prueba para $m$ es análoga.
+\end{note}
+
+\begin{prop}
+	Si $f : [a,b] \to \R$ es acotada, entonces
+	\[ \overline{\int_{a}^{b}} f(x) \ dx(R) = \int_{a}^{b} M(x) \ dx(L), \quad \underline{\int_{a}^{b}} f(x) \ dx (R) = \int_{a}^{b} m(x) \ dx (L). \]
+\end{prop}
+\begin{proof}[Proof ]
+	Hacemos el caso de $M$. Sean $(\pi_{n})_{n\in\N}$ partición de $[a,b]$ tal que $\| \pi_{n} \| \longrightarrow 0$. Entonces
+	\begin{enumerate}
+		\item $\overline{s}_{\pi_{n}} \longrightarrow M$ C.T.P.
+
+		\item $| \overline{s}_{\pi_{n}} | \leq \sup_{x \in [a,b]} |f(x)| \coloneq K \in [0,\infty)$ pues $f$ es acotada.
+	\end{enumerate}
+	Luego, como la función constante $K$ es integrable en $[a,b]$ por ser simple y ser $|[a,b]| < \infty$, entonces por Convergencia Dominada,
+	\[ \lim_{n \to \infty} \int_{a}^{b} \overline{s}_{\pi_{n}}(x) \ dx (L) = \int_{a}^{b} M(x) \ dx. \]
+\end{proof}

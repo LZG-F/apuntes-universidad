@@ -1,0 +1,68 @@
+\clase{26}{10 de Octubre}{}
+
+\section{Espacios Normales (32)}
+
+\subsection{Criterios para garantizar T4}
+
+\begin{prop}
+	$X$ compacto y Hausdorff, entonces $X$ es normal.
+\end{prop}
+
+\begin{prop}
+	$X$ es regular + 2do contable, entonces $X$ es normal.
+\end{prop}
+
+\begin{lemma}
+	$X$ regular, $x \in X,\ B \subset X$ cerrado tal que $x \not\in B$. Entonces, $\exists U$ vecindad de $x$ con $\overline{U} \cap B = \varnothing$. Además, si $\mcal{B}$ es base de $X$, podemos elegir $U \in \mcal{B}$.
+\end{lemma}
+\begin{proof}[Proof Other Information][Lema]
+	$X$ regular nos da $V$ vecindad de $x$ con $V \cap B = \varnothing$. Por lema de la clase pasada, $\exists U$ vecindad de $x$ con $x \in U_{0} \subset \overline{U}_{0} \subset V$. Luego, $\overline{U}_{0} \cap B = \varnothing$. Si $\mcal{B}$ es base de $X$, existe $U \in \mcal{B}$ con $x \in U \subset U_{0}$. Así, $\overline{U} \subset \overline{U}_{0} \implies \overline{U} \cap B = \varnothing$.
+\end{proof}
+
+\begin{proof}[Proof Other Information][proposición 2]
+	$X$ es regular, $\mcal{B}$ base numerable. Queremos fijar $A, B \subset X$ cerrados disjuntos y encontrar $U, V$ abiertos disjuntos con $A \subset U,\ B \subset V$ (notar que $X$ ya es T1 por ser regular). En efecto, dado $a \in A$, el lema previo implica que existe $U_{a} \in \mcal{B}$ vecindad de $a$ y tal que $\overline{U}_{a} \cap B = \varnothing$. Esto nos da $\mcal{U} = \{U_{a} \ \big| \ a \in A\} \subset \mcal{B}$ cubriente por abiertos de $X$ tal que $(\bigcup_{a \in A} \overline{U}_{a}) \cap B = \varnothing$. El mismo proceso nos da $\mcal{V} = \{V_{b} \ \big| \ b \in B\} \subset \mcal{B}$ cubriente de $B$ por abiertos de $X$ tal que $(\bigcup_{b \in B} \overline{V}_{b}) \cap A = \varnothing$. Hasta ahora, tenemos $\widehat{U} \coloneq \bigcup_{a \in A} U_{a},\ \widehat{V} \coloneq \bigcup_{b \in B} V_{b} \subset X$ abiertos tales que $A \subset \widehat{U},\ B \subset \widehat{V}$. Falta achicar $\widehat{U}, \widehat{V}$ para que sean disjuntos. Como $\mcal{U}, \mcal{V} \subset \mcal{B}$ son numerables, tenemos
+	\[ \mcal{U} = \{U_{1},U_{2},U_{3},\dots\}, \quad \mcal{V} = \{V_{1},V_{2},V_{3},\dots\}. \]
+	Redefinimos: 
+	\begin{align*}
+		\widehat{U}_{1} &\coloneq U_{1} \setminus \overline{V}_{1}, \\
+		\widehat{U}_{2} &\coloneq U_{2} \setminus (\overline{V}_{1} \cup \overline{V}_{2}), \\
+		\widehat{U}_{n} &\coloneq U_{n} \setminus (\overline{V}_{1} \cup \overline{V}_{2} \cup \cdots \cup \overline{V}_{n})
+	.\end{align*}
+	Definimos $U \coloneq \bigcup_{i \geq 1} \widehat{U}_{i},\ V \coloneq \bigcup_{i \geq 1} \widehat{V}_{i}$. Notar que $A \subset U,\ B \subset V$ (se ocupa que $\overline{U}_{i} \cap B = \overline{V}_{i} \cap A = \varnothing$). Notar que $U \cap V = \varnothing$. En efecto, si $x \in U \cap V \implies x \in \widehat{U}_{m}, x \in \overline{V}_{n}$ para ciertos $m \geq n$. Luego, $x \in \widehat{V}_{n} \implies x \in V_{n}$, y $x \in \widehat{U}_{m} \ (m \geq n) \implies x \not\in \overline{V}_{n} \implies x \not\in V_{n}$, lo que es una contradicción!
+\end{proof}
+
+\begin{definition}[espacio metrizable]
+	$X$ espacio topológico es metrizable si su topología es topología métrica para alguna distancia en $X$.
+\end{definition}
+
+\begin{prop}
+	$X$ es metrizable, entonces $X$ es normal.
+\end{prop}
+
+\begin{theorem}[de Metrización de Urysohn]
+	$X$ normal y 2do contable $\implies X$ es metrizable.
+\end{theorem}
+\begin{note}
+	Este teorema no se va a evaluar (la demostración está en el Munkres).
+\end{note}
+
+\begin{proof}[Proof Other Information][proposición]
+	Sea $(X,d)$ espacio métrico. $X$ métrico $\implies$ Hausdorff $\implies$ T1. Tomamos $A, B \subset X$ cerrados disjuntos, queremos $U, V \times X$ abiertos disjuntoas con $A \subset U,\ B \subset V$. En efecto, recordar que si $S \subset X$ con $X$ espacio métrico cualquiera $\implies S = \{x \in X \ \big| \ \inf_{s \in S} d(x,s) = 0\}$. Por lo tanto, $S$ cerrado y $x \not\in S \implies \exists \varepsilon > 0$ tal que  $d(x,s) \geq \varepsilon \ \forall s \in S$ (i.e. $B_{\varepsilon}(x) \cap S = \varnothing$). Luego, $\forall a \in A,\ \exists \varepsilon_{a} > 0$ tal que $B_{\varepsilon_{a}}(a) \cap B = \varnothing$. Esto nos da $\{B_{\varepsilon_{a}}(a) \ \big| \ a \in A\}$. Similarmente, obtenemos $b \mapsto \varepsilon_{b} > 0$ tal que $b \in B,\ B_{\varepsilon_{b}}(b) \cap A = \varnothing$. Esto nos da $\widehat{U} = \bigcup_{a \in A} B_{\varepsilon_{a}}(a) \supset A, \ \widehat{V} = \bigcup_{b \in B} B_{\varepsilon_{b}}(b) \supset B$. Mejor tomamos $U = \bigcup_{a \in A} B_{\frac{\varepsilon_{a}}{2}}(a)$ y $V = \bigcup_{b \in B} B_{\frac{\varepsilon_{b}}{2}}(b)$. Luego, $U, V$ abiertos con $A \subset U,\ B \subset V$. Si $x \in U \cap V \implies \exists a \in A,\ b \in B$ tal que $d(x,a) < \frac{\varepsilon_{a}}{2},\ d(x,b) < \frac{\varepsilon_{b}}{2}$. Entonces,
+	\begin{align*}
+		d(a,b) &\leq d(a,x) + d(x,b) \\
+		&< \frac{\varepsilon_{a}}{2} + \frac{\varepsilon_{b}}{2} \leq \varepsilon_{a}
+	.\end{align*}
+	Luego, $d(a,b) < \varepsilon_{a}$ es una contradicción.
+\end{proof}
+
+\begin{corollary}
+	Subespacios de espacios metrizables son normales.
+\end{corollary}
+
+\begin{corollary}
+	Producto numerable de metrizables es normal.
+\end{corollary}
+
+\begin{remark}
+	$\R^{\R}$ no es normal.
+\end{remark}

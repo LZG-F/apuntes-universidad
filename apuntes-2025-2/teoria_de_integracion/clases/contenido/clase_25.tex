@@ -1,0 +1,92 @@
+\clase{25}{10 de Octubre}{}
+
+\begin{remark}
+	Si $f$ es débil $\mu$-integrable y $A,B \in \mscr{M}$ son disjuntos, entonces 
+	\[ \int_{A \cupd B} f \ d\mu = \int_{X} f (\chi_{A} + \chi_{B})d\mu = \int_{A} f \ d\mu + \int_{B} f \ d\mu. \]
+	En particular, si $\mu(E) = 0$, entonces
+	\[ \int_{X} f \ d\mu = \int_{E} f \ d\mu + \int_{E^{c}} f \ d\mu = \int_{E^{c}} f \ d\mu. \]
+\end{remark}
+
+\begin{property}[Desigualdad de Tchebychev]
+	Si $f$ es $\mu$-integrable, entonces, dado $\lambda > 0$,
+	\[ \mu(\{x \ : \ |f(x)| > \lambda\}) \leq \frac{1}{\lambda} \int_{\{x \ : \ |f(x) > \lambda\}} |f| \ d\mu. \] 
+\end{property}
+\begin{proof}[Proof ]
+	\[ \int_{\{x \ : \ |f(x)| > \lambda\}} |f(x)| \ d\mu \geq \int_{\{x \ : \ |f(x)| > \lambda\}} \lambda \ d\mu = \lambda \mu(\{x \ : \ |f(x)| > \lambda\}). \]
+\end{proof}
+
+\begin{corollary}
+	Si $f$ es $\mscr{M}$-medible no negativa y tal que $\int_{X} f \ d\mu = 0$, entonces $f = 0 \ \mu$-CTP.
+\end{corollary}
+
+\begin{corollary}
+	Si $f : X \to \overline{\R}$ es $\mu$-integrable, entonces es finita $\mu$-CTP.
+\end{corollary}
+
+\begin{lemma}[Fatou]
+	Sea $(X, \mscr{M}, \mu)$ un espacio de medida y $(f_{n})_{n \in \N} : X \to \overline{\R}$ funciones $\mscr{M}$-medibles no negativas $\mu$-CTP. Entonces,
+	\[ \int_{X} \left( \liminf_{n \to \infty} f_{n} \right) d\mu \leq \liminf_{n \to \infty} \int_{X} f_{n} \ d\mu. \]
+\end{lemma}
+
+\begin{remark}
+	La desigualdad puede ser estricta: En efecto, tomar $(X, \mscr{M}, \mu) \coloneq (\R, \mscr{L}(\R), \lambda),\ f_{n}(x) \coloneq n \chi_{(0,\frac{1}{n}]}$. Entonces, $f_{n} \longrightarrow 0$ puntualmente, pero $\int_{X} f_{n} \ d\mu = 1 \ \forall n$ y esto es estrictamente mayor que $\int_{X} 0 \ d\mu = 0$. Además, tomando $g_{n} \coloneq -f_{n}$, vemos que la hipótesis de $f_{n} \geq 0 \ \mu$-CTP también es necesaria.
+\end{remark}
+
+\begin{proof}[Proof ]
+	Sea $E \coloneq \bigcup_{k \in \N} \{x \ : \ f_{k}(x) < 0\}$. Notar que $E \in \mscr{M}$ y $\mu(E) = 0$. Luego, si definimos $g_{n} \coloneq (\inf_{k \geq n} f_{k}) \chi_{E^{c}}$, entonces 
+	\[ 0 \leq g_{n} \nearrow \left(\liminf_{n \to \infty} f_{n}\right) \chi_{E^{c}} = \left(\sup_{n \in \N} g_{n}\right) \chi_{E^{c}}. \]
+	Luego, por Convergencia Monótona,
+	\[ \int_{E^{c}} \left(\liminf_{n \to \infty} f_{n}\right) d\mu = \lim_{n \to \infty} \int_{X} g_{n} \ d\mu \leq \liminf_{n \to \infty} \int_{X} f_{n} \ d\mu. \]
+	(no podemos poner límite sólo en el lado derecho, pues no sabemos si converge). Para concluir, debemos ver que $\liminf_{n \to \infty} f_{n}$ es débil $\mu$-integrable y que $\int_{X} \liminf_{n \to \infty} f_{n} \ d\mu = \int_{E^{c}} \liminf_{n \to \infty} f_{n} \ d\mu$. Pero esto se deduce de la observación al principio de la clase, pues $\liminf_{n \to \infty} f_{n}$ es débil $\mu$-integrable, ya que $\liminf_{n \to \infty} f_{n} \geq 0 \ \mu$-CTP y, por lo tanto, 
+	\[ \left(\liminf_{n \to \infty} f_{n}\right)^{-} = 0 \ \mu\text{-CTP} \]
+	y, por lo tanto,
+	\[ \int_{X} (\liminf f_{n})^{-}) d\mu = \int_{X} 0 \ d\mu = 0 < \infty. \]
+	(notar que la igualdad está dada por la observación dada a continuación).
+\end{proof}
+
+\begin{remark}
+	Si $f = g \ \mu$-CTP, entonces
+	\[ \int_{X} f \ d\mu = \int_{\{f=g\}} f \ d\mu = \int_{\{f=g\}} g \ d\mu = \int_{X} g \ d\mu. \]
+	($f,g$ son débil $\mu$-integrables).
+\end{remark}
+
+\begin{theorem}[de Convergencia Dominada]
+	Sean $(X, \mscr{M}, \mu)$ un espacio de medida y $(f_{n})_{n\in\N} : X \to \overline{\R}$ funciones $\mscr{M}$-medibles tales que
+	\begin{enumerate}
+		\item $(f_{n})_{n\in\N}$ converge $\mu$-CTP a $f : X \to \overline{\R} \ \mscr{M}$-medible;
+
+		\item Existe $g : X \to [0,\infty] \ \mu$-integrable ($\implies \mscr{M}$-medbile) tal que 
+		\[ \sup_{n\in\N} |f_{n}| \leq g \]
+		$\mu$-CTP.
+	\end{enumerate}
+	Entonces, $f$ es $\mu$-integrable y
+	\[ \lim_{n \to \infty} \int_{X} |f_{n} - f| \ d\mu = 0. \]
+	En particular, 
+	\[ \int_{X} f \ d\mu = \lim_{n \to \infty} \int_{X} f_{n} \ d\mu. \]
+\end{theorem}
+
+\begin{remark}
+	(2) es equivalente a que $(\sup_{n\in\N} |f_{n}|)$ sea $\mu$-integrable.
+\end{remark}
+
+\begin{proof}[Proof ]
+	Vemos primero que $f$ es $\mu$-integrable. Observar que
+	\[ |f(x)| = \liminf_{n \to \infty} |f_{n}(x)| \quad \forall x \in E \coloneq \{x \ : \ f_{n}(x) \longrightarrow f(x)\}. \] 
+	Como $\mu(E^{c}) = 0$ por hipótesis, entonces
+	\[ \int_{X} |f| \ d\mu = \int_{E} |f| \ d\mu = \int_{E} \left(\liminf_{n \to \infty} |f_{n}| \right) d\mu = \int_{X} \left( \liminf_{n \to \infty} |f_{n}| \right) d\mu. \]
+	Luego, por el Lema de Fatou,
+	\[ \int_{X} |f| \ d\mu \leq \liminf_{n \to \infty} \int_{X} |f_{n}| \ d\mu \leq \int_{X} g \ d\mu < \infty. \]
+	Luego, $f$ es $\mu$-integrable. En particular, como cada $f_{n}$ es $\mu$-integrable,
+	\[ \int_{X} |f_{n} - f| \ d\mu < \infty. \]
+	Sea ahora $h_{n} \coloneq 2g - |f_{n} - f|$. Observar que $h_{n} \geq 0 \ \mu$-CTP (pues $|f_{n}| \leq g \ \mu$-CTP $\forall n \in \N \implies |f| \leq g \ \mu$-CTP). Por el Lema de Fatou,
+	\[ \int_{X} \liminf_{n \to \infty} h_{n} \leq \liminf_{n \to \infty} \int_{X} h_{n} \ d\mu = \liminf_{n \to \infty} \left(2 \int_{X} g \ d\mu - \int_{X} |f_n - f| \ d\mu \right). \]
+	Como $\lim_{n \to \infty} h_{n} = 2g \ \mu$-CTP,
+	\[ \int_{X} \liminf_{n \to \infty} h_{n} = \int_{X} 2g \ d\mu. \]
+	Juntando ambas cosas, tenemos que
+	\[ 2 \int_{X} g \ d\mu \leq 2 \int_{X} g \ d\mu - \limsup_{n \to \infty} \int_{X} |f_{n} - f| \ d\mu. \]
+	Luego, 
+	\[ \limsup_{n \to \infty} \int_{X} |f_{n} - f| \ d\mu \leq 0 \implies \lim_{n \to \infty} \int_{X} |f_{n} - f| \ d\mu = 0 \]
+	y, como,
+	\[ \left| \int_{X} f_{n} \ d\mu - \int_{X} f \ d\mu \right| = \left| \int_{X}(f_{n} - f) \ d\mu \right| \leq \int_{X} |f_{n} - f| \ d\mu \stackrel{n \to \infty}{\longrightarrow} 0 \]
+	resulta que $\lim_{n \to \infty} \int_{X} f_{n} \ d\mu = \int_{X} f \ d\mu$.
+\end{proof}

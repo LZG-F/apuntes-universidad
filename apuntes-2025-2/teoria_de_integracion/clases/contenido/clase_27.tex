@@ -1,0 +1,96 @@
+\clase{27}{15 de Octubre}{}
+
+\begin{prop}
+	Si $f : [a,b] \to \R$ es acotada, entonces
+	\[ \overline{\int_{a}^{b}} f \ (R) = \int_{a}^{b} M \ (L) \quad \text{y} \quad \underline{\int_{a}^{b}} f \ (R) = \int_{a}^{b} m \ (L). \]
+\end{prop}
+\begin{proof}[Proof Other Information][continuación]
+	Vemos sólo el caso de $M$, pues el otro es igual. Vimos ya que
+	\[ \lim_{n \to \infty} \int_{a}^{b} \overline{s}_{\pi_{n}}(x) \ dx \ (L) = \int_{a}^{b} M(x) \ dx \ (L). \]
+	Pero, notemos que
+	\[ \int_{a}^{b} \overline{s}_{\pi_{n}}(x) \ dx = \overline{S}(f; \pi_{n}). \]
+	Luego, por resultado visto en clases, como $\| \pi_{n} \| \stackrel{n \to \infty}{\longrightarrow} 0$, entonces
+	\[ \lim_{n \to \infty} \overline{S}(f; \pi_{n}) = \overline{\int_{a}^{b}} f \ (R). \]
+	Juntando ambas cosas, por unicidad del límite,
+	\[ \overline{\int_{a}^{b}} f \ (R) = \int_{a}^{b} M \ (L). \qedhere \]
+\end{proof}
+\begin{proof}[Proof Other Information][Teorema 2.23]
+	\begin{enumerate}
+		\item $f$ integrable Riemann $\iff \overline{\int_{a}^{b}} f = \underline{\int_{a}^{b}} f \iff \int_{a}^{b} M(x) \ dx = \int_{a}^{b} m(x) \ dx \iff \int_{a}^{b} (M(x) - m(x)) \ dx = 0 \iff$ (por corolario de la clase pasada) $M - m = 0$ CTP. $\iff M = m$ CTP. $\iff f$ continua CTP.
+
+		\item Si $f$ es Riemann integrable, entonces, por (1) y el control 3, $f$ es medible Lebesgue (o, sino, $f = M$ CTP y $M$ es medible). Además, es integrable por ser acotada y, en consecuencia,
+		\[ \int_{a}^{b} f(x) \ dx \ (L) = \int_{a}^{b} M(x) \ dx \ (L) = \overline{\int_{a}^{b}} f(x) \ dx \ (R) = \int_{a}^{b} f(x) \ dx \ (R). \]
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}[función escalonada]
+	Una función $\varphi : [a,b] \to \R$ se dice escalonada si existe una partición $\pi = \{x_{0},\dots,x_{n}\}$ de $[a,b]$ y $a_{1},\dots,a_{n} \in \R$ tal que
+	\[ \varphi(x) = \sum_{i=1}^{n} a_{i} \chi_{[x_{i-1},x_{i}]}(x) \quad \forall x \not\in \pi. \]
+\end{definition}
+
+\begin{remark}
+	Toda $\varphi$ escalonada es simple y Riemann integrable.
+\end{remark}
+
+\begin{prop}
+	Sea $f : [a,b] \to \R$ una función acotada. Entonces
+	\[ f \text{ Riemann integrable} \iff \inf_{\substack{\varphi \text{ escalonada} \\ \varphi \geq f}} \int_{a}^{b} \varphi = \sup_{\substack{\varphi \text{ escalonada} \\ \varphi \leq f}} \int_{a}^{b} \varphi, \]
+	y
+	\[ f \text{ Lebesgue integrable} \iff \inf_{\substack{\varphi \text{ simple} \\ \varphi \geq f}} \int_{a}^{b} \varphi \ (L) = \sup_{\substack{\varphi \text{ simple} \\ \varphi \leq f}} \int_{a}^{b} \varphi \ (L). \]
+\end{prop}
+\begin{proof}[Proof Other Information]
+	Royden (Capítulo 4, sección 2, proposición 3).
+\end{proof}
+
+\chapter{Unidad 4: Espacios Producto}
+
+\begin{definition}
+	Sean $(X_{1}, \mscr{M}_{2}), \ (X_{2}, \mscr{M}_{2})$ espacioes medibles. Definimos
+	\begin{enumerate}
+		\item La clase de rectángulos medibles en $X_{1} \times X_{2}$ como
+		\[ \mcal{R} \coloneq \{A \times B \ : \ A \in \mscr{M}_{1},\ B \in \mscr{M}_{2}\}. \]
+
+		\item La $\sigma$-álgebra producto $\mscr{M}_{1} \times \mscr{M}_{2}$ en $X_{1} \times X_{2}$ como $\mscr{M}_{1} \times \mscr{M}_{2} \coloneq \sigma(\R)$.
+	\end{enumerate}
+\end{definition}
+
+\begin{note}
+	No confundir $\mscr{M}_{1} \times \mscr{M}_{2}$ con el producto cartesiano de $\mscr{M}_{1}$ y $\mscr{M}_{2}$ !!! En efecto, notar que el el producto cartesiano entre $\mscr{M}_{1}$ y $\mscr{M}_{2}$ es igual a $\{(A, B) \ : \ A \in \mscr{M}_{1},\ B \in \mscr{M}_{2}\}$. En cambio, los elementos de $\mscr{M}_{1} \times \mscr{M}_{2}$ son subconjuntos de $X_{1} \times X_{2}$. 
+\end{note}
+
+\begin{eg}~
+	\begin{itemize}
+		\item $\beta(\R^n) \times \beta(\R^m) = \beta(\R^{n+m}) = \sigma(I_{1} \times \cdots \times I_{n+m} \ : \ I_{i} \subseteq \R \text{ intervalo})$.
+
+		\item $\beta(\R^n) \times \beta(\R^m) \subsetneq \mscr{L}(\R^n) \times \mscr{L}(\R^m) \subsetneq \mscr{L}(\R^{n+m})$.
+	\end{itemize}
+\end{eg}
+
+\begin{remark}
+	$\mcal{R}$ es una semiálgebra.
+\end{remark}
+
+\begin{theorem}
+	Sean $(X_{1}, \mscr{M}_{1}, \mu_{1}),\ (X_{2}, \mscr{M}_{2}, \mu_{2})$ espacios de medida $\sigma$-finita. Entonces, existe una única medida $\mu_{1} \times \mu_{2}$ en $(X_{1} \times X_{2}, \mscr{M}_{1} \times \mscr{M}_{2})$ tal que $\mu_{1} \times \mu_{2} (A \times B) = \mu_{1}(A) \mu_{2}(B) \quad \forall A \times B \in \mcal{R}$. \par
+	Más aún, $\mu_{1} \times \mu_{2}$ se puede extender de manera única a la $\sigma$-álgebra 
+	\[ \overline{\mscr{M}_{1} \times \mscr{M}_{2}} \coloneq \{A \cupd N \ : \ A \in \mscr{M}_{1} \times \mscr{M}_{2},\ \exists B \in \mscr{M}_{1} \times \mscr{M}_{2} \text{ tq } N \subseteq B \text{ y } (\mu_{1} \times \mu_{2})(B) = 0\}. \]
+	Notamos a dicha extensión como $\overline{\mu_{1} \times \mu_{2}}$ y viene dada por
+	\[ \overline{\mu_{1} \times \mu_{2}}(A \cupd N) = \mu_{1} \times \mu_{2}(A). \]
+\end{theorem}
+
+\begin{note}
+	La medida $\mu_{1} \times \mu_{2}$ se llama la medida producto de $\mu_{1}$ y $\mu_{2}$.
+\end{note}
+
+\begin{remark}
+	Por inducción, se puede definir $\mu_{1} \times \cdots \times \mu_{n} \quad \forall n \in \N$.
+\end{remark}
+
+\begin{eg}
+	Si $(X_{i}, \mscr{M}_{i}, \mu_{i}) \coloneq (\R, \beta(\R), \lambda) \quad i = 1,\dots,n$ entonces
+	\begin{align*}
+		& X_{1} \times \cdots \times X_{2} = \R^n \\
+		& \beta(\R) \times \cdots \times \beta(\R) = \beta(\R^n) \\
+		& \lambda \times \cdots \times \lambda = \lambda_{\R^n} \ (\text{sobre } \beta(\R^n))
+	\end{align*}
+\end{eg}

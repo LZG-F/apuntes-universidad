@@ -1,0 +1,88 @@
+\clase{28}{15 de Octubre}{}
+
+\section{Teorema de Extensión de Tietze (34)}
+
+\begin{theorem}[Extensión de Tietze]
+	$X$ normal, $A \subset X$ cerrado
+	\begin{enumerate}[a)]
+		\item Si $f : A \to [a,b]$ continua $\implies f$ tiene extensión continua $g : X \to [a,b]$ (i.e. $g$ continua y $g \big|_{A} = f$).
+
+		\item Si $f : A \to \R$ continua $\implies f$ tiene extensión continua $g : X \to \R$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{notation}
+	Si $F : X \ (\text{o en } A) \to \R$, 
+	\[ \| F \|_{X} = \sup_{x \in X} |F(x)| \quad \text{ó} \quad \| F \|_{A} = \sup_{a \in A} |F(a)|. \]
+\end{notation}
+
+\noindent \textbf{Idea de prueba.} $f : A \to [-1,1]$ continua, $A \subset X$ (con $X$ normal y $A$ cerrado). Encontrar sucesión $(g_{n}) : X \to [-1,1]$ de funciones continuas tal que
+\begin{enumerate}[i)]
+	\item $\| g_{n} \|_{X} \leq \frac{1}{3}\big( \frac{2}{3} \big)^{n-1}$;
+
+	\item $\| f - g_{1} - \cdots - g_{n} \|_{A} \leq \big( \frac{2}{3} \big)^{n}$.
+\end{enumerate}
+Luego, $g \coloneq \sum_{n \geq 1}^{} g_{n}$ va a ser la extensión continua de $f$.
+
+\begin{lemma}
+	$X$ normal, $A \subset X$ cerrado, $r > 0,\ F : A \to [-r,r]$. Entonces, existe $G : X \to \R$ continua, con
+	\begin{enumerate}[i)]
+		\item $\| G \|_{X} \leq \frac{r}{3}$;
+
+		\item $\| F - G \|_{A} \leq \frac{2r}{3}$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}[Proof Other Information][Lema]
+	Dividir $[-r,r]$ en 
+	\[ \underbrace{\Big[-r,-\frac{r}{3}\Big]}_{I_{1}} \cup \underbrace{\Big[-\frac{r}{3},\frac{r}{3}\Big]}_{I_{2}} \cup \underbrace{\Big[ \frac{r}{3},r \Big]}_{I_{3}} \]
+	y sean $B = F^{-1}(I_{1}),\ C = F^{-1}(I_{3})$. Notar que $B,C$ son cerrados (disjuntos) en $A$ y por lo tanto cerrados en $X$. El lema de Urysohn $\implies \exists G : X \to \big[-\frac{r}{3},\frac{r}{3}\big]$ continua tal que $G(B) = \big\{-\frac{r}{3}\big\}  $ y $G(C) = \big\{\frac{r}{3}\big\}$. Luego, viendo por casos, dependiendo si $a \in B,\ a \in C$ o $a \in A \setminus (C \cup B)$, entonces $| F(a) - G(a) | \leq \frac{2r}{3}$ ($ii. \ \checkmark$).
+\end{proof}
+
+\begin{proof}[Proof Other Information][Tietze, parte a.]
+	Sean $X$ normal, $A \subset X$ cerrado y $f : A \to [-1,1]$ continua (queremos encontrar $g : X \to [-1,1]$ extensión continua de $f$). Lema anterior (con $F = f,\ G = g_{1},\ r=1$) $\implies \exists g_{1} : X \to \R$ continua tal que
+	\begin{enumerate}[i)]
+		\item $\| g_{1} \|_{X} \leq \frac{1}{3}$;
+
+		\item $\| f - g_{1} \|_{A} \leq \frac{2}{3}$.
+	\end{enumerate}
+	Similarmente, el lema (con $F = f-g_{1},\ G = g_{2},\ r = \frac{2}{3}$) $\implies \exists g_{2} : X \to \R$ continua tal que
+	\begin{enumerate}[i)]
+		\item $\| g_{2} \|_{X} \leq \frac{1}{3} \cdot \frac{2}{3}$;
+
+		\item $\| (f - g_{1}) - g_{2} \|_{A} \leq \big(\frac{2}{3}\big)^{2}$.
+	\end{enumerate}
+	Inductivamente, encontramos $g_{1},\dots,g_{n} : X \to \R$ continuas tal que
+	\begin{enumerate}[i)]
+		\item $\| g_{n+1} \|_{X} \leq \frac{1}{3} \big(\frac{2}{3}\big)^{n}$;
+
+		\item $\| (f - g_{1} - \cdots - g_{n}) - g_{n+1} \|_{A} \leq \big(\frac{2}{3}\big)^{n+1}$.
+	\end{enumerate}
+	Hemos encontrado $(g_{n})_{n} : X \to \R$ continuas con
+	\begin{enumerate}[i)]
+		\item $\| g_{n} \|_{X} \leq \frac{1}{3}\big(\frac{2}{3}\big)^{n-1}$;
+
+		\item $\| f - (g_{1} + \cdots + g_{n}) \|_{A} \leq \big(\frac{2}{3}\big)^{n}$,
+	\end{enumerate}
+	$\forall n \geq 1$. Definimos $g : X \to \R$ tal que $x \mapsto \sum_{n \geq 1}^{} g_{n}(x)$. Nos falta probar que $g$ está bien definida, $g$ extiende a $f$, que $g$ es continua y $g : X \to [-1,1]$.
+	\begin{itemize}
+		\item ($g$ bien definida:) $\forall x \in X$, la serie $\sum_{n \geq 1}^{} g_{n}(x)$ converge absolutamente porque está dominada por $\sum_{n \geq 1}^{} \frac{1}{3} \big(\frac{2}{3}\big)^{n}$ (criterio de comparación de series).
+
+		\item ($g$ extiende a $f$:) $a \in A$,
+		\[ | f(a) - g(a) | = \lim_{n \to \infty} | f(a) - g_{1}(a) - \cdots - g_{n}(a) | \leq \lim_{n \to \infty} \Big(\frac{2}{3}\Big)^{n} = 0 \]
+		donde la desigualdad está dada por $ii)$.
+
+		\item ($g$ continua:) $s_{n} = g_{1} + \cdots + g_{n}$ converge a $g$ uniformemente ($\| g - s_{n} \|_{X} \stackrel{n \to \infty}{\longrightarrow} 0$). Esto implica que $g$ continua si cada $s_{n}$ continua. Luego
+		\begin{align*}
+			\| g - s_{n} \|_{X} &= \| g_{n+1} + g_{n+2} + \cdots \|_{X} \\
+			&\leq \sum_{m \geq n+1}^{} \| g_{m} \|_{X} \\
+			&\leq \sum_{m \geq n+1}^{} \frac{1}{3} \Big(\frac{2}{3}\Big)^{m-1} \stackrel{n \to \infty}{\longrightarrow} 0
+		.\end{align*}
+		
+		\item Basta ver que
+		\[ \| g \|_{X} \leq \sum_{n \geq 1}^{} \| g_{n} \|_{X} \stackrel{i)}{\leq} \sum_{n \geq 1}^{} \frac{1}{3} \Big(\frac{2}{3}\Big)^{n-1} = 1. \]
+	\end{itemize}
+\end{proof}
+
+\begin{proof}[Proof Other Information][Tietze, parte b.]
+	Partir de $f : A \to (-1,1)$ (homeomorfo a $\R$). Queremos extensión continua $g : X \to (-1,1)$. Parte a) $\leadsto \exists h : X \to [-1,1]$ extensión continua de $f$. Tomamos $B = h^{-1}( \{1\} )$ y $C = h^{-1}( \{-1\} )$. Entonces, $B \cup C$ cerrado de $X$ disjunto de $A$. Urysohn $\implies \phi : X \to [0,1]$ tal que $\phi(B \cup C) = \{0\},\ \phi(A) = \{1\}$. Luego, $g \coloneq \phi h$ sirve.
+\end{proof}
