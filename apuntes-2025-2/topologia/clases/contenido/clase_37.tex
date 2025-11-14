@@ -1,0 +1,89 @@
+\clase{37}{7 de Noviembre}{}
+
+\section{Funtorialidad (52) + $\pi_{1}(S^1)$ (54, 53)}
+
+\subsection{Funciones Continuas y $\pi_{1}$}
+
+\begin{notation}
+	$f : (X, x_{0}) \to (Y, y_{0})$ es $f : X \to Y$ continua tal que $f(x_{0}) = y_{0}$ (mapeo punteado).
+\end{notation}
+
+\begin{property}
+	Si $f : (X, x_{0}) \to (Y, y_{0})$ mapa punteado, entonces induce homomorfismo de grupos $f_{*} : \pi_{1}(X,x_{0}) \to \pi_{1}(Y,y_{0})$ tal que $[\alpha] \mapsto [f \circ \alpha]$, con $\alpha : [0,1] \to X \ (\in \Omega(X,x_{0}))$ y $f \circ \alpha : [0,1] \to Y \ (\in \Omega(Y,y_{0}))$.
+\end{property}
+\begin{proof}[Proof Other Information][propiedad]~
+	\begin{enumerate}
+		\item $f_{*}$ bien definido: Queremos $\alpha \sim_{p} \alpha' \implies f \circ \alpha \sim_{p} f \circ \alpha'$ (que viene de $\alpha \sim_{p} \alpha' \implies f \circ \alpha \sim f \circ \alpha'$ [Tarea 6] + se preservan puntos base).
+
+		\item $f_{*}$ es homomorfismo: Queremos $f_{*}([\alpha] * [\beta]) = f_{*}([\alpha]) * f_{*}([\beta])$ (en $\pi_{1}(X,x_{0})$ y en $\pi_{1}(Y,y_{0})$, respectivamente). \par
+		Para ello, notar que
+		\[ f_{*}([\alpha] * [\beta]) = f_{*}([\alpha * \beta]) = [\underbrace{f \circ ( \alpha * \beta )}_{\gamma_{1}}] \]
+		y
+		\[ f_{*}([\alpha]) * f_{*}([\beta]) = [f \circ \alpha] * [f \circ \beta] = [\underbrace{(f \circ \alpha) * (f \circ \beta)}_{\gamma_{2}}] \]
+		Luego, notar que
+		\begin{align*}
+			\gamma_{1}(s) = \gamma_{2}(s) = \begin{cases}
+				f(\alpha(2s)) \quad & 0 \leq s \leq \frac{1}{2} \\
+				f(\beta(2s - 1)) \quad & \frac{1}{2} \leq s \leq 1
+			\end{cases} 
+		\end{align*}
+	\end{enumerate}
+\end{proof}
+
+\begin{remark}
+	Construcción es "funtorial": $(X,x_{0}) \mapsto \pi_{1}(X,x_{0})$ con $f : (X,x_{0}) \to (Y,y_{0}) \mapsto f_{*} : \pi_{1}(X,x_{0}) \to \pi_{1}(Y,y_{0})$.
+	\begin{enumerate}
+		\item $\Id_{X} : (X,x_{0}) \to (X,x_{0}) \leadsto (\Id_{X})_{*} = \Id_{\pi_{1}(X,x_{0})} : \pi_{1}(X,x_{0}) \to \pi_{1}(X,x_{0})$.
+
+		\item $f : (X,x_{0}) \to (Y,y_{0}),\ g : (Y,y_{0}) \to (Z,z_{0})$ mapas punteados ($\leadsto g \circ f : (X,x_{0}) \to (Z,z_{0})$) 
+		\begin{align*}
+			\implies (g \circ f)_{*} = g_{*} \circ f_{*} : \pi_{1}(X,x_{0}) \stackrel{f_{*}}{\to} \pi_{1}(Y,y_{0}) \stackrel{g_{*}}{\to} \pi_{1}(Z,z_{0})
+		.\end{align*}
+		Luego,
+		\begin{align*}
+			(g \circ f)_{*}([\alpha]) &= [(g \circ f) \circ \alpha] \\
+			&= [g \circ (f \circ \alpha)] \\
+			&= g_{*}[f \circ \alpha] \\
+			&= g_{*}(f_{*}([\alpha]))
+		.\end{align*}
+	\end{enumerate}
+\end{remark}
+
+\begin{corollary}
+	$X,Y$ arcoconexos, $x_{0} \in X,\ f : X \to Y$ homeomorfismo $\implies f_{*} : \pi_{1}(X,x_{0}) \to \pi_{1}(Y,f(x_{0}))$ es isomorfismo de grupos.
+\end{corollary}
+
+\begin{note}
+	Si $X,Y$ arcoconexos, $X \approx Y \implies \pi_{1}(X) \cong \pi_{1}(Y)$.
+\end{note}
+
+\begin{proof}[Proof Other Information]
+	$f$ homeomorfismo $\implies f^{-1} : (Y,y_{0}) \to (X,x_{0})$ continua. Afirmamos que $(f^{-1})_{*} : \pi_{1}(Y,y_{0}) \to \pi_{1}(X,x_{0})$ es inversa de $f_{*}$. En efecto, $f^{-1} \circ f = \Id_{X} \implies (f^{-1})_{*} \circ f_{*} = (\Id_{X})_{*} = \Id_{\pi_{1}(X,x_{0})}$.
+\end{proof}
+
+\begin{recordar}
+	$f : X \to Y$ es biyección ssi $\exists g : Y \to X$ tal que $g \circ f = \Id_{X},\ f \circ g = \Id_{Y}$.
+\end{recordar}
+
+\subsection{El Círculo}
+Veremos al círculo como
+\[ S^1 = \{z \in \R^2 \ \big| \ |z| = 1\},\ x_{0} = 1. \] 
+Loops en $S^1$ con base $x_{0}$:
+\begin{itemize}
+	\item $e_{x_{0}}$;
+
+	\item $\omega_{1}(s) = e^{2 \pi i s}$;
+
+	\item $\omega_{-1}(s) = e^{-2 \pi i s}$;
+
+	\item $\omega_{2}(s) = e^{2 \cdot 2 \pi i s}$;
+	\item $\leadsto \omega_{n} = e^{2 n \pi i s}$.
+\end{itemize}
+
+\begin{remark}
+	$[\omega_{n}] = [\omega_{1}]^{*n}$ (i.e. $\omega_{1}$ genera).
+\end{remark}
+
+\begin{theorem}
+	$\phi : \Z \to \pi_{1}(S^1,x_{0})$ tal que $n \mapsto [\omega_{n}]$ es isomorfismo de grupos.
+\end{theorem}

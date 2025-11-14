@@ -1,0 +1,72 @@
+\clase{39}{12 de Noviembre}{}
+
+\section{Espacios de Cubrimiento (53, 81*)}
+
+\subsection{$\pi_{1}$ de productos}
+
+$X,Y$ espacios topológicos, $x_{0} \in X,\ y_{0} \in Y$. Sean $\pi_{X} : X \times Y \to X,\ \pi_{Y} : X \times Y \to Y$. Luego,
+\begin{align*}
+	& (\pi_{X})_{*} : \pi_{1}(X \times Y, (x_{0},y_{0})) \to \pi_{1}(X,x_{0}) \\
+	& (\pi_{Y})_{*} : \pi_{1}(X \times Y, (x_{0},y_{0})) \to \pi_{1}(Y,y_{0})
+\end{align*}
+son los homomorfismos inducidos.
+
+\begin{prop}
+	$\pi_{X_{*}} \times \pi_{Y_{*}} : \pi_{1}(X \times Y, (x_{0},y_{0})) \stackrel{J_{*}}{\to} \pi_{1}(X,x_{0}) \times \pi_{1}(Y,y_{0})$ tal que $[\gamma] \mapsto ([\pi_{X} \circ \gamma], [\pi_{Y} \circ \gamma])$ es isomorfismo.
+\end{prop}
+
+\begin{corollary}
+	$\pi_{1}(\mathbb{T}^{2}) \approx \pi_{1}(S^1 \times S^1) \approx \pi_{1}(S^1) \times \pi_{1}(S^1) \approx \Z^2$.
+\end{corollary}
+
+\begin{remark}
+	$\mathbb{T}^{2} \not\approx S^2$. En efecto, $\pi_{1}(\mathbb{T}^{2}) \approx \Z^2 \not\approx \{1\} \approx \pi_{1}(S^2)$. 
+\end{remark}
+
+\begin{proof}[Proof Other Information][proposición]
+	Construir inversa a $J_{*}$. Si $\gamma_{1} \in \Omega(X,x_{0}),\ \gamma_{2} \in \Omega(Y,y_{0})$, entonces
+	\[ (\gamma_{1} \times \gamma_{2})(s) \coloneq (\gamma_{1}(s), \gamma_{2}(s)) \in \Omega(X \times Y, (x_{0},y_{0})). \]
+	Se verifica que $([\gamma_{1}], [\gamma_{2}]) \mapsto [\gamma_{1} \times \gamma_{2}]$ es la inversa de $J_{*}$ (queda como ejercicio demostrar que está bien definido y que es, en efecto, la inversa).
+\end{proof}
+
+\subsection{Espacios de Cubrimiento}
+
+\begin{definition}
+	$p : E \to X$ mapa continuo
+	\begin{enumerate}
+		\item Un abierto $U \subset X$ es bien cubierto por $p$ si $p^{-1}(U)$ se escribe como unión disjunta $p^{-1}(U) = \bigsqcup_{\alpha \in A} U_{\alpha}$ tal que $p|_{U_{\alpha}} : U_{\alpha} \to U$ es homeomorfismo $\forall \alpha \in A$, con cada $U_{\alpha}$ abierto en $E$.
+
+		\item $p$ es mapa de cubrimento si todo punto de $X$ posee una vecindad bien cubierta por $p$.
+	\end{enumerate}
+\end{definition}
+
+\begin{eg}
+	$p : \R \to S^1$ tal que $s \mapsto e^{2 \pi i s}$. Es un mapa de cubrimiento.
+\end{eg}
+
+\begin{eg}
+	$p : \R^{2} \to \mathbb{T}^{2} \ (= S^1 \times S^1)$ tal que $(s,t) \mapsto (e^{2 \pi is}, e^{2 \pi it})$. Esto es mapa de cubrimiento.
+\end{eg}
+
+\begin{ex}
+	Si $p$ es mapa de cubrimiento $\implies p$ sobreyectivo.
+\end{ex}
+
+\begin{recordar}
+	$\Gamma \curvearrowright{} X$ acción cntinua es propiamente discontinua si $\forall x \in X$, existe vecindad $U$ de $x$ tal que $(*) \ U \cap g \cdot U = \varnothing$, si $g \neq 1$ en $\Gamma$.
+\end{recordar}
+
+\begin{theorem}
+	Si $\Gamma \curvearrowright X$ propiamente discontinua $\implies p : X \to X / \Gamma$ es mapa de cubrimiento.
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Si $\overline{x} = p(x) \in X / \Gamma$, queremos encontrar vecindad $U$ de $\overline{x}$, bien cubierta por $p$. \par
+	Como $\Gamma \curvearrowright X$ es propiamente discontinua, sea $\widetilde{U}$ vecindad de $x$ tal que $g \cdot \widetilde{U} \cap h \cdot \widetilde{U} = \varnothing$ si $g \neq h$ en $\Gamma$ (equivalente a $*$). Como $p$ es abierto, luego $U = p(\widetilde{U})$ es vecindad de $\overline{x}$. Veamos que $U$ es bien cubierta. Notar que
+	\[ p^{-1}(U) = \bigsqcup_{g \in \Gamma} \underbrace{g \cdot \widetilde{U}}_{\text{abiertos}}. \]
+	\par Falta ver que si $g \in \Gamma \implies p|_{g \cdot \widetilde{U}} : g \cdot \widetilde{U} \to U$ es homeomorfismo. En efecto, es claro que es continuo y abierto. Por otro lado, para ver biyectividad:
+	\begin{itemize}
+		\item (sobreyectivo): $\overline{y} \in U \implies \overline{y} = p(y) \in \widetilde{U} \implies p(g \cdot y) = p(y) = \overline{y}$.
+
+		\item (inyectivo): $u,v \in g \cdot \widetilde{U}. \ p(u) = p(v) \implies u = hv,\ h \in \Gamma \implies u \in hg \cdot \widetilde{U} \cap g \cdot \widetilde{U} \neq \varnothing \implies hg = g \implies h = \id \implies u = v$. \qedhere
+	\end{itemize}
+\end{proof}

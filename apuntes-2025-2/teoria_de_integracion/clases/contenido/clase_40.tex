@@ -1,0 +1,130 @@
+\clase{40}{14 de Noviembre}{}
+
+\textbf{Aclaración: } En la demostración que $C_{c}(\R^{n})$ es denso en $L^{p}(\R^{n})$, asumimos, implícitamente, que $f$ tomaba valores en $\R$ (y no en $\C$). Pero basta con hacer este caso.
+
+\begin{corollary}
+	$C_{\R}([a,b])$ es denso en $L_{\R}^{1}([a,b])$. En particular, $\overline{\mcal{R}([a,b])} = L_{\R}^{1}([a,b])$ con la métrica $d_{L^{1}}$, donde $\mcal{R}([a,b]) \coloneq \{[f] \ \big| \ f : [a,b] \to \R \text{ integrable Riemann}\}$. 
+\end{corollary}
+\begin{proof}[Proof Other Information]
+	Dada $f \in L_{\R}^{1}([a,b])$, la extendemos por $0$ en $\R \setminus [a,b]$, obteniendo $\widetilde{f} \in L^{1}(\R)$. Por densidad de $C_{c}(\R)$, dado $\varepsilon > 0$, existe $g \in C_{c}(\R)$ tal que $\| \widetilde{f} - g \| < \varepsilon$. \par
+	Luego, $\widetilde{g} \coloneq g|_{[a,b]}$ cumple que:
+	\begin{enumerate}[i.]
+		\item $\widetilde{g} \in C_{\R}([a,b])$;
+
+		\item $\| f - \widetilde{g} \|_{L_{\R}^{1}([a,b])} = \int_{a}^{b} | f - \widetilde{g} | = \int_{a}^{b} | \widetilde{f} - g | \leq \| \widetilde{f} - g \|_{1} < \varepsilon$.
+	\end{enumerate}
+	Esto prueba el resultado.
+\end{proof}
+
+\begin{corollary}
+	Si $p \in [1, \infty)$ y, dada $f \in L^{p}(\R^{n})$, definimos $f_{n} : \R^{n} \to \C$ como $f_{h}(x) \coloneq f(x + h)$, entonces $f_{h} \stackrel{L^{p}}{\longrightarrow} f$ (cuando $h \longrightarrow 0$).
+\end{corollary}
+
+\section{Convolución y regularización de funciones}
+
+\begin{eg}
+	Sea $f \in L^{1}(\R)$ y $h > 0$. Definimos $T_{h}(f) : \R \to \C$ por 
+	\[ T_{h}(f)(x) \coloneq \frac{1}{2h} \int_{x - h}^{x + h} f(t) \ dt. \]
+	$T_{h}(f)$ se conoce como el promedio móvil simétrico. Puede verificarse que $T_{h}f$ está bien definida. \par 
+	Vamos a ver que $T_{h}f$ es uniformemente continua (de hecho, es absolutamente continua). \par
+	Además, por ejercicio de la Guía 9, $T_{h}f \stackrel{L^{1}}{\longrightarrow} f$ (cuando $h \longrightarrow 0$). Luego, $(T_{h}f)_{h > 0}$ es una familia de aproximaciones continuas de $f \in L^{1}(\R)$.
+\end{eg}
+
+\begin{definition}[convolución]
+	Sean $f,g : \R^{n} \to \C$ funciones medibles. para $x \in \R^{n}$ tal que $\int_{\R} | f(x - y) g(y) | \ dy < \infty$, se define
+	\[ (f * g)(x) \coloneq \int_{\R^{n}} f(x - y) g(y) \ dy. \]
+	$(f * g)$ se conoce como la convolución de $f$ con $g$.
+\end{definition}
+
+\begin{eg}
+	Se puede ver que
+	\[ T_{h}f(x) = \Big( \frac{1}{2h} \chi_{[-h,h]} * f \Big)(x). \]
+\end{eg}
+
+\begin{remark}
+	La función $\varphi_{x}(y) \coloneq f(x - y) g(y)$ es medible $\forall x \in \R^{n}$ (Ej. 10 - Guía 7), así que podemos integrarla.
+\end{remark}
+
+\begin{theorem}
+	Sean $f,g : \R^{n} \to \C$ medible. Entonces,
+	\begin{enumerate}[i.]
+		\item $f * g (x)$ existe si y sólo si $g * f (x)$ existe y, en este caso, coinciden;
+
+		\item Si $f \in L^{p}$ y $g \in L^{p'}$ con $p \in [1, \infty]$, entonces $|f * g (x)| \leq \| f \|_{p} \| g \|_{p'} \ \forall x$. i.e. $f * g$ existe y es acotada. Además, es uniformemente continua;
+
+		\item Si $f,g \in C_{c}(\R^{n})$, entonces $f * g$ también;
+
+		\item $\| f * g \|_{1} \leq \| f \|_{1} \| g \|_{1}$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	\begin{enumerate}[i.]
+		\item Si tomamos un cambio de variables $z = y - x$ (Guía 4)
+		\[ \int_{\R^{n}} | f(x - y) g (y) | \ dy = \int_{\R^{n}} | f(-z) g(z + x) | \ dz. \]
+		Tomando otro cambio de variables $t = -z$, tenemos
+		\[ \int_{\R^{n}} | f(-z) g(z + x) | \ dz = \int_{\R^{n}} | f(t) g(x - t) | \ dt. \]
+		Esto prueba que $f * g (x)$ existe si y sólo si $g * f (x)$ existe y que, en este caso, coinciden se prueba igual.
+
+		\item Se tiene que, si $p \neq \infty$
+		\begin{align*}
+			| f * g (x) | &\leq \int |f(x - y)| |g(y)| \ dy \\
+			\text{(Hölder) } &\leq \Big( \int |f(x-y)|^{p} \ dy \Big)^{\frac{1}{p}} \| g \|_{p'} \\
+			&\leq \| f \|_{p} \| g \|_{p'}
+		.\end{align*}
+		Si $p = \infty$,
+		\[ |f * g (x)| \leq \int \| f \|_{\infty} |g(y)| \ dy = \| f \|_{\infty} \| g \|_{1}. \]
+		Además,
+		\[ |f * g (x + h) - f * g (x)| \leq \int |f(x + h - y) - f(x - y)| |g(y)| \ dy = (*). \]
+		Si $p < \infty$, por Hölder,
+		\[ (*) \leq \| f_{n}  f \|_{p} \| g \|_{p'} \stackrel{h \to 0^{+}}{\longrightarrow} 0. \]
+		Luego,
+		\[ \sup_{x} |f * g (x + h) - f * g (x)| \leq \| f_{n} - f \|_{p} \| g \|_{p'} \stackrel{h \to 0^{+}}{\longrightarrow} 0 \]
+		y, por lo tanto, $f * g$ es uniformemente continua. \par
+		Si $p = \infty$, entonces $p' = 1 < \infty$ y, por el caso anterior, $g * f$ es uniformemente continua. Como $g * f = f * g$, concluimos la continuidad unifrme si $p = \infty$.
+
+		\item La continuidad se suige de (ii) y el hecho de que $f,g \in C_{c}(\R^{n})$ y, por ende, $f \in L^{p}(\R^{n}),\ g \in L^{p'}(\R^{n})$. \par
+		Para ver que $f * g$ tiene soporte compacto, sean $K_{f} \coloneq \supp(f), \ K_{g} \coloneq \supp(g)$. Entonces, $f(x - y) g(y) = 0$ si $y \not\in K_{g}$ ó $x - y \not\in K_{f}$. En particular, $f(x - y) g(y) = 0 \ \forall y \in \R^{n}$ si $x \not\in K_{f} + K_{g}$. Por lo tanto, $\supp(f * g) \subseteq K_{f} + K_{g}$ (que está acotado). \par 
+		Esto implica que es compacto.
+
+		\item Se tiene que
+		\begin{align*}
+			\| f * g \|_{1} &= \int |f * g (x)| \ dx \\
+			&\leq \int \int |f(x - y) g(y)| \ dy dx \\
+			\text{(por Tonelli) } &= \int \int |f(x -y)| |g(y)| \ dx dy \\
+			&= \int |g(y)| \Big( \int |f(x - y)| \ dx \Big) \ dy \\
+			&= \int |g(y)| \| f \|_{1} \ dy = \| f \|_{1} \| g \|_{1}
+		.\end{align*}
+	\end{enumerate}
+\end{proof}
+
+\begin{property}
+	Si $f,g \in L^{1}(\R^{n})$, entonces
+	\begin{enumerate}[i.]
+		\item $f * (g \pm h) = f * g \pm f * h$;
+
+		\item $f * (g * h) = (f * g) * h$.
+	\end{enumerate}
+\end{property}
+
+\begin{definition}[álgebra de Banach]
+	Sea $X$ un espacio de Banach sobre $\R$ ó $\C$. Decimos que $X$ es un álgebra de Banach, si existe una operación $X \times X \to X$ tal que $(x,y) \mapsto xy$, que verifica: si $x, y, z \in X$,
+	\begin{enumerate}[i.]
+		\item $x(yz) = (xy)z$;
+
+		\item $x(y + z) = xy + xz$ e $(y + z)x = yx + zx$;
+
+		\item $\alpha(xy) = (\alpha x)y = x(\alpha y) \quad \forall \alpha \in \R$ ó $\C$;
+
+		\item $\| xy \| \leq \| x \| \| y \|$.
+	\end{enumerate}
+	El álgebra de Banach se dice:
+	\begin{enumerate}[i.]
+		\item \textit{conmutativa:} si $xy = yx \quad \forall x,y \in X$;
+
+		\item \textit{con unidad:} si existe $e \in X$ tal que $ex = xe = x \ \forall x \in X$.
+	\end{enumerate}
+\end{definition}
+
+\begin{remark}
+	$(L^{1}(\R^{n}), \| \cdot \|_{1}, *)$ es un álgebra de Banach conmutativa pero sin unidad.
+\end{remark}

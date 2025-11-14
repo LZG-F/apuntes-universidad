@@ -1,0 +1,75 @@
+\clase{33}{29 de Octubre}{}
+
+\begin{proof}[Proof ][Continuación Lebesgue-Young]
+	El primer paso era ver que $\overline{D}_{g} = \underline{D}_{g}$ C.T.P. Para eso, vimos que bastaba con ver que 
+	\[ E_{\alpha,\beta} \coloneq \{x \in (a,b) \ : \ \overline{D}_{g}(x) > \alpha > \beta > \underline{D}_{g}(x)\} \]
+	tiene medida nula para todo $\alpha > \beta$. \par
+	Para eso, habíamos tomado, dado $\varepsilon > 0$, un abierto $H_{\varepsilon}$ tal que $E_{\alpha,\beta} \subseteq H_{\varepsilon}$ y $|H_{\varepsilon}| \leq |E_{\alpha,\beta}|_{e} + \varepsilon$. Además, construimos la colección 
+	\[ \{[c,d] \ : \ [c,d] \subseteq (a,b), [c,d] \subseteq H \text{ y } g(d) - g(c) < \beta(d-c)\} =: \mcal{G}_{\alpha,\beta} \]
+	y vimos que era un cubrimiento de Vitali para $E_{\alpha,\beta}$. Por el lema de Vitali, existen $([c_{i},d_{i}])_{i=1,\dots,n} \subseteq \mcal{G}_{\alpha,\beta}$ disjuntos tal que
+	\[ \Big| E_{\alpha,\beta} \setminus \bigcupd_{i=1}^{n} [c_{i},d_{i}] \Big|_{e} < \varepsilon. \]
+	Notar que
+	\begin{align*}
+		\sum_{i=1}^{n} g(d_{i}) - g(c_{i}) &\leq \beta \sum_{i=1}^{n} (d_{i} - c_{i}) \\
+		&= \beta \Big| \bigcupd_{i=1}^{n} [c_{i},d_{i}] \Big| \\
+		&\leq \beta \big| H_{\varepsilon} \big|_{e} \\
+		&\leq \beta ( | E_{\alpha,\beta} |_{e} + \varepsilon ).
+	\end{align*}
+	Además, por el Lema de la clase pasada,
+	\begin{align*}
+		|E_{\alpha,\beta} \cap [c_{i},d_{i}]|_{e} &\leq |\{x \in (c_{i},d_{i}) \ : \ \overline{D}_{g}(x) > \alpha\}|_{e} \\
+		&\leq \frac{1}{\alpha}(g(d_{i}) - g(c_{i}))
+	.\end{align*}
+	Con todo esto, resulta:
+	\begin{align*}
+		|E_{\alpha,\beta}|_{e} &\leq \sum_{i=1}^{n} |E_{\alpha,\beta} \cap [c_{i},d_{i}]|_{e} + \varepsilon \\
+		&\leq \frac{1}{\alpha} \Big( \sum_{i=1}^{n} g(d_{i}) - g(c_{i}) \Big) + \varepsilon \\
+		&\leq \frac{1}{\alpha} \cdot \beta (|E_{\alpha,\beta}|_{e} + \varepsilon) + \varepsilon \\
+		&= \frac{\beta}{\alpha}|E_{\alpha,\beta}| + \frac{\beta}{\alpha} \varepsilon + \varepsilon
+	.\end{align*}
+	Luego, tomando $\varepsilon > 0$,
+	\[ |E_{\alpha,\beta}|_{e} \leq \underbrace{\frac{\beta}{\alpha}}_{< 1} |E_{\alpha,\beta}|_{e} \implies |E_{\alpha,\beta}|_{e} = 0. \]
+	Esto prueba que $\overline{D}_{g} = \underline{D}_{g}$ CTP. \par
+	Ahora, falta ver que $\overline{D}_{g} = \underline{D}_{g} < \infty$ CTP. Definimos
+	\[ g'(x) \coloneq \lim_{h \to 0} \frac{g(x + h) - g(x)}{h} \]
+	si el límite existe. Por lo que acabamos de probar, $g'(x)$ existe y toma valores en $\overline{\R}$ para casi todo $x$. En particular, como función a valores en $\overline{\R}$ es medible Lebesgue, pues coincide C.T.P con
+	\[ h(x) \coloneq \liminf_{n \to \infty} \underbrace{\frac{g \big( x + \frac{1}{n} \big) - g(x)}{\frac{1}{n}}}_{f_{n}} \]
+	que es medible (los $f_{n}$ son medibles) (si $x + \frac{1}{n} \geq b$, entonces $g(x + \frac{1}{n}) \coloneq g(b)$). Sólo resta ver que $g'$ es finita C.T.P. Para esto, mostraremos que de hecho es integrable. Pero, por el Lema de Fatou,
+	\begin{align*}
+		\int_{a}^{b} \underbrace{g'(x)}_{\geq 0} \ dx &= \int_{a}^{b} \underbrace{h(x)}_{\geq 0} \ dx \\
+		&\leq \liminf_{n \to \infty} \int_{a}^{b} \frac{g \big( x + \frac{1}{n} \big) - g(x)}{\frac{1}{n}} \ dx \\
+		&= \liminf_{n \to \infty} n \Big( \int_{a}^{b - \frac{1}{n}} g \big( x + \frac{1}{n} \big) \ dx + g(b)\cdot \frac{1}{n} - \int_{a}^{b} g(x) \ dx \Big) \\
+		&= \liminf_{n \to \infty} n \Big( \int_{a + \frac{1}{n}}^{b} g(y) \ dy + g(b)\cdot \frac{1}{n} - \int_{a}^{b} g(x) \ dx \Big) \\
+		&= \liminf_{n \to \infty} g(b) - n \int_{a}^{a + \frac{1}{n}} \underbrace{g(x)}_{\geq g(a)} \ dx \\
+		&\leq \liminf_{n \to \infty} g(b) - n \int_{a}^{a + \frac{1}{n}} g(a) \ dx \\
+		&= g(b) - g(a) < \infty. \qedhere
+	\end{align*}
+\end{proof}
+
+\begin{corollary}
+	Si $g$ es monótona creciente entonces $g'(x)$ existe y es finita para casi todo $x \in [a,b]$, es medible Lebesgue (extendida como sea donde no existe el límite), es integrable y cumple
+	\[ \int_{a}^{b} g'(x) \ dx \leq g(b) - g(a). \tag{$*$} \]
+\end{corollary}
+
+\begin{remark}
+	La desigualdad $(*)$ puede ser estricta.
+\end{remark}
+
+\begin{eg}
+	Si $g$ es la función de Cantor, $g$ cumple que:
+	\begin{enumerate}
+		\item $g$ es monótona creciente y continua;
+
+		\item $g(0) = 0$ y $g(1) = 1$;
+
+		\item $g$ es constante en cada intervalo abierto que compone $[0,1] \setminus \mscr{C}$. En particular, $g' = 0$ en $[0,1] \setminus \mscr{C}$ y como $|\mscr{C}| = 0$, entonces $g' = 0$ C.T.P. Entonces, $\int_{0}^{1} g' = 0 < 1 = g(1) - g(0)$.
+	\end{enumerate}
+\end{eg}
+
+\begin{lemma}
+	Si $f,g : [a,b] \to \overline{\R}$ son integrables y cumplen que $\int_{a}^{c} f(x) \ dx = \int_{a}^{c} g(x) \ dx \quad \forall c \in [a,b]$, entonces $f = g$ C.T.P.
+\end{lemma}
+
+\begin{theorem}[Fundamental del Cálculo, parte 1]
+	Sea $f : [a,b] \to \overline{\R}$ integrable y $F(x) \coloneq \int_{a}^{x} f(t) \ dt \ (x \in [a,b])$ su integral indefinida. Entonces, $F$ es absolutamente continua y derivable C.T.P, con $F'(x) = f(x)$ para casi todo $x \in [a,b]$.
+\end{theorem}

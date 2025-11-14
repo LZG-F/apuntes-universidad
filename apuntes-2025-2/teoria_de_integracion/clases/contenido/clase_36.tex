@@ -1,0 +1,97 @@
+\clase{36}{7 de Noviembre}{}
+
+\begin{theorem}[Descomposición de Lebesgue]
+	Si $f : [a,b] \to \R$ es de variación acotada, entonces $f$ se puede escribir como $f = g + h$, donde $g$ es absolutamente cotinua y $h$ es singular. Más aún,  $g$ y $h$ son únicas salvo constantes aditivas (i.e. $\widetilde{g} = g + C$ y $\widetilde{h} = h - C$ cumplen lo mismo $\forall C$).
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Como $f$ es derivable C.T.P,
+	\[ g(x) \coloneq \int_{a}^{x} f'(t) \ dt \text{ y } h(x) \coloneq f(x) - g(x) \]
+	cumplen lo pedido. \par
+	Si $f = \widetilde{g} + \widetilde{h}$ es otra descomposición, entonces
+	\[ g + h = \widetilde{g} + \widetilde{h} \iff \underbrace{g - \widetilde{g}}_{\text{AC}} = \underbrace{\widetilde{h} - h}_{\text{singular}} \stackrel{\text{Lema}}{\implies} g - \widetilde{g} = h - \widetilde{h} = C \]
+	para algún $C \in \R$.
+\end{proof}
+
+\begin{corollary}[Integración por partes]
+	Si $F,G : [a,b] \to \R$ son absolutamente continuas, entonces $F.G'$ y $F'.G$ son integrables y se tiene que
+	\[ F(b)G(b) - F(a)G(a) = \int_{a}^{b} (F'G)(t) \ dt + \int_{a}^{b} (FG')(t) \ dt. \]
+\end{corollary}
+\begin{proof}[Proof Other Information]
+	Corolario 6.3.9 del Rana.
+\end{proof}
+
+\begin{corollary}[Fórmula de Sustitución]
+	Sean $\varphi : [a,b] \to [c,d]$ absolutamente continua y $f : [c,d] \to \overline{\R}$ integrable tal que $(f \circ \varphi) \varphi'$ es integrable en $[a,b]$. Entonces, para todo $\alpha, \beta \in [a,b]$,
+	\[ \int_{\alpha}^{\beta} (f \circ \varphi)(x) \varphi'(x) \ dx = \int_{\varphi(\alpha)}^{\varphi(\beta)} f(y) \ dy. \]
+	Además, si $\varphi$ es creciente y sobreyectiva entonces $(f \circ \varphi) \varphi'$ integrable $\iff f$ integrable.
+\end{corollary}
+
+\begin{remark}
+	Cuidado! Es posible que $\alpha > \beta$ y $\varphi(\alpha) > \varphi(\beta)$ (similar a como se ha visto en otros cursos, basta con poner un menos y dar vuelta los valores).
+\end{remark}
+
+\begin{proof}[Proof Other Information]
+	Corolario 6.3.18 y Ejercicio 6.3.19 del Rana. Sino, ver Canvas.
+\end{proof}
+
+\chapter{Espacios $L^p$}
+Para lo que siguie, $(X, \mscr{M}, \mu)$, será un espacio de medida $\sigma$-finita completo.
+
+\begin{definition}[Espacio $L^p$]
+	Sea $p \in (0, \infty)$. Definimos $L^{p}(\mu) \coloneq L^{p}(X, \mscr{M}, \mu)$ como
+	\[ L^{p}(X, \mscr{M}, \mu) \coloneq \{[f] \ \big| \ f : X \to \C \ \mscr{M} \text{-medibles tal que } \int_{X} |f|^{p} \ d\mu < \infty\} \]
+	donde $[f]$ denota a la clase de $f$ bajo la relación de equivalencia dada por $f \sim g \iff f = g \ \mu$-C.T.P.
+\end{definition}
+
+\begin{definition}[norma p]
+	Sea $p \in (0, \infty)$ y $f \in L^{p}(X, \mscr{M}, \mu)$. Definimos la "norma $p$" de $f$ como 
+	\[ \| f \|_{p} = \| f \|_{L^{p}(\mu)} \coloneq \Big(\int_{X} |f|^{p} \ d\mu \Big)^{\frac{1}{p}} \]
+\end{definition}
+
+\begin{definition}[función escencialmente acotada]
+	Una función medible $f : X \to \overline{\R}$ ó $\C$ se dice esencialmente acotada si existe $M > 0$ tal que $|f| \leq M \ \mu$-C.T.P.
+\end{definition}
+
+\begin{definition}[$L^{\infty}$]
+	Definimos
+	\[ L^{\infty}(X, \mscr{M}, \mu) \coloneq \{[f] \ : \ f : X \to \C \ \mscr{M} \text{-medible esencialmente acotada}\} \]
+	y 
+	\[ \| f \|_{\infty} \coloneq \inf \{M > 0 \ : \mu(\{x \ : \ |f(x)| > M\}) = 0 \}. \] 
+	Llamamos a $\| f \|_{\infty}$ el supremo esencial de $f$.
+\end{definition}
+
+\begin{eg}~
+	\begin{enumerate}
+		\item Si $E \subseteq \R^n$ medible Lebesgue, $L^{p}(E) \coloneq L^{p}(E, \mscr{L}(\R^n) \cap E, \lambda|_{E})$.
+
+		\item $L^{p}(\N, \mcal{P}(\N), c_{\N}) = l_{p}$, con $c_{\N} =$ medida de contar.
+	\end{enumerate}
+\end{eg}
+
+\begin{note}
+	$\mscr{L}(\R^n) \cap E \coloneq \{A \cap E \ : \ A \in \mscr{L}(\R^n)\}$. 
+\end{note}
+
+\begin{prop}
+	$L^{p}(X, \mscr{M}, \mu)$ es un $\C$-espacio vectorial.
+\end{prop}
+\begin{proof}[Proof Other Information]
+	Si $f,g \in L^{p}(X, \mscr{M}, \mu)$ entonces:
+	\begin{enumerate}
+		\item $\alpha \cdot f$ es $\mscr{M}$-medible y $\| \alpha \cdot f \|_{p} = |\alpha| \cdot \| f \|_{p} < \infty \ \forall \alpha \in \C$.
+
+		\item $f + g$ es $\mscr{M}$-medible y $f + g \in L^{p}(X, \mscr{M}, \mu)$, pues
+		\begin{align*}
+			|f + g|^{p} \leq (|f| + |g|)^{p} &\leq (2\max \{|f|, |g|\})^{p} \\
+			&= 2^{p} \max \{|f|^{p}, |g|^{p}\} \\
+			&\leq 2^{p}(|f|^{p} + |g|^{p})
+		\end{align*}
+		y, por lo tanto,
+		\[ \int |f + g|^{p} \ d\mu \leq 2^{p} \Big( \int |f|^{p} \ d\mu + \int |g|^{p} \ d\mu \Big) < \infty. \]
+	\end{enumerate}
+	Si $p = \infty$,
+	\[ \| \alpha \cdot f \|_{\infty} = \inf \{M > 0 \ : \ \mu(\{|\alpha f| > M\}) = 0\}. \]
+	Si $\alpha \neq 0$,
+	\[ \inf \{M > 0 \ : \ \mu(\{|f| > \frac{M}{|\alpha|}\}) = 0 \} = |\alpha| \cdot \| f \|_{\infty} < \infty. \] 
+	Si $\alpha = 0, \ \| \alpha f \|_{\infty} = \| 0 \|_{\infty} = 0$.
+\end{proof}

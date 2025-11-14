@@ -1,0 +1,58 @@
+\clase{34}{30 de Octubre}{}
+
+\begin{proof}[Proof Other Information][TFC-1]
+	Que $F$ es absolutamente continua ya lo vimos. Además,
+	\[ F(x) = \underbrace{\int_{a}^{x} f^{+}(t) \ dt}_{F_{1}(x)} - \underbrace{\int_{a}^{x} f^{-}(t) \ dt}_{F_{2}(x)} \]
+	Notar que tanto $F_{1}$ como $F_{2}$ son monótonas crecientes. En particular, existen $E_{1},E_{2} \subseteq [a,b]$ de medida nula tal que
+	\begin{itemize}
+		\item $F_{1}$ es derivable si $x \not\in E_{1}$;
+
+		\item $F_{2}$ es derivable si $x \not\in E_{2}$.
+	\end{itemize}
+	En particular, si $x \not\in E_{1} \cup E_{2},\ F$ es derivable en $x$. Como $E = E_{1} \cup E_{2}$ tiene medida nula, $F$ resulta derivable c.t.p. \par
+	Por un argumento sumilar, para ver que $F' = f$ c.t.p, bastará con ver que $F_{1}' = f^{+}$ c.t.p y $F_{2}' = f^{-}$ c.t.p (es decir, bastará con ver el caso en que $f \geq 0$). Luego, asumimos que $f \geq 0$. Acabamos de mostrar que, en este caso, $F$ es monótona creciente y derivable c.t.p. 
+	Sólo queda ver que $F' = f$ c.t.p. Para ello, primero asumiremos que $f$ es, además, acotada. Sea entonces, $M \in \N$ tal que $0 \leq f(x) \leq M \ \forall x \in [a,b]$. Definamos
+	\[ F_{n}(x) \coloneq \frac{F\big(x + \frac{1}{n}\big) - F(x)}{\frac{1}{n}} \quad (x \in [a,b]). \]
+	Notar que cada $F_{n}$ es medible (de hecho, continua) y $F_{n} \longrightarrow F'$ c.t.p. Además,
+	\begin{align*}
+		|F_{n}(x)| &= n \Big| \int_{x}^{x+\frac{1}{n}} f(t) \ dt \Big| \\
+		&\leq n \int_{x}^{x+\frac{1}{n}} M \ dt = M
+	.\end{align*}
+	Como $g(x) \coloneq M$ es integrable en $[a,c] \ \forall c \in [a,b]$, por Convergencia Dominada resulta que:
+	\begin{align*}
+		\int_{a}^{c} &= \lim_{n \to \infty} \int_{a}^{c} F_{n}(t) \ dt \\
+		&= \lim_{n \to \infty} \Big( n \int_{a}^{c} F \big( t + \frac{1}{n} \big) \ dt - n \int_{a}^{c} F(t) \ dt \Big) \\
+		&= \lim_{n \to \infty} \Big( n \int_{a + \frac{1}{n}}^{c + \frac{1}{n}} F(y) \ dy - n \int_{a}^{c} F(t) \ dt \Big) \\
+		&= \lim_{n \to \infty} \Big( n \int_{c}^{c + \frac{1}{n}} F(y) \ dy - n \int_{a}^{a + \frac{1}{n}} F(t) \ dt \Big)
+	.\end{align*}
+	Como $F$ no negativa y creciente (pues $f \geq 0$),
+	\begin{align*}
+		& F(c) \leq n \int_{c}^{c + \frac{1}{n}} F(t) \ dt \leq F \big(c + \frac{1}{n} \big) \\
+		& F(a) \leq n \int_{a}^{a + \frac{1}{n}} F(t) \ dt \leq F \big(a + \frac{1}{n} \big)
+	.\end{align*}
+	Como $F$ es continua, resulta
+	\[ \int_{a}^{c} F'(t) \ dt = F(c) - \underbrace{F(a)}_{= 0} = \int_{a}^{c} f(t) \ dt. \]
+	Concluimos que
+	\[ \int_{a}^{c} F'(t) \ dt = \int_{a}^{c} f(t) \ dt \quad \forall c \in [a,b]. \]
+	Luego, por el Lema de la clase pasada $F' = f$ c.t.p. Esto prueba el caso en que $f$ es acotada. \par
+	Para $f$ integrable general, definimos para cada $n \in \N$, la truncación $f_{n} \coloneq \min \{f,n\}$. \par
+	Notar que $(f_{n})_{n \in \N}$ son funciones medibles acotadas (por lo tanto, integrables y acotadas) y $f_{n} \nearrow f$ puntualmente. Ahora, definimos
+	\[ G_{n}(x) \coloneq \int_{a}^{x} (f - f_{n})(t) \ dt \quad (x \in [a,b]). \]
+	Notar que $f - f_{n} \geq 0$, entonces $G_{n}$ es no negativa y creciente. En particular, $G_{n}'(x) \geq 0$ para casi todo $x \in [a,b]$. Además,
+	\[ F(x) = G_{n}(x) + \int_{a}^{x} f_{n}(t) \ dt \quad (x \in [a,b]). \]
+	Luego, por el caso anterior, tenemos que
+	\[ F'(x) = \underbrace{G_{n}'(x)}_{\geq 0} + f_{n}(x) \]
+	para casi todo $x \in [a,b]$. En particular, $F'(x) \geq f_{n}(x)$ para casi todo $x \in [a,b]$. Tomando límite con $n \longrightarrow \infty$, resulta $F'(x) \geq f(x)$ c.t.p. \par
+	Por último,
+	\[ \int_{a}^{b} F'(x) \ dx \leq F(b) - F(a) = F(b) = \int_{a}^{b} f(t) \ dt. \]
+	Luego,
+	\begin{align*}
+		\int_{a}^{b} (F'(t) - f(t)) \ dt \leq 0 &\implies \int_{a}^{b} (F'(t) - f(t)) \ dt = 0 \\
+		&\implies F'(x) - f(x) \text{ c.t.p} \\
+		&\implies F' = f \text{ c.t.p}
+	.\qedhere\end{align*}
+\end{proof}
+
+\begin{definition}[función singular]
+	Decimos que $f : [a,b] \to \R$ es singular si $f' = 0$ c.t.p.
+\end{definition}

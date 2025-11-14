@@ -1,0 +1,76 @@
+\clase{36}{5 de Noviembre}{}
+
+Plan: aprender a calcular $\pi_{1}(X)$ en base a topología de $X$.
+
+\begin{eg}[proximamente]~
+	\begin{enumerate}
+		\item $\pi_{1}(\R^{n}) = \{1\}$;
+
+		\item $\pi_{1}(S^{n}) = \{1\} \ n \geq 2$; 
+
+		\item $\pi_{1}(S^1) \cong \Z$ (ejemplo revelador);
+
+		\item $\pi_{1}((S^1)^n) = \pi_{1}(\mathbb{T}^n) \cong \Z^n$.
+	\end{enumerate}
+\end{eg}
+\begin{definition}[simplemente conexo]
+	$X$ es arcoconexo, decimos que es simplemente conexo si $\pi_{1}(X) \cong \{1\}$. 
+\end{definition}
+
+\begin{eg}
+	$\R^n$.
+\end{eg}
+
+\begin{eg}
+	$X$ contractible $\implies X$ simplemente conexo.
+\end{eg}
+
+\begin{theorem}[Perelman]
+	$M$ es $3$-variedad compacta y simplemente conexa $\implies M \approx S^3$.
+\end{theorem}
+
+\begin{theorem}
+	$\pi_{1}(S^n) \cong \{1\}$ si $n \geq 2$. 
+\end{theorem}
+
+\begin{recordar}
+	$S^n \setminus \{N\} \approx \R^n$ y $S^n \setminus \{S\} \approx \R^n$.  
+\end{recordar}
+
+\begin{note}
+	Si $n \geq 2 \implies S^n \setminus \{N,S\}$ es arcoconexo. Si $n = 1 \implies S^1 \setminus \{N,S\}$ no es arcoconexo.  
+\end{note}
+
+\begin{prop}[Baby Van Kampen]
+	$X$ espacio topológico. $X = U \cup V$ unión de abiertos tales que $U \cap V$ arcoconexo con $x_{0} \in U \cap V$. Si cada $U,V$ es simplemente conexo $\implies X$ es simplemente conexo.
+\end{prop}
+
+\begin{remark}
+	Esto implica $S^n$ simplemente conexo para $n \geq 2$.
+\end{remark}
+
+\begin{proof}[Proof Other Information][proposición]
+	Sea $\gamma$ loop en $X$ con base $x_{0}$. $\gamma : [0,1] \to X = U \cup V$. El plan es encontrar sucesión $0 = a_{0} < a_{1} < \cdots < a_{k} = 1$ tal que:
+	\begin{enumerate}
+		\item $\forall i = 1,\dots, k,\ \gamma([a_{i-1}, a_{i}]) \subset U$ ó $\gamma([a_{i-1}, a_{i}]) \subset V$;
+
+		\item $\gamma(a_{0}), \gamma(a_{1}), \dots, \gamma(a_{k}) \in U \cap V$.
+	\end{enumerate}
+	En efecto, para ver 1, si $t \in [0,1]$ y $\gamma(t) \in U$, por continuidad de $\gamma$ nos da intervalo $(a,b) \ni t$ con $\gamma((a,b)) \subset U$. La compacidad de $[0,1]$ nos da finitos abiertos $\{(b_{i},c_{i})\}_{i=1}^{s}$ tales que $\gamma(b_{i},c_{i}) \subset U$ ó $\gamma(b_{i},c_{i}) \subset V$ y que cubren $[0,1]$. Sean $a_{0},a_{1},\dots,a_{k}$ los extremos de estos abiertos. Entonces, $[a_{i-1},a_{i}] \subset [b_{i},c_{i}]$ para algún $i$... \checkmark \par
+	Para ver 2, nos olvidamos de los $a_{i} \not\in U \cap V$. Por ejemplo, si $a_{j} \in V \setminus U \implies \gamma([a_{j-1},a_{j}]) \subset V$ y $\gamma([a_{j},a_{j+1}]) \subset V \implies \gamma([a_{j-1},a_{j+1}]) \subset V$. \par
+	Para cada $i = 1,\dots,k-1$, tomamos camino $\alpha_{i}$ de $x_{0}$ a $\gamma(a_{i})$ en $U \cap V$! (aquí usamos que $U \cap V$ es arcoconexo). Sea $\gamma_{i} = \gamma \big|_{[a_{i-1},a_{i}]}$. Tomamos 
+	\begin{align*}
+		\widetilde{\gamma} &= \gamma_{1} * \overline{\alpha}_{1} * \alpha_{1} * \gamma_{2} * \overline{\alpha}_{2} * \alpha_{2} * \cdots * \overline{\alpha}_{k-1} * \alpha_{k-1} * \gamma_{k} \\
+		&\sim_{p} (\gamma_{1} * \overline{\alpha}_{1}) * (\alpha_{1} * \gamma_{2} * \overline{\alpha}_{2}) * (\alpha_{2} * \gamma_{3} * \overline{\alpha}_{3}) * \cdots * (\alpha_{k-1} * \gamma_{k})
+	\end{align*}
+	(esto es un loop en $U$, o loop en $V$ con base $x_{0}$). \par
+	Así, tenemos: por 1) + $\alpha_{i} \subset U \cap V$ que cada $\alpha_{i-1} * \gamma_{i} * \overline{\alpha}_{i}$ está en $U$ o en $V$. Luego, como $U,V$ simplemente conexos, 
+	\[ \alpha_{i-1} * \gamma_{i} * \overline{\alpha}_{i} \sim_{p} e_{x_{0}} \implies \widetilde{\gamma} \sim_{p} e_{x_{0}} * \cdots * e_{x_{0}} \sim_{p} e_{x_{0}}. \]
+	Por otro lado,
+	\begin{align*}
+		\widetilde{\gamma} &\sim_{p} \gamma_{1} * (\overline{\alpha}_{1} * \alpha_{1}) * \gamma_{2} * \cdots * (\overline{\alpha}_{k-1} * \alpha_{k-1}) * \gamma_{k} \\
+		&\sim_{p} \gamma_{1} * \gamma_{2} * \cdots * \gamma_{k} \\
+		&\sim_{p} \gamma
+	.\end{align*}
+	Por lo tanto, $\gamma \sim_{p} e_{x_{0}}$. Es decir, $\pi_{1}(X,x_{0})$ trivial.
+\end{proof}

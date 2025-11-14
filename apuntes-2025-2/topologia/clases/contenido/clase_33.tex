@@ -1,0 +1,87 @@
+\clase{33}{27 de Octubre}{}
+
+\section{Homotopías (51)}
+
+\textbf{Ideal:} Dados $X,Y$ espacios topológicos, justificar cuando NO son homeomorfos.
+
+\begin{notation}
+	"$\approx$" para describir espacios homeomorfos.
+\end{notation}
+
+\begin{definition}[homotopía]
+	$X,Y$ espacios topológicos, $f,g : X \to Y$ continuas. Una homotopía de $f$ a $g$ es $F : X \times [0,1] \to Y$ continua tal que $F(x,0) = f(x) \quad \forall x \in X$ y $F(x,1) = g(x) \quad \forall x \in X$.
+\end{definition}
+
+\begin{notation}
+	$F(x,t) = f_{t}(x)$.
+\end{notation}
+
+\begin{eg}
+	$X$ cualquiera, $Y = \R^2,\ f,g : X \to \R^2$ continuas cualesquiera. Luego, hay homotopía de $f$ a $g$: $F(x,t) = (1-t) f(x) + t g(x)$. El mismo argumento nos da homotopía desde $f : X \to C$ hasta $g : X \to C$ para todo $C$ convexo en $\R^n$, para cualquier $n$.
+\end{eg}
+
+\begin{eg}
+	$X = S^1,\ Y = \R^2 \setminus \{0\},\ f : S^1 \to \R^2 \setminus \{0\}$ tal que $z \mapsto z$ y $g : S^1 \to \R^2 \setminus \{0\}$ tal que $z \mapsto z + 3$. Acá no hay homotopía!!! (lo veremos eventualmente).
+\end{eg}
+
+\begin{remark}
+	Respecto a homotopías, el codominio importa!!!
+\end{remark}
+
+\begin{definition}
+	$X,Y$ espacios topológicos, $f,g : X \to Y$ son homotópicos ($f \sim g$) si existe alguna homotopía de $f$ a $g$.
+\end{definition}
+
+\begin{lemma}
+	La relación "$\sim$" es de equivalencia en espacio de funciones continuas de $X$ a $Y$.
+\end{lemma}
+
+\begin{notation}
+	$C(X,Y) = $ espacio de funciones continuas.
+\end{notation}
+
+\begin{proof}[Proof Other Information][Lema]
+	\begin{enumerate}
+		\item ($f \sim f$) $F(x,t) = f(x)$ (camino constante) nos da homotopía de $f$ a $f$.
+
+		\item ($f \sim g \implies g \sim f$) Sea $F : X \times [0,1] \to Y$ homotopía de $f$ a $g \implies G(x,t) = F(x, 1 - t)$ (recorrer $f$ en sentido opuesto) es homotopía de $g$ a $f$.
+
+		\item ($f \sim g, g \sim h \implies f \sim h$) Sean $F : X \times [0,1] \to Y$ homotopía de $f$ a $g$ y $G : X \times [0,1] \to Y$ homotopía de $g$ a $h \implies H : X \times [0,1] \to Y$ tal que
+		\[ (x,t) \mapsto \begin{cases}
+			F(x,2t) \quad 0 \leq \frac{1}{2}, \\
+			G(x,2t - 1) \quad \frac{1}{2} \leq t \leq 1,
+		\end{cases} \]
+		es homotopía. Notar que $H$ es continua porque las dos ramas coinciden en el cerrado $X \times \{\frac{1}{2}\}$ (lema del pegado). 
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}
+	Dos espacios $X, Y$ son homotópico [equivalentes] si $\exists f : X \to Y,\ g : Y \to X$ continuas tal que $g \circ f \sim \id_{X},\ f \circ g \sim \id_{Y}$.
+\end{definition}
+
+\begin{notation}
+	$X \sim Y$.
+\end{notation}
+
+\begin{remark}[+ lema]~
+	\begin{enumerate}
+		\item $X \approx Y \implies X \sim Y$.
+
+		\item Relación "ser homotópicos" es de equivalencia para espacios topológicos.
+	\end{enumerate}
+\end{remark}
+
+\begin{eg}
+	$\R^n \sim \{pt\}$ (En general, $C \sim \{pt\}$, $C$ convexo en $\R^n$).  
+\end{eg}
+\begin{proof}[Proof Other Information][ejemplo]
+	Si $x = 0 \in \R^n \implies$ sean $f : \R^n \to \{x\}$ tal que $z \mapsto x$ y $g : \{x\} \to \R^n$ tal que $x \mapsto x \implies f \circ g = \id_{\{x\}} \sim \id_{\{x\}}$ y $g \circ f : \R^n \to \R^n$ tal que $z \mapsto x$ función constante en $x$, que es homotópica a $\id_{\R} : \R^n \to \R^n$.
+\end{proof}
+
+\begin{definition}[espacio contractible]
+	$X$ es contractible si $X \sim \{pt\}$. 
+\end{definition}
+
+\begin{eg}
+	Veremos que $\R^2 \setminus \{0\}$ no es contractible. 
+\end{eg}

@@ -1,0 +1,69 @@
+\clase{28}{17 de Octubre}{}
+
+\begin{proof}[Proof Other Information][Teorema 4.2]
+	Definimos la premedida $\tau : \mcal{R} \to [0,\infty]$ por $\tau(A \times B) \coloneq \mu_{1}(A) \mu_{2}(B)$. Como $\tau$ es $\sigma$-finita, pues $\mu_{1}$ y $\mu_{2}$ lo son, y por el Teorema de Carathéodory, bastará con ver que $\tau$ es $\sigma$-aditiva en $\mcal{R}$ (implica finitamente aditiva + $\sigma$-subaditiva). A tal fin, sean $(A_{n} \times B_{n})_{n\in\N} \subseteq \mcal{R}$ disjuntos y $A \times B \in \mcal{R}$ tal que $A \times B = \textbigcupd_{n\in\N} A_{n} \times B_{n}$. Debemos ver que $\mu_{1}(A) \mu_{2}(B) = \sum_{n\in\N}^{} \mu_{1}(A_{n}) \mu_{2}(B_{n})$. Para cada $x \in A$, sea $I(x) \coloneq \{n \in \N \ : \ x \in A_{n}\}$. \par
+	Notar que, entonces, $B = \textbigcupd_{n \in I(x)} B_{n}$. En efecto,
+	\begin{align*}
+		y \in B &\iff (x, y) \in A \times B \\
+		&\iff (x, y) \in A_{n} \times B_{n} \text{ para algún } n \\
+		&\iff n \in I(x),\ y \in B_{n}
+	.\end{align*}
+	Para ver que la unión es disjunta, notar que si $y \in B_{n} \cap B_{m}$ con $n,m \in I(x)$, entonces $(x,y) \in A_{n} \times B_{n} \cap A_{m} \times B_{m} \implies n = m$. \par
+	En particular, esto implica que
+	\[ \chi_{A}(x) \mu_{2}(B) = \sum_{n = 1}^{\infty} \chi_{A_{n}}(x) \mu_{2}(B_{n}) \]
+	donde, además, tenemos que
+	\[ \chi_{A}(x) \mu_{2}\left( \bigcupd_{n \in I(x)} B_{n} \right) = \chi_{A}(x) \sum_{n=1}^{\infty} \mu_{2}(B_{n}) \underbrace{\chi_{I(x)}(n)}_{=\chi_{A_{n}}(x)}. \]
+	Integrando respecto a $\mu_{1}$ a ambos miembros,
+	\[ \mu_{1}(A) \mu_{2}(B) = \sum_{n\in\N}^{} \mu_{1}(A_{n}) \mu_{2}(B_{n}). \]
+	Donde la igualdad está dada por monotonía (i.e. $\int_{X_{1}} \sum_{n\in\N}^{} \chi_{A_{n}} \mu_{2}(B_{n}) \ d\mu_{1} = \sum_{n\in\N}^{} \int_{X_{1}} \chi_{A_{n}} \mu_{2}(B_{n}) \ d\mu_{1}$).
+\end{proof}
+
+\begin{definition}[sección transversal]
+	Dados $(X, \mscr{M}, \mu),\ (Y, \Sigma, \nu)$ y $E \subseteq X \times Y$, para cada $x \in X$ e $y \in Y$ definimos
+	\begin{itemize}
+		\item La sección transversal de $E$ en $x$ como $E_{x} \coloneq \{y \in Y \ : \ (x,y) \in E\}$;
+
+		\item La sección transversal de $E$ en $y$ como $E^{y} \coloneq \{x \in X \ : \ (x,y) \in E\}$. 
+	\end{itemize}
+\end{definition}
+
+\begin{property}~
+	\begin{itemize}
+		\item $(\bigcup_{n\in\N} E_{n})_{x} = \bigcup_{n\in\N} (E_{n})_{x}$ y $(\textbigcupd_{n\in\N} E_{n})_{x} = \textbigcupd_{n\in\N} (E_{n})_{x}$.
+
+		\item $E_{1} \subseteq E_{2} \implies (E_{1})_{x} \subseteq (E_{2})_{x}$.
+
+		\item $E_{1} \subseteq E_{2} \implies (E_{2} - E_{1})_{x} = (E_{2})_{x} - (E_{1})_{x}$. En particular, $(E^{c})_{x} = (E_{x})^{c}$.
+
+		\item La aplicación $y \mapsto \chi_{E}(x,y)$ coincide con $\chi_{E_{x}} : Y \to \{0,1\}$. 
+	\end{itemize}
+	Vale lo mismo para secciones transversales en $y \in Y$.
+\end{property}
+
+\begin{theorem}[Principio de Cavalieri]
+	Sean $(X, \mscr{M}, \mu),\ (Y, \Sigma, \nu)$ espacios de medida $\sigma$-finita. Entonces si $E \in \mscr{M} \times \Sigma \ (= \sigma(\mcal{R}))$, vale que:
+	\begin{enumerate}[i)]
+		\item $E_{x} \in \Sigma \quad \forall x \in X$
+
+		\item $g_{E}(x) \coloneq \nu(E_{x}) = \int_{Y} \chi_{E}(x,y) \ d\nu(y)$ es $\mscr{M}$-medible.
+
+		\item se tienen las siguientes igualdades
+		\begin{align*}
+			\mu \times \nu (E) &= \int_{X \times Y} \chi_{E}(x,y) \ d(\mu \times \nu)(x,y) \\
+			&= \int_{X} g_{E}(x) \ d\mu(x) = \int_{X} \left( \int_{Y} \chi_{E}(x,y) \ d\nu(y) \right) \ d\mu(x)
+		\end{align*}
+	\end{enumerate}
+	Además, vale lo mismo para secciones en $y$
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	\begin{enumerate}[i)]
+		\item Sea $\mscr{M} \coloneq \{E \in \mscr{M} \times \Sigma \ : \ E_{x} \in \Sigma \ \forall x \in X\}$. Queremos ver que $\mscr{M} \times \Sigma \subseteq \mscr{C}$. Basta ver que $\mscr{C}$ es $\sigma$-álgebra que contiene a $\mcal{R}$. En efecto:
+		\begin{enumerate}
+			\item ($\mcal{R} \subseteq \mscr{C}$:) si $E = A \subset B \in \mcal{R}$ entonces
+			\[ E_{x} = \begin{cases}
+				B \quad x \in A \\
+				\varnothing \quad x \not\in A
+			\end{cases} \in \Sigma. \]
+		\end{enumerate}
+	\end{enumerate}
+\end{proof}

@@ -1,0 +1,132 @@
+\clase{37}{10 de Noviembre}{}
+
+\begin{proof}[Proof Other Information][continuación clase anterior]
+	Si $p = \infty$, vimos que $\| \alpha f \|_{\infty} = |\alpha| \| f \|_{\infty} \ \forall \alpha \in \C$. Más aún,
+	\[ \| f + g \|_{\infty} = \inf \{M > 0 \ : \ \mu(\{|f + g| > M\}) = 0\}. \]
+	En particular, si $M > \|f \|_{\infty} + \| g \|_{\infty} + 2 \varepsilon$ (suponiendo $\| f \|_{\infty}, \| g \|_{\infty} < \infty$),
+	\[ \mu(\{|f + g| > M\}) \leq \underbrace{\mu(\{|f| > \| f \|_{\infty} + \varepsilon\})}_{= 0} + \underbrace{\mu(\{|g| > \| g \|_{\infty} + \varepsilon\})}_{= 0}. \]
+	Entonces $\| f + g \|_{\infty} \leq \| f \|_{\infty} + \| g \|_{\infty} + 2 \varepsilon$. Tomando $\varepsilon \longrightarrow 0$, resulta $\| f + g \|_{\infty} \leq \| f \|_{\infty} + \| g \|_{\infty}$ (y esto vale, en realidad, para cualquier $f,g$, no necesriamente en $L^{\infty}$).
+\end{proof}
+
+\begin{pregunta}
+	¿Es $\| \cdot \|_{p}$ es una norma?
+\end{pregunta}
+
+\begin{definition}[función convexa]
+	Decimos que $\varphi : \R \to (-\infty,\infty)$ es convexa si 
+	\[ \varphi(\lambda x + (1 - \lambda) y) \leq \lambda \varphi(x) + (1 - \lambda) \varphi(y) \quad \forall x,y \in \R,\ \lambda \in [0,1] \]
+\end{definition}
+
+\begin{lemma}
+	Si $\varphi : \R \to \R$ es convexa, entonces
+	\[ h \longrightarrow \frac{\varphi(x + h) - \varphi(x)}{h} \]
+	resulta:
+	\begin{itemize}
+		\item decreciente cuando $h \longrightarrow 0^{+}$;
+
+		\item creciente cuando $h \longrightarrow 0^{-}$.
+	\end{itemize}
+	Además,
+	\[ -\infty < L^{-} \coloneq \sup_{h < 0} \frac{\varphi(x + h) - \varphi(x)}{h} \leq \inf_{h > 0} \frac{\varphi(x + h) - \varphi(x)}{h} =: L^{+} < \infty. \]
+	En particular,
+	\begin{itemize}
+		\item[(C1)] $\varphi$ es continua (y, por ende, medible Borel);
+
+		\item[(C2)] $\exists c \in \R$ tal que $\varphi(y) \geq c(y - x) + \varphi(x) \quad \forall y \in \R$.
+	\end{itemize}
+\end{lemma}
+
+\begin{theorem}[Desigualdad de Jensen]
+	Sean $\varphi : \R \to \R$ convexa y $f \in L^{1}(X, \mscr{M}, \mu)$ con $\mu$-finita. Si definimos el promedio de $f$ como
+	\[ \langle f \rangle \coloneq \frac{1}{\mu(X)} \int_{X} f \ d\mu, \]
+	entonces:
+	\begin{enumerate}[i.]
+		\item $(\varphi \circ f)^{-} \in L^{1}(X, \mscr{M}, \mu) \ (\implies \varphi \circ f$ débilmente $\mu$-integrable);
+
+		\item $\varphi(\langle f \rangle) \leq \langle \varphi(f) \rangle$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Sea $x \coloneq \langle f \rangle$ e $y \coloneq f(t)$. Por (C2), 
+	\[ \varphi(f(t)) \geq c(f(t) - \langle f \rangle) + \varphi(\langle f \rangle). \tag{$*$} \]
+	Luego, si $(\varphi \circ f)^{-}(t) \neq 0$, lo anterior se puede reescribir como
+	\[ -(\varphi \circ f)^{-} (t) \geq \varphi(\langle f \rangle) + c(f(t) - \langle f \rangle), \]
+	de donde se deduce que
+	\[ |( \varphi \circ f )^{-} (t)| \leq |\varphi( \langle f \rangle )| + |c| |f(t)| + |c| |\langle f \rangle|. \]
+	Como $\mu$ es finita, el lado derecho es integrable y, por lo tanto, $(\varphi \circ f)^{-} \in L^{1}(X, \mscr{M}, \mu)$. \par
+	Integrando $(*)$, resulta
+	\begin{align*}
+		\int \varphi \circ f \ d\mu &\geq c \int f \ d\mu + (-c \langle f \rangle + \varphi(\langle f \rangle) \ \mu(X) \\
+		&= c \langle f \rangle \mu(X) - x \langle f \rangle \mu(X) + \varphi(\langle f \rangle) \mu(X) \\
+		&= \varphi(\langle f \rangle) \mu(X)
+	. \qedhere \end{align*}
+\end{proof}
+
+\begin{definition}[exponentes conjugados]
+	Decimos que $p,p' \in [1, \infty]$ son exponentes conjugados si
+	\[ \frac{1}{p} + \frac{1}{p'} = 1. \]
+\end{definition}
+
+\begin{remark}
+	$p = 1 \iff p' = \infty,\ p = 2 \iff p' = 2$.
+\end{remark}
+
+\begin{theorem}
+	Sea $(X, \mscr{M}, \mu)$ un espacio de medida y $p, p' \in [1, \infty]$ conjugados. Sean $f,g : X \to \C \ \mscr{M}$-medibles. Entonces:
+	\begin{enumerate}
+		\item (Desigualdad de Hölder) $\int_{X} |f g| \ d\mu \leq \| f \|_{p} \| g \|_{p'}$.
+
+		\item (Desigualdad de Minkowski) $\| f + g \|_{p} \leq \| f \|_{p} + \| g \|_{p}$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{lemma}
+	Si $f \in L^{\infty}(X, \mscr{M}, \mu)$ entonces $|f| \leq \| f \|_{\infty} \ \mu$-c.t.p.
+\end{lemma}
+\begin{proof}[Proof Other Information]
+	Notar que
+	\[ \{|f| > \| f \|_{\infty}\} = \bigcup_{n\in\N} \Big\{|f| > \| f \|_{\infty} + \frac{1}{n}\Big\} \]
+	es unión numerable de conjuntos de medida $\mu$-nula.  
+\end{proof}
+
+\begin{proof}[Proof Other Information][Teorema]
+	(i) $\boxed{p = 1} \ (\implies p' = \infty)$ Notar que
+	\[ \int_{X} |f \cdot g| \ d\mu \leq \int_{X} |f| \| g \|_{\infty} \ d\mu = \| g \|_{\infty} \int_{X} |f| \ d\mu = \| g \|_{\infty} \| f \|_{1} \]
+	Por simetría, tenemos también el caso $p = \infty \ (\implies p' = 1)$. \par
+	$\boxed{p \in (1, \infty)} \ (\implies p' \in (1, \infty))$ Definimos
+	\[ F \coloneq \frac{|f|}{\| f \|_{p}} \text{ y } G \coloneq \frac{|g|}{\| g \|_{p}}. \]
+	(Si $\| f \|_{p} \| g \|_{p'} = 0,\ f = 0 \ \mu$-c.t.p ó $g = 0 \ \mu$-c.t.p, en ese caso, la desigualdad es inmediata). \par
+	Como la función $-\log(x)$ es convexa, (notando que en la primera desigualdad se asume que $F(x),G(x) \neq 0$)
+	\begin{align*}
+		-\log\Big(\frac{1}{p} F^{p} + \frac{1}{p'} G^{p'}\Big) &\leq \frac{1}{p}(-\log F^{p}) + \frac{1}{p'}(-\log G^{p'}) \\
+		&= -\log F - \log G \\
+		&= -\log F.G
+	.\end{align*}
+	Lo cual implica que, 
+	\[ F.G \leq \frac{1}{p} F^{p} + \frac{1}{p'} G^{p'} \]
+	(notar que la desigualdad vale si $F(x)$ ó $G(x)$ son 0). Integrando a ambos miembros, resulta
+	\begin{align*}
+		\frac{1}{\| f \|_{p} \| g \|_{p'}} \int |f \cdot g| \ d\mu &= \int F.G \ d\mu \\
+		&\leq \frac{1}{p} \underbrace{\int F^{p} \ d\mu}_{1} + \frac{1}{p'} \underbrace{\int G^{p'} \ d\mu}_{1} \\
+		&= \frac{1}{p} + \frac{1}{p'} = 1
+	. \checkmark\end{align*}
+	\par (ii) Por convexidad de $x^{p} \ (p \in (1, \infty))$,
+	\[ \Big( \frac{1}{2} |f(x)| + \frac{1}{2} |g(x)| \Big)^{p} \leq \frac{1}{2} |f(x)|^{p} + \frac{1}{2} |g(x)|^{p}. \]
+	Luego, si $f,g \in L^{p}$, entonces $f + g \in L^{p}$, pues
+	\[ \frac{1}{2} |f + g| \leq \frac{1}{2} |f| + \frac{1}{2} |g|. \]
+	Ahora, escribimos
+	\begin{align*}
+		|f + g|^{p} &\leq (|f| + |g|)^{p} \\
+		&= (|f| + |g|)^{p-1} (|f| + |g|) \\
+		&= |f|(|f| + |g|)^{p-1} + |g|(|f| + |g|)^{p-1}
+	.\end{align*}
+	Por Hölder,
+	\begin{align*}
+		\int_{X} |f|(|f| + |g|)^{p-1} \ d\mu &\leq \| f \|_{p} \Big( \int_{X} ((|f| + |g|)^{p-1})^{p'} \Big)^{\frac{1}{p'}} \\
+		&= \| f \|_{p} \Big( \int_{X} (|f| + |g|)^{p} \Big)^{\frac{p-1}{p}}
+	.\end{align*}
+	Si hacemos lo mismo con el segundo sumando y sumamos, nos queda
+	\[ \int (|f| + |g|)^{p} \leq (\| f \|_{p} + \| g \|_{p}) \Big( \int (|f| + |g|)^{p} \Big)^{\frac{p-1}{p}}, \]
+	lo que implica
+	\[ \Big( \int_{X} (|f| + |g|)^{p} \Big)^{1 - \frac{1}{p'}} \leq \| f \|_{p} + \| g \|_{p}. \qedhere \]
+\end{proof}

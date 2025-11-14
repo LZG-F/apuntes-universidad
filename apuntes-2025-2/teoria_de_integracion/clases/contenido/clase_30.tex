@@ -1,0 +1,60 @@
+\clase{30}{22 de Octubre}{}
+
+\begin{proof}[Proof Other Information][Continuación Fubini]
+	Estábamos viendo el caso (4) en que $f$ cambia de signo, pero es débil $(\mu \times \nu)$-integrable $(\int_{X \times Y} f^{+} \ d(\mu \times \nu) < \infty)$. Usando que $(f_{x})^{\pm} = (f)_{x}^{\pm}$, vimos que $h_{f}(x) \coloneq \int_{Y} f_{x}(y) \ d\nu(y)$ estaba bien definida para $\mu$-casi todo $x$ y era débil $\mu$-integrable. Como
+	\[ h_{f}(x) = \int_{Y} (f_{x})^{+} \ d\nu - \int_{Y} (f_{x})^{-} \ d\nu \]
+	por linealidad, concluimos que
+	\begin{align*}
+		\int_{X} h_{f} \ d\mu &= \int_{X} \left( \int_{Y} (f_{x})^{+} \ d\nu \right) \ d\mu - \int_{X} \left( \int_{Y} (f_{x})^{-} \ d\nu \right) \ d\mu \\
+		&= \int_{X} \left( \int_{Y} (f^{+})_{x} \ d\nu \right) \ d\mu - \int_{X} \left( \int_{Y} (f^{-})_{x} \ d\nu \right) \ d\mu \\
+		&= \int_{X \times Y} f^{+} \ d(\mu \times \nu) - \int_{X \times Y} f^{-} \ d(\mu \times \nu) \\
+		&\coloneq \int_{X \times Y} f \ d(\mu \times \nu).
+	\end{align*}
+	Por último, si $f$ fuese $(\mu \times \nu)$-integrable, podemos repetir lo anterior para $f^{+}$ y $f^{-}$ y con esto reemplazar la integrabilidad débil por integrabilidad en todos lados.
+\end{proof}
+
+\begin{note}~
+	\begin{itemize}
+		\item El caso particular en que $f \geq 0$ se conoce como el Teorema de Tonelli (o de Fubini-Tonelli).
+
+		\item Los libros suelen hacer el caso $f \geq 0$ ó $f$ integrable.
+
+		\item El argumento en 4 pasos ($\chi_{E} \to$ simples $\to f \geq 0 \to f$ cualquiera) se conoce como "argumento estándar".
+	\end{itemize}
+\end{note}
+
+\begin{pregunta}
+	¿Qué pasa si $E \in \overline{\mscr{M} \times \Sigma} \setminus \mscr{M} \times \Sigma$?
+\end{pregunta}
+
+\begin{eg}
+	Si $V \subseteq [0,1)$ es un conjunto de Vitali y $E = \{0\} \times V$. Se verifica que:
+	\begin{enumerate}
+		\item $V \in \mscr{L}(\R^2) = \overline{\mscr{L}(\R) \times \mscr{L}(\R)} = \overline{\beta(\R) \times \beta(\R)} = \overline{\beta(\R^2)}$ pues es $(\lambda \times \lambda)$-nulo.
+
+		\item $E \not\in \mscr{L}(\R) \times \mscr{L}(\R)$ y $x = 0$, entonces $E_{x} = V \not\in \mscr{L}(\R)$ (absurdo, por Fubini).
+	\end{enumerate}
+\end{eg}
+
+\begin{theorem}[Fubini en $\overline{\mscr{M} \times \Sigma}$]
+	Sean $(X, \mscr{M}, \mu),\ (Y, \Sigma, \nu)$ espacios de medida $\sigma$-finita completos y $f : X \times Y \to \overline{\R} \ (\overline{\mscr{M} \times \Sigma})$-medible y débil $(\overline{\mu \times \nu})$-integrable. Entonces:
+	\begin{enumerate}[i)]
+		\item $f_{x}(y) \coloneq f(x,y)$ es $\Sigma$-medible y débil $\nu$-integrable para $\mu$-casi todo $x$.
+
+		\item $h_{f}(x) \coloneq \int_{Y} f_{x}(y) \ d\nu(y)$ es $\mscr{M}$-medible (extendiendo donde no está bien definida) y débil $\mu$-integrable.
+
+		\item se tiene que
+			\begin{align*}
+				\int_{X} \left( \int_{Y} f(x,y) \ d\nu(y) \right) \ d\mu(x) &= \int_{X} h_{f}(x) \ d\mu(x) \\
+				&= \int_{X \times Y} f(x,y) \ d(\overline{\mu \times \nu})(x,y)
+			\end{align*}
+	\end{enumerate}
+	Además, vale lo mismo para secciones en $y$.
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Por el argumento estándar, bastará con verlo para $f = \chi_{E}$ con $E \in \overline{\mscr{M} \times \Sigma}$. \par
+	En tal caso, $E = B \cupd N$, donde $B \in \mscr{M} \times \Sigma$ y $N$ es $\mu \times \nu$-nulo, i.e. $\exists \widehat{N} \in \mscr{M} \times \Sigma$ tal que $N \subseteq \widehat{N}$ y $\mu \times \nu(\widehat{N}) = 0$. Luego, $\chi_{E} = \chi_{B} + \chi_{N}$ y, como ya vimos el Teo. para $B \in \mscr{M} \times \Sigma$, bastará con verlo para $\chi_{N}$. A tal fin, notar que, para cada $x \in X$ se tiene que $(\chi_{N})_{x} = \chi_{N_{x}}$. En particular, $(\chi_{N})_{x}$ es $\Sigma$-medible si y sólo si $N_{x} \in \Sigma$. Veremos que $N_{x} \in \Sigma$ para $\mu$-casi todo $x$ y eso nos dará (i). Para ello, observar que por el Principio de Cavalieri
+	\[ 0 = \mu \times \nu (\widehat{N}) = \int_{X} \Big( \int_{Y} \underbrace{\chi_{\widehat{N}}(x,y)}_{= (\chi_{\widehat{N}})_{x}} \ d\nu \Big) \ d\mu = \int_{X} \underbrace{\nu(\widehat{N}_{x})}_{\geq 0} \ d\mu(x) .\]
+	Como $\nu(\widehat{N}_{x}) \geq 0 \ \forall x \in X$, lo anterior implica (por guía 6) que $\nu(\widehat{N}_{x}) = 0$ para $\mu$-c.t.$x$. Entonces, como $N_{x} \subseteq \widehat{N}_{x}$, resulta que $N_{x}$ es $\mu$-nulo para $\mu$-casi todo $x$. Como $(Y, \Sigma, \nu)$ es completo, resulta $N_{x} \in \Sigma$ para $\mu$-c.t.$x$.
+\end{proof}
+

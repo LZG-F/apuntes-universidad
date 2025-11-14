@@ -1,0 +1,64 @@
+\clase{29}{17 de Octubre}{}
+
+\section{Variedades Topológicas}
+
+\begin{definition}[espacio localmente Euclídeo]
+	$X$ espacio topológico es localmente Euclídeo de dimensión $n$ (localmente $\R^n$) si todo punto $x \in X$ posee una vecindad homeomorfa a un abierto de $\R^n$.
+\end{definition}
+
+\begin{definition}[variedad topológica]
+	$X$ es variedad topológica (manifold) de dimensión $n$ ($n$-variedad) si $X$ es
+	\begin{enumerate}[i)]
+		\item Localmente $\R^n$;
+
+		\item Hausdorff;
+
+		\item 2do contable.
+	\end{enumerate}
+\end{definition}
+
+\begin{remark}
+	Estas tres condiciones van a implicar que $X$ normal, por lo que vamos a tener Lema de Urysohn, Extensión de Tietze y Partición de unidad (queremos que hayan muchas funciones continuas $X \to \R$).
+\end{remark}
+
+\begin{eg}~
+	\begin{enumerate}
+		\item $\R^n$ es $n$-variedad, y cualquier abierto no vacío de $\R^n$ es $n$-variedad (subespacios de Hausdorff/2do contables son Hausdorff/2do contables).
+
+		\item $\C \setminus \{0\}$ es 2-variedad (superficies). En general, si $M$ es $n$-variedad y $U \subset M$ abierto no vacío $\implies U$ es $n$-variedad.
+
+		\item $M$ es 0-variedad ($\R^0 = \{0\}$) si y sólo si $M$ contable con topología discreta. $M$ es localmente $\R^0 \leftrightarrow$ cada singleton es abierto $\leftrightarrow M$ tiene topología discreta. Además, $M$ con topología discreta es 2do contable $\leftrightarrow M$ contable.
+	\end{enumerate}
+\end{eg}
+
+\begin{property}[Tarea 5]
+	$M$ $m$-variedad, $N$ $n$-variedad $\implies M \times N$ es $(m+n)$-variedad.
+\end{property}
+
+\begin{recordar}
+	$\exists$ proyección estereográfica, donde obtenemos un homeomorfismo $\pi : S^n \setminus \{N\} \to \R^n$, con $N$ el polo norte ($=(0,\dots,0,1)$) 
+\end{recordar}
+
+\begin{eg}
+	$S^n = \{z \in \R^{n+1} \ \big| \ |z| = 1\}$ es $n$-variedad (compacta). En efecto, $S^n$ es T2 + 2do contable porque $\R^{n+1}$ es T2 y 2do contable. Luego, $S^n \setminus \{N\}$ abierto de $S^n$ en $\R^n$ (esto nos sirve para todos los puntos, salvo para $N$). Para $N$, tomemos $r : S^n \to S^n$ tal que $(x_{1},\dots,x_{n+1}) \mapsto (x_{1},\dots,-x_{n+1})$, homeomorfismo ($r^{-1} = r$). Entonces, $V = r(S^n \setminus \{N\}) = S^n \setminus \{-N\}$ es abierto de $S^n$ vecindad de $N$, homeomorfo a $\R^n$.  
+\end{eg}
+
+\begin{eg}
+	Complementos de nudos en $S^3$ (viven en $\R^3 \subset \R^3 \cup \{\infty\} = S^3) \implies S^3 \setminus K$ es 3-variedad.
+\end{eg}
+
+\begin{theorem}
+	Si $S^3 \setminus K_{1},\ S^3 \setminus K_{2}$ son dos complementos de nudos. Si $K_{1} \sim K_{2}$ homeomorfo via un homeomorfismo de todo $\R^3 \iff S^3 \setminus K_{1} \approx S^3 \setminus K_{3}$.
+\end{theorem}
+
+\begin{recordar}
+	$\Gamma \overrightarrow{} X$ acción por homeomorfismos $\implies p : X \to X / \Gamma$ es abierto.
+\end{recordar}
+
+\begin{eg}
+	$\mathbb{T} = \R^2 / \Z^2$ es 2-variedad (superficie) ($\mathbb{T}$ es el toro). Notar que es Hausdorff, pues $\Z^2$ es subgrupo cerrado de $\R^2$ ($H < \Gamma$ grupo topológico $\implies \Gamma / H$ Hausdorff $\leftrightarrow H$ cerrado). Es 2do contable, pues si $\mcal{B}$ es base contable de $\R^2$ ($p : \R^2 \to \mathbb{T}^2$) $\implies \{p(B) \ \big| \ B \in \mcal{B}\}$ es base contable de $\mathbb{T}^2$. Por último, es localmente $\R^2$: en efecto, si $z = p(x,y)$, queremos encontrar una vecindad $U$ de $(x,y)$ tal que $p|_U : U \to \mathbb{T}^2$ sea inyectiva. Luego, $p(U)$ es homeomorfo a $U$ y abierto en $\mathbb{T}^2$ (es abierto por el recuerdo anterior). $p|_U : U \to p(U)$ es biyección continua + abierto y, por lo tanto, es homeomorfismo. Sirve $U = (x - \frac{1}{4}, x + \frac{1}{4}) \times (y - \frac{1}{4}, y + \frac{1}{4})$.
+\end{eg}
+
+\begin{remark}
+	Esto igual prueba $\mathbb{T}^n = \R^n / \Z^n$ es $n$-variedad.
+\end{remark}

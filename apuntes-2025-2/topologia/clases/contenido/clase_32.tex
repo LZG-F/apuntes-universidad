@@ -1,0 +1,31 @@
+\clase{32}{24 de Octubre}{}
+
+\section{Particiones de Unidad (36)}
+
+\begin{proof}[Proof Other Information][Teorema A, clase pasada, asumiendo B]
+	Si $x \in M,\ \exists U_{x} \subset M$, vecindad de $x$ y homeomorfo a abierto de $\R^n$. $\{U_{x} \ \big| \ x \in M\}$ cubriente abierto de $M \implies \exists$ subcubriente abierto $\mcal{U} = \{U_{1},\dots,U_{m}\}$ tal que $\forall i = 1,\dots,m, \ \exists g_{i} : U_{i} \to \R^n$ (continua, inyectiva, homeo en su imagen, imagen es abierto). Teorema B $\implies \exists \phi_{1},\dots,\phi_{m}: \ M \to [0,1]$ continuas, con
+	\begin{enumerate}[i)]
+		\item $\supp \phi_{i} \subset U_{i}$,
+
+		\item $\sum_{i=1}^{n} \phi_{i}(x) = 1 \quad \forall x \in M$.
+	\end{enumerate}
+	Dado $i = 1,\dots,m$, definimos
+	\begin{align*}
+		h_{i} : \ & M \to \R^N \\
+		& x \mapsto \begin{cases}
+			\phi_{i}(x) g_{i}(x) \quad \text{si } x \in U_{i} \\
+			\vec{0} \qquad \quad \qquad \text{si } x \not\in U_{i}
+		\end{cases}
+	.\end{align*}
+	Luego, $h_{i}$ es continua!!! Definimos
+	\begin{align*}
+		F : \ & M \to \R^n \times \cdots \times \R^n \times \R \times \cdots \times \R = \R^N \\
+		& x \mapsto (h_{1}(x),\dots,h_{m}(x),\phi_{1}(x),\dots,\phi_{m}(x))
+	.\end{align*}
+	es continua! (cada coordenada es continua) ($N = m(n+1)$). Falta ver que $F$ es inyectiva: Tomemos $x,y \in M$ con $F(x) = F(y)$. Como $\sum \phi_{i} \equiv \mathds{1}$, existe $i$ con $\phi_{i}(x) = \phi_{i}(y) > 0 \implies x,y \in U_{i}$. Sabemos $h_{i}(x) = h_{i}(y) \implies \phi_{i}(x) g_{i}(x) = \phi_{i}(y) g_{i}(y) \implies g_{i}(x) = g_{i}(y) \ (\in \R^n) \ (g_{i} \text{ es inyectiva en } U_{i}) \implies x = y$.
+\end{proof}
+
+\begin{proof}[Proof Other Information][Teorema B(i)]
+	$X$ normal, $\mcal{U} = \{U_{1},\dots,U_{m}\}$ cubriente abierto (Queremos construir $\phi_{1},\dots,\phi_{m} : X \to [0,1]$). Notar que $f_{1} : X \to \R^{\geq 0}$ tal que $\supp f_{1} \subset U_{i}$ es equivalente a $f_{1}(X \setminus U_{i}) = \{0\}$ (notar que $X \setminus U_{i}$ cerrado). Por lo tanto, queremos $C_{i}$ cerrado con $C_{i} \subset U_{i} \ (C_{i} \cap (X \setminus U_{i}) = \varnothing)$. \par
+	Digamo que tenemos cerrados $C_{1},\dots,C_{m}$ tal que $C_{i} \subset U_{i} \quad \forall i \implies$ Urysohn nos da $f_{i} : X \to [0,1]$ con $f_{i}(C_{i}) = \{1\}$ y $f_{i}(X \setminus U_{i}) = \{0\} \ (\leadsto \supp f_{i} \subset U_{i})$. Queremos $C_{i}$ tales que $C_{1} \cup \cdots \cup C_{m} = X$. Basta tomar $C_{i} = \overline{V}_{i}$ con $\{V_{1},\dots,V_{m}\}$ cubriente abierto de $X$ tal que $V_{i} \subset U_{i} \quad i = 1,\dots,m$. Si esto pasara, $\sum_{i=1}^{m} f_{i}(x) > 0 \quad \forall x \in X \implies$ definimos $\phi_{i} : X \to [0,1]$ tal que $x \mapsto \frac{f_{i}(x)}{\sum_{j=1}^{m} f_{j}(x)} \ (\implies \sum \phi_{i} = \mathds{1},\ \supp \phi_{i} \subset U_{i})$. Falta encontrar los abiertos $V_{1},\dots,V_{m}$. Si definimos $B_{1} = X \setminus (U_{2} \cup \cdots \cup U_{m})$ cerrado con $B_{1} \subset U_{1}$ ($U_{1} \cup \cdots \cup U_{m}$ cubre $X$). Luego, $X$ normal $\implies \exists V_{1}$ abierto con $B_{1} \subset V_{1} \subset \overline{V}_{1} \subset U_{1}$ (se sigue por inducción).
+\end{proof}

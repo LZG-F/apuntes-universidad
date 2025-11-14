@@ -9,14 +9,14 @@
 *.latexmain
 
 # archivos topología
-apuntes-2025-2/topologia/clases/
+apuntes-2025-2/topologia/clases/*
 
 !apuntes-2025-2/topologia/clases/contenido/
 !apuntes-2025-2/topologia/clases/clase-topologia.pdf
 !apuntes-2025-2/topologia/clases/clase-topologia.tex
 
 # archivos teoría de integración
-apuntes-2025-2/teoria_de_integracion/clases/
+apuntes-2025-2/teoria_de_integracion/clases/*
 
 !apuntes-2025-2/teoria_de_integracion/clases/contenido/
 !apuntes-2025-2/teoria_de_integracion/clases/clase-integracion.pdf

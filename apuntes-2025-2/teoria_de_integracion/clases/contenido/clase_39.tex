@@ -1,0 +1,93 @@
+\clase{39}{13 de Noviembre}{}
+
+\section{Subsespacios densos en $L^{p}$}
+
+$(X, \mscr{M}, \mu) =$ EdM $\sigma$-finito completo.
+
+\begin{definition}[función simple en $\C$]
+	Una función $s : X \to \C$ se dice simple si $\Re(s)$ e $\Im(s)$ lo son.
+\end{definition}
+
+\begin{theorem}
+	Si $p \in [1, \infty]$, entonces, dada $f \in L^{p}(X, \mscr{M}, \mu)$ y $\varepsilon > 0$, existe $\varphi$ simple tal que $|\varphi| \leq |f|$ y $\| f - \varphi \|_{p} < \varepsilon$. \par
+	En particular, 
+	\[ S_{p}(X,\mscr{M},\mu) \coloneq \{\varphi : X \to \C \ \big| \ \varphi \text{ simple, } \varphi \in L^{p}(X,\mscr{M},\mu)\} \]
+	es denso en $L^{p}(X, \mscr{M}, \mu)$.
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Supongamos primero que $f$ es no negativa. Entonces, existen $(\varphi_{n})_{n\in\N} : X \to \R$ simples tal que $0 \leq \varphi_{n} \nearrow f$ y, además, $|\varphi_{n} - f| \leq 2^{-n}$ sobre $\{x \ : \ f(x) \leq n\}$. \par
+	En particular, si $p \neq \infty$, entonces $0 \leq | f - \varphi_{n} |^{p} \leq | f |^{p} \in L^{1}$, y por lo tanto, como $| \varphi - f |^{p} \stackrel{n \to \infty}{\longrightarrow} \ \mu$-c.t.p (pues $f$ es finita $\mu$-c.t.p), resulta que $\| \varphi_{n} - f \|_{p} \stackrel{n \to \infty}{\longrightarrow} 0$ por Teorema de Convergencia Dominada. \par
+	Si $p = \infty$, entonces si tomamos $n > \| f \|_{\infty} \ (< \infty)$, vale que $\| \varphi_{n} - f \|_{\infty} \leq 2^{-n} \stackrel{n \to \infty}{\longrightarrow} 0$. \par
+	En particular, esto implica el resultado si $f \geq 0$. \par
+	Para el caso general, escribimos 
+	\[ f = (\underbrace{\Re(f)}_{f_{1}})^{+} - (\underbrace{\Re(f)}_{f_{2}})^{-} + i((\underbrace{\Im(f)}_{f_{3}})^{+} - (\underbrace{\Im(f)}_{f_{4}})^{-}). \]
+	Como cada $f_{i}$ es no negativa, existe $\varphi_{i}$ simple tal que 
+	\[ \| \varphi_{i} - f_{i} \| < \frac{\varepsilon}{4} \text{ y } | \varphi_{i} | \leq | f_{i} | \quad \forall i = 1, \dots, 4. \]
+	(de hecho, $0 \leq \varphi_{i} \leq f_{i}$.) Luego, si definimos $\varphi = \varphi_{1} - \varphi_{2} + i(\varphi_{3} - \varphi_{4})$, $\varphi$ resulta simple y, además, 
+	\begin{align*}
+		\| \varphi - f \|_{p} &= \| ( \varphi_{1} - f_{1} ) + ( \varphi_{2} - f_{2} ) + i( \varphi_{3} - f_{3} ) + i( \varphi_{4} - f_{4} ) \|_{p} \\
+		&\leq \sum_{i=1}^{4} \| \varphi_{i} - f_{i} \|_{p} < \varepsilon
+	\ \checkmark.\end{align*}
+	Notar que
+	\begin{align*}
+		| \varphi |^{2} &= (\varphi_{1} - \varphi_{2})^{2} + (\varphi_{3} - \varphi_{4})^{2} \\
+		&= \varphi_{1}^{2} + \varphi_{2}^{2} - \underbrace{2 \varphi_{1} \varphi_{2}}_{0 \leq \cdot \leq f_{1} f_{2} = 0} + \varphi_{3}^{2} \varphi_{4}^{2} - \underbrace{2 \varphi_{3} \varphi_{4}}_{0} \\
+		&= \varphi_{1}^{2} + \varphi_{2}^{2} + \varphi_{3}^{2} + \varphi_{4}^{2} \\
+		&\leq f_{1}^{2} + f_{2}^{2} + f_{3}^{2} + f_{4}^{2} = | f |^{2}
+	.\qedhere\end{align*}
+\end{proof}
+\medskip
+\noindent Ahora, nos concentramos en la medida de Lebesgue en $\R^{n}$.
+
+\begin{definition}[soporte]
+	Dada $f : \R^{n} \to \C$, definimos su soporte como
+	\[ \supp(f) \coloneq \overline{\{x \ : \ f(x) \neq 0\}}. \]
+	Además, definimos
+	\[ C_{c}(\R^{n}) \coloneq \{f : \R^{n} \to \C \ \big| \ f \text{ es continua y } \supp(f) \text{ es compacto}\}. \]
+\end{definition}
+
+\begin{theorem}
+	Si $p \in [1, \infty)$ entonces $C_{c}(\R^{n})) \subseteq L^{p}(\R^{n})$ es denso.
+\end{theorem}
+
+\begin{remark}
+	Si $p = \infty$, el resultado \textbf{NO} es cierto.
+\end{remark}
+
+\begin{lemma}[Urysohn]
+	Si $(X, d)$ es un espacio métrico, entonces, dado $F \subseteq X$ cerrado y $G \subseteq X$ abierto con $F \subseteq G$, existe $g : X \to [0,1]$ continua tal que $\chi_{F} \leq g \leq \chi_{G}$.
+\end{lemma}
+\begin{proof}[Proof Other Information]
+	Notar que
+	\[ g(x) \coloneq \frac{d(x, G^{c}}{d(x, G^{c}) + d(x, F)} \]
+	sirve, pues $| d(x,A) - d(y,A)| \leq d(x,y) \quad \forall A \subseteq X$.
+\end{proof}
+
+\begin{proof}[Proof Other Information][Teorema]
+	Primero veamos que $C_{c}(\R^{n}) \subseteq L^{p}(\R^{n})$. \par
+	Sea $g \in C_{c}(\R^{n})$. Si $K_{g} \coloneq \supp(g)$, entonces, como $g$ es continua, vale que $\sup_{x \in K_{g}} |g(x)| =: S_{g} < \infty$. Por lo tanto,
+	\[ |g|^{p} \leq (S_{g})^{p} \chi_{K_{g}} \in L^{1}, \]
+	pues $|K_{g}| < \infty$ por ser acotado. Luego, $g \in L^{p}(\R^{n})$. \par
+	Para ver que $C_{c}(\R^{n})$ es denso en $L^{p}(\R^{n})$, debemos ver que, dado $f \in L^{p}(\R^{n})$ y $\varepsilon > 0$, existe $g \in C_{c}(\R^{n})$ tal que $\| g - f \|_{p} < \varepsilon$. \par
+	Ahora,
+	\begin{enumerate}
+		\item Como las funciones simples en $L^{p}$ son densas en $L^{p}(\R^{n})$, basta verlo para el caso en que $f \in L^{p}$ es simple.
+
+		\item Como las simples en $L^{p}$ son combinaciones lineales de características de conjuntos de medida finita, basta verlo para el caso en que $f = \chi_{E}$ con $E$ medible y $|E| < \infty$.
+
+		\item Como $\chi_{E \cap B(0,N)} \stackrel{L^{p}}{\longrightarrow} \chi_{E}$, pues $\lim_{N \to \infty} |E \cap B(0,N)| = |E| < \infty$, de manera tal que $(\| \chi_{E} - \chi_{E \cap B(0,N)} \|_{p})^{p} = |E \setminus (E \cap B(0,N))| \longrightarrow 0$, basta probar que el resultado para $f = \chi_{E}$ con $E$ medible y acotado.
+	\end{enumerate}
+	En este caso, como la medida de Lebesgue es regular, dado $\varepsilon > 0$, existen $K$ compacto y $G$ abierto acotado tales que
+	\[ K \subseteq E \subseteq G \text{ y } |G \setminus K| < \varepsilon^{p}. \]
+	Por el lema de Urysohn, existe $g : \R^{n} \to [0,1]$ continua tal que $\chi_{K} \leq g \leq \chi_{G}$. Luego, $g$ cumple que:
+	\begin{enumerate}[i.]
+		\item $\supp(g) \subseteq \overline{G}$ y como $G$ es acotado, resulta que $g \in C_{c}(\R^{n})$;
+
+		\item $\chi_{E} - g \leq \chi_{G} - g \leq \chi_{G} - \chi_{K} = \chi_{G \setminus K}$;
+
+		\item $\chi_{E} - g \geq \chi_{E} - \chi_{G} \geq \chi_{K} - \chi_{G} = - \chi_{G \setminus K}$.
+	\end{enumerate}
+	Combinando (ii) y (iii), resulta $| \chi_{E} - g | \leq \chi_{G \setminus K}$. Por lo tanto
+	\[ \| f - g \|_{p} = \Big( \int | \chi_{E} - g |^{p} \Big)^{p} = (| G \setminus K |)^{\frac{1}{p}} < \varepsilon. \]
+	Esto concluye la demostración.
+\end{proof}

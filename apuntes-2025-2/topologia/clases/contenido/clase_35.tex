@@ -1,0 +1,76 @@
+\clase{35}{3 de noviembre}{}
+
+\begin{proof}[Proof ][continuación Teorema clase anterior]
+	Vimos que está bien definido. Falta verificar los axiomas de grupo:
+	\begin{enumerate}
+		\item \textit{(Asociatividad)} Queremos $A_{0} \coloneq (\alpha * \beta) * \gamma \sim_{p} \alpha * (\beta * \gamma) \coloneq A_{1}$.
+		\begin{align*}
+			& A_{0}(s) = \begin{cases}
+				\alpha (4s) \quad & 0 \leq s \leq \frac{1}{4} \\
+				\beta (4s) \quad & \frac{1}{4} \leq s \leq \frac{1}{2} \\
+				\gamma (2s) \quad & \frac{1}{2} \leq s \leq 1
+			\end{cases} \\
+			& A_{1}(s) = \begin{cases}
+				\alpha (2s) & 0 \leq s \leq \frac{1}{2} \\
+				\beta (4s - 2) \quad & \frac{1}{2} \leq s \leq \frac{3}{4} \\
+				\gamma (4s - 3) \quad & \frac{3}{4} \leq s \leq 1
+			\end{cases}
+		\end{align*}
+		Homotopía de $A_{0}$ a $A_{1}$ es
+		\begin{align*}
+			A(s,t) = \begin{cases}
+				\alpha \Big( \Big[ \frac{1-t}{4} + \frac{t}{2} \Big]^{-1} s \Big) \quad & 0 \leq s \leq \frac{1-t}{4} + \frac{t}{2} \\
+				\beta (4s - (1 + t)) \quad & \frac{1-t}{4} + \frac{t}{2} \leq s \leq \frac{1-t}{2} + \frac{3t}{4} \\
+				\gamma \Big( \Big( \frac{1-t}{2} \Big)^{-1} s - \Big( \frac{1-t}{2} \Big)^{-1} + 1 \Big) \quad & \frac{1-t}{2} + \frac{3t}{4} \leq s \leq 1.
+			\end{cases}
+		\end{align*}
+
+		\item \textit{(Neutro)} Queremos $[e_{x_{0}}] \ : \ [\alpha] * [e_{x_{0}}] = [\alpha] = [e_{x_{0}}] * [\alpha]$. Solo veremos $[\alpha] * [e_{x_{0}}] = [\alpha]$. Queremos $\alpha * e_{x_{0}} \sim_{p} \alpha$. Homotopía de caminos de $\alpha$ a $\alpha * e_{x_{0}}$ es
+		\begin{align*}
+			A(s,t) = \begin{cases}
+				\alpha \Big( \Big[1 - \frac{t}{2}\Big]^{-1} s \Big) \quad & 0 \leq s \leq 1 - \frac{t}{2} \\
+				x_{0} \quad & 1 - \frac{t}{2} \leq s \leq 1.
+			\end{cases}
+		\end{align*}
+
+		\item \textit{(Inverso)} \big[$\overline{\alpha}(s) = \alpha(1-s)$\big] \big[también hay que probar que $\alpha \sim_{p} \alpha' \implies \overline{\alpha} \sim_{p} \overline{\alpha}'$\big] Queremos: $[\alpha] * [\overline{\alpha}] = [\overline{\alpha}] * [\alpha] = [e_{x_{0}}]$. Solo veremos $[\alpha] * [\overline{\alpha}] = [e_{x_{0}}]$; es decir, $\alpha * \overline{\alpha} \sim_{p} e_{x_{0}}$. Homotopía de caminos de $\alpha * \overline{\alpha}$ a $e_{x_{0}}$ es
+		\begin{align*}
+			A(s,t) = \begin{cases}
+				\alpha(s) \quad & 0 \leq s \leq \frac{1-t}{2} \\
+				\alpha(1 - t) \quad & \frac{1-t}{2} \leq s \leq 1 - \frac{1-t}{2} \\
+				\overline{\alpha}(2s - 1) \quad & 1 - \frac{1-t}{2} \leq s \leq 1.
+			\end{cases}
+		\end{align*}
+	\end{enumerate}
+\end{proof}
+\bigskip
+
+\textbf{Relación con punto base:} Sean $x_{0},x_{1} \in X$. Suponer que existe camino $\gamma$ en $X$ desde $x_{0}$ hasta $x_{1}$. Esto nos da una operación
+\[ \widehat{\gamma} : \Omega(X,x_{0}) \to \Omega(X,x_{1}) \text{ tal que } \beta \mapsto \overline{\gamma} * \beta * \gamma. \]
+
+\begin{prop}
+	$\widehat{\gamma}$ induce un isomorfismo de grupos $\widehat{\gamma} : \pi_{1}(X,x_{0}) \to \pi_{1}(X,x_{1})$ tal que $[\beta] \mapsto [\widehat{\gamma}(\beta)]$.
+\end{prop}
+
+Debemos ver:
+\begin{enumerate}
+	\item $\widehat{\gamma}$ bien definida.
+
+	\item $\widehat{\gamma}$ es homomorfismo.
+
+	\item $\widehat{\gamma}$ es invertible.
+\end{enumerate}
+
+\begin{corollary}
+	$X$ arcoconexo $\implies \pi_{1}(X,x_{0}) \cong \pi_{1}(X,x_{1}) \quad \forall x_{0},x_{1} \in X$.
+\end{corollary}
+
+\begin{notation}
+	En este caso, usamos notación $\pi_{1}(X) = \pi_{1}(X,x_{0}),\ x_{0} \in X$.
+\end{notation}
+
+\begin{proof}[Proof Other Information][Proposición]
+	\begin{enumerate}
+		\item Debemos ver que $\alpha \sim_{p} \alpha' \implies \widehat{\gamma}(\alpha) \sim_{p} \widehat{\gamma}(\alpha')$. Notar que $\widehat{\gamma}(\alpha) = \overline{\gamma} * \alpha * \gamma$ y $\widehat{\gamma}(\alpha') = \overline{\gamma} * \alpha' * \gamma$. Viene de $\alpha \sim_{p} \alpha',\ \beta \sim_{p} \beta' \implies \alpha * \beta \sim_{p} \alpha' * \beta'$.
+	\end{enumerate}
+\end{proof}

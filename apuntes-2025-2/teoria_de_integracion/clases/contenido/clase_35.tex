@@ -1,0 +1,84 @@
+\clase{35}{5 de Noviembre}{}
+
+\begin{lemma}
+	Si $\varphi : [a,b] \to \R$ es absolutamente continua y singular ($\varphi' = 0$ C.T.P), entonces es constante.
+\end{lemma}
+\begin{proof}[Proof Other Information]
+	Vamos a ver que $\varphi(c) = \varphi(a) \ \forall c \in (a,b]$. Sea
+	\[ E \coloneq \{x \in (a,c) \ : \ \varphi'(x) = 0\}. \] 
+	Notemos que, por hipótesis, $|E| = c - a$. \par
+	Tomemos $\eta > 0$ y, observemos que, dado $x \in E$ y $\varepsilon > 0$, existe $h \in (0, \varepsilon)$ tal que $[x,x + h] \in (a,c)$ y $|\varphi(x + h) - \varphi(x)| < \eta |h|$. Luego, 
+	\[ \mscr{C} \coloneq \{[x, x + h] \subset (a,c) \ : \ h > 0 \text{ y } |\varphi(x + h) - \varphi(x)| < \eta |h|\}, \]
+	es un cubrimiento de Vitali de $E$. \par 
+	Por el Lema del cubrimiento de Vitali, dado $\delta > 0$, existen intervalos $([x_{i}, x_{i} + h_{i}])_{i=1,\dots,n} \subseteq \mscr{C}$ disjuntos tal que 
+	\[ \Bigg| E \setminus \bigcupd_{i=1}^{n} [x_{i}, x_{i} + h_{i}] \Bigg| < \delta \]
+	y
+	\[ \bigcupd_{i=1}^{n} [x_{i}, x_{i} + h_{i}] \subseteq (a,c) \]
+	y
+	\[ |\varphi(x_{i} + h_{i}) - \varphi(x_{i})| < \eta |h_{i}| \quad \forall i = 1, \dots, n. \]
+	Sin pérdida de generalidad, podemos asumir que
+	\[ x_{0} + h_{0} \coloneq a < x_{1} < x_{1} + h_{1} < x_{2} < x_{2} + h_{2} < \cdots < x_{n} + h_{n} < c =: x_{n+1}. \]
+	Entonces
+	\begin{align*}
+		\sum_{k=0}^{n} (x_{k+1} - (x_{k} + h_{k})) &= c - \sum_{k=1}^{n} (x_{k} + h_{k} - x_{k} - a \\
+		&= |E| - \sum_{k=1}^{n} |[x_{k}, x_{k} + h_{k}]| \\
+		&\leq \Bigg|E \setminus \bigcupd_{k=1}^{n} [x_{k}, x_{k} + h_{k}] \Bigg| < \delta
+	. \tag{$*$} \end{align*}
+	Por otro lado,
+	\begin{align*}
+		|\varphi(c) - \varphi(a)| &= |\varphi(x_{n+1} - \varphi(x_{0} + h_{0})| \\
+		&= \Bigg| \sum_{k=0}^{n} (\varphi(x_{k+1}) - \varphi(x_{k} + h_{k})) + \sum_{k=1}^{n} (\varphi(x_{k} + h_{k}) - \varphi(x_{k})) \Bigg| \\
+		&\leq \sum_{k=0}^{n} |\varphi(x_{k+1}) - \varphi(x_{k} + h_{k})| + \sum_{k=1}^{n} |\varphi(x_{k} + h_{k}) - \varphi(x_{k})| \\
+		&\leq \sum_{k=0}^{n} |\varphi(x_{k+1}) - \varphi(x_{k} + h_{k})| + \eta \underbrace{\sum_{k=1}^{n} |h_{k}|}_{\leq (b - a)}
+	.\end{align*}
+	Si elegimos $\delta$ dado por la absoluta continuidad de $\varphi$ para $\varepsilon = \eta$, entonces, por $(*)$,
+	\[ \sum_{k=0}^{n} |\varphi(x_{k+1}) - \varphi(x_{k} + h_{k})| < \eta. \]
+	Como $\eta > 0$ era arbitrario, tomando $\eta \longrightarrow 0$, concluimos que $\varphi(c) = \varphi(a)$.
+\end{proof}
+
+\begin{theorem}[TFC - Parte 2]
+	Sea $F : [a,b] \to \R$ absolutamente continua. Entonces, $F'(x)$ existe para casi todo $x$, $F'$ es integrable en $[a,b]$ (extendida como sea donde $F'$ no esté bien definida) y
+	\[ F(y) - F(x) = \int_{x}^{y} F'(t) \ dt \quad \forall a \leq x \leq y \leq b. \]
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Como $F$ es absolutamente continua, es de variación acotada y, por lo tanto, $F = F_{1} - F_{2}$ con $F_{1},F_{2}$ monótonas crecientes. \par
+	Como $F_{1},F_{2}$ son derivables C.T.P por Lebesgue-Young, se sigue que $F'$ existe C.T.P y coincide con $F_{1}' - F_{2}'$ en casi todo punto. \par
+	Además, como $F_{1},F_{2}$ son crecientes, vimos que $F_{1}',F_{2}'$ son integrables y que además valía,
+	\[ \int_{a}^{x} F_{i}'(t) \ dt \leq F_{i}(x) - F_{i}(a) \quad \forall x \in [a,b], \ i = 1, 2. \]
+	En particular $F'$ es integrable (pues $F' = F_{1}' - F_{2}'$ C.T.P, con $F_{i}'$ integrable). \par
+	Sea
+	\[ G(x) \coloneq \int_{a}^{x} F'(x) \ dt. \]
+	Entonces, $G$ es absolutamente continua, derivable C.T.P y $G' = F'$ C.T.P (por el TFC - Parte 1). \par
+	Luego, $H \coloneq F - G$ es absolutamente continua (porque es resta de absolutamente continuas) y singular. Por el Lema, $H$ es constante. Es decir, $F(y) - G(y) = H(y) = H(x) = F(x) - G(x) \ \forall a \leq x \leq y \leq b$. Esto implica que
+	\[ F(y) - F(x) = G(y) - G(x) = \int_{x}^{y} F'(t) \ dt. \qedhere \]
+\end{proof}
+\bigskip
+Ambas partes del TFC se pueden combinar para dar:
+
+\begin{theorem}[Fundamental del Cálculo]
+	Sea $F : [a,b] \to \R$ una función. Son equivalentes:
+	\begin{enumerate}[(i)]
+		\item $F$ absolutamente continua;
+
+		\item $\exists f : [a,b] \to \overline{\R}$ integrable tal que 
+		\[ F(x) = F(a) + \int_{a}^{x} f(t) \ dt \quad \forall x \in [a,b]; \]
+
+		\item $F$ es derivable C.T.P, $F'$ es integrable y se cumple
+		\[ F(x) = F(a) + \int_{a}^{x} F'(t) \ dt \quad \forall x \in [a,b]. \]
+	\end{enumerate}
+	Además, si vale (ii), entonces $f = F'$ C.T.P.
+\end{theorem}
+
+\begin{definition}[Espacio $L^{1}$]
+	Dadas $f,g : [a,b] \to \overline{\R}$ medibles, decimos que son equivalentes, y lo notamos $f \sim g$, si $f = g$ C.T.P. La relación $\sim$ es de equivalencia, lo cual nos permite definir
+	\[ L^{1}([a,b]) \coloneq \{[f] \ \big| \ f : [a,b] \to \overline{\R} \text{ integrable Lebesgue}\}. \] 
+\end{definition}
+
+\begin{remark}
+	Si definimos
+	\begin{align*}
+		& D : \AC_{0}([a,b]) \to L^{1}([a,b]) \text{ tal que } F \mapsto F', \\
+		& \mcal{I} : L^{1}([a,b]) \to \AC_{0}([a,b]) \text{ tal que } f \mapsto F(x) \coloneq \int_{a}^{x} f(t) \ dt,
+	\end{align*}
+	donde $\AC_{0}([a,b]) \coloneq \{F : [a,b] \to \R \ \big| \ F \text{ absolutamente continua y } F(a) = 0\}$ entonces, el TFC implica que $D = \mcal{I}^{-1}$.
+\end{remark}

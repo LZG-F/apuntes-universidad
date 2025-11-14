@@ -1,0 +1,89 @@
+\clase{38}{12 de Noviembre}{}
+
+\textbf{Comentario: }
+\begin{itemize}
+	\item Como $\| f \|_{p} = 0 \iff f = 0 \ \mu$-c.t.p ($\implies [f] = [0]$) y $\| \alpha f \|_{p} = | \alpha | \| f \|_{p} \ \forall \alpha \in \C$, hemos probado que $(L^{p}, \| \cdot \|_{p})$ es un espacio normado si $p \in [1, \infty]$.
+
+	\item Si $p \in (0,1),\ \| \cdot \|_{p}$ \textbf{NO} es una norma (falla la D.T.)! Pero, si definimos $d_{p}(f,g) \coloneq (\| f - g \|_{p})^{p}$, entonces $d_{p}$ es una métrica $\forall p \in (0, \infty]$. Por este motivo, los espacios $L^{p}$ con $p \in (0,1)$ no serán de interés.
+\end{itemize}
+
+\begin{pregunta}
+	¿Es $L^{p}$ completo?
+\end{pregunta}
+
+\begin{theorem}[Riesz-Fischer]
+	Si $(X, \mscr{M}, \mu)$ es un espacio de medida completo y $p \in [1, \infty]$, entonces $L^{p}(\mu)$ es un espacio de Banach (y, si $p \in (0,1),\ (L^{p}, d_{p})$ es completo).
+\end{theorem}
+\begin{proof}[Proof ]
+	Sea $(f_{n})_{n\in\N} \subseteq L^{p}(\mu)$ una sucesión de Cauchy. Debemos ver que existe $f \in L^{p}(\mu)$ tal que $\lim_{n \to \infty} \| f_{n} - f \|_{p} = 0$. \par
+	Sea $n_{1} \in \N$ tal que 
+	\[ \| f_{m} - f_{n_{1}} \|_{p} \leq \frac{1}{2} \quad \forall m \geq n_{1}. \]
+	Dado $n_{k} \in \N$ con $k \in \N$, tomamos $n_{k+1} \in \N$ de forma tal que
+	\begin{itemize}
+		\item $n_{k+1} > n_{k}$;
+		
+		\item $\| f_{m} - f_{n_{k+1}} \|_{p} \leq \frac{1}{2^{k+1}} \quad \forall m \geq n_{k+1}$.
+	\end{itemize}
+	Observar que, entonces, $(f_{n_{k}})_{k\in\N}$ es una subsucesión tal que
+	\[ \| f_{n_{k+1}} - f_{n_{k}} \|_{p} \leq \frac{1}{2^{k}} \quad \forall k. \]
+	Sea ahora,
+	\[ g_{N}(x) \coloneq \sum_{k=1}^{N} |f_{n_{k+1}}(x) - f_{n_{k}}(x)| \]
+	y 
+	\[ g(x) \coloneq \lim_{N \to \infty} g_{N}(x) = \sum_{k=1}^{\infty} |f_{n_{k+1}}(x) - f_{n_{k}}(x)|. \]
+	Notar que $g \in L^{p}$. En efecto, $g$ es $\mscr{M}$-medible y:
+	\begin{itemize}
+		\item Si $p = \infty$, tenemos
+		\begin{align*}
+			|g| &= \sum_{k=1}^{\infty} \underbrace{|f_{n_{k+1}} - f_{n_{k}}|}_{\substack{\leq \| f_{n_{k}} - f_{n_{k+1}} \|_{\infty} \\ \mu-\text{c.t.p}}} \\
+			&\leq \sum_{k=1}^{\infty} \| f_{n_{k+1}} - f_{n_{k}} \| < \infty \ \mu\text{-c.t.p}
+		.\end{align*}
+		Luego, $\| g \|_{\infty} \leq \sum_{k=1}^{\infty} \| f_{n_{k+1}} - f_{n_{k}} \|_{\infty} < \infty$ y, así, $g \in L^{\infty}$.
+
+		\item Si $p \in [1, \infty)$, tenemos
+		\begin{align*}
+			\| g \|_{p} &\coloneq \Big( \int_{X} |g|^{p} \ d\mu \Big)^{\frac{1}{p}} \\
+			(\text{monótona}) \ &= \lim_{N \to \infty} \Big( \int_{X} |g_{N}|^{p} \ d\mu \Big)^{\frac{1}{p}} \quad (= \lim_{N \to \infty} \| g_{n} \|_{p}) \\
+			&= \lim_{N \to \infty} \Big{\|} \sum_{k=1}^{N} |f_{n_{k+1}} - f_{n_{k}}| \Big{\|}_{p} \\
+			&\leq \limsup_{N \to \infty} \sum_{k=1}^{N} \| f_{n_{k+1}} - f_{n_{k}} \|_{p} \\
+			&= \sum_{k=1}^{\infty} \| f_{n_{k+1}} - f_{n_{k}} \|_{p} < \infty \
+		\ \checkmark.\end{align*}
+	\end{itemize}
+	En particular, $g$ es finita $\mu$-c.t.p. \par
+	Ahora, como $f_{n_{k}} = f_{n_{1}} + \sum_{j=1}^{k-1} f_{n_{j+1}} - f_{n_{j}}$, tenemos que $(f_{n_{k}})_{k\in\N}$ converge $\mu$-c.t.p, pues la serie de arriba converge absolutamente $\mu$-c.t.p. \par
+	Si llamamos $f(x) \coloneq \liminf_{k \to \infty} f_{n_{k}}(x)$, entonces $f$ es $\mscr{M}$-medible. Ahora, si fijamos $\varepsilon > 0$, existe $N_{\varepsilon} \in \N$ tal que $\| f_{n_{k}} f_{m} \|_{p} < \varepsilon$ si $n_{k}, m \geq N_{\varepsilon}$. En particular,
+	\[ \liminf_{k \to \infty} \| f_{n_{k}} - f_{m} \| \leq \varepsilon. \]
+	De hecho, es un límite $\mu$-c.t.p. Luego, si $p \in [1, \infty]$,
+	\begin{align*}
+		\| f - f_{m} \|_{p} &= \Big( \int_{X} | \lim_{k \to \infty} (f_{n_{k}} - f_{m}) |^{p} \ d\mu \Big)^{\frac{1}{p}} \\
+		&= \Big( \int_{X} \lim_{k \to \infty} |f_{n_{k}} - f_{m}|^{p} \Big)^{\frac{1}{p}} \\
+		&\leq \Big( \underbrace{\liminf_{k \to \infty} \underbrace{\int_{X} |f_{n_{k}} - f_{m}|^{p} \ d\mu}_{(\| f_{n_{k}} - f_{m} \|_{p})^{p}}}_{\leq \varepsilon^{p}} \Big)^{\frac{1}{p}} \leq \varepsilon
+	.\end{align*}
+	En conclusión, $\| f - f_{m} \|_{p} \leq \varepsilon$ si $m \geq N_{\varepsilon}$. \par
+	Como $\varepsilon > 0$ es arbitrario, esto prueba que $\lim_{m \to \infty} \| f - f_{m} \|_{p} = 0$. \par
+	Además 
+	\[ \| f \|_{p} \leq \| f_{m} \|_{p} + \| f - f_{m} \| \leq \| f_{m} \|_{p} + \varepsilon < \infty \]
+	si $m \geq N_{\varepsilon}$.
+	Por último, si $p = \infty$,
+	\begin{align*}
+		| f - f_{m} | &= | \lim_{k \to \infty} f_{n_{k}} - f_{m} | \quad (\mu \text{-c.t.p}) \\
+		(| \cdot | \text{ continuo}) \ &= \lim_{k \to \infty} | f_{n_{k}} - f_{m} | \\
+		&\leq \liminf_{k \to \infty} \| f_{n_{k}} - f_{m} \|_{\infty} \\
+		&\leq \varepsilon \ (\mu\text{-c.t.p}) \text{ si } m \geq N_{\varepsilon}
+	.\end{align*}
+	(Notar que la primera \underline{desigualdad} está dada por $(|f_{n_{k}} - f_{m}| \leq \| f_{n_{k}} - f_{m} \|_{\infty} \ \mu\text{-c.t.p})$). Por lo tanto, $\| f - f_{m} \|_{\infty} \leq \varepsilon$ si $m \geq N_{\varepsilon}$. \par
+	El resto sigue igual.
+\end{proof}
+
+\begin{definition}[convergencia en $L^{p}$]
+	Dado $p \in [1, \infty]$, decimos que $(f_{n})_{n\in\N} \subseteq L^{p}(X, \mscr{M}, \mu)$ converge en $L^{p}$ a $f \in L^{p}(X, \mscr{M}, \mu)$, y lo notamos $f_{n} \stackrel{L^{p}}{\longrightarrow} f$, si $\lim_{n \to \infty} \| f_{n} - f \|_{p} = 0$.
+\end{definition}
+
+\begin{property}~
+	\begin{itemize}
+		\item $f_{n} \stackrel{L^{p}}{\longrightarrow} f \implies \| f_{n} \|_{p} \longrightarrow \| f \|_{p} \not\implies f_{n} \stackrel{L^{p}}{\longrightarrow} f$.
+
+		\item $f_{n} \stackrel{L^{p}}{\longrightarrow} f \implies f_{n} \stackrel{\mu}{\longrightarrow} f \not\implies f_{n} \stackrel{L^{p}}{\longrightarrow} f$.
+
+		\item $f_{n} \stackrel{L^{p}}{\longrightarrow} f \stackrel{p \neq \infty}{\implies} f_{n} \longrightarrow f \ \mu\text{-c.t.p} \not\implies f_{n} \stackrel{L^{p}}{\longrightarrow} f$.
+	\end{itemize}
+\end{property}

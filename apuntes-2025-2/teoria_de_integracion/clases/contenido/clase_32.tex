@@ -1,0 +1,71 @@
+\clase{32}{27 de Octubre}{}
+
+\begin{proof}[Proof ][continuación último teorema clase pasada]
+	Si $\pi_{N} \coloneq \{y_{0}, \dots, y_{N}\}$ es la partición de $[a,b]$ en $N$ partes iguales entonces, si $N$ es suficientemente grande, $V_{y_{j-1}}^{y_{j}} (f) \leq 1 \ \forall j=1,\dots,N$. Ahora, si $\pi$ es una partición cualquiera, entonces
+	\begin{align*}
+		V_{a}^{b}(f;\pi) \leq V_{a}^{b}(f;\pi \cup \pi_{N}) &\coloneq \sum_{I \in \pi \cup \pi_{N}}^{} |\Delta f(I)| \\
+		&= \sum_{j=1}^{N} \underbrace{\sum_{I \in [y_{j-1},y_{j}]}^{} |\Delta f(I)|}_{V_{y_{j-1}}^{y_{j}}(f;\pi \cup \pi_{N} \cap [y_{j-1},y_{j}])} \\
+		&\leq \sum_{j=1}^{N} V_{y_{j-1}}^{y_{j}}(f) \\
+		&\leq N.
+	\end{align*}
+	Tomando supremo en $\pi$, resulta $V_{a}^{b} (f) \leq N < \infty$ y, así, $f$ tiene VA.
+\end{proof}
+
+\begin{corollary}
+	Si $f : [a,b] \to \R$ es integrable, entonces su integral indefinida $F(x) \coloneq \int_{a}^{x} f(t) \ dt \ (x \in [a,b])$ es resta de 2 funciones monótonas crecientes:
+	\[ F(x) = \int_{a}^{x} f^{+}(t) \ dt - \int_{a}^{x} f^{-}(t) \ dt. \]
+\end{corollary}
+
+\begin{theorem}[Lebsegue-Young]
+	Si $g : [a,b] \to \R$ es monótona, entonces es derivable CTP en $[a,b]$.
+\end{theorem}
+
+\begin{definition}[Cubrimiento de Vitali]
+	Sean $E \subseteq \R$ y $\mcal{G}$ una colección de intervalos de $\R$ de longitud positiva. Decimos que $\mcal{G}$ es un cubrimiento de Vitali de $E$ si, dados $\varepsilon > 0$ y $x \in E$, existe $I \in \mcal{G}$ tal que $x \in I$ y $|I| < \varepsilon{}$.
+\end{definition}
+
+\begin{lemma}[Cubrimiento de Vitali]
+	Sean $E \subseteq \R$ con $|E|_{e} < \infty$ y $\mcal{G}$ un cubrimiento de Vitali de $E$. Entonces, existen $(I_{n})_{n\in\N} \subseteq \mcal{G}$ disjuntos tales que $\big|E \setminus \textbigcupd_{n\in\N}\big|_{e} = 0$. En particular, dado $\varepsilon > 0$, existen $I_{1},\dots,I_{N} \in \mcal{G}$ disjuntos tal que $\big| E \setminus \textbigcupd_{i=1}^{N} I_{i} \big|_{e} < \varepsilon$.
+\end{lemma}
+\begin{proof}[Proof Other Information]
+	Teorema 4.4.5 del Rana.
+\end{proof}
+
+\begin{definition}
+	Dada $g : [a,b] \to \R$, definimos
+	\begin{align*}
+		\overline{D}_{g}(x) &\coloneq \lim_{h \to 0^{+}} \Bigg( \sup_{\substack{0 \leq |t| \leq h \\ x + t \in [a,b]}} \frac{g(x+t) - g(x)}{t} \Bigg) \\
+		\underline{D}_{g}(x) &\coloneq \lim_{h \to 0^{+}} \Bigg( \inf_{\substack{0 \leq |t| \leq h \\ x + t \in [a,b]}} \frac{g(x+t) - g(x)}{t} \Bigg)
+	\end{align*}
+\end{definition}
+
+\begin{remark}
+	A priori, $\overline{D}_{g}$ y $\underline{D}_{g}$ toman valores en $\overline{\R}$ y no sabemos que sean medibles.
+\end{remark}
+
+\begin{lemma}
+	Sea $g : [a,b] \to \R$ monótona creciente. Entonces, dado $\alpha > 0$,
+	\[ | \{x \ : \ \overline{D}_{g}(x) > \alpha\} |_{e} \leq \frac{1}{\alpha}(g(b) - g(a)). \] 
+\end{lemma}
+\begin{proof}[Proof Other Information]
+	Sea $E \coloneq \{x \in (a,b) \ : \ \overline{D}_{g}(x) > \alpha\}$. Definamos $\mcal{G}$ como la colección de intervalos $[c,d] \subseteq (a,b)$ tal que $g(d) - g(c) > \alpha (d - c)$. Notar que $\mcal{G}$ es un cubrimiento de Vitali de $E$. Luego, dado $\varepsilon > 0$, existen intervalos $([c_{i}, d_{i}])_{i=1,\dots,N}$ en $\mcal{G}$ disjuntos tales que $\big| E \setminus \textbigcupd_{i=1}^{N} [c_{i},d_{i}] \big|_{e} < \varepsilon$. Luego, por $\sigma$-subaditividad,
+	\begin{align*}
+		|E|_e &\leq \Bigg| \bigcupd_{i=1}^{N} [c_{i},d_{i}] \Bigg|_{e} + \Bigg| E \setminus \bigcupd_{i=1}^{N} [c_{i},d_{i}] \Bigg|_{e} \\
+		&\leq \sum_{i=1}^{N} (d_{i} - c_{i}) + \varepsilon \\
+		&\leq \frac{1}{\alpha} \sum_{i=1}^{N} \underbrace{g(d_{i}) - g(c_{i})}_{\leq V_{a}^{b}(g)} + \varepsilon \\
+		&\leq \frac{1}{\alpha}(g(b) - g(a)) + \varepsilon.
+	\end{align*}
+	Tomando $\varepsilon \longrightarrow{} 0$, concluimos el resultado.
+\end{proof}
+
+\begin{proof}[Proof Other Information][Lebsegue-Young]
+	Sea $E \coloneq \{x \in (a,b) \ : \ \overline{D}_{g}(x) > \underline{D}_{g}(x)\}$. Notar que si definimos 
+	\[ E_{\alpha,\beta} \coloneq \{x \in (a,b) \ : \ \overline{D}_{g}(x) > \alpha > \beta > \underline{D}_{g}(x)\}, \]
+	entonces
+	\[ E = \bigcup_{\substack{\alpha > \beta \\ \alpha,\beta \in \Q}} E_{\alpha,\beta}. \]
+	En particular, bastará con ver que $|E_{\alpha,\beta}| = 0$ para concluir que $|E| = 0$.\par
+	Como $|E_{\alpha,\beta}|_{e} \leq b - a < \infty$, dado $\varepsilon > 0$, podemos tomar un abierto $H$ tal que $E_{\alpha,\beta} \subseteq H$ y $|H| \leq |E_{\alpha,\beta}|_{e} + \varepsilon$.\par
+	Si $x \in E_{\alpha,\beta}$, entonces $\underline{D}_{g}(x) < \beta$, con lo cual para cada $\varepsilon' > 0$, existe $t \in \R$ con $|t| < \varepsilon'$ tal que $[x,x+t] \subseteq H$ y $|g(x + t) - g(x)| < \beta |t|$. En particular, 
+	\[ \mcal{G} \coloneq \{[c,d] \subseteq (a,b) \ : \ [c,d] \subseteq H \text{ y } g(d) - g(c) < \beta(d-c)\} \]
+	es un cubrimiento de Vitali de $E_{\alpha,\beta}$.
+\end{proof}

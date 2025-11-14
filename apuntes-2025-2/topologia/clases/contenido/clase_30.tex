@@ -1,0 +1,86 @@
+\clase{30}{20 de Octubre}{}
+
+\begin{definition}[acción propiamente discontinua]
+	$\Gamma$ grupo, $X$ espacio topológico, $\Gamma \curvearrowright X$ acción continua. Esta acción es propiamente discontinua si $\forall x \in X$, existe $U$ vecindad de $x$ tal que $U \cap (g \cdot U) = \varnothing \ \forall g \neq 1$.
+\end{definition}
+
+\begin{eg}
+	$\Z^n \curvearrowright{} \R^n$ es propiamente discontinua.
+\end{eg}
+
+\begin{remark}
+	$\Gamma \curvearrowright{} X$ propiamente discontinua $\implies$ Acción es libre (i.e. $x \in X,\ g \neq 1$ en $\Gamma \implies g \cdot x \neq x$).
+\end{remark}
+
+\begin{eg}~
+	\begin{enumerate}
+		\item $\Q \curvearrowright{} \R$ es libre, pero no es propiamente discontinua.
+		
+		\item $\Z / 2\Z = \{1,-1\} \curvearrowright{} \R^{n+1}$ tal que $1 \cdot v = v$ y $(-1) \cdot v = -v$ no es libre ($(-1)) \cdot 0 = 0$). Pero acción restringida $\Z / 2\Z \curvearrowright{} S^n$ es libre $\leadsto \R P^n = S^n / (\Z / 2\Z)$ espacio proyectivo.
+
+		\item $\Gamma = \Z / p\Z = \{0,\dots,p-1\}  \mod p,\ q$ coprimo con $p \rightarrow \Gamma \curvearrowright{} S^3 \subset \C^2 \ (= \R^4)$ tal que
+		\[ (n \mod p) \cdot (z,w) = \left( e^{\frac{2\pi i n}{p}} z, e^{\frac{2\pi inq}{p}} w \right). \]
+		Esta acción es libre. $\rightarrow L(p,q) = S^3 / (\Z / p\Z)$ espacio de Lens.
+	\end{enumerate}
+\end{eg}
+
+\begin{theorem}[A]
+	$M \ n$-variedad, $\Gamma \curvearrowright{} M$ acción continua y propiamente discontinua con $M / \Gamma$ Hausdorff $\implies M / \Gamma$ es $n$-variedad.
+\end{theorem}
+
+\begin{theorem}[B]
+	$M \ n$-variedad, $\Gamma$ grupo finito con acción libre $\Gamma \curvearrowright{} M \implies$ Acción es propiamente discontinua y $M / \Gamma$ Hausdorff (y por lo tanto $M / \Gamma \ n$-variedad).
+\end{theorem}
+
+\begin{corollary}~
+	\begin{enumerate}
+		\item $\R P^n$ son $n$-variedades (compactas).
+
+		\item $L(p,q)$ son $3$-variedades (compactas).
+	\end{enumerate}
+\end{corollary}
+
+\begin{recordar}
+	$\Gamma \curvearrowright{} X$ acción continua, $p : X \to X / \Gamma$.
+	\begin{enumerate}
+		\item $p$ es abierto;
+
+		\item $\mcal{B}$ base de $X \implies \{p(B) \ \big| \ B \in \mcal{B}\}$ es base de $X / \Gamma$ (y, por lo tanto, $X$ 2do contable $\implies X / \Gamma$ 2do contable) (Ejercicio).
+	\end{enumerate}
+\end{recordar}
+
+\begin{proof}[Proof ][Teorema A]
+	$M \ n$-variedad, $\Gamma \curvearrowright{} M$ propiamente discontinua, continua. Sabemos que $M / \Gamma$ (hipótesis). Además, $M$ 2do contable $\implies M / \Gamma$ 2do contable (recuerdo 2.). Falta ver que: dado $\overline{x} = p(x)$ en $M / \Gamma$, encontrar una vecindad de $\overline{x}$ homeomorfa a un abierto de $\R^n$. En efecto, $\Gamma \curvearrowright{} M$ propiamente discontinua $\implies \exists U$ vecindad de $x$ tal que $U \cap (g \cdot U) \stackrel{*}{=} \varnothing \ \forall g \in \Gamma,\ g \neq 1$. Luego, $p$ mapa abierto $\implies p(U)$ es vecindad de $\overline{x}$. Así, $* \implies p|_{U} : U \to p(U)$ es intyectivo \big[ $y_{1},y_{2} \in U, p(y_{1}) = p(y_{2}) \implies y_{2} = g \cdot y_{1}$ para $g \in \Gamma \implies y_{2} \in U \cap (g \cdot U) \implies g = 1$ y $y_{1} = y_{2}$ \big]. \par
+	Ojo: $U$ no es necesariamente homeomorfo a un abierto de $\R^n$, pero si $V$ vecindad de $x$ homeomorfa a abierto de $\R^n \implies U \cap V$ es vecindad de $x$, homeomorfa a abierto de $\R^n$. \par
+	Por último, debemos verificar que $p|_{U \cap V} : U \cap V \to p(U \cap V)$ es homeomorfismo. Como $p(U \cap V)$ es vecindad de $\overline{x}$ homeomorfa a $U \cap V$, luego a un abierto de $\R$. Luego, $p|_{U \cap V}$ es homeomorfismo porque es
+	\begin{itemize}
+		\item continuo,
+
+		\item biyectivo,
+
+		\item abierto (i.e. $(p|_{U \cap V})^{-1}$ continua) \qedhere
+	\end{itemize}
+	\textbf{Aclaración:} $U \cap V$ homeomorfo a abierto de $\R^n$. En efecto, $\exists  \phi : V \to \widehat{V} \subset \R^n$ homeomorfismo, $\widehat{V}$ abierto. Luego, $U \cap V$ es abierto de $V \implies \phi|_{U \cap V} : U \cap V \to \phi(U \cap V)$ homeomorfismo. Luego, $\phi(U \cap V)$ abierto en $\phi(V) = \widehat{V}$ abierto de $\R^n \implies \phi(U \cap V)$ abierto en $\R^n$.
+\end{proof}
+
+\begin{recordar}
+	$M / \Gamma$ Hausdorff ssi
+	\[ \Delta = \{(x, g \cdot x) \ \big| \ x \in M,\ g \in \Gamma\} \]
+	cerrado en $M \times M$. Notar que
+	\begin{align*}
+		\{(x, g \cdot x) \ \big| \ x \in M,\ g \in \Gamma\} &= \bigcup_{g \in \Gamma} \{(x, g \cdot x) \ \big| \ x \in M\} \\
+		&= \underbrace{\bigcup_{g \in \Gamma}}_{\text{finito}} L_{g}(\underbrace{\{(x,x) \ \big| \ x \in M\}}_{\text{cerrado!}})
+	.\end{align*}
+	con $L_{g} : M \times M \to M \times M$ tal que $(x,y) \mapsto (x, g \cdot y)$ homeomorfismos. $\Delta$ cerrado por que $\{(x,x) \in M \times M\}$ cerrado en $M \times M$ (ejercicio: equivalente a $M$ Hausdorff). 
+\end{recordar}
+
+\begin{proof}[Proof Other Information][Teorema B]
+	$M \ n$-variedad, $\Gamma \curvearrowright{} M$ acción libre con $\Gamma$ finito. Queremos:
+	\begin{enumerate}[i)]
+		\item $M / \Gamma$ Hausdorff;
+
+		\item $\Gamma \curvearrowright{} M$ propiamente discontinua.
+	\end{enumerate}
+	Observar que en el recuerdo se probó que $\Gamma \curvearrowright{} X$ acción por homeomorfismos y $\Gamma$ finito, $X$ Hausdorff $\implies X / \Gamma$ Hausdorff. \par
+	Luego, queremos probar que $\Gamma \curvearrowright{} M$ propiamente discontinua. Dado $x \in M$, queremos $U$ vecindad tal que $U \cap (g \cdot U) = \varnothing$ si $g \neq 1$. En efecto, si $\Gamma = \{1, g_{1}, \dots, g_{r}\} \implies \{x, g_{1} \cdot x,\dots, g_{r} \cdot x\}$ todos distintos (pues es acción libre)). Luego, $M$ Hausdorff $\implies g \neq 1 \implies \exists U_{g}, V_{g}$ abiertos disjuntos con $x \in U_{g},\ g \cdot x \in V_{g}$. Luego, $U_{g_{1}},\dots,U_{g_{r}}, g_{1}^{-1} V_{g_{1}},\dots, g_{r}^{-1} V_{g_{r}}$ vecindades de $x$. Sea $U = \bigcap_{i=1}^{r}(U_{g_{i}} \cap g_{i}^{-1} V_{g_{i}})$ vecindad de $x$. Falta ver que $U_{g_{i}} \cap V_{g_{i}} = \varnothing \ \forall i = 1,\dots,r \implies U \cap g \cdot U = \varnothing \ \forall g \neq 1$ en $\Gamma$.
+\end{proof}

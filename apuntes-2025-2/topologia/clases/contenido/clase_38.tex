@@ -1,0 +1,67 @@
+\clase{38}{10 de Noviembre}{}
+
+\section{$\pi_{1}(S^1)$ (54, 53)}
+
+\begin{property}[mágica]~
+	\begin{enumerate}
+		\item Si $\gamma$ loop en $S^1$ con base $x_{0}$, $\exists !$ camino $\widetilde{\gamma}$ en $\R$ que comienza en $0$ y tal que $\gamma = p \circ \widetilde{\gamma}$. 
+
+		\item $\gamma_{1} \sim_{p} \gamma_{2} \implies \widetilde{\gamma_{1}}(1) = \widetilde{\gamma_{2}}(1)$.
+	\end{enumerate}
+\end{property}
+
+\begin{note}
+	$\widetilde{\gamma}$ se llama levantamiento de $\gamma$ por $p$.
+\end{note}
+
+\begin{eg}
+	$\widetilde{\omega}_{1}(s) = s$ ó $\widetilde{\omega}_{-2}(s) = -2s$.
+\end{eg}
+
+\begin{remark}
+	Si $\gamma$ loop en $S^1$ con base $x_{0}$, entonces $\widetilde{\gamma}(1) \in \Z$.
+\end{remark}
+
+\begin{proof}[Proof Other Information][último Teorema clase pasada]
+	(Sobreyectivo): Todo $\gamma \in \Omega(S^1, x_{0})$ es homotópico por caminos a algún $\omega_{n}$. \par
+	\medskip
+	(Inyectivo): $\omega_{n} \chi_{p} e_{x_{0}}$ si $n \neq 0$. \par
+	\medskip
+	Idea: Considerar $p : \R \to S^1 \ (= \R / \Z)$ tal que $s \mapsto e^{2\pi i s}$. Notar que $p^{-1}(\{1\}) = \Z$. Por propiedad, existe $\widetilde{\gamma}$ tal que $\gamma = p \circ \widetilde{\gamma}$. \par
+	Tenemos un mapa: $\psi : \pi_{1}(S^1, x_{0}) \to \Z$ tal que $[\gamma] \mapsto \widetilde{\gamma}(1)$ y este mapa es un isomorfismo de grupos!
+\end{proof}
+
+\begin{theorem}
+	$\psi$ es un isomorfismo de grupos.
+\end{theorem}
+\begin{proof}[Proof ]
+	\begin{enumerate}
+		\item ($\psi$ es homomorfimo): Queremos ver que $\psi([\gamma_{1}] * [\gamma_{2}]) = \psi([\gamma_{1}]) + \psi([\gamma_{2}])$. Esto es lo mismo a ver que $\widetilde{\gamma_{1} * \gamma_{2}}(1) = \widetilde{\gamma_{1}}(1) + \widetilde{\gamma_{2}}(1)$. \par
+		Notar que $\widetilde{\gamma_{1} * \gamma_{2}}\big(\frac{1}{2}\big) \in \Z$. Además, notar que (para $0 \leq s \leq 1$):
+		\[ p\Big(\widetilde{\gamma_{1} * \gamma_{2}}\Big(\frac{s}{2}\Big)\Big) = (\gamma_{1} * \gamma_{2})\Big(\frac{s}{2}\Big) = \gamma_{1}(s). \]
+		Por unicidad del levantamiento, $\widetilde{\gamma_{1}}(s) = \widetilde{\gamma_{1} * \gamma_{2}}\big(\frac{s}{2}\big)$ es levantamiento de $\gamma_{1}$ (notar que $\gamma_{1}$ comienza en 0). En conclusión, 
+		\[ \psi([\gamma_{1}]) = \widetilde{\gamma_{1}}(1) = \widetilde{\gamma_{1} * \gamma_{2}} \big(\frac{1}{2}\big). \]
+		Queremos usar $s \mapsto \widetilde{\gamma_{1} * \gamma_{2}} \big(\frac{s}{2} + 1 \big)$ para construir $\widetilde{\gamma_{2}}$. \par
+		Definimos
+		\[ \widetilde{\gamma_{2}}(s) = \widetilde{\gamma_{1} * \gamma_{2}} \Big(\frac{s}{2} + \frac{1}{2}\Big) - \widetilde{\gamma_{1}}(1). \]
+		Esto es camino que parte en
+		\[ \widetilde{\gamma_{2}}(0) = \widetilde{\gamma_{1} * \gamma_{2}} \Big(\frac{1}{2}\Big) - \widetilde{\gamma_{1}}(1) = 0. \]
+		Queremos comprobar $\gamma_{2}(s) = (p \circ \widetilde{\gamma_{2}})(s)$. En efecto,
+		\begin{align*}
+			p(\widetilde{\gamma_{2}}(s)) &= p\Big(\widetilde{\gamma_{1} * \gamma_{2}} \Big(\frac{s}{2} + \frac{1}{2}\Big) - \widetilde{\gamma_{1}}(1)\Big) \\
+			&= p \Big( \widetilde{\gamma_{1} * \gamma_{2}} \Big( \frac{s}{2} + \frac{1}{2} \Big) \Big) \\
+			&= \gamma_{1} * \gamma_{2} \Big(\frac{s}{2} + \frac{1}{2} \Big) \\
+			&= \gamma_{2}(s)
+		.\end{align*}
+		Por lo tanto, $\widetilde{\gamma_{2}}$ es levantamiento de $\gamma_{2}$. En conclusión, 
+		\[ \psi([\gamma_{2}]) = \widetilde{\gamma_{2}}(1) = \widetilde{\gamma_{1} * \gamma_{2}}(1) - \widetilde{\gamma_{1}}(1). \]
+		Combinando ambas conclusiones, tenemos
+		\[ \widetilde{\gamma_{1} * \gamma_{2}}(1) = \widetilde{\gamma_{1}}(1) + \widetilde{\gamma_{2}}(1). \]
+
+		\item ($\psi$ es inyectivo): Queremos ver que: si $\widetilde{\gamma}(1) = 0 \implies \gamma \sim_{p} e_{x_{0}}$. \par
+		En $\R$, tenemos que $\widetilde{\gamma} : [0,1] \to \R$ es un loop. Otra forma de decirlo es que tenemos $\widetilde{H} : [0,1] \times [0,1] \to \R$ tal que $(s,t) \mapsto t \widetilde{\gamma}(s)$ homotopía de caminos de $e_{0}$ a $\widetilde{\gamma}$ (prueba de $\R$ es simplement conexo). \par
+		Definimos $H(s,t) = p(\widetilde{H}(s,t))$ homotopía de aminos de $p \circ e_{0} = e_{x_{0}}$ a $p \circ \widetilde{\gamma} = \gamma$. Por lo tanto, $\gamma \sim_{p} e_{x_{0}}$.
+
+		\item ($\psi$ sobreyectivo): Si $n \in \Z$ cualquiera, tenemos que $\widetilde{\omega}_{n}(s) = ns \implies n = \widetilde{\omega}_{n}(1) = \psi([\omega_{n}])$.
+	\end{enumerate}
+\end{proof}

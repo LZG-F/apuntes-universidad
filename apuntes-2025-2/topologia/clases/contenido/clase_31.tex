@@ -1,0 +1,36 @@
+\clase{31}{22 de Octubre}{}
+
+\begin{theorem}[A]
+	$M$ $n$-variedad compacta $\implies \exists$ incrustación $f : M \to \R^N$ para algún $N$ ($f$ inyección continua y $f : M \to f(M)$ es homeomorfismo).
+\end{theorem}
+
+\begin{definition}[Soporte]
+	$X$ espacio topológico, $f : X \to \R$. El soporte de $f$ es
+	\[ \supp f = \overline{\{x \in X \ \big| \ |f(x)| \neq 0\}}. \]
+\end{definition}
+
+\begin{definition}[partición de la unidad]
+	$X$ espacio top., $\mcal{U} = \{U_{1},\dots,U_{n}\}$ cubriente abierto finito. Una partición de la unidad dominada por $\mcal{U}$ es una colección de funciones continuas $\phi_{1},\dots,\phi_{n} : X \to [0,1]$ tales que
+	\begin{enumerate}
+		\item $\supp \phi_{i} \subset U_{i} \quad \forall i = 1,\dots,n$;
+
+		\item $\sum_{i=1}^{n} \phi_{i}(x) = 1 \quad \forall x \in X$.
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}[B]
+	$X$ normal, $\mcal{U}$ cubriente abierto finito de $X \implies \exists$ partición de unidad dominada por $\mcal{U}$.
+\end{theorem}
+
+\begin{prop}
+	$M$ es variedad topológica $\implies M$ es normal.
+\end{prop}
+\begin{proof}[Proof Other Information]
+	Recordar que Regular + 2do contable $\implies$ Normal. Luego, basta con probar que $M$ es regular. También, recordar que si $Y$ localmente compacto Hausdorff $\implies Y \subset Y^{*}$ compactificación de un punto tal que $Y^{*}$ compacto y Hausdorff. Luego, basta probar que $M$ es localmente compacto. Esto tiene dos caminos válidos:
+	\begin{enumerate}
+		\item $M \subset M^{*}$ compacto Hausdorff $\implies M^{*}$ Normal $\implies M^{*}$ regular $\implies M$ regular.
+
+		\item $M$ localmente compacto Hausdorff $\implies \forall x \in M,\ \forall U$ vecindad de $x,\ \exists V$ vecindad de $x$ con $\overline{V} \subset U$ y $\overline{V}$ compacto.
+	\end{enumerate}
+	Para ello, notar que $M$ es localmente compacto porque es localmente $\R^n$. Si $x \in M,\ U$ vecindad de $x \implies \exists \widehat{U}$ vecindad de $x$ con $\widehat{U} \subset U$ y $\widehat{U}$ homeomorfa a abierto en $\R^n$. Luego, en $\widehat{U}$ hay vecindad $V$ de $x$ con $\overline{V} \subset \widehat{U} \subset U$ y $\overline{V}$ compacto ($\R^n$ es localmente compacto Haudorff).
+\end{proof}

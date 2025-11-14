@@ -1,0 +1,118 @@
+\clase{29}{20 de Octubre}{}
+
+\begin{proof}[Proof ][Principio de Cavalieri]
+	Debíamos ver que $\mscr{C} = \{E \in \mscr{M} \times \Sigma \ : \ E_{x} \in \Sigma \ \forall x\}$ es una $\sigma$-álgebra que contiene a $\mcal{R}$.
+	\begin{enumerate}[a)]
+		\item ($\mcal{R} \subseteq \mscr{C}$): ya lo vimos!
+
+		\item ($\mscr{C} \ \sigma$-álgebra):
+		\begin{itemize}
+			\item $X \times Y \in \mscr{C}$ pues $X \times Y \in \mcal{R} \subseteq \mscr{C}$;
+
+			\item $E \in \mscr{C},\ x \in X \implies (E^{c})_{x} = (E_{x})^{c} \in \Sigma$;
+
+			\item $(E_{n})_{n\in\N} \subseteq \mscr{C},\ x \in X \implies (\bigcup_{n\in\N})_{x} = \bigcup_{n\in\N} (E_{n})_{x} \in \Sigma$.
+		\end{itemize}
+		Por minimalidad, $\mscr{M} \times \Sigma = \sigma(\mcal{R}) \subseteq \mscr{C}$.
+		
+		\item (ii + iii) Suponemos que $\mu$ y $\nu$ son finitas (el caso general se deduce de éste, mediante el argumento de siempre). Consideremos la clase
+		\[ \mscr{L} \coloneq \left\{E \in \mscr{M} \times \Sigma \ : \ \begin{array}{l}
+			g_{E}(x) \coloneq \nu(E_{x}) \text{ es } \mscr{M} \text{-medible (ii)} \\
+			\mu \times \nu(E) = \int_{X} g_{E}(x) \ d\mu(x) \text{ (iii)}
+		\end{array} \right\}
+		\]
+		Queremos ver que $\mscr{M} \times \Sigma \subset \mscr{L}$. Para ello, mostraremos que $\mscr{L}$ es un $\lambda$-sistema que contiene a $\mcal{R}$. Como $\mcal{R}$ es un $\pi$-sistema por ser semiálgebra, por Dynkin obtenemos que $\mscr{M} \times \Sigma = \sigma(\mcal{R}) \subseteq \mscr{L}$.
+		\begin{itemize}
+			\item ($\mcal{R} \subseteq \mscr{L}$): Si $E = A \times B \in \mscr{L}$, entonces
+			\[ \begin{cases}
+				g_{E}(x) = \nu(B) \chi_{A}(x) \text{ es } \mscr{M} \text{-medible, pues } A \in \mscr{M}. \checkmark{} \\
+				\mu \times \nu(E) = \mu(A) \nu(B) = \int_{X} g_{E}(x) \ d\mu(x). \ \checkmark{}
+			\end{cases} \]
+
+			\item ($\mscr{L} \ \lambda$-sistema):
+			\begin{itemize}
+				\item $X \times Y \in \mscr{L}$ pues $X \times Y \in \mcal{R} \subseteq \mscr{L}$.
+
+				\item $(E_{n})_{n\in\N} \subseteq \mscr{L}$ disjuntos $\implies \textbigcupd_{n\in\N} E_{n} \in \mscr{L}$. En efecto,
+				\begin{align*} 
+					g_{\textbigcupd_{n\in\N} E_{n}}(x) &= \nu\left(\left(\bigcupd_{n\in\N} E_{n}\right)_{x}\right) \\
+					&= \nu\left( \bigcupd_{n\in\N} (E_{n})_{x} \right) \\
+					&= \sum_{n\in\N}^{} \nu((E_{n})_{x}) \\
+					&= \sum_{n\in\N}^{} g_{E_{n}}(x)
+				\end{align*}
+				es $\mscr{M}$-medible por ser límite de las sumas parciales (que son $\mscr{M}$-medibles)
+				\begin{align*}
+					\mu \times \nu \left( \bigcupd_{n\in\N} E_{n} \right) &= \sum_{n\in\N}^{} \mu \times \nu (E_{n}) \\
+					&= \sum_{n\in\N}^{} \int_{X} g_{E_{n}} \ d\mu \\
+					&= \int_{X} \left( \sum_{n\in\N}^{} g_{E_{n}} \right) \ d\mu \\
+					&= \int_{X} g_{\textbigcupd_{n\in\N} E_{n}} \ d\mu. \ \checkmark{}
+				\end{align*}
+
+				\item ($E \in \mscr{L} \implies E^{c} \in \mscr{L}$): En efecto,
+				\begin{align*}
+					g_{E^{c}}(x) = \nu((E^{c})_{x}) &= \nu((E_{x})^{x}) \\
+					&= \nu(Y) - \nu(E_{x}) \\
+					&= g_{X \times Y}(x) - g_{E}(x)
+				\end{align*}
+				es $\mscr{M}$-medible.
+				\begin{align*}
+					\mu \times \nu(E^{c}) &= \mu \times \nu(X \times Y) - \mu \times \nu(E) \\
+					&= \int_{X} g_{X \times Y} \ d\mu - \int_{X} g_{E} \ d\mu \\
+					&= \int_{X \times Y} \underbrace{(g_{X \times Y} - g_{E})}_{g_{E^{c}}} \ d\mu
+				.\end{align*}
+			\end{itemize}
+		\end{itemize}
+	\end{enumerate}
+\end{proof}
+
+\begin{theorem}[Fubini]
+	Si $(X, \mscr{M}, \mu),\ (Y, \Sigma, \nu)$ son espacios de medida $\sigma$-finita y $f : X \times Y \to \overline{\R}$ es $(\mscr{M} \times \Sigma)$-medible y débil $(\mu \times \nu)$-integrable, entonces:
+	\begin{enumerate}[i)]
+		\item $y \mapsto f(x,y)$ es $\Sigma$-medible $\forall x \in X$ y débil $\nu$-integrable $\mu$-CTP.
+		
+		\item $x \mapsto \int_{Y} f(x,y) \ d\nu(y)$ es $\mscr{M}$-medible (extiendo por $0$ donde no se puede integrar) y débil $\mu$-integrable.
+
+		\item $\int_{X}( \int_{Y} f(x,y) \ d\nu(y) ) \ d\mu(x) = \int_{X \times Y} f(x,y) \ d(\mu \times \nu)(x,y)$.
+	\end{enumerate}
+	Además,
+	\begin{enumerate}
+		\item Si $f \geq 0$ entonces la débil $\nu$-integrabilidad en (i) es en TODO punto.
+
+		\item Si $f$ es $(\mu \times \nu)$-integrable entonces la integrabilidad débil se puede reemplazar por integrabilidad en (i), (ii).
+
+		\item Valen las mismas afirmaciones intercambiando el rol de $x$ e $y$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Lo hacemos en 4 pasos:
+	\begin{enumerate}
+		\item Si $f = \chi_{E}$ con $E \in \mscr{M} \times \Sigma$, el resultado se sigue del principio de Cavalieri (y la débil integrabilidad en (i) es en TODO punto).
+
+		\item Si $f$ es simple no negativa, el resultado se sigue de (i) por linealidad.
+
+		\item Si $f$ es no negativa, tomamos $(\varphi_{n})_{n\in\N}$ simples tales que $0 \leq \varphi_{n} \nearrow f$. Entonces, si dada $g : X \times Y \to \overline{\R}$ y $x \in X$, definimos $g_{x}(y) \coloneq g(x,y)$, entonces:
+		\begin{itemize}
+			\item $0 \leq (\varphi_{n})_{x} \nearrow f_{x}$ y, por (2), $f_{x}$ resulta $\Sigma$-medible. Como $f_{x} \geq 0$, en particular, es débil $\nu$-integrable ($\forall x \in X$).
+
+			\item Por Convergencia Monótona,
+			\[ 0 \leq h_{n}(x) \coloneq \int_{Y} (\varphi_{n})_{x} \ d\nu(y) \nearrow \int_{Y} f_{x} \ d\nu(y) \coloneq h_{f}(x). \]
+			En particular, $h_{f}$ es $\mscr{M}$-medible (por ser límite de medibles) y, al ser $h \geq 0$, es también débil $\mu$-integrable.
+		\end{itemize}
+		(iii) Por convergencia Monótona de nuevo,
+		\begin{align*}
+			\int_{X} \left( \int_{Y} f(x,y) \ f\nu(y) \right) \ d\mu(x) &= \int_{X} h_{f}(x) \ d\mu(x) \\
+			(\text{Conv. Mon.}) \ &= \lim_{n \to \infty} \int_{X} h_{n}(x) \ d\mu(x) \\
+			(2) \ &= \lim_{n \to \infty} \int_{X \times Y} \varphi_{n}(x,y) \ d(\mu \times \nu)(x,y) \\
+			(\text{Conv. Mon.}) \ &= \int_{X \times Y} f(x,y) \ d(\mu \times \nu)(x,y)
+		\end{align*}
+
+		\item Si $f$ cambia de signo, se obtiene el resultado a partir de $f^{+}$ y $f^{-}$ utilizando el paso (3). Lo único que hay que verificar es que $f_{x}$ y $h_{f}$ son débilmente integrables si $f$ lo es. Para ello, supongamos que $\int_{X \times Y} f^{+} \ d(\mu \times \nu) < \infty$ (el otro caso es análogo). Luego, por el paso (3), $\int_{X} ( \int_{Y} (f^{+})_{x} \ d\nu) \ d\mu < \infty \ (*)$. En particular, $\int_{Y} (f^{+})_{x} \ d\nu(y) < \infty$ para $\mu$-casi todo $x$. Esto implica que:
+		\begin{enumerate}[a)]
+			\item $f_{x} = (f^{+})_{x} - (f^{-})_{x}$ es $\mscr{M}$-medible $\forall x \in X$, y es débil $\nu$-integrable para $\mu$-casi todo $x$, pues $(f_{x})^{+} = (f^{+})_{x}$.
+			
+			\item $h(x) = \int_{X}(f^{+})_{x} - \int_{Y}(f^{-})_{x}$ está bien definida $\mu$-CTP. Además, es $\mscr{M}$-medible (si la extendemos por $0$ deonde no está bien definida) por ser medibles.
+
+			\item $\int_{X} h_{f}^{+}(x) \ d\mu(x) \leq \int_{X}(\int_{Y}(f^{+})_{x}(y) \ d\nu(y)) \ d\mu(y) < \infty$ por $(*)$ y luego $h_{f}$ es débil $\mu$-integrable.
+		\end{enumerate}
+	\end{enumerate}
+\end{proof}

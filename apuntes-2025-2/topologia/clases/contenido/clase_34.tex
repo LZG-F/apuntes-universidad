@@ -1,0 +1,84 @@
+\clase{34}{29 de Octubre}{}
+
+\section{Grupo Fundamental (32)}
+
+\begin{lemma}
+	$f,f' : X \to Y,\ g,g' : Y \to Z$. Si $f \sim f',\ g \sim g' \implies g \circ f \sim g' \circ f'$.
+\end{lemma}
+
+\begin{eg}
+	$\R^2 \setminus \{0\} \sim S^1$. Queremos $f : \R^2 \setminus \{0\} \to S^1$ y $g : S^1 \to \R^2 \setminus \{0\}$ tal que $g \circ f \sim \id_{\R^2 \setminus \{0\}}$ y $f \circ g \sim \id_{S^1}$. Si tomamos $f$ tal que $z \mapsto \frac{1}{|z|} z$ y $g$ tal que $z \mapsto z$, tenemos que $f \circ g = \id_{S^1} \sim \id_{S^1}$. Veamos que $g \circ f \sim \id_{\R^2 \setminus \{0\}}$: En efecto, $F : \R^2 \setminus \{0\} \times [0,1] \to \R^2 \setminus \{0\}$ tal que $F(z,0) = \frac{1}{|z|} z = (g \circ f)(z)$ y $F(z,1) = z$. Definimos $F(z,t) = tz + (1 - t) \frac{1}{|z|} z$. Por un lado, $F$ es continua \checkmark. Además, $\im F \subset \R^2 \setminus \{0\}$: 
+	\[ |F(z,t)| = |z| \big( t + \frac{(1-t)}{|z|} \big) \neq 0 \ \checkmark. \]
+\end{eg}
+
+\noindent Idea de $\pi_{1}(X,x_{0})$: Ver información homotópica de mapas $[0,1] \to X$ o $S^1 \to X$.
+
+\begin{notation}
+	$X$ espacio topológico:
+	\begin{itemize}
+		\item Curva / Camino: Función continua $\alpha : [0,1] \to X$ tal que \underline{comienza} en $x = \alpha(0)$ y \underline{termina} en $y = \alpha(1)$.
+	\end{itemize}
+\end{notation}
+
+\begin{definition}[homotopía de caminos]
+	Una homotopía de caminos entre curvas $\alpha,\beta : [0,1] \to X$ que comiencen y terminen en los mismos puntos (i.e. $\alpha(0) = \beta(0),\ \alpha(1) = \beta(1)$) es $A : [0,1] \times [0,1] \to X$ homotopía de $\alpha$ a $\beta$ tal que $A(0,t) = x$ y $A(1,t) = y \quad \forall t \in [0,1]$ (decimos que $\alpha$ y $\beta$ son homotópicos por caminos $\alpha \sim_{p} \beta$).
+\end{definition}
+
+\begin{definition}[loop]
+	Dado $x_{0} \in X$, un loop con base $x_{0}$ es un camino en $X$ que comienza y termina en $x_{0}$. Además, definimos
+	\[ \Omega(X, x_{0}) = \{\text{loops en } X \text{ con base en } x_{0}\}, \]
+	un espacio de Loops.
+\end{definition}
+
+\begin{definition}
+	$\pi_{1}(X, x_{0}) = \Omega(X, x_{0}) / \sim_{p}$.
+\end{definition}
+\bigskip
+
+En $\Omega(X, x_{0})$
+\begin{enumerate}
+	\item $\exists$ operación de concatenar por caminos
+	\[ * : \Omega(X,x_{0}) \times \Omega(X,x_{0}) \to \Omega(X,x_{0}) \]
+	tal que
+	\[ (\alpha * \beta) = \begin{cases}
+		\alpha(2s) \quad 0 \leq s \leq \frac{1}{2} \\
+		\beta(2s - 1) \quad \frac{1}{2} \leq s \leq 1
+	\end{cases} \]
+	continua por lema del pegado + $\alpha(1) = \beta(0) = x_{0}$. Observar que $\alpha * (\beta * \gamma) \neq (\alpha * \beta) * \gamma$.
+
+	\item Hay camino constante $e_{x_{0}} : [0,1] \to X$ tal que $s \mapsto x_{0}$. Observar que $\alpha * e_{x_{0}} \neq \alpha$.
+
+	\item Dado $\alpha \in \Omega(X, x_{0})$, tenemos camino inverso
+	\[ \overline{\cdot} : \Omega(X,x_{0}) \to \Omega(X,x_{0}) \]
+	tal que $\overline{\alpha}(s) = \alpha(1-s)$. Observar que $\overline{\alpha} * \alpha = e_{x_{0}}$.
+\end{enumerate}
+
+\begin{notation}
+	$\big[\alpha\big]$ denota la clase de equivalencia del loop $\alpha$.
+\end{notation}
+
+\begin{theorem}
+	\begin{enumerate}
+		\item Operación $*$ en $\Omega(X,x_{0})$ desciende a una operación $*$ en $\pi_{1}(X,x_{0})$:
+		\[ \big[ \alpha \big] * \big[ \beta \big] \coloneq \big[\alpha * \beta \big] \]
+		(notar que la primera $*$ es en $\pi_{1}(X,x_{0})$ y la segunda en $\Omega(X,x_{0})$).
+
+		\item $(\pi_{1}(X,x_{0}), *)$ es un grupo (que llamaremos \underline{Grupo Fundamental}).
+	\end{enumerate}
+\end{theorem}
+\medskip
+
+Queremos verificar:
+\begin{enumerate}
+	\item $*$ en $\pi_{1}(X,x_{0})$ está bien definida.
+
+	\item $*$ es asociativa.
+
+	\item $\big[ e_{x_{0}} \big]$ es neutro para $*$.
+
+	\item $\big[\alpha\big]^{-1} \coloneq [\overline{\alpha}]$ es inverso respecto al $e_{x_{0}}$.
+\end{enumerate}
+
+\begin{proof}[Proof Other Information][Teorema]
+	Veamos 1. Si $\alpha \sim_{p} \alpha',\ \beta \sim_{p} \beta' \implies \alpha * \beta \sim_{p} \alpha' * \beta'$. En efecto, sea $A : [0,1] \times [0,1] \to X$ homotopía de caminos de $\alpha$ a $\alpha'$ y $B : [0,1] \times [0,1] \to X$ homotopía de caminos de $\beta$ a $\beta'$. Entonces, definimos $C : [0,1] \times [0,1] \to X$ tal que $(s,t) \mapsto (A(\cdot,t)) * (B(\cdot,t))(s)$. Esto es homotopía de caminos de $\alpha * \beta$ a $\alpha' * \beta*$.
+\end{proof}

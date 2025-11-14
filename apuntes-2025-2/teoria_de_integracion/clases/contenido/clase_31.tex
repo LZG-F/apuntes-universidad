@@ -1,0 +1,105 @@
+\clase{31}{24 de Octubre}{}
+
+\begin{definition}[variación]
+	Sea $f : [a,b] \to \R$ y $\pi$ una partición de $[a,b]$. Definimos la variación de $f$ en $[a,b]$ respecto a $\pi$ como
+	\[ V_{a}^{b}(f; \pi) \coloneq \sum_{i=1}^{n} |f(x_{i}) - f(x_{i-1})| = \sum_{I \in \pi}^{} |\Delta f(I)| \]
+	donde $\Delta f(I) = f(\sup I) - f(\inf I)$. Observar que si $\pi \subseteq \pi'$, entonces $V_{a}^{b}(f;\pi) \leq V_{a}^{b}(f;\pi')$. Luego, definimos la variación total de $f$ en $[a,b]$ como
+	\[ V_{a}^{b}(f) \coloneq \sup_{\substack{\pi \text{ part.} \\ \text{de } [a,b]}} V_{a}^{b}(f;\pi) \in [0,\infty]. \]
+	$f$ se dice variación acotada si $V_{a}^{b}(f) < \infty$.
+\end{definition}
+
+\begin{eg}
+	Si $f : [a,b] \to \R$ es monótona, entonces $V_{a}^{b}(f) = |f(b) - f(a)| \quad \forall \pi$. Luego, $V_{a}^{b}(f) = |f(b) - f(a)| < \infty$ y, por ende, $f$ es de variación acotada.
+\end{eg}
+
+\begin{eg}
+	La función
+	\begin{align*}
+		f(x) \coloneq \begin{cases}
+			x \sin \frac{1}{x} \quad & x > 0 \\
+			0 & x = 0,
+		\end{cases}
+	\end{align*}
+	es continua pero no tiene variación acotada en $[0,1]$.
+\end{eg}
+
+\begin{remark}
+	Existen funciones $f : \R \to \R$ continuas pero que no son de VA sobre ningún intervalo $[a,b] \subseteq \R$ acotado.
+\end{remark}
+
+\begin{theorem}
+	Una función $f : [a,b] \to \R$ es de VA si y sólo si $f = f_{1} - f_{2}$ con $f_{i} : [a,b] \to \R$ monótonas crecientes.
+\end{theorem}
+\begin{proof}[Proof ]
+	$\boxed{\Leftarrow}$ Por el ejemplo, $f_{1}$ y $f_{2}$ son de variación acotada. En particular, si $\pi$ es partición de $[a,b]$,
+	\[ |\Delta f(I)| \leq |\Delta f_{1}(I)| + |\Delta f_{2}(I)| \]
+	y, por lo tanto,
+	\[ V_{a}^{b}(f;\pi) \leq V_{a}^{b}(f_{1};\pi) + V_{a}^{b}(f_{2};\pi) \leq V_{a}^{b}(f_{1}) + V_{a}^{b}(f_{2}) < \infty, \]
+	es decir (tomando supremo), tenemos
+	\[ V_{a}^{b}(f) \leq V_{a}^{b}(f_{1}) + V_{a}^{b}(f_{2}) < \infty. \]
+	\par
+	$\boxed{\Rightarrow}$ Definimos $f_{1}(x) \coloneq V_{a}^{x}(f)$ y $f_{2}(x) \coloneq f_{1}(x) - f(x)$. Por construcción, basta ver que $f_{1}$ y $f_{2}$ son crecientes (y que $f_{1}$ toma valores en $\R$). Si tomamos $a \leq x \leq y \leq b$ y $\pi$ partición de $[a,x]$,
+	\begin{align*}
+		V_{a}^{x}(f;\pi_{x}) + |f(y) - f(x)| &= \sum_{i=1}^{n} |f(x_{i} - f(x_{i-1})| + |f(y) - f(x)| \\
+		(x_{n} = x \implies) \ &= V_{a}^{y}(f; \pi_{x} \cup \{y\}) \\
+		&\leq V_{a}^{y}(f) = f_{1}(y)
+	\end{align*}
+	Tomando supremo en $\pi_{x}$,
+	\[ f_{1}(x) + |f(y) - f(x)| \leq f_{1}(y). \]
+	En particular,
+	\begin{itemize}
+		\item $f_{1}(x) \leq f_{1}(y)$ ($f_{1}$ es creciente) y, como $f_{1}(b) < \infty$, $f_{1}$ toma valores en $\R$ (en $[0,\infty]$).
+
+		\item $f_{1}(x) + f(y) - f(x) \leq f_{1}(y) \implies f_{2}(x) \leq f_{2}(y). \quad \checkmark$
+	\end{itemize}
+\end{proof}
+
+\begin{definition}[integral indefinida]
+	Dada $f : [a,b] \to \R$ integrable, definimos su integral indefinida $F : [a,b] \to \R$ como $F(x) \coloneq \int_{a}^{x} f(t) \ dt$.
+\end{definition}
+
+\begin{theorem}
+	Dado $\varepsilon > 0$, existe $\delta = \delta(\varepsilon) > 0$ tal que si $(a_{1},b_{1}),\dots,(a_{n},b_{n})$ son intervalos disjuntos de $[a,b]$, entonces vale que:
+	\[ \sum_{i=1}^{n} (b_{i} - a_{i}) < \delta \implies \sum_{i=1}^{n} |F(b_{i}) - F(a_{i})| < \varepsilon. \]
+\end{theorem}
+
+\begin{lemma}
+	Si $f : [a,b] \to \R$ es integrable, entonces, dado $\varepsilon > 0$, existe $\delta = \delta(\varepsilon) > 0$, tal que para todo $E \subseteq [a,b]$ medible, vale que
+	\[ |E| < \delta \implies \int_{E} |f| < \varepsilon. \]
+\end{lemma}
+\begin{proof}[Proof ][Lema]
+	Guía 6.
+\end{proof}
+
+\begin{proof}[Proof ][Teorema]
+	Si $E \coloneq \textbigcupd_{i=1}^{n}(a_{i}, b_{i})$, entonces $E$ es medible y $|E| = \sum_{i=1}^{n}(b_{i} - a_{i})$. Si tomo $\delta$ como el dado por el Lema,
+	\begin{align*}
+		\sum_{i=1}^{n} |F(b_{i}) - F(a_{i})| &= \sum_{i=1}^{n} \Big| \int_{a_{i}}^{b_{i}} f(x) \ dx \Big| \\
+		&\leq \sum_{i=1}^{n} \int_{a_{i}}^{b_{i}} |f| \ dx \\
+		&= \int_{E} |f| \ dx < \varepsilon
+	.\qedhere\end{align*}
+\end{proof}
+
+\begin{definition}[función absolutamente continua]
+	Una función $f : [a,b] \to \R$ se dice absolutamente continua si, dado $\varepsilon > 0$, existe $\delta = \delta(\varepsilon) > 0$ tal que para cualquier colección finita de intervalos $\{(a_{i},b_{i})\}_{i=1,\dots,n}$ disjuntos, se cumple lo siguiente:
+	\[ \sum_{i=1}^{n} (b_{i} - a_{i}) < \delta \implies \sum_{i=1}^{n} |f(b_{i}) - f(a_{i})| < \varepsilon. \]
+\end{definition}
+
+\begin{remark}
+	$f$ absolutamente continua $\implies f$ uniformemente continua ($n=1$).
+\end{remark}
+
+\begin{remark}
+	En la definición, es importante que los intervalos sean disjuntos. En efecto, si $f$ cumple la definición para cualquier colección finita de intervalos (no necesariamente disjuntos), entonces $f$ resulta Lipschitz (pero $f$ absolutamente continua no implica Lipschitz) (y Lipschitz sí implica absolutamente continua).
+\end{remark}
+
+\begin{theorem}
+	Si $f : [a,b] \to \R$ es absolutamente continua, entonces es de VA en $[a,b]$.
+\end{theorem}
+\begin{proof}[Proof ]
+	Si $f$ es absolutamente continua, existe $k \in \N$ tal que si $\{(a_{i},b_{i}\} _{i=1,\dots,n}$ son disjuntos tal que 
+	\[ \sum_{i=1}^{n} (b_{i} - a_{i}) < \frac{b-a}{k}, \tag{$*$}\]
+	entonces
+	\[ \sum_{i=1}^{n} |f(b_{i}) - f(a_{i})| < 1. \tag{$* *$}\]
+	En particular, si $\pi_{k} = \{y_{0},\dots,y_{k}\}$ es la partición de $[a,b]$ en $k$ partes iguales, entonces $V_{y_{j-1}}^{y_{j}}(f) \leq 1 \quad j=1,\dots,k$.  En efecto, si $Q = \{x_{0},\dots,x_{n}\}$ es una partición de el intervalo $[y_{j-1},y_{j}]$, entonces los intervalos $\{(x_{i-1},x_{i})\}_{i=1,\dots,n}$ cumplen $(*)$ y, por ende, $V_{y_{j-1}}^{y_{j}}(f;Q) < 1$ por $(* *)$. Tomando supremo en $Q$, resulta $V_{y_{j-1}}^{y_{j}}(f) \leq 1$.
+\end{proof}

@@ -1,0 +1,77 @@
+\clase{40}{14 de Noviembre}{}
+
+\section{Aplicaciones de $\pi_{1}(S^{1}) \approx \Z$}
+
+\begin{theorem}[A]
+	$\R^{2} \not\approx \R^{n}$ si $n > 2$.
+\end{theorem}
+
+\begin{remark}
+	$\R \not\approx \R^{n}$ si $n > 1$ [la idea principal es que $\R \setminus \{pt\}$ disconexo y $\R^{n} \setminus \{pt\}$ conexo si $n > 1$]
+\end{remark}
+
+\begin{recordar}
+	Retracción $r : X \to A \ (A \subset X)$ es función continua con $r(a) = a \quad \forall a \in A$. En la Tarea: $r : X \to A$ retracción $\implies$ si $i : A \to X$ tal que $a \mapsto a$ (inclusión), $i_{*} : \pi_{1}(A) \to \pi_{1}(X)$ es inyectivo.
+\end{recordar}
+
+\begin{corollary}
+	$\pi_{1}(\R^{2} \setminus \{0\}) \neq \{1\}$.  
+\end{corollary}
+\begin{proof}[Proof Other Information]
+	Existe retracción $\R^{2} \setminus \{0\} \to S^1$ tal que $z \mapsto \frac{1}{|z|}z$. Por lo tanto, $\pi_{1}(\R^{2} \setminus \{0\})$ contiene $i_{*}(\pi_{1}(S^{1})) \cong \Z$. 
+\end{proof}
+
+\begin{recordar}
+	Si $X = U \cup V$ con $U,V$ abiertos simplemente conexos y $U \cap V$ arcoconexa $\implies X$ es simplemente conexo.
+\end{recordar}
+
+\begin{proof}[Proof Other Information][Teorema A]
+	Queremos probar que $\pi_{1}(\R^{n} \setminus \{0\}) \approx \{1\}$ si $n \geq 3$. \par
+	Esto implica Teorema A, pues $\pi_{1}(\R^{n} \setminus \{0\}) \not\cong \pi_{1}(\R^{2} \setminus \{0\}) \implies \R^{n} \setminus \{0\} \not\cong \R^{2} \setminus \{0\} \implies \R^{n} \not\approx \R^{2}$. \par
+	Luego, queremos una descomposición de $\R^{n} \setminus \{0\} = U \cup V$, con $U, V$ cumpliendo las hipótesis del recuerdo anterior. Para ello, sea 
+	\[ U \coloneq \{z = (z_{1},\dots,z_{n}) \ \big| \ (z_{1},\dots,z_{n - 1}) \neq 0 \text{ ó } z_{1} = \cdots = z_{n-1} = 0,\ z_{n} > 0\} \]
+	y sea
+	\[ V \coloneq \{z = (z_{1},\dots,z_{n}) \ \big| \ (z_{1},\dots,z_{n - 1}) \neq 0 \text{ ó } z_{1} = \cdots = z_{n-1} = 0,\ z_{n} < 0\}. \] 
+	Observar que $n \geq 3 \implies U \cap V = \R^{n} \setminus \{z_{n} = 0\}  $ arcoconexa. \par
+	Notar que $U$ es dominio estrellado. Es decir, $z \in U$ tal que si $y \in U \implies [z,y] \subset U$ (segmento de $z$ a $y$). Queda como ejercicio demostrar que si $U \subset \R^{n}$ es dominio estrellado $\implies U$ tiene retracción por deformación a un singleton. Por lo tanto, $U$ es contractible y, por ende, simplemente conexo. \par
+	En conclusión, $U,V$ son simplemente conexos y, por lo tanto, $\R^{n} \setminus \{0\}$ es simplemente conexo si $n \geq 3$. 
+\end{proof}
+
+\begin{recordar}
+	Retracto por deformación: $\exists$ homotopía de $\mathds{1}_{U} : U \to U$ a $r : U \to U$ constante en $z \in U$.
+\end{recordar}
+
+\begin{remark}
+	Para probar que $\R^{m} \not\approx \R^{n}$ si $n > m$, necesitamos invariante topológico $H_{m}$ tal que $H_{m - 1}(\R^{n} \setminus \{0\}) = 1$ y $H_{m - 1}(\R^{m} \setminus \{0\}) \neq 1$.
+\end{remark}
+
+\begin{theorem}[B, Punto Fijo de Brower]
+	$f : \mathbb{D}^{2} \to \mathbb{D}^{2}$ continuo $\implies \exists x \in \mathbb{D}^{2}$ tal que $f(x) = x$.
+\end{theorem}
+
+\begin{remark}
+	$f : [0,1] \to [0,1]$ continuo, tiene un punto fijo (sale por TVM).
+\end{remark}
+
+\begin{definition}[nulhomotópia]
+	$f : X \to Y$ continuo es nulhomotópico (u homotópicanula) si $f$ es homotópico a un mapeo constante.
+\end{definition}
+
+\begin{eg}
+	Si $U \subset \R^{n}$ dominio estrellado $\implies \id : U \to U$ es nulhomotópica.
+\end{eg}
+
+\begin{ex}
+	Si $f : X \to Y$ nulhomotópico $\implies f_{*} : \pi_{1}(X) \to \pi_{1}(Y)$ es homomorfismo trivial.
+\end{ex}
+
+\begin{corollary}
+	Inclusión $i : S^{1} \to \R^{2} \setminus \{0\}$ \textbf{no} es nulhomotópico ($i_{*}$ es inyectivo + $\pi_{1}(S^1) \not\cong \{1\}$).  
+\end{corollary}
+
+\begin{proof}[Proof Other Information][B]
+	Suponer que existe $f : \mathbb{D}^{2} \to \mathbb{D}^{2}$ mapa continuo y $f(x) \neq x$ para todo $x$. Notar que $v : \mathbb{D}^{2} \to \R^{2} \setminus \{0\}$ tal que $x \mapsto x - f(x)$ está bien definido. Sea $h = v|_{S^1} : S^1 \to \R^{2} \setminus \{0\}$. Este mapa es nulhomotópico! \par
+	Sea $H(z,t) = v(tz)$. Cuando $t = 0,\ z \mapsto v(0)$, y cuado $t = 1,\ z \mapsto h(z)$. \par
+	Luego, $F : S^1 \times [0,1] \to \R^{2} \setminus \{0\}$ tal que $(z,t) \mapsto tz + (1 - t) h(z)$ no está bien definido, a menos que extendamos a $\R^{2}$. Por lo tanto, $\exists (z,t)$ con $F(z,t) = 0$. Luego,
+	\[ tz + (1-t)(z - f(z)) = z - (1 - t) f(z) \implies f(z) = (\underbrace{1 - t}_{> 1})^{-1} \underbrace{z}_{\in S^1} \not\in \mathbb{D}^{2}. \]
+\end{proof}
