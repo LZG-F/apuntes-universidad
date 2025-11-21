@@ -1,0 +1,125 @@
+\clase{42}{19 de Noviembre}{}
+
+\begin{definition}
+	Dado un subconjunto $S \subseteq H$ no vacío, definimos el complemento ortogonal de $S$ como 
+	\[ S^{\perp} \coloneq \{u \in H \ : \ \langle u, h \rangle = 0 \quad \forall h \in S\}. \]
+	Si $\langle u, h \rangle = 0$, decimos que $u$ y $h$ son ortogonales. Diremos que $u \perp S$ si $\langle u, s \rangle = 0 \quad \forall s \in S$.
+\end{definition}
+
+\begin{prop}
+	Si $S \subseteq H$ es un subconjunto no vacío, entonces $S^{\perp}$ es un subespacio vectorial cerrado (bajo $\| \cdot \|_{H}$) de $H$.
+\end{prop}
+\begin{proof}[Proof Other Information]
+	Notar que:
+	\begin{itemize}
+		\item $S^{\perp}$ es subespacio:
+		\[ \langle \alpha u_{1} + \beta u_{2}, h \rangle = \alpha \langle u, h \rangle + \beta \langle u_{2}, h \rangle = 0 \quad \forall u_{1}, u_{2} \in S^{\perp},\ \alpha, \beta \in \mathbb{K} \]
+
+		\item $S^{\perp}$ es cerrado: Si $(u_{n})_{n \in \N} \subseteq S^{\perp}$ tal que $u_{n} \longrightarrow u_{\infty} \in H$, entonces, dado $s \in S$
+		\[ \langle u_{\infty}, s \rangle = \lim_{n \to \infty} \rangle u_{n}, s \rangle = 0 \quad \forall s \in S \implies u_{\infty} \in S^{\perp} \]
+		(notar que la igualdad está dada, pues $\langle \cdot, s \rangle$ es continua). \qedhere
+	\end{itemize}
+\end{proof}
+
+\begin{theorem}
+	Sea $f \in H$ y $S$ un subespacio vectorial cerrado de $H$. Sea 
+	\[ \alpha \coloneq \inf \{\| f - s \| \ : \ s \in S\}. \]
+	Entonces, existe un único $f_{0} \in S$ tal que $\alpha \| f - f_{0} \|$. Además, si $f \not\in S$, entonces $f - f_{0} \perp S$ (y $f - f_{0} \neq 0$). $f_{0}$ se dice la proyección ortogonal de $f$ sobre $S$.
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Primero vemos que $f_{0}$ es único. \par
+	Supongamos que $f_{0}, f_{1} \in S$ son tales que
+	\[ \| f - f_{0} \| = \| f - f_{1} \| = \alpha. \]
+	Entonces, como $S$ es subespacio vectorial, $\frac{f_{0} + f_{1}}{2} \in S$ y, por lo tanto,
+	\begin{align*}
+		\alpha &\leq \left\| f - \frac{(f_{0} - f_{1})}{2} \right\| \\
+		&= \left\| \frac{1}{2} (2f - f_{0} - f_{1}) \right\| \\
+		&= \frac{1}{2} \| f - f_{0} + f - f_{1} \|
+	.\end{align*}
+	Ahora, por la identidad del paralelogramo,
+	\begin{align*}
+		\| f_{1} - f_{0} \|^{2} &= \| (f_{1} - f) - (f_{0} - f) \|^{2} \\
+		&= 2 \underbrace{\| f_{1} - f \|^{2}}_{\alpha^{2}} + 2 \underbrace{\| f - f_{0} \|^{2}}_{\alpha^{2}} - \underbrace{\| f_{1} + f_{0} - 2f \|^{2}}_{\geq (2 \alpha)^{2}} \\
+		&\leq 2 \alpha^{2} + 2 \alpha^{2} - (2 \alpha)^{2} = 0
+	.\end{align*}
+	Entonces, $\| f_{1} - f_{0} \| = 0 \implies f_{1} = f_{0} \ \checkmark$. \par
+	Veamos ahora que existe tal $f_{0} \in S$: \par
+	Por definición de $\alpha$, existen $g_{n} \in S$ tal que $\| g_{n} - f \| \stackrel{n \to \infty}{\longrightarrow} \alpha$. Como $\frac{g_{n} + g_{m}}{2} \in S \ \forall n,m$, tenemos que
+	\[ \left\| \frac{g_{n} + g_{m}}{2} - f \right\| \geq \alpha. \]
+	Luego, por la identidad de l paralelogramo
+	\begin{align*}
+		\| g_{n} - g_{m} \|^{2} &= 2 \| g_{n} - f \|^{2} + \| g_{m} - f \|^{2} - \left\| 2 \left( \frac{g_{n} + g_{m}}{2} - f \right) \right\|^{2} \\
+		&= 2(\| g_{n} - f \|^{2} + \| g_{m} - f \|^{2}) - 4 \left\| \frac{g_{n} + g_{m}}{2} - f \right\|^{2} \\
+		&\leq 2(\| g_{n} - f \|^{2} + \| g_{m} - f \|^{2} - 2\alpha^{2}) \stackrel{n,m \to \infty}{\longrightarrow} 0
+	.\end{align*}
+	Esto prueba que $(g_{n})_{n \in \N}$ de Cauchy en $H$ (que es completo). Luego, existe $f_{0} \in H$ tal que $g_{n} \stackrel{n \to \infty}{\longrightarrow} f_{0}$. \par
+	Como $S$ es cerrado y $g_{n} \in S \ \forall n \in \N$, vale que $f_{0} \in S$. Más aún, por la continuidad de la norma, $\| f - f_{0} \| = \lim_{n \to \infty} \| f - g_{n} \| = \alpha$. Luego, $f_{0}$ cumple lo que queremos. \par
+	Por último, que $f - f_{0} \perp S$ si $f \not\in S$, se demuestra como en Álgebra Lineal (Teorema 8.9.14 del Rana).
+\end{proof}
+
+\begin{theorem}
+	Sean $S_{1},S_{2}$ subconjuntos de $H$. Entonces:
+	\begin{enumerate}[i.]
+		\item $S_{1}^{\perp}$ es un subespacio vectorial cerrado de $H$ y $S_{1} \cap S_{1}^{\perp} \subseteq \{0\}$. Si $S_{1}$ es subespacio, entonces $S_{1} \cap S_{1}^{\perp} = \{0\}$.  
+
+		\item $S_{2} \subseteq S_{1} \implies S_{1}^{\perp} \subseteq S_{2}^{\perp}$.
+
+		\item $(S_{1}^{\perp})^{\perp} \supseteq S_{1}$ y vale la igualdad si $S_{1}$ es un subespacio cerrado.
+
+		\item Si $S_{1}$ es subespacio cerrado, entonces $S_{1} \cap S_{1}^{\perp} = \{0\}$ y $H = S_{1} \oplus S_{1}^{\perp}$. En particular, dado $f \in H$, existen únicos $g \in S_{1}$ y $h \in S_{1}^{\perp}$ tal que $f = g + h$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Vemos (iii) y (iv). \par
+	\boxed{\text{iii.}} Claramente $S_{1} \subseteq (S_{1}^{\perp})^{\perp}$. Supongamos que $S_{1}$ es subespacio cerrado y sea $f \in (S_{1}^{\perp})^{\perp}$. \par 
+	Por el Teorema anterior, existe $f_{0} \in S_{1}$ tal que $f - f_{0} \in S_{1}^{\perp}$ ($f_{0}$ es la proyección de $f$ en $S_{1}$). Como $f_{0} \in S_{1} \subseteq (S_{1}^{\perp})^{\perp}$ y $f \in (S_{1}^{\perp})^{\perp}$ (por elección), resulta que $f - f_{0} \in (S_{1}^{\perp})^{\perp}$. \par
+	Luego, $f - f_{0} \in (S_{1}^{\perp}) \cap (S_{1}^{\perp})^{\perp} = \{0\}$ y, así, $f = f_{0} \in S_{1}$. \par
+	\boxed{\text{iv.}} Como para cualquier $f \in H$ se tiene que $f = f_{0} + (f - f_{0})$, con $f_{0} \in S_{1}$ y $f - f_{0} \in S_{1}^{\perp}$, vemos que $H \subset S_{1} + S_{1}^{\perp}$. La otra inclusión vale siempre y esto prueba que $H = S_{1} + S_{1}^{\perp}$. \par
+	Que es suma directa se sigue de (i).
+\end{proof}
+
+\begin{definition}
+	Una aplicación $T \colon H \to \mathbb{K}$ se dice un funcional lineal acotado si:
+	\begin{enumerate}
+		\item $T$ es una transformación lineal;
+
+		\item Existe $M > 0$ tal que $|T(h)| \leq M \| h \| \quad \forall h \in H$.
+	\end{enumerate}
+\end{definition}
+
+\begin{prop}
+	Sea $T \colon H \to \mathbb{K}$ una transformación lineal. Entonces, son equivalentes:
+	\begin{enumerate}
+		\item $T$ es un funcional lineal acotado.
+
+		\item $T$ es continuo.
+
+		\item $T$ es continuo en $h = 0$.
+	\end{enumerate}
+\end{prop}
+
+\begin{eg}
+	Dado $h \in H$, la aplicación $T_{h} \colon H \to \mathbb{K}$ tal que $g \mapsto \langle g, h \rangle$, es un funcional lineal acotado:
+	\begin{enumerate}[i.]
+		\item $T_{h}$ es transformación lineal se sigue de las propiedades de $\langle \cdot , \cdot \rangle$.
+
+		\item $T_{h}$ es continuo por continuidad del producto interno.
+	\end{enumerate}
+	Además, si dado un funcional lineal acotado $T$, definimos
+	\[ \| T \| \coloneq \inf \{M > 0 \ : \ |T(h)| \leq M \| h \| \quad \forall h \in H\}, \]
+	entonces $\| T_{h} \| = \| h \|$. \par
+	En efecto:
+	\begin{enumerate}
+		\item $|T_{h}(g)| = |\langle g, h \rangle| \leq \| g \| \cdot \| h \| \quad \forall g \in H$. Entonces, $\| T_{h} \| \leq \| h \|$.
+
+		\item $|T_{h}(h)| = |\langle h, h \rangle| = \| h \|^{2} = \| h \| \cdot \| h \| \implies \| h \| \leq \| T_{h} \|$.
+	\end{enumerate}
+\end{eg}
+
+\begin{theorem}[Representación de Riesz]
+	Si $H$ es un espacio de Hilbert y $T$ es un funcional lineal acotado, entonces existe un único $h \in H$ tal que $T = T_{h}$.
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	\boxed{\text{Unicidad:}} Si $T(x) = \langle x, h_{1} \rangle = \langle x, h_{2} \rangle \quad \forall x \in H$. Entonces $\langle x, h_{1} - h_{2} \rangle = 0 \quad \forall x \in H$. \par
+	Tomando $x = h_{1} - h_{2}$, resulta $\| h_{1} - h_{2} \|^{2} = \langle h_{1} - h_{2}, h_{1} - h_{2} \rangle = 0$ y luego, $h_{1} = h_{2}$.
+\end{proof}

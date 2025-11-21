@@ -1,0 +1,64 @@
+\clase{41}{17 de Noviembre}{}
+
+\section{Propiedad de Levantamiento (54)}
+
+\begin{definition}
+	$p : E \to X, \ f : A \to X$. Un levantamiento de $f$ por $p$ es $\widetilde{f} : A \to E$ continua tal que $f = p \circ \widetilde{f}$.
+\end{definition}
+
+\begin{theorem}
+	$p : E \to X$ mapa de cubrimiento, $A = [0,1]$ ó $[0,1]^{2}$. Entonces, dada $f : A \to X$ y fijamos $\widetilde{x} \in p^{-1}(f(0))$, se tiene que
+	\begin{enumerate}
+		\item Existe un único levantamiento $\widetilde{f} : A \to E$ de $f$ por $p$ tal que $\widetilde{f}(0) = \widetilde{x}$.
+
+		\item Si $A = [0,1]^{2}$ y $f$ homotopía de caminos $\implies \widetilde{f}$ homotopía de caminos.
+	\end{enumerate}
+\end{theorem}
+
+\begin{remark}
+	El Teorema implica la "propiedad mágica" de $p : \R \to S^1$:
+	\begin{enumerate}
+		\item $\gamma$ loop en $S^1$ con base $x_{0} = 1 \implies \exists !$ levantamiento $\widetilde{\gamma}$ en $\R$ que comienza en $0$. [viene de aplicar el Teorema con $\widetilde{x} = 0$.]
+
+		\item Si $\gamma \sim_{p} \gamma' \implies \widetilde{\gamma}(1) = \widetilde{\gamma}'(1)$. [Si $F$ es homotopía de caminos entre $\gamma$ y $\gamma'$ en $S^{1} \implies$ Teorema nos da levantamiento $\widetilde{F}$, homotopía de caminos entre $\widetilde{\gamma}$ y $\widetilde{\gamma}'$. Por lo tanto, $\widetilde{\gamma}(1) = \widetilde{\gamma}'(1)$.]
+	\end{enumerate}
+\end{remark}
+
+\noindent \textbf{Idea Teorema:}
+\begin{enumerate}
+	\item Podemos construir $\widetilde{f}$ "localmente" usando abiertos bien cubiertos ($p$ es invertible);
+
+	\item Pegar todo de forma consistente: usar que preimagenes de abiertos bien cubiertos se escriben como unión disjunta (+ conexidad de $A$);
+
+	\item Unicidad dado el input $\widetilde{x}$: conexidad de $A$.
+\end{enumerate}
+
+\begin{proof}[Proof Other Information][Teorema]
+	\boxed{\text{Paso 1}} Descomponer $[0,1] \times [0,1]$ en subcuadrados
+	\[ \square_{i,j} \coloneq \Big[ \frac{i-1}{N}, \frac{i}{N} \Big] \times \Big[ \frac{j-1}{N}, \frac{j}{N} \Big], \]
+	con $N$ conveniente, tal que $f(\square_{i,j}) \subset U_{i,j}$ abierto bien cubierto $\forall i,j$. \par
+	En efecto, para el paso 1 se usa:
+	\begin{enumerate}[i.]
+		\item $[0,1] \times [0,1]$ compacto;
+
+		\item $\mcal{U} = \{U \subset X \ \big| \ U \text{ abierto bien cubierto}\}$ es cubriente de $X$;
+
+		\item $f^{-1}(\mcal{U}) = \{f^{-1}(U) \ \big| \ U \in \mcal{U}\}$ cubriente abierto de $[0,1] \times [0,1]$;
+		
+		\item Aplica existencia de número de Lebesgue para el cubrimiento $f^{-1}(\mcal{U})$.
+	\end{enumerate}
+	\par
+	\boxed{\text{Paso 2}} Construir $\widetilde{f}$ en cada $\square_{i,j}$ a la vez. En $\square_{1,1}$: Sea $\widetilde{U}_{1,1} \subset p^{-1}(U_{1})$ tal que $p_{1,1} = p|_{\widetilde{U}_{1,1}} : \widetilde{U}_{1,1} \to U_{1,1}$ es homeomorfismo y $\widetilde{x} \in \widetilde{U}_{1,1}$. Luego, definimos $\widetilde{f}_{1,1} : \square_{1,1} \to E$ como $\widetilde{f} = (p_{1,1})^{-1} \circ f$. Así, la construcción da $f|_{\square_{1,1}} = p \circ \widetilde{f}_{1,1}$. \par
+	En $\square_{2,1}$: (ya definimos $\widetilde{f}$ en $\square_{1,1} \cap \square_{2,1}$. Elegir $\widetilde{U}_{2,1} \subset p^{-1}(U_{2,1})$, único abierto tal que $p_{2,1} = p|_{\widetilde{U}_{2,1}} : \widetilde{U}_{2,1} \to U_{2,1}$ homeomorfismo y $\widetilde{f}_{1,1}(\square_{1,1} \cap \square_{2,1}) \subset \widetilde{U}_{2,1}$. \par
+	El abierto $\widetilde{U}_{2,1}$ existe, porque $\widetilde{f}_{1,1}(\square_{1,1} \cap \square_{2,1})$ conexo ($\square_{1,1} \cap \square_{2,1} \approx [0,1]$) [conexo contenido en unión disjunta de abiertos debe estar en uno de ellos]. Definimos $\widetilde{f}_{2,1}$ en $\square_{2,1}$ como $\widetilde{f}_{2,1} = (p_{2,1})^{-1} \circ f$. \par
+	Falta ver que $\widetilde{f}_{1,1}$ y $\widetilde{f}_{2,1}$ coinciden en $\square_{1,1} \cap \square_{2,1} =: C$. En efecto, $x \in C \implies p(\widetilde{f}_{1,1}(x)) = p(\widetilde{f}_{2,1}(x)) = f(x)$ y $\widetilde{f}_{1,1}(x) \in \widetilde{U}_{1,1} \implies p^{-1} = p_{1,1}^{-1}$. Por lo tanto, $\widetilde{1,1}(x) = \widetilde{f}_{2,1}(x)$. \par
+	Inductivamente: si $\widetilde{f}$ definida en 
+	\[ L = (\square_{1,1} \cup \cdots \cup \square_{N,1}) \cup \cdots \cup (\square_{1,j_{0}} \cup \cdots \cup \square_{i_{0} - 1, j_{0}}). \]
+	Queremos definir $\widetilde{f}$ en $\square{i_{0},j_{0}}$. Esto se hace como al definir $\square_{2,1}$, usando que $L \cap \square_{i_{0},j_{0}}$ es conexo, lo que concluye el paso 2. \par
+	Lo que queda de la demostración estará en la tarea 7
+	\begin{itemize}
+		\item \textit{(Unicidad)} Viene de la conexidad de $A$.
+
+		\item \textit{(Homotopía de caminos)} Viene de la unicidad del levantamiento.
+	\end{itemize}
+\end{proof}

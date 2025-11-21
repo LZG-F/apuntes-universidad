@@ -1,0 +1,156 @@
+\clase{41}{17 de Noviembre}{}
+
+\begin{remark}
+	$(L^{1}, \| \cdot \|, *)$ es un álgebra de Banach conmutativa, pero no tiene unidad!
+\end{remark}
+
+En efecto, no existe $g \in L^{1}(\R^{n})$ tal que $g * f = f \quad \forall f \in L^{1}(\R^{n})$. Por ejemplo, si $n = 1$, supongamos que existe tal $g$. \par
+Entonces, podemos elegir $\delta > 0$ suficientemente pequeño tal que
+\[ \int_{-2 \delta}^{2 \delta} |g(x)| \ dx < 1 \]
+por la absoluta continuidad de la integral. \par
+Por otro lado, si tomamos $f \coloneq \chi_{[-\delta,\delta]} \in L^{1}(\R)$ y, si $g * f = f$, entonces
+\[ f(x) = g * f (x) = \int_{x - \delta}^{x + \delta} g(y) \ dy \]
+debería ser cierto para c.t-$x$. \par
+En particular, existe $x_{0} \in [-\delta,\delta]$ tal que $f(x_{0}) = g * f (x_{0})$. Luego,
+\begin{align*}
+	1 = f(x_{0}) = g * f (x_{0}) &= \Big| \int_{x - \delta}^{x + \delta} g(y) \ dy \\
+	&\leq \int_{x - \delta}^{x + \delta} |g(y)| \ dy \\
+	&\leq \int_{-2 \delta}^{2 \delta} |g(y)| \ dy < 1
+,\end{align*}
+lo cual es una contradicción. \par
+Notemos que, si $g$ es no negativa,
+\[ f * g (x) = \int_{\R} f(x - y) g(y) \ dy = \int_{\R} f(x - y) \ d\mu_{g}(y), \]
+donde $\mu_{g}$ es la medida en $\R$ dada por
+\[ \mu_{g}(E) \coloneq \int_{E} g(y) \ dy. \]
+Esto nos sugiere cómo definir la convolución contra una medida. Es decir, si $\mu$ es una medida y $f \in L^{1}(\mu)$, definimos
+\[ f * \mu (x) \coloneq \int f(x - y) \ d\mu (y). \]
+Observar que, con esta definición, 
+\[ (f * \delta_{0})(x) = \int f(x - y) \ d\delta_{0} = f(x - 0) = f(x). \]
+Luego, podemos ver a $\delta_{0}$ como la unidad con respecto a la convolución, $*$ ! En particular, $\delta_{0}$ no es $\mu_{g}$ para ninguna $g \in L^{1}(\R^{n})$.
+
+\begin{definition}
+	Sea $U \subset \R^{n}$ un abierto y $f : U \to \R$. Decimos que $f$ es de clase $C^{\infty}$ en $U$, y lo notamos $f \in C^{\infty}(U)$, si $f$ tiene derivadas parciales continuas de todos los órdenes en todo punto de $U$. \par
+	Definimos además $C_{c}^{\infty}(U)$ como el subconjunto de funciones $f \in C^{\infty}(U)$ con soporte compacto (contenido en $U$). \par
+	Si $f$ toma valores en $\C$, diremos que $f \in C^{\infty}(U)$ (ó $f \in C_{c}^{\infty}(U)$), si $\Re(f), \Im(f) \in C^{\infty}(U)$ (ó $\in C_{c}^{\infty}(U)$).
+\end{definition}
+
+\begin{lemma}
+	Existe $\phi \in C_{c}^{\infty}(\R^{n})$ no negativa tal que $\phi(x) = 0$ si $|x| > 1$.
+\end{lemma}
+\begin{proof}[Proof Other Information]
+	\textit{Idea: } Sea $f : \R \to \R$ dada por
+	\begin{align*}
+		f(x) \coloneq \begin{cases}
+			e^{\frac{1}{x^{2} - 1}} \quad & \text{si } |x| < 1, \\
+			0 \quad & \text{si } |x| \geq 1.
+		\end{cases}
+	\end{align*}
+	Es decir, $f(x) = \psi(1 - x^{2})$, donde
+	\begin{align*}
+		\psi(x) \coloneq \begin{cases}
+			e^{-\frac{1}{x^{2}}} \quad & x > 0, \\
+			0 \quad & x \leq 0.
+		\end{cases}
+	\end{align*}
+	Como $\psi \in C^{\infty}$, $f$ es de clase $C^{\infty}$ también, y $\supp(f) = [-1, 1]$. \par
+	Luego, $\phi(x) \coloneq f(|x|)$ cumple que:
+	\begin{itemize}
+		\item $0 \leq \phi \leq 1$;
+
+		\item $\supp(f) = \overline{B_{\R^{n}}(0,1)}$;
+
+		\item $\phi$ es $C^{\infty}(\R^{n})$. \qedhere
+	\end{itemize}
+\end{proof}
+
+\begin{definition}[localmente integrable]
+	Sea $f : \R^{n} \to \overline{\R}$ (o $\C$) medible. Decimos que $f$ es localmente integrable si es integrable sobre cada compacto de $\R^{n}$. Denotaremos al espacio de tales funciones por $L_{loc}^{1}(\R^{n})$.
+\end{definition}
+
+\begin{theorem}
+	Sea $\phi \in C_{c}^{\infty}(\R^{n})$ no negativa tal que
+	\[ \begin{cases}
+			\phi(x) = 0 \quad \text{si } |x| > 1, \\
+			\int_{\R^{n}} \phi(x) \ dx = 1.
+		\end{cases} \]
+	Dado $\varepsilon > 0$, definamos
+	\[ \phi_{\varepsilon}(x) \coloneq \frac{1}{\varepsilon^{n}} \phi \Big( \frac{x}{\varepsilon} \Big). \]
+	Valen las siguientes:
+	\begin{enumerate}[i.]
+		\item $\phi_{\varepsilon}$ es no-negativa de tipo $C_{c}^{\infty}(\R^{n})$, con
+		\[ \begin{cases}
+			\supp(\phi_{\varepsilon}) \subseteq \overline{B_{\R^{n}}(0,\varepsilon)}, \\
+			\| \phi_{\varepsilon} \|_{1} = \int |\phi_{\varepsilon}(x)| \ dx = 1.
+		\end{cases} \]
+
+		\item Si $f \in L_{loc}^{1}(\R^{n})$, entonces $f_{\varepsilon} \coloneq \phi_{\varepsilon} * f \in C^{\infty}(\R^{n})$. Si $f$ es uniformemente continuna, enotnces $f_{\varepsilon} \longrightarrow f$ uniformemente cuando $\varepsilon \longrightarrow 0$.
+
+		\item Si $f \in L^{p} \ (p \in [1,\infty])$, entonces $f_{\varepsilon} \in L^{p}(\R^{n}) \cap C^{\infty}(\R^{n})$. Además, si $p \neq \infty$, $f_{\varepsilon} \stackrel{L^{p}}{\longrightarrow} f$.
+	\end{enumerate}
+	Las funciones $f_{\varepsilon}$ se llaman regularizaciones (ó molificaciones) de $f$. Las funciones $\phi_{\varepsilon}$ se llaman aproximaciones de la unidad (ó de la identidad, ó molificadores).
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	En el Rana.
+\end{proof}
+
+\begin{corollary}
+	$C_{c}^{\infty}(\R^{n})$ es denso en $L^{p}(\R^{n})$ si $p \in [1,\infty)$.
+\end{corollary}
+
+\begin{remark}
+	No vale que $f_{\varepsilon} \stackrel{L^{p}}{\longrightarrow} f$ si $f \in L^{\infty}$ (en general, $C^{\infty} \cap L^{\infty}$ no es denso en $L^{\infty}$).
+\end{remark}
+
+\chapter{Espacios de Hilbert}
+
+\begin{definition}
+	Sea $H$ un espacio vectoria sobre $\R$ (ó $\C$). Decimos que una aplicación $\langle \cdot , \cdot \rangle : H \times H \to \R$ (ó $\C$) es un producto interno en $H$ si:
+	\begin{enumerate}[i.]
+		\item $\langle f, f \rangle \geq 0 \quad \forall f \in H$ y vale la igualdad si y sólo si $f = 0$;
+
+		\item $\langle f , g \rangle  = \overline{\langle g, f \rangle}$;
+
+		\item $\langle \alpha f + \beta g, h \rangle = \alpha \langle f, h \rangle + \beta \langle g, h \rangle$;
+
+		\item $\langle f, \alpha g + \beta h \rangle = \overline{\alpha} \langle f, g \rangle + \overline{\beta} \langle f, h \rangle$.
+	\end{enumerate}
+	El par $(H, \langle \cdot , \cdot \rangle)$ se dice un espacio vectorial con producto interno.
+\end{definition}
+
+\begin{eg}
+	$(X, \mscr{M}, \mu)$ espacio de medida completo.
+	\[ H \coloneq L^{2}(X, \mscr{M}, \mu) \text{ y } \langle f, g \rangle \coloneq \int_{X} f \cdot \overline{g} \ d\mu. \]
+\end{eg}
+
+\begin{prop}
+	Sea $(H, \langle \cdot, \cdot \rangle)$ un $\C$-E.V con producto interno. Si para cada $h \in H$ definimos $\| h \| \coloneq \sqrt{\langle h, h \rangle}$, enotnces
+	\begin{enumerate}
+		\item $\| h \| \geq 0 \quad \forall h \in H$ y vale igual si y sólo si $h = 0$;
+
+		\item $\| \alpha h \| = |\alpha| \| h \| \quad \forall \alpha \in \C$;
+
+		\item (Cauchy-Schwarz) $| \langle h_{1}, h_{2} \rangle | \leq \| h_{1} \| \| h_{2} \|$;
+
+		\item (Desigualdad Triangular) $\| h_{1} + h_{2} \| \leq \| h_{1} \| + \| h_{2} \|$;
+
+		\item (Identidad del Paralelogramo) $\| f + g \|^{2} + \| f - g \|^{2} = 2 \| f \|^{2} + 2 \| g \|^{2}$.
+	\end{enumerate}
+	En particular, $\| \cdot \|$ es una norma.
+\end{prop}
+
+\begin{definition}[Espacio de Hilbert]
+	Si $(H, \| \cdot \|)$ es completo, decimos que $(H, \langle \cdot , \cdot \rangle)$ es un espacio de Hilbert.
+\end{definition}
+
+\begin{corollary}
+	La aplicación $(h_{1}, h_{2}) \mapsto \langle h_{1}, h_{2} \rangle$ es continua en $H \times H$ con $(\| \cdot \| \times \| \cdot \|)$.
+\end{corollary}
+\begin{proof}[Proof Other Information]
+	Notar que
+	\begin{align*}
+		|\langle h_{1}, h_{2} \rangle - \langle \widetilde{h}_{1}, \widetilde{h}_{2} \rangle| &= |\langle h_{1} - \widetilde{h}_{1} + \widetilde{h}_{1}, h_{2} \rangle - \langle \widetilde{h}_{1}, \widetilde{h}_{2} \rangle| \\
+		&= |\langle h_{1} - \widetilde{h}_{1}, h_{2} \rangle + \langle \widetilde{h}_{1}, h_{2} - \widetilde{h}_{2} \rangle| \\
+		&\leq \| h_{1} - \widetilde{h}_{1} \| \underbrace{\| h_{2} \|}_{\text{acotado}} + \underbrace{\| \widetilde{h}_{1} \|}_{\text{acotado}} \| h_{2} - \widetilde{h}_{2} \|,
+	\end{align*}
+	de donde se sigue la continuidad.
+\end{proof}

@@ -1,0 +1,112 @@
+\clase{43}{21 de Noviembre}{}
+
+\begin{theorem}[Representación de Riesz]
+	Si $T \colon H \to \mathbb{K}$ es un funcional lineal acotado, entonces existe un único $h \in H$ tal que $T = T_{h}$ (i.e. $T(f) = \langle f, h \rangle \quad \forall f$).
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	\boxed{\text{Existencia}} Si $T \equiv 0$, entonces $T = T_{0}$ (i.e. $h = 0$). \par
+	Luego, podemos suponer que $T \not\equiv 0$. Sea $S = \ker T = T^{-1}(\{0\})$. Tenemos que $S$ es un subespacio vectorial cerrado, pues $T$ es continua. Además, $S$ es propio ($S \neq H$) pues $T \neq 0$. Luego, como $H = S \oplus S^{\perp}$ y $S \neq H$, existe $h_{0} \in S^{\perp}$, tal que $h_{0} \neq 0$. Sea $h \coloneq \frac{h_{0}}{\| h_{0} \|}$. \par
+	Veamos que $T = T_{(\overline{T(h)} \cdot h}$. A tal fin, consideremos el funcional lineal
+	\[ u(x) \coloneq \underbrace{T(h)}_{\in \mathbb{K}} \cdot x - \underbrace{T(x)}_{\in \mathbb{K}} \cdot h. \]
+	Notemos que $\im(u) \subseteq S$. En efecto,
+	\begin{align*}
+		&T(u(x)) = T(h) \cdot T(x) - T(x) \cdot T(h) = 0 \\
+		&\implies \mcal{U}(x) \in S \quad \forall x \in H
+	.\end{align*}
+	En particular, $\langle u(x), h \rangle = 0 \quad \forall x \in H$, lo cual implica que
+	\begin{align*}
+		& \ \langle T(h)x, h \rangle = \langle T(x)h, h \rangle \\
+		\iff & \ T(h) \langle x, h \rangle = T(x) \| h \|^{2} \\
+		\iff &  \ T(x) = \langle x \overline{T(h)} \cdot h \rangle \quad \forall x \in H
+	.\end{align*}
+\end{proof}
+
+\begin{note}
+	\begin{itemize}
+		\item Si definimos $H' \coloneq \{\varphi \colon H \to \mathbb{K} \ \big| \ \varphi \text{ F.L.A.}\}$, (lo que se conoce como el dual de $H$), entonces el Teorema nos dice que la aplicación $\phi \colon H \to H'$ tal que $h \mapsto T_{h}$, es una biyección.
+
+		\item Además, $\phi$ es una isometría, pues vimos que $\| T_{h} \| = \| h \|$.
+
+		\item Si $\mathbb{K} = \R$, entonces $\phi$ es lineal: $\phi(h_{1} + h_{2}) = T_{h_{1} + h_{2}} = T_{h_{1}} + T_{h_{2}}$ y $\phi(\alpha h) = T_{\alpha h} = \alpha T_{h} = \alpha \phi(h)$. Decimos entonces que $\phi$ es un isomorfismo (lineal) isométrico y que $H, H'$ son isométricamente isomorfos.
+
+		\item Si $\mathbb{K} = \C$, $\phi$ es antilineal: $\phi(h_{1} + \alpha h_{2}) = \phi(h_{1}) + \overline{\alpha} \phi(h_{2})$. Esto se puede arreglar: Si $H = L^{2}(X, \mscr{M}, \mu)$, entonces $\psi \colon H \to H'$ tal que $g \mapsto T_{\overline{g}}$ ($T_{\overline{g}}(h) = \int h \cdot g \ d\mu$), es un isomorfismo isométrico.
+
+		\item En general, $\psi$ es un isomorfismo isométrico entre $L^{p'}$ y $(L^{p})'$, i.e. $(L^{p})' = L^{p'} \quad \forall p \in (1, \infty)$.
+	\end{itemize}
+\end{note}
+
+\begin{definition}
+	Sean $\mu, \nu$ medidas en $(X, \mscr{M})$. Decimos que $\nu$ es absolutamente continua con respecto a $\mu$, y lo notamos $\nu \ll \mu$, si:
+	\[ \mu(E) = 0 \implies \nu(E) = 0. \]
+\end{definition}
+
+\begin{eg}
+	\begin{enumerate}
+		\item Si $(X, \mscr{M}, \mu)$ es un espacio de medida y $f$ es una función no negativa $\mu$-integrable, entonces $\nu \coloneq \mu_{f}$ definida por $\nu(E) = \int_{E} f \ d\mu$, cumple que $\nu \ll \mu$.
+
+		\item Si $\mu \coloneq$ medida de contar en $(\R, \mscr{L}(\R))$ y $\nu \coloneq$ medida de Lebesgue en $(\R, \mscr{L}(\R))$, entonces $\nu \ll \mu$.
+	\end{enumerate}
+\end{eg}
+
+\begin{theorem}
+	Sean $\mu,\nu$ medidas en $(X, \mscr{M})$. Entonces:
+	\begin{enumerate}
+		\item Si $\nu$ es finita y $\nu \ll \mu$, entonces, dado $\varepsilon > 0$, existe $\delta = \delta(\varepsilon) > 0$, tal que vale la implicación $(\mu(E) < \delta \implies \nu(E) < \varepsilon)$. \par
+		Como caso particular de $\nu = \mu_{f}$ con $f \in L^{1}(\mu)$, tenemos la absoluta continuidad de la integral.
+
+		\item Si, para cada $\varepsilon > 0$, existe $\delta > 0$ tal que vale la implicación
+		\[ \mu(E) < \delta \implies \nu(E) < \varepsilon, \]
+		entonces $\nu \ll \mu$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{definition}
+	Dos medidas $\mu,\nu$ en $(X, \mscr{M})$ se dicen equivalentes si $\mu \ll \nu$ y $\nu \ll \mu$. Lo notaremos como $\mu \sim \nu$.
+\end{definition}
+
+\begin{property}
+	Valen las siguientes:
+	\begin{enumerate}[i)]
+		\item $\mu \ll (\mu + \nu)$;
+
+		\item Si $\mu_{1} \ll \mu_{2}$ y $\mu_{2} \ll \mu_{3} \implies \mu_{1} \ll \mu_{3}$;
+
+		\item Si $\nu_{1} \ll \mu$ y $\nu_{2} \ll \mu \implies \nu_{1} + \nu_{2} \ll \mu$.
+	\end{enumerate}
+\end{property}
+
+\begin{definition}
+	Sean $\mu, \nu$ medidas en $(X, \mscr{M})$. Decimos que $\nu$ es singular respecto a $\mu$, y lo notamos $\nu \perp \mu$, si existe $E \in \mscr{M}$ tal que 
+	\[ \nu(E^{c}) = \mu(E) = 0. \]
+\end{definition}
+
+\begin{property}
+	Valen las siguientes
+	\begin{enumerate}[i)]
+		\item $\nu \perp \mu \iff \mu \perp \nu$;
+
+		\item $\nu_{1}, \nu_{2} \perp \mu \implies \alpha \nu_{1} + \beta \nu_{2} \perp \mu \quad \forall \alpha, \beta \geq 0$;
+
+		\item $\nu \ll \mu,\ \nu \perp \mu \implies \nu = 0$.
+	\end{enumerate}
+\end{property}
+
+\begin{theorem}[von Neumann]
+	Sean $\nu, \mu$ medidas $\sigma$-finitas en un EdM $(X, \mscr{M})$. Entonces, existen 3 conjuntos disjuntos $X_{1}, X_{2}, X_{3} \in \mscr{M}$ tales que:
+	\begin{enumerate}[i)]
+		\item $X = X_{1} \cupd X_{2} \cupd X_{3}$;
+
+		\item $\nu(X_{3}) = 0 = \mu(X_{1})$;
+
+		\item $\exists g \colon X \to \R \ \mscr{M}$-medible no negativa tal que $g(x) > 0 \quad \forall x \in X_{2}$ y
+		\[ \nu(E \cap X_{2}) = \int_{E \cap X_{2}} g \ d\mu \quad \forall E \in \mscr{M}. \]
+	\end{enumerate}
+	En otras palabras:
+	\begin{itemize}
+		\item $\mu|_{X_{3}} \perp \nu$;
+
+		\item $\nu|_{X_{1}} \perp \mu$;
+
+		\item $\nu|_{X_{2}} \ll \mu|_{X_{2}}$ (de la demostración se desprende que $\mu|_{X_{2}} \ll \nu_{X_{2}}$, o sea que $\nu|_{X_{2}} \sim \mu|_{X_{2}}$).
+	\end{itemize}
+\end{theorem}

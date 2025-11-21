@@ -1,0 +1,44 @@
+\clase{42}{19 de Noviembre}{}
+
+\section{Cubrimientos para calcular $\pi_{1}$}
+
+\begin{corollary}
+	Si $E$ simplemente conexo, $\gamma_{1}, \gamma_{2}$ loops en $X$ con base $x_{0}$ ($\widetilde{x}_{0} \in p^{-1}(x_{0})$):
+	\[ \gamma_{1} \sim_{p} \gamma_{2} \longleftrightarrow \widetilde{\gamma}_{1}(1) = \widetilde{\gamma}_{2}(1), \]
+	con $\widetilde{\gamma}_{1}, \widetilde{\gamma}_{2}$ levantamientos que comienzan en $\widetilde{x}_{0}$.
+\end{corollary}
+\begin{proof}[Proof Other Information]
+	\boxed{\Rightarrow} Notar que
+	\begin{align*}
+		\gamma_{1} \sim_{p} \gamma_{2} &\implies F \text{ homotopía de caminos de } \gamma_{1} \text{ a } \gamma_{2} \\
+		&\implies \widetilde{F} \text{ levantamiento de $F$ con } \widetilde{F}(0,0) = \widetilde{x}_{0} \\
+		&\implies \widetilde{F} \text{ homotopía de caminos de } \widetilde{\gamma}_{1} \text{ a } \widetilde{\gamma}_{2} \\
+		& \quad \text{ (por unicidad de levantamientos de $\gamma_{1}, \gamma_{2}$)} \\
+		&\implies \widetilde{\gamma}_{1}(1) = \widetilde{\gamma}_{2}(1) \ (\widetilde{F} \text{ es homotopía de caminos})
+	.\end{align*}
+	\par
+	\boxed{\Leftarrow} Si $\widetilde{\gamma}_{1}(1) = \widetilde{\gamma}_{2}(1)$, entonces $\widetilde{\gamma} = \widetilde{\gamma}_{1} * \overline{\widetilde{\gamma}_{2}}$ es loop con base $\widetilde{x}_{0}$. \par
+	Si $R$ simplemente conexo, entonces $\widetilde{\gamma} \sim_{p} e_{\widetilde{x}_{0}}$. Luego, $p \circ \widetilde{\gamma} \sim_{p} p \circ e_{\widetilde{x}_{0}} = e_{x_{0}}$. Además, $p \circ \widetilde{\gamma} = (p \circ \widetilde{\gamma}_{1}) * (p \circ \overline{\widetilde{\gamma}_{2}}) = \gamma_{1} * \overline{\gamma}_{2}$. Entonces, $[\gamma_{1} * \overline{\gamma}_{2}] = 1$, por lo que $[\gamma_{1}] = [\gamma_{2}]$. Por lo tanto, $\gamma_{1} * \overline{\gamma}_{2} \sim_{p} e_{x_{0}}$.
+\end{proof}
+
+\begin{theorem}
+	Si $X$ es simplemente conexo, $\Gamma \curvearrowright X$ propiamente discontinua (por homeos). Entonces, $\pi_{1}(X / \Gamma) \cong \Gamma$.
+\end{theorem}
+
+\begin{eg}
+	$\Z / 2\Z \curvearrowright S^{n}$ propiamente discontinua con cociente $\R P^{n}$. Por lo tanto, $\pi_{1}(\R P^{n}) \cong \Z / 2\Z$.
+\end{eg}
+
+\begin{eg}
+	$\Z / p\Z \curvearrowright S^{3}$ con cociente $L(p,q)$ espacio de Lens ($p,q$ coprimos). Entonces, $\pi_{1}(L(p,q)) \cong \Z / p\Z$.
+\end{eg}
+
+\begin{corollary}
+	Si $\Gamma$ abeliano finitamente generado, $\exists X$ arcoconexo con $\pi_{1}(X) \cong \Gamma$.
+\end{corollary}
+
+\begin{proof}[Proof Other Information][Teorema]
+	Sea $y_{0} \in X / \Gamma, \ x_{0} \in p^{-1}(y_{0}) \in X$. $p \colon X \to X / \Gamma$, mapa de cubrimiento. \par
+	Si $\gamma$ es loop en $X / \Gamma$ con base $y_{0}$, sea $\widetilde{\gamma}$ su levantamiento en $X$ con base $x_{0}$. Entonces, $\widetilde{\gamma}$ es camino que termina en $g x_{0}$ (porque $p^{-1}(y_{0}) = \Gamma \cdot x_{0}$). \par
+	Definir $\psi \colon \pi_{1}(X / \Gamma, x_{0}) \to \Gamma$ tal que $[\gamma] \mapsto g$. Chequear que $\psi$ es un isomorfismo. Esto es símil a la prueba de que $\pi_{1}(S^{1},1) \to \Z$ es isomorfismo.
+\end{proof}

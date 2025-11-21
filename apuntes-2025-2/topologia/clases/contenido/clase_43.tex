@@ -1,0 +1,85 @@
+\clase{43}{21 de Noviembre}{}
+
+\section{$\pi_{1}(S^1 \vee S^1)$}
+
+\begin{note}
+	Se puede ver que $\pi_{1}(S^{1} \vee S^{1}) \cong F_{2}$ el grupo libre.
+\end{note}
+
+\begin{pregunta}
+	¿Cubrimiento simplemente conexo de $X = S^1 \vee S^1$ (ver foto)?
+\end{pregunta}
+
+\begin{note}
+	$\mcal{X} \approx (-1,1) \times \{0\} \cup \{0\} (-1,1)$ en $\R^2$.  
+\end{note}
+
+VER FOTO para entender $T$.
+
+\begin{af}[1]
+	Colores + flechas definen un cubrimiento $p : T \to X$
+	\begin{enumerate}
+		\item Vértices en $X \setminus \{x_{0}\}$: hay vecindades $\approx (0,1)$.
+
+		\item $x_{0}$: hay vecindad $\approx \mcal{X}$ (ver foto)
+	\end{enumerate}
+\end{af}
+
+\begin{note}
+	$p^{-1}(V)$ es unión disjunta de espacios homeomorfos a $\mcal{X}$, con $V$ vecindad del punto $x_{0}$ que define la cuña. Además, $p^{-1}(U) =$ unión disjunta de intervalos, con $U$ vecindad de $x \neq x_{0}$.
+\end{note}
+
+\begin{af}[2]
+	$T$ es contractible. 
+	\begin{itemize}
+		\item $T$ es un árbol (grafo sin ciclos cerrados) $\implies$ Hay un camino "canónico" desde cualquier punto de $T$ al vértice $e$.
+
+		\item Si $\gamma_{x}$ es el camino canónico que va de $x$ a $e \implies R \colon T \times [0,1] \to T$ tal que $(x,t) = \gamma_{x}(t)$ es retracto por deformación.
+	\end{itemize}
+\end{af}
+
+\begin{remark}
+	Esto implica que $T$ es simplemente conexo.
+\end{remark}
+
+\begin{af}
+	$\pi_{1}(X) \not\cong \{1\}$.
+\end{af}
+\begin{proof}[Proof ]
+	Levantar $\alpha$ a $\widetilde{\alpha}$ camino que comienza en $e$. Entonces $\widetilde{\alpha}(1) \neq e$. Por lo tanto, $[\alpha] \neq 1$ en $\pi_{1}(X)$ (Esto también dice que $[\alpha]^{n} \neq 1 \quad \forall n \neq 0$).
+\end{proof}
+
+\begin{af}
+	$\pi_{1}(X)$ no es abeliano.
+\end{af}
+
+\begin{notation}
+	$a = [\alpha],\ b = [\beta]$.
+\end{notation}
+
+\begin{proof}[Proof Other Information]
+	Tomemos levantamientos $\widetilde{\alpha * \beta},\ \widetilde{\beta * \alpha}$ de $\alpha * \beta,\ \beta * \alpha$ respectivamente que comienzan en $e$. \par 
+	Al ver $T$ se aprecia que $\widetilde{\alpha * \beta}(1) \neq \widetilde{\beta * \alpha}(1)$. Por lo tanto $ab = [\alpha * \beta] \neq [\beta * \alpha] = ba$ (se está usando que $T$ es simplemente conexo).
+\end{proof}
+
+\begin{note}
+	Hasta aquí, $\Gamma = \pi_{1}(X)$ es:
+	\begin{enumerate}
+		\item Infinito;
+
+		\item Contiene a $\Z$;
+
+		\item No abeliano.
+	\end{enumerate}
+\end{note}
+
+\begin{af}
+	$a$ y $b$ generan $\pi_{1}(X)$.
+\end{af}
+
+\begin{proof}[Proof Other Information]
+	Si $\gamma$ es loop en $X$ con base $x_{0}$, tomamos $\widetilde{\gamma}$ levantamiento que comienza en $e$. Notar que $\widetilde{\gamma}(1)$ es vértice de $T$. \par
+	Sea $\widetilde{\gamma}_{c}$ el camino canónico que comienza en $e$ y termina en $\widetilde{\gamma}(1)$. Luego, $\widetilde{\gamma}_{c}$ es concatenación de aristas de $T$. \par
+	Entonces, $\gamma_{c} = p \circ \widetilde{\gamma}_{c}$ es concatenación de  $\alpha$'s, $\beta$'s, $\overline{\alpha}$'s y $\overline{\beta}$'s. Como $\widetilde{\gamma}_{c}$ es levantamiento de $\gamma_{c}$ y $\widetilde{\gamma}_{c}(1) = \gamma(1) \implies \gamma_{c} \sim_{p} \gamma_{c}$. \par
+	Por lo tanto, $[\gamma] = [\gamma_{c}]$ es producto de muchos $a$'s, $b$'s, $a^{-1}$'s y $b^{-1}$'s.
+\end{proof}
