@@ -1,0 +1,60 @@
+\clase{45}{26 de Noviembre}{}
+
+\begin{proof}[Proof Other Information]
+	Por el Teorema de Von Neumann, tenemos que 
+	\[ X = X_{1} \cupd X_{2} \cupd X_{3}, \]
+	donde $\nu(X_{3}) = \mu(X_{1}) = 0$, y, además, 
+	\[ \nu(E \cap X_{2}) = \int_{E \cap X_{2}} g \ d\mu \quad \forall E \in \mscr{M} \]
+	para cierta $g \ \mscr{M}$-medible no negativa tal que $g(x) > 0 \quad \forall x \in X_{2}$. \par
+	Sea $A \coloneq X_{2} \cup X_{3}$ y definamos
+	\[ \nu_{a}(E) \coloneq \nu(A \cap E) \text{ y } \nu_{s}(E) \coloneq \nu(E \cap X_{1}). \]
+	Con esta definición, $\nu = \nu_{a} + \nu_{s}$ y $\nu_{s} \perp \mu$ pues $\nu_{s}(X_{1}^{c}) = \mu(X_{1}) = 0$. \par
+	Finalmente,
+	\[ \nu_{a}(E) = \nu(E \cap (X_{3} \cupd X_{2})) = \underbrace{\nu(E \cap X_{3})}_{\leq \nu(X_{3}) = 0} + \nu(E \cap X_{2}) = \int_{E \cap X_{2}} g \ d\mu \]
+	Luego, si definimos $f \coloneq g \chi_{X_{2}}$, entonces
+	\[ \nu_{a}(E) = \int_{E} f \ d\mu \quad \forall E \in \mscr{M}. \]
+	Esto prueba la existencia de la descomposición de Lebesgue. \par
+	Falta ver la unicidad. Para ello, supongamos que $\nu = \widetilde{\nu}_{a} + \widetilde{\nu}_{s}$, donde $\widetilde{\nu}_{s} \perp \mu$ y 
+	\[ \widetilde{\nu}_{a}(E) = \int_{E} \widetilde{f} \ d\mu \]
+	para cierta $\tilde{f} \ \mscr{M}$-medible no negativa. \par
+	Que $\widetilde{\nu}_{s} \perp \mu$ implica que existe $\tilde{A} \in \mscr{M}$ tal que $\mu(\tilde{A}) = \widetilde{\nu}_{s}(\tilde{A}^{c}) = 0$. Entonces,
+	\[ \mu(X_{1} \cup \tilde{A}) = 0 = \nu_{s}(\underbrace{(X_{1} \cup \tilde{A})^{c}}_{\subseteq X_{1}^{c}}) = \widetilde{\nu}_{s}(\underbrace{(X_{1} \cup \tilde{A})^{c}}_{\subseteq \tilde{A}^{c}}). \tag{$*$} \]
+	Además, $\nu_{a}(X_{1} \cup \tilde{A}) = 0 = \widetilde{\nu}_{a}(X_{1} \cup \tilde{A})$. \par
+	Luego, como
+	\[ \nu_{a}(E) + \nu_{s}(E) = \widetilde{\nu}_{a}(E) + \widetilde{\nu}_{s}(E) \quad \forall E \in \mscr{M}, \]
+	esto implica que
+	\[ \nu_{a}(E) - \widetilde{\nu}_{a}(E) = \widetilde{\nu}_{s}(E) - \nu_{s}(E) \quad \forall E \in \mscr{M} \text{ con } \nu(E) < \infty. \]
+	En particular, como 
+	\[ \nu_{a}(E \cap (X_{1} \cup \tilde{A})) - \widetilde{\nu}_{a}(E \cap (X_{1} \cup \tilde{A})) = 0, \]
+	lo anterior implica que
+	\[ \nu_{s}(E \cap (X_{1} \cup \tilde{A})) = \widetilde{\nu}_{s}(E \cap (X_{1} \cup \tilde{A})) \quad \forall E \in \mscr{M} \text{ con } \nu(E) < \infty. \]
+	Por $(*)$, resulta que
+	\[ \nu_{s}(E) = \widetilde{\nu}_{s}(E) \quad \forall E \in \mscr{M} \text{ con } \nu(E) < \infty. \]
+	Automáticamente, esto da que 
+	\[ \nu_{a}(E) = \widetilde{\nu}_{a}(E) \quad \forall E \in \mscr{M} \text{ con } \nu(E) < \infty. \]
+	\par
+	Ahora, si $E \in \mscr{M}$ es tal que $\nu(E) = \infty$, entonces existen $(E_{n})_{n \in \N} \subseteq \mscr{M}$ disjuntos tales que $E = \textbigcupd_{n \in \N} E_{n}$ y $\nu(E_{n}) < \infty \quad \forall n \in \N$, de modo tal que
+	\[ \nu_{a}(E) = \sum_{n \in \N}^{} \nu_{a}(E) = \sum_{n \in \N}^{} \widetilde{\nu}_{a}(E_{n}) = \widetilde{\nu}_{a}(E), \]
+	y lo mismo vale para $\nu_{s}$ y $\widetilde{\nu}_{s}$.
+\end{proof}
+
+\begin{note}
+	Si $\nu$ es la medida de contar en $\R$, entonces $\nu$ no tiene descomposición de Lebesgue respecto de la medida de Lebesgue $\lambda \ (= \mu)$ en $\R$. El problema es que $\nu$ no es $\sigma$-finita.
+\end{note}
+
+\begin{corollary}[Radon-Nikodym]
+	Si $\nu,\mu$ son medidas $\sigma$-finitas en $(X, \mscr{M})$ con $\nu \ll \mu$; entonces, existe $f \colon X \to \R \ \mscr{M}$-medible no negativa tal que $\nu = \mu_{f}$. Además, $f$ es $\mu$-c.t.p única (si $\nu = \mu_{g}$, entonces $f = g \ \mu$-c.t.p). \par
+	La función $f$ se conoce como la derivada de Radon-Nikodym de $\nu$ respecto de $\mu$, y se nota
+	\[ f = \frac{d\nu}{d\mu}. \]
+\end{corollary}
+
+\begin{prop}
+	Sean $F \colon \R \to \R$ una función de L-S y $\mu_{F}$ su medida asociada. Entonces, si $\lambda$ es la medida de Lebesgue en $\R$, vale que:
+	\begin{enumerate}
+		\item $\mu_{F} \ll \lambda \iff F$ absolutamente continua en $\R$. \par
+		En tal caso,
+		\[ \frac{d\mu_{F}}{d\lambda} = F'. \]
+
+		\item $\mu_{F} \perp \lambda \iff F$ es singular en $\R$.
+	\end{enumerate}
+\end{prop}

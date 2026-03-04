@@ -1,0 +1,99 @@
+\clase{44}{24 de Noviembre}{}
+
+\begin{proof}[Proof Other Information][Von Neumann]
+	\boxed{\text{Caso 1}} $\nu,\mu$ finitas. En este caso, $\nu + \mu$ es una medida finita y vale que
+	\[ L^{2}(\nu + \mu) \subseteq L^{1}(\nu + \mu) \subseteq L^{1}(\nu). \]
+	En efecto,
+	\begin{align*}
+		\| f \|_{L^{1}(\nu + \mu)} &= \int 1 \cdot |f| \ d(\nu + \mu) \\
+		&\leq \| f \|_{L^{2}(\nu + \mu)} \underbrace{\sqrt{\nu + \mu (X)}}_{< \infty} < \infty
+	,\end{align*}
+	si $f \in L^{2}(\nu + \mu)$. \par
+	Además,
+	\begin{align*}
+		\| f \|_{L^{1}(\nu)} = \int |f| \ d\nu &\leq \int |f| \ d\nu + \int |f| \ d\mu \\
+		&= \int |f| \ d(\nu + \mu) \\
+		&= \| f \|_{L^{1}(\nu + \mu)} < \infty
+	,\end{align*}
+	si $f \in L^{1}(\nu + \mu)$. \par
+	Con esto, definimos $T \colon L_{\R}^{2}(\nu + \mu) \to \R$ tal que $f \mapsto \int f \ d\nu \in \R$. Como $L^{2}(\nu + \mu) \subseteq L^{1}(\nu)$, $T$ está bien definido. \par
+	Además, $T$ es lineal por la linealidad de la integral y 
+	\begin{align*}
+		|T(f)| \leq \| f \|_{L^{1}(\nu)} &\leq \| f \|_{L^{1}} \\
+		&\leq \| f \|_{L^{1}(\nu + \mu)} \\
+		&\leq \sqrt{(\nu + \mu)(X)} \| f \|_{L^{2}(\nu + \mu)}
+	.\end{align*}
+	Luego, $T$ es continua (de hecho, vimos que $\| T \| \leq \sqrt{(\nu + \mu)(X)}$). \par
+	Como $L^{2}(\nu + \mu)$ es Hilbert, por el Teorema de Riesz, existe $f_{0} \in L^{2}(\nu + \mu)$ tal que
+	\[ T(f) = \int f \cdot f_{0} \ d(\mu + \nu). \]
+	\par
+	En particular, si tomamos $f = \chi_{E}$ con $E \in \mscr{M}$, entonces como $\nu,\mu$ son finitas, $f \in L^{2}(\nu + \mu)$ y, por lo tanto, 
+	\[ \nu(E) = \int f \ d\nu = T(f) = \int f \cdot f_{0} \ d(\nu + \mu) \stackrel{(*)}{=} \int_{E} f_{0} \ d(\nu + \mu). \]
+	\par
+	Tomando $E = \{f_{0} < 0\}$, resulta que $\int_{\{f_{0} < 0\}} f_{0} \ d(\nu + \mu) \leq 0$ por monotonía y, por otro lado, $\int_{\{f_{0} < 0\}} f_{0} \ d(\nu + \mu) = \nu(f_{0} < 0) \geq 0$. Luego, $\int_{\{f_{0} < 0\}} f_{0} \ d(\nu + \mu) = 0$ y, por Ejericio de la Guía 6, esto implica que $f_{0} \geq 0 \quad (\nu + \mu)$-c.t.p. \par
+	Además, 
+	\[ (\nu + \mu)(E) \geq \nu(E) = \int_{E} f_{0} \ d(\nu + \mu). \]
+	Es decir,
+	\[ \int_{E} 1 \ d(\nu + \mu) \geq \int_{E} f_{0} \ d(\nu + \mu) \implies \int_{E} (1 - f_{0}) \ d(\nu + \mu) \geq 0 \quad \forall E \in \mscr{M}. \]
+	Luego, esto implica que $f_{0} \leq 1 \quad (\nu + \mu)$-c.t.p. \par
+	Sean entonces, 
+	\begin{align*}
+		& X_{1} \coloneq \{x \in X \ : \ f_{0}(x) \geq 1 \text{ ó } f_{0}(x) \leq 0\}; \\
+		& X_{2} \coloneq \{x \in X \ : \ f_{0}(x) \in (0,1)\}; \\
+		& X_{3} \coloneq \{x \in X \ : \ f_{0}(x) = 0\}; \\
+		& X_{1}' \coloneq \{x \in X \ : \ f_{0}(x) = 1\}  
+	.\end{align*}
+	Notar que $(\nu + \mu)(\{x \ : \ f_{0}(x) \not\in [0,1]\}) = 0$. Además, los $X_{i}$ son disjuntos y su unión da $X$. \par
+	Por otro lado, por $(*)$,
+	\[ \nu(X_{3}) \stackrel{(*)}{=} \int_{X_{3}} f_{0} \ d(\nu + \mu) = 0. \ \checkmark \]
+	\[ \mu(X_{1}') = (\nu + \mu)(X_{1}') - \nu(X_{1}') \stackrel{(*)}{=} \int_{X_{1}'} (1 - f_{0}) \ d(\nu + \mu) = 0. \]
+	Como $\mu \leq \nu + \mu$, entonces $\mu(\{x \ : \ f_{0}(x) \not\in [0,1]\}) = 0$ y, por lo tanto,
+	\[ \mu(X_{1}) = \mu(\{x \ : \ f_{0}(x) \not\in [0,1]\} \cupd X_{1}') = 0. \ \checkmark \] 
+	\par
+	Por último, como
+	\[ \nu(E) = \int_{E} f_{0} \ d(\nu + \mu) = \int_{E} f_{0} \ d\nu + \int_{E} f_{0} \ d\mu \quad \forall E \in \mscr{M}, \]
+	entonces
+	\[ \int_{E} (1 - f_{0}) \ d\nu = \int_{E} f_{0} \ d\nu \quad \forall E \in \mscr{M}. \]
+	Como esto es cierto $\forall E \in \mscr{M}$, entonces por linealidad vale que
+	\[ \int_{X} s(1 - f_{0}) \ d\nu = \int_{X} sf_{0} \ s\mu \]
+	$\forall s \colon X \to [0,\infty)$ simple. \par
+	Por el argumento estándar,
+	\[ \int_{X} f(1 - f_{0}) \ d\nu = \int_{X} f f_{0} \ d\mu \]
+	$\forall f \colon X \to \R \ \mscr{M}$-medible no negativa. \par
+	En particular, si tomamos
+	\[ f \coloneq \frac{\chi_{E \cap X_{2}}}{1 - f_{0}} \quad \Big(\text{con } 0 \cdot \frac{1}{0} = 0 \cdot \infty = 0 \Big) \]
+	resulta que
+	\[ \nu(E \cap X_{2}) = \int_{X} f \cdot f_{0} \ d\nu = \int_{E \cap X_{2}} \frac{f_{0}}{1 - f_{0}} \ d\mu. \]
+	Tomando
+	\begin{align*}
+		g(x) \coloneq \begin{cases}
+			\frac{f_{0}(x)}{1 - f_{0}(x)} \quad & \text{si } x \in X_{2} \\
+			0 \quad & \text{en otro caso,}
+		\end{cases}
+	\end{align*}
+	resulta que $\nu(E \cap X_{2}) = \int_{E} g \ d\mu \quad \forall E \in \mscr{M}$ (y, por lo tanto, $\nu|_{X_{2}} \ll \mu$). \par
+	\boxed{\text{Caso 2}} Teorema 9.1.9 del Rana ($\nu,\mu \ \sigma$-finitas).
+\end{proof}
+
+\begin{theorem}[Descomposición de Lebesgue]
+	Sean $\nu,\mu$ medidas $\sigma$-finitas en $(X, \mscr{M})$. Entonces, existen medidas $\nu_{a}, \nu_{s}$ en $(X, \mscr{M})$ tales que
+	\begin{enumerate}[i)]
+		\item $\nu = \nu_{a} + \nu_{s}$.
+
+		\item $\exists f \colon X \to \R \ \mscr{M}$-medible no negativa tal que
+		\[ \nu_{a}(E) = \int_{E} f \ d\mu \quad \forall E \in \mscr{M} \ (\text{en part., } \nu_{a} \ll \mu). \]
+
+		\item $\nu_{s} \perp \mu$.
+	\end{enumerate}
+	Además, $\nu_{a}$ y $\nu_{s}$ son únicas.
+\end{theorem}
+
+\begin{theorem}[Radon-Nikodym]
+	Si $\nu, \mu$ son medidas $\sigma$-finitas sobre $(X, \mscr{M})$ y $\nu \ll \mu$, entonces existe $f \colon X \to \R \ \mscr{M}$-medible no negativa tal que $\nu = \mu_{f}$. \par
+	Además, si $\nu = \mu_{g}$ para otra función $g \colon X \to \R \ \mscr{M}$-medible, entonces $f = g \quad \mu$-c.t.p.
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Como $\nu \ll \mu$, entonces, si $\nu_{a}$ y $\nu_{s}$ son las de la descomposición de Lebesgue, $\nu_{s} \ll \mu$ (pues $\nu_{s} \leq \nu$). \par
+	Pero como $\nu_{s} \perp \mu$ por definición, entonces por propiedad de la clase pasada, $\nu_{s} = 0$. Luego, $\nu = \nu_{a} + \nu_{s} = \nu_{a}$ y, por el Teorema de descomposición de Lebesgue, existe $f$ medible no negativa tal que $\nu = \mu_{f}$ (por (ii)). \par
+	La unicidad se deduce del Ejericio 2 de la Guía 6.
+\end{proof}

@@ -1,0 +1,74 @@
+\clase{1}{4 de Marzo}{}
+
+\section{Preliminares}
+
+\begin{definition}[Espacio Vectorial]
+	Sean $X$ un conjunto no vacío, $\mathbb{K} = \R$ o $\C$. $X$ es un $\mathbb{K}$ espacio vectorial (ev) si está equipado con dos operaciones:
+	\begin{align*}
+		X &\times X \to X \\
+		(x,y) &\mapsto x + y
+	.\end{align*}
+
+	\begin{align*}
+		\mathbb{K} &\times X \to X \\
+		(\lambda,x) &\mapsto \lambda x
+	.\end{align*}
+	satisfaciendo las condiciones siguientes:
+	\begin{enumerate}
+		\item $\forall x,y \in X,\ x + y = y + x$;
+
+		\subitem $\forall x,y,z \in X,\ (x + y) + z = x + (y + z)$;
+
+		\subitem $\exists 0 \in X$ tal que $\forall x \in X,\ 0 + x = x$;
+
+		\subitem $\forall x \in X,\ \exists (-x) \in X$ tal que $x + (-x) = 0$;
+
+		\item $\forall x \in X,\ \forall \lambda,\mu \in \mathbb{K},\ (\lambda \mu) x = \lambda (\mu x)$
+
+		\item $\forall x,y \in X,\ \forall \lambda,\mu \in \mathbb{K},\ \lambda (x + y) = \lambda x + \lambda y$, $(\lambda + \mu) x = \lambda x + \mu x$.
+	\end{enumerate}
+\end{definition}
+
+\begin{ex}
+	$(-1) x = -x$, $0 \cdot x = 0$.
+\end{ex}
+
+Los elementos de $X$ se llaman vectores y los de $\mathbb{K}$ se llaman escalares.
+
+\begin{notation}
+	Sean $X$ un ev, $A \subset X,\ a \in X,\ \lambda \in \mathbb{K}$. Luego,
+	\begin{align*}
+		a + A &= \{ a + x;\ x \in A \} \\
+		\lambda A &= \{ \lambda x;\ x \in A \} \\
+		a - A &= \{ a - x;\ x \in A \} \\
+		A + B &= \{ x + y;\ x \in A,\ y \in B \}
+	.\end{align*}
+\end{notation}
+
+\begin{note}
+	$2A \neq A + A$ en general.
+\end{note}
+
+\begin{definition}
+	Sean $X$ ev, $Y \subset X$. 
+	\begin{enumerate}
+		\item Diremos que $Y$ un subespacio (sev) vectorial de $X$ si:
+		\begin{enumerate}
+			\item $0_{x} \in Y$;
+
+			\item $\forall \alpha, \beta \in \mathbb{K},\ \alpha Y + \beta Y \subset Y$.
+		\end{enumerate}
+
+		\item Diremos que $Y$ es convexo si:
+		\begin{enumerate}
+			\item $\forall t \in [0,1],\ tY + (1 - t) Y \subset Y$;
+
+			\item $\forall t \in [0,1],\ \forall y_{1},y_{2} \in Y,\ ty_{1} + (1 - t) y_{2} \in Y$.
+		\end{enumerate}
+
+		\item Diremos que $Y$ es equilibrado (balanced) si $\forall \alpha \in \mathbb{K}, | \alpha | \leq 1,\ \alpha Y \subset Y$.
+
+		\item Diremos que $Y$ es absorbente si $\forall x \in X,\ \exists \alpha_{x} \in \mathbb{K}$ tal que $x \in \alpha A$.
+	\end{enumerate}
+\end{definition}
+
