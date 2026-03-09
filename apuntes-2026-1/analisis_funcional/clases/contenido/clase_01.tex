@@ -5,17 +5,18 @@
 \begin{definition}[Espacio Vectorial]
 	Sean $X$ un conjunto no vacío, $\mathbb{K} = \R$ o $\C$. $X$ es un $\mathbb{K}$ espacio vectorial (ev) si está equipado con dos operaciones:
 	\begin{align*}
-		X &\times X \to X \\
+		X \times X &\to X \\
 		(x,y) &\mapsto x + y
 	.\end{align*}
-
 	\begin{align*}
-		\mathbb{K} &\times X \to X \\
+		\mathbb{K} \times X &\to X \\
 		(\lambda,x) &\mapsto \lambda x
 	.\end{align*}
 	satisfaciendo las condiciones siguientes:
 	\begin{enumerate}
-		\item $\forall x,y \in X,\ x + y = y + x$;
+		\item por un lado,
+
+		\subitem $\forall x,y \in X,\ x + y = y + x$;
 
 		\subitem $\forall x,y,z \in X,\ (x + y) + z = x + (y + z)$;
 
@@ -29,9 +30,9 @@
 	\end{enumerate}
 \end{definition}
 
-\begin{ex}
+\begin{eg}
 	$(-1) x = -x$, $0 \cdot x = 0$.
-\end{ex}
+\end{eg}
 
 Los elementos de $X$ se llaman vectores y los de $\mathbb{K}$ se llaman escalares.
 
@@ -66,9 +67,63 @@ Los elementos de $X$ se llaman vectores y los de $\mathbb{K}$ se llaman escalare
 			\item $\forall t \in [0,1],\ \forall y_{1},y_{2} \in Y,\ ty_{1} + (1 - t) y_{2} \in Y$.
 		\end{enumerate}
 
-		\item Diremos que $Y$ es equilibrado (balanced) si $\forall \alpha \in \mathbb{K}, | \alpha | \leq 1,\ \alpha Y \subset Y$.
+		\item Diremos que $Y$ es equilibrado (balanced) si $\forall \alpha \in \mathbb{K},\ | \alpha | \leq 1,\ \alpha Y \subset Y$.
 
 		\item Diremos que $Y$ es absorbente si $\forall x \in X,\ \exists \alpha_{x} \in \mathbb{K}$ tal que $x \in \alpha A$.
 	\end{enumerate}
 \end{definition}
 
+\begin{observe}
+	Sea $Z \subset X$, $X$ ev.
+	\begin{itemize}
+		\item $\spn (Z)$ denota el ev más chivo que contiene a $Z$. Se puede describir como la familia de todas las combinaciones lineales (cl) finitas de elementos de $Z$. $\spn (Z)$ se llama ev generado por $Z$.
+
+		\item $\hull (Z)$ denota el conjunto convexo más chico que contiene a $Z$. $\hull(Z)$ se llama envoltura convexa de $Z$.
+	\end{itemize}
+\end{observe}
+
+\begin{eg}
+	Sea $u \in X$.
+	\begin{align*}
+		\spn(u) = \begin{cases}
+			\{ 0 \} \quad \text{si } u = 0 \\
+			\mathbb{K} u \quad \text{recta dirigida por } u \text{ si } u \neq 0
+		\end{cases}
+	.\end{align*}
+\end{eg}
+
+\begin{eg}
+	\begin{enumerate}
+		\item $\mathbb{K}^{n}$ donde $n \in \N$.
+
+		\item $\mcal{F}(E; \mathbb{K})$ denota el conjunto de las funciones $f \colon E \to \mathbb{K}$ donde $E \neq \varnothing$ y
+		\begin{align*}
+			(f + g)(x) &= f(x) + g(x) \quad \forall x \in E \\
+			(\lambda f)(x) &= \lambda f(x)
+		.\end{align*}
+
+		\item Si $(E,d)$ es un espacio métrico $\mcal{C}^{0}(E; \mathbb{K})$ es un ev.
+
+		\item Si $(E, \xi, \mu)$ es un espacio de medida $\mscr{M}(E; \mathbb{K})$ es un ev.
+	\end{enumerate}
+\end{eg}
+
+\begin{definition}[espacio vectorial topológico]
+	Sea $X$ un ev y $\tau$ una topología sobre $X$ tal que
+	\begin{enumerate}
+		\item tanto
+		\begin{align*}
+			X \times X &\to X \\
+			(x,y) &\mapsto x + y
+		,\end{align*}
+		como
+		\begin{align*}
+			\mathbb{K} \times X &\to X \\
+			(\lambda,x) &\mapsto \lambda x
+		\end{align*}
+		sean continuas.
+
+		\item $\forall x \in X,\ \{ x \}$ es cerrado.
+	\end{enumerate}
+	En ese caso, $X$ equipado con $\tau$ se llama espacio vectorial topológico (evt).
+\end{definition}

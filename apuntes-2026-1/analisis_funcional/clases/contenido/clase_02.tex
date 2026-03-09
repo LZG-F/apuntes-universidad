@@ -1,0 +1,123 @@
+\clase{2}{9 de Marzo}{}
+
+\begin{definition}[Topología]
+	Sea $X$ un conjunto. Una colección $\tau$ de subconjuntos de $X$ tal que:
+	\begin{enumerate}[a)]
+		\item $\varnothing,\ X \in \tau$,
+
+		\item $\tau$ es estable bajo unión,
+
+		\item $\tau$ es estable bajo intersección finita;
+	\end{enumerate}
+	se llama topología sobre $X$. Los elementos de $\tau$ se llaman conjuntos abiertos spara $\tau$. En este caso, se dice que $(X, \tau)$ es un espacio topológico (e.t).
+\end{definition}
+
+\begin{note}
+	En la práctica, se trabaja con una base de la topología $\tau$.
+\end{note}
+
+\begin{observe}
+	Dados $(X, \tau)$ un e.v.t donde (donde $X$ un e.v), $a \in X$ y $\lambda \in \mathbb{K}$; se tiene entonces que los mapeos $\tau_{a} \colon X \to X$ tal que $\tau_{a}(x) = x + a$ (traslación del vector $a$) y $M_{\lambda} \colon X \to X$ tal que $M_{\lambda}(x) = \lambda x$ (homotecia de razón $\lambda$), son homeomorfismos de $X$.
+\end{observe}
+
+\begin{definition}[seminorma]
+	Sean $X$ un e.v (sobre $\mathbb{K}$) y $p \colon X \to \R$ tal que
+	\begin{enumerate}[a)]
+		\item $\forall x,y \in X \quad p(x + y) \leq p(x) + p(y)$ (subaditividad);
+	
+		\item $\forall x \in X,\ \forall \alpha \in \mathbb{K} \quad p(\alpha x) = | \alpha | p(x)$.
+	\end{enumerate}
+	Luego, $p$ es una seminorma de $X$. \par
+	Si, además, $p(x) \neq 0 \quad \forall x \neq 0$, entonces $p$ es una norma sobre $X$. En ese caso, $(X, p)$ es un e.v.n.
+\end{definition}
+
+\begin{property}
+	Sea $p$ una seminorma sobre $X$. Entonces:
+	\begin{enumerate}[a)]
+		\item $p(0) = 0$;
+
+		\item $\forall x,y \in X, \quad |p(x) - p(y)| \leq p(x - y)$;o
+		
+		\item $\forall x \in X, \quad p(x) \geq 0$;
+
+		\item $\{x \in X \ | \ p(x) = 0\}$ es un s.e.v;
+
+		\item $\{x \in X \ | \ p(x) < 1\}$ es un subconjunto convexo, equilibrado y absorbente.
+	\end{enumerate}
+\end{property}
+\begin{proof}[Proof ]
+	\begin{enumerate}[a)]
+		\item Tomar $\alpha = 0$ en el b) de la definición.
+
+		\item Sean $x,y \in X$, luego $p(x) = p(x - y + y) \leq p(y) + p(x - y)$. Así, tenemos que $p(x) - p(y) \leq p(x - y)$, e intercambiando los roles de $x$ e $y$, se obtiene $p(y) - p(x) \leq p(y - x) = p(-(x - y)) = p(x-y)$.
+
+		\item Aplicar b) con $y = 0$.
+
+		\item Por a), $0 \in \{x \in X \ | \ p(x) = 0\} \coloneq \xi_{p}$. Luego, sean $x,y \in \xi_{p}$ y $\alpha \in \mathbb{K}$. Tenemos que
+		\[ 0 \leq p(x + \alpha y) \leq p(x) + p(\alpha y) = p(x) + |\alpha| p(y) = 0. \]
+		Es decir, $p(x + \alpha y) = 0$, por lo que $x + \alpha y \in \xi_{p}$.
+
+		\item Ejercicio.
+	\end{enumerate}
+\end{proof}
+
+\begin{observe}
+	Si $\| \cdot \|$ es una norma sobre el e.v $X$, b) se traduce por: 
+	\[ \forall x,y \in X \quad \big| \| x \| - \| y \| \big| \leq \| x - y \|; \]
+	lo cual muestra que el mapeo $x \mapsto \| x \|$ es continuo. \par
+	Si $(X, \| \cdot \|)$ es un e.v.n, $X$ se puede ver como un espacio métrico, con métrica $d$, definida por:
+	\[ d(x,y) = \| x - y \| \quad \forall x,y \in X. \]
+\end{observe}
+
+\begin{notation}
+	Si $a \in X$ y $r \geq 0$, denotaremos
+	\begin{align*}
+		B_{r}(a) &\coloneq \{x \in X \ | \ \| x - a \| \leq r\} \quad \text{(bola cerrada)} \\
+		D_{r}(a) &\coloneq \{x \in X \ | \ \| x - a \| < r\} \quad \text{(bola abierta)}
+	.\end{align*}
+	Además, notar que $B_{r}(a) = \overline{D_{r}(a)}$ y $\mathring{B_{r}(a)} = D_{r}(a).$
+\end{notation}
+
+\begin{prop}
+	Si $(X, \| \cdot \|)$ es un e.v.n, entonces es también un e.v.t.
+\end{prop}
+\begin{proof}[Proof Other Information]
+	\begin{itemize}
+		\item Si $a \in X$, $\{a\} = B_{0}(a)$ es cerrada. 
+
+		\item Si $(x_{n})_{n \in \N},\ (y_{n})_{n \in \N}$ sucesiones de $X$, entonces
+		\begin{align*}
+			x_{n} \longrightarrow x &\iff \| x_{n} - x \| \longrightarrow 0 \\
+			y_{n} \longrightarrow y &\iff \| y_{n} - y \| \longrightarrow 0
+		.\end{align*}
+		Luego,
+		\[ \| (x_{n} + y_{n}) - (x + y) \| \leq \| x_{n} - x \| + \| y_{n} - y \| \longrightarrow 0. \]
+
+		\item Si $(\lambda_{n})_{n \in \N} \subset \mathbb{K},\ (x_{n})_{n \in \N} \subset X$ tal que $\lambda_{n} \longrightarrow \lambda$ y $x_{n} \longrightarrow x$. Luego,
+		\begin{align*}
+			\| \lambda_{n} x_{n} - \lambda x \| &= \| \lambda_{n} (x_{n} - x) + (\lambda_{n} - \lambda) x \| \\
+			&\leq |\lambda_{n}| \cdot \| x_{n} - x \| + |\lambda_{n} - \lambda| \cdot \| x \| \longrightarrow 0
+		.\end{align*}
+	\end{itemize}
+\end{proof}
+
+\begin{eg}
+	Algunas normas típicas pueden ser
+	\begin{itemize}
+		\item $\| x \|_{2} \coloneq \left( \sum_{j=1}^{d} |x_{j}|^{2} \right)^{\frac{1}{2}}$ (norma euclidiana);
+
+		\item $(\mathbb{K}^{d}, \| \cdot \|_{2}) = l_{2}^{d}$;
+
+		\item $\| x \|_{p} \coloneq \left( \sum_{j=1}^{d} |x_{j}|^{p} \right)^{\frac{1}{p}} \leadsto (\mathbb{K}^{d}, \| \cdot \|_{p}) = l_{p}^{d}$;
+
+		\item $\| x \|_{\infty} \coloneq \sup_{j \in \{1,\dots,d\}} |x_{j}| \leadsto (\mathbb{K}^{d}, \| \cdot \|_{\infty}) = l_{\infty}^{d}$.
+	\end{itemize}
+\end{eg}
+
+\begin{eg}
+	$\mcal{F}_{b}(X; \mathbb{K}) \coloneq \{f \in \mcal{F}(X; \mathbb{K} \ | \ f \text{ acotada}\}$, $X$ conjunto no vacío. Luego,
+	\[ \| f \|_{\infty} \coloneq \sup_{x \in X} |f(x)|. \]
+	Caso particular es $X = \N$,
+	\[ f \simeq (f(n))_{n \in \N} \simeq (f_{n})_{n \in \N} \]
+	$\| f \|_{\infty} \coloneq \sup_{n \in \N} |f_{n}|$ y $(\mcal{F}_{b}(\N; \mathbb{K}), \| \cdot \|_{\infty}) = l_{\infty}(\N ; \mathbb{K})$.
+\end{eg}

@@ -1,1 +1,110 @@
+\chapter{Objetivo del curso}
+
 \clase{1}{5 de Marzo}{}
+
+En el curso se intentará responder a las siguientes preguntas:
+\begin{enumerate}
+	\item ¿Qué es una curva en $\R^{2}$ y una superficie en $\R^{3}$? (¿y en $\R^{n}$?)
+
+	\item ¿Cómo (y para qué) hacemos cálculo sobre estos objetos?
+
+	\item ¿Qué significa decir que dos curvas o dos superficies son equivalentes?
+
+	\item ¿Qué es la curvatura y cómo impacta la forma de estos objetos?
+\end{enumerate}
+
+\chapter{Curvas parametrizadas en $\R^{n}$}
+
+Se tiene que $\R^{n} = \{ v = (v_{1}, v_{2}, \dots, v_{n}) \ | \ v_{1},\dots,v_{n} \in \R \}$ es un espacio vectorial con producto interno (o escalar) usual:
+\[ \langle v, w \rangle = v_{1}w_{1} + v_{2}w_{2} + \cdots + v_{n}w_{n} \]
+y norma euclidiana
+\[ | v | = \sqrt{\langle v, v \rangle} = \sqrt{v_{1}^{2} + \cdots + v_{n}^{2}} \]
+Si $n = 2$ o $n = 3$, también usaremos
+\[ (x,y) \in \R^{2} \quad \text{o} \quad (x,y,z) \in \R^{3}. \]
+
+\begin{definition}[curva parametrizada, funciones componentes, traza]
+	Una curva parametrizada en $\R^{n}$ es una aplicación
+	\[ \alpha \colon I \to \R^{n} \]
+	donde $I \subset \R$ es un intervalo. Podemos escribir:
+	\[ \alpha(t) = (\alpha_{1}(t), \alpha_{2}(t), \dots, \alpha_{n}(t)) \]
+	donde $\alpha_{1}, \dots, \alpha_{n} \colon I \to \R$ se llaman las funciones componentes (o coordenadas) de $\alpha$. \par
+	Si $n = 2$ (resp. $n = 3$), también escribiremos:
+	\[ \alpha(t) = (x(t), y(t)) \quad (\text{resp. } \alpha(t) = (x(t), y(t), z(t))). \]
+	\par
+	Si $t \in I$ es tal que las funciones $\alpha_{1},\dots,\alpha_{n}$ son diferenciables en $t$, el vector
+	\[ \alpha'(t) \coloneq (\alpha_{1}'(t), \alpha_{2}'(t), \dots, \alpha_{n}'(t)) \]
+	será el vector tangente en $\alpha(t)$. \par
+	El conjunto $\alpha(I) = \{ \alpha(t) \ | \ t \in I \}$ se llama la traza de $\alpha$.
+\end{definition}
+
+\begin{definition}[curva suave]
+	Diremos que una curva $\alpha$ es suave (o infinitamente diferenciable) si las funciones $\alpha_{1}, \dots, \alpha_{n}$ son infinitamente diferenciables (existen $\alpha_{i}', \alpha_{i}'', \dots, \alpha_{i}^{(n)}, \dots$ para $i = 1, \dots, n$).
+\end{definition}
+
+\begin{eg}
+	\begin{enumerate}
+		\item Si $p \in \R^{n}$ y $v \in \R^{n},\ v \neq (0, \dots, 0)$, la curva parametrizada suave
+		\[ \alpha(t) = p + tv = (p_{1} + tv_{1}, \dots, p_{n} + tv_{n}) \]
+		describe una recta en $\R^{n}$ que pasa por $p = \alpha(0)$ y con vector tangente
+		\[ \alpha'(t) = (v_{1}, v_{2}, \dots, v_{n}) = v \]
+		constante.
+
+		\item Si $\alpha \colon \R \to \R^{2}$ es tal que $\alpha(t) = (t^{3}, 0)$, esta es una curva param. suave, con vector tangente
+		\[ \alpha'(t) = (3t^{2}, 0), \quad t \in \R \]
+		y traza
+		\begin{align*}
+			\alpha(\R) &= \{ (t^{3}, 0) \ | t \in \R \} \\
+			&= \{ t^{3} \cdot (1,0) \ | \ t \in \R \}  
+		\end{align*}
+		que corresponde al eje $x$ en el plano
+
+		\item Si $p \in \R^{2}$ y $r > 0$, la curva param. $\alpha \colon \R \to \R^{2}$
+		\[ \alpha(t) = p + r(\cos t, \sin t) \]
+		es suave, y sus componentes cumplen:
+		\[ (\alpha_{1}(t) - p_{1})^{2} + (\alpha_{2}(t) - p_{2})^{2}) = (r \cdot \cos t)^{2} + (r \cdot \sin t)^{2} = r^{2}. \]
+		Luego, $\alpha(t)$ describe una circunferencia de centro $p$ y radio $r$ en $\R^{2}$.
+
+		\item Fijemos $a,b \in \R \setminus \{ 0 \}$. Definimos $\alpha \colon \R \to \R^{3}$,
+		\[ \alpha(t) = (a \cos t, a \sin t, b \cdot t). \]
+		Esta es una curva param. suave, llamada una hélice circular. Su vector tangente
+		\[ \alpha'(t) = (-a \sin t, a \cos t, b) \]
+		forma un ángulo constante con la dirección $z$:
+		\[ \frac{\langle \alpha'(t), (0,0,1) \rangle}{| \alpha'(t) | \cdot |(0,0,1)|} = \frac{\langle (-a \sin t, a \cos t, b), (0,0,1) \rangle}{\sqrt{a^{2} + b^{2}} \cdot 1} = \frac{b}{\sqrt{a^{2} + b^{2}}}. \]
+
+		\item La curva param. suave $\alpha \colon \R \to \R^{2}$,
+		\[ \alpha(t) = (t^{3} - 4t, t^{2} - 4) \]
+		tiene vector tangente
+		\[ \alpha'(t) = (3t^{2} - 4, 2t) \]
+		y cumple:
+		\[ \alpha(-2) = (0,0) = \alpha(2), \]
+		o sea, $\alpha$ tiene una autointersecciones (no es inyectiva).
+	\end{enumerate}
+\end{eg}
+
+\begin{ex}
+	\begin{enumerate}
+		\item Ver Do Carmo, ejercicio 5, sección 1-3 (la tractriz).
+
+		\item Demuestre que si $\alpha, \beta \colon I \to \R^{n}$ son curvas param. diferenciables, entonces:
+		\[ \frac{d}{dt} \langle \alpha(t), \beta(t) \rangle = \langle \alpha'(t), \beta(t) \rangle + \langle \alpha(t), \beta'(t) \rangle, \quad \forall t \in I. \]
+		Concluya que si $\alpha'(t) \neq 0$ para todo $t \in I$, entonces $| \alpha(t) |$ es constante si, y solo si $\alpha(t) \perp \alpha'(t)$ para todo $t \in I$.
+	\end{enumerate}
+\end{ex}
+
+\section{Longitud (o largo) de una curva parametrizada}
+
+\begin{problem}
+	Dada una curva param. $\alpha \colon I \to \R^{n}$ y $[a,b] \subset I$, ¿cómo calculamos la longitud de $\alpha(t)$ sobre $[a,b]$?
+\end{problem}
+
+La estrategia será aproximar $\alpha(t)$ por una curva poligonal que pasa por 
+\[ \alpha(t_{0}) = \alpha(a),\ \alpha(t_{1}), \dots,\ \alpha(t_{k}) = \alpha(b) \]
+y calcular
+\[ \sum_{i=1}^{k} | \alpha(t_{i}) - \alpha(t_{i-1}) |. \]
+Si suponemos $\alpha'(t)$ continua, esperamos:
+\[ |\alpha(t_{i}) - \alpha(t_{i-1})| \approx |\alpha'(t)| \cdot |t_{i} - t_{i-1}|, \quad (t \in [t_{i-1}, t_{i}]). \]
+
+\begin{definition}[longitud]
+	La longitud (o largo) de $\alpha$ sobre $[a,b]$ es el número
+	\[ L_{a}^{b}(\alpha) = \sup \left\{ \sum_{i=1}^{k} |\alpha(t_{i}) - \alpha(t_{i-1})| \ \Big| \ a = t_{0} < t_{1} < \cdots < t_{k} = b \right\}. \]
+\end{definition}
