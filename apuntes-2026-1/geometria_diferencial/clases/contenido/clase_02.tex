@@ -1,0 +1,115 @@
+\clase{2}{5 de Marzo}{}
+
+Sea $\alpha \colon I \subset \R \to \R^{n}$ una curva param. Suponga $\alpha$ continua diferenciable sobre $[a,b] \subset I$ ($\alpha_{1}', \dots, \alpha_{n}'$ son continuas sobre $[a,b] \implies |\alpha'(t)| = \sqrt{\alpha_{1}'(t)^{2} + \cdots + \alpha_{n}'(t)^{2}}$ continua).
+
+\begin{prop}
+	Para todo $\varepsilon > 0$, existe $\delta > 0$ tal que:
+	\[ \left| \sum_{i=1}^{k} |\alpha(t_{i}) - \alpha(t_{i-1})| - \int_{a}^{b} |\alpha'(t)| \ dt \right| < \varepsilon \]
+	para toda partición $\{a = t_{0} < \cdots < t_{i} < \cdots < t_{k} = b\}$ del intervalo $[a,b]$ con $\max_{i = 1,\dots,k} |t_{i} - t_{i-1}| < \delta$. \par
+	Luego,
+	\[ L_{a}^{b}(\alpha) = \int_{a}^{b} |\alpha'(t)| \ dt. \]
+\end{prop}
+
+\begin{eg}
+	Si $\alpha(t) = p + tv,\ t \in \R$, donde $p \in \R^{n}$ y $v \in \R^{n} \setminus \{0\}$, entonces $\alpha$ es suave. Luego,
+	\begin{align*}
+		L_{a}^{b}(\alpha) &= \int_{a}^{b} |\alpha'(t)| \ dt = \int_{a}^{b} |v| \ dt = |v| \cdot (b-a) \\
+		&= |b \cdot v - a \cdot v| = |\alpha(b) - \alpha(a)|
+	.\end{align*}
+\end{eg}
+
+\begin{property}[+ definiciones varias]
+	(de $L_{a}^{b}(\alpha)$). $\alpha \colon I \to \R^{n}$ curva param., continua diferenciable sobre $[a,b] \subset I$.
+	\begin{enumerate}[(i)]
+		\item $|\alpha(b) - \alpha(a)| \leq L_{a}^{b}(\alpha)$;
+
+		\item Si $F \colon \R^{n} \to \R^{n}$ es un mapeo diferenciable, cuya derivada $DF(p) \colon \R^{n} \to \R^{n}$ cumple $|DF(p) v| = |v|, \text{para todo } v \in \R^{n} \text{ y todo } p \in \R^{n}$. Entonces,
+		\[ L_{a}^{b}(F \circ \alpha) = L_{a}^{b}(\alpha) \]
+		Luego, la longitud es preservada por \textit{movimientos rígidos}:
+		\[ F(x) = Ax + p_{0}, \]
+		donde $p_{0} \in \R^{n}$ y $A \colon \R^{n} \to \R^{n}$ es una transformación ortogonal (es decir, $\langle Au, Av \rangle = \langle u, v \rangle$ para todos los $u,v \in \R^{n}$). 
+
+		\item Si $h \colon J \subset \R \to I$ es diferenciable y tiene inversa $h^{-1} \colon I \to J$ diferenciable (o sea, $h$ es un \textit{difeomorfismo}), entonces $L_{c}^{d}(\alpha \circ h) = L_{a}^{b}(\alpha)$, donde $[a,b] = h([c,d])$, para todo $[c,d] \subset J$. Se dice que $\alpha \circ h$ es una \textit{reparametrización} de $\alpha$ (notar que $\alpha \circ h$ y $\alpha$ tienen la misma traza).
+	\end{enumerate}
+\end{property}
+\begin{proof}[Proof Other Information]
+	Primero, veamos (ii). Tenemos: 
+	\[ L_{a}^{b}(F \circ \alpha) = \int_{a}^{b} |(F \circ \alpha)'(t)| \ dt. \]
+	Si escribimos $F(x) = (F_{1}(x), \dots, F_{n}(x))$, tenemos:
+	\begin{align*}
+		(F \circ \alpha)(t) &= \frac{d}{dt}(F_{1}(\alpha(t)), \dots, F_{n}(\alpha(t))) \\
+		&= \left( \frac{d}{dt} F_{1}(\alpha(t)), \dots, \frac{d}{dt} F_{n}(\alpha(t)) \right) \\
+		(\text{comprobar}) &= DF(\alpha(t))(\alpha_{1}'(t), \dots, \alpha_{n}'(t)) \\
+		&= DF(\alpha(t))(\alpha'(t)
+	.\end{align*}
+	Luego,
+	\begin{align*}
+		|(F \circ \alpha)'(t)| &= |DF(\alpha(t)) \alpha'(t)| \\
+		&= |\alpha'(t)|
+	\end{align*}
+	y
+	\[ L_{a}^{b}(F \circ \alpha) = \int_{a}^{b} |\alpha'(t)| \ dt = L_{a}^{b}(\alpha). \]
+	\par
+	Ahora veamos (iii). Tenemos:
+	\begin{align*}
+		L_{c}^{d}(\alpha \circ h) &= \int_{c}^{d} |(\alpha \circ h)'(t)| \ dt \\
+		&= \int_{c}^{d} |(\alpha_{1} \circ h, \dots, \alpha_{n} \circ h)'(t)| \ dt \\
+		&= \int_{c}^{d} |(\alpha_{1}'(h(t)) h'(t), \dots, \alpha_{n}'(h(t)) h'(t))| \ dt \\
+		&= \int_{c}^{d} |(\alpha_{1}'(t), \dots, \alpha_{n}'(t)) \cdot h'(t)| \ dt \\
+		&= \int_{c}^{d} |\alpha'(t)| \cdot |h'(t)| \ dt
+	.\end{align*}
+	Como $h$ y $h^{-1}$ son deribables, $h'$ es siempre $>0$ o siempre $<0$. \par
+	Si es siempre $>0$, $h$ es creciente, $h(c) = a,\ h(d) = b$ y
+	\[ L_{c}^{d}(\alpha \circ h) = \int_{c}^{d} |\alpha'(h(t))| h'(t) \ dt. \]
+	Si hacemos un cambio de variables $s = h(t),\ ds = h'(t) \ dt$; obtenemos
+	\[ L_{c}^{d}(\alpha \circ h) = \int_{a}^{b} |\alpha'(s)| \ ds = L_{a}^{b}(\alpha). \]
+	Similar si $h' < 0$.
+\end{proof}
+
+\begin{observe}
+	Para $F \colon \R^{n} \to \R^{n}$ diferenciable en $p \in \R^{n}$, consideraremos su derivada $DF(p)$ como la transformación lineal $\R^{n} \to \R^{m}$ asociada a la matriz jacobiana: (si $F(x) = (F_{1}(x), \dots, F_{m}(x)$),
+	\[ DF(p)(e_{i}) = \left( \frac{\partial F_{1}}{\partial x_{i}}(p), \dots, \frac{\partial F_{m}}{\partial x_{i}}(p) \right). \]
+\end{observe}
+
+\begin{definition}[curva suave a trozos]
+	$\alpha \colon I \to \R^{n}$ curv. param. es suave a trozos si existen $t_{0} < \cdots < t_{n}$ en $I$ tal que $\alpha\big|_{I \cap (-\infty, t_{0}]},\ \alpha \big|_{I \cap [t_{0}, t_{1}]}, \dots,\ \alpha\big|_{I \cap [t_{n}, \infty)}$ son suaves.
+\end{definition}
+
+\begin{ex}
+	Extienda la proposición y las propiedades de $L_{a}^{b}(\alpha)$ para curvas suaves a trozos.
+\end{ex}
+
+\begin{definition}[curva regular y parametrizada por el arco]
+	$\alpha \colon I \subset \R \to \R^{n}$ curva param. Se dice que $\alpha$ es \textit{regular} si $\alpha'(t) \neq 0$ para todo $t \in I$. \par
+	Si, además, $|\alpha'(t)| = 1,\ \forall t \in I$, se dice que $\alpha$ está \textit{parametrizada por [longitud d]el arco, o p.p.a}.
+\end{definition}
+
+\begin{note}
+	\begin{enumerate}[(i)]
+		\item Si $\alpha$ está p.p.a, $L_{a}^{b}(\alpha) = \int_{a}^{b} |\alpha'(t)| \ dt = b - a$.
+
+		\item Si $\alpha$ es suave y p.p.a, entonces $\alpha'(t) \perp \alpha'(t),\ \forall t \in I$, pues
+		\begin{align*}
+			0 &= \frac{d}{dt} |\alpha'(t)|^{2} = \frac{d}{dt} \langle \alpha'(t), \alpha'(t) \rangle \\
+			&= 2 \langle \alpha'(t), \alpha'(t) \rangle, \quad \forall t \in I
+		.\end{align*}
+	\end{enumerate}
+\end{note}
+
+\begin{prop}
+	Si $\alpha \colon I \subset \R \to \R^{n}$ es una curva param. regular, entonces $\alpha$ admite una reparametrización p.p.a. Concretamente: si $t_{0} \in I$ y
+	\[ s(t) \coloneq \int_{t_{0}}^{t} |\alpha'(r)| \ dr, \quad t \in I, \]
+	entonces $s \colon I \to \R$ es inyectiva, diferenciable y su inversa $s^{-1} \colon s(I) \subset \R \to \R$ es diferenciable. Además, $\alpha \circ s^{-1}$ es p.p.a.
+\end{prop}
+\begin{proof}[Proof Other Information]
+	Por el TFC, $s$ es diferenciable, y
+	\[ s'(t) = |\alpha'(t)| > 0, \quad \forall t \in I. \]
+	Luego, $\alpha$ es creciente y tiene inversa $s^{-1} \colon s(I) \to I$. Además, por el Teorema de la Función Inversa,
+	\[ (s^{-1})'(r) = \frac{1}{s'(s^{-1}(r))},\quad \forall r \in s(I). \]
+	Por tanto, $\alpha \circ s^{-1}$ es una curva param. diferenciable, con
+	\begin{align*}
+		|(\alpha \circ s^{-1})'(r)| &= |\alpha'(s^{-1}(r)) \cdot (s^{-1})'(r)| \\
+		&= |\alpha'(s^{-1}(r))| \cdot |(s^{-1})'(r)| \\
+		&= s'(s^{-1}(r)) \cdot (s^{-1})'(r) = 1
+	.\qedhere\end{align*}
+\end{proof}

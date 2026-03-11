@@ -1,0 +1,115 @@
+\clase{4}{11 de Marzo}{}
+
+\section{Independencia}
+
+\begin{definition}[a]
+	Sea $\Omega$ un conjunto y $(E, \mcal{F})$ un espacio medible. Sea $f \colon \Omega  \to E$. Definimos $\sigma(f)$ como la $\sigma$-álgebra más pequeña de $\Omega$ que hace que $f$ sea medible. Es facil ver que
+	\[ \sigma(f) = \{f^{-1}(B) \ | \ B \in \mcal{F}\}. \] 
+	Sea $(f_{i})_{i \in I}$ una familia de funciones $f_{i} \to E_{i}$ donde $(E_{i}, \mcal{F}_{i})$ es espacio medible para cada $i$. Entonces, defino $\sigma(f_{i};\ i \in I)$ como la $\sigma$-álgebra más pequeña que hace que todas las $f_{i}$ sean medibles. Se puede demostrar que
+	\[ \sigma(f_{i};\ i \in I) = \sigma\left(\bigcup_{i \in I} \sigma(f_{i})\right). \]
+\end{definition}
+
+\begin{definition}[Espacio Producto]
+	Sea $(E_{1}, \mcal{F}_{1}, \mu_{1}),\ (E_{2}, \mcal{F}_{2}, \mu_{2})$ espacios $\sigma$-finitos. Definimos $\mcal{F}_{1} \times \mcal{F}_{2}$ como $\sigma(\pi_{i} \ \colon \ i \in \{1,2\})$, donde
+	\begin{align*}
+		\pi_{1} &\colon E_{1} \times E_{2} \to E_{1} \\
+		&\pi_{1}(x,y) = x
+	,\end{align*}
+	\begin{align*}
+		\pi_{2} &\colon E_{1} \times E_{2} \to E_{2} \\
+		&\pi_{2}(x,y) = y
+	,\end{align*}
+	definimos $\mu_{1} \times \mu_{2}$ como la única medida en $(E_{1} \times E_{2}, \mcal{F}_{1} \times \mcal{F}_{2})$ tal que
+	\[ \mu_{1} \times \mu_{2}(A \times B) = \mu_{1}(A) \cdot \mu_{2}(B) \quad \forall A \in \mcal{F}_{1},\ B \in \mcal{F}_{2}. \]
+\end{definition}
+
+\begin{theorem}
+	$\mu_{1} \times \mu_{2}$ existe y es única.
+\end{theorem}
+
+\begin{observe}
+	Los conjuntos de la forma $A \times B$ con $A \in \mcal{F}_{1}$ y $B \in \mcal{F}_{2}$ sse denomina rectángulo.
+\end{observe}
+
+\begin{note}
+	La demostración del teorema es una aplicación del teorema de Caratheodory, una vez que sabemos que $\mcal{F}_{1} \times \mcal{F}_{2} = \sigma(\text{rectángulos})$.
+\end{note}
+
+\begin{eg}
+	$\mscr{L}(\R^{2}) = \mscr{L}(\R) \times \mscr{L}(\R)$. Por inducción, podemos extender la definición de producto a familias finitas de espacios de medida.
+\end{eg}
+
+\begin{definition}[Probabilidad Condicional]
+	Sea $(\Omega, \mcal{F}, \mathbb{P})$ un espacio de probabilidad. Se define
+	\[ \mathbb{P}(A | B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)} \]
+	siempre que $\mathbb{P}(B) > 0$. Si $\mathbb{P}(A) = \mathbb{P}(A | B)$, entonces $\mathbb{P}(A \cap B) = \mathbb{P}(A) \cdot \mathbb{P}(B)$.
+\end{definition}
+
+\begin{definition}[Independencia]
+	\begin{enumerate}[i)]
+		\item Decimos que 2 eventos son independientes si
+		\[ \mathbb{P}(A \cap B) = \mathbb{P}(A) \cdot \mathbb{P}(B). \]
+
+		\item Dadas 2 variables aleatorias $X$ e $Y$, decimos que son independientes si $\forall B_{1}, B_{2} \in \mcal{B}(\R),$
+		\[ \mathbb{P}(X \in B_{1}, Y \in B_{2}) = \mathbb{P}(X \in B_{1}) \cdot \mathbb{P}(Y \in B_{2}). \]
+		
+		\item Dadas 2 sub-$\sigma$-álgebras $\mcal{F}_{1}$ y $\mcal{F}_{2}$, decimos que son independientes si $\forall A \in \mcal{F}_{1}$ y $B \in \mcal{F}_{2}$, $A$ y $B$ son independientes de acuerdo a i).
+	\end{enumerate}
+\end{definition}
+
+\begin{prop}
+	\begin{enumerate}
+		\item $A$ y $B$ son independientes $\iff \mathds{1}_{A}$ y $\mathds{1}_{B}$ son independientes.
+
+		\item $X$ e $Y$ son independientes $\iff \sigma(X)$ y $\sigma(Y)$ son independientes.
+
+		\item $\mcal{F}_{1}$ y $\mcal{F}_{2}$ son independientes $\iff \forall X \in \mcal{F}_{1},\ Y \in \mcal{F}_{2}$ se tiene que $X$ e $Y$ son independientes.
+	\end{enumerate}
+\end{prop}
+\begin{proof}[Proof ]
+	\begin{enumerate}[i)]
+		\item $\boxed{\Leftarrow}$ Basta tomar $B_{1} = B_{2} = \{1\}$ puesto que $\mathds{1}_{A}^{-1} \{1\} = A,\ \mathds{1}_{B}^{-1} \{1\} = B$ y por lo tanto $\mathbb{P}(A \cap B) = \mathbb{P}(A) \cdot \mathbb{P}(B)$. \par
+		$\boxed{\Rightarrow}$ Se tiene que
+		\[ \sigma(\mathds{1}_{A}) = \{A, A^{c}, \varnothing, \Omega\} \quad \text{y} \quad \sigma(\mathds{1}_{B}) = \{B, B^{c}, \varnothing, \Omega\}. \]  
+		Por demostrar: $\mathbb{P}(\Omega \cap A) = \mathbb{P}(\Omega) \cdot \mathbb{P}(A)$. \par
+		En el caso con $A$ y $B^{c}$, se tiene
+		\begin{align*}
+			\mathbb{P}(A \cap B^{c}) &= \mathbb{P}(A \setminus A \cap B) \\
+			&= \mathbb{P}(A) - \mathbb{P}(A \cap B) \\
+			&= \mathbb{P}(A) - \mathbb{P}(A) \cdot \mathbb{P}(B) \\
+			&= \mathbb{P}(A) \cdot (1 - \mathbb{P}(B)) \\
+			&= \mathbb{P}(A) \cdot \mathbb{P}(B^{c})
+		.\end{align*}
+		El caso con $A^{c}$ y $B$, junto con el otro caso son iguales.
+
+		\item $\boxed{\Leftarrow}$ (usar que $\sigma(f) = \{f^{-1}(B) \ | \ B \in \mcal{B}(\R)\}$). \par
+
+		\item $\boxed{\Leftarrow}$ Sean $A \in \mcal{F}_{1}, B \in \mcal{F}_{2}$, entonces $\mathds{1}_{A} \in \mcal{F}_{1}, \mathds{1}_{B} \in \mcal{F}_{2}$.
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}
+	Sea $(\Omega, \mcal{F}, \mathbb{P})$ un espacio de probabilidad.
+	\begin{enumerate}[i)]
+		\item Dados $\mcal{F}_{1},\dots, \mcal{F}_{n} \subset \mcal{F}$ sub-familias arbitrarias de eventos. Decimos que son independientes si $\forall J \subset \{1, \dots, n\}$ y toda elección $A_{j} \in \mcal{F}_{j},\ j \in J$, se tiene que
+		\[ \mathbb{P}\Bigg( \bigcap_{j \in J} A_{j} \Bigg) = \prod_{j \in J} \mathbb{P}(A_{j}). \]
+
+		\item Dadas $X_{1},\dots, X_{n}$ variables aleatorias, decimos que son independientes si $\sigma(X_{1}, \dots, \sigma(X_{n})$ son independientes de acuerdo a i).
+
+		\item Dados eventos $A_{1}, \dots, A_{n}$, decimos que son independientes si $\mathds{1}_{A_{1}}, \dots, \mathds{1}_{A_{n}}$ son independientes de acuerdo a ii).
+	\end{enumerate}
+\end{definition}
+
+\begin{eg}
+	Sea $X_{1}, X_{2}, X_{3}$ variables aleatorias independientes con
+	\[ \mathbb{P}(X_{i} = 1) = \frac{1}{2} = \mathbb{P}(X_{i} = 0) \quad \forall i \in \{1,2,3\}. \] 
+	Definimos los siguientes eventos
+	\[ A_{1} = \{X_{1} = X_{3}\}, \quad A_{2} = \{X_{1} = X_{3}\}, \quad A_{3} = \{X_{1} = X_{2}\}. \]
+	Notar que
+	\[ \mathbb{P}(A_{1} \cap A_{2}) = \mathbb{P}(\text{todas cara}) + \mathbb{P}(\text{todas sello}) = \frac{1}{2} \cdot \frac{1}{2} \cdot \frac{1}{2} + \frac{1}{2} \cdot \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{4}, \]
+	con $\mathbb{P}(A_{1} \cap A_{2}) = \mathbb{P}(A_{1} \cap A_{3}) = \mathbb{P}(A_{2} \cap A_{3})$. Además,
+	\[ \mathbb{P}(A_{1}) = \mathbb{P}(\text{2 y 3 con cara}) + \mathbb{P}(\text{2 y 3 con sello}) = \frac{1}{2} \cdot \frac{1}{2} + \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{2}, \]
+	con $\mathbb{P}(A_{1}) = \mathbb{P}(A_{2}) = \mathbb{P}(A_{3})$.
+	Pero
+	\[ \mathbb{P}(A_{1} \cap A_{2} \cap A_{3}) = \mathbb{P}(A_{1} \cap A_{2}) = \frac{1}{4} \neq \frac{1}{8} = \mathbb{P}(A_{1}) \cdot \mathbb{P}(A_{2}) \cdot \mathbb{P}(A_{3}). \]
+\end{eg}

@@ -1,0 +1,98 @@
+\clase{3}{11 de Marzo}{}
+
+\begin{eg}
+	Sea $I$ intervalo cerrado acotado en $\R$. $\mscr{C}^{0}(I;\mathbb{K})$ el e.v de las funciones continuas sobre $I$. Se puede equipar este e.v con varias normas:
+	\begin{align*}
+		\| f \|_{\infty} &= \sup_{x \in I} |f(x)| \\
+		\| f \|_{p} &= \left( \int_{I} |f(x)|^{p} \ dx \right)^{\frac{1}{p}}
+	.\end{align*}
+\end{eg}
+
+\begin{eg}
+	Sean $I$ intervalo de $\R$, $q \geq 1$. Luego,
+	\[ \mscr{L}^{q}(I) \coloneq \{f \colon I \to \mathbb{K} \ | \ f \text{ Borel medible t.q } \int_{I} |f(x)|^{q} \ d\lambda(x) < \infty\}. \] 
+	Definimos $p \colon \mscr{L}^{q}(I) \to \R$ tal que
+	\[ f \mapsto \left( \int_{I} |f(x)|^{q} \ d\lambda(x) \right)^{\frac{1}{q}}. \]
+	$p$ es una semi-norma, pero una norma sobre $\mscr{L}^{p}(I)$.
+\end{eg}
+
+\begin{definition}[Operador Lineal]
+	Sean $X,Y$ dos e.v sobre $\mathbb{K}$. Llamaremos operador lineal (de $X$ en $Y$) a todo mapeo $T \colon X \to Y$ tal que $\forall \alpha \in \mathbb{K},\ \forall x_{1},x_{2} \in X$,
+	\[ T(x_{1} + \alpha x_{2}) = T(x_{1}) + \alpha T(x_{2}). \]
+	El conjunto de los operadores lineales de $X$ en $Y$ se denota $\mscr{L}_{\mbb{K}}(X,Y)$. Es un e.v (sobre $\mbb{K}$) una vez equipado con las siguientes operaciones:
+	\begin{itemize}
+		\item $(T + S)(x) \coloneq T(x) + S(x) = Tx + Sx$;
+
+		\item $(\lambda T)(x) \coloneq \lambda T(x)$
+	\end{itemize}
+	donde $\lambda \in \mbb{K},\ T,S \in \mscr{L}(X,Y)$.
+\end{definition}
+
+\begin{observe}[a)]
+	\begin{enumerate}
+		\item Si $X,Y,Z$ son e.v sobre $\mbb{K}$, $T \in \mscr{L}(X,Y)$ y $S \in \mscr{L}(Y,Z)$, entonces $S \circ T \in \mscr{L}(X,Z)$. Así, denotamos $S \circ T =: ST$.
+
+		\item Si $X$ es un e.v: $\mscr{L}(X,X) =: \mscr{L}(X)$, $\mscr{L}(X; \mbb{K}) =: X'$ el dual algebraico de $X$. Si $T \in X'$, se dice que es un funcional lineal sobre $X$.
+
+		\item Diremos que $T \in \mscr{L}(X,Y)$ es un isomorfismo (de e.v) en $X$ e $Y$ si es además biyectivo. Se puede verificar que $T^{-1} \in \mscr{L}(Y,X)$. De existir tal isomorfismo entre $X$ e $Y$, se dice que $X$ e $Y$ son isomorfos.
+
+		\item Si $T \in \mscr{L}(X,Y)$, entonces $\Ker T$ es un s.e.v de $X$ y $\Ran T$ [$= T(X)$] es un s.e.v de $Y$.
+	\end{enumerate}
+\end{observe}
+
+\begin{note}
+	$T \in \mscr{L}(X,Y)$ isomorfismo $\iff \Ker T = \{0\}$, $\Ran T = Y$. 
+\end{note}
+
+\begin{definition}[Operador acotado]
+	Sean $X,Y$ dos e.v.n y $T \in \mscr{L}(X,Y)$. Diremos que $T$ es acotado si:
+	\[ \exists N \geq 0 \text{ tal que } \forall x \in X, \quad \| Tx \|_{Y} \leq N \| x \|_{X}. \]
+	Se denota el conjunto de los operadores lineales de $X$ en $Y$ por $\mcal{B}(X,Y)$
+\end{definition}
+
+\begin{observe}
+	\begin{enumerate}[a)]
+		\item Si $X$ e.v.n, $\mcal{B}(X,X) =: \mcal{B}(X)$ y $\mcal{B}(X; \mbb{K}) =: X^{*}$ el dual topológico de $X$. Entonces, $f \in X^{*} \iff \exists N \geq 0$ tal que $\forall x \in X, \quad |f(x)| \leq N \| x \|_{X}$.
+
+		\item Si $T,S \in \mcal{B}(X,Y),\ \lambda \in \mbb{K}$, entonces, $T + S \in \mcal{B}(X,Y)$ y $\lambda T \in \mcal{B}(X,Y)$. Por otro lado, sean $X,Y,Z$ e.v.n sobre $\mbb{K}$. Si $T \in \mcal{B}(X,Y),\ S \in \mcal{B}(Y,Z)$, entonces $ST \in \mcal{B}(X,Z)$.
+	\end{enumerate}
+\end{observe}
+
+\begin{theorem}
+	Sean $X,Y$ e.v.n y $T \in \mscr{L}(X,Y)$. Las afirmaciones siguientes son equivalentes:
+	\begin{enumerate}[a)]
+		\item $T \in \mcal{B}(X,Y)$;
+
+		\item $T$ es continuo sobre $X$;
+
+		\item $T$ es continuo en algún $x_{0} \in X$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}[Proof ]
+	$\boxed{a) \Rightarrow b)}$ Tenemos que: 
+	\begin{align*}
+		& \exists N \geq 0,\ \forall z \in X, \quad \| Tz \|_{Y} \leq N \| z \|_{X} \\
+		\implies \ & \forall x_{1},x_{2} \in X, \quad \| T(x_{1} - x_{2}) \|_{Y} \leq N \| x_{1} - x_{2} \|_{X} \\
+		\iff \ & \forall x_{1},x_{2} \in X, \quad \| Tx_{1} - Tx_{2} \|_{Y} \leq N \| x_{1} - x_{2} \|_{X} \\
+		\implies \ & T \text{es $N$-Lipschitz}
+	.\end{align*} \par
+	$\boxed{c) \implies a)}$ Tenemos que:
+	\begin{align*}
+		\exists \delta > 0,\ \forall x \in \underbrace{x_{0} + D_{\delta}(0)}_{D_{\delta}(x_{0})}, \quad Tx \in \underbrace{Tx_{0} + D_{1}(0)}_{D_{1}(Tx_{0})}
+	.\end{align*}
+	Luego,
+	\[ \exists \delta > 0,\ \forall y \in X \text{ tal que } \| y \|_{X} < \delta \implies \| Ty \|_{Y} < 1. \]
+	Entonces, $\forall z \in X \setminus \{0\}$ se tiene que
+	\[ \frac{\delta}{2} \cdot \frac{z}{\| z \|} \in D_{\delta}(0), \]
+	lo que implica
+	\[ \Bigg{\|} \frac{\delta}{2} \cdot \frac{z}{\| z \|} \Bigg{\|} = \frac{|\delta|}{2 \| z \|} \cdot \| z \| = \frac{\delta}{2} < \delta. \]
+	Por lo tanto,
+	\[ \frac{\delta}{2} \cdot \frac{1}{\| z \|_{X}} \cdot \| T(z) \| = \Bigg{\|} \frac{\delta}{2} \cdot \frac{1}{\| z \|_{X}} T(z) \Bigg{\|}_{Y} = \Bigg{\|} T \Bigg( \frac{\delta}{2} \cdot \frac{z}{\| z \|} \Bigg) \Bigg{\|}_{Y} < 1. \]
+	Luego, 
+	\[ \| T(z) \|_{Y} \leq \frac{2}{\delta} \| z \|_{X}. \]
+	En conclusión, $\exists \delta > 0,\ \forall z \neq 0$ tal que
+	\[ \| Tz \|_{Y} \leq \frac{2}{\delta} \| z \|_{X}. \]
+	Además,
+	\[ T(0_{x}) = 0_{Y} \implies \| T(0_{X}) \|_{Y} = 0 \leq 0 = \frac{2}{\delta} \| 0_{X} \|_{X}. \]
+	Luego, $T \in \mcal{B}(X,Y)$.
+\end{proof}
