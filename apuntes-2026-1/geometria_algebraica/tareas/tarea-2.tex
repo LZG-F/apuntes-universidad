@@ -1,0 +1,173 @@
+\documentclass{amsart}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+
+\usepackage{kantlipsum}
+
+\usepackage{booktabs}
+
+\usepackage[shortlabels]{enumitem}
+
+\usepackage{mathtools}
+
+\usepackage[english]{babel}
+
+\theoremstyle{plain}
+\newtheorem*{ejercicio1}{Ejercicio 1.25}
+\newtheorem*{ejercicio2}{Ejercicio 1.29}
+\newtheorem*{ejercicio3}{Ejercicio 1.30}
+\newtheorem*{ejercicio4}{Ejercicio 1.31}
+\newtheorem*{ejercicio5}{Ejercicio 1.21}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\DeclareMathOperator{\ev}{ev}
+
+\title{Tarea 2. Introducción a la Geometría Algebraica MAT2824}
+\author{Felipe López}
+
+\begin{document}
+	\maketitle
+
+	\begin{ejercicio1}
+		\begin{enumerate}[a)]
+			\item Demuestre que $V(y - x^{2}) \subset \mathbb{A}^{2}(\C)$ es irreducible; es más, $I(V(y - x^{2})) = (y - x^{2})$.
+		
+			\item Descomponga $V(y^{4} - x^{2}, y^{4} - x^{2}y^{2} + xy^{2} - x^{3}) \subset \mathbb{A}^{2}(\C)$ en componentes irreducibles.
+		\end{enumerate}
+	\end{ejercicio1}
+	\begin{proof}
+		$\boxed{a.}$ Veamos que $y - x^{2} \in \C[x,y]$ es irreducible. En efecto, notar que podemos ver $y - x^{2}$ sobre $(\C[y])[x] \ (\simeq \C[x,y])$. En tal caso, supongamos que $y - x^{2}$ es reducible. Es decor, $\exists a,b,c,d \in \C[y]$ tal que $y - x^{2} = (a + bx)(c + dx)$. Esto nos dice que
+		\begin{itemize}
+			\item $b(y) d(y) = -1 \implies b,d \in \C$.
+
+			\item $a(y) c(y) = y \implies \text{ spdg, } a \in \C[y] \setminus \C,\ c \in \C$.
+		
+			\item $bc + ad = 0 \implies a(y) = -\frac{b}{d}c \implies a \in \C$.
+		\end{itemize}
+		Pero $a \not\in \C$, por lo que tenemos una contradicción. Entonces, se tiene que $y - x^{2}$ es irreducible. \par
+		Luego, notar que $(t,t^{2}) \in V(y - x^{2})\ \forall t \in \C$, por lo que $V(y - x^{2})$ es infinito. \par
+		Como fue visto en clases, esto implica que $I(V(y - x^{2})) = (y - x^{2})$ y esto implica que $V(f)$ es irreducible. \par
+		$\boxed{b.}$ Notemos que
+		\begin{align*}
+			& V(y^{4} - x^{2}, y^{4} - x^{2}y^{2} + xy^{2} - x^{3}) \\
+			= \ & V((y^{2} + x)(y^{2} - x), (y^{2} + x)(y^{2} - x^{2})) \\
+			= \ & V((y^{2} + x)(y^{2} - x)) \cap V((y^{2} + x)(y - x)(y + x)) \\
+			= \ & [V(y^{2} + x) \cup V(y^{2} - x)] \cap [V(y^{2} + x) \cup V(y - x) \cup V(y + x)] \\
+			= \ & V(y^{2} + x) \cup [V(y^{2} - x) \cap V(y - x)] \cup [V(y^{2} - x) \cap V(y + x)] \\
+			= \ & V(y^{2} + x) \cup V(y^{2} - x, y - x) \cup V(y^{2} - x, y + x)
+		.\end{align*}
+		Luego, notemos que $V(y^{2} - x, y - x) = \{(0,0), (1,1)\}$, pues se ha de cumplir que $y^{2} = x \ \wedge \ y = x$ para todo $(x,y) \in V(y^{2} - x, y - x)$. Es decir,
+		\[ y^{2} = y \implies y(y - 1) = 0 \implies y = 0 \text{ o } y = 1. \]
+		Es así que los puntos que satisfacen tales ecuaciones son $(0,0)$ y $(1,1)$. \par
+		Similarmente, $V(y^{2} - x, y + x) = \{(0,0), (1,-1)\}$, pues se ha de cumplir que $y^{2} = x \ \wedge \ y = -x$. Entonces,
+		\[ y^{2} = -y \implies y(y + 1) = 0 \implies y = 0 \text{ o } y = -1. \]
+		Luego, tenemos que los puntos que satisfacen esto son $(0,0)$ y $(1, -1)$. Además, notar que $(0,0) \in V(y^{2} + x)$. Por lo tanto
+		\begin{align*}
+			& V(y^{4} - x^{2}) \cup V(y^{2}, y - x) \cup V(y^{2} - x, y + x) \\
+			= \ & V(y^{2} + x) \cup \{(0,0), (1,1)\} \cup \{(0,0), (1,-1)\} \\
+			= \ & V(y^{2} + x) \cup \{(1,1)\} \cup \{(1,-1)\} \\
+			= \ & V(y^{2} + x) \cup V(x - 1, y - 1) \cup V(x - 1, y + 1)
+		.\end{align*}
+		Luego, $V(x - 1, y - 1)$ y $V(x - 1, y + 1)$ son irreducibles, pues tienen solo un elemento. Por último, veamos que $y^{2} + x$ es irreducible. En efecto, supongamos que $y^{2} + x$ es reducible en $(\C[x])[y]$. Es decir, $\exists a,b,c,d \in \C[x]$ tales que $y^{2} + x = (ay + b)(cy + d)$. Esto nos dice que:
+		\begin{itemize}
+			\item $a(x) c(x) = 1 \implies a,c \in \C$.
+
+			\item $d(x) b(x) = x \implies \text{ (spdg) } d \in \C[x] \setminus \C,\ b \in \C$.
+
+			\item $ad + bc = 0 \implies d(x) = -\frac{bc}{a} \in \C$.
+		\end{itemize}
+		Pero $d \not \in \C$, por lo que tenemos una contradiccción. Entonces, $y^{2} + x$ es irreducible. \par
+		Luego, notar que $(-t^{2},t) \in V(y^{2} + x) \ \forall t \in C$, por lo que $V(y^{2} + x)$ es infinito. Similarmente a la parte (a), podemos afirmar que $V(y^{2} + x)$ es irreducible. \par
+		En conclusión,
+		\[ V(y^{4} - x^{2}, y^{4} - x^{2}y^{2} + xy^{2} - x^{3}) = V(y^{2} + x) \cup V(x - 1, y - 1) \cup V(x - 1, y + 1), \]
+		es la descomposición buscada.
+	\end{proof}
+
+	\begin{ejercicio2}
+		Demuestre que $\mathbb{A}^{n}(k)$ es irreducible si $k$ es infinito.
+	\end{ejercicio2}
+	\begin{proof}
+		Sea $k$ infinito. Entonces, por propiedad vista en clases $I(\mathbb{A}^{n}(k)) = (0)$ ideal primo, y esto último ocurre si y solo si $\mathbb{A}^{n}(k)$ es irreducible.
+	\end{proof}
+
+	\begin{ejercicio3}
+		Sea $k = \R$.
+		\begin{enumerate}[a)]
+			\item Demuestre que $I(B(x^{2} + y^{2} +1)) = (1)$.
+
+			\item Demuestre que todo subconjunto algebraico de $\mathbb{A}^{2}(\R)$ es igual a $V(F)$ para algún $F \in \R[x,y]$.
+		\end{enumerate}
+	\end{ejercicio3}
+	\begin{proof}
+		$\boxed{a.}$ Notemos que si $x^{2} + y^{2} + 1 = 0$, entonces $x^{2} + y^{2} = -1$, y como $x^{2} + y^{2} \geq 0 \ \forall (x,y) \in \mathbb{A}^{2}(\R)$, se tiene que $V(x^{2} + y^{2} + 1) = \varnothing$. Luego, por propiedad vista en clases,
+		\[ I(V(x^{2} + y^{2} + 1)) = I(\varnothing) = \R[x,y]. \]
+		Por último, basta notar que $(1) = \R[x,y]$ por lo que $I(V(x^{2} + y^{2} + 1)) = (1)$. \par
+		$\boxed{b.}$ Por un corolario visto en clases, dado que $k = \R$ cuerpo, se tiene entonces que todo conjunto algebraico afín $V$ se puede escribir de la siguiente forma
+		\[ V = V(f_{1},\dots,f_{m}), \]
+		para algún $m \in \N$ y $f_{i} \in \R[x,y]$ para $i = 1,\dots,m$. Veamos entonces que $V(f_{1},\dots,f_{m}) = V(f_{1}^{2} + \cdots + f_{m}^{2})$. En efecto, se cumple que:
+		\[ f_{1}^{2}(p) + \cdots + f_{m}^{2}(p) = 0 \iff f_{1}(p) = \cdots = f_{m}(p) = 0, \]
+		pues $f_{i}^{2}(p) \geq 0 \quad \forall p \in \mathbb{A}^{2}(\R), \forall i = 1 \dots, m$. \par
+		Así, podemos concluir que $V = V(F)$ para algún $F \in \R[x,y]$.
+	\end{proof}
+
+	\begin{ejercicio4}
+		\begin{enumerate}[a)]
+			\item Encuentre las componentes irreducibles de $V(y^{2} - xy - x^{2}y - y)$ en $\mathbb{A}^{2}(\R)$ y en $\mathbb{A}^{2}(\C)$.
+
+			\item Hacer lo mismo para $V(y^{2} - x(x^{2} - 1))$ y para $V(x^{2} + x - x^{2}y - y)$.
+		\end{enumerate}
+	\end{ejercicio4}
+	\begin{proof}
+		$\boxed{a.}$ Sea $k = \R$. Notemos que:
+		\begin{align*}
+			y^{2} - xy - x^{2}y + x^{3} &= y(y - x) - x^{2}(y - x) \\
+			&= (y - x^{2})(y - x)
+		.\end{align*}
+		Entonces, $V(y^{2} - xy - x^{2}y + x^{3}) = V(y - x^{2}) \cup V(y - x)$. Como se vió en 1.25, parte (a), $y - x^{2}$ es irreducible en $\C[x,y]$, por lo que también lo es en $\R[x,y]$. Además, como $(t, t^{2}) \in V(y - x^{2}) \quad \forall t \in \R$, se tiene entonces que $V(y - x^{2})$ es irreducible en $\mathbb{A}^{2}(\R)$. \par
+		Similarmente, $y - x$ es claramente irreducible, y $(t,t) \in V(y - x) \quad \forall t \in \R$, por lo que $V(y - x)$ es irreducible. Entonces,
+		\[ V(y^{2} - xy - x^{2}y + x^{3}) = V(y - x^{2}) \cup V(y - x) \]
+		es la descomposición pedida. \par
+		Para $k = \C$, dado que tanto $y - x^{2}$ como $y - x$ son irreducibles en $\C[x,y]$, sirven exactamente los mismos argumentos para concluir que
+		\[ V(y^{2} - xy - x^{2}y + x^{3}) = V(y - x^{2}) \cup V(y - x) \]
+		es la descomposición en $\mathbb{A}^{2}(\C)$. \par
+		$\boxed{b.}$ Sean $k = \C$ y $f = y^{2} - x(x^{2} - 1) = y^{2} - x^{3} + x$. Supongamos que $f$ es reducible en $(\C[y])[x]$. Es decir, $\exists a,b,c,d,e \in \C[y]$ tales que $f = (ax^{2} + bx + c)(dx + e)$. Entonces,
+		\begin{itemize}
+			\item $ad = -1$.
+
+			\item $ae + bd = 0$.
+
+			\item $cd + be = 1$.
+
+			\item $ec = y^{2}$.
+		\end{itemize}
+		Esto último nos deja dos opciones
+		\begin{enumerate}
+			\item $e(y) = k_{1}y$ y $c(y) = k_{2}y$ tal que $k_{1},k_{2} \in \C$ y $k_{1}k_{2} = 1$.
+
+			\item $c(y) = k_{1}y^{2}$ y $k_{1},c \in \C$ tal que $k_{1} c = 1$.
+		\end{enumerate}
+		En caso que sea (1), se tiene que $k_{1}by + k_{2}dy = 1 \implies y(k_{1}b + k_{2}d) = 1$, pero $k_{1}b + k_{2}d \in \C$, por lo que esto no es posible. Eso nos  deja con el caso (2). Esto implica que $b \cdot c(y) = 1 - cd \in \C \implies b = 0$. Entonces, $a \cdot e(y) = 0 \implies a = 0 \implies 0 \cdot d = 1$, lo que es una contradiccción. Es decir, $f$ es irreducible en $\C[x,y]$. \par
+		Luego, notar que $(t, \sqrt{t(t^{2} - 1)}) \in V(y^{2} - x(x^{2} -1 )) \quad \forall t \in \R$ tal que $t > 1$. Es decir $V(f)$ es infinito, y esto combinado con que $f$ es irreducible, se tiene que $V(f)$ es irreducible. \par
+		Para el caso en que $k = \R$ se aplica exactamente el mismo argumento. \par
+		Luego, sea $g = x^{2} + x - x^{2}y - y$, y notar que 
+		\begin{align*}
+			g &= x(x^{2} + 1) - y(x^{2} + 1) \\
+			&= (x - y)(x^{2} + 1)
+		.\end{align*}
+		Entonces, para $k = \R$, notamos que
+		\[ V(g) = V(x - y) \cup V(x^{2} + 1). \]
+		Además, $V(x^{2} + 1) = \varnothing$, pues $x^{2} + 1$ no tiene soluciones en $\R$. Luego, $V(g) = V(x - y)$, donde $V(x - y)$ es irreducible. \par
+		Por otro lado, si $k = \C$, entonces
+		\[ V(g) = V(x - y) \cup V(x + i) \cup V(x - i). \]
+		Luego, como en $g = (x - y)(x + i)(x - i)$, cada factor es irreducible en $\C[x,y]$, y como $\C$ es algebraicamente cerrado, por corolario 3 de la sección 1.6 del Fulton, podemos concluir que
+		\[ V(g) = V(x - y) \cup V(x + i) \cup V(x - i). \]
+		es la descomposición de $V(g)$ en componentes irreducibles.
+	\end{proof}
+	
+\end{document}

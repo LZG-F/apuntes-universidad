@@ -1,0 +1,147 @@
+\clase{10}{1 de Abril}{}
+
+\chapter{Leyes de los grandes números}
+
+\begin{definition}
+	Diremos que una sucesión $(X_{n})_{n \in \N}$ de VA's definidas en un mismo EdP satisface una \textit{ley de los grandes números} si existen constantes $(a_{n})_{n \in \N}, (b_{n})_{n \in \N} \subseteq \R$ tales que
+	\[ \frac{\Big( \sum_{i=1}^{n} X_{i} - a_{n} \Big)}{b_{n}} \stackrel{(*)}{\longrightarrow} 0, \]
+	donde la convergencia en $(*)$ es en algún sentido apropiado. \par
+	Si la convergencia en $(*)$ es en probabilidad, decimos que la ley es \textit{débil}. \par
+	Si la convergencia en $(*)$ es casi segura, decimos que la ley es \textit{fuerte}.
+\end{definition}
+
+\begin{note}
+	Vamos a empezar a estudiar la validez de LGN's en distintos contextos. De ahora en más, $S_{0} \coloneq 0,\ S_{n} \coloneq X_{1} + \cdots + X_{n}$.
+\end{note}
+
+\begin{theorem}
+	Si $(X_{n})_{n \in \N}$ son VA's \textit{no correlacionadas} tal que
+	\[ \begin{cases}
+		\mbb{E}(X_{n}) \eqcolon \mu \\
+		\Var(X_{n}) \leq X < \infty \quad \forall n \in \N,
+	\end{cases} \]
+	entonces $\frac{S_{n}}{n} \xlongrightarrow[L^{2}]{\mbb{P}} \mu$.
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Basta con ver la convergencia en $L^{2}$. En efecto, observemos que:
+	\begin{align*}
+		\mbb{E} \Big( \frac{S_{n}}{n} \Big) &= \frac{1}{n} \mbb{E}(S_{n}) \\
+		&= \frac{1}{n} \Big( \sum_{i=1}^{n} \mbb{E}(X_{i}) \\
+		&= \frac{1}{n} n \mu = \mu
+	.\end{align*}
+	y
+	\begin{align*}
+		\Big{\|} \frac{S_{n}}{n} - \mu \Big{\|}_{2}^{2} &= \mbb{E} \Big( \Big( \frac{S_{n}}{n} - \mu \Big)^{2} \Big) \\
+		&= \Var \Big( \frac{S_{n}}{n} \Big) \\
+		&= \frac{1}{n^{2}} \Var(S_{n}) \\
+		&\leq \frac{1}{n^{2}} cn = \frac{c}{n} \longrightarrow 0
+	.\end{align*}
+	Luego,
+	\begin{align*}
+		\Var(S_{n}) = \Cov(S_{n}, S_{n}) &= \Cov \Big( \sum_{i=1}^{n} X_{i}, \sum_{j=1}^{n} X_{j} \Big) \\
+		&= \sum_{i,j=1}^{n} \Cov(X_{i},X_{j}) \\
+		&= \sum_{i=1}^{n} \Var(X_{i}) \leq cn
+	.\qedhere\end{align*}
+\end{proof}
+
+\begin{remark}
+	\begin{enumerate}
+		\item Si $(X_{n})_{n \in \N}$ son N.C, entonces $\Var(X_{1} + \cdots + X_{n}) = \Var(X_{1}) + \cdots + \Var(X_{n})$.
+
+		\item Que converga en $L^{2}$ implica convergencia en $\mbb{P}$ se deduce de la siguiente desigualdad:
+		\[ \mbb{P}(|X - \mbb{E}(X)| > \delta) \leq \frac{\mbb{E}(|X - \mbb{E}(X)|^{2})}{\delta^{2}} = \frac{\Var(X)}{\delta^{2}}. \]
+	\end{enumerate}
+\end{remark}
+
+\begin{note}
+	A la desigualdad
+	\[ \mbb{P}(|X - \mbb{E}(X)| > \delta) \leq \frac{\Var(X)}{\delta^{2}} \]
+	se la llama Desigualdad de Tchebychev, y a la
+	\[ \mbb{P}(|X| > \delta) \leq \frac{\mbb{E}(X)}{\delta} \]
+	se la llama desigualdad de Markov.
+\end{note}
+
+\begin{note}
+	Las hipótesis sobre los momentos de $(X_{n})_{n \in \N}$ se pueden relajar madiante \textit{truncamientos} de las variables, i.e cambiar $X_{n}$ por $\widetilde{X}_{n} = X_{n} \mathds{1}_{|X_{n}| \leq b_{n}}$.
+\end{note}
+
+\begin{theorem}
+	Sean $(X_{n})_{n \in \N}$ VA's i.i.d. Entonces, existe $(a_{n})_{n \in \N} \subseteq \R$ tal que
+	\[ \frac{S_{n}}{n} - a_{n} \xlongrightarrow{\mbb{P}} 0 \]
+	si y solo si 
+	\[ \lim_{x \to \infty} x \mbb{P}(|X_{1}| > x) = 0. \]
+	\par Además, en tal caso se puede tomar
+	\[ a_{n} \coloneq \mbb{E}(X_{n} \mathds{1}_{|X_{n}| \leq n}). \]
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Ver Durrett.
+\end{proof}
+
+\begin{remark}
+	Se cumple que $\mbb{E}(|X|) < \infty \implies \lim_{x \to \infty} x \mbb{P}(|X| > x) = 0$. Eso sí, el converso no vale. Además, esto último implica que $\mbb{E}(|X|^{1 - \varepsilon}) < \infty \quad \forall \varepsilon > 0$. \par
+	Para ver la primera implicancia, notar que (por Tchebychev)
+	\[ x \mbb{P}(|X| > x) \leq \mbb{E}(|X| \mathds{1}_{|X| > x}). \]
+	Para ver la última implicancia, recordar que
+	\[ \mbb{E}(|X|^{p}) = \int_{0}^{\infty} p |x|^{p - 1} \mbb{P}(X > x) \ dx. \]
+\end{remark}
+
+\begin{corollary}[LA Ley débil de los grandes números]
+	Si $(X_{n})_{n \in \N}$ son i.i.d con $\mbb{E}(|X_{n}|) < \infty$ y $\mu \coloneq \mbb{E}(X_{n})$, entonces $\frac{S_{n}}{n} \xlongrightarrow{\mbb{P}} \mu$.
+\end{corollary}
+\begin{proof}[Proof Other Information]
+	Por el Teorema anterior, $\frac{S_{n}}{n} - a_{n} \xlongrightarrow{\mbb{P}} 0$. Luego, basta ver que $a_{n} \xlongrightarrow{n \to \infty} \mu$. Pero, 
+	\begin{align*}
+		a_{n} \coloneq \mbb{E}(X_{n} \mathds{1}_{|X_{n}| \leq n}) &= \mbb{E}(f_{n}(X_{n})) \\ 
+		&= \mbb{E}(f_{n}(X_{1})) \\
+		&= \mbb{E}(\underbrace{X_{1} \mathds{1}_{|X_{1}| \leq n}}_{|\cdot| \leq |X_{1}|}) \longrightarrow \mbb{E}(X_{1}) = \mu
+	,\end{align*}
+	donde la convergencia está dada por Teorema de Convergencia Dominada.
+\end{proof}
+
+\begin{theorem}[LA Ley fuerte de los grandes números]
+	Si $(X_{n})_{n \in \N}$ son i.i.d con primer momento finito y $\mu \coloneq \mbb{E}(X_{n})$, entonces
+	\[ \frac{S_{n}}{n} \xlongrightarrow{c.s} \mu. \]
+\end{theorem}
+
+\begin{remark}
+	La hipótesis de independencia se puede rebajar al menos de 2 formas:
+	\begin{enumerate}[i)]
+		\item Basta que las $(X_{n})_{n \in \N}$ sean independietes 2 a 2 (demostración de Etenadi, ver Durrett).
+
+		\item Basta que las $(X_{n})_{n \in \N}$ tengan una $\sigma$-álgebra cola trivial (todos los elementos tienen probabilidad $0$ o $1$) y que $(X_{n})_{n \in \N}$ sea \textit{estacionario}, i.e $(X_{n})_{n \in \N} \stackrel{d}{=} (X_{n + k})_{n \in \N} \quad \forall k \in \N$.
+	\end{enumerate}
+	A diferencia de la ley débil, para la ley fuerte es necesario el primer momento finito.
+\end{remark}
+
+\begin{theorem}
+	Si $(X_{n})_{n \in \N}$ son i.i.d con $\mbb{E}(|X_{n}|) = \infty$, entonces
+	\[ \mbb{P} \Big( \lim_{n \to \infty} \frac{S_{n}}{n} \in (-\infty,\infty) \Big) = 0. \]
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Ver Durrett (Teorema 2.3.8).
+\end{proof}
+
+\begin{note}
+	No obstante, si $\mbb{E}(|X_{n}|) = \infty$, pero $X$ es $\mbb{P}$-débil integrable, sigue valiendo la LFGN en el sentido esperable.
+\end{note}
+
+\begin{theorem}
+	Si $(X_{n})_{n \in \N}$ son i.i.d con $\mbb{E}(X_{n}^{+}) = \infty$ y $\mbb{E}(X_{n}^{-}) < \infty$, entonces
+	\[ \frac{S_{n}}{n} \xlongrightarrow{c.s} \infty. \]
+	Lo análogo vale si $\mbb{E}(X_{n}^{-}) = \infty$ y $\mbb{E}(X_{n}^{+}) < \infty$.
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Ver Durrett (Teorema 2.4.5).
+\end{proof}
+
+\begin{eg}
+	Se tira $n$ veces una moneda equilibrada. Entonces,
+	\[ \frac{\# \text{ veces que salió cara}}{n} \xlongrightarrow{c.s} \frac{1}{2}. \]
+	En efecto, si definimos
+	\[ X_{i} \coloneq \begin{cases}
+		1 \quad \text{si la $i$-ésima moneda fue cara}, \\
+		0 \quad \text{si no},
+	\end{cases} \]
+	entonces $X_{1},\dots,X_{n}$ son i.i.d con $\Be \big( \frac{1}{2} \big)$. Por la ley fuerte para las $(X_{i})_{i \in \N}$,
+	\[ \frac{\# \text{ caras}}{n} = \frac{X_{1} + \cdots + X_{n}}{n} \xlongrightarrow{c.s} \mbb{E}(X_{1}) = \frac{1}{2}. \]
+\end{eg}

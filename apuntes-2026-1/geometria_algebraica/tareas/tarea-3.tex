@@ -1,0 +1,203 @@
+\documentclass{amsart}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+
+\usepackage{kantlipsum}
+
+\usepackage{booktabs}
+
+\usepackage[shortlabels]{enumitem}
+
+\usepackage{mathtools}
+
+\usepackage[english]{babel}
+
+\theoremstyle{plain}
+\newtheorem*{ejercicio1}{Ejercicio 1.33}
+\newtheorem*{ejercicio2}{Ejercicio 1.35}
+\newtheorem*{ejercicio3}{Ejercicio 1.36}
+\newtheorem*{ejercicio4}{Ejercicio 1.37}
+\newtheorem*{ejercicio5}{Ejercicio 1.38}
+\newtheorem*{ejercicio22}{Ejercicio 1.22}
+\newtheorem*{af}{Afirmación}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\DeclareMathOperator{\ev}{ev}
+
+\title{Tarea 3. Introducción a la Geometría Algebraica MAT2824}
+\author{Felipe López}
+
+\begin{document}
+	\maketitle
+
+	Primero demostramos algo que utilizaremos en el ejercicio 1.33.
+	\begin{af}
+		$\C[x,y,z] \slash (y - iz, x^{2} - z^{2} - 1) \simeq \C[x,z] \slash (x^{2} - z^{2} - 1)$.
+	\end{af}
+	\begin{proof}
+		Sea $\varphi_{1} \colon \C[x,y,z] \to \C[x,z]$ tal que $x \mapsto x\, y \mapsto iz,\ z \mapsto z$ (esto es un homomorfismo de anillos). Es claro que $\varphi_{1}$ es sobreyectivo. Luego, sea $\varphi_{2} \colon \C[x,z] \to \C[x,z] \slash (x^{2} - z^{2} - 1)$ tal que $f \mapsto [f]$ (esto también es un homomorfismo). Similarmente, $\varphi_{2}$ es claramente sobreyectivo. \par
+		Luego, sea $\varphi = \varphi_{2} \circ \varphi_{1} \colon \C[x,y,z] \to \C[x,z] \slash (x^{2} - z^{2} - 1)$. Dado que $\varphi_{1}$ y $\varphi_{2}$ son sobreyectivos, tenemos que $\varphi$ también lo es. \par
+		Ahora, veamos que $\ker \varphi = (y - iz, x^{2} - z^{2} - 1)$. \par
+		$\boxed{\subseteq}$ Sea $f \in \ker \varphi$. Como $y - iz$ es mónico en $\C[x,z][y]$, podemos escribir $f = q(x,z)(y - iz) + r(x,z)$. Así, notar que
+		\[ \varphi_{1}(f) = q(x,z)(iz - iz) + r(x,z) = r(x,z), \]
+		por lo que
+		\begin{align*}
+			\varphi(f) = \overline{r(x,z)} = [0] &\implies \overline{r(x,z)} \in (x^{2} - z^{2} - 1) \\
+			&\implies \exists p \in \C[x,z] \text{ tal que } r(x,z) = p(x,z)(x^{2} - z^{2} - 1) \\
+			&\implies f = q(x,z)(y - iz) + p(x,z)(x^{2} - z^{2} - 1) \\
+			&\implies f \in (y - iz, x^{2} - z^{2} - 1) \\
+			&\implies \ker \varphi \subseteq (y - iz, x^{2} - z^{2} - 1)
+		.\end{align*}
+		\par $\boxed{\supseteq}$ Sea $f \in (y - iz, x^{2} - z^{2} _ 1)$. Luego, $\exists a,b \in \C[x,y,z]$ tal que
+		\[ f = a(x,y,z)(y - iz) + b(x,y,z)(x^{2} - z^{2} - 1). \]
+		Entonces
+		\begin{align*}
+			&\varphi_{1}(f) = 0 + b(x,y,z)(x^{2} - z^{2} - 1) \\
+			\implies \ & \varphi(f) = \overline{b(x,y,z)} \overline{(x^{2} - z^{2} - 1)} = \overline{b(x,y,z)} \overline{0} = [0] \\
+			\implies \ & (y - iz, x^{2} - z^{2} - 1) \subseteq \ker \varphi
+		.\end{align*}
+		Es decir, tenemos que $\ker \varphi = (y - iz, x^{2} - z^{2} - 1)$. Entonces, por el primer teorema de isomorfismos:
+		\[ \frac{\C[x,y,z]}{(y - iz, x^{2} - z^{2} - 1)} \simeq \frac{\C[x,z]}{(x^{2} - y^{2} - 1)}. \]
+	\end{proof}
+
+	\begin{ejercicio1}
+		\begin{enumerate}[(a)]
+			\item Descomponer $V(x^{2} + y^{2} - 1, x^{2} - z^{2} - 1) \subset \mathbb{A}^{3}(\C)$ en componentes irreducibles.
+
+			\item Sea $V = \{(t,t^{2},t^{3}) \in \mathbb{A}^{3}(\C) \ | \ t \in \C\}$. Encuentre $I(V)$ y demuestre que $V$ es irreducible. 
+		\end{enumerate}
+	\end{ejercicio1}
+	\begin{proof}
+		$\boxed{a.}$ Sea $V = V(x^{2} + y^{2} - 1, x^{2} - z^{2} - 1)$. Notemos que:
+		\begin{align*}
+			x^{2} - z^{2} - 1 = 0 &\implies x^{2} = z^{2} + 1 \\
+			&\implies (z^{2} + 1) + y^{2} - 1 = 0 \\
+			&\implies z^{2} + y^{2} = 0
+		.\end{align*}
+		Entonces,
+		\begin{align*}
+			V &= V(z^{2} + y^{2}, x^{2} - z^{2} - 1) \\
+			&= V(z + iy, x^{2} - z^{2} - 1) \cup V(z - iy, x^{2} - z^{2} - 1)
+		.\end{align*}
+		Veamos que esta descomposición es en irreducibles. \par
+		Primero, por la afirmación demostrada:
+		\[ \frac{\C[x,y,z]}{(z - iy, x^{2} - z^{2} - 1)} \simeq \frac{\C[x,z]}{(x^{2} - z^{2} - 1)} \]
+		(esto será demostrado luego). Luego, notar que $x^{2} - z^{2} - 1$ es irreducible en $\C[z][x]$. En efecto, sean $a,b,c,d \in \C[z]$ tales que:
+		\begin{align*}
+			x^{2} - z^{2} - 1 = (ax + b)(cx + d) &\implies bd = -(z + iy)(z - iy), ac = 1,\ ad + bc = 0 \\
+			(\text{caso 1}) &\implies b = z + iy,\ d = -z + iy \\
+			&\implies a(-z + iy) + c(z + iy) = 0 \\
+			&\implies -az + aiy + cz + ciy = 0 \\
+			&\implies z(-a + c) + iy(a + c) = 0 \\
+			&\implies -a + c = 0,\ a + c = 0 \\
+			&\implies a = c,\ -a = c \\
+			&\implies a = 0
+		,\end{align*}
+		pero esto es una contradicción, pues $ac = 1 \neq 0$. El otro caso es que $b = 1$ y $d = -z^{2} - 1$. Esto implicaría que
+		\begin{align*}
+			a(-z^{2} - 1) + c = 0,\ ac = 1 \implies a,c \in \C \implies -az^{2} = a - c \in \C \implies a = 0
+		,\end{align*}
+		con lo que llegamos a la misma contradicción. Es decir, $x^{2} - z^{2} - 1$ es irreducible, y por lo tanto $\C[x,z] \slash (x^{2} - z^{2} - 1)$ es dominio entero. Por el isomorfismo declarado anteriormente, se tiene que $\C[x,y,z] \slash (y - iz, x^{2} - z^{2} - 1)$ también es dominio entero. Por lo tanto, $V(y - iz, x^{2} - z^{2} - 1)$ es irreducible. \par
+		Para ver que $V(y + iz, x^{2} - z^{2} - 1)$ sirve exactamente el mismo argumento, notando que
+		\[ \frac{\C[x,y,z]}{(y + iz, x^{2} - z^{2} - 1)} \simeq \frac{\C[x,z]}{(x^{2} - z^{2} - 1)}, \]
+		que se demuestra de manera análoga a como se hizo anteriormente. \par
+		$\boxed{b.}$ Veamos que $I(V) = (y - x^{2}, z - x^{3})$. \par
+		$\boxed{\supseteq}$ Sea $f \in (y - x^{2}, z - x^{3})$. Entonces, $\exists p,q \in \C[x,y,z]$ tal que
+		\[ f(x,y,z) = p(x,y,z)(y - x^{2}) + q(x,y,z)(z - x^{3}). \]
+		Luego, notar que
+		\[ f(t,t^{2},t^{3}) = p(t,t^{2},t^{3})(t^{2} - t^{2}) + q(t,t^{2},t^{3})(t^{3} - t^{3}) = 0. \]
+		Por lo tanto, $f \in I(V)$. Es decir, $(y - x^{2}, z - x^{3}) \subseteq I(V)$. \par
+		$\boxed{\subseteq}$ Sea $f \in I(V) \subseteq \C[x,y,z]$. Podemos ver a $f$ como un polinomio en $(\C[x,z])[y]$, y dado que $y - x^{2}$ es mónico en $(\C[x,z])[y]$, podemos escribir
+		\[ f(x,y,z) = p(x,y,z)(y - x^{2}) + r_{1}(x,z) \]
+		para algún $p \in \C[x,y,z]$ y $r_{1} \in \C[x,z]$, por el algoritmo de división. Luego, notar que podemos ver a $r_{1}$ como polinomio en $(\C[x])[z]$, y dado que $z - x^{3}$ es mónico en $(\C[x])[z]$, podemos escribir
+		\[ r_{1}(x,z) = q(x,z)(z - x^{3}) + r_{2}(x) \]
+		para algún $q \in \C[x,z]$ y $r_{2} \in \C[x]$. Es decir
+		\[ f(x,y,z) = p(x,y,z)(y - x^{2}) + q(x,z)(z - x^{3}) + r_{2}(x). \]
+		Luego, notar que $\forall t \in \C$,
+		\begin{align*}
+			0 = f(t, t^{2}, t^{3}) = r_{2}(t) &\implies r_{2}(t) = 0 \quad \forall t \in \C \\
+			&\implies r_{2} \equiv 0 \\
+			&\implies f(x,y,z) = p(x,y,z)(y - x^{2}) + q(x,z)(z - x^{3}) \\
+			&\implies f \in (y - x^{2}, z - x^{3}) \\
+			&\implies I(V) \subseteq (y - x^{2}, z - x^{3})
+		.\end{align*}
+		Por lo tanto, $I(V) = (y - x^{2}, z - x^{3})$. \par
+		Luego, sea $\varphi \colon \C[x,y,z] \to \C[t]$ tal que $f(x,y,z) \mapsto f(t,t^{2},t^{3})$. Claramente $\varphi$ es sobreyectivo, pues si $p(t) \in \C[t]$, entonces $p(x) \in \C[x,y,z]$ es tal que $p(x) \mapsto p(t)$. Además, notar que $\ker \varphi = I(V)$, pues consiste de todos los polinomios $f \in \C[x,y,z]$ tales que $f(t,t^{2},t^{3}) = 0$, y esos son exactamente aquellos en $I(V)$. Luego, por el primer teorema de isomorfismos,
+		\[ \frac{\C[x,y,z]}{I(V)} \simeq \C[t]. \]
+		Por lo tanto, $\C[x,y,z] \slash I(V)$ es dominio entero, lo que nos dice que $I(V)$ es ideal primo, por lo que $V(I(V))$ es irreducible. Por último, como $V(I(V)) = V$ (dado que $V$ es algebraico), hemos llegado a que $V$ es irreducible por el corolario 2 de la sección 7 (notar que estamos en un cuerpo algebraicamente cerrado).
+	\end{proof}
+
+	\begin{ejercicio2}
+		Demuestre que $V(y^{2} - x(x - 1)(x - \lambda)) \subset \mathbb{A}^{2}(k)$ es una curva irreducible para cualquier cuerpo algebraicamente cerrado k y cualquier $\lambda \in k$.
+	\end{ejercicio2}
+	\begin{proof}
+		Notemos que basta con demostrar que $f \coloneq y^{2} - x(x - 1)(x - \lambda)$ es irreducible en $(\C[x])[y]$. Esto basta, pues en talcaso $I(V(f)) = (f)$ ideal primo, lo que implicaría que $V(f)$ sea irreducible (todo esto se cumple dado que $k = \overline{k}$). \par
+		Luego, para mostrar lo dicho, supongamos que $f$ es reducible. En tal caso, $\exists a,b,c,d \in k[x]$ tales que:
+		\[ y^{2} - x(x - 1)(x - \lambda) = (a(x)y + b(x))(c(x)y + d(x)). \]
+		Notar que como $a(x)c(x) = 1$, i.e $a,c \in k$, podemos reescribir
+		\[ f = (y + B(x))(y + D(x)) \]
+		para algunos $B(x),D(x) \in k[x]$ Luego, notemos que
+		\[ (y + B(x))(y + D(x)) = y^{2} + (B(x) + D(x)) y + B(x)D(x), \]
+		pero $f$ no tiene factor $y$, por lo que $B(x) + D(x) = 0$. Entonces, $f = y^{2} - B(x)^{2}$. Es decir,
+		\[ x(x - 1)(x - \lambda) = B(x)^{2}. \]
+		Pero hay que notar que $x(x - 1)(x - \lambda)$ tiene grado impar en $k[x]$ y $B(x)^{2}$ tiene grado par en $k[x]$. Por lo tanto, tenemos una contradicción. Es decir, $y^{2} - x(x - 1)(x - \lambda)$ es irreducible.
+	\end{proof}
+
+	\begin{ejercicio3}
+		Sea $I = (y^{2} - x^{2}, y^{2} + x^{2}) \subset \C[x,y]$. Encuentre $V(I)$ y $\dim_{\C}(\C[x,y] \slash I)$.
+	\end{ejercicio3}
+	\begin{proof}
+		Notemos que $\forall (x,y) \in V(I)$ se cumple que $y^{2} - x^{2} = 0$ e $y^{2} + x^{2} = 0 \implies (y - x)(y + x) = 0 \implies y = x$ o $y = -x$. Pero esto implica que $2x^{2} = 0$. Es decir, $x = 0 \implies y = 0 \implies V(I) = \{(0,0)\}$. \par
+		Para encontrar $\dim_{\C}(\C[x,y] \slash I)$, debemos encontrar elementos linealmente independientes en el espacio vectorial $\C[x,y] \slash I$ sobre el cuerpo $\C$. Para ello, notar que:
+		\begin{align*}
+			(y^{2} + x^{2}) + (y^{2} - x^{2}) &= 2y^{2} \implies y^{2} \in I \\
+			(y^{2} + x^{2}) - (y^{2} - x^{2}) &= 2x^{2} \implies x^{2} \in I
+		.\end{align*}
+		Por lo tanto, $I = (y^{2} - x^{2}, y^{2} + x^{2} = (x^{2}, y^{2})$. Es decir, cualquier monomio en el cual esté involucrado $x^{n}$ o $y^{n}$ ($n \geq 2$) se desvanece en $I$. Luego, notemos que los monomios $1,\ x,\ y,\ xy$ son los únicos que no se desvanecen en $I$. Es más, estos elementos son claramente independientes entre sí, dado que estamos tomando coeficientes sobre $\C$. Además, dado que para buscar una base de un espacio de polinomios basta con encontrar los monomios linealmente independientes, tenemos entonces que $\dim_{\C}(\C[x,y] \slash I) = 4$.
+	\end{proof}
+
+	\begin{ejercicio4}
+		Sea $k$ un cuerpo cualquiera, $F \in k[x]$ un polinomio de grado $n > 0$. Demuestre que los residuos $\overline{1},\overline{x},\dots,\overline{x}^{n - 1}$ forman una base de $k[x] \slash (f)$ sobre $k$.
+	\end{ejercicio4}
+	\begin{proof}
+		Para ver que forman una base, debemos demostrar que generan y que son linealmente independientes. Para ver que genera, sea $\overline{g} \in k[x] \slash (f)$, con $g \in k[x]$. Dado que $k$ es campo, tenemos que $k[x]$ es dominio euclidiano. Por lo tanto, existen $p,t \in k[x]$ tales que
+		\[ g = pf + r, \text{ con } \deg r < \deg f \text{ o } r = 0. \]
+		Luego, notar que $\overline{g} = \overline{p} \overline{f} + \overline{r} = \overline{r}$. En caso que $r = 0 \implies \overline{g} = 0$ y esto claramente puede ser escrito como combinación lineal de los elementos descritos (simplemente utilizar un cero en todos los escalares). Por otro lado, si $\deg r < \deg f$, tenemos entonces que $r = a_{0} + a_{1} x + \cdots + a_{n-1} x^{n-1}$, con $a_{i} \in k$ para todo $0 \leq i \leq n-1$. Luego, $\overline{r} = a_{0} + a_{1} \overline{x} + \cdots + a_{n-1} \overline{x}^{n-1}$. Es decir, todo elemento de $k[x] \slash (f)$ lo podemos escribir como combinaciones lineales de los elementos en $\{\overline{1}, \overline{x}, \dots, \overline{x}^{n - 1}\}$. Por lo tanto, genera. \par
+		Para ver que son linealmente independientes, notemos que si
+		\[ \sum_{i=1}^{n-1} a_{i} \overline{x}^{i} = \overline{0} \text{ con } a_{i} \in \C, \]
+		entonces
+		\[ p = \sum_{i=1}^{n-1} a_{i} x^{i} \in (f). \]
+		Es decir, $f | p$, pero $\deg f = n > n - 1 = \deg p$. Por lo tanto $p \equiv 0 \implies a_{i} = 0 \quad \forall i$. \par
+		En conclusión, $\{\overline{1}, \overline{x},\dots, \overline{x}^{n-1}\}$ es base de $k[x] \slash (f)$ sobre $k$. 
+	\end{proof}
+
+	A continuación enunciaremos la parte (a) y (b) del ejercicio 1.22 de la sección 1.4 del Fulton, que será utilizado para realizar el ejercicio 1.38.
+
+	\begin{ejercicio22}
+		Sea $I$ un ideal en un anillo $R$, $\pi \colon R \to R \slash I$ el homomorfismo natural.
+		\begin{enumerate}[(a)]
+			\item Demuestre que para todo ideal $J'$ de $R \slash I,\ \pi^{-1}(J') = J$ es un ideal de $R$ que contiene a $I$, y que para cada ideal $J$ de $R$ conteniendo a $I$, $\pi(J) = J'$ es ideal de $R \slash I$. Esto da una correspondecia natural 1-1 entre \{ideales de $R \slash I$\} e \{ideales de $R$ que contienen a $I$\}.
+
+			\item Demuestre que $J'$ es un ideal radical si y solo si $J$ es radical. Similar para ideales primos y maximales.
+		\end{enumerate}
+	\end{ejercicio22}
+	
+	\begin{ejercicio5}
+		Sea $R = k[x_{1},\dots,x_{n}]$, $k$ algebraicamente cerrado, $V = V(I)$. Demuestre que hay una correspondecia natural 1-1 entre subconjuntos algebraicos de $V$ e ideales radicales en $k[x_{1},\dots,x_{n}] \slash I$, y que conjuntos algebraicos irreducibles (resp. puntos) se corresponden con ideales primos (resp. ideales maximales).
+	\end{ejercicio5}
+	\begin{proof}
+		Por corolario 1 de la sección 1.7 del Fulton, tenemos una correspondencia 1-1 entre ideales radicales en $k[x_{1},\dots,x_{n}]$ y conjuntos algebraicos en $\mathbb{A}^{n}_{k}$. Además, por el problema 1.22, parte (a), tenemos una correspondencia 1-1 entre ideales en $R \slash I$ e ideales de $R$ que contienen a $I$. Además, por el mismo problema, parte (b), $J'$ es ideal radical si y solo si $J$ es ideal radical. \par
+		Con todo esto, podemos armar una correspondencia 1-1 entre ideales radicales ideales radicales en $R \slash I$ e ideales radicales en $R$ que contienen a $I$, y este último tiene una correspondencia con los conjuntos algebraicos en $\mathbb{A}^{n}_{k}$. Ahora bien, dado que estamos tomando ideales radicales $J \supset I$, entonces $V(J) \subset V(I) = V$. Por lo tanto, la correspondencia es exactamente la primera que buscabamos. \par
+		Por corolario 2 de la sección 1.7 del Fulton, tenemos una correspondencia 1-1 entre ideales primos y conjuntos algebraicos irreducibles. Además, por ejercicio 1.22, parte (b), $J'$ es ideal primo si y solo si $J$ es ideal primo. \par
+		Aplicamos exactamente la misma lógica que con la correspondencia anterior y obtenemos la correspondencia buscada.
+		Por último, por corolario 2 de la sección 1.7 del Fulton, tenemos una correspondencia 1-1 entre ideales maximales y puntos. Además, por ejercicio 1.22, parte (b), tenemos que $J'$ maximal si y solo si $J$ maximal. \par
+		De esta manera, aplicando la misma lógica que en el primer argumento, llegamos a la correspondencia buscada.
+	\end{proof}
+
+
+\end{document}

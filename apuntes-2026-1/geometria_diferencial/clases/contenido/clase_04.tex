@@ -1,0 +1,158 @@
+\clase{4}{16 de Marzo}{}
+
+\begin{prop}
+	Si $\theta \colon I \to \R$ es tal que
+	\[ T(s) = (\cos \theta(s), \sin \theta(s)), \]
+	entonces $k = \theta'$.
+\end{prop}
+\begin{proof}[Proof Other Information]
+	Basta notar que:
+	\begin{align*}
+		k(s) &= \langle T'(s), JT(s) \rangle \\
+		&= \langle (-\sin \theta(s) \cdot \theta'(s), \cos \theta(s) \cdot \theta'(s)), (-\sin \theta(s), \cos \theta(s)) \rangle \\
+		&= (-\sin \theta(s))^{2} \cdot \theta'(s) + \cos \theta(s)^{2} \cdot \theta'(s) = \theta'(s)
+	.\qedhere\end{align*}
+\end{proof}
+
+\begin{prop}
+	$\alpha \colon I \to \R^{2}$ curva param. regular suave.
+	\begin{enumerate}[(i)]
+		\item Si $\phi \colon \widetilde{I} \to I$ es un difeomorfismo, entonces
+		\[ k_{\alpha \circ \phi} = (\sgn \phi') \cdot k_{\alpha}. \]
+
+		\item Si $F \colon \R^{2} \to \R^{2}$ es un mov. rígido, entonces
+		\[ k_{F \circ \alpha} = (\sgn \det A) \cdot k_{\alpha}, \]
+		donde $F(p) = A \cdot p + p_{0}$ y $A \colon \R^{2} \to \R^{2}$ es una transformación lineal y ortogonal.
+	\end{enumerate}
+\end{prop}
+\begin{proof}[Proof Other Information]
+	$\boxed{i.}$ Notar que
+	\begin{align*}
+		k_{\alpha \circ \phi} &= \frac{\langle (\alpha \circ \phi)'', J[(\alpha \circ \phi)'] \rangle}{|(\alpha \circ \phi)'|^{3}} \\
+		&= \frac{\langle ((\alpha' \circ \phi) \cdot \phi')', J[(\alpha' \circ \phi) \cdot \phi']}{|(\alpha' \circ \phi) \cdot \phi'|^{3}} \\
+		&= \frac{\langle (\alpha'' \circ \phi) \cdot (\phi')^{2} + (\alpha' \circ \phi) \cdot \phi'', \phi' \cdot J(\alpha' \circ \phi) \rangle}{|\alpha' \circ \phi|^{3} \cdot (\sgn \phi')^{3} \cdot (\phi')^{3}} \\
+		(\alpha' \circ \phi') \perp J(\alpha' \circ \phi) &= \frac{\langle (\alpha'' \circ \phi)(\phi')^{2}, \phi' \cdot J(\alpha' \circ \phi) \rangle}{|\alpha' \circ \phi|^{3} (\phi')^{3}}
+	.\end{align*}
+	Por lo tanto,
+	\begin{align*}
+		k_{\alpha \circ \phi} &= \frac{\langle \alpha'', J \alpha' \rangle}{|\alpha'|^{3}} \cdot \phi \cdot (\sgn \phi') \\
+		&= (k_{\alpha \circ \phi}) \cdot (\sgn \phi')
+	.\end{align*}
+	\par $\boxed{ii.}$ Similar, usando
+	\begin{itemize}
+		\item $(F \circ \alpha)'(t) = DF(\alpha(t)) \cdot (\alpha'(t)) = A(\alpha'(t))$.
+
+		\item $J \circ A = (\sgn \det A) \cdot A \circ J$.
+	\end{itemize}
+\end{proof}
+
+\begin{theorem}[Fundamental de las curvas planas]
+	Sean $I \subset \R$ un intervalo y $k \colon I \to \R$ función suave. Entonces, existe una curva plana suave p.p.a $\alpha \colon I \to \R^{2}$ con $k_{\alpha} = k$. \par
+	Además, si $\beta \colon I \to \R^{2}$ es suave, p.p.a y $k_{\beta} = k$, entonces existe mov. rígido $F \colon \R^{2} \to \R^{2}$ tal que $F \circ \beta = \alpha$.
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	\fbox{I.} Defina $\theta \colon I \to \R$ tal que 
+	\[ \theta(s) = \int_{s_{0}}^{s} k(t) \ dt, \quad (s_{0} \in I) \]
+	y $\alpha \colon I \to \R^{2}$ tal que
+	\[ \alpha(s) = \left( \int_{s_{0}}^{s} \cos \theta(t) \ dt, \int_{s_{0}}^{s} \sin \theta(t) \ dt \right). \]
+	Entonces, $\alpha$ es una curva param. suave, y
+	\[ \alpha'(s) = (\cos \theta(s), \sin \theta(s)). \]
+	Luego, $\alpha$ está p.p.a. Por tanto, 
+	\[ k_{\alpha}(s) = \theta'(s) = k(s), \quad \forall s \in I. \]
+	\par \fbox{II.} Sea $A \colon \R^{2} \to \R^{2}$ una transformación lineal ortogonal con
+	\begin{itemize}
+		\item $A T_{\beta}(s_{0}) = T_{\alpha}(s_{0})$,
+
+		\item $\det A > 0$,
+	\end{itemize}
+	y considere
+	\[ p_{0} = \alpha(s_{0}) - A \beta(s_{0}). \]
+	Defina $F \colon \R^{2} \to \R^{2}$ tal que
+	\[ F(p) = A p + p_{0}. \]
+	Buscamos $\gamma \colon F \circ \beta = \alpha$. Tenemos:
+	\begin{itemize}
+		\item $k_{\gamma} = k_{\beta} = k$.
+
+		\item $\gamma'(s) = A \beta'(s) \implies |\gamma'(s)| = 1,\ \forall s \in I$ ($A$ preserva norma).
+
+		\item Se cumple:
+		\begin{align*}
+			T_{\gamma}(s_{0}) &= \gamma'(s_{0}) = A T_{\beta}(s_{0}) = T_{\alpha}(s_{0}) \\
+			N_{\gamma}(s_{0}) &= JT_{\gamma}(s_{0}) = JT_{\alpha}(s_{0}) = N_{\alpha}(s_{0}) \\
+			\gamma(s_{0}) &= F(\beta(s_{0})) = A \beta(s_{0}) = \alpha(s_{0}) - A \beta(s_{0}) = \alpha(s_{0})
+		.\end{align*}
+	\end{itemize}
+	Además,
+	\begin{align*}
+		& \frac{d}{ds}(|T_{\gamma} - T_{\alpha}|^{2} + |N_{\gamma} - N_{\alpha}|^{2}) \\
+		&= 2 \cdot \langle T_{\gamma}' - T_{\alpha}', T_{\gamma} - T_{\alpha} \rangle + 2 \cdot \langle N_{\gamma}' - N_{\alpha}', N_{\gamma} - N_{\alpha} \rangle \\
+		&= 2 \cdot \langle k \cdot N_{\gamma} - k \cdot N_{\alpha}, T_{\gamma} - T_{\alpha} \rangle + 2 \cdot \langle -(k \cdot T_{\gamma} - k \cdot T_{\alpha}), N_{\gamma} - N_{\alpha} \rangle \\
+		&= 0,\quad \forall s \in I
+	.\end{align*}
+	Como esta función se anula en $s_{0}$, obtenemos
+	\[ T_{\gamma} \equiv T_{\alpha},\quad \gamma' \equiv \alpha' \quad \text{y} \quad \gamma \equiv \alpha. \qedhere \]
+\end{proof}
+
+\section{Curvas en $\R^{3}$}
+
+Sea $\alpha \colon I \to \R^{3}$ curva suave p.p.a y denote $T(s) \coloneq \alpha'(s)$ ($T' \perp T$).
+
+\begin{definition}[curvatura]
+	La \textit{curvatura de} $\alpha$ es la función $k_{\alpha} \colon I \to \R$ tal que
+	\[ k_{\alpha}(s) = |T'(s)| = |\alpha''(s)| \quad (k_{\alpha} \geq 0). \]
+\end{definition}
+
+\begin{note}
+	Suponga $k_{\alpha} \neq 0$ sobre $I$. En ese caso (con $k = k_{\alpha}$), definimos:
+	\[ N(s) \coloneq \frac{T'(s)}{|T'(s)|} = \frac{T'(s)}{k(s)} \]
+	o sea, $T' = k \cdot N$. Además, tenemos $N' \perp N$ (pues $|N(s)| = 1,\ \forall s \in I$).
+\end{note}
+
+\begin{definition}[vector binormal]
+	El \textit{vector binormal de} $\alpha$ en $s \in I$ es
+	\[ B(s) = T(s) \times N(s). \]
+\end{definition}
+\begin{property}
+	El vector binormal cumple:
+	\begin{itemize}
+		\item $|B| = |T| \cdot |N| \cdot \sin(\angle T,N) = 1$.
+
+		\item $B \perp T$ y $B \perp N$.
+
+		\item $\{T(s), N(s), B(s)\}$ es una base ortonormal positiva, que llamaremos el \textit{triedro de Frenet de} $\alpha$.
+
+		\item $B' \perp B$.
+
+		\item Se tiene:
+		\begin{align*}
+			\langle B'(s), T(s) \rangle &= \langle T'(s) \times N(s) + T(s) \times N'(s), T(s) \rangle \\
+			(T(s) \times N'(s)) \perp T(s) &= \langle k(s) \cdot N(s) \times N(s), T(s) \rangle \\
+			&= 0
+		.\end{align*}
+		Por lo tanto, $B'(s)$ y $N(s)$ son paralelos.
+	\end{itemize}
+\end{property}
+
+\begin{definition}[Torsión]
+	La \textit{torsión de} $\alpha$ es la función $\tau \colon I \to \R$ tal que $\tau(s) \cdot N(s)$ (o sea, $\tau(s) = \langle B'(s), N(s) \rangle$).
+\end{definition}
+
+\begin{note}
+	Se tiene que
+	\begin{align*}
+		\langle N'(s), T(s) \rangle &= \langle N'(s), T(s) \rangle + \langle N(s), T'(s) \rangle - \langle N(s), T'(s) \rangle \\
+		&= \frac{d}{ds} \rangle N(s), T(s) \rangle - k(s) \\
+		&= -k(s)
+	.\end{align*}
+	Además, se puede comprobar que
+	\[ \langle N'(s), B(s) \rangle = -\tau(s). \]
+\end{note}
+
+\begin{prop}
+	Se tiene que
+	\[ \begin{cases}
+		T' = k \cdot N \\
+		N' = -k \cdot T - \tau \cdot B \\
+		B' = \tau \cdot N
+	\end{cases} \]
+\end{prop}

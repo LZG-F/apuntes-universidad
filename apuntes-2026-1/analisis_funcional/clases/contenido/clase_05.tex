@@ -1,0 +1,100 @@
+\clase{5}{18 de Marzo}{}
+
+$\mcal{B}(X,Y)$ es un e.v.n con la norma op. $\| \cdot \|_{X,Y}$. Si $(Y, \| \cdot \|_{Y})$ es Banach, entonces $(\mcal{B}(X,Y), \| \cdot \|_{X,Y})$ es Banach. \par
+Sea $(T_{n})_{n \in \N} \subset \mcal{B}(X,Y)$ Cauchy. Vimos que $\forall x \in X$ se puede definir $T(x) \coloneq \lim_{n \to \infty} T_{n} x$ y verificar que $T$ es lineal. \par
+Sean $x_{1},x_{2} \in X$, $\alpha \in \mbb{K}$. Luego, $\forall n \in \N$:
+\begin{align*}
+	&T(x_{1} + \alpha x_{2}) - (Tx_{1} + \alpha T x_{2}) \\
+	&= T(x_{1} + \alpha x_{2}) - T_{n}(x_{1} + \alpha x_{2}) + \underbrace{T_{n}(x_{1} + \alpha x_{2}) - (T_{n}(x_{1} + \alpha x_{2})}_{= 0} + \underbrace{(T_{n} x_{1} + \alpha T_{n} x_{2}) - (T x_{1} + \alpha T x_{2})}_{T_{n} x_{1} - T x_{1} + \alpha(T_{n} x_{2} - T x_{2})} \\
+	\implies 0 &\leq \| T(x_{1} + \alpha x_{2}) - (T x_{1} + \alpha T x_{2}) \|_{Y} \\
+	&\leq \| T(x_{1} + \alpha x_{2}) - T_{n}(x_{1} + \alpha x_{2}) \|_{Y} + \| T x_{1} - T (x_{1}) \|_{Y} + |\alpha| \| T_{n} x_{2} - T(x_{2}) \|_{Y}
+.\end{align*}
+Entonces,
+\begin{align*}
+	&\| T(x_{1} + \alpha x_{2}) - (T(x_{1}) + \alpha T(x_{2})) \|_{Y} = 0 \\
+	\implies \ & T(x_{1} + \alpha x_{2}) = T(x_{1} + \alpha T(x_{2})
+.\end{align*}
+Verificamos que $T$ es acotado y $\| T_{n} - T \|_{X,Y} \longrightarrow 0$. \par
+Sea $\varepsilon > 0,\ \exists N \in \N,\ \forall n,m \geq N$ se tiene que $\| T_{n} - T_{m} \|_{X,Y} < \varepsilon$ implica $\forall x \in X,\ \| T_{n} x - T_{N} x \|_{Y} < \varepsilon \| x \|_{X}$. \par
+En particular, $\forall n \geq N,\ \forall x \in X$ se tiene que $\| T_{n} x - T_{N} x \| < \varepsilon \| x \|$ implica $\forall x \in X$,
+\[ \lim_{n \to \infty} \| T_{n} x - T_{N} x \| \leq \varepsilon \| x \|. \]
+Notar que
+\[ \lim_{n \to \infty} \| T_{n} x - T_{N} x \| = \| \lim_{n \to \infty} T_{n} x - T_{N} x \|, \]
+por continuidad de la norma, y esto es igual a 
+\[ \| T x - T_{N} x \|. \]
+Dado $\varepsilon > 0,\ \forall x \in X,\ \| T x - T_{N} x \| \leq \varepsilon \| x \|$. Notar que $\| T x \| - \| T_{N} x \| \leq \| T x - T_{N} x \|$. Entonces, $\forall x \in X$
+\begin{align*}
+	\| T x \| &\leq \varepsilon \| x \| + \underbrace{\| T_{N} x \|}_{\leq \| T_{N} \| \cdot \| x \|} \\
+	&\leq (\varepsilon + \| T_{N} \|) \| x \|
+.\end{align*}
+Por lo tanto, $T \in \mcal{B}(X,Y)$. \par
+Sea $\varepsilon > 0,\ \exists N \geq 0, \forall n,m \geq N,\ \|T_{n} x - T_{m} x \| < \varepsilon \| x \| \implies \forall n \geq N,\ \forall x \in X, \lim_{n \to \infty} \| T_{n} x - T_{m} x \| \leq \varepsilon \| x \|$. Notar que $\lim_{n \to \infty} \| T_{n} x - T_{m} x \| = \| (T_{n} - T) x \|$. Entonces,
+\begin{align*}
+	&\forall n \geq N,\ \forall x \neq 0,\ \frac{\| (T_{n} - T) x \|}{\| x \|} \leq \varepsilon \\
+	\implies \ &\forall n \geq N \| T_{n} - T \| \coloneq \sup \frac{\| (T_{n} - T) x \|}{\| x \|} \leq \varepsilon
+.\end{align*}
+
+\begin{eg}
+	Si $X$ es un e.v.n, entonces $X^{*}$ es de Banach.
+\end{eg}
+
+\begin{definition}[adjunto de $T$]
+	Sean $X,Y$ e.v.n's y $T \in \mcal{B}(X,Y)$, se define el adjunto de $T$ (denotado $T^{*}$) por: $T^{*} \colon Y^{*} \to X^{*}$ tal que $g \mapsto T^{*} g$. Es decir, $\forall x \in X,\ \forall g \in Y^{*},\ (T^{*} g)(x) = g(T x) = g \circ T(x)$.
+\end{definition}
+
+\begin{prop}
+	En el cuadro de la definición anterior, $T^{*} \in \mcal{B}(Y^{*},X^{*})$ y $\| T^{*} \| \leq \| T \|$.
+\end{prop}
+\begin{proof}[Proof Other Information]
+	\begin{enumerate}
+		\item Verificar que $T^{*} \in \mcal{L}(Y^{*},X^{*})$.
+
+		\item Vemos ahora que $T^{*}$ es acotado. En efecto, $\forall x \in X,\ \forall g \in Y^{*}$, se tiene
+		\begin{align*}
+			|(T^{*} g)(x)| &= |g(T x)| \\
+			&\leq \| g \|_{Y^{*}} \| T x \|_{Y} \\
+			&\leq \| g \|_{Y^{*}} \| T \| \| x \|_{X}
+		.\end{align*}
+	\end{enumerate}
+	En particular, $\| T^{*} g \|_{X^{*}} \leq \| g \|_{Y^{*}} \| T \|$. Entonces, $\| T^{*} \| \leq \| T \|$.
+\end{proof}
+
+\begin{theorem}
+	Sea $X$ e.v.n. Existen $\hat{X}$ un Bamach  $j$ una inyección isométrica $j \colon X \hookrightarrow \hat{X}$ tal que $j(X)$ es denso en $\hat{X}$. \par
+	$\hat{X}$ se llama completación de $X$.
+\end{theorem}
+
+\begin{note}
+	Revisar Bollobas, teorema 7.
+\end{note}
+
+\begin{definition}
+	Sea $X$ e.v.n y $(x_{n})_{n \in \N}$ una sucesión de $X$. Se defina la serie $\sum x_{n}$ como la sucesión $(y_{n})_{n \in \N}$ de sumas parciales:
+	\[ y_{n} \coloneq \sum_{k=1}^{n} x_{k}. \]
+	$\sum x_{n}$ es convergente (cv) si $(y_{n})$ lo es. En este caso, se denota el límite por $\sum_{n = 1}^{\infty} x_{n}$. \par
+	Además, diremos que $\sum x_{n}$ converge absolutamente (cva) si $\sum \| x_{n} \|$ es cv.
+\end{definition}
+
+\begin{prop}
+	Sea $X$ e.v.n. $X$ es Banach si y solo si toda serie cva es cv.
+\end{prop}
+\begin{proof}[Proof ]
+	$\boxed{\Rightarrow}$ Sea $(x_{n}) \subset X$ tal que $\sum \| x_{n} \|$ cv. Entonces, dado $\varepsilon > 0,\ \exists N \in \N$ tal que
+	\[ \sum_{n \geq N} \| x_{n} \| < \varepsilon. \]
+	Notar que
+	\[ \sum_{n \geq N} \| x_{n} \| = \sum_{n = 1}^{\infty} \| x_{n} \| - \sum_{n = 1}^{N} \| x_{n} \|. \]
+	Luego, si $n > m \geq N$, se tiene
+	\begin{align*}
+		\| y_{n} - y_{m} \| &= \Big{\|} \sum_{k = 1}^{n} x_{k} - \sum_{k = 1}^{m} x_{k} \Big{\|} \\
+		&= \Big{\|} \sum_{k = m + 1}^{n} x_{k} \Big{\|} \\
+		&\leq \sum_{k = m + 1}^{n} \| x_{k} \| \\
+		&\leq \sum_{k = N + 1}^{\infty} \| x_{k} \| < \varepsilon
+	.\end{align*}
+	Luego, $(y_{n})$ es sucesión de Cauchy
+	\[ y_{n} \coloneq \sum_{k=1}^{n} x_{k}. \]
+	Como $X$ es Banach,
+	\[ y_{n} \longrightarrow y_{\infty} \coloneq \sum_{k=1}^{\infty} x_{k}. \qedhere \]
+\end{proof}
+\begin{observe}
+	Para mostrar que una sucesión de Cauchy es cv, basta mostrar que una subsucesión es cv.
+\end{observe}

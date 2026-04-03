@@ -1,0 +1,85 @@
+\clase{7}{25 de Marzo}{}
+
+Se denota la suma directa de $Y$ y $Z$ por $Y \oplus Z$.
+
+\section{II. Funcionales Lineales}
+
+\begin{prop}
+	Sean $X$ e.v.n, $f \in X'$. Luego, $f \in X^{*}$ si y solo si $f(B_{1}(0)) \subsetneq \mbb{K}$.
+\end{prop}
+\begin{proof}[Proof Other Information]
+	$\boxed{\Rightarrow}$ $\forall x \in B_{1}(0),\ \| x \| \leq 1 \implies |f(x)| \leq \| f \| \| x \| \leq \| f \|$. Es decir, $f(B_{1}(0)) \subset B_{\| f \|}(0) \subsetneq \mbb{K}$. \par
+	$\boxed{\Leftarrow}$ Supongamos que $f$ no es continua. Observar que $\forall \lambda \in \mbb{K},\ |\lambda| \leq 1,\ B_{|\lambda|}(0) = |\lambda| B_{1}(0)$, por lo que $f(|\lambda| B_{1}(0)) = f(\lambda B_{1}(0)) = \lambda f(B_{1}(0)) \subset f(B_{1}(0))$. Luego, existe $(x_{n})_{n \in \N}$ tal que
+	\[ \begin{cases}
+		\| x_{n} \| = 1 \quad \forall n \in \N \\
+		|f(x_{n})| \longrightarrow \infty
+	\end{cases} \]
+	Luego,
+	\[ \xi_{n} = \{\lambda x_{n} \ : \ |\lambda| \leq 1\} \subset B_{1}(0). \]
+	Notar que
+	\begin{align*}
+		f(\xi_{n}) &= \{\lambda f(x_{n}) \ : \ |\lambda| \leq 1\} \\
+		&= \Big{\{}\lambda \frac{f(x_{n})}{|f(x_{n})|} |f(x_{n})| \ : \ |\lambda| \leq 1 \Big{\}} \\
+		&= B_{|f(x_{n})|}(0)
+	.\end{align*}
+	Por lo tanto, $f(\xi_{n}) \subset f(B_{1}(0)) \quad \forall n \in \N$. Es decir,
+	\[ \bigcup_{n \in \N} f(\xi_{n}) \subset f(B_{1}(0)) \subset \mbb{K} \]
+	Además, notar que
+	\[ \bigcup_{n \in \N} f(\xi_{n}) = \bigcup_{n \in \N} B_{|f(x_{n})|}(0) = \mbb{K}. \]
+	Es decir, $f(B_{1}(0)) = \mbb{K}$.
+\end{proof}
+
+\begin{definition}[hiperplano]
+	Un hiperplano (afin) de un e.v $X$ es un subconjunto $H \subset X$ de la forma: $H = x + Y$, donde $Y$ es un s.e.v de $X$ de codimensión 1 y $x \in X$.
+\end{definition}
+
+\begin{notation}
+	Si $f \in X'$, donde $X$ es e.v,
+	\[ J(f) \coloneq \{x \in X \ : \ f(x) = 1\} = f^{-1}(\{1\}). \]  
+\end{notation}
+
+\begin{prop}
+	Sea $X$ un e.v
+	\begin{enumerate}[a)]
+		\item Si $f \in X',\ f \neq 0$, i.e. $\exists x_{0} \in X,\ f(x_{0}) \neq 0$, entonces $\ker f$ es un s.e.v de $X$ de codimensión 1. Además, $\forall x \in X,\ \exists! (\lambda, y) \in \mbb{K} \times \ker f$ tal que $x = \lambda x_{0} + y$, $J(f)$ es un hiperplano de $X$. 
+
+		\item Si $f,g \in X' \setminus \{0\}$, entonces
+		\[ \begin{cases}
+			f = \lambda g \\
+			\lambda \neq 0
+		\end{cases} \iff \ker f = \ker g. \]
+
+		\item El mapeo $f \mapsto J(f)$ es un mapeo 1-1 entre los funcionales de $X' \setminus \{0\}$ y los hiperplanos que no contienen a $0_{X}$. 
+	\end{enumerate}
+\end{prop}
+\begin{proof}[Proof Other Information]
+	(a) $\ker f$ s.e.v de $X$. $\checkmark$ Se considera ahora $\hat{f} \colon X \slash \ker f \to \mbb{K}$ tal que $(x + \ker f =)\ [x] \mapsto \hat{f}([x]) = f(x)$. Luego, $\hat{f}$ es lineal e inyectiva (de hecho, es un isomorfismo). Entonces, $\dim_{\mbb{K}}(X \slash \ker f) = 1$. \par
+	Para ver la existencia: sean
+	\[ x = \underbrace{\frac{f(x)}{f(x_{0})}}_{\lambda} x_{0} + \underbrace{\left( x - \frac{f(x)}{f(x_{0})} x_{0} \right)}_{y}. \]
+	y
+	\[ f(y) = f \left( x - \frac{f(x)}{f(x_{0})} x_{0} \right) = f(x) - \frac{f(x)}{f(x_{0})} f(x_{0}) = 0. \]
+	Es decir, $y \in \ker f$. \par
+	Para ver unicidad: supongamos que $x = \lambda x_{0} + y = \lambda' x_{0} + y'$, donde $\lambda, \lambda' \in \mbb{K}$ y $y,y' \in \ker f$. Entonces
+	\begin{align*}
+		(\lambda - \lambda')x_{0} = y - y' \in \ker f &\implies f((\lambda - \lambda') x_{0}) = 0 = (\lambda - \lambda') f(x_{0}) \\
+		&\implies \lambda = \lambda' \\
+		&\implies y = y'
+	.\end{align*}
+	Observamos, además, que
+	\begin{align*}
+		[x] &= [\lambda x_{0}] \\
+		&= \lambda [x_{0}] \\
+		&= \lambda x_{0} + \ker f
+	\end{align*}
+	en la descomposición anterior. Luego,
+	\begin{align*}
+		J(f) &= \{x \in X \ : \ f(x) = 1\} \\
+		&= \{x \in X \ : \ \lambda f(x_{0}) = 1\} \\
+		&= \{x \in X \ : \ \hat{f}([x]) = 1\} \\
+		&= \lambda_{x} x_{0} + \ker f
+	.\end{align*}
+	\par (b) $\boxed{\Rightarrow}$ Sea $f = \beta g$, donde $f,g \neq 0$ y $\beta \neq 0$. Luego, $\ker f = \ker g$. \par
+	$\boxed{\Leftarrow}$ Supongamos que $\ker f = \ker g$. Por lo visto en a), podemos fijar $x_{0} \not\in \ker f$ tal que $\forall x \in X,\ x = \lambda x_{0} + y$, donde $\lambda \in \mbb{K},\ y \in \ker f$. Notar que $f(x) = \lambda f(x_{0})$. Luego, en
+	\[ g(x) = \lambda g(x_{0}) + g(y) \]
+	tenemos que $g(y) = 0$, pues $\ker f = \ker g$, y además, $g(x_{0}) \neq 0$ necesariamente (pues $g \neq 0$). Luego,
+\end{proof}

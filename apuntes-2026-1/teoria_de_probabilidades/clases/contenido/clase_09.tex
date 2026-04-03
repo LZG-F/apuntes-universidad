@@ -1,0 +1,112 @@
+\clase{9}{30 de Marzo}{}
+
+\begin{theorem}
+	Sea $I$ un conjunto de índices no vacío y sean $(\mu_{t})_{t \in I}$ un colección de probabilidades sobre $(S, \beta)$ con $S$ un espacio métrico completo y separable, y $\beta$ su $\sigma$-álgebra de Borel. Entonces, existe una \textit{única} medida de probabilidades $\mu$ en $(S^{I}, \beta^{I})$ tal que para todo $J \in \mathbb{F}(I)$ y $\bigtimes_{j \in J} B_{j} \in \beta^{J}$ vale que
+	\[ \mu \left( C \left( J, \bigtimes_{j \in J} B_{j} \right) \right) = \prod_{j \in J} \mu_{j}(B_{j}). \]
+	En particular, en $(S^{I}, \beta^{I}, \mu)$, las proyecciones $(\pi_{t})_{t \in I}$ son variables aleatorias independientes, cada $\pi_{t}$ con distribución $\mu_{t}$. Decimos que
+	\[ \mu = \bigtimes_{t \in I} \mu_{t} = \prod_{t \in I} \mu_{t} \]
+	es la \textit{medida producto} de $(\mu_{t})_{t \in I}$.
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Dado $J \in \mbb{F}(I)$, sea $\mu \coloneq \bigtimes_{j \in J} \mu_{(j)}$, la medida producto sobre $(S^{J}, \beta^{J})$. Sea $\mscr{C} \coloneq \{\mu^{(j)} \ : \ J \in \mbb{F}(I)\}$. \par
+	Notar que:
+	\begin{enumerate}[(i)]
+		\item $\mu^{(J)}$ es una medida de probabilidad en $(S^{I}, \beta^{I})$ para cada $J \in \mbb{F}(I)$;
+
+		\item $\mscr{C}$ es consistente: Si $J_{1} \subseteq J_{2},\ J_{1},J_{2} \in \mbb{F}(I)$ y $(B_{j})_{j \in J_{1}} \subseteq \beta$, entonces
+		\begin{align*}
+			\left( \pi_{J_{2} \to J_{1}} \mu^{(J_{2})} \right) \left( \bigtimes_{j \in J_{1}} B_{j} \right) &\coloneq \mu^{(J_{2})} \left( \pi_{J_{2} \to J_{1}}^{-1} \left( \bigtimes_{j \in J_{1}} B_{j} \right) \right) \\
+			&= \mu^{(J_{2})} \left( " \left( \bigtimes_{j \in J_{1}} B_{j} \right) \times S^{J_{2} - J_{1}} " \right) \\
+			&= \left( \prod_{j \in J_{1}} \mu_{j}(B_{j}) \right) \left( \prod_{j \in J_{2} - J_{1}} \underbrace{\mu_{j}(S)}_{= 1} \right) \\
+			&= \prod_{j \in J_{1}} \mu_{j}(B_{j}) \\
+			&= \mu^{(J_{1})} \left( \bigtimes_{j \in J_{1}} B_{j} \right) \\
+		.\end{align*}
+		Como los conjuntos de la forma $\bigtimes_{j \in J_{1}} B_{j}$ generan $\beta^{J_{1}}$ y son un $\pi$-sistema (que contiene a $S^{J}$), resulta que $\pi_{J_{2} \to J_{1}} \mu^{(J_{2})} = \mu^{(J_{1})}$ (i.e $\mscr{C}$ es consistente).
+	\end{enumerate}
+	\par Por el Teorema de extensión de Kolmogorov, existe una única medida $\mu$ sobre $(S^{I}, \beta^{I})$ tal que $\pi_{J} \mu = \mu^{(J)}$ para todo $J \in \mbb{F}(I)$. \par
+	En particular,
+	\begin{align*}
+		\mu \left( C \left( J, \bigtimes_{j \in J} B_{j} \right) \right) &= \pi_{J} \mu \left( \bigtimes_{j \in J} B_{j} \right) \\
+		&= \mu^{(J)} \left( \bigtimes_{j \in J} B_{J} \right) \\
+		&= \prod_{j \in J} \mu_{j}(B_{j}) \tag{$*$}
+	,\end{align*}
+	para todo $J \in \mbb{F}(I)$ y $(B_{j})_{j \in J} \subseteq \beta$. \par
+	Por último, como los cilindros especiales del tipo $C(J, \bigtimes_{j \in J} B_{j})$ son un $\pi$-sistema que genera $\beta^{I}$, $\mu$ es la única medida que cumple $(*)$. \par
+	La afirmación sobre las proyecciones $(\pi_{t})_{t \in I}$ es un Ej. de la práctica 2.
+\end{proof}
+
+\begin{note}
+	Hasta acá la I1. Además, hasta acá con las notas de Anton Bovier (volver al Durrett).
+\end{note}
+
+\noindent Repasemos las formas de convergencia conocidas:
+
+\begin{enumerate}
+	\item \textbf{Convergencia en probabilidad:} $X_{n} \xlongrightarrow{\mbb{P}} X$ si para todo $\varepsilon > 0$ vale que
+	\[ \lim_{n \to \infty} \mbb{P}(|X_{n} - X| > \varepsilon) = 0. \]
+
+	\item \textbf{Convergencia casi segura:} $X_{n} \xlongrightarrow[(a.s)]{c.s} X$ casi seguramente, i.e
+	\[ \mbb{P}(\{\omega \ : \ X_{n}(\omega) \not\longrightarrow X(\omega) \}) = 0. \] 
+
+	\item \textbf{Convergencia en $L^{p}$:} $X_{n} \xlongrightarrow{L^{p}} X$ si 
+	\[ \| X_{n} - X \|_{p} \coloneq (\mbb{E}(|X_{n} - X|^{p}))^{1 \slash p} \xlongrightarrow{n \to \infty} 0, \quad (p \in [1, \infty)). \]
+	Similarmente, $X_{n} \xlongrightarrow{L^{\infty}} X$ si 
+	\[ \| X_{n} - X \|_{\infty} \longrightarrow 0. \]
+\end{enumerate}
+
+\begin{prop}
+	Valen las siguientes propiedades:
+	\begin{enumerate}
+		\item $X_{n} \xlongrightarrow{c.s} X \iff \mbb{P}(|X_{n} - X| > \varepsilon \text{ i.o}) = 0 \quad \forall \varepsilon > 0\ ( \iff \forall \varepsilon > 0,\ \lim_{n \to \infty} \mbb{P}(\bigcup_{i \geq n} \{|X_{i} - X| > \varepsilon \}) = 0 )$. Donde i.o quiere decir "infinitely often" y 
+		\[ |X_{n} - X| > \varepsilon \text{ i.o} = \limsup_{n \to \infty} \{|X_{n} - X| > \varepsilon\}. \]
+
+		\item $\sum_{n \in \N} \mbb{P}(|X_{n} - X| > \varepsilon) < \infty \quad \forall \varepsilon > 0 \implies X_{n} \xlongrightarrow{c.s} X$.
+
+		\item $X_{n} \xlongrightarrow{\mbb{P}} X \iff$ Toda subsucesión $(X_{n_{k}})_{k \in \N}$ admite ella misma una subsucesión $(X_{n_{k_{j}}})_{j \in \N}$ tal que $X_{n_{k_{j}}} \xlongrightarrow{c.s} X \iff$ Toda subsucesión $(X_{n_{k}})_{k \in \N}$ admite ella misma una subsucesión $(X_{n_{k_{j}}})_{j \in \N}$ tal que $X_{n_{k_{j}}} \xlongrightarrow{\mbb{P}} X$.
+
+		\item \textbf{Desigualdad de Tchebychev:} si $f$ es creciente, entonces $f(\delta) \mbb{P}(X \geq \delta) \leq \mbb{E}(f(X) \mathds{1}_{\{X \geq \delta\}})$. En particular, si $f(\delta) > 0$, entonces $\mbb{P}(X \geq \delta) \leq \mbb{E}(f(X) \mathds{1}_{\{X \geq \delta\}})$.
+
+		\item \textbf{Desigualdad de Jensen:} Si $\varphi$ es convexa y $\mbb{E}(|X|), \mbb{E}(|\varphi(X)|) < \infty$, entonces $\varphi(\mbb{E}(X)) \leq \mbb{E}(\varphi(X))$. En particular, si $p \leq q$, entonces $\| X \|_{p} \leq \| X \|_{q}$ $(L^{q} \subseteq L^{p})$.
+	\end{enumerate}
+	En particular, se tiene que:
+	\begin{enumerate}[i)]
+		\item $X_{n} \xlongrightarrow{c.s} X \implies X_{n} \xlongrightarrow{\mbb{P}} X \not\implies X_{n} \xlongrightarrow{c.s} X$.
+		
+		\item $X_{n} \xlongrightarrow{L^p} X \implies X_{n} \xlongrightarrow{\mbb{P}} X \not\implies X_{n} \xlongrightarrow{L^{p}} X$.
+
+		\item $X_{n} \xlongrightarrow{L^{q}} X \implies X_{n} \xlongrightarrow{L^{p}} X \quad \forall \ 1 \leq p \leq q$.
+	\end{enumerate}
+\end{prop}
+
+\begin{definition}
+	Dada una V.A y $p > 0$, a la cantidad $\mbb{E}(X^{p})$ (si está bien definida) se la llama el \textit{$p$-ésimo momento de} $X$.
+\end{definition}
+
+\begin{observe}
+	Si $X$ tiene $q$-ésimo momento finito entonces también tiene $p$-ésimo momento finito para todo $1 \leq p \leq q$.
+\end{observe}
+
+\begin{definition}
+	Dada una V.A $X$ con $\mbb{E}(X^{2}) < \infty$, definimos su \textit{varianza} como $\Var(X) \coloneq \mbb{E}((X - \mbb{E}(X))^{2}) = \mbb{E}(X^{2}) - (\mbb{E}(X))^{2} \in [0, \infty)$.
+\end{definition}
+
+\begin{definition}
+	Dadas V.A's $X$ e $Y$ definidas en el mismo EdP con $\mbb{E}(X^{2}), \mbb{E}(Y^{2}) < \infty$, definimos su \textit{covarianza} como 
+	\[ \Cov(X,Y) \coloneq \mbb{E}((X - \mbb{E}(X))(Y - \mbb{E}(Y))) = \mbb{E}(XY) - \mbb{E}(X) \mbb{E}(Y). \]
+\end{definition}
+
+\begin{note}
+	$\Var(X) = \Cov(X,X)$.
+\end{note}
+
+\begin{definition}
+	Una colección $(X_{i})_{i \in I}$ de V.A's se dicen \textit{no correlacionadas} si $\Cov(X_{i}, X_{j}) = 0 \quad \forall i \neq j,\ i,j \in I$.
+\end{definition}
+
+\begin{definition}
+	Una colección $(X_{i})_{i \in I}$ de V.A's se dicen \textit{i.i.d} si son \textit{independientes e idénticamente distribuidas}; i.e $X_{i} \stackrel{d}{=} X_{j} \quad \forall i,j \in I$.
+\end{definition}
+
+\begin{observe}
+	$(X_{i})_{i \in I}$ independientes + $\mbb{E}(X_{j}^{2}) < \infty \quad \forall i \in I \implies (X_{i})_{i \in I}$ no correlacionadas (la otra dirección no vale).
+\end{observe}

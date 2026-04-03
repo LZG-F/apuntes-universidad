@@ -1,0 +1,70 @@
+\clase{6}{23 de Marzo}{}
+
+\begin{proof}[Proof Other Information]
+	$\boxed{\Leftarrow}$ Sean $X$ e.v.n, $(x_{n})_{n \in \N} \subset X$ Cauchy, $x_{n} - x_{n - 1} \eqcolon y_{n} \quad n \geq 2$, $x_{n} = \sum_{k \geq 1}^{n} y_{k} + x_{0}$ donde $x_{0} \coloneq 0$. \par
+	Podemos extraer de $(x_{n})$ una subsucesión (de Cauchy) $(x_{n_{m}})_{m \in \N}$ tal que
+	\[ \| x_{n_{m + 1}} - x_{n_{m}} \| < \frac{1}{2^{m}} \]
+	Sea
+	\begin{align*}
+		y_{m} &\coloneq x_{n_{m}} - x_{n_{m - 1}} \\
+		\implies x_{n_{m}} &\coloneq \sum_{k=1}^{m} y_{k} + x_{n_{0}} \quad \text{donde } x_{n_{0}} \coloneq 0
+	.\end{align*}
+	Observamos que $(\sum y_{m})$ es cva, por lo tanto, es cv (hip.). Entonces,
+	\[ \lim_{m \to \infty} x_{n_{m}} = \sum_{k=1}^{\infty} y_{k}. \]
+	Luego, $(x_{n})$ siendo Cauchy y teniendo una subsucesión cv, tenemos que cv al mismo límite. Por lo tanto, $X$ es Banach.
+\end{proof}
+
+\begin{ex}
+	Si $X$ e.v.n, $Y$ s.e.v de $X$, entonces $\overline{Y}$ es un s.e.v de $X$.
+\end{ex}
+
+\begin{remark}
+	Si $X$ e.v e $Y$ es un s.e.v de $X$, podemos definir una relación binaria sobre $X$ $x_{1} \sim_{Y} x_{2} \iff x_{1} - x_{2} \in Y$. Se puede verificar que es una relación de equivalencia. Sea define un conjunto $X \slash \sim_{Y} = X \slash Y$ de las clases de equivalencia asociadas
+	\[ [x]_{Y} = \{\tilde{x} \in X \ : \ \tilde{x} - x \in Y\} = x + Y. \] 
+	Se puede equipar $X \slash Y$ con las operaciones siguientes:
+	\begin{itemize}
+		\item $[x_{1}]_{Y} + [x_{2}]_{Y} \coloneq [x_{1} + x_{2}]_{Y} \quad \forall x_{1},x_{2} \in X \slash Y$.
+
+		\item $\lambda [x]_{Y} \coloneq [\lambda x]_{Y} \quad \forall \lambda \in \mbb{K},\ \forall x \in X \slash Y$.
+	\end{itemize}
+	Verificar que las definiciones de estas operaciones no dependen de los representantes escogidos. \par
+	Si $X$ está equipado con una norma $\| \cdot \|$, entonces se define:
+	\[ \| [x] \|_{0} \coloneq \inf \{\| y \| \ : \ y \sim x\} = \inf \{\| x + z \| \ : \ z \in Y\}. \]  
+\end{remark}
+
+\begin{prop}
+	En ese contexto, $\| \cdot \|_{0}$ es una norma sobre $X \slash Y$.
+\end{prop}
+
+\begin{proof}[Proof Other Information]
+	Sea $x \in X$ tal que $\| [x] \|_{0} = 0 = \inf \{\| x - z \| \ : \ z \in Y\}$. Entonces, existe $(z_{n}) \subset Y$ tal que
+	\[ \lim_{n \to \infty} \| x - z_{n} \| = 0. \]
+	Es decir,
+	\[ \lim_{n \to \infty} z_{n} = x. \]
+	Pero $Y$ es cerrado, entonces $x \in Y$. Por lo tanto, $[x] = [0] = 0_{X \slash Y} = Y$. \par
+	Verificar los otros axiomas.
+\end{proof}
+
+\begin{definition}
+	Si $Y$ es un s.e.v de $X$, diremos que $Y$ es de codimensión $p \in \N$ en $X$ si $\dim_{\mbb{K}} X \slash Y = p$.
+\end{definition}
+
+\begin{definition}
+	El e.v.n $(X \slash Y, \| \cdot \|_{0})$ se llama el e.v cuociente y $\| \cdot \|$ la norma cuociente.
+\end{definition}
+
+\begin{remark}
+	Sean $X,Y$ e.v's y $T \in \mscr{L}(X,Y)$. Se define $\hat{T} \colon X \slash \ker T \to Y$ tal que $\hat{T}([x]) = Tx$ (verificar que $T$ está bien definido, $\hat{T} \in \mscr{L}(X \slash \ker T, Y)$ y $\hat{T}$ es inyectivo).
+\end{remark}
+
+\begin{prop}
+	Sean $X,Y$ e.v.n's y $T \in \mcal{B}(X,Y)$. Entonces, $\hat{T} \in \mcal{B}(X \slash \ker T, Y)$ y $\| \hat{T} \| = \| T \|$.
+\end{prop}
+\begin{proof}[Proof Other Information]
+	Sea $x \in X$. Entonces $\forall x \in X$,
+	\[ \| \hat{T}[x] \|_{Y} = \| T x \|_{Y} \leq \| \| T \| \| x \|_{X}. \]
+	Luego,
+	\[ \| \hat{T}[x] \|_{Y} \leq \inf_{y \in [x]} \| T \| \| y \|_{X} = \| T \| \| [x] \|_{0}. \]
+	En particular,
+	\[ \| \hat{T} \| \leq \| T \|. \]
+\end{proof}

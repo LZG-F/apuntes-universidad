@@ -1,0 +1,79 @@
+\chapter{Procesos Estocásticos (Notas de Anton Bovier)}
+
+\clase{7}{23 de Marzo}{}
+
+\begin{definition}
+Dados:
+	\begin{itemize}
+		\item Un EdP $(\Omega, \mcal{F}, \mbb{P})$;
+
+		\item Un esp. medible $(S, \beta)$ (típicamente, $S$ métrico y separable y $\beta = \sigma$-álgebra de Borel);
+
+		\item Un conjunto de índices $I$ no vacío;
+	\end{itemize}
+	diremos que un \textit{proceso estocástico con espacio de estados} $S$ \textit{indexado en} $I$ es cualquier colección $(X_{t})_{t \in I}$ de elementos aleatorios en $(S, \beta)$, todos definidos en el mismo EdP $(\Omega, \mcal{F}, \mbb{P})$.
+\end{definition}
+
+\begin{note}
+	\begin{itemize}
+		\item A veces se reserva el término "proceso estocástico" al caso en que $I = \N,\ \Z,\ \R_{+}$ ó $\R$. En estos casos, $t \in I$ es un \textit{parámetro temporal} y hablamos de procesos a \textit{tiempo discreto} o \textit{continuo} dependiendo de si $I$ lo es.
+
+		\item Si $I = \Z^{d},\ \R^{d},\ G$ (grafo), hablamos de \textit{campos estocásticos}.
+
+		\item Para que $(X_{t})_{t \in I}$ sea un PE, necesito que cada $X_{t}$ sea $\mcal{F}$-medible. En particular, $\sigma(X_{t} \ : \ t \in I) \subseteq \mcal{F}$.
+	\end{itemize}
+\end{note}
+
+\section{Perspectiva Trayectorial}
+
+En lugar de pensar que para cada $t \in I$ tenemos $X_{t} \colon \Omega \to \mcal{S}$ tal que $\omega \mapsto X_{t}(\omega)$, podemos pensar que para cada $\omega \in \Omega$ tenemos $X(\omega) \colon I \to \mcal{S}$ tal que $t \mapsto X_{t}(\omega)$. Llamamos a $X(\omega)$ una \textit{trayectoria} o \textit{realización} de $X = (X_{t})_{t \in I}$. \par
+Si ahora, variamos $\omega \in \Omega$, obtenemos una \textit{trayectoria aleatoria}, i.e. podemos ver a $(X_{t})_{t \in I}$ como un elemento aleatorio a valores en el espacio $S^{I}$ de funciones. Es decir, $X \colon \Omega \to S^{I}$ tal que $\omega \mapsto X(\omega)$. Lo que nos gustaría es que $X$ sea $\mcal{F}$-medible. Para esto, necesitamos una $\sigma$-álgebra $\mcal{G}$ en $S^{I}$. \par
+\textbf{Condición:} Vamos a querer que $\mcal{G}$ sea tal que si $X \colon \Omega \to S^{I}$ es $(\mcal{F}, \mcal{G})$-medible $\implies X_{t} \colon \Omega \to S$ $(\mcal{F}, \beta)$-medible para todo $t \in I$. \par
+Pero $X_{t} = \pi_{t} \circ X$, donde $\pi_{t} \colon S^{I} \to S$ tal que $(x_{i})_{i \in I} \mapsto x_{t}$ es la \textit{proyección} en $t$. Esto será cierto si $\mcal{G}$ es tal que $\pi_{t}$ es $(\mcal{G}, \beta)$-medible $\forall t \in I$.
+
+\begin{lemma}
+	Sea $\beta^{I} \coloneq \bigtimes_{i \in I} \beta$ (esto no es producto cartesiano, sino producto de $\sigma$-álgebras) la menor $\sigma$-álgebra en $S^{I}$ que contiene alos conjuntos de la forma
+	\[ C(t, B) \coloneq \{(x_{i})_{i \in I} \in S^{I} \ : \ x_{t} \in B\} \quad (= \pi_{t}^{-1}(B)) \]
+	con $t \in I,\ B \in \beta$. \par
+	Entonces, $\beta^{I}$ es la menor $\sigma$-álgebra en $S^{I}$ que hace que $\pi_{t}$ sea $\beta$-medible $\forall t \in I$. A su vez, $\sigma(X_{t} \ : \ t \in I)$ es la menor $\sigma$-álgebra tal que $X \colon \Omega \to S^{I}$ resulta $\beta^{I}$-medible
+\end{lemma}
+
+\begin{corollary}
+	La aplicación $X \colon \Omega \to S^{I}$ es $(\mcal{F}, \beta^{I})$-medible si y solo si $X_{t} \colon \Omega \to S$ es $(\mcal{F}, \beta)$-medible $\forall t \in I$. Es decir, $\beta^{I}$ es \textbf{exactamente} la $\sigma$-álgebra $\mcal{G}$ que necesitamos poner en $S^{I}$ para que ambas "definiciones" de PE sean \textbf{equivalentes}.
+\end{corollary}
+\begin{proof}[Proof Other Information][Corolario]
+	$\boxed{\Rightarrow}$ $X_{t} = \pi_{t} \circ X$ es medible por ser composición de medibles ($\pi_{t}$ es medible por el Lema). \par
+	$\boxed{\Leftarrow}$ $X_{t}$ es $\mcal{F}$-medible $\forall t \in I \implies \sigma(X_{t} \ : \ t \in I) \subseteq \mcal{F} \implies X$ es $(\mcal{F}, \beta^{I})$-medible (por el Lema).
+\end{proof}
+
+\begin{proof}[Proof Other Information][Lema]
+	\begin{enumerate}
+		\item Observar que $C(t,B) = \pi_{t}^{-1}(B) \quad \forall t \in I,\ B \in \beta$. Luego,
+		\begin{align*}
+			\sigma(\pi_{t} \ : \ t \in I) &= \sigma(\pi_{t}^{-1}(B) \ : \ B \in \beta,\ t \in I) \\
+			&= \sigma(C(t,B) \ : \ B \in \beta,\ t \in I) = \beta^{I}
+		\end{align*}
+		y esto implica la primera afirmación.
+
+		\item Sea $\mcal{G} \subseteq \mcal{F}$ es una $\sigma$-álgebra.
+		\begin{align*}
+			X \text{ es } (\mcal{G}, \beta^{I}) \text{-medible } &\iff X^{-1}(C(t,B)) \in \mcal{G} \quad \forall t \in I,\ B \in \beta \\
+			(C(t,B) = \pi_{t}^{-1}(B)) &\iff X^{-1}(\pi_{t}^{-1}(B)) \in \mcal{G} \quad \forall t \in I,\ B \in \beta \\
+			&\iff (\pi_{t} \circ X)^{-1}(B) \in \mcal{G} \quad \forall t \in I,\ B \in \beta \\
+			&\iff X_{t} \text{ es } (\mcal{G}, \beta)\text{-medible } \forall t \in I \\
+			&\iff \sigma(X_{t} \ : \ t \in I) \subseteq \mcal{G}
+		.\end{align*}
+		Luego, vale la segunda afirmación.
+	\end{enumerate}
+\end{proof}
+
+\begin{note}
+	Llamaremos a $\beta^{I}$ la $\sigma$-álgebra producto en $S^{I}$.
+\end{note}
+
+\begin{definition}
+	Si $J \subseteq I$ es finito y no vacío, dado $B \in \beta^{J}$ ($\sigma$-álgebra producto en $S^{J}$, decimos que el conjunto
+	\[ C(J, B) \coloneq \{(x_{i})_{i \in I} \in S^{I} \ : \ (x_{j})_{j \in J} \in B\}  \quad ("= B \times S^{I - J}") \]
+	es un \textit{cilindro finito-dimensional} (de dimensión $n = |J|$). \par
+	Si $B$ es de la forma $B = \bigtimes_{j \in J} B_{j}$ con $B_{j} \in \beta$, entonces $C(J,B) = \bigcap_{j \in J} C(j, B_{j})$ se dice un \textit{cilindro especial}.
+\end{definition}

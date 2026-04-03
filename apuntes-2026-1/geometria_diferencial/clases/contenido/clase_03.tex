@@ -1,0 +1,157 @@
+\clase{3}{12 de Marzo}{}
+
+\begin{eg}
+	\begin{enumerate}
+		\item $\alpha(t) = p_{0} + tv \quad (p_{0},v \in \R^{n},\ v \neq 0)$. Como $\alpha'(t) = v$, tenemos ($t_{0} = 0$)
+		\[ s(t) = \int_{0}^{t} |\alpha'(x)| \ dx = t \cdot |v|. \]
+		Luego, $s^{-1}(x) = x \slash |v|$ y
+		\[ \alpha \circ s^{-1}(x) = p_{0} + x \cdot \frac{v}{|v|} \]
+		está p.p.a.
+
+		\item $\alpha(t) = p_{0} + (r \cos t, r \sin t) \quad (p_{0} \in R^{2},\ r > 0)$. Como $\alpha'(t) = (-r \sin t, r \cos t)$, tenemos $|\alpha'(t)| = r$ y
+		\[ s(t) = \int_{0}^{t} |\alpha'(x)| \ dx = rt. \]
+		Luego, $s^{-1}(x) = x \slash r$ y
+		\[ \alpha \circ s^{-1}(x) = p_{0} + \left( r \cos \frac{x}{r}, r \sin \frac{x}{r} \right), \]
+		está p.p.a.
+
+		\item $\alpha(t) = (a \cos t, a \sin t, bt) \quad (a,b \neq 0)$. Como $\alpha'(t) = (-a \sin t, a \cos t, b)$, tenemos $|\alpha'(t)| = \sqrt{a^{2} + b^{2}}$ y
+		\[ s(t) = \int_{0}^{t} |\alpha'(x)| \ dx = \sqrt{a^{2} + b^{2}} \cdot t.\]
+		Luego,
+		\[ \alpha \circ s^{-1}(x) = \left( a \cos \frac{x}{\sqrt{a^{2} + b^{2}}}, a \sin \frac{x}{\sqrt{a^{2} + b^{2}}}, \frac{bx}{\sqrt{a^{2} + b^{2}}} \right). \]
+	\end{enumerate}
+\end{eg}
+
+\begin{ex}
+	Encuentre una p.p.a para
+	\[ \alpha(t) = (a e^{bt} \cos t, a e^{bt} \sin t) \]
+	con $a > 0,\ b < 0$.
+\end{ex}
+
+\section{Curvatura (de curvas planas)}
+
+\textbf{Objetivo.} Asociar a cada curva param. (regular) $\alpha \colon I \to \R^{n}$ una cantidad geométrica $k = k_{\alpha} \colon I \to \R$, tal que:
+\begin{enumerate}
+	\item $k$ es invariante por reparametrización;
+
+	\item $k$ es invariante por movimientos rígidos;
+
+	\item $k = 0 \iff \alpha$ es un segmento de recta.
+\end{enumerate}
+
+\begin{notation}
+	Escribiremos $J \colon \R^{2} \to \R^{2},\ J(x,y) = (-y,x)$.
+	\begin{itemize}
+		\item $J$ es una transformación lineal ortogonal;
+
+		\item $\langle u, Ju \rangle = 0$ y $J^{2} u = J(Ju) = -u,\ \forall u \in \R^{2}$;
+
+		\item Si $u \in \R^{2}$ tiene $|u| = 1$, entonces $\{u, Ju\}$ es base ortonormal positiva (o.n.positiva) para $\R^{2}$ (con positiva se hace referencia a que la matriz de cambio de base a $\{\vec{e_{1}}, \vec{e_{2}}\}$ tiene $\det > 0$).
+	\end{itemize}
+\end{notation}
+
+\begin{ex}
+	Demuestre que si $A \colon \R^{2} \to \R^{2}$ es lineal y ortogonal, entonces 
+	\[ J \circ A = (\det A) A \circ J. \]
+\end{ex}
+
+\begin{definition}
+	Considere $\alpha \colon I \to \R^{2}$ curva param. p.p.a y denote $T(s) = \alpha'(s),\ s \in I$. Note que $|T(s)| = 1,\ \forall s \in I$. Luego, $T'(s) \perp T(s)$. El vector $N(s) \coloneq JT(s)$ se llama el \textit{vector normal (unitario) a} $\alpha$ \textit{en} $s$. \par
+	De ahí, para cada $s \in I$, existe un $k(s) \in \R$ tal que $T'(s) = k(s) \cdot N(S)$. La función $k \colon I \to \R$ se llama la \textit{curvatura de} $\alpha$.
+\end{definition}
+
+\begin{note}
+	Tomando el producto escalar con $N(s)$, calculamos:
+	\[ \langle T'(s), N(S) \rangle = \langle k(s) N(s), N(s) \rangle = k(s). \]
+	O sea, $k(s) = \langle \alpha''(s), J \alpha'(s) \rangle$. \par
+	Si derivamos $N(s) = JT(s)$,
+	\begin{align*}
+		N'(s) &= (JT)'(s) = J(T'(s)) \\
+		&= J(k \cdot N(S)) = J(k(s) \cdot JT(s)) \\
+		&= k(s) \cdot J(JT(s)) = -k(s) \cdot T(s)
+	\end{align*}
+	Dentro de lo dicho, las ecuaciones importantes a recordar son $T'(s) = k(s) \cdot N(s)$ y $N'(s) = -k(s) \cdot T(s)$.
+\end{note}
+
+\begin{prop}[Equaciones de Frenet]
+	Si $\alpha$ está p.p.a,
+	\[ \begin{cases}
+		T' = k \cdot N \\
+		N' = -k \cdot T
+	\end{cases}. \]
+\end{prop}
+
+\begin{definition}
+	Se dice que $\{T(s), N(s)\}$ es el \textit{diedro de Frenet} de $\alpha$. 
+\end{definition}
+
+\begin{eg}
+	\begin{enumerate}
+		\item Para $\alpha(s) = p_{0} + s \cdot \frac{v}{|v|}, \quad (p_{0},v \in \R^{2},\ v \neq 0)$, $T(s) = v \slash |v|$. Luego, $T'(s) = 0$, y $\alpha(s)$ tiene curvatura $k(s) = 0,\ \forall s \in I$.
+
+		\item Para 
+		\[ \alpha(s) = p_{0} + \left( r \cos \frac{s}{r}, r \sin \frac{s}{r} \right), \]
+		tenemos
+		\begin{align*}
+			T(s) &= \alpha'(s) = \left( -\sin \frac{s}{r}, \cos \frac{s}{r} \right) \\
+			JT(s) &= \left( -\cos \frac{s}{r}, -\sin \frac{s}{r} \right) = N(s) \\
+			T'(s) &= \left( -\frac{1}{r} \cos \frac{s}{r}, -\frac{1}{r} \sin \frac{s}{r} \right).
+		\end{align*}
+		Por lo tanto $k(s) = \langle T'(s), N(s) \rangle = 1 \slash r$.
+	\end{enumerate}
+\end{eg}
+
+\begin{note}
+	Buscamos ahora extender estas definiciones a curvas regulares. Considere $\beta \colon I \to \R^{2}$ curva suave regular. Ya sabemos que existe $s \colon I \to J$ función suave tal que $\beta \circ s^{-1}$ es una reparametrización por el arco para $\beta$. Escriba $\alpha = \beta \circ s^{-1}$, o sea $\beta = \alpha \circ s$. \par
+	Definimos el \textit{diedro de Frenet de} $\beta$ por:
+	\begin{align*}
+		T_{\beta}(t) &= \frac{\beta'(t)}{|\beta'(t)|} \\
+		&= \frac{(\alpha \circ s)'(t)}{|(\alpha \circ s)'(t)|} \\
+		&= \frac{\alpha'(s(t)) \cdot s'(t)}{|\alpha'(s(t)) \cdot s'(t)} \qquad (s'(t) = |\beta'(t)|) \\ 
+		&= \frac{\alpha'(s(t))}{|\alpha'(s(t))|} \\
+		N_{\beta} (t) &= JT_{\beta}(t) \\
+		&= J \left( \frac{\alpha'(s(t))}{|\alpha'(s(t))|} \right) \\
+		&= JT_{\alpha}(s(t)) \\
+		&= N_{\alpha}(s(t))
+	,\end{align*}
+	y la \textit{curvatura de} $\beta$ por:
+	\[ k_{\beta}(t) \coloneq k_{\alpha}(s(t)), \quad \forall t \in I. \]
+	\par Para calcularla, notemos:
+	\begin{align*}
+		\beta'(t) &= |\beta'(t)| \cdot T_{\beta}(t) \\
+		&= s'(t) \cdot T_{\alpha}(s(t))
+	.\end{align*}
+	Por lo tanto,
+	\[ \beta'' = s'' \cdot (T_{\alpha} \circ s) + s'(T_{\alpha} \circ s) \cdot s'. \]
+	Luego,
+	\[ T_{\alpha}' \circ s = \frac{\beta''}{|\beta'|^{2}} - \frac{s''}{|\beta'|^{2}}(T_{\alpha} \circ s) \]
+	(notar que $s' = |\beta'$). Por tanto,
+	\begin{align*}
+		k_{\beta}(t) &= k_{\alpha}(s(t)) \\
+		&= \langle T_{\alpha}'(s(t)), N_{\alpha}(s(t)) \rangle \\
+		&= \Bigg{\langle} \frac{\beta''(t)}{|\beta'(t)|^{2}} - \frac{s''(t)}{|\beta'(t)|^{2}} \cdot T_{\alpha}(s(t)), JT_{\alpha}(s(t)) \Bigg{\rangle} \\
+		&= \Bigg{\langle} \frac{\beta''(t)}{|\beta'(t)|^{2}}, J \Bigg( \frac{\beta'(t)}{|\beta'(t)|} \Bigg) \Bigg{\rangle}
+	.\end{align*}
+	De esta manera,
+	\[ k_{\beta}(t) = \frac{\langle \beta''(t), J \beta'(t) \rangle}{|\beta'|^{3}}. \]
+\end{note}
+
+\begin{note}
+	Si $\beta(t) = (x(t), y(t))$, entonces
+	\begin{align*}
+		\beta'(t) &= (x'(t), y'(t)) \\
+		J \beta'(t) &= (-y'(t), x'(t)) \\
+		\beta''(t) &= (x''(t), y''(t))
+	.\end{align*}
+	Por lo tanto,
+	\begin{align*}
+		k_{\beta}(t) &= \frac{\langle (x'',y''), (-y',x') \rangle}{((x')^{2} + (y')^{2})^{\frac{3}{2}}} \\
+		&= \frac{x' y'' - y' x''}{((x')^{2} + (y')^{2})^{\frac{3}{2}}}
+	.\end{align*}
+\end{note}
+
+\begin{prop}
+	Sea $\alpha \colon I \to \R^{2}$ una curva param. p.p.a. Suponga que
+	\[ T(s) = \alpha'(s) = (\cos \theta(s), \sin \theta(s)), \]
+	para $\theta \colon I \to \R$. Entonces,
+	\[ k_{\alpha}(s) = \frac{d\theta}{ds}(s), \quad \forall s \in I. \]
+\end{prop}

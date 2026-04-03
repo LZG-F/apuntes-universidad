@@ -1,0 +1,130 @@
+\documentclass{amsart}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+
+\usepackage{kantlipsum}
+
+\usepackage{booktabs}
+
+\usepackage[shortlabels]{enumitem}
+
+\usepackage{mathtools}
+
+\usepackage[english]{babel}
+
+\theoremstyle{plain}
+\newtheorem*{ejercicio1}{Ejercicio 1.11}
+\newtheorem*{ejercicio2}{Ejercicio 1.13}
+\newtheorem*{ejercicio3}{Ejercicio 1.15}
+\newtheorem*{ejercicio4}{Ejercicio 1.16}
+\newtheorem*{ejercicio5}{Ejercicio 1.21}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\DeclareMathOperator{\ev}{ev}
+
+\title{Tarea 1. Introducción a la Geometría Algebraica MAT2824}
+\author{Felipe López}
+
+\begin{document}
+	\maketitle
+
+	\begin{ejercicio1}
+		Demuestre que los siguientes conjuntos son algebraicos:
+		\begin{enumerate}[a)]
+			\item $\{(t, t^{2}, t^{3}) \in \mathbb{A}^{3}(k) \ | \ t \in K\}$.
+
+			\item $\{(\cos(t), \sin(t)) \in \mathbb{A}^{2}(\R) \ | \ t \in \R\}$.
+
+			\item El conjunto de puntos en $\mathbb{A}^{2}(\R)$ tales que sus coordenadas polares $(r,\theta)$ satisfagan la ecuación $r = \sin(\theta)$.
+		\end{enumerate}
+	\end{ejercicio1}
+	\begin{proof}
+		$\boxed{a.}$ Veamos que $C_{1} \coloneq \{(t,t^{2},t^{3}) \in \mathbb{A}^{3}(k) \ | \ t \in k\} = V(y - x^{2}, z - x^{2})$. En efecto, si $(x,y,z) \in C_{1}$, entonces $y = x^{2}$ y $z = x^{3}$. Es decir, $y - x^{2} = 0$ y $z - x^{3} = 0$. Por lo tanto, $C_{1} \subset V(y - x^{2}, z - x^{3})$. \par
+		Por otro lado, si $(a,b,c) \in V(y - x^{2}, z - x^{3})$, entonces $b - a^{2} = 0$ y $c - a^{3} = 0$. Es decir, $(a,b,c) = (a, a^{2}, a^{3})$. Ahora, dado que $a \in k$, entonces $(a,b,c) \in C_{1}$. Luego, $V(y - x^{2}, z - x^{3}) \subset C_{1}$. En conclusión, $C_{1} = V(y - x^{2}, z - x^{3})$. \par
+		$\boxed{b.}$ Veamos que $C_{2} \coloneq \{(\cos(t), \sin(t)) \in \mathbb{A}^{2}(k) \ | \ t \in \R\} = V(x^{2} + y^{2} - 1)$. En efecto, sea $t \in \R$. Notemos que, si $F(x,y) = x^{2} + y^{2} - 1$, entonces
+		\[ F(\cos(t), \sin(t)) = \cos^{2}(t) + \sin^{2}(t) - 1 = 1 - 1 = 0. \]
+		Así, obtenemos que $C_{2} \subset V(x^{2} + y^{2} - 1)$. \par
+		Luego, sea $(a,b) \in V(x^{2} + y^{2} - 1)$. Notemos que podemos reescribir $(a,b)$ según sus coordenadas polares $(r, \theta)$, con $r > 0$, y de manera tal que $(a,b) = (r \cos(\theta), r \sin(\theta))$. Luego, notemos que
+		\begin{align*}
+			a^{2} + b^{2} - 1 = 0 &\implies r^{2} \cos^{2}(\theta) + r^{2} \sin^{2}(\theta) = 1 \\
+			&\implies r^{2}(\cos^{2}(\theta) + \sin^{2}(\theta)) = 1 \\
+			&\implies r^{2} = 1 \\
+			&\implies r = 1 \\
+			&\implies (a,b) = (\cos(\theta), \sin(\theta))
+		.\end{align*}
+		Es decir, $V(x^{2} + y^{2} - 1) \subset C_{2}$. En conclusión, $C_{2} = V(x^{2} + y^{2} - 1)$. \par
+		$\boxed{c.}$ Veamos que $C_{3} \coloneq \{(x,y) \in \mathbb{A}^{2}(\R) \ | \ (x,y) = (r\cos(\theta),r\sin(\theta)) \text{ y } r = \sin(\theta)\} = V(x^{2} + y^{2} - y)$. En efecto, sea $(x,y) \in C_{3}$. Notemos que si escribimos $(x,y)$ según sus coordenadas polares, obtenemos $(x,y) = (r\cos(\theta), r\sin(\theta))$, y como está en $C_{3}$, tenemos que $r = \sin(\theta)$. Luego, $(x,y) = (\sin(\theta) \cos(\theta), \sin^{2}(\theta))$. Así, tenemos que
+		\begin{align*}
+			x^{2} + y^{2} - y &= \sin^{2}(\theta) \cos^{2}(\theta) + \sin^{4}(\theta) - \sin^{2}(\theta) \\
+			&= \sin^{2}(\theta)(1 - \sin^{2}(\theta)) + \sin^{4}(\theta) - \sin^{2}(\theta) \\
+			&= \sin^{2}(\theta) - \sin^{4}(\theta) + \sin^{4}(\theta) - \sin^{2}(\theta) \\
+			&= 0
+		.\end{align*}
+		Es decir, $C_{3} \subset V(x^{2} + y^{2} - y)$. \par
+		Por otro lado, tomemos $(a,b) \in V(x^{2} + y^{2} - y)$ y reescribámoslo según sus coordenadas polares. Es decir, $(a,b) = (r \cos(\theta), r \sin(\theta))$. Luego, notar que
+		\begin{align*}
+			a^{2} + b^{2} - b = 0 &\implies r^{2} \cos^{2}(\theta) + r^{2} \sin^{2}(\theta) - r \sin(\theta) = 0 \\
+			&\implies r^{2}(1 - \sin^{2}(\theta)) + r^{2} \sin^{2}(\theta) = r \sin(\theta) \\
+			&\implies r^{2} - r^{2} \sin^{2}(\theta) + r^{2} \sin^{2}(\theta) = r \sin(\theta) \\
+			&\implies r^{2} = r \sin(\theta) \\
+			(r \neq 0) &\implies r = \sin(\theta)
+		.\end{align*}
+		Para $r = 0$ se tiene $(a,b) = (0,0)$, que claramente está dentro de $C_{3}$. Es decir, $V(x^{2} + y^{2} - y) \subset C_{3}$. En conclusión, $C_{3} = V(x^{2} + y^{2} - y)$
+	\end{proof}
+
+	\begin{ejercicio2}
+		Demuestre que cada uno de los siguientes conjunots no son algebraicos:
+		\begin{enumerate}[a)]
+			\item $\{(x,y) \in \mathbb{A}^{2}(\R) \ | \ y = \sin(x)\}$. 
+
+			\item $\{(z,w) \in \mathbb{A}^{2}(\C) \ \big| \ |z|^{2} + |w|^{2} = 1\}$, donde $|x + iy|^{2} = x^{2} + y^{2}$ para $x,y \in \R$.
+
+			\item $\{(\cos(t), \sin(t), t) \in \mathbb{A}^{3}(\R) \ | \ t \in \R\}$. 
+		\end{enumerate}
+	\end{ejercicio2}
+	\begin{proof}
+		$\boxed{a.}$ Sea $C_{1} \coloneq \{(x,y) \in \mathbb{A}^{2}(\R) \ | \ y = \sin(x)\}$. Supongamos que $C_{1}$ es un conjunto algebraico. Es decir, $C_{1} = V(S)$ para algún $S \subset \R[x,y]$. Notemos que $\sin(x) = 0$ para infinitos $x \in \R$. Por lo tanto, existen infinitos puntos de la forma $(x, 0)$ dentro de $C_{1}$. Luego, notamos que para cada $f \in S,\ f(x,0) = 0$ para infinitos $x$, pero $f(x,0)$ es un polinomio de una variable en $\R$, por lo que no puede tener infinitos ceros, salvo en caso que sea el polinomio idéntico a cero. En este caso, $V(S) = V(0) = \mathbb{A}^{2}(\R)$, pero es claro que $C_{1} \neq \mathbb{A}^{2}(\R)$, lo que es una contradicción. Por lo tanto, $C_{1}$ no es algebraico. \par
+		$\boxed{b.}$ Sea $C_{2} \coloneq \{(z,w) \in \mathbb{A}^{2}(\C) \ \big| \ |z|^{2} + |w|^{2} = 1\}$. Supongamos que $C_{2}$ es algebraico, con $C_{2} = V(S)$ para algún $S \subset \C[x,y]$. Tomemos los puntos $(z,w) \in C_{2}$ tales que $|w| = 0$. Estos puntos cumplen $|z|^{2} = 1$. Es decir, forman un círculo en el plano complejo, de radio mayor que cero. Luego, notar que si tomamos $F \in S$, este cumple que $F(z, 0) = 0$ para todo punto como los recién mencionados. Este polinomio lo podemos ver como uno de una variable, pero sabemos que los polinomios de una variable sobre $\C$ tienen finitos ceros. Por lo tanto, $F$ debe ser el polinomio idéntico a cero. Esto implica que $C_{2} = V(S) = V(0) = \mathbb{A}^{2}(\C)$, pero claramente $C_{2} \neq \mathbb{A}^{2}(\C)$, lo que genera una contradicción. En conclusión, $C_{2}$ no es algebraico. \par
+		$\boxed{c.}$ Sea $C_{3} \coloneq \{(\cos(t), \sin(t), t) \in \mathbb{A}^{3}(\R) \ | \ t \in \R\}$. Supongamos que $C_{3}$ es algebraico, con $C_{3} = V(S)$ para algún $S \subset \R[x,y,z]$. Sea $B \coloneq \{2\pi n \ | \ n \in \mathbb{N}\}$. Notar que para todo $t \in B$, $\cos(t) = 1$ y $\sin(t) = 0$. Es decir, para todo $t \in B,\ (1,0,t) \in C_{3}$. Luego, si $F \in S$, entonces $F(1,0,t) = 0$ para todo $t \in B$. Podemos ver a $F$ como un polinomio en una variable sobre $\R$, pero esto significa que $F$ tiene finitos ceros de la forma $(1, 0, t)$ con $t \in B$, pero $B$ es infinito. Luego, $F$ debe ser el polinomio idéntico a cero, por lo que $C_{3} = V(S) = V(0) = \mathbb{A}^{3}(\R)$. Ahora bien, es claro que $C_{3} \neq \mathbb{A}^{3}(\R)$, por lo que hemos llegado a una contradicción. En conclusión, $C_{3}$ no es algebraico.
+	\end{proof}
+
+	\begin{ejercicio3}
+		Sean $V \subset \mathbb{A}^{n}(k),\ W \subset \mathbb{A}^{n}(k)$ conjuntos algebraicos. Demuestre que
+		\[ V \times W = \{(a_{1},\dots,a_{n},b_{1},\dots,b_{m}) \ | \ (a_{1},\dots,a_{n}) \in V,\ (b_{1},\dots,b_{m}) \in W\} \]
+		es un conjunto algebraico de $\mathbb{A}^{n}(k)$.
+	\end{ejercicio3}
+	\begin{proof}
+		Dado que $V$ y $W$ son algebraicos, existen $S \subset k[x_{1},\dots,x_{n}]$ y $T \subset k[x_{n + 1},\dots,x_{n + m}]$ tales que $V = V(S)$ y $W = V(T)$. Consideremos a $S$ y $T$ como subconjuntos de $k[x_{1},\dots,x_{n + m}]$ (extendiendo sus variables). De esta manera, veamos que $V \times W = V(S \cup T)$. Sean $x = (a_{1},\dots,a_{n},b_{1},\dots,b_{m}) \in V \times W$ y $f \in S \cup T$. En caso que $f \in S$, notar que $f(x) = 0$, pues $(a_{1},\dots,a_{m}) \in V(S)$, y por la forma en que extendimos $S$, los $b_{i}$ no afectan en el resultado de $f$. Similarmente, si $f \in T$, entonces $f(x) = 0$. Luego, $V \times W \subset V(S \cup T)$. \par
+		Ahora, sea $x \in V(S \cup T)$. En este caso, $f(x) = 0 \quad \forall f \in S$ y $g(x) = 0 \quad \forall g \in T$. Es decir, las primeras $n$ coordenadas de $x$ deben ser un cero de $f$ y las coordenadas desde $n + 1$ hasta $n + m$ deben ser cero de $g$. Entonces, si $x = (x_{1},\dots,x_{n},x_{n + 1},\dots,x_{n + m})$, se tiene que $(x_{1},\dots,x_{n}) \in V(S)$ y $(x_{n + 1},\dots,x_{n + m}) \in V(T)$. Por lo tanto, $x \in V \times W$. En conclusión, $V \times W = V(S \cup T)$.
+	\end{proof}
+
+	\begin{ejercicio4}
+		Sean $V,W$ algebraicos en $\mathbb{A}^{n}(k)$. Demuestre que $V = W$ si y solo si $I(V) = I(W)$.
+	\end{ejercicio4}
+	\begin{proof}
+		$\boxed{\Rightarrow}$ Basta con aplicar el operador $I(\cdot)$ a $V = W$. Así, obtenemos $I(V) = I(W)$. \par
+		$\boxed{\Leftarrow}$ Sean $V,W \subset \mathbb{A}^{n}(k)$ tales que $I(V) = I(W)$. Dado que $V$ y $W$ son algebraicos, existen $S,T \subset k[x_{1},\dots,x_{n}]$ tales que $V = V(S)$ y $W = V(T)$. Luego, notemos que
+		\begin{align*}
+			I(V) = I(W) &\implies I(V(S)) = I(V(T)) \\
+			&\implies V(I(V(S))) = V(I(V(T))) \\
+			&\implies V(S) = V(T) \\
+			&\implies V = W
+		.\qedhere\end{align*}
+	\end{proof}
+	
+	\begin{ejercicio5}
+		Demuestre que $I = (x_{1} - a_{1}, \dots, x_{n} - a_{n}) \subset k[x_{1},\dots,x_{n}]$ es un ideal maximal, y que el homomorfismo natural desde $k$ hasta $k[x_{1},\dots,x_{n}] \slash I$ es un isomorfismo.
+	\end{ejercicio5}
+	\begin{proof}
+		Para ver que es ideal maximal, sea $a = (a_{1},\dots,a_{n})$. Además, definamos $\ev_{a} \colon k[x_{1},\dots,x_{n}] \to k$ como el morfismo evaluación en $a$; i.e, $\ev_{a}(f) = f(a)$ para $f \in k[x_{1},\dots,x_{n}]$. Notar que si $c \in k$, el polinomio constante $c \in k[x_{1},\dots,x_{n}]$ cumple que $\ev_{a}(c) = c$, por lo que $\ev_{a}$ es sobreyectivo. Luego, notar que $\ker(\ev_{a}) = I(\{a\})$ (por cómo está definido $I(\{a\})$). Además, como fue visto en clases, $I(\{a\}) = (x_{1} - a_{1}, \dots, x_{n} - a_{n}) = I$. Así, por el primer teorema de isomorfismos, se tiene que $k[x_{1},\dots,x_{n}] \slash I \simeq k$. Por lo tanto, como $k$ es un cuerpo, $k[x_{1},\dots,x_{n}] \slash I$ también lo es, y esto último se cumple si y solo si $I$ es maximal. \par
+		Ahora, para ver que el homomorfismo natural es isomorfismo, definamos el mismo como $\varphi \colon k \to k[x_{1},\dots,x_{n}] \slash I$, tal que $\varphi(c) = [c] \quad \forall c \in k$. Para ver intectividad, sea $c \in k$ tal que $\varphi(c) \in \ker(\varphi)$. Entonces, $\varphi(c) = [c] \in I$. Luego, notar que $[c](a) = 0$, pues $\ker(\ev_{a}) = I$, pero como esto es la clase del polinomio constante $c$, tenemos que $[c](a) = c = 0$. Por lo tanto, $\ker(\varphi) = \{0\}$. \par
+		Por otro lado, para ver sobreyectividad, sea $[f] \in k[x_{1},\dots,x_{n}] \slash I$. Notar que, como $\ker(\ev_{a}) = I$, se tiene entonces que $f(x) - f(a) \in I$. Esto implica que $[f] = [f(a)]$, y como $f(a)$ es una constante, se tiene que toda clase está representada por una constante. Por lo tanto, $\varphi$ es sobreyectivo. En conclusión, $\varphi$ es isomorfismo.
+	\end{proof}
+
+
+\end{document}

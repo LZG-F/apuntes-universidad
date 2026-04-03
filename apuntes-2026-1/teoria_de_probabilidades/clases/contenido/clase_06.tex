@@ -1,0 +1,83 @@
+\clase{6}{18 de Marzo}{}
+
+\section{Ley 0-1 de Kolmogorov}
+
+Dada una sucesión \((X_n)_{n\in\mathbb{N}}\) de variables aleatorias independientes, definimos la \(\sigma\)-álgebra \textbf{cola} asociada a \((X_n)_{n\in\mathbb{N}}\) como
+\[
+\mathcal{C} = \bigcap_{n\in\mathbb{N}} \sigma(X_i : i \ge n).
+\]
+Los eventos en \(\mathcal{C}\) se llaman \textbf{eventos cola}.
+
+La idea es que un evento cola queda determinado únicamente por el comportamiento de la cola de la sucesión \((X_n)_{n\in\mathbb{N}}\).
+
+\begin{eg}
+    Los siguientes son eventos cola:
+    \begin{enumerate}[i)]
+        \item \(A = \{\displaystyle \lim_{n\to\infty} X_n = 5\}\).
+        \item \(B = \{(X_n)_{n\in\mathbb{N}} \text{ es de Cauchy}\}\).
+        \item \(C = \{(X_n)_{n\in\mathbb{N}} \text{ es acotada}\}\) (si cada \(X_n\) toma valores reales y no pueden valer \(\pm\infty\)).
+    \end{enumerate}
+\end{eg}
+
+Para eventos cola de \((X_n)_{n\in\mathbb{N}}\) independientes, tenemos:
+
+\begin{theorem}[Ley 0-1 de Kolmogorov]
+    Si \((X_n)_{n\in\mathbb{N}}\) son independientes y \(A \in \mathcal{C}\) es un evento cola, entonces \(\mathbb{P}(A) = 0\) ó \(\mathbb{P}(A) = 1\).
+\end{theorem}
+
+\begin{proof}[Demostración (esquema)]
+    Sean \(\mathcal{F}_n = \sigma(X_1, \dots, X_n)\) y \(\mathcal{G}_n = \sigma(X_{n+1}, X_{n+2}, \dots)\). Observar que si para \(I \subseteq \mathbb{N}\) definimos
+    \[
+    \mathcal{F}_I = \left\{ \bigcap_{j \in J} \{X_j \in B_j\} : B_j \in \mathcal{B}(\mathbb{R}),\; J \subseteq I \text{ finito} \right\},
+    \]
+    entonces:
+    \begin{enumerate}
+        \item \(\mathcal{F}_I\) es un \(\pi\)-sistema.
+        \item \(\sigma(\mathcal{F}_I) = \sigma(X_i : i \in I)\).
+        \item si \(I \cap I' = \emptyset\) entonces \(\mathcal{F}_I\) y \(\mathcal{F}_{I'}\) son independientes.
+        \item Se sigue del teorema visto la clase pasada que si \(I \cap I' = \emptyset\) entonces \(\sigma(\mathcal{F}_I)\) y \(\sigma(\mathcal{F}_{I'})\) también lo son.
+        \item En particular, \(\mathcal{F}_n = \sigma(X_1,\dots,X_n)\) y \(\mathcal{G}_n = \sigma(X_{n+1}, X_{n+2},\dots)\) son independientes para todo \(n\).
+        \item Luego, \(\mathcal{F}_n\) es independiente de \(\bigcup_{k \ge n} \mathcal{G}_k\).
+        \item Como \(\bigcup_{k \ge n} \mathcal{G}_k\) es un \(\pi\)-sistema, por el mismo teorema, \(\mathcal{F}_n\) es independiente de \(\sigma\!\left(\bigcup_{k \ge n} \mathcal{G}_k\right) = \mathcal{C}\).
+        \item Por lo tanto, si \(A \in \mathcal{C}\), entonces \(A\) es independiente de sí mismo, luego
+        \[
+        \mathbb{P}(A) = \mathbb{P}(A \cap A) = \mathbb{P}(A)\,\mathbb{P}(A) \quad \Longrightarrow \quad \mathbb{P}(A) \in \{0,1\}.
+        \]
+    \end{enumerate}
+\end{proof}
+
+\section{Lemas de Borel-Cantelli}
+
+\begin{definition}
+    Dada una sucesión \((A_n)_{n\in\mathbb{N}} \subseteq \mathcal{F}\) de eventos, definimos el evento
+    \[
+    \limsup_{n\to\infty} A_n := \{\text{ocurren infinitos } A_n\} = \bigcap_{n=1}^{\infty} \bigcup_{k=n}^{\infty} A_k.
+    \]
+    Notar que \(\limsup A_n \in \mathcal{F}\). De hecho, se tiene que \(\mathbf{1}_{\limsup A_n} = \limsup_{n\to\infty} \mathbf{1}_{A_n}\) (y por este motivo se llama \(\limsup\) de eventos).
+\end{definition}
+
+\begin{lemma}[Borel-Cantelli]
+    Sea \((A_n)_{n\in\mathbb{N}}\) una sucesión de eventos. Entonces:
+    \begin{enumerate}[i)]
+        \item Si \(\sum_{n\in\mathbb{N}} \mathbb{P}(A_n) < \infty\) entonces \(\mathbb{P}(\text{ocurren infinitos } A_n) = 0\).
+        \item Si \(\sum_{n\in\mathbb{N}} \mathbb{P}(A_n) = \infty\) y \((A_n)_{n\in\mathbb{N}}\) son independientes, entonces \(\mathbb{P}(\text{ocurren infinitos } A_n) = 1\).
+    \end{enumerate}
+\end{lemma}
+
+\section{Existencia de sucesiones independientes}
+
+¿Existe realmente una sucesión \((X_n)_{n\in\mathbb{N}}\) de variables aleatorias independientes? (o, equivalentemente, de eventos \((A_n)_{n\in\mathbb{N}}\) independientes?). Es decir, ¿existe un espacio de probabilidad \((\Omega, \mathcal{F}, \mathbb{P})\) y una sucesión \((X_n)_{n\in\mathbb{N}}\) de variables aleatorias definidas sobre \((\Omega, \mathcal{F})\) tal que las \((X_n)_{n\in\mathbb{N}}\) sean independientes bajo \(\mathbb{P}\)?
+
+\begin{eg}
+    Basta considerar el caso en que las \(X_n\) son uniformes en \((0,1)\); a partir de allí podemos cubrir cualquier otro caso.
+\end{eg}
+
+\begin{itemize}
+    \item ¿Cómo construimos una variable \(U \sim \text{Uniforme}(0,1)\)? Como \(\mathbb{P} = \operatorname{leb}_{[0,1]}\), construir \(U\) es equivalente a construir la medida de Lebesgue en \([0,1]\).
+    \item ¿Cómo conseguimos \(U_1,\dots,U_n\) independientes con distribución \(\text{Uniforme}(0,1)\)? Por el teorema de construcción de medidas producto, \(\mathbb{P}_{U_1,\dots,U_n} = \mathbb{P}_{U_1} \times \cdots \times \mathbb{P}_{U_n} = \operatorname{leb}_{[0,1]} \times \cdots \times \operatorname{leb}_{[0,1]}\). Por lo tanto, construir \((U_1,\dots,U_n)\) es equivalente a construir la medida de Lebesgue en el cubo unitario \(n\)-dimensional.
+    \item Siguiendo esta lógica, construir \((U_n)_{n\in\mathbb{N}}\) independientes con \(U_n \sim \text{Uniforme}(0,1)\) es equivalente a construir la medida de Lebesgue en el cubo unitario infinito-dimensional \([0,1]^{\mathbb{N}}\). Esto no es para nada trivial, pero puede hacerse. Lo haremos de dos formas:
+    \begin{enumerate}
+        \item \textbf{Forma canónica}: construiremos \(\operatorname{leb}_{[0,1]^n}\) con el teorema de Carathéodory. (No ahora.)
+        \item \textbf{Forma constructiva}: construiremos \((U_n)_{n\in\mathbb{N}}\) en \(([0,1], \mathcal{B}([0,1]), \operatorname{leb}_{[0,1]})\). Es la Práctica 2.
+    \end{enumerate}
+\end{itemize}

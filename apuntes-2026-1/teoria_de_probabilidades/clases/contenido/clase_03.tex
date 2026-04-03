@@ -1,0 +1,191 @@
+\clase{3}{9 de Marzo}{}
+
+\section{Teorema de Radon-Nikodym}
+
+\begin{theorem}[Radon-Nikodym]
+    Sean \(\mu\) y \(\nu\) dos medidas \(\sigma\)-finitas sobre \((E, \Sigma)\). Entonces las siguientes afirmaciones son equivalentes:
+    \begin{enumerate}
+        \item \(\nu \ll \mu\) (es decir, \(\nu\) es absolutamente continua con respecto a \(\mu\)).
+        \item Existe una función \(f: E \to \mathbb{R}_{\ge 0}\) \((\Sigma, \mathcal{B}(\mathbb{R}))\)-medible tal que
+        \[
+        \nu(A) = \int_A f \, d\mu \quad \text{para todo } A \in \Sigma.
+        \]
+    \end{enumerate}
+    La función \(f\) es única salvo conjuntos de \(\mu\)-medida nula y se denomina \textbf{derivada de Radon-Nikodym} de \(\nu\) respecto de \(\mu\), denotada por \(f = \frac{d\nu}{d\mu}\).
+\end{theorem}
+
+\section{Teorema de existencia y unicidad de variable aleatoria con distribución dada}
+
+Volvamos al teorema de la clase pasada para demostrarlo:
+
+\begin{theorem}
+    Sea \(F\) una función de distribución. Entonces:
+    \begin{enumerate}
+        \item Existe una variable aleatoria \(X\) (definida en algún espacio de probabilidad) tal que \(F = F_X\).
+        \item La distribución de dicha variable es única, i.e.
+        \[
+        F_{X_1} = F_{X_2} \implies \mathbb{P}_{X_1} = \mathbb{P}_{X_2} \quad (\text{si } \mathbb{P}_{X_1} = \mathbb{P}_{X_2} \text{ lo notamos } X_1 \overset{\mathcal{L}}{=} X_2).
+        \]
+    \end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+    \begin{enumerate}
+        \item Dada una probabilidad \(\mathbb{P}\) sobre \((\mathbb{R}, \mathcal{B}(\mathbb{R}))\), la función \(F: \mathbb{R} \to [0,1]\) definida por \(F(x) := \mathbb{P}((-\infty, x])\) es una función de distribución.
+        \item Dada una función de distribución \(F\), existe una única probabilidad \(\mathbb{P}\) sobre \((\mathbb{R}, \mathcal{B}(\mathbb{R}))\) tal que \(\mathbb{P}((-\infty, x]) = F(x)\) para todo \(x \in \mathbb{R}\). De hecho, \(\mathbb{P} = \mathbb{P}_X\) donde \(X\) es la variable del teorema.
+    \end{enumerate}
+\end{corollary}
+
+Demostraremos únicamente el teorema; la deducción del corolario a partir de éste es sencilla. Además, lo haremos de dos formas:
+
+\begin{enumerate}
+    \item \textbf{Forma canónica}: tomamos \((\Omega, \mathcal{F}) := (\mathbb{R}, \mathcal{B}(\mathbb{R}))\) y \(X := \operatorname{id}_\Omega\) (\(X(\omega) = \omega\)) y definimos \(\mathbb{P}\) sobre \((\Omega, \mathcal{F})\) de manera tal que en \((\Omega, \mathcal{F}, \mathbb{P})\) la variable \(X := \operatorname{id}_\Omega\) cumpla lo buscado.
+    \item \textbf{Forma constructiva}: tomamos \((\Omega, \mathcal{F}, \mathbb{P}) := ((0,1), \mathcal{B}((0,1)), \operatorname{leb}_{(0,1)})\) y definimos allí una variable \(X\) que cumpla lo buscado.
+\end{enumerate}
+
+\subsection{Forma canónica: Teorema de extensión de Carathéodory}
+
+\begin{definition}[Semialgebra]
+    Una clase \(\mathcal{J}\) de subconjuntos de un espacio \(E\) se dice una \textbf{semialgebra} si satisface las siguientes propiedades:
+	\begin{enumerate}[i)]
+        \item \(\mathcal{J}\) es no vacía.
+        \item \(S, T \in \mathcal{J} \Rightarrow S \cap T \in \mathcal{J}\) (es cerrada por intersecciones).
+        \item \(S \in \mathcal{J} \Rightarrow \exists T_1, \dots, T_n \in \mathcal{J}\) disjuntos tales que \(S = \bigcup_{i=1}^n T_i\).
+    \end{enumerate}
+    (Observar que \(\emptyset \in \mathcal{J}\): si \(S \in \mathcal{J}\) y \(S = \bigcup_{i=1}^n T_i\) con \(T_i\) disjuntos, \(\emptyset = S \cap \emptyset \in \mathcal{J}\) por (ii).)
+\end{definition}
+
+\begin{theorem}[Extensión de Carathéodory]
+    Sean \(\mathcal{J}\) una semialgebra de subconjuntos de un espacio \(E\) y \(\mu_0: \mathcal{J} \to [0,1]\) una aplicación que satisface:
+    \begin{enumerate}[a)]
+        \item \(\mu_0(\emptyset) = 0\).
+        \item \(\mu_0\) es finitamente aditiva en \(\mathcal{J}\):
+        \[
+        (A_n)_{n=1,\dots,N} \subseteq \mathcal{J} \text{ disjuntos, } \bigcup_{n=1}^N A_n \in \mathcal{J} \implies \mu_0\!\left(\bigcup_{n=1}^N A_n\right) = \sum_{n=1}^N \mu_0(A_n).
+        \]
+        \item \(\mu_0\) es \(\sigma\)-subaditiva en \(\mathcal{J}\):
+        \[
+        (A_n)_{n\in\mathbb{N}} \subseteq \mathcal{J} \text{ disjuntos, } A \in \mathcal{J}, A \subseteq \bigcup_{n\in\mathbb{N}} A_n \implies \mu_0(A) \leq \sum_{n\in\mathbb{N}} \mu_0(A_n).
+        \]
+    \end{enumerate}
+    Entonces existe una medida \(\mu\) sobre \((E, \sigma(\mathcal{J}))\) tal que \(\mu|_{\mathcal{J}} = \mu_0\).
+    \newline
+    Además, si \(\mu_0\) es \(\sigma\)-finita (existen \((E_n)_{n\in\mathbb{N}} \subseteq \mathcal{J}\) tales que \(E = \bigcup_n E_n\) y \(\mu_0(E_n) < \infty\) para todo \(n\)), entonces la extensión \(\mu\) es única.
+\end{theorem}
+
+\subsubsection{Idea de demostración del teorema (forma canónica)}
+
+\begin{itemize}
+    \item Consideramos la semialgebra \(\mathcal{J} = \{(a,b] : -\infty \le a \le b \le \infty\}\) con la convención \((a,a] = \emptyset\) y \((a,\infty]\) si \(b=\infty\).
+    \item Definimos \(\mu_0: \mathcal{J} \to [0,1]\) como \(\mu_0((a,b]) = F(b) - F(a)\).
+    \item Probamos que \(\mu_0\) satisface (s0), (s1), (s2). (La demostración de (s2) requiere trabajo.)
+    \item Por el teorema de Carathéodory, existe extensión \(\mu\) a todo \(\sigma(\mathcal{J}) = \mathcal{B}(\mathbb{R})\).
+    \item Tomamos \(\mathbb{P} := \mu\) y vemos que en el espacio de probabilidad \((\mathbb{R}, \mathcal{B}(\mathbb{R}), \mathbb{P})\) la variable aleatoria \(X := \operatorname{id}_{\mathbb{R}}\) cumple
+    \[
+    F_X(x) = \mathbb{P}(\{\omega : X(\omega) \le x\}) = \mathbb{P}((-\infty, x]) = F(x) - F(-\infty) = F(x).
+    \]
+    \item Si \(F_1 = F_2 = F\), entonces \(\mathbb{P}_1\) y \(\mathbb{P}_2\) son extensiones de \(\mu_0\) a \(\sigma(\mathcal{J})\). Como \(\mu_0(\mathbb{R}) = F(\infty) - F(-\infty) = 1\), por la unicidad en el teorema de Carathéodory, \(\mathbb{P}_1 = \mathbb{P}_2\).
+\end{itemize}
+
+\begin{remark}
+    La forma canónica lleva bastante trabajo (que no hicimos), que es el mismo que se suele hacer al construir la medida de Lebesgue. La forma constructiva es más rápida (y útil), pero asume que ya tenemos construida la medida de Lebesgue de antemano.
+\end{remark}
+
+\subsection{Forma constructiva: inversa generalizada}
+
+Para la demostración de forma constructiva, introducimos la inversa generalizada.
+
+\begin{definition}[Inversa generalizada]
+    Sea \(F: \mathbb{R} \to [0,1]\) una función. Definimos su \textbf{inversa generalizada} \(F^{-1}: [0,1] \to \overline{\mathbb{R}}\) mediante la fórmula
+    \[
+    F^{-1}(y) := \sup \{x \in \mathbb{R} : F(x) < y\},
+    \]
+    donde convenimos que \(\sup \emptyset = -\infty\) y \(\sup A = \infty\) si \(A\) no está acotado superiormente.
+\end{definition}
+
+\begin{lemma}
+    Sea \(F: \mathbb{R} \to [0,1]\) una función de distribución. Entonces, si \(U\) es una variable aleatoria tal que \(\mathbb{P}_U = \operatorname{leb}_{[0,1]}\), i.e. \(\mathbb{P}(U \in B) = |B \cap [0,1]|\) para todo Borel \(B\), resulta que \(X := F^{-1}(U)\) es una variable aleatoria y satisface \(F_X = F\).
+\end{lemma}
+
+\begin{proof}
+    \begin{enumerate}
+        \item En primer lugar, observemos que \(F^{-1}\) es medible Borel por ser monótona creciente por definición.
+        \item En particular, \(X := F^{-1}(U)\) es variable aleatoria (pues \(X^{-1}(B) = U^{-1}((F^{-1})^{-1}(B)) \in \mathcal{F}\) para todo \(B \in \mathcal{B}(\mathbb{R})\)).
+        \item Además, vale que
+        \[
+        \{X \le x\} = \{U \le F(x)\} \quad \text{para todo } x \in \mathbb{R}, \tag{1}
+        \]
+        de manera tal que
+        \[
+        F_X(x) = \mathbb{P}(X \le x) = \mathbb{P}(U \le F(x)) = |(-\infty, F(x)] \cap [0,1]| = F(x).
+        \]
+        En efecto, para ver (1) notemos:
+        \begin{itemize}
+            \item[($\subseteq$)] Si \(\omega \in \Omega\) es tal que \(X(\omega) \le x\) entonces debe valer que \(U(\omega) \le F(x)\). En caso contrario, si \(F(x) < U(\omega)\), como \(F\) es continua a derecha, existiría \(\varepsilon > 0\) tal que \(F(x+\varepsilon) < U(\omega)\). En particular, \(x+\varepsilon \in \{t \in \mathbb{R} : F(t) < U(\omega)\}\) y, por lo tanto, \(x+\varepsilon \le \sup\{t : F(t) < U(\omega)\} = F^{-1}(U(\omega)) = X(\omega)\), lo que implica \(X(\omega) > x\), contradicción.
+            \item[($\supseteq$)] Si \(\omega\) cumple que \(U(\omega) \le F(x)\), entonces \(x\) es una cota superior de \(\{t \in \mathbb{R} : F(t) < U(\omega)\}\). En efecto, si \(t\) pertenece a ese conjunto, entonces \(F(t) < U(\omega) \le F(x)\); por monotonía de \(F\), \(t \le x\). Luego \(X(\omega) = \sup\{t : F(t) < U(\omega)\} \le x\).
+        \end{itemize}
+        Así queda demostrada la igualdad (1).
+    \end{enumerate}
+\end{proof}
+
+\begin{remark}
+    \(F^{-1}\) se llama inversa generalizada de \(F\) puesto que satisface la igualdad \(\{y : F^{-1}(y) \le x\} = \{y : y \le F(x)\}\) dada en (1) y, si en vez de \(\le\) tuviésemos \(<\) en (1), entonces sería la inversa tradicional.
+\end{remark}
+
+Ahora estamos listos para dar la demostración de forma constructiva.
+
+\begin{proof}[Demostración del teorema (parte 1) – Forma constructiva]
+    Tomamos \((\Omega, \mathcal{F}, \mathbb{P}) := ([0,1], \mathcal{B}([0,1]), \operatorname{leb}_{[0,1]})\) y \(U := \operatorname{id}_{[0,1]}\). Como \(\mathbb{P}_U = \operatorname{leb}_{[0,1]}\) por definición, por el lema previo, \(X := F^{-1}(U)\) es la variable aleatoria buscada.
+\end{proof}
+
+Para demostrar la unicidad (teorema, parte 2) necesitamos otro resultado.
+
+\section{Teorema \(\pi\)-\(\lambda\) de Dynkin}
+
+\begin{definition}[\(\pi\)-sistema]
+    Una clase \(\mathcal{P}\) de subconjuntos de un espacio \(E\) se dice un \textbf{\(\pi\)-sistema} si es cerrada por intersecciones finitas, i.e., si \(A, B \in \mathcal{P}\) entonces \(A \cap B \in \mathcal{P}\).
+\end{definition}
+
+\begin{definition}[\(\lambda\)-sistema]
+    Una clase \(\mathcal{D}\) de subconjuntos de un espacio \(E\) se dice un \textbf{\(\lambda\)-sistema} si verifica las siguientes condiciones:
+    \begin{enumerate}[I)]
+        \item \(E \in \mathcal{D}\).
+        \item \(A \in \mathcal{D} \Rightarrow A^c \in \mathcal{D}\).
+        \item \((A_n)_{n\in\mathbb{N}} \subseteq \mathcal{D}\) disjuntos \(\Rightarrow \bigcup_{n\in\mathbb{N}} A_n \in \mathcal{D}\).
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}[\(\pi\)-\(\lambda\) de Dynkin]
+    Si \(\mathcal{P}\) es un \(\pi\)-sistema y \(\mathcal{D}\) es un \(\lambda\)-sistema tales que \(\mathcal{P} \subseteq \mathcal{D}\), entonces \(\sigma(\mathcal{P}) \subseteq \mathcal{D}\).
+\end{theorem}
+
+\begin{proof}
+    Ver Apéndice I o [Teorema 3.2] de Billingsley (PAM).
+\end{proof}
+
+Como consecuencia, tenemos el siguiente corolario.
+
+\begin{corollary}
+    Supongamos que \(\mathbb{P}_1\) y \(\mathbb{P}_2\) son probabilidades en \(\sigma(\mathcal{P})\), donde \(\mathcal{P}\) es un \(\pi\)-sistema. Si \(\mathbb{P}_1\) y \(\mathbb{P}_2\) coinciden en \(\mathcal{P}\) entonces también coinciden en todo \(\sigma(\mathcal{P})\).
+\end{corollary}
+
+\begin{proof}
+    Sea \(\mathcal{D} = \{ A \in \sigma(\mathcal{P}) : \mathbb{P}_1(A) = \mathbb{P}_2(A) \}\).
+    \begin{itemize}
+        \item Por hipótesis, \(\mathcal{P} \subseteq \mathcal{D}\).
+        \item Si vemos que \(\mathcal{D}\) es un \(\lambda\)-sistema, entonces por el teorema de Dynkin tendremos que \(\sigma(\mathcal{P}) \subseteq \mathcal{D}\) y, por lo tanto, \(\mathbb{P}_1 \equiv \mathbb{P}_2\) en \(\sigma(\mathcal{P})\).
+    \end{itemize}
+    Veamos que \(\mathcal{D}\) es un \(\lambda\)-sistema:
+	\begin{enumerate}[i)]
+        \item \(\mathbb{P}_1(\Omega) = 1 = \mathbb{P}_2(\Omega)\) por ser probabilidades. Luego \(\Omega \in \mathcal{D}\).
+        \item \(A \in \mathcal{D} \Rightarrow \mathbb{P}_1(A) = \mathbb{P}_2(A) \Rightarrow 1 - \mathbb{P}_1(A) = 1 - \mathbb{P}_2(A) \Rightarrow \mathbb{P}_1(A^c) = \mathbb{P}_2(A^c) \Rightarrow A^c \in \mathcal{D}\).
+        \item Si \((A_n)_{n\in\mathbb{N}} \subseteq \mathcal{D}\) son disjuntos, entonces
+        \[
+        \mathbb{P}_1\!\left(\bigcup_{n} A_n\right) = \sum_{n} \mathbb{P}_1(A_n) = \sum_{n} \mathbb{P}_2(A_n) = \mathbb{P}_2\!\left(\bigcup_{n} A_n\right),
+        \]
+        por la \(\sigma\)-aditividad de las probabilidades. Luego \(\bigcup_n A_n \in \mathcal{D}\).
+    \end{enumerate}
+    Luego \(\mathcal{D}\) es un \(\lambda\)-sistema y esto concluye la demostración.
+\end{proof}
+
+Finalmente, notamos que \(\sigma(\mathcal{P})\) contiene a todos los intervalos de la forma \((a,b] = (-\infty,b] \cap (-\infty,a]^c\) y, por lo tanto, a todos los intervalos abiertos \((a,b) = \bigcup_{n\in\mathbb{N}} (a,b-\frac{1}{n}]\). Como cualquier abierto en \(\mathbb{R}\) es unión numerable de intervalos \((a,b)\) (por ser \(\mathbb{R}\) separable), \(\sigma(\mathcal{P})\) contiene a cualquier abierto en \(\mathbb{R}\). Por minimalidad de \(\mathcal{B}(\mathbb{R})\), resulta que \(\mathcal{B}(\mathbb{R}) \subseteq \sigma(\mathcal{P})\). Así, la unicidad de la probabilidad que coincide en los intervalos de la forma \((-\infty,x]\) queda garantizada por el corolario anterior, completando la demostración del teorema.

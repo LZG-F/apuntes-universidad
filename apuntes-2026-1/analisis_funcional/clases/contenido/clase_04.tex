@@ -1,0 +1,121 @@
+\clase{4}{16 de Marzo}{}
+
+Vimos que si $X,Y$ son e.v.n, entonces $\mcal{B}(X,Y)$ es un s.e.v de $\mcal{L}(X,Y)$ y $X^{*}$ es un s.e.v de $X'$.
+
+\begin{eg}
+	Si $T \in \mcal{B}(X,Y)$, entonces $\Ker T$ es un s.e.v cerrado de $X$.
+\end{eg}
+
+\begin{observe}
+	Si queremos verificar que $T \in \mcal{B}(X,Y)$, se debe verificar que:
+	\begin{enumerate}[i)]
+		\item $T \in \mcal{L}(X,Y)$;
+
+		\item $\exists c \geq 0,\ \forall x \neq 0, \quad \| Tx \|_{Y} \leq c \| x \|_{X}$.
+	\end{enumerate}
+	(ii. se cumple trivialmente si $x = 0$).
+\end{observe}
+
+\begin{definition}[isomorfismo]
+	Sean $(X_{1}, \tau_{1})$ y $(X_{2}, \tau_{2})$ dos e.v.t, diremos que $T \colon X_{1} \to X_{2}$ es un isomorfismo topológico si:
+	\begin{enumerate}[i)]
+		\item $T \in \mcal{L}(X_{1},X_{2})$ es un isomorfismo de e.v;
+
+		\item $T$ es un homeomorfismo.
+	\end{enumerate}
+	Si $X,Y$ son dos e.v.n, entonces diremos que $T$ es un isomorfismo de e.v.n si es un isomorfismo topológico entre $X$ e $Y$ vistos como e.v.t.
+\end{definition}
+
+\begin{prop}
+	Sean $X,Y$ e.v.n y $T \colon X \to Y$. $T$ es un isomorfismo de e.v.n si y solo si se cumple:
+	\begin{enumerate}[i)]
+		\item $T \in \mcal{L}(X,Y)$, isomorfismo;
+
+		\item $T \in \mcal{B}(X,Y),\ T^{-1} \in \mcal(Y,X)$.
+	\end{enumerate}
+\end{prop}
+\begin{proof}[Proof Other Information]
+	Ejercicio.
+\end{proof}
+
+\begin{eg}
+	Sea $X$ un e.v.n, $I \colon X \to X$ tal que $x \mapsto x$ (identidad). Luego, $I \in \mcal{B}(X)$.
+\end{eg}
+
+\begin{eg}
+	Sea $\tau \colon l_{p}(\N) \to l_{p}(\N)$ ($p \geq 1$) tal que $\tau(x_{1},x_{2},\dots) = (0,x_{1},x_{2},\dots)$. Luego, $\tau$ define la traslación a la derecha. Se puede verificar que $\tau \in \mcal{B}(l_{p}(\N))$.
+\end{eg}
+
+\begin{eg}
+	Diremos que $T \in \mcal{L}(X,Y)$, donde $X,Y$ e.v.n's, es una isometría si $\forall x \in X,\ \| Tx \|_{Y} = \| x \|_{X}$. En particular, $T \in \mcal{B}(X,Y)$. (los ejemplos anteriores ilustran esta definición).
+\end{eg}
+
+\begin{definition}[equivalencia de topologías]
+	Sean $X$ un e.v, $\tau_{1},\tau_{2}$ dos topologías compatibles con la estructura de e.v. Diremos que $\tau_{1},\tau_{2}$ son equivalentes si $I \colon X_{1} \to X_{2}$, donde $X_{1} \coloneq (X, \tau_{1})$ y $X_{2} \coloneq (X, \tau_{2})$, es un isomorfismo de e.v.t's (entre $X_{1}$ y $X_{2}$). \par
+	Si $X$ es un e.v equipado de dos normas $\| \cdot \|_{1}, \| \cdot \|_{2}$, diremos que las normas son equivalentes si sus topologías asociadas son equivalentes en el sentido anterior (iguales). En este caso, escribiremos $\| \cdot \|_{1} \sim \| \cdot \|_{2}$.
+\end{definition}
+
+\begin{prop}
+	Sean $X$ un e.v equipado con las normas $\| \cdot \|_{1}, \| \cdot \|_{2}$. Entonces, $\| \cdot \|_{1} \sim \| \cdot \|_{2}$ si y solo si existen $c \geq 0,\ C \geq 0$ tal que $\forall x \in X$:
+	\[ c \| x \|_{1} \leq \| x \|_{2} \leq C \| x \|_{1}. \]
+\end{prop}
+\begin{proof}[Proof Other Information]
+	$I_{X}$ es un isomorfismo de $X$ en $X$. Notar que, si $X_{1} \coloneq (X, \| \cdot \|_{1}),\ X_{2} \coloneq (X, \| \cdot \|_{2})$,
+	\[ I \in \mcal{B}(X_{1},X_{2}) \iff \exists C \geq 0, \quad \| I(x) \|_{2} = \| x \|_{2} \leq C \| x \|_{1}. \]
+	Además, $I_{X}^{-1} = I_{X}$,
+	\[ I_{X}^{-1} \in \mcal{B}(X_{2}, X_{1}) \iff \exists D \geq 0, \quad \| I_{X}^{-1}(x) \|_{1} = \| x \|_{1} \leq D \| x \|_{2}. \]
+	Necesariamente (si $X$ es no trivial), $C > 0,\ D > 0$, se concluye al tomar $C = \frac{1}{D}$.
+\end{proof}
+
+\begin{definition}
+	Sean $X,Y$ e.v.n's, $T \in \mcal{B}(X,Y)$. Luego,
+	\[ \| T \| \coloneq \inf \{N \geq 0 \ | \ \forall x \in X,\ \| Tx \|_{Y} \leq N \| x \|_{X}\}. \] 
+\end{definition}
+
+\begin{prop}
+	Si $X,Y$ e.v.n's, $T \in \mcal{B}(X,Y)$, entonces:
+	\begin{enumerate}[i)]
+		\item se tiene que
+		\begin{align*}
+			\| T \| &= \sup \{\| Tx \|_{Y} \ | \ x \in B_{1}(0)\} \\
+			&= \sup \{\| Tx \|_{Y} \ | \ \| x \|_{X} = 1\} \\
+			&= \sup \left\{ \frac{\| Tx \|_{Y}}{\| x \|_{X}} \ \Big| \ x \neq 0 \right\}  
+		.\end{align*}
+
+		\item $T \mapsto \| T \|$ es una norma sobre $\mcal{B}(X,Y)$.
+
+		\item Si $Z$ es otro e.v.n, $T \in \mcal{B}(X,Y)$ y $S \in \mcal{B}(Y,Z)$; entonces $ST \in \mcal{B}(X,Z)$. Además, $\| ST \|_{X,Z} \leq \| S \|_{Y,Z} \| T \|_{X,Y}$.
+
+		\item $\forall x \in X, \quad \| Tx \|_{Y} \leq \| T \|_{X,Y} \| x \|_{X}$.
+	\end{enumerate}
+\end{prop}
+\begin{proof}[Proof Other Information]
+	(iii) (admitiendo iv): Notemos que:
+	\begin{align*}
+		\forall x \in X &,\ \| Tx \|_{Y} \leq \| T \|_{X,Y} \| x \|_{X} \\
+		\forall y \in Y &,\ \| Sy \|_{Z} \leq \| S \|_{Y,Z} \| y \|_{Y}
+	.\end{align*}
+	Luego, $\forall x \in X$,
+	\begin{align*}
+		\| STx \|_{Z} = \| S(Tx) \|_{Z} &\leq \| S \|_{Y,Z} \| Tx \|_{Y} \\
+		&\leq \| S \|_{Y,Z} \| T \|_{X,Y} \| x \|_{X}
+	.\end{align*}
+	Entonces, $ST \in \mcal{B}(X,Z)$ y
+	\[ \| ST \|_{X,Z} = \inf \{C \geq 0 \ | \ \forall x \in X,\ \| STx \|_{Z} \leq C \| x \|_{X}\} \leq \| S \|_{Y,Z} \| T \|_{X,Y}. \qedhere \] 
+\end{proof}
+
+\begin{definition}[espacio de Banach]
+	Un e.v.n completo se llama espacio de Banach.
+\end{definition}
+
+\begin{prop}
+	Si $X,Y$ e.v.n's, $Y$ Banach, entonces $\mcal{B}(X,Y)$ es Banach por $\| \cdot \|_{X,Y}$.
+\end{prop}
+\begin{proof}[Proof Other Information]
+	Sea $(T_{n}) \subset \mcal{B}(X,Y)$ Cauchy. En particular, $\forall x \in X,\ (T_{n} x)_{n \in \N}$ es Cauchy en $Y$. Luego, $\forall \varepsilon > 0,\ \exists N \geq 0$ tal que $\forall n,m \in \N,\ \| T_{n} - T_{m} \|_{X,Y} < \varepsilon \implies \forall x \in X,\ \| T_{n} x - T_{m} x \|_{Y} \leq \| T_{n} - T_{m} \|_{X,Y} \| x \|_{X}$. Así, $\forall x \in X, \exists y_{x} \in Y,\ T_{n} x \longrightarrow y_{x}$. $Tx \coloneq y_{x}$.
+	\begin{itemize}
+		\item ¿$T \in \mcal{B}(X,Y)$?
+
+		\item ¿$\| T_{n} - T \| \longrightarrow 0$?
+	\end{itemize}
+\end{proof}
