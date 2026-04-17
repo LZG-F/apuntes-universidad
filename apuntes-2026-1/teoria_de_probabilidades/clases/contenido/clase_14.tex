@@ -1,0 +1,86 @@
+\clase{14}{15 de Abril}{}
+
+\begin{proof}[Proof Other Information]
+	$(X_{n})_{n \in \N}$ i.i.d $\mbb{E}(X_{n}) = 0$, $\Var(X_{n}) = 1$. $(Y_{n})_{n \in \N}$ i.i.d $N(0,1)$, indep. de $(X_{n})_{n \in \N}$.
+	\begin{align*}
+		S_{n,i} &\coloneq \frac{X_{1} + \cdots X_{i - 1} + 0 + Y_{i + 1} + \cdots Y_{n}}{\sqrt{n}} \quad i = 1, \dots, n \\
+		Z_{n,i} &\coloneq \frac{X_{1} + \cdots + X_{i} + Y_{i + 1} + \cdots + Y_{n}}{\sqrt{n}} \quad i = 0, \dots, n \\
+		Z_{n,n} &= \frac{X_{1} + \cdots + X_{n}}{\sqrt{n}} \\
+		Z_{n,0} &= \frac{Y_{1} + \cdots + Y_{n}}{\sqrt{n}} \sim N(0,1)
+	.\end{align*}
+	Ahora, como $X_{i}$ y $S_{n,i}$ son independientes,
+	\begin{itemize}
+		\item $\mbb{E} \left( \frac{f'(S_{n,1}) . X_{i}}{\sqrt{n}} \right) = \frac{1}{\sqrt{n}} \mbb{E}(f'(S_{n,1})) . \mbb{E}(X_{i}) = 0$;
+
+		\item $\mbb{E} \left( \frac{f''(S_{n,i}) . X_{i}^{2}}{2n} \right) = \frac{1}{2n} \mbb{E}(f''(S_{n,i})) . \mbb{E}(X_{i}^{2}) = \frac{1}{2n} \mbb{E}(f''(S_{n,i}))$;
+	\end{itemize}
+	de modo que lo anterior resulta
+	\[ |\mbb{E}(f(Z_{n,i})) - \mbb{E}(f(S_{n,i})) - \frac{1}{2n} \mbb{E}(f''(S_{n,i}))| \leq \frac{\varepsilon}{n}. \]
+	Como $Z_{n,i-1} - S_{n,i} = Y_{i}$, el mismo argumento empleado para $Z_{n,i}$ y $S_{n,i}$, obtenemos que, si $n$ es suficientemente grande,  para todo $i = 1,\dots,n$,
+	\[ |\mbb{E}(f(Z_{n,i-1})) - \mbb{E}(f(S_{n,i})) - \frac{1}{2n}\mbb{E}(f''(S_{n,i}))| \leq \frac{\varepsilon}{n}. \]
+	Juntando ambas desigualdades,
+	\[ |\mbb{E}(f(Z_{n,i})) - \mbb{E}(f(Z_{n,i-1}))| \leq \frac{2\varepsilon}{n} \quad \forall i = 1,\dots,n. \]
+	Sumando en $i$, concluimos que
+	\[ |\mbb{E}(f(Z_{n,n})) - \mbb{E}(f(Z_{n,0}))| \leq \sum_{i=1}^{n} \underbrace{|\mbb{E}(f(Z_{n,i})) - \mbb{E}(f(Z_{n,i-1}))|}_{\leq \frac{2\varepsilon}{n}} \leq 2\varepsilon \]
+	si $n$ es suficientemente grande.
+\end{proof}
+
+\chapter{Esperanza Condicional}
+
+\begin{problem}
+	Dado un vector $(X,Y)$, buscar la mejor predicción del valor de $X$ basada en le valor de $Y$. \par
+	Más precisamente, buscamos una VA $Z$ tal que
+	\begin{enumerate}
+		\item $Z = g(Y)$, donde $g(y) =$ "mejor predicción del valor de $X$ cuando $Y = y$" es medible Borel. Es decir, $Z$ es $\sigma(Y)$-medible.
+
+		\item $Z$ es la "mejor aproximación" de $X$ dentro de las variables $\sigma(Y)$-medibles.
+	\end{enumerate}
+\end{problem}
+
+Trabajamos este problema primero en $L^{2}$.
+\begin{itemize}
+	\item $L^{2}(\Omega, \mcal{F}, \mbb{P}) \coloneq \{Z \colon \Omega \to \overline{\R} \ | \ Z \text{ es } \mcal{F} \text{-medible y } \mbb{E}(Z^{2}) < \infty\}$,
+
+	\item $L^{2}$ es un espacio de Hilbert con producto interno $\langle Z_{1},Z_{2} \rangle \coloneq \mbb{E}(Z_{1} Z_{2})$.
+
+	\item $\|Z\|_{2} \coloneq \sqrt{\langle Z, Z \rangle}$, $d(Z_{1},Z_{2}) = \| Z_{1} - Z_{2} \|_{2}$.
+\end{itemize}
+Luego, si pensamos que $X \in L^{2}(\Omega, \mcal{F}, \mbb{P})$, buscamos $Z \in L^{2}(\Omega, \mcal{F}, \mbb{P})$ que sea $\sigma(Y)$-medible y tal que
+\[ d(X,Z) = \min \{d(X,W) \ : \ w \in L^{2},\ \sigma(Y)\text{-medible}\}. \]
+Defino $\mcal{G} \coloneq \sigma(Y)$ y 
+\[ L^{2}(\Omega, \mcal{G}, \mbb{P}) \coloneq \{W \in L^{2}(\Omega, \mcal{F}, \mbb{P}) \ : \ W \text{ es } \mcal{G} \text{-medible}\}. \]
+Notar que $L^{2}(\Omega, \mcal{G}, \mbb{P})$ es un subespacio vectorial de $L^{2}(\Omega, \mcal{F}, \mbb{P})$. Luego, nuestra pregunta se reduce a encontrar la proyección ortogonal $Z$ de $X$ sobre $L^{2}(\Omega, \mcal{F}, \mbb{P})$. \par
+Existirá tal proyección (y será única) si $L^{2}(\Omega, \mcal{G}, \mbb{P})$ es un subespacio cerrado de $L^{2}(\Omega, \mcal{F}, \mbb{P})$ (y esto siempre vale pues $L^{2}(\Omega, \mcal{G}, \mbb{P})$ es completo). Luego, existe tal $Z$ y es única. \par
+Notemos que, en la definición de $Z$,
+\begin{enumerate}
+	\item[1)] $Z$ es $\mcal{G}$-medible;
+
+	\item[2)] $d(X,Z) = \min \{d(X,W) \ : \ W \in L^{2}(\Omega, \mcal{G}, \mbb{P})\}$;
+\end{enumerate}
+Podemos reemplazar 2) por:
+\begin{enumerate}
+	\item[2')] $\langle X - Z, W \rangle = 0 \quad \forall W \in L^{2}(\Omega, \mcal{G}, \mbb{P})$ (ó $\langle X,W \rangle = \langle Z, W \rangle$).
+\end{enumerate}
+O, equivalentemente, por: 
+\begin{enumerate}
+	\item[2'')] $\langle X, \mathds{1}_{A} \rangle = \langle Z, \mathds{1}_{A} \rangle \quad \forall A \in \mcal{G}$.
+\end{enumerate}
+Notar que, (1) y (2'') tienen sentido para una $\sigma$-álgebra $\mcal{G} \subset \mcal{F}$ cualquiera y $X$ no necesariamente en $L^{2}$.
+
+\begin{definition}
+	Sean $(\Omega, \mcal{F}, \mbb{P})$ un EdP, $X \in L^{1}(\Omega, \mcal{F}, \mbb{P})$ y $\mcal{G} \subset \mcal{F}$ una $\sigma$-álgebra. Diremos que $Y \in L^{1}(\Omega, \mcal{F}, \mbb{P})$ es una \textit{esperanza condicional de } $X$ \textit{dada} $\mcal{G}$ y lo notamos $Y = \mbb{E}(X | \mcal{G})$, si satisface:
+	\begin{enumerate}[i)]
+		\item $Y$ es $\mcal{G}$-medible;
+
+		\item $\int_{A} Y \ d\mbb{P} = \int_{A} X \ d\mbb{P} \quad \forall A \in \mcal{G}$.
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+	Sean $X \in L^{1}(\Omega, \mcal{F}, \mbb{P})$ y $\mcal{G} \subset \mcal{F}$ una $\sigma$-álgebra. Entonces,
+	\begin{enumerate}
+		\item \textbf{Existencia:} existe $Y \in L^{1}(\Omega, \mcal{F}, \mbb{P})$ esperanza condicional de $X$ dada $\mcal{G}$;
+
+		\item \textbf{Unicidad:} si $Y,Y'$ son esperanza condicional de $X$ dada $\mcal{G}$, $\mbb{P}(Y = Y') = 1$.
+	\end{enumerate}
+\end{theorem}

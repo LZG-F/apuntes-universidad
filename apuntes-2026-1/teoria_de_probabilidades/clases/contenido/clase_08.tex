@@ -1,19 +1,20 @@
 \clase{8}{25 de Marzo}{}
 
-$I$ conjunto de índices no vacío $(S^{I}, \beta^{I})$, $(S, \beta)$ espacio medible. $J \subseteq I$ finito y no vacío.
+Dados $I$ conjunto de índices no vacío, $(S^{I}, \beta^{I})$ y $(S, \beta)$ espacios medibles, sea $J \subseteq I$ finito y no vacío. Luego,
 
 \begin{itemize}
 	\item Cilindro finito-dimensional:
-	\[ C(J, B) = \{(x_{i})_{i \in I} \ : \ (x_{j})_{j \in J} \in B \} \quad (B \in \beta). \]
+	\[ C(J, B) = \{(x_{i})_{i \in I} \in S^{I} \ : \ (x_{j})_{j \in J} \in B \} \quad (B \in \beta). \]
 
 	\item Cilindro especial:
-	\[ C(J, \bigtimes_{j \in J} B_{j} = \bigcap_{j \in J} C(J, B_{j}). \]
-	$\beta^{I} = \sigma(C(i, B) \ : \ i \in I, B \in \beta)$.
+	\[ C \Big( J, \bigtimes_{j \in J} B_{j} \Big) = \bigcap_{j \in J} C(j, B_{j}). \]
+	
+	\item $\beta^{I} = \sigma(C(i, B) \ : \ i \in I, B \in \beta)$.
 \end{itemize}
 
 \begin{remark}
 	\begin{enumerate}
-		\item Los cilindros especiales forman un $\pi$-sistema (si $I$ es finito, sonn la clase de rectángulos en $S^{|I|}$).
+		\item Los cilindros especiales forman un $\pi$-sistema (si $I$ es finito, son la clase de rectángulos en $S^{|I|}$).
 
 		\item Los cilintros finito-dimensionales forman un álgebra.
 
@@ -21,7 +22,7 @@ $I$ conjunto de índices no vacío $(S^{I}, \beta^{I})$, $(S, \beta)$ espacio me
 	\end{enumerate}
 \end{remark}
 
-Dado un PE $(X_{t})_{t \in I}$, vimos que podemos verlo como elemento aleatorio $X$ en $(S^{I}, \beta^{I})$. Luego, definimos la distribución del proceso como aeuqlla medida de probabilidad $\mbb{P}_{X}$ inducida por el elemento aleatorio $X$ sobre $(S^{I}, \beta^{I})$. \par
+Dado un PE $(X_{t})_{t \in I}$, vimos que podemos verlo como elemento aleatorio $X$ en $(S^{I}, \beta^{I})$. Luego, definimos la \textit{distribución del proceso} como aquella medida de probabilidad $\mbb{P}_{X}$ inducida por el elemento aleatorio $X$ sobre $(S^{I}, \beta^{I})$. \par
 Tener en cuenta que, dado un proceso estocástico con distribución $\mu$ sobre $(S^{I}, \beta^{I})$, siempre podemos construir una versión del proceso en el EdP $(S^{I}, \beta^{I}, \mu)$, tomando como $X$ a la identidad; i.e. $X \colon S^{I} \to S^{I}$ tal que $x \mapsto X(x) = x$. Este $X$ se conoce como la \textit{versión canónica} del PE con distribución $\mu$ (o, simplemente, \textit{proceso canónico}).
 
 \begin{remark}
@@ -32,12 +33,12 @@ Tener en cuenta que, dado un proceso estocástico con distribución $\mu$ sobre 
 	¿Es cierto que $\beta(S^{I}) = \beta^{I}$?
 \end{pregunta}
 
-\noindent \textbf{Respuesta.} En genral, NO. Aunque siempre se tiene que $\beta^{I} \subseteq \beta(S^{I})$. Si $\tau(S^{I})$ admite una base numerable e $I$ a lo sumo numerable, entonces SI (por ejemplo, $S^{I} = \R^{\N}$).
+\noindent \textbf{Respuesta.} En general, NO. Aunque siempre se tiene que $\beta^{I} \subseteq \beta(S^{I})$. Si $\tau(S^{I})$ admite una base numerable e $I$ a lo sumo numerable, entonces SI (por ejemplo, $S^{I} = \R^{\N}$).
 
 \subsection{Construcción de medidas en $S^{I}$}
 Sea $I \neq \varnothing$ un conjunto de índices. Definimos
-\[ \mbb{F}(I) \coloneq \{J \subseteq I \ : \ J \text{ finito y no vacío}\}. \]
-Dados $J_{1} \subseteq J_{2} \subseteq I$, definimos la proyección $\pi_{J_{1} \to J_{2}} \colon S^{J_{2}} \to S^{J_{1}}$ como
+\[ \mbb{F}(I) \coloneq \{J \subseteq I \ : \ J \text{ finito y no vacío}\}.  \]
+Dados $J_{1} \subseteq J_{2} \subseteq I$, definimos la proyección $\pi_{J_{2} \to J_{1}} \colon S^{J_{2}} \to S^{J_{1}}$ como
 \[ \pi_{J_{2} \to J_{1}}((x_{j})_{j \in J_{2}}) \coloneq (x_{j})_{j \in J_{1}}. \]
 En el caso en que $J_{2} = I$, abreviamos $\pi_{J_{1}} \coloneq \pi_{I \to J_{1}}$. \par
 Dada una medida $\mu$ sobre $(S^{I}, \beta^{I})$, definimos para $J \in \mbb{F}(I)$ la medida $\mu_{J}$ sobre $(S^{J}, \beta^{J})$ por la fórmula

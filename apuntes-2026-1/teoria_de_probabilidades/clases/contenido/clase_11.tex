@@ -1,0 +1,98 @@
+\clase{11}{6 de Abril}{}
+
+\section{Convergencia en distribución.}
+
+\begin{definition}
+	Diremos que:
+	\begin{enumerate}[i)]
+		\item Una sucesión $(F_{n})_{n \in \N}$ de funciones de distribución \textit{converge débilmente} a una función de distribución $F_{\infty}$, y lo denotamos por $F_{n} \Longrightarrow F_{\infty}$, si $\lim_{n \to \infty} F_{n}(x) = F_{\infty}(x)$ para todo $x$ punto de continuidad de $F_{\infty}$.
+
+		\item Una sucesión $(X_{n})_{n \in \N}$ de VA's \textit{converge débilmente} o \textit{converge en distribución} (o en ley) a una VA $X_{\infty}$, y lo denotamos por $X_{n} \Longrightarrow X_{\infty}$ o $X_{n} \xlongrightarrow{d} X_{\infty}$, si $F_{X_{n}} \Longrightarrow F_{X_{\infty}}$.
+	\end{enumerate}
+\end{definition}
+
+\begin{eg}~
+	\begin{itemize}
+		\item $X_{\infty}$ VA;
+
+		\item $X_{n} \coloneq X_{\infty} + \frac{1}{n}$;
+
+		\item $F_{X_{n}}(x) = \mbb{P}(X_{n} \leq x) = \mbb{P}(X_{\infty} \leq x - \frac{1}{n}) = F_{X_{\infty}}(x - \frac{1}{n}) \xlongrightarrow{n \to \infty} F_{X_{\infty}}(x^{-})$.
+	\end{itemize}
+	Luego, $F_{X_{n}}(x) \longrightarrow F_{X_{\infty}}(x)$ si y solo si $x$ es punto de continuidad de $F_{X_{\infty}}$. En particular, $X_{n} \xlongrightarrow{d} X_{\infty}$.
+\end{eg}
+
+\begin{eg}[Aproximación Poisson a la Binomial]
+	Si $X_{n} \sim \Bi(n, p_{n})$ con $\lim_{n \to \infty} n \cdot p_{n} = \lambda > 0$ y $X_{\infty} \sim \mcal{P}(\lambda)$, entonces $X_{n} \xlongrightarrow{d} X_{\infty}$ (es decir, $\Bi(n,p) \stackrel{d}{\approx} \mcal{P}(\lambda)$ si $n \gg 1$ y $np \approx \lambda$).
+\end{eg}
+
+\begin{eg}
+	Si $X_{n} \sim \mcal{G}(p_{n})$ con $p_{n} \xlongrightarrow{n \to \infty} 0$ y $X_{\infty} \sim \varepsilon(1)$, entonces $p_{n} X_{n} \xlongrightarrow{d} X_{\infty}$.
+\end{eg}
+
+\begin{property}~
+	\begin{enumerate}[i)]
+		\item $X_{n} \xlongrightarrow{\mbb{P}} X_{\infty} \implies X_{n} \xlongrightarrow{d} X_{\infty}$ (el converso no vale).
+
+		\item $X_{n} \xlongrightarrow{d} c \in \R \implies X_{n} \xlongrightarrow{\mbb{P}} x$. (ejemplo: $U \sim \mcal{U}([0,1]),\ X_{n} \equiv U \quad \forall n \in \N,\ X_{\infty} \coloneq 1 - U$. Así, $X_{n} \xlongrightarrow{d} X_{\infty}$ pero $X_{n} \stackrel{\mbb{P}}{\not\longrightarrow} X_{\infty}$ pues $U \neq 1 - U$).
+
+		\item $X_{n} \xlongrightarrow{d} X_{\infty},\ Y_{n} \xlongrightarrow{d} c \implies \begin{cases}
+			X_{n} Y_{n} \xlongrightarrow{d} c X_{\infty} \\
+			X_{n} + Y_{n} \xlongrightarrow{d} X_{\infty} + c
+		\end{cases}$ (Teoremas de Slutzky).
+
+		\item $X_{n} \xlongrightarrow X_{\infty} \iff$ Toda subsucesión $(X_{n_{k}})_{k \in \N}$ tiene ella misma una subsucesión $(X_{n_{k_{j}}})_{j \in \N}$ tal que $X_{n_{k_{j}}} \xlongrightarrow[j \to \infty]{d} X_{\infty}$.
+	\end{enumerate}
+\end{property}
+
+\begin{theorem}[Representación de Skorokhod]
+	Si $X_{n} \xlongrightarrow{d} X_{\infty}$, entonces existe un EdP $(\Omega, \mcal{F}, \mbb{P})$ y VA's $(Y_{n})_{n \in \N \cup \{\infty\}}$, todas definidas en dicho espacio, tales que:
+	\begin{enumerate}[i)]
+		\item $Y_{n} \stackrel{d}{=} X_{n} \quad \forall n \in \N \cup \{\infty\}$;
+
+		\item $Y_{n} \xlongrightarrow{cs} Y_{\infty}$.
+	\end{enumerate}
+	Decimos que $(Y_{n})_{n \in \N \cup \{\infty\}}$ es un \textit{acoplamiento} de las $(X_{n})_{n \in \N \cup \{\infty\}}$
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Sea $(\Omega, \mcal{F}, \mbb{P}) \coloneq ([0,1], \beta([0,1]), \mscr{L}|_{[0,1]})$. Definimos 
+	\[ Y_{n}(\omega) \coloneq F_{X_{n}}^{-1}(\omega) = \sup \{x \ : \ F_{X_{n}}(x) < \omega\},\quad \omega \in [0,1]. \]
+	Ya vimos que $F_{Y_{n}} = F_{X_{n}}$ antes. Luego, $X_{n} \stackrel{d}{=} Y_{n} \quad \forall n \in \N \cup \{\infty\}$. Para ver que $Y_{n} \xlongrightarrow{cs} Y_{\infty}$, bastará ver que $Y_{n}(\omega) \longrightarrow Y_{\infty}(\omega)$ para $\mscr{L}$-casi todo $\omega \in (0,1)$. \par
+	Definimos para cada $y \in \R$,
+	\[ a_{y} \coloneq \sup \{x \ : \ F_{X_{\infty}}(x) < y\}, \quad b_{y} \coloneq \inf \{x \ : \ F_{X_{\infty}}(x) > y\}. \]
+	Sea $\Omega_{0} \coloneq \{y \in (0,1) \ : \ a_{y} = b_{y}\}$.
+	\begin{itemize}
+		\item Si $y \not\in \Omega_{0}$ entonces $F_{X_{\infty}} \cong y$ en $(a_{y}, b_{y})$;
+
+		\item Hay a lo sumo numerables $y \not\in \Omega_{0}$ (los $(a_{y}, b_{y})$ son disjuntos y cada uno contiene al menos un racional [distintos entre sí \{creo\}]).
+	\end{itemize}
+	Entonces, $\mscr{L}([0,1] \setminus \Omega_{0}) = 0$. \par
+	Luego, basta con ver que $Y_{n}(\omega) \longrightarrow Y_{\infty}(\omega)$ para todo $\omega \in \Omega_{0}$. \par
+	Primero, veamos que $\liminf_{n \to \infty} Y_{n}(\omega) \geq Y_{\infty}(\omega)$:
+	\begin{itemize}
+		\item Sean $(y_{k})_{k \in \N}$ puntos de continuidad de $F_{X_{\infty}}$ tal que $y_{k} \nearrow Y_{\infty}(\omega)$.
+		
+		\item $y_{k} < Y_{\infty}(\omega) \implies F_{X_{\infty}}(y_{k}) < \omega \implies F_{X_{n}}(y_{k}) < \omega$ para todo $n \in \N$ grande (notar que la última implicancia está dada pues $F_{X_{n}}(y_{k}) \longrightarrow F_{X_{\infty}}(y_{k})$ pues $y_{k}$ punto de continuidad de $F_{X_{\infty}}$.) $\implies y_{k} \leq Y_{n}(\omega) \quad \forall n$ grande $\implies y_{k} \leq \liminf_{n \to \infty} Y_{n}(\omega) \quad \forall k \in \N \implies Y_{\infty}(\omega) \leq \liminf_{n \to \infty} Y_{n}(\omega)$.
+	\end{itemize}
+	En segundo lugar, veamos que $\limsup_{n \to \infty} Y_{n}(\omega) \leq Y_{\infty}(\omega)$:
+	\begin{itemize}
+		\item Sean $(y_{k})_{k \in \N}$ puntos de continuidad de $F_{X_{\infty}}$ tal que $y_{k} \searrow Y_{\infty}(\omega)$.
+
+		\item $y_{k} > Y_{\infty}(\omega) = a_{\omega} \stackrel{\omega \in \Omega_{0}}{\implies} y_{k} > b_{w} \implies F_{X_{\infty}}(y_{k}) > \omega \implies F_{X_{n}}(y_{k}) > \omega \quad \forall n$ grande $\implies \limsup_{n \to \infty} Y_{n}(\omega) \leq Y_{\infty}(\omega)$.
+	\end{itemize}
+\end{proof}
+
+\begin{corollary}
+	$X_{n} \xlongrightarrow{d} x \implies X_{n} \xlongrightarrow{\mbb{P}} c$.
+\end{corollary}
+\begin{proof}[Proof Other Information]
+	Debemos ver que, dado $\varepsilon > 0$,
+	\[ \lim_{n \to \infty} \mbb{P}(|X_{n} - c| > \varepsilon) = 0. \]
+	Pero 
+	\begin{align*}
+		\mbb{P}(|X_{n} - c| > \varepsilon) &= \mbb{P}(X_{n} \not\in \overline{B(x, \varepsilon)}) \\
+		&= \mbb{P}(Y_{n} \not\in \overline{B(c,\varepsilon)}) \\
+		&= \mbb{P}(|Y_{n} - c| > \varepsilon) \xlongrightarrow[n \to \infty]{} 0
+	,\end{align*}
+	pues $Y_{n} \xlongrightarrow{cs} c \ (\implies Y_{n} \xlongrightarrow{\mbb{P}} c)$.
+\end{proof}

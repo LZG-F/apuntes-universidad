@@ -1,0 +1,96 @@
+\clase{13}{13 de Abril}{}
+
+\begin{note}
+	En el TCL, podemos reescribir:
+	\[ \frac{S_{n} - n\mu}{\sigma \sqrt{n}} = \sqrt{n} \left( \frac{\frac{S_{n}}{n} - \mu}{\sigma} \right). \]
+	Además, notar que $\frac{S_{n}}{n} = \overline{X_{n}}$.
+\end{note}
+
+\begin{note}~
+	\begin{itemize}
+		\item No basta con que las VA's sean independientes de a pares (Ver Durrett, Ejemplo 3.4.9);
+
+		\item Si $(X_{n})_{n \in \N}$ son i.i.d con $\mbb{E}(X_{n}) = 0$ y $\sigma^{2} \coloneq \Var(X_{n}) \in (0, \infty)$, entonces $\frac{S_{n}}{\sqrt{n}} \xlongrightarrow{d} N(0, \sigma^{2})$, pero:
+		\begin{enumerate}[i)]
+			\item $\limsup_{n \to \infty} \frac{S_{n}}{\sqrt{n}} = \infty \ \mbb{P}$-c.s.
+
+			\item $(\frac{S_{n}}{\sqrt{n}})_{n \in \N}$ no converge en probabilidad.
+		\end{enumerate}
+		(i y ii parte del ejercicio 3.4.2 del Durrett.)
+
+		\item Si $(X_{n})_{n \in \N}$ i.i.d y $(S_{n} \slash \sqrt{n})_{n \in \N}$ converge en distribución, entonces $\mbb{E}(X_{n}^{2}) < \infty$. (Ejercicio 3.4.3 Durrett.) \par 
+		En general, si $\mbb{E}(X_{n}^{2}) = \infty$, entonces $S_{n} - n\mu \neq O(\sqrt{n})$ y, además, puede que la distribución asintótica tampoco sea normal.
+	\end{itemize}
+\end{note}
+
+\subsection{Aplicaciones}
+
+\begin{enumerate}
+	\item \textbf{Aproximación normal a la Binomial.} Si $(X_{n})_{n \in \N}$ son i.i.d $\Be(p)$ con $p \in (0,1)$, entonces 
+	\begin{align*}
+		\Bi(n,p) \sim X_{1} + \cdots + X_{n} = S_{n} &\stackrel{d}{\approx} n\mu + \sigma \sqrt{n} N(0,1) \\
+		&= np + \sqrt{p(1 - p)} \sqrt{n} N(0,1) \\
+		&\stackrel{d}{=} N(np, np(1 - p)) 
+	\end{align*}
+	$\implies \Bi(n,p) \stackrel{d}{\approx} N(np, np(1 - p))$.
+
+	\item \textbf{Aproximación normal a la Poisson.} Si $(X_{n})_{n \in \N}$ son i.i.d $\mcal{P}(1)$, entonces $S_{n} = X_{1} + \cdots + X_{n} \sim \mcal{P}(n)$. Luego, 
+	\begin{align*}
+		\mcal{P}(n) \sim S_{n} &\stackrel{d}{\approx} n\mu + \sigma \sqrt{n} N(0,1) \\
+		&= n . 1 + 1 . \sqrt{n} N(0,1) \\
+		&\stackrel{d}{=} N(n,n)
+	.\end{align*}
+	En general, vale que $\mcal{P}(\lambda) \stackrel{d}{\approx} N(\lambda,\lambda)$ cuando $\lambda \longrightarrow \infty$. (Ejercicio Práctica 5.)
+\end{enumerate}
+
+\begin{pregunta}
+	¿Cuál es la velocidad de convergencia?
+\end{pregunta}
+
+\begin{theorem}[Berry-Esseen]
+	Sean $(X_{n})_{n \in \N}$ i.i.d con $\mbb{E}(X_{i}) = 0$ y $\Var(X_{n}) \eqcolon \sigma^{2} \in (0,\infty)$. Entonces, si $\rho \coloneq \mbb{E}(|X_{n}|^{3}) < \infty$, entonces
+	\[ \sup_{x \in \R} \left| F_{\frac{S_{n}}{\sigma \sqrt{n}}}(x) - F_{N(0,1)}(x) \right| \leq \frac{3 . \rho}{\sigma^{3}} \cdot \frac{1}{\sqrt{n}}. \]
+	Además, puede verse que la tasa de convergencia no puede ser más rápida que $\frac{1}{\sqrt{n}}$.
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	En el Durrett (de todas maneras, esto es más curiosidad que algo importante para el curso).
+\end{proof}
+
+Para demostrar el TCL, vamos a usar lo siguiente:
+
+\begin{prop}
+	$X_{n} \xlongrightarrow{d} X_{\infty} \iff \mbb{E}(f(X_{n})) \longrightarrow \mbb{E}(f(X_{\infty})) \quad \forall f \in C_{b}^{\infty}(\R)$.
+\end{prop}
+
+La Proposición es un corolario directo de lo que ya hemos visto y el siguiente lema:
+
+\begin{lemma}
+	Dado $x \in \R$ y $\varepsilon > 0$, existe $f_{x, \varepsilon} \in C_{b}^{\infty}(\R)$ tal que $\mathds{1}_{(-\infty,x]} \leq f_{x, \varepsilon} \leq \mathds{1}_{(-\infty,x + \varepsilon]}$.
+\end{lemma}
+\begin{proof}[Proof Other Information][Idea]
+	Sean 
+	\[ \varphi(t) \coloneq \begin{cases}
+		e^{-1 \slash t} \quad t > 0 \\
+		0 \quad t \leq 0
+	\end{cases}\]
+	y $\rho(x) \coloneq k . \varphi (1 - x^{2})$, donde $k > 0$ es tal que $\int_{\R} \rho(x) \ dx = 1$. Observar que $\varphi \in C^{\infty}$ y, por lo tanto, $\rho \in C^{\infty}$ también. Además, $\rho \geq 0$ y $\rho(x) > 0$ si y solo si $|x| < 1$. En particular, $\rho \in C_{b}^{\infty}$. \par
+	Ahora, dado $\varepsilon > 0$, consideramos $\rho_{\varepsilon}(x) \coloneq \frac{1}{\varepsilon} \rho \big( \frac{x}{\varepsilon} \big)$. Observar que $\rho_{\varepsilon} \in C_{b}^{\infty}$, $\int_{\R} \rho_{\varepsilon}(x) \ dx = 1$, $\rho \geq 0$ y $\rho_{\varepsilon}(x) > 0$ si y solo si $|x| < \varepsilon$. \par
+	Con todo esto, definimos
+	\[ f_{x, \varepsilon}(z) \coloneq \left( \mathds{1}_{(-\infty,x + \frac{\varepsilon}{2}]} * \rho_{\frac{\varepsilon}{2}} \right)(z) = \int_{-\infty}^{x + \frac{\varepsilon}{2}} \rho_{\frac{\varepsilon}{2}}(z - y) \ dy. \]
+	Resulta que $f_{x, \varepsilon}$ cumple lo pedido.
+\end{proof}
+
+\begin{proof}[Proof Other Information][TCL]
+	Sin pérdida de generalidad, podemos asumir $\mu = 0$ y $\sigma^{2} = 1$. En caso contrario, consideramos $X_{n}' \coloneq \frac{X_{n} - \mu}{\sigma}$, que cumplen $\mbb{E}(X_{n}') = 0,\ \Var(X_{n}') = 1$ y son i.i.d. Si probamos el TCL para las $(X_{n}')_{n \in \N}$, entonces $\frac{S_{n}'}{\sqrt{n}} \xlongrightarrow{d} N(0,1)$, pero $\frac{S_{n}'}{\sqrt{n}} = \frac{S_{n} - n\mu}{\sigma \sqrt{n}}$, de modo que también vale el TCL para las $(X_{n})_{n \in \N}$. \par
+	Por otro lado, la validez del TCL para las $(X_{n})_{n \in \N}$ es una propiedad que depende \underline{sólo} de su distribución $\mbb{P}_{(X_{n})_{n \in \N}}$. En particular, bastará con probar el TCL para \underline{alguna} sucesión $(\tilde{X}_{n})_{n \in \N}$ de VA's i.i.d con $\mbb{P}_{(\tilde{X}_{n})_{n \in \N}} = \mbb{P}_{(X_{n})_{n \in \N}}$ para que valga para $(X_{n})_{n \in \N}$ también. \par
+	Teniendo esto en cuenta, si pérdida de generalidad, podemos asumir, que en el mismo EdP en donde están definidas las $(X_{n})_{n \in \N}$, tenemos definida también una sucesión $(Y_{n})_{n \in \N}$ de VA's i.i.d con distribución $N(0,1)$ independiente de $(X_{n})_{n \in \N}$. \par
+	Con todo esto, definimos las variables
+	\begin{align*}
+		S_{n, i} &\coloneq \frac{X_{1} + \cdots + X_{i - 1} + 0 + Y_{i + 1} + \cdots + Y_{n}}{\sqrt{n}} \quad i = 0,\dots,n \\
+		Z_{n, i} &\coloneq \frac{X_{1} + \cdots + X_{i - 1} + X_{i} + Y_{i + 1} + \cdots Y_{n}}{\sqrt{n}} \quad i = 0,\dots,n
+	.\end{align*}
+	Observar que:
+	\[ Z_{n,n} = \frac{S_{n}}{\sqrt{n}} \text{ y } Z_{n,0} = \frac{Y_{1} + \cdots + Y_{n}}{\sqrt{n}} \sim N(0,1). \]
+	Por la proposición, basta con mostrar
+	\[ \mbb{E}(f(Z_{n,n})) - \mbb{E}(f(\underbrace{Z_{n,0}}_{\sim N(0,1)})) \xlongrightarrow[n \to \infty]{} 0 \quad \forall f \in C_{b}^{\infty}. \]
+\end{proof}

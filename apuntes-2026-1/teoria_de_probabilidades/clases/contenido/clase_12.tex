@@ -1,0 +1,107 @@
+\clase{12}{8 de Abril}{}
+
+\begin{corollary}
+	$X_{n} \xlongrightarrow{d} X_{\infty} \iff \mbb{E}(f(X_{n})) \xlongrightarrow[n \to \infty]{} \mbb{E}(f(X_{\infty})) \quad \forall f \colon \R \to \R$ continua y acotada.
+\end{corollary}
+\begin{proof}[Proof Other Information]
+	\boxed{\implies} Por Skorokhod, existen $(Y_{n})_{n \in \N \cup \{\infty\}}$ tal que $Y_{n} \stackrel{d}{=} X_{n} \quad \forall n \in \N \cup \{\infty\}$ e $Y_{n} \xlongrightarrow{c.s} Y_{\infty}$. Luego:
+	\begin{itemize}
+		\item $Y_{n} \xlongrightarrow{c.s} Y_{\infty} \implies f(Y_{n}) \xlongrightarrow{c.s} f(Y_{\infty}) \implies \mbb{E}(f(Y_{n})) \xlongrightarrow[n \to \infty]{} \mbb{E}(f(Y_{\infty}))$. (donde la primera implicancia está dada por la continuidad de $f$ y la segunda por T.C.D.)
+
+		\item $Y_{n} \stackrel{d}{=} X_{n} \implies \mbb{E}(f(Y_{n})) = \mbb{E}(f(X_{n}))$. En combinación con lo anterior, esto nos da $(\implies)$.
+	\end{itemize}
+	\medskip \par
+	\boxed{\impliedby} Sea para cada $x \in \R$ y $\varepsilon > 0$, la función $g_{x, \varepsilon}$ de gráfico (foto). Notar que cada $g_{x, \varepsilon}$ es continua y acotada. Además, tenemos que $\mathds{1}_{(-\infty,x]} \leq g_{x,\varepsilon} \leq \mathds{1}_{(-\infty,x + \varepsilon]} \quad \forall x \in \R, \varepsilon > 0$. En particular,
+	\begin{align*}
+		\limsup_{n \to \infty} \mbb{P}(X_{n} \leq x) &\leq \limsup_{n \to \infty} \mbb{E}(g_{x,\varepsilon} (X_{n})) \\
+		&= \mbb{E}(g_{x, \varepsilon} (X_{\infty})) \\
+		&\leq \mbb{P}(X_{\infty} \leq x + \varepsilon) \\
+		&= F_{X_{\infty}}(x + \varepsilon)
+	.\end{align*}
+	En conclusión, $\limsup_{n \to \infty} F_{X_{n}}(x) \leq F_{X_{\infty}}(x + \varepsilon) \quad \forall \varepsilon > 0$. \par
+	Tomando $\varepsilon \longrightarrow 0^{+}$, resulta $\limsup_{n \to \infty} F_{X_{n}}(x) \leq F_{X_{\infty}}(x)$. (pues $F_{X_{\infty}}$ es continua a derecha.) \par
+	Por otro lado,
+	\[ \liminf_{n \to \infty} \mbb{P}(X_{n} \leq x) \geq \liminf_{n \to \infty} \mbb{E}(g_{x - \varepsilon, \varepsilon} (X_{n})) = \mbb{E}(g_{x - \varepsilon, \varepsilon} (X_{\infty})). \]
+	Tomando, $\varepsilon \longrightarrow 0^{1}$, resulta $\liminf{n \to \infty} \mbb{P}(X_{n} \leq x) \geq \mbb{P}(X_{\infty} < x) = F_{X_{\infty}}(x^{-})$. Pero, si $x$ es punto de continuidad de $F_{X_{\infty}}$, entonces $F_{X_{\infty}}(x^{-}) = F_{X_{\infty}}(x)$ y, por lo tanto, $\lim_{n \to \infty} \mbb{P}(X_{n} \leq x) = \mbb{P}(X_{\infty} \leq x)$, lo cual muestra que $X_{n} \xlongrightarrow{d} X_{\infty}$.
+\end{proof}
+
+\begin{remark}
+	La demostración anterior muestra que $X_{n} \xlongrightarrow{d} X_{\infty} \iff \mbb{E}(f(X_{n})) \longrightarrow \mbb{E}(f(X_{\infty})) \quad \forall f \in \mscr{C}$ donde $\mscr{C}$ es cualquier clase de funciones continuas y acotadas con la siguiente propiedad:
+	\begin{enumerate}[(A)]
+		\item Dado $x \in \R$ y $\varepsilon > 0$, existe $f_{x, \varepsilon} \in \mcal{C}$ tal que $\mathds{1}_{(-\infty,x]} \leq f_{x, \varepsilon} \leq \mathds{1}_{(-\infty, x + \varepsilon]}$.
+	\end{enumerate}
+\end{remark}
+
+\begin{definition}
+	Sea $E$ un espacio métrico. Diremos que:
+	\begin{enumerate}[i)]
+		\item Una sucesión $(X_{n})_{n \in \N}$ de elementos aleatorios a valores en $E$ \textit{converge débilmente o en distribución} a un elemento aleatorio $X_{\infty}$, y lo notamos $X_{n} \Longrightarrow X_{\infty}$ ó $X_{n} \xlongrightarrow{d} X_{\infty}$, si $\mbb{E}(f(X_{n})) \xlongrightarrow[n \to \infty]{} \mbb{E}(f(X_{\infty})) \quad \forall f \colon E \to \R$ continua y acotada.
+
+		\item Una sucesión $(\mu_{n})_{n \in \N}$ de medidas sobre el espacio $(E, \beta(E))$ \textit{converge débilmente} a una medida $\mu_{\infty}$ y lo notamos $\mu_{n} \Longrightarrow \mu_{\infty}$ ó $\mu_{n} \xlongrightarrow{\omega} \mu_{\infty}$, si se cumple que
+		\[ \lim_{n \to \infty} \int_{E} f \ d \mu_{n} = \int_{E} f \ d\mu_{\infty} \quad \forall f \colon E \to \R \text{ continua y acotada}. \]
+	\end{enumerate}
+\end{definition}
+
+\begin{remark}~
+	\begin{enumerate}
+		\item $X_{n} \xlongrightarrow{d} X_{\infty} \iff \mbb{P}_{X_{n}} \xlongrightarrow{\omega} \mbb{P}_{X_{\infty}}$.
+		
+		\item Si $R$ es un espacio métrico compacto y $\mcal{C}(E) \coloneq \{f \colon E \to \R \ | \ f \text{ continua}\}$, entonces
+		\[ (\mcal{C}(E))^{*} \coloneq \{\varphi \colon \mcal{C}(E) \to \R \ | \ \varphi \text{ lineal y continua}\} = \mscr{M}(E), \]
+		donde
+		\[ \mscr{M}(E) \coloneq \{\mu \ : \ \mu \text{ medida con signo finito en } (E, \beta(E))\}. \] 
+	\end{enumerate}
+	Es decir,
+	\begin{enumerate}[i.]
+		\item Para todo $\varphi \in (\mcal{C}(E))^{*}$ existe una única $\mu_{\varphi} \in \mscr{M}(E)$ tal que $\varphi(f) = \int f \ d\mu_{\varphi}$ para toda $f \in \mcal{C}(E)$. (por eso, a veces se nota $\int f \ d\mu \eqcolon \mu(f)$.) Además, $\| \varphi \| = \| \mu_{\varphi} \| \ (\coloneq |\mu_{\varphi}|(E))$.
+		
+		\item Para toda $\mu \in \mscr{M}(E)$, la aplicación $\varphi_{\mu} \colon \mcal{C}(E) \to \R$ dada por $\varphi_{\mu}(f) \coloneq \int f \ d\mu$, cumple que $\varphi_{\mu} \in (\mcal{C}(E))^{*}$ y $\| \varphi_{\mu} \| = \| \mu \|$.
+	\end{enumerate}
+	En particular, si $(\mbb{P}_{n})_{n \in \N \cup \{\infty\}}$ son medidas de probabilidad en $(E, \beta(E))$, entonces
+	\begin{align*}
+		\mbb{P}_{n} \xlongrightarrow{\omega} \mbb{P}_{\infty} &\iff \int f \ d\mbb{P}_{n} \longrightarrow \int f \ d\mbb{P}_{\infty} \quad \forall f \in \mcal{C}(E) \\
+		&\iff \varphi_{\mbb{P}_{n}}(f) \longrightarrow \varphi_{\mbb{P}_{\infty}}(f) \quad \forall f \in \mcal{C}(E) \\
+		&\iff \varphi_{\mbb{P}_{n}} \xlongrightarrow{\omega^{*}} \varphi_{\mbb{P}_{\infty}}
+	.\end{align*}
+	Es decir, la convergencia es distribución (cuando $E$ es compacto, es un caso particular de la convergencia débil-$*$ de Análisis Funcional.
+\end{remark}
+
+\begin{theorem}[de la aplicación medible]
+	Sean $h \colon \R \to \R$ medible Borel y $D_{h} \coloneq \{x \ : \ h \text{ es discontinua en } x\}$. Entonces, si $X_{n} \xlongrightarrow{d} X_{\infty}$ y $\mbb{P}(X_{\infty} \in D_{n}) = 0$, vale que $h(X_{n}) \xlongrightarrow{d} h(X_{\infty})$. \par
+	Si además $h$ es acotada, entonces $\mbb{E}(h(X_{n})) \longrightarrow \mbb{E}(h(X_{\infty}))$.
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Ejercicio de la práctica 5.
+\end{proof}
+
+\begin{note}
+	$\Var(X) = 0 \iff X = \mbb{E}(X)$ c.s.
+\end{note}
+
+\begin{theorem}[Central del Límite]
+	Sea $(X_{n})_{n \in \N}$ una sucesión de VA's i.i.d, con:
+	\begin{itemize}
+		\item $\mbb{E}(X_{n}) \eqcolon \mu \in \R$;
+
+		\item $\Var(X_{n}) \eqcolon \sigma^{2} \in (0, \infty)$.
+	\end{itemize}
+	Entonces, en el límite cuando $n \to \infty$,
+	\[ \frac{S_{n} - n \mu}{\sigma \sqrt{n}} \xlongrightarrow{d} N(0,1). \]
+\end{theorem}
+
+\begin{remark}~
+	\begin{enumerate}
+		\item En particular, el TCL dice que para todo $a < b$,
+		\[ \lim_{n \to \infty} \mbb{P} \left( a < \frac{S_{n} - n\mu}{\sigma \sqrt{n}} \leq b \right) = \int_{a}^{b} \frac{1}{\sqrt{2 \pi}} e^{-x^{2} \slash 2} \ dx. \]
+
+		\item Observar que $n\mu = \mbb{E}(S_{n})$ y $\Var(S_{n}) = n \sigma^{2}$, de modo que
+		\[ \frac{S_{n} - n\mu}{\sigma \sqrt{n}} = \frac{S_{n} - \mbb{E}(S_{n})}{\sqrt{\Var(S_{n})}}. \]
+		(i.e, estamos centrando y normalizando para que tenga media $0$ y varianza $1$.)
+
+		\item El TCL nos dice "esencialmente" que, bajo las hipótesis del Teorema,
+		\[ S_{n} \stackrel{d}{\approx} n\mu + \sigma \sqrt{n} \cdot N(0,1) \sim N(n \mu, \sigma^{2} n) \]
+		para $n$ grande. Equivalentemente
+		\[ \frac{S_{n}}{n} \stackrel{d}{\approx} \mu + \frac{\sigma}{\sqrt{n}} \cdot N(0,1). \]
+		Por la LGN, ya sabíamos que $\frac{S_{n}}{n} \longrightarrow \mu$. El TCLL va más allá y nos dice cómo son las \textit{fluctuaciones} de $\frac{S_{n}}{n}$ alrededor de su límite $\mu$: de orden $\frac{1}{\sqrt{n}}$ y distribución asintóticamente normal.
+	\end{enumerate}
+\end{remark}

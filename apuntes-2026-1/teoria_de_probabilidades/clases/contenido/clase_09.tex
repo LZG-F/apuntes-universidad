@@ -8,7 +8,7 @@
 	es la \textit{medida producto} de $(\mu_{t})_{t \in I}$.
 \end{theorem}
 \begin{proof}[Proof Other Information]
-	Dado $J \in \mbb{F}(I)$, sea $\mu \coloneq \bigtimes_{j \in J} \mu_{(j)}$, la medida producto sobre $(S^{J}, \beta^{J})$. Sea $\mscr{C} \coloneq \{\mu^{(j)} \ : \ J \in \mbb{F}(I)\}$. \par
+	Dado $J \in \mbb{F}(I)$, sea $\mu^{(J)} \coloneq \bigtimes_{j \in J} \mu_{j}$, la medida producto sobre $(S^{J}, \beta^{J})$. Sea $\mscr{C} \coloneq \{\mu^{(J)} \ : \ J \in \mbb{F}(I)\}$. \par
 	Notar que:
 	\begin{enumerate}[(i)]
 		\item $\mu^{(J)}$ es una medida de probabilidad en $(S^{I}, \beta^{I})$ para cada $J \in \mbb{F}(I)$;
@@ -19,7 +19,7 @@
 			&= \mu^{(J_{2})} \left( " \left( \bigtimes_{j \in J_{1}} B_{j} \right) \times S^{J_{2} - J_{1}} " \right) \\
 			&= \left( \prod_{j \in J_{1}} \mu_{j}(B_{j}) \right) \left( \prod_{j \in J_{2} - J_{1}} \underbrace{\mu_{j}(S)}_{= 1} \right) \\
 			&= \prod_{j \in J_{1}} \mu_{j}(B_{j}) \\
-			&= \mu^{(J_{1})} \left( \bigtimes_{j \in J_{1}} B_{j} \right) \\
+			&= \mu^{(J_{1})} \left( \bigtimes_{j \in J_{1}} B_{j} \right)
 		.\end{align*}
 		Como los conjuntos de la forma $\bigtimes_{j \in J_{1}} B_{j}$ generan $\beta^{J_{1}}$ y son un $\pi$-sistema (que contiene a $S^{J}$), resulta que $\pi_{J_{2} \to J_{1}} \mu^{(J_{2})} = \mu^{(J_{1})}$ (i.e $\mscr{C}$ es consistente).
 	\end{enumerate}
@@ -57,7 +57,9 @@
 \begin{prop}
 	Valen las siguientes propiedades:
 	\begin{enumerate}
-		\item $X_{n} \xlongrightarrow{c.s} X \iff \mbb{P}(|X_{n} - X| > \varepsilon \text{ i.o}) = 0 \quad \forall \varepsilon > 0\ ( \iff \forall \varepsilon > 0,\ \lim_{n \to \infty} \mbb{P}(\bigcup_{i \geq n} \{|X_{i} - X| > \varepsilon \}) = 0 )$. Donde i.o quiere decir "infinitely often" y 
+		\item Se cumple
+		\[ X_{n} \xlongrightarrow{c.s} X \iff \mbb{P}(|X_{n} - X| > \varepsilon \text{ i.o}) = 0 \quad \forall \varepsilon > 0 \]
+		$(\iff \forall \varepsilon > 0,\ \lim_{n \to \infty} \mbb{P}(\bigcup_{i \geq n} \{|X_{i} - X| > \varepsilon \}) = 0 )$. Donde i.o quiere decir "infinitely often" y 
 		\[ |X_{n} - X| > \varepsilon \text{ i.o} = \limsup_{n \to \infty} \{|X_{n} - X| > \varepsilon\}. \]
 
 		\item $\sum_{n \in \N} \mbb{P}(|X_{n} - X| > \varepsilon) < \infty \quad \forall \varepsilon > 0 \implies X_{n} \xlongrightarrow{c.s} X$.
