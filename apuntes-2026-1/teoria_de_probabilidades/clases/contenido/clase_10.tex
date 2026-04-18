@@ -1,13 +1,16 @@
-\clase{10}{1 de Abril}{}
-
 \chapter{Leyes de los grandes números}
+
+\clase{10}{1 de Abril}{}
 
 \begin{definition}
 	Diremos que una sucesión $(X_{n})_{n \in \N}$ de VA's definidas en un mismo EdP satisface una \textit{ley de los grandes números} si existen constantes $(a_{n})_{n \in \N}, (b_{n})_{n \in \N} \subseteq \R$ tales que
 	\[ \frac{\Big( \sum_{i=1}^{n} X_{i} - a_{n} \Big)}{b_{n}} \stackrel{(*)}{\longrightarrow} 0, \]
-	donde la convergencia en $(*)$ es en algún sentido apropiado. \par
-	Si la convergencia en $(*)$ es en probabilidad, decimos que la ley es \textit{débil}. \par
-	Si la convergencia en $(*)$ es casi segura, decimos que la ley es \textit{fuerte}.
+	donde la convergencia en $(*)$ es en algún sentido apropiado.
+	\begin{itemize}
+		\item Si la convergencia en $(*)$ es en probabilidad, decimos que la ley es \textit{débil}.
+
+		\item Si la convergencia en $(*)$ es casi segura, decimos que la ley es \textit{fuerte}.
+	\end{itemize}
 \end{definition}
 
 \begin{note}
@@ -18,7 +21,7 @@
 	Si $(X_{n})_{n \in \N}$ son VA's \textit{no correlacionadas} tal que
 	\[ \begin{cases}
 		\mbb{E}(X_{n}) \eqcolon \mu \\
-		\Var(X_{n}) \leq X < \infty \quad \forall n \in \N,
+		\Var(X_{n}) \leq c < \infty \quad \forall n \in \N,
 	\end{cases} \]
 	entonces $\frac{S_{n}}{n} \xlongrightarrow[L^{2}]{\mbb{P}} \mu$.
 \end{theorem}
@@ -26,7 +29,7 @@
 	Basta con ver la convergencia en $L^{2}$. En efecto, observemos que:
 	\begin{align*}
 		\mbb{E} \Big( \frac{S_{n}}{n} \Big) &= \frac{1}{n} \mbb{E}(S_{n}) \\
-		&= \frac{1}{n} \Big( \sum_{i=1}^{n} \mbb{E}(X_{i}) \\
+		&= \frac{1}{n} \Big( \sum_{i=1}^{n} \mbb{E}(X_{i}) \Big) \\
 		&= \frac{1}{n} n \mu = \mu
 	.\end{align*}
 	y
@@ -36,7 +39,7 @@
 		&= \frac{1}{n^{2}} \Var(S_{n}) \\
 		&\leq \frac{1}{n^{2}} cn = \frac{c}{n} \longrightarrow 0
 	.\end{align*}
-	Luego,
+	Notar que se utilizó:
 	\begin{align*}
 		\Var(S_{n}) = \Cov(S_{n}, S_{n}) &= \Cov \Big( \sum_{i=1}^{n} X_{i}, \sum_{j=1}^{n} X_{j} \Big) \\
 		&= \sum_{i,j=1}^{n} \Cov(X_{i},X_{j}) \\
@@ -46,9 +49,9 @@
 
 \begin{remark}
 	\begin{enumerate}
-		\item Si $(X_{n})_{n \in \N}$ son N.C, entonces $\Var(X_{1} + \cdots + X_{n}) = \Var(X_{1}) + \cdots + \Var(X_{n})$.
+		\item Si $(X_{n})_{n \in \N}$ son NC, entonces $\Var(X_{1} + \cdots + X_{n}) = \Var(X_{1}) + \cdots + \Var(X_{n})$.
 
-		\item Que converga en $L^{2}$ implica convergencia en $\mbb{P}$ se deduce de la siguiente desigualdad:
+		\item Que convergencia en $L^{2}$ implique convergencia en $\mbb{P}$ se deduce de la siguiente desigualdad:
 		\[ \mbb{P}(|X - \mbb{E}(X)| > \delta) \leq \frac{\mbb{E}(|X - \mbb{E}(X)|^{2})}{\delta^{2}} = \frac{\Var(X)}{\delta^{2}}. \]
 	\end{enumerate}
 \end{remark}
@@ -62,7 +65,7 @@
 \end{note}
 
 \begin{note}
-	Las hipótesis sobre los momentos de $(X_{n})_{n \in \N}$ se pueden relajar madiante \textit{truncamientos} de las variables, i.e cambiar $X_{n}$ por $\widetilde{X}_{n} = X_{n} \mathds{1}_{|X_{n}| \leq b_{n}}$.
+	Las hipótesis sobre los momentos de $(X_{n})_{n \in \N}$ se puede relajar mediante \textit{truncamientos} de las variables; i.e, cambiar $X_{n}$ por $\widetilde{X}_{n} = X_{n} \mathds{1}_{|X_{n}| \leq b_{n}}$.
 \end{note}
 
 \begin{theorem}
@@ -122,7 +125,7 @@
 \end{proof}
 
 \begin{note}
-	No obstante, si $\mbb{E}(|X_{n}|) = \infty$, pero $X$ es $\mbb{P}$-débil integrable, sigue valiendo la LFGN en el sentido esperable.
+	No obstante, si $\mbb{E}(|X_{n}|) = \infty$, pero $X_{n}$ es $\mbb{P}$-débil integrable, sigue valiendo la LFGN en el sentido esperable.
 \end{note}
 
 \begin{theorem}

@@ -5,12 +5,12 @@ Extendemos ahora la noción de independencia a familias arbitrarias.
 \begin{definition}
 Sea $(\Omega, \mathcal{F}, \mathbb{P})$ un espacio de probabilidad.
 \begin{itemize}
-  \item Dada una familia arbitraria $(\mathcal{F}_i)_{i\in I}$ de subclases de $\mathcal{F}$, diremos que son \textbf{independientes} si cualquier subfamilia finita lo es.
-  \item Dada una familia arbitraria de variables aleatorias $(X_i)_{i\in I}$, diremos que son \textbf{independientes} si las $\sigma$-álgebras $(\sigma(X_i))_{i\in I}$ lo son (es decir, si cualquier subfamilia finita $X_{i_1},\dots,X_{i_n}$ es independiente).
-  \item Dada una familia arbitraria de eventos $(A_i)_{i\in I} \subseteq \mathcal{F}$, diremos que son \textbf{independientes} si las variables aleatorias $(\mathbb{I}_{A_i})_{i\in I}$ lo son (es decir, si cualquier subfamilia finita $A_{i_1},\dots,A_{i_n}$ es independiente).
+  \item Dada una familia arbitraria $(\mathcal{F}_i)_{i\in I}$ de subclases de $\mathcal{F}$, diremos que son \textit{independientes} si cualquier subfamilia finita lo es.
+  \item Dada una familia arbitraria de variables aleatorias $(X_i)_{i\in I}$, diremos que son \textit{independientes} si las $\sigma$-álgebras $(\sigma(X_i))_{i\in I}$ lo son (es decir, si cualquier subfamilia finita $X_{i_1},\dots,X_{i_n}$ es independiente).
+  \item Dada una familia arbitraria de eventos $(A_i)_{i\in I} \subseteq \mathcal{F}$, diremos que son \textit{independientes} si las variables aleatorias $(\mathds{1}_{A_i})_{i\in I}$ lo son (es decir, si cualquier subfamilia finita $A_{i_1},\dots,A_{i_n}$ es independiente).
 \end{itemize}
 \end{definition}
-
+\medskip \par
 Tenemos el siguiente resultado:
 
 \begin{theorem}
@@ -18,26 +18,28 @@ Si $(\mathcal{P}_i)_{i\in I}$ son $\pi$-sistemas independientes, entonces las $\
 \end{theorem}
 
 \begin{proof}
-Basta con demostrar que si $J=\{i_1,\dots,i_n\}\subseteq I$ es finito, entonces las $\sigma$-álgebras $\sigma(\mathcal{P}_{i_1}),\dots,\sigma(\mathcal{P}_{i_n})$ son independientes. Para ello, basta con probar la siguiente afirmación:
-
-\medskip
-	\noindent $Q_{1},\dots,Q_{n}\ \pi$-sistemas independientes $\implies \sigma(Q_{1}), Q_{2}, \dots, Q_{n}$ independientes $(*)$.
-
-\medskip
-	En efecto, como $\mathcal{P}_{i_1},\dots,\mathcal{P}_{i_n}$ son independientes por hipótesis (ya que son una subfamilia finita de $(\mathcal{P}_i)_{i\in I}$), tomando $\mathcal{Q}_1 := \mathcal{P}_{i_1},\dots,\mathcal{Q}_n := \mathcal{P}_{i_n}$, por $(*)$ concluimos que $\sigma(\mathcal{P}_{i_1}), \mathcal{P}_{i_2},\dots,\mathcal{P}_{i_n}$ son independientes. Tomando luego $\mathcal{Q}_1 := \mathcal{P}_{i_2},\dots,\mathcal{Q}_{n-1} := \mathcal{P}_{i_n}, \mathcal{Q}_n := \sigma(\mathcal{P}_{i_1})$, por $(*)$ de nuevo, $\sigma(\mathcal{P}_{i_2}), \mathcal{P}_{i_3},\dots,\mathcal{P}_{i_n}, \sigma(\mathcal{P}_{i_1})$ resultan independientes. Iterando este proceso, obtenemos finalmente que $(\sigma(\mathcal{P}_{i_j}))_{j=1,\dots,n}$ son independientes. \par
+	Basta con demostrar que si $J=\{i_1,\dots,i_n\}\subseteq I$ es finito, entonces las $\sigma$-álgebras $\sigma(\mathcal{P}_{i_1}),\dots,\sigma(\mathcal{P}_{i_n})$ son independientes. Para ello, basta con probar la siguiente afirmación:
+	\[
+	\stackanchor{$Q_{1},\dots,Q_{n}\ \pi \text{-sistemas}$}{\text{independientes}} \implies \stackanchor{$\sigma(Q_{1}), Q_{2}, \dots, Q_{n}$}{\text{independientes}} \tag{$*$}
+	\]
+	En efecto, como $\mathcal{P}_{i_1},\dots,\mathcal{P}_{i_n}$ son independientes por hipótesis (ya que son una subfamilia finita de $(\mathcal{P}_i)_{i\in I}$), tomando $\mathcal{Q}_{j} := \mathcal{P}_{i_{j}}$, por $(*)$ concluimos que $\sigma(\mathcal{P}_{i_1}), \mathcal{P}_{i_2},\dots,\mathcal{P}_{i_n}$ son independientes. Tomando luego 
+	\[
+	\mathcal{Q}_1 := \mathcal{P}_{i_2},\dots,\mathcal{Q}_{n-1} := \mathcal{P}_{i_n}, \mathcal{Q}_n := \sigma(\mathcal{P}_{i_1}),
+	\]
+	por $(*)$ de nuevo, $\sigma(\mathcal{P}_{i_2}), \mathcal{P}_{i_3},\dots,\mathcal{P}_{i_n}, \sigma(\mathcal{P}_{i_1})$ resultan independientes. Iterando este proceso, obtenemos finalmente que $(\sigma(\mathcal{P}_{i_j}))_{j=1,\dots,n}$ son independientes. \par
 	Luego, mostremos $(*)$. Tenemos que ver que para toda elección de $1 \leq i_{1} < i_{2} < \cdots < i_{k} \leq n$ y toda elección de
 	\[ A_{i} \in \begin{cases}
 		\sigma(Q_{1}) \quad \text{si } i_{1} = 1, \\
 		Q_{i_{1}} \quad \text{si } i_{1} > 1,
 	\end{cases} \]
 	$A_{i_{j}} \in Q_{i_{j}}$ si $j = 2, \dots, n$, vale que
-	\[ \mbb{P}(A_{i_{1}} \cap A_{i_{2}} \cap \cdots \cap A_{i_{k}} = \mbb{P}(A_{i_{1}}) \dots \mbb{P}(A_{i_{k}}). \]
-	Por un lado, si $i_{1} > 1$, entonces $A_{i_{j}} \in Q_{i_{j}}$ para todo $j = 1, \dots, k$, y la igualdad vale, pues $Q_{i_{1}},\dots,Q_{i_{k}}$ son independientes. \par
+	\[ \mbb{P}(A_{i_{1}} \cap A_{i_{2}} \cap \cdots \cap A_{i_{k}}) = \mbb{P}(A_{i_{1}}) \dots \mbb{P}(A_{i_{k}}). \]
+	\par Por un lado, si $i_{1} > 1$, entonces $A_{i_{j}} \in Q_{i_{j}}$ para todo $j = 1, \dots, k$, y la igualdad vale, pues $Q_{i_{1}},\dots,Q_{i_{k}}$ son independientes. \par
 	Por el otro, si $i_{1} = 1$, tengo 2 casos:
 	\begin{enumerate}[a)]
 		\item $A_{i_{1}} \in Q_{1}$: en este caso, la igualdad vale por el mismo argumento que 1.
 
-		\item $A_{i_{1}} \in \sigma(Q_{1})$: para ver que la igualdad vale en este caso, definimos $F \coloneq \bigcap_{j=2}^{k} A_{i_{j}}$ y consideramos la clase
+		\item $A_{i_{1}} \in \sigma(Q_{1})$ cualquiera: para ver que la igualdad vale en este caso, definimos $F \coloneq \bigcap_{j=2}^{k} A_{i_{j}}$ y consideramos la clase
 		\[ \mscr{L}_{1} \coloneq \{B \in \sigma(Q_{1}) \ : \ \mbb{P}(B \cap F) = \mbb{P} \prod_{j=2}^{k} \mbb{P}(A_{i_{j}}) \}. \] 
 		Observar que $Q_{1} \subseteq \mscr{L}_{1}$ por el caso a). Si mostramos además que $\mscr{L}_{1}$ es un $\lambda$-sistema, entonces por el Teorema de Dynkin $\sigma(Q_{1}) \subseteq \mscr{L}_{1}$ ($\sigma(Q_{1}) = \mscr{L}_{1}$, de hecho) y luego vale la igualdad en el caso b). \par
 		Luego, para concluir la demostración sólo resta ver que $\mscr{L}_{1}$ es un $\lambda$-sistema. Pero esto es una cuenta similar a la de la clase 3, así que omitimos los detalles.
@@ -45,42 +47,46 @@ Basta con demostrar que si $J=\{i_1,\dots,i_n\}\subseteq I$ es finito, entonces 
 \end{proof}
 
 \subsection{Aplicación}
- Si $X_{1},\dots,X_{d}$ son variables aleatorias definidas en un mismo EdP, definimos su \textit{función de distribución acumulada conjunta} $F_{X_{1}\cdots X_{d}} \colon \R^{d} \to [0,1]$ por la fórmula
- \[ F_{X_{1} \cdots X_{d}}(x_{1},\dots,x_{d}) \coloneq \mbb{P}(X_{1} \leq x_{1},\dots, X_{d} \leq x_{d}). \]
- Como consecuencia del Teorema anterior tenemos lo siguiente:
+Si $X_{1},\dots,X_{d}$ son variables aleatorias definidas en un mismo EdP, definimos su \textit{función de distribución acumulada conjunta} $F_{X_{1}\cdots X_{d}} \colon \R^{d} \to [0,1]$ por la fórmula
+\[ F_{X_{1} \cdots X_{d}}(x_{1},\dots,x_{d}) \coloneq \mbb{P}(X_{1} \leq x_{1},\dots, X_{d} \leq x_{d}). \]
+Como consecuencia del Teorema anterior tenemos lo siguiente:
 
- \begin{theorem}
-	 Sean $(\Omega, \mcal{F}, \mbb{P})$ un EdP y $X_{1},\dots,X_{d} \colon \Omega \to \R$ variables aleatorias. Entonces, el vector $(X_{1}, \dots, X_{d}) \colon \Omega \to \R^{d}$ es $\mcal{F}$-medible (se dice un \textit{vector aleatorio}) y las siguientes afirmaciones son equivalentes:
-	 \begin{enumerate}[i)]
-	 	\item $X_{1}, \dots, X_{d}$ son independientes;
+\begin{theorem}
+	Sean $(\Omega, \mcal{F}, \mbb{P})$ un EdP y $X_{1},\dots,X_{d} \colon \Omega \to \R$ variables aleatorias. Entonces, el vector $(X_{1}, \dots, X_{d}) \colon \Omega \to \R^{d}$ es $\mcal{F}$-medible (se dice un \textit{vector aleatorio}) y las siguientes afirmaciones son equivalentes:
+	\begin{enumerate}[i)]
+		\item $X_{1}, \dots, X_{d}$ son independientes;
 
-		 \item $F_{X_{1} \cdots X_{d}} = \prod_{i=1}^{d} F_{X_{i}}$;
+		\item $F_{X_{1} \cdots X_{d}} = \prod_{i=1}^{d} F_{X_{i}}$;
 
-		 \item $\mbb{P}_{X_{1} \cdots X_{d}} = \mbb{P}_{X_{1}} \times \cdots \times \mbb{P}_{X_{d}}$;
+		\item $\mbb{P}_{X_{1} \cdots X_{d}} = \mbb{P}_{X_{1}} \times \cdots \times \mbb{P}_{X_{d}}$;
 
-		 \item Las proyecciones canónicas $\pi_{i} \colon \R^{d} \to \R \ (i = 1,\dots,d)$ son variables aleatorias independientes en $(\R^{d}, \beta(\R^{d}), \mbb{P}_{X_{1} \cdots X_{d}})$ cada $\pi_{i}$ con distribución $\mbb{P}_{X_{i}}$ respectivamente.
-	 \end{enumerate}
- \end{theorem}
- \begin{proof}[Proof Other Information]
- 	Ver práctica 2.
- \end{proof}
+		\item Las proyecciones canónicas $\pi_{i} \colon \R^{d} \to \R \ (i = 1,\dots,d)$ son variables aleatorias independientes en $(\R^{d}, \beta(\R^{d}), \mbb{P}_{X_{1} \cdots X_{d}})$ cada $\pi_{i}$ con distribución $\mbb{P}_{X_{i}}$ respectivamente.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Ver práctica 2.
+\end{proof}
 
- \begin{note}
-	 Si $X = (X_{1},\dots,X_{d})$ es un vector aleatorio,
-	 \begin{itemize}
-		 \item $\mbb{P}_{X} = \mbb{P}_{X_{1} \cdots X_{d}}$ se llama la \textit{distribución conjunta} del vector $X$.
+\begin{note}
+	Si $X = (X_{1},\dots,X_{d})$ es un vector aleatorio,
+	\begin{itemize}
+		\item $\mbb{P}_{X} = \mbb{P}_{X_{1} \cdots X_{d}}$ se llama la \textit{distribución conjunta} del vector $X$.
 
-		 \item Las distribuciones $\mbb{P}_{X_{j}} \ (i = 1,\dots,d)$ se llaman \textit{marginales} de $X$.
-	 \end{itemize}
-	 Notar que $\mbb{P}_{X}$ determina las distribuciones marginales $\mbb{P}_{X_{i}}$. \par
-	 El Teorema dice que, en el caso independiente, vale la vuelta (en general no vale, $\mbb{P}_{X}$ guarda más información que las $\mbb{P}_{X_{i}}$).
+		\item Las distribuciones $\mbb{P}_{X_{j}} \ (i = 1,\dots,d)$ se llaman \textit{marginales} de $X$.
+	\end{itemize}
+
+	\begin{itemize}
+		\item[$\rightarrow$] $\mbb{P}_{X}$ determina las distribuciones marginales $\mbb{P}_{X_{i}}$.
+
+		\item[$\rightarrow$] El Teorema dice que, en el caso independiente, vale la vuelta (en general no vale, $\mbb{P}_{X}$ guarda más información que las $\mbb{P}_{X_{i}}$).
+	\end{itemize}
  \end{note}
 
- El siguiente resultado nos será de utilidad:
+\noindent El siguiente resultado nos será de utilidad:
 
  \begin{theorem}
-	 Sean $X$ e $Y$ variables aleatorias independientes. Entonces, si $h \colon \R^{2} \to \R$ es medible Borel con $h \geq 0$ o $\mbb{E}(|h(X,Y)|) < \infty$,
-	 \[ \mbb{E}(h(X,Y)) = \int \int h(x,y) \ d\mbb{P}_{X}(x) \ d \mbb{P}_{Y}(y). \]
+	 Sean $X$ e $Y$ variables aleatorias independientes. Entonces, si $h \colon \R^{2} \to \R$ es medible Borel con $h \geq 0$ ó $\mbb{E}(|h(X,Y)|) < \infty$,
+	 \[ \mbb{E}(h(X,Y)) = \int \int h(x,y) \ d\mbb{P}_{X}(x) d \mbb{P}_{Y}(y). \]
 	 En particular, si $h(x,y) = f(x)g(y)$ con $f,g \colon \R \to \R$ medibles Borel tales que $f,g \geq 0$ o $\mbb{E}(|f(X)|), \mbb{E}(|g(Y)|) < \infty$, entonces
 	 \[ \mbb{E}(f(X)g(Y)) = \mbb{E}(f(X)) \mbb{E}(g(Y)). \]
  \end{theorem}
@@ -89,15 +95,15 @@ Basta con demostrar que si $J=\{i_1,\dots,i_n\}\subseteq I$ es finito, entonces 
  \end{proof}
 
  \begin{remark}
-	 Notar que si $\mbb{E}(f(X)g(Y)) = \mbb{E}(f(X)) \mbb{E}(g(Y)) \quad \forall f,g \colon \R \to \R_{\geq 0}$ medibles Borel, entonecs $X$ e $Y$ son independientes (o sea, ambas condiciones son equivalentes).
+	 Notar que si $\mbb{E}(f(X)g(Y)) = \mbb{E}(f(X)) \mbb{E}(g(Y)) \quad \forall f,g \colon \R \to \R_{\geq 0}$ medibles Borel, entonces $X$ e $Y$ son independientes (o sea, ambas condiciones son equivalentes).
  \end{remark}
 
  \begin{corollary}
  	Si $X$ e $Y$ son independientes, entonces, para todo $z \in \R$,
 	 \[ F_{X + Y}(z) \coloneq \int_{\R} F_{X}(z - y) \ d\mbb{P}_{Y}(y) \eqcolon F_{X} * \mbb{P}_{Y}(z). \]
 	 En general, 
-	 \[ \mbb{P}_{X + Y}(B) = \int \mathds{1}_{B}(x + y) \ d \mbb{P}_{X}(x) \ d \mbb{P}_{Y}(y) \eqcolon \mbb{P}_{X} * \mbb{P}_{Y} (B) \quad \forall B \in \beta(\R). \]
-	 En particular, si $X$ e $Y$ son absolutamentes continuas, entonces $X + Y$ es absolutamente continua y $f_{X + Y} = f_{X} * f_{Y}$.
+	 \[ \mbb{P}_{X + Y}(B) = \int \int \mathds{1}_{B}(x + y) \ d \mbb{P}_{X}(x) \ d \mbb{P}_{Y}(y) \eqcolon \mbb{P}_{X} * \mbb{P}_{Y} (B) \quad \forall B \in \beta(\R). \]
+	 En particular, si $X$ e $Y$ son absolutamente continuas, entonces $X + Y$ es absolutamente continua y $f_{X + Y} = f_{X} * f_{Y}$.
  \end{corollary}
 
 \begin{proof}[Proof Other Information]
@@ -108,7 +114,7 @@ Basta con demostrar que si $J=\{i_1,\dots,i_n\}\subseteq I$ es finito, entonces 
 		(X,Y \text{ indep.}) &= \int \int \mathds{1}_{B}(x + y) \ d\mbb{P}_{X}(x) \ d\mbb{P}_{Y}(y) \\
 		&= \mbb{P}_{X} * \mbb{P}_{Y} (B)
 	.\end{align*}
-	En particular, si $B = -\infty,z]$, obtenemos
+	En particular, si $B = (-\infty,z]$, obtenemos
 	\begin{align*}
 		F_{X + Y}(z) = \mbb{P}_{X + Y}(B) &= \int\int \mathds{1}_{(-\infty, z-y]}(x) \ d\mbb{P}_{X}(x) \ d\mbb{P}_{Y}(y) \\
 		&= \int \mbb{P}_{X}((-\infty,z-y]) \ d\mbb{P}_{Y}(y) \\
@@ -119,7 +125,7 @@ Basta con demostrar que si $J=\{i_1,\dots,i_n\}\subseteq I$ es finito, entonces 
 		F_{X + Y}(z) &= \int \int \mathds{1}_{(-\infty,z]}(x + y) \ d\mbb{P}_{X}(x) \ d\mbb{P}_{Y}(y) \\
 		&= \int \int \mathds{1}_{(-\infty,z]}(x + y) f_{X}(x) f_{Y}(y) \ dx \ dy \\
 		(x' = x + y) &= \int \int \mathds{1}_{(-\infty,z]}(x') f_{X}(x' - y) f_{Y}(y) \ dx' \ dy \\
-		&= \int \mathds{1}_{(-\infty,z]}(x) \left( \int f_{X}(x' - y) f_{Y}(y) \ dy \right) \ dx' \\
-		&= \int_{-\infty}^{z} f_{X} * f_{Y}(x') \ dx
+		&= \int \mathds{1}_{(-\infty,z]}(x') \left( \int f_{X}(x' - y) f_{Y}(y) \ dy \right) \ dx' \\
+		&= \int_{-\infty}^{z} f_{X} * f_{Y}(x') \ dx'
 	.\qedhere\end{align*}
 \end{proof}

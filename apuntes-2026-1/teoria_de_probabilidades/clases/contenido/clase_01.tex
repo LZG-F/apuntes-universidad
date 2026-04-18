@@ -4,33 +4,37 @@
 
 \begin{itemize}
     \item Un espacio \(E\) será cualquier conjunto no vacío.
-    \item Cualquier colección de subconjuntos de un espacio \(E\) será denominada una \textbf{clase} (de subconjuntos de \(E\)).
+
+    \item Cualquier colección de subconjuntos de un espacio \(E\) será denominada una \textit{clase} (de subconjuntos de \(E\)).
 \end{itemize}
 
 \begin{definition}[\(\sigma\)-álgebra]
-    Una clase \(\Sigma\) de subconjuntos de un espacio \(E\) se dirá una \textbf{\(\sigma\)-álgebra} si cumple que:
+    Una clase \(\Sigma\) de subconjuntos de un espacio \(E\) se dirá una \textit{\(\sigma\)-álgebra} si cumple que:
 	\begin{enumerate}[i)]
         \item \(\emptyset \in \Sigma\) (en particular, \(\Sigma\) es no vacía).
+
         \item \(A \in \Sigma \Rightarrow A^c \in \Sigma\).
+
         \item \((A_n)_{n \in \mathbb{N}} \subset \Sigma \Rightarrow \bigcup_{n=1}^{\infty} A_n \in \Sigma\).
     \end{enumerate}
 \end{definition}
 
 \begin{definition}[Espacio medible]
-    Un \textbf{espacio medible} es cualquier par \((E, \Sigma)\) donde \(E\) es un espacio y \(\Sigma\) es una \(\sigma\)-álgebra (de subconjuntos de \(E\)).
+    Un \textit{espacio medible} es cualquier par \((E, \Sigma)\) donde \(E\) es un espacio y \(\Sigma\) es una \(\sigma\)-álgebra (de subconjuntos de \(E\)).
 \end{definition}
 
 \begin{definition}[Medida]
-    Dado un espacio medible \((E, \Sigma)\), una aplicación \(\mu : \Sigma \to [0, \infty]\) se dirá una \textbf{medida (no negativa)} sobre \((E, \Sigma)\) si cumple que:
+    Dado un espacio medible \((E, \Sigma)\), una aplicación \(\mu : \Sigma \to [0, \infty]\) se dirá una \textit{medida (no negativa)} sobre \((E, \Sigma)\) si cumple que:
 	\begin{enumerate}[i)]
         \item \(\mu(\emptyset) = 0\),
-        \item si \((A_n)_{n\in\mathbb{N}} \subset \Sigma\) son conjuntos disjuntos entonces \(\mu\left( \bigcup_{n=1}^{\infty} A_n \right) = \sum_{n=1}^{\infty} \mu(A_n)\). 
+		\item si \((A_n)_{n\in\mathbb{N}} \subset \Sigma\) son conjuntos disjuntos, entonces 
+		\[ \mu\left( \bigcup_{n=1}^{\infty} A_n \right) = \sum_{n=1}^{\infty} \mu(A_n). \]
     \end{enumerate}
-    Si \(\mu\) cumple (ii) decimos que \(\mu\) es \textbf{\(\sigma\)-aditiva}.
+    Si \(\mu\) cumple (ii) decimos que \(\mu\) es \textit{\(\sigma\)-aditiva}.
 \end{definition}
 
 \begin{definition}[Espacio de medida]
-    Un \textbf{espacio de medida} será cualquier terna \((E, \Sigma, \mu)\) donde \((E, \Sigma)\) es un espacio medible y \(\mu\) es una medida sobre \((E, \Sigma)\).
+    Un \textit{espacio de medida} será cualquier terna \((E, \Sigma, \mu)\) donde \((E, \Sigma)\) es un espacio medible y \(\mu\) es una medida sobre \((E, \Sigma)\).
 \end{definition}
 
 \subsection{Ejemplos de medidas}
@@ -66,39 +70,37 @@
 \end{eg}
 
 \subsection{Propiedades de una medida}
-Si \(\mu\) es una medida sobre \((E, \Sigma)\), entonces:
 
-\begin{property}[Monotonía]
-    \(A \subseteq B \implies \mu(A) \leq \mu(B)\).
+\begin{property}
+	Si \(\mu\) es una medida sobre \((E, \Sigma)\), entonces:
+	\begin{enumerate}[i)]
+		\item \textbf{Monotonía:} \(A \subseteq B \implies \mu(A) \leq \mu(B)\).
+
+    	\item \textbf{Subaditividad:} \(A \subseteq \bigcup_{n=1}^{\infty} A_n \implies \mu(A) \leq \sum_{n=1}^{\infty} \mu(A_n)\).
+		
+		\item \textbf{Continuidad inferior:} \(A_n \nearrow A \implies \mu(A_n) \nearrow \mu(A)\).
+
+		\item \textbf{Continuidad superior:} \(A_n \searrow A\) y \(\mu(A_n) < \infty\) para algún \(n\) (o \(\mu(A_1) < \infty\)) \(\implies \mu(A_n) \searrow \mu(A)\). (Puede ser falso sin la condición de finitud.)
+	\end{enumerate}
 \end{property}
-
-\begin{property}[Subaditividad]
-    \(A \subseteq \bigcup_{n=1}^{\infty} A_n \implies \mu(A) \leq \sum_{n=1}^{\infty} \mu(A_n)\).
-\end{property}
-
-\begin{property}[Continuidad inferior]
-    \(A_n \nearrow A \implies \mu(A_n) \nearrow \mu(A)\).
-\end{property}
-
-\begin{property}[Continuidad superior]
-    \(A_n \searrow A\) y \(\mu(A_n) < \infty\) para algún \(n\) (o \(\mu(A_1) < \infty\)) \(\implies \mu(A_n) \searrow \mu(A)\).
-    Puede ser falso sin esta condición.
-\end{property}
-
-\section{Espacios de probabilidad}
 
 \begin{definition}
-    Un espacio de medida \((E, \Sigma, \mu)\) se llamará un \textbf{espacio de probabilidad} si \(\mu(E) = 1\). En este caso, \(\mu\) recibe el nombre de \textbf{medida de probabilidad} (o probabilidad a secas).
+    Un espacio de medida \((E, \Sigma, \mu)\) se llamará un \textit{espacio de probabilidad} si \(\mu(E) = 1\). En este caso, \(\mu\) recibe el nombre de \textit{medida de probabilidad} (o probabilidad a secas).
 \end{definition}
 
-\subsection{Notación para espacios de probabilidad}
-\begin{itemize}
-    \item El espacio \(E\) se denota \(\Omega\), y lo llamamos \textbf{espacio muestral}.
-    \item Los elementos de \(\Omega\) se denotan \(\omega\) (y a veces se llaman \textbf{realizaciones}).
-    \item La \(\sigma\)-álgebra \(\Sigma\) se suele denotar por \(\mathcal{F}\).
-    \item Los elementos de la \(\sigma\)-álgebra \(\mathcal{F}\) se llaman \textbf{eventos}.
-    \item La medida \(\mu\) se denota \(\mathbb{P}\) o \(P\).
-\end{itemize}
+\begin{notation}~
+	\begin{itemize}
+		\item El espacio \(E\) se denota \(\Omega\), y lo llamamos \textit{espacio muestral}.
+
+		\item Los elementos de \(\Omega\) se denotan \(\omega\) (y a veces se llaman \textit{realizaciones}).
+
+		\item La \(\sigma\)-álgebra \(\Sigma\) se suele denotar por \(\mathcal{F}\).
+
+		\item Los elementos de la \(\sigma\)-álgebra \(\mathcal{F}\) se llaman \textit{eventos}.
+
+		\item La medida \(\mu\) se denota \(\mathbb{P}\) o \(P\).
+	\end{itemize}
+\end{notation}
 
 \subsection{Ejemplos de espacios de probabilidad}
 
@@ -111,7 +113,7 @@ Si \(\mu\) es una medida sobre \((E, \Sigma)\), entonces:
     \end{itemize}
 \end{eg}
 
-\begin{eg}[Espacios discretos]
+\begin{eg}[Espacios discretos]~
     \begin{itemize}
         \item \(\Omega\) un conjunto finito o numerable.
         \item \(\mathcal{F} = 2^{\Omega}\).
@@ -124,12 +126,13 @@ Si \(\mu\) es una medida sobre \((E, \Sigma)\), entonces:
 \end{eg}
 
 \subsection{Propiedades adicionales de una probabilidad}
-Si \(\mathbb{P}\) es una probabilidad sobre \((\Omega, \mathcal{F})\), entonces a las propiedades anteriores se suman:
-\begin{property}[Continuidad superior sin hipótesis adicional]
-    \(A_n \searrow A \implies \mathbb{P}(A_n) \searrow \mathbb{P}(A)\).
-\end{property}
-\begin{property}[Complemento]
-    \(\mathbb{P}(A^c) = 1 - \mathbb{P}(A)\).
+\begin{property}
+	Si \(\mathbb{P}\) es una probabilidad sobre \((\Omega, \mathcal{F})\), entonces a las propiedades anteriores se suman:
+	\begin{enumerate}
+		\item[iv)] \textbf{Continuidad superior:} \(A_n \searrow A \implies \mathbb{P}(A_n) \searrow \mathbb{P}(A)\). (la finitud está dada.)
+
+		\item[v)] \textbf{Complemento:} \(\mathbb{P}(A^c) = 1 - \mathbb{P}(A)\).
+	\end{enumerate}
 \end{property}
 
 \section{Análisis vs Probabilidad}
@@ -139,16 +142,25 @@ Aunque tanto en Análisis (Teoría de la medida) como en Probabilidad se trabaja
     \item \textbf{En Análisis:}
         \begin{itemize}
             \item \(E\) suele ser un espacio topológico (i.e. con alguna noción de geometría dentro), típicamente \(\mathbb{R}^d\).
-            \item \(\Sigma\) representa la clase de “conjuntos medibles”, i.e. conjuntos suficientemente buenos geométricamente como para poder “medirles”. 
+
+            \item \(\Sigma\) representa la clase de “conjuntos medibles”, i.e. conjuntos suficientemente buenos geométricamente como para poder “medirlos”. 
+
             \item \textbf{Ejemplo:} la clase de conjuntos medibles Lebesgue en \(\mathbb{R}^d\).
-            \item \(\mu(A)\) representa la “medida” del conjunto \(A\). Fijado el espacio \(E\) bajo estudio, típicamente \(\Sigma\) queda fija y \(\mu\) cambia.
+
+            \item \(\mu(A)\) representa la “medida” del conjunto \(A\). 
+
+			\item Fijado el espacio \(E\) bajo estudio, típicamente \(\Sigma\) queda fija y \(\mu\) cambia.
         \end{itemize}
     
     \item \textbf{En Probabilidad:}
         \begin{itemize}
             \item \(\Omega\) es el conjunto de posibles resultados de un experimento bajo estudio. No tiene por qué haber geometría subyacente.
+
             \item \(\mathcal{F}\) representa el conjunto de “información observable” sobre el experimento en cuestión.
-            \item \(\mathbb{P}(A)\) representa la probabilidad de que ocurra el evento \(A\). Fijado el experimento bajo estudio, típicamente \(\mathbb{P}\) queda fija y \(\mathcal{F}\) cambia.
+
+            \item \(\mathbb{P}(A)\) representa la probabilidad de que ocurra el evento \(A\). 
+
+			\item Fijado el experimento bajo estudio, típicamente \(\mathbb{P}\) queda fija y \(\mathcal{F}\) cambia.
         \end{itemize}
 \end{itemize}
 

@@ -3,53 +3,88 @@
 \section{Funciones medibles y variables aleatorias}
 
 \subsection{En Análisis}
-Sean \((\Omega, \mathcal{F})\) y \((E, \Sigma)\) dos espacios medibles. Una aplicación \(f: \Omega \to E\) se dirá \textbf{medible} de \((\Omega, \mathcal{F})\) a \((E, \Sigma)\) (o \((\Omega, \Sigma)\)-medible o medible a secas) si \(f^{-1}(B) \in \mathcal{F}\) para todo \(B \in \Sigma\).
 
-Si \((\Omega, \mathcal{F}, \mu)\) es un espacio de medida y \(f: \Omega \to E\) es \((\Omega, \Sigma)\)-medible, la medida \(\mu_f\) sobre \((E, \Sigma)\) dada por la fórmula
+Sean \((\Omega, \mathcal{F})\) y \((E, \Sigma)\) dos espacios medibles. Una aplicación \(f: \Omega \to E\) se dirá \textit{medible} de \((\Omega, \mathcal{F})\) a \((E, \Sigma)\) (o \((\mcal{F}, \Sigma)\)-medible o medible a secas) si 
+\[ f^{-1}(B) \in \mathcal{F} \text{ para todo } B \in \Sigma. \]
+
+Si \((\Omega, \mathcal{F}, \mu)\) es un espacio de medida y \(f: \Omega \to E\) es \((\mcal{F}, \Sigma)\)-medible, la medida \(\mu_f\) sobre \((E, \Sigma)\) dada por la fórmula
 \[
-\mu_f(B) := \mu \circ f^{-1}(B) = \mu(f^{-1}(B)) \in \mathcal{F} \quad (\text{pues } f \text{ es medible})
+\mu_f(B) := \mu \circ f^{-1}(B) = \mu(\underbrace{f^{-1}(B)}_{\in \mathcal{F}})
 \]
-se denomina la \textbf{medida inducida} o \textbf{push-forward} de \(\mu\) por \(f\).
+se denomina la \textit{medida inducida} o \textit{push-forward} de \(\mu\) por \(f\).
 
 \subsection{En Probabilidad}
-Una \textbf{variable aleatoria} es una aplicación \(X: \Omega \to \mathbb{R}\) medible de \((\Omega, \mathcal{F})\) a \((\mathbb{R}, \mathcal{B}(\mathbb{R}))\), donde:
+Una \textit{variable aleatoria} es una aplicación \(X: \Omega \to \mathbb{R}\) medible de \((\Omega, \mathcal{F})\) a \((\mathbb{R}, \mathcal{B}(\mathbb{R}))\), donde:
 \begin{itemize}
     \item \((\Omega, \mathcal{F})\) es algún espacio medible,
-    \item \(\mathcal{B}(\mathbb{R})\) es la clase de los \textbf{borelianos} en \(\mathbb{R}\).
+    \item \(\beta(\mathbb{R})\) es la clase de los \textbf{borelianos} en \(\mathbb{R}\).
 \end{itemize}
-Es decir, una variable aleatoria es cualquier aplicación medible a valores en \((\mathbb{R}, \mathcal{B}(\mathbb{R}))\).
+Es decir, una variable aleatoria es cualquier aplicación medible a valores en \((\mathbb{R}, \beta(\mathbb{R}))\).
 
-\textbf{Notación:} Las variables aleatorias se denotan por \(X\) en lugar de \(f\).
+\begin{notation}
+	Las variables aleatorias se denotan por \(X\) en lugar de \(f\).
+\end{notation}
 
 \begin{remark}
-    A veces se reemplaza \((\mathbb{R}, \mathcal{B}(\mathbb{R}))\) por \((\overline{\mathbb{R}}, \mathcal{B}(\overline{\mathbb{R}}))\) en la definición.
+    A veces se reemplaza \((\mathbb{R}, \beta(\mathbb{R}))\) por \((\overline{\mathbb{R}}, \beta(\overline{\mathbb{R}}))\) en la definición.
 \end{remark}
 
-\section{\(\sigma\)-álgebra de Borel}
+En general, si $X \colon \Omega \to E$ es medible, vamos a decir que $X$ es un \textit{elemento aleatorio} sobre $E$ (o variable aleatoria a valores en $E$). A lo largo del curso, trabajaremos con elementos aleatorios en donde el espacio $E$ es un espacio topológico.
 
 \begin{definition}
-    Dado un espacio topológico \((E, \mathcal{T})\), definimos su \textbf{\(\sigma\)-álgebra de Borel}, y la notamos \(\mathcal{B}(E)\), como aquella generada por \(\mathcal{T}\), i.e.
-    \[
-    \mathcal{B}(E) := \sigma(\mathcal{T}).
-    \]
+	Un \textit{espacio topológico} es un par $(E, \tau)$ donde:
+	\begin{itemize}
+		\item $E$ es un espacio;
+
+		\item $\tau$ es una topología sobre $E$.
+	\end{itemize}
+	Una \textit{topología} sobre $E$ es una clase $\tau$ de subconjuntos de $E$ que satisface:
+	\begin{enumerate}[i)]
+		\item $\varnothing$ y $E$ pertenecen a $\tau$;
+
+		\item $(U_{i})_{i \in I} \subset \tau \implies \bigcup_{i \in I} U_{i} \in \tau$;
+
+		\item $U_{1}, \dots, U_{k} \in \tau \implies \bigcap_{i=1}^{k} U_{i} \in \tau$.
+	\end{enumerate}
+	A los conjuntos de la clase $\tau$ se los llama \textit{abiertos} de $E$.
+\end{definition}
+\medskip
+\par En cualquier espacio topológico tenemos una $\sigma$-álgebra canónica:
+
+\begin{definition}
+	Dado un espacio $E$ y una clase $\mscr{C}$ de subconjuntos de $E$, definimos la \textit{$\sigma$-álgebra generada por $\mscr{C}$}, y la notamos por $\sigma(\mscr{C})$, como la menor $\sigma$-álgebra de subconjuntos de $E$ que contiene a $\mscr{C}$, i.e, tal que:
+	\begin{enumerate}[i)]
+		\item $\mscr{C} \subseteq \sigma(\mscr{C})$;
+
+		\item $\mcal{F} \ \sigma$-álgebra, $\mscr{C} \subseteq \mcal{F} \implies \sigma(\mscr{C}) \subseteq \mcal{F}$.
+	\end{enumerate}
 \end{definition}
 
-Luego, un \textbf{elemento aleatorio} sobre un espacio topológico \(E\) es una aplicación medible \(X: \Omega \to E\) desde un espacio medible \((\Omega, \mathcal{F})\) al espacio medible \((E, \mathcal{B}(E))\).
+\begin{remark}
+	Puede verificarse que vale la fórmula
+	\[ \sigma(\mscr{C}) \coloneq \bigcap_{\substack{\mcal{F} \ \sigma \text{-álgebra} \\ \mscr{C} \subseteq \mcal{F}}} \mcal{F}. \]
+\end{remark}
+
+\begin{definition}
+    Dado un espacio topológico \((E, \tau)\), definimos su \textit{\(\sigma\)-álgebra de Borel}, y la notamos \(\mathcal{B}(E)\), como aquella generada por \(\tau\), i.e.
+    \[
+    \mathcal{B}(E) := \sigma(\tau).
+    \]
+\end{definition}
+\medskip \par
+Luego, un \textit{elemento aleatorio} sobre un espacio topológico \(E\) es una aplicación medible \(X: \Omega \to E\) desde un espacio medible \((\Omega, \mathcal{F})\) al espacio medible \((E, \mathcal{B}(E))\). \par
 
 \section{Distribución de una variable aleatoria}
 
-Si \((\Omega, \mathcal{F}, \mathbb{P})\) es un espacio de probabilidad y \(X: \Omega \to E\) es \((\mathcal{F}, \mathcal{B}(E))\)-medible, entonces la medida \(\mathbb{P}_X\) inducida sobre \((E, \mathcal{B}(E))\) recibe el nombre de \textbf{distribución de \(X\)} (sobre \((E, \mathcal{B}(E))\)), i.e.
-\[
-\mathbb{P}_X(B) := \mathbb{P}(X^{-1}(B)), \quad B \in \mathcal{B}(E).
-\]
+Por último, si $(\Omega, \mcal{F}, \mbb{P})$ es un espacio de probabilidad y $X \colon \Omega \to E$ es $(\mcal{F}, \beta(E))$-medible, entonces la medida $\mbb{P}_{X}$ inducida sobre $(E, \beta(E))$ recibe el nombre de \textit{distribución de $X$} (sobre $(E, \beta(E))$), i.e,
+\[ \mbb{P}_{X}(B) \coloneq \mbb{P}(X^{-1}(B)), \quad B \in \beta(E). \]
 
-A los eventos \(X^{-1}(B)\) se los suele notar (en probabilidad) como \(\{X \in B\}\), i.e.
-\[
-\{X \in B\} := \{\omega \in \Omega : X(\omega) \in B\} \in \mathcal{F}.
-\]
-Se suprime el rol de \(\omega\) en la notación.
+A los eventos $X^{-1}(B)$ se los suele notar (en probabilidad) como $\{X \in B\}$, i.e, 
+\[ \{X \in B\} \coloneq \{\omega \in \Omega \ : \ X(\omega) \in B\} \in \mcal{F}. \]
+(Es decir, se suprime el rol de $\omega$ en la notación.)   
 
 \subsection{Diferencia de enfoques}
+
 \begin{itemize}
     \item \textbf{En Análisis}: interesan propiedades de las funciones medibles \(f\) que dependen de su dominio (continuidad, derivabilidad, convexidad, gráfico, etc.).
     \item \textbf{En Probabilidad}: no interesa el dominio de una variable aleatoria \(X\), sino su distribución en el codominio.
@@ -62,101 +97,105 @@ La distribución de una variable aleatoria \(X\) (a valores en \(\mathbb{R}\)) s
 F_X(x) := \mathbb{P}(X \le x).
 \]
 
-\subsection{Propiedades}
-La función de distribución \(F_X\) satisface:
-\begin{property}[Monotonía]
-    \(F_X\) es monótona creciente.
-\end{property}
-\begin{property}[Límites]
-    \[
-    F_X(-\infty) := \lim_{x \to -\infty} F_X(x) = 0 \quad \text{y} \quad F_X(+\infty) := \lim_{x \to +\infty} F_X(x) = 1.
-    \]
-\end{property}
-\begin{property}[Continuidad por la derecha]
-    \(F_X\) es continua a derecha, i.e.
-    \[
-    \lim_{y \to x^+} F_X(y) = F_X(x).
-    \]
-\end{property}
-\begin{property}[Saltos]
-    \[
-    \Delta F_X(x) := F_X(x) - F_X(x^-) = \mathbb{P}(X = x).
-    \]
-\end{property}
+\begin{property}
+	La función de distribución \(F_X\) satisface:
+	\begin{enumerate}[i)]
+		\item \(F_X\) es monótona creciente;
 
-Si una función \(F: \mathbb{R} \to [0,1]\) satisface (i), (ii) y (iii) arriba, diremos que se trata de una \textbf{función de distribución} (no necesariamente asociada a alguna variable aleatoria \(X\)).
+		\item $F_{X}(-\infty) := \lim_{x \to -\infty} F_{X}(x) = 0$ y $F_X(+\infty) := \lim_{x \to +\infty} F_X(x) = 1$;
 
+		\item \(F_X\) es continua a derecha, i.e. $F_{X}(x^{+}) \coloneq \lim_{y \to x^{+}} F_{X}(y) = F_{X}(x)$;
+
+		\item $F_{X}(x^{-}) \coloneq \lim_{y \to x^{-}} F_{X}(y) = \mbb{P}(X < x)$;
+
+		\item $\Delta F_X(x) := F_X(x) - F_X(x^-) = \mathbb{P}(X = x)$.
+	\end{enumerate}
+\end{property}
+\medskip \par
+Si una función \(F: \mathbb{R} \to [0,1]\) satisface (i), (ii) y (iii) arriba, diremos que se trata de una \textit{función de distribución} (no necesariamente asociada a alguna variable aleatoria \(X\)).
+\medskip \par
 El siguiente resultado nos dice por qué es suficiente \(F_X\) para describir \(\mathbb{P}_X\).
 
 \begin{theorem}
     Sea \(F\) una función de distribución. Entonces:
     \begin{enumerate}
-        \item Existe una variable aleatoria \(X\) (definida en algún espacio de probabilidad) tal que \(F = F_X\).
+        \item Existe una variable aleatoria \(X\) (definida en algún espacio de probabilidad) tal que \(F \equiv F_X\).
         \item La distribución de dicha variable es única, i.e.
         \[
-        F_{X_1} = F_{X_2} \implies \mathbb{P}_{X_1} = \mathbb{P}_{X_2} \quad (\text{si } \mathbb{P}_{X_1} = \mathbb{P}_{X_2} \text{ lo notamos } X_1 \overset{\mathcal{L}}{=} X_2).
-        \]
+        F_{X_1} = F_{X_2} \implies \mathbb{P}_{X_1} = \mathbb{P}_{X_2} \]
+		$(\text{si } \mathbb{P}_{X_1} = \mathbb{P}_{X_2} \text{ lo notamos } X_1 \overset{\mathcal{L}}{=} X_2)$.
     \end{enumerate}
 \end{theorem}
 
-\begin{corollary}
+\begin{corollary}~
     \begin{enumerate}
-        \item Dada una probabilidad \(\mathbb{P}\) sobre \((\mathbb{R}, \mathcal{B}(\mathbb{R}))\), la función \(F: \mathbb{R} \to [0,1]\) definida por \(F(x) := \mathbb{P}((-\infty, x])\) es una función de distribución.
-        \item Dada una función de distribución \(F\), existe una única probabilidad \(\mathbb{P}\) sobre \((\mathbb{R}, \mathcal{B}(\mathbb{R}))\) tal que \(\mathbb{P}((-\infty, x]) = F(x)\) para todo \(x \in \mathbb{R}\). De hecho, \(\mathbb{P} = \mathbb{P}_X\) donde \(X\) es la variable del teorema.
-    \end{enumerate}
-    En particular, existe una correspondencia biunívoca entre
-    \[
-    \mathcal{U} := \{\mathbb{P} : \mathbb{P} \text{ medida de probabilidad en } (\mathbb{R}, \mathcal{B}(\mathbb{R}))\}
-    \]
-    y
-    \[
-    \mathcal{B} := \{F : F \text{ función de distribución}\}
-    \]
-    dada por:
-    \[
-    \begin{array}{ccc}
-        \alpha: \mathcal{U} \to \mathcal{B}, & \quad & \beta: \mathcal{B} \to \mathcal{U}, \\
-        \mathbb{P} \mapsto F(x) := \mathbb{P}((-\infty, x]), & & F \mapsto \mathbb{P}_X \text{ donde } F_X = F \text{ (existe y es única)}.
-    \end{array}
-    \]
-    Como consecuencia del teorema, \(\alpha\) y \(\beta\) son inversas una de la otra.
-\end{corollary}
+        \item Dada una probabilidad \(\mathbb{P}\) sobre \((\mathbb{R}, \beta(\mathbb{R}))\), la función \(F: \mathbb{R} \to [0,1]\) definida por \(F(x) := \mathbb{P}((-\infty, x])\) es una función de distribución.
 
-\subsection{Demostración del Teorema (esquema)}
-Demostraremos únicamente el teorema; la deducción del corolario a partir de éste es sencilla. Además, lo haremos de dos formas:
+        \item Dada una función de distribución \(F\), existe una única probabilidad \(\mathbb{P}\) sobre \((\mathbb{R}, \beta(\mathbb{R}))\) tal que \(\mathbb{P}((-\infty, x]) = F(x)\) para todo \(x \in \mathbb{R}\). De hecho, \(\mathbb{P} = \mathbb{P}_X\) donde \(X\) es la variable del teorema.
+    \end{enumerate}
+\end{corollary}
+\medskip \par
+En particular, existe una correspondencia biunívoca entre
+\begin{align*}
+	\mscr{A} &\coloneq \{\mbb{P} \ : \ \mbb{P} \text{ medida de probabilidad en } (\R, \beta(\R))\}; \\
+	\mscr{B} &\coloneq \{F \ : \ F \text{ función de distribución}\}; \\
+	\mscr{C} &\coloneq \{\mbb{P}_{X} \ : \ X \text{ variable aleatoria (a valores en $\R$)}\};  
+\end{align*}
+dada por:
+\begin{align*}
+	\alpha \colon \mscr{A} &\to \mscr{B} \\
+	\mbb{P} &\mapsto F(x) \coloneq \mbb{P}((-\infty, x]); \\
+	& \\
+	\beta \colon \mscr{B} &\to \mscr{C} \\
+	F &\mapsto \mbb{P}_{X} \text{ donde } F_{X} = F; \\
+	& \\
+	\gamma \colon \mscr{C} &\to \mscr{A} \\
+	\mbb{P}_{X} &\mapsto \mbb{P}_{X}
+.\end{align*}
+Como consecuencia del Teorema, son inversas
+\[ \begin{cases}
+	\alpha \text { y } \gamma \circ \beta \\
+	\beta \text{ y } \alpha \circ \gamma \\
+	\gamma \text{ y } \beta \circ \alpha
+\end{cases} \]
+
+Por otro lado, demostraremos únicamente el teorema; la deducción del corolario a partir de éste es sencilla. Además, lo haremos de dos formas:
 \begin{enumerate}
-    \item \textbf{Forma canónica}: tomamos \((\Omega, \mathcal{F}) := (\mathbb{R}, \mathcal{B}(\mathbb{R}))\) y \(X := \operatorname{id}_\Omega\) (\(X(\omega) = \omega\)) y definimos \(\mathbb{P}\) sobre \((\Omega, \mathcal{F})\) de manera tal que en \((\Omega, \mathcal{F}, \mathbb{P})\) la variable \(X := \operatorname{id}_\Omega\) cumpla lo buscado.
-    \item \textbf{Forma constructiva}: tomamos \((\Omega, \mathcal{F}, \mathbb{P}) := ((0,1), \mathcal{B}((0,1)), \text{leb}(0,1))\) y definimos allí una variable \(X\) que cumpla lo buscado.
+    \item \textbf{Forma canónica}: tomamos \((\Omega, \mathcal{F}) := (\mathbb{R}, \beta(\mathbb{R}))\) y \(X := \operatorname{id}_\Omega\) (\(X(\omega) = \omega\)) y definimos \(\mathbb{P}\) sobre \((\Omega, \mathcal{F})\) de manera tal que en \((\Omega, \mathcal{F}, \mathbb{P})\) la variable \(X := \operatorname{id}_\Omega\) cumpla lo buscado.
+
+	\item \textbf{Forma constructiva}: tomamos \((\Omega, \mathcal{F}, \mathbb{P}) := ((0,1), \beta((0,1)), \text{Leb}_{(0,1)})\) y definimos allí una variable \(X\) que cumpla lo buscado.
 \end{enumerate}
 
 \section{Tipos de variables aleatorias}
 
 Trabajaremos frecuentemente con dos tipos de variables aleatorias.
 
-\begin{definition}[Variable aleatoria discreta]
-    Una variable aleatoria \(X\) se dice \textbf{discreta} si existe \(S \subseteq \mathbb{R}\) a lo sumo numerable tal que \(\mathbb{P}_X(S) = 1\). Equivalentemente, \(X\) es discreta si toma a lo sumo numerables valores (salvo medida nula). El conjunto
-    \[
-    \mathcal{A}_X = \{x \in \mathbb{R} : \mathbb{P}(X = x) > 0\}
-    \]
-    es el conjunto de \textbf{átomos} de \(X\).
+\begin{definition}
+	Una variable aleatoria \(X\) se dice \textit{discreta} si existe \(S \subseteq \mathbb{R}\) a lo sumo numerable tal que \(\mathbb{P}_X(S) = 1\). (Es decir, si $X$ toma a lo sumo numerables valores, salvo medida nula.)
 \end{definition}
 
-Si \(X\) es discreta, definimos su \textbf{función de probabilidad puntual} como la función \(p_X : \mathcal{A}_X \to [0,1]\) dada por
+Equivalentemente, \(X\) es discreta $\iff \mbb{P}_{X}(\mcal{A}_{X}) = 1$, donde
 \[
-p_X(x) := \mathbb{P}(X = x).
+\mathcal{A}_{X} = \{x \in \mathbb{R} \ : \ \mathbb{P}(X = x) > 0\}
+\]
+es el conjunto de \textit{átomos} (siempre a lo sumo numerable) de \(X\).
+
+Si \(X\) es discreta, definimos su \textit{función de probabilidad puntual} como la función \(p_{X} : \mathcal{A}_{X} \to [0,1]\) dada por
+\[
+p_X(x) := \mathbb{P}_{X}(\{x\}). 
 \]
 
-\begin{definition}[Variable aleatoria absolutamente continua]
-    Una variable aleatoria \(X\) se dice \textbf{absolutamente continua} si existe una función \(f: \mathbb{R} \to \mathbb{R}_{\ge 0}\) medible Borel tal que
+\begin{definition}
+    Una variable aleatoria \(X\) se dice \textit{absolutamente continua} si existe una función \(f_{X}: \mathbb{R} \to \mathbb{R}_{\ge 0}\) medible Borel tal que
     \[
-    F_X(x) = \int_{-\infty}^{x} f(t)\,dt \quad \text{para todo } x \in \mathbb{R}.
+    F_X(x) = \int_{-\infty}^{x} f_{X}(t)\,dt \quad \text{para todo } x \in \mathbb{R}.
     \]
-    En tal caso, la función \(f\) se llama la \textbf{densidad} de \(X\).
+    En tal caso, la función \(f_{X}\) se llama la \textit{densidad} de \(X\).
 \end{definition}
 
 Puede verificarse que \(X\) es absolutamente continua \(\iff\) \(F_X\) es absolutamente continua, i.e. \(F_X\) es derivable en casi todo punto, \(F_X' \in L^1(\mathbb{R})\) y se verifica que
 \[
-F_X(x) = \int_{-\infty}^{x} F_X'(t)\,dt \quad \text{para todo } x \in \mathbb{R}.
+F_X(x) = \int_{-\infty}^{x} F_{X}'(t)\,dt \quad \text{para todo } x \in \mathbb{R}.
 \]
 Además, en tal caso vale que \(f_X = F_X'\) en casi todo punto.
 

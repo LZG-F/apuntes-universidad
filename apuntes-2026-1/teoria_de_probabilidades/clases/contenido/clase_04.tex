@@ -1,104 +1,155 @@
 \clase{4}{11 de Marzo}{}
 
-\section{Independencia}
+\section{Medidas Producto}
 
-\begin{definition}[a]
-	Sea $\Omega$ un conjunto y $(E, \mcal{F})$ un espacio medible. Sea $f \colon \Omega  \to E$. Definimos $\sigma(f)$ como la $\sigma$-álgebra más pequeña de $\Omega$ que hace que $f$ sea medible. Es facil ver que
-	\[ \sigma(f) = \{f^{-1}(B) \ | \ B \in \mcal{F}\}. \] 
-	Sea $(f_{i})_{i \in I}$ una familia de funciones $f_{i} \to E_{i}$ donde $(E_{i}, \mcal{F}_{i})$ es espacio medible para cada $i$. Entonces, defino $\sigma(f_{i};\ i \in I)$ como la $\sigma$-álgebra más pequeña que hace que todas las $f_{i}$ sean medibles. Se puede demostrar que
-	\[ \sigma(f_{i};\ i \in I) = \sigma\left(\bigcup_{i \in I} \sigma(f_{i})\right). \]
+\begin{definition}
+	Dado un espacio $\Omega$, un espacio medible $(E, \mcal{M})$ y una función $f \colon \Omega  \to E$, definimos la \textit{$\sigma$-álgebra generada por $f$} como la menor $\sigma$-álgebra $\sigma(f)$ de subconjuntos de $\Omega$ que hace que $f$ sea medible, i.e.
+
+	\[ \sigma(f) \coloneq \{f^{-1}(B) \ | \ B \in \mcal{M}\}. \] 
+
+	Sea $(f_{i})_{i \in I}$ una familia de funciones $f_{i} \colon \Omega \to E_{i}$ donde $(E_{i}, \mcal{M}_{i})$ es espacio medible para cada $i$. Entonces, definimos la \textit{$\sigma$-álgebra generada por $(f_{i})_{i \in I}$} como la menor $\sigma$-álgebra $\sigma(f_{i} \ : \ i \in I)$ que hace que todas las $f_{i}$ sean medibles, i.e.
+	\begin{align*}
+		\sigma(f_{i} \ : \ i \in I) &\coloneq \sigma\left(\bigcup_{i \in I} \sigma(f_{i})\right) \\
+		&= \sigma(\{f_{i}^{-1}(B) \ : \ B \in \mcal{M}_{i},\ i \in I\}) \\
+	\end{align*}
 \end{definition}
 
-\begin{definition}[Espacio Producto]
-	Sea $(E_{1}, \mcal{F}_{1}, \mu_{1}),\ (E_{2}, \mcal{F}_{2}, \mu_{2})$ espacios $\sigma$-finitos. Definimos $\mcal{F}_{1} \times \mcal{F}_{2}$ como $\sigma(\pi_{i} \ \colon \ i \in \{1,2\})$, donde
-	\begin{align*}
-		\pi_{1} &\colon E_{1} \times E_{2} \to E_{1} \\
-		&\pi_{1}(x,y) = x
-	,\end{align*}
-	\begin{align*}
-		\pi_{2} &\colon E_{1} \times E_{2} \to E_{2} \\
-		&\pi_{2}(x,y) = y
-	,\end{align*}
-	definimos $\mu_{1} \times \mu_{2}$ como la única medida en $(E_{1} \times E_{2}, \mcal{F}_{1} \times \mcal{F}_{2})$ tal que
-	\[ \mu_{1} \times \mu_{2}(A \times B) = \mu_{1}(A) \cdot \mu_{2}(B) \quad \forall A \in \mcal{F}_{1},\ B \in \mcal{F}_{2}. \]
+\begin{definition}
+	Sean $(E_{1}, \mcal{M}_{1}, \mu_{1})$ y $(E_{2}, \mcal{M}_{2}, \mu_{2})$ espacios de medida $\sigma$-finita. Definimos la \textit{$\sigma$-álgebra producto} $\mcal{M}_{1} \times \mcal{M}_{2}$ en $E_{1} \times E_{2}$ como aquella generada por las proyecciones $\pi_{i} \colon E_{1} \times E_{2} \to E_{i} \ (i = 1,2)$ dadas por
+	\[ \pi_{1}(x,y) = x, \quad \pi_{2}(x,y) = y \]
 \end{definition}
-
-\begin{theorem}
-	$\mu_{1} \times \mu_{2}$ existe y es única.
-\end{theorem}
-
-\begin{observe}
-	Los conjuntos de la forma $A \times B$ con $A \in \mcal{F}_{1}$ y $B \in \mcal{F}_{2}$ sse denomina rectángulo.
-\end{observe}
 
 \begin{note}
-	La demostración del teorema es una aplicación del teorema de Caratheodory, una vez que sabemos que $\mcal{F}_{1} \times \mcal{F}_{2} = \sigma(\text{rectángulos})$.
+	Puede verificarse que si definimos la clase $\mcal{R}$ de \textit{rectángulos} en $E_{1} \times E_{2}$
+	\[ \mcal{R} \coloneq \{A \times B \ : \ A \in \mcal{M}_{1}, \ B \in \mcal{M}_{2}\}, \]
+	entonces $\mcal{M}_{1} \times \mcal{M}_{2} = \sigma(\mcal{R})$.
 \end{note}
 
+\begin{theorem}
+	Existe una única medida $\mu_{1} \times \mu_{2}$ en $\mcal{M}_{1} \times \mcal{M}_{2}$ tal que 
+	\[ \mu_{1} \times \mu_{2} (A \times B) = \mu_{1}(A) \mu_{2}(B) \quad \forall A \in \mcal{M}_{1},\ B \in \mcal{M}_{2}. \]
+	Dicha medida recibe el nombre de la \textit{medida producto} entre $\mu_{1}$ y $\mu_{2}$.
+\end{theorem}
+
 \begin{eg}
-	$\mscr{L}(\R^{2}) = \mscr{L}(\R) \times \mscr{L}(\R)$. Por inducción, podemos extender la definición de producto a familias finitas de espacios de medida.
+	$\mscr{L}(\R^{d}) = \mscr{L}(\R^{j}) \times \mscr{L}(\R^{d-j})$ para $1 \leq j \leq d-1$.
 \end{eg}
 
-\begin{definition}[Probabilidad Condicional]
-	Sea $(\Omega, \mcal{F}, \mathbb{P})$ un espacio de probabilidad. Se define
-	\[ \mathbb{P}(A | B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)} \]
-	siempre que $\mathbb{P}(B) > 0$. Si $\mathbb{P}(A) = \mathbb{P}(A | B)$, entonces $\mathbb{P}(A \cap B) = \mathbb{P}(A) \cdot \mathbb{P}(B)$.
-\end{definition}
-
-\begin{definition}[Independencia]
+\begin{theorem}[Fubini-Tonelli]
+	Sea $f \colon E_{1} \times E_{2} \to [0,\infty]$ medible. Entonces:
 	\begin{enumerate}[i)]
-		\item Decimos que 2 eventos son independientes si
+		\item Para cada $x \in E_{1}$, la aplicación $y \mapsto f(x,y)$ es $\mcal{M}_{2}$-medible;
+
+		\item Para cada $y \in E_{2}$, la aplicación $x \mapsto f(x,y)$ es $\mcal{M}_{1}$-medible;
+
+		\item Las aplicaciones $x \mapsto \int_{E_{2}} f(x,y) \ d\mu_{2}(y)$, $y \mapsto \int_{E_{1}} f(x,y) \ d\mu_{1}(x)$ son medibles;
+
+		\item Valen las igualdades:
+		\begin{align*}
+			\int_{E_{1} \times E_{2}} f(x,y) \ d(\mu_{1} \times \mu_{2})(x,y) &= \int_{E_{1}} \left[ \int_{E_{2}} f(x,y) \ d\mu_{2}(y) \right] \ d\mu_{1}(x) \\
+			&= \int_{E_{2}} \left[ \int_{E_{1}} f(x,y) \ d\mu_{1}(x) \right] \ d\mu_{2}(y)
+		.\end{align*}
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Fubini]
+	Sea $f \colon E_{1} \times E_{2} \to [-\infty,\infty]$ $(\mu_{1},\mu_{2})$-integrable. Entonces:
+	\begin{enumerate}[i)]
+		\item $y \mapsto f(x,y)$ es $\mu_{2}$-integrable para $\mu_{1}$-casi todo $x \in E_{1}$;
+
+		\item $x \mapsto f(x,y)$ es $\mu_{1}$-integrable para $\mu_{2}$-casi todo $y \in E_{2}$;
+
+		\item Las aplicaciones $x \mapsto \int_{E_{2}} f(x,y) \ d\mu_{2}(y)$, $y \mapsto \int_{E_{1}} f(x,y) \ d\mu_{1}(x)$ son integrables;
+
+		\item Valen las igualdades:
+		\begin{align*}
+			\int_{E_{1} \times E_{2}} f(x,y) \ d(\mu_{1} \times \mu_{2})(x,y) &= \int_{E_{1}} \left[ \int_{E_{2}} f(x,y) \ \mu_{2}(y) \right] \ d\mu_{1}(x) \\
+			&= \int_{E_{2}} \left[ \int_{E_{1}} f(x,y) \ d\mu_{1}(x) \right] \ d\mu_{2}(y)
+		.\end{align*}
+	\end{enumerate}
+\end{theorem}
+\medskip \par
+Por inducción, podemos extender la definición de medida producto a cualquier cantidad finita de factores, i.e. $\mu = \mu_{1} \times \cdots \times \mu_{n} \ (n \geq 2)$.
+
+\section{Independencia}
+
+Sea $(\Omega, \mcal{F}, \mathbb{P})$ un espacio de probabilidad y $A,B \in \mcal{F}$ con $\mbb{P}(B) > 0$. Definimos la \textit{probabilidad condicional de $A$ dado $B$} como
+\[ \mathbb{P}(A | B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)} \]
+(la parte derecha de la igualdad representa las chances que ocurra $A$ si restringimos nuestro espacio a únicamente los casos donde ocurre $B$) y diremos que $A$ es independiente de $B$ si $\mbb{P}(A | B) = \mbb{P}(A)$.
+
+\begin{remark}
+	Si $\mbb{P}(A | B) = \mbb{P}(A) \implies \mbb{P}(A \cap B) = \mbb{P}(A) \mbb{P}(B)$.
+\end{remark}
+
+Esto nos permite dar la siguiente definición más general.
+
+\begin{definition}
+	Sea $(\Omega, \mcal{F}, \mbb{P})$ un espacio de probabilidad
+	\begin{itemize}
+		\item Decimos que 2 eventos son \textit{independientes} si
 		\[ \mathbb{P}(A \cap B) = \mathbb{P}(A) \cdot \mathbb{P}(B). \]
 
-		\item Dadas 2 variables aleatorias $X$ e $Y$, decimos que son independientes si $\forall B_{1}, B_{2} \in \mcal{B}(\R),$
+		\item Dadas 2 variables aleatorias $X$ e $Y$, decimos que son \textit{independientes} si $\forall B_{1}, B_{2} \in \beta(\R),$
 		\[ \mathbb{P}(X \in B_{1}, Y \in B_{2}) = \mathbb{P}(X \in B_{1}) \cdot \mathbb{P}(Y \in B_{2}). \]
 		
-		\item Dadas 2 sub-$\sigma$-álgebras $\mcal{F}_{1}$ y $\mcal{F}_{2}$, decimos que son independientes si $\forall A \in \mcal{F}_{1}$ y $B \in \mcal{F}_{2}$, $A$ y $B$ son independientes de acuerdo a i).
-	\end{enumerate}
+		\item Dadas 2 sub-$\sigma$-álgebras $\mcal{G}_{1}$ y $\mcal{G}_{2}$, decimos que son \textit{independientes} si $\forall A \in \mcal{G}_{1}$ y $B \in \mcal{G}_{2}$, $A$ y $B$ son independientes de acuerdo a i).
+	\end{itemize}
 \end{definition}
 
-\begin{prop}
+\begin{prop}~
 	\begin{enumerate}
 		\item $A$ y $B$ son independientes $\iff \mathds{1}_{A}$ y $\mathds{1}_{B}$ son independientes.
 
 		\item $X$ e $Y$ son independientes $\iff \sigma(X)$ y $\sigma(Y)$ son independientes.
 
-		\item $\mcal{F}_{1}$ y $\mcal{F}_{2}$ son independientes $\iff \forall X \in \mcal{F}_{1},\ Y \in \mcal{F}_{2}$ se tiene que $X$ e $Y$ son independientes.
+		\item $\mcal{G}_{1}$ y $\mcal{G}_{2}$ son independientes $\iff$ Para todo par de variables aleatorias $X$ e $Y$ con $X$ $\mcal{G}_{1}$-medible e $Y$ $\mcal{G}_{2}$-medible se tiene que $X$ e $Y$ son independientes.
 	\end{enumerate}
 \end{prop}
 \begin{proof}[Proof ]
 	\begin{enumerate}[i)]
-		\item $\boxed{\Leftarrow}$ Basta tomar $B_{1} = B_{2} = \{1\}$ puesto que $\mathds{1}_{A}^{-1} \{1\} = A,\ \mathds{1}_{B}^{-1} \{1\} = B$ y por lo tanto $\mathbb{P}(A \cap B) = \mathbb{P}(A) \cdot \mathbb{P}(B)$. \par
-		$\boxed{\Rightarrow}$ Se tiene que
-		\[ \sigma(\mathds{1}_{A}) = \{A, A^{c}, \varnothing, \Omega\} \quad \text{y} \quad \sigma(\mathds{1}_{B}) = \{B, B^{c}, \varnothing, \Omega\}. \]  
-		Por demostrar: $\mathbb{P}(\Omega \cap A) = \mathbb{P}(\Omega) \cdot \mathbb{P}(A)$. \par
-		En el caso con $A$ y $B^{c}$, se tiene
+		\item $\{\mathds{1}_{A} \in C\} \in \{\varnothing, A, A^{c}, \Omega\}$ y $\{\mathds{1}_{B} \in D\} \in \{\varnothing, B, B^{c}, \Omega\}$. Luego, la implicación $\Leftarrow)$ es inmediata. \par
+		Para ver $\Rightarrow)$, hay que verificar 16 pares de eventos. Aquellos que involucran $\varnothing$ y/o $\Omega$ son inmediatos. Sólo resta ver $A^{c}$ y $B$, $A^{c}$ y $B^{c}$, $A \cap B^{c}$. Hacemos el primero:
 		\begin{align*}
-			\mathbb{P}(A \cap B^{c}) &= \mathbb{P}(A \setminus A \cap B) \\
-			&= \mathbb{P}(A) - \mathbb{P}(A \cap B) \\
-			&= \mathbb{P}(A) - \mathbb{P}(A) \cdot \mathbb{P}(B) \\
-			&= \mathbb{P}(A) \cdot (1 - \mathbb{P}(B)) \\
-			&= \mathbb{P}(A) \cdot \mathbb{P}(B^{c})
+			\mbb{P}(A^{c} \cap B) &= \mbb{P}(B - A) \\
+			&= \mbb{P}(B) - \mbb{P}(A \cap B) \\
+			&= \mbb{P}(B) - \mbb{P}(A) \mbb{P}(B) \\
+			&= (1 - \mbb{P}(A)) \mbb{P}(B) \\
+			&= \mbb{P}(A^{c}) \mbb{P}(B)
 		.\end{align*}
-		El caso con $A^{c}$ y $B$, junto con el otro caso son iguales.
 
-		\item $\boxed{\Leftarrow}$ (usar que $\sigma(f) = \{f^{-1}(B) \ | \ B \in \mcal{B}(\R)\}$). \par
+		\item Basta con observar que 
+		\[ \begin{cases}
+			\sigma(X) = \{\{X \in B_{1}\} \ : \ B_{1} \in \beta(\R)\} \\
+			\sigma(Y) = \{\{Y \in B_{2}\} \ : \ B_{2} \in \beta(\R)\}.
+		\end{cases} \]
 
-		\item $\boxed{\Leftarrow}$ Sean $A \in \mcal{F}_{1}, B \in \mcal{F}_{2}$, entonces $\mathds{1}_{A} \in \mcal{F}_{1}, \mathds{1}_{B} \in \mcal{F}_{2}$.
+		\item $\boxed{\Leftarrow}$ Notar que
+		\begin{align*}
+			\mbb{P}(X \in B_{1},\ Y \in B_{2}) &= \mbb{P}(\{X \in B_{1}\} \cap \{Y \in B_{2}\}) \\
+			&= \mbb{P}(X \in B_{1}) \mbb{P}(X \in B_{2})
+		.\end{align*}
+		Entonces, $X$ e $Y$ independientes. \par
+		$\boxed{\Rightarrow}$ Basta tomar $X = \mathds{1}_{A}$, $Y = \mathds{1}_{B}$ con $A \in \mcal{G}_{1}$ y $B \in \mcal{G}_{2}$.
 	\end{enumerate}
 \end{proof}
 
 \begin{definition}
 	Sea $(\Omega, \mcal{F}, \mathbb{P})$ un espacio de probabilidad.
 	\begin{enumerate}[i)]
-		\item Dados $\mcal{F}_{1},\dots, \mcal{F}_{n} \subset \mcal{F}$ sub-familias arbitrarias de eventos. Decimos que son independientes si $\forall J \subset \{1, \dots, n\}$ y toda elección $A_{j} \in \mcal{F}_{j},\ j \in J$, se tiene que
-		\[ \mathbb{P}\Bigg( \bigcap_{j \in J} A_{j} \Bigg) = \prod_{j \in J} \mathbb{P}(A_{j}). \]
+		\item Dadas subclases $\mcal{F}_{1},\dots, \mcal{F}_{n} \subseteq \mcal{F}$, diremos que son \textit{independientes} si para cada $J \subseteq \{1, \dots, n\}$ no vacío y toda elección $A_{j} \in \mcal{F}_{j}$,
+		\[ \mathbb{P}\Big( \bigcap_{j \in J} A_{j} \Big) = \prod_{j \in J} \mathbb{P}(A_{j}). \]
 
-		\item Dadas $X_{1},\dots, X_{n}$ variables aleatorias, decimos que son independientes si $\sigma(X_{1}, \dots, \sigma(X_{n})$ son independientes de acuerdo a i).
+		\item Dadas $X_{1},\dots, X_{n}$ variables aleatorias, decimos que son \textit{independientes} si $\sigma(X_{1}), \dots, \sigma(X_{n})$ lo son (de acuerdo a (i)).
 
-		\item Dados eventos $A_{1}, \dots, A_{n}$, decimos que son independientes si $\mathds{1}_{A_{1}}, \dots, \mathds{1}_{A_{n}}$ son independientes de acuerdo a ii).
+		\item Dados eventos $A_{1}, \dots, A_{n} \in \mcal{F}$, diremos que son \textit{independientes} si las variables aleatorias lo son (de acuerdo a (ii)).
 	\end{enumerate}
 \end{definition}
+
+\begin{note}
+	Cuidado! Que $A_{1}, \dots, A_{n}$ sean independientes \textbf{NO} significa que
+	\[ \mbb{P}\Big( \bigcap_{i=1}^{n} A_{i} \Big) = \prod_{i=1}^{n} \mbb{P}(A_{i}) \]
+	sino que para cualquier $J \subseteq \{1, \dots, n\}$, $\mbb{P}(\bigcap_{j \in J} A_{j}) = \prod_{j \in J} \mbb{P}(A_{j})$, lo cual en general es una condición estrictamente más fuerte. Tampoco basta con que sean independientes de a pares.
+\end{note}
 
 \begin{eg}
 	Sea $X_{1}, X_{2}, X_{3}$ variables aleatorias independientes con
