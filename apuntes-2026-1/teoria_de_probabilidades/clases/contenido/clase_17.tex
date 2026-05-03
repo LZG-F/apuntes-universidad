@@ -1,0 +1,135 @@
+\clase{17}{27 de Abril}{}
+
+\section{Probabilidad Condicional Regular}
+
+$\mbb{E}(h(X,Y) \ | \ Y) = g_{h}(Y)$, donde
+\begin{align*}
+	g_{h}(y) &\coloneq \int_{\R} h(x,y) \ dQ_{y}(x), \\
+	Q_{y} \ "&=" \ \mbb{P}_{X}( \cdot \ | \ Y = y), \\
+	g_{h}(y) \ "&=" \ \mbb{E}(h(X,Y) \ | \ Y = y)
+.\end{align*}
+
+\begin{remark}
+	\begin{enumerate}
+		\item Esto generaliza la fórmula de \textit{Probabilidad Total} cuando $Y$ es discreta:
+		\[ \mbb{E}(h(X,Y)) = \sum_{y \in \mcal{A}_{Y}} \mbb{E}(h(X,Y) \ | \ Y = y) \mbb{P}(Y = y). \]
+		se convierte en
+		\[ \mbb{E}(h(X,Y)) = \mbb{E}(g_{h}(Y)) \ "=" \ \int_{\R} \underbrace{\mbb{E}(h(X,Y) \ | \ Y = y)}_{g_{h}(y)} \mbb{P}_{Y}(dy). \]
+	
+		\item Esto generaliza el Teorema de Fubini al caso de medidas que no son producto:
+		\begin{align*}
+			\int_{\R^{2}} h \ d\mbb{P}_{XY} = \mbb{E}(h(X,Y)) &= \int_{\R} g_{h}(y) \ d\mbb{P}_{Y}(y) \\
+			&= \int_{\R} \int_{\R} h(x,y) \ dQ_{y}(x) \mbb{P}_{Y}(y)
+		.\end{align*}
+	\end{enumerate}
+\end{remark}
+
+\chapter{Martingalas}
+
+\begin{definition}
+	Sea $(\Omega, \mcal{F})$ un espacio medible. Una familia $(\mcal{F}_{n})_{n \in \N_{0}}$ de sub-$\sigma$-álgebras de $\mcal{F}$ se llamará una \textit{filtración} de $(\Omega, \mcal{F})$ si
+	\[ \mcal{F}_{0} \subseteq \mcal{F}_{1} \subseteq \cdots \subseteq \mcal{F}_{\infty} \coloneq \sigma \Big( \bigcup_{n \in \N} \mcal{F}_{n} \Big) \subseteq \mcal{F}. \]
+	La terna $(\Omega, \mcal{F}, (\mcal{F}_{n})_{n \in \N_{0}})$ se dice un \textit{espacio (medible) filtrado}.
+\end{definition}
+
+\begin{definition}
+	\begin{enumerate}
+		\item Sea $(\mcal{F}_{n})_{n \in \N_{0}}$ una filtración de $(\Omega, \mcal{F})$. Un proceso estocástico $(X_{n})_{n \in \N_{0}}$ se dirá \textit{adaptado} a $(\mcal{F}_{n})_{n \in \N_{0}}$ si $X_{n}$ es $\mcal{F}_{n}$-medible para cada $n \in \N_{0}$.
+
+		\item Sea $X = (X_{n})_{n \in \N_{0}}$ un proceso estocástico en $(\Omega, \mcal{F}, \mbb{P})$. Definimos la \textit{filtración natural} $(\mcal{G}_{n})_{n \in \N_{0}}$ asociada a $X$ como la menor filtración con respecto a la cual $X$ es adaptado, i.e.
+		\[ \mcal{G}_{n} \coloneq \sigma(X_{n}, X_{n-1}, \dots, X_{0}). \]
+	\end{enumerate}
+\end{definition}
+
+\begin{definition}
+	Un proceso estocástico $X = (X_{n})_{n \in \N_{0}}$ sobre un espacio filtrado $(\Omega, \mcal{F}, (\mcal{F}_{n})_{n \in \N_{0}}, \mbb{P})$ se dirá una \textit{martingala} si
+	\begin{enumerate}
+		\item $X$ es adaptado a $(\mcal{F}_{n})_{n \in \N_{0}}$;
+
+		\item $\mbb{E}(|X_{n}|) < \infty \quad \forall n \in \N_{0}$;
+
+		\item $\mbb{E}(X_{n+1} \ | \ \mcal{F}_{n}) = X_{n} \quad \forall n \in \N_{0}$.
+	\end{enumerate}
+	Si reemplazamos a (3) por
+	\begin{enumerate}
+		\item[$3^{+}.$] $\mbb{E}(X_{n+1} \ | \ \mcal{F}_{n}) \leq X_{n}$, $X$ se dice una \textit{supermartingala}.
+
+		\item[$3^{-}.$] $\mbb{E}(X_{n+1} \ | \ \mcal{F}_{n}) \geq X_{n}$, $X$ se dice \textit{submartingala}.
+	\end{enumerate}
+\end{definition}
+
+\begin{eg}
+	Sean
+	\begin{itemize}
+		\item $(\xi_{i})_{i \in \N}$ VA's i.i.d. con $\mu \coloneq \mbb{E}(\xi_{i}) \in \R$.
+
+		\item $(S_{n})_{n \in \N_{0}}$, $S_{n} \coloneq S_{0} + \xi_{1} + \cdots \xi_{n}$, $S_{0} \coloneq$ cte.
+		
+		\item $(\mcal{F}_{n})_{n \in \N_{0}}$ dada por $\mcal{F}_{n} \coloneq \sigma(\xi_{1}, \dots, \xi_{n})$, $\mcal{F}_{n} \coloneq \{\varnothing, \Omega\}$. 
+	\end{itemize}
+	Luego,
+	\begin{enumerate}
+		\item \textbf{Martingala Lineal} (o caminata aleatoria):
+		\begin{itemize}
+			\item Si $\mu = 0$, $(S_{n})_{n \in \N_{0}}$ es una martingala:
+			\begin{align*}
+				\mbb{E}(S_{n+1} \ | \ \mcal{F}_{n}) = \mbb{E}(\xi_{n+1} + S_{n} \ | \ \mcal{F}_{n}) &= \mbb{E}(\xi_{n+1} \ | \ \mcal{F}_{n}) + S_{n} \\
+				 &= \mbb{E}(\xi_{n+1}) + S_{n} = S_{n}
+			.\end{align*}
+			(notar que en la segunda igualdad se usa que $S_{n}$ es $\mcal{F}_{n}$-medible)
+
+			\item Si $\mu \leq 0$, $(S_{n})$ es supermartingala.
+
+			\item Si $\mu \geq 0$, $(S_{n})$ es submartingala.
+
+			\item $(S_{n} - n\mu)_{n \in \N_{0}}$ es martingala $\forall \mu \in \R$.
+		\end{itemize}
+
+		\item \textbf{Martingala Cuadrática}: Si $\mu = 0$ y $\sigma^{2} \coloneq \Var(\xi_{i}) = \mbb{E}(\xi_{i}^{2})$, entonces $(S_{n}^{2} - n\sigma^{2})_{n \in \N_{0}}$ es martingala.
+
+		\item \textbf{Martingala Multiplicativa}: Si $(Y_{n})_{n \in \N_{0}}$ son variables i.i.d. con $\mbb{E}(Y_{i}) = 1$, entonces $\big( \prod_{i=0}^{n} Y_{i})_{n \in \N_{0}}$ es una martingala (con respecto a su filtración natural).
+
+		\item \textbf{Martingalas Exponenciales}: Si $\phi(\theta) \coloneq \mbb{E}(e^{\theta \xi_{i}}) < \infty$ e $Y_{i} \coloneq \frac{e^{\theta \xi_{i}}}{\phi(\theta)}$, entonces 
+		\[ M_{n} \coloneq \prod_{i=1}^{n} Y_{i} = \frac{e^{\theta S_{n}}}{(\phi(\theta))^{n}} \]
+		define una martingala.
+
+		\item \textbf{Proceso de Galton-Watson}: Si $(Z_{n})_{n \in \N_{0}}$ es un proceso de Galton-Watson, i.e. $Z_{n} \coloneq \#$ individuos en la generación $n$ (en un proceso de G-W con variable de reproducción $X$) y $\mu \coloneq \mbb{E}(X)$, entonces $\big( \frac{Z_{n}}{\mu^{n}} \big)_{n \in \N_{0}}$ es una martingala.
+
+		\item \textbf{Martingalas Cerradas}: Si $Z \in L^{1}(\Omega, \mcal{F}, \mbb{P})$, $(\mcal{F}_{n})_{n \in \N_{0}}$ filtración, entonces $(\mbb{E}(Z \ | \ \mcal{F}_{n}))_{n \in \N_{0}}$ es martingala.
+	\end{enumerate}
+\end{eg}
+
+\begin{property}~
+	\begin{itemize}
+		\item Si $(X_{n})_{n \in \N_{0}}$ es supermartingala, $\mbb{E}(X_{n + k} \ | \ \mcal{F}_{n}) \leq X_{n} \quad \forall k \in \N$.
+
+		\item Si $(X_{n})_{n \in \N_{0}}$ es submartingala, $\mbb{E}(X_{n + k} \ | \ \mcal{F}_{n}) \geq X_{n} \quad \forall k \in \N$.
+
+		\item Si $(X_{n})_{n \in \N_{0}}$ es martingala, $\mbb{E}(X_{n + k} \ | \ \mcal{F}_{n}) = X_{n} \quad \forall k \in \N$. En particular, toda martingala tiene esperanza constante.
+
+		\item Si $(X_{n})_{n \in \N_{0}}$ es martingala y $\varphi \colon \R \to (-\infty,\infty]$ es convexa y tal que $\mbb{E}(|\varphi(X_{n})|) < \infty \quad \forall n \in \N$, entonces $(\varphi(X_{n}))_{n \in \N_{0}}$ es submartingala. \par
+		En particular, si $(X_{n})_{n \in \N_{0}}$ es martingala y $X_{n} \in L^{p} \quad \forall n$, entonces $(|X_{n}|^{p})_{n \in \N}$ es submartingala si $p \geq 1$.
+
+		\item Si $(X_{n})_{n \in \N_{0}}$ es submartingala y $\varphi \colon \R \to (-\infty,\infty]$ es convexa, creciente y tal que $\mbb{E}(|\varphi(X_{n})|) < \infty \quad \forall n \in \N$, entonces $(\varphi(X_{n}))_{n \in \N_{0}}$ es submartingala. \par 
+		En particular,
+		\begin{itemize}
+			\item $(X_{n})_{n \in \N_{0}}$ submartingala $\implies ((X_{n} - a)^{+})_{n \in \N_{0}}$ submartingala $\forall a \in \R$.
+
+			\item $(X_{n})_{n \in \N_{0}}$ supermartingala $\implies ((X_{n} - a)^{-})_{n \in \N_{0}}$ supermartingala $\forall a \in \R$.
+		\end{itemize}
+	\end{itemize}
+\end{property}
+
+\begin{definition}
+	Dada un a filtración $(\mcal{F}_{n})_{n \in \N_{0}}$, un proceso $(H_{n})_{n \in \N}$ se dice \textit{predecible} si $\mcal{H}_{n}$ es $\mcal{F}_{n-1}$-medible $\forall n \in \N$.
+\end{definition}
+\medskip
+En lo que sigue, pensaremos que $H_{n}$ es el monto que un jugador apuesta a tiempo $n$: en este caso, tiene sentido que $H_{n}$ sea decidido en base a los resultados de las jugadas a tiempo $1, 2, \dots, n-1$, pero NO a tiempo $n$.
+
+\begin{pregunta}
+	Si pensamos a $(H_{n})_{n \in \N}$ como estrategia de apuestas, ¿Cuaánto dinero podemos ganar?
+\end{pregunta}
+
+Sea $X_{n} \coloneq$ cantidad neta de \$ ganada hasta tiempo $n$, si en cada jugada hubiéramos apostado \$1. Si apostamos de acuerdo a $(H_{n})_{n \in \N}$, las ganancias a tiempo $n$ serían
+\[ (H \cdot X)_{n} \coloneq \sum_{i=1}^{n} H_{i} (X_{i} - X_{i-1}) \text{ y } (H \cdot X)_{0} \coloneq 0. \]
+Alternativamente, $X_{i}$ puede pensarse como el precio de una acción (a tiempo $i$) y $H_{i}$ la cantidad de acciones que uno tiene en $[i-1, i]$. El proceso $\{(H \cdot X)_{n}\}_{n \in \N_{0}}$ se conoce como \textit{"martingale transform"} de $X$ por $H$ o \textit{integral estocástica discreta} de $H$ con respecto a $X$.

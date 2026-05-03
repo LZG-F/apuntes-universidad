@@ -1,0 +1,113 @@
+\documentclass[12pt]{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+% Entornos
+\newtheorem*{ejercicio*}{Ejercicio}
+\newenvironment{ejercicio}[1]{%
+  \begin{trivlist}\item[\hskip\labelsep\textbf{Ejercicio #1.}]\itshape%
+}{\end{trivlist}}
+
+\newenvironment{dem}{%
+  \begin{trivlist}\item[\hskip\labelsep\textit{Demostración:}]%
+}{\hfill$\square$\end{trivlist}}
+
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\KK}{k}
+\newcommand{\FF}{F}
+
+
+\title{Tarea 5. Introducción a la Geometría Algebraica MAT2824}
+\author{Felipe López}
+
+\begin{document}
+\maketitle
+
+% -------------------------------------------------------
+\begin{ejercicio}{4.2}
+Sea $F \in k[x_1, \ldots, x_{n+1}]$ ($k$ infinito). Escribamos $F = \sum F_i$, donde $F_i$ es una forma de grado $i$. Sea $P \in \mathbb{P}^n(k)$, y suponga que $F(x_1, \ldots, x_{n+1}) = 0$ para toda elección de coordenadas homogéneas para $P$. Demuestre que cada $F_i(x_1, \ldots, x_{n+1}) = 0$ para toda coordenada homogénea de $P$. (Hint: considere $G(\lambda) = F(\lambda x_1, \ldots, \lambda x_{n+1}) = \sum \lambda^i F_i(x_1, \ldots, x_{n+1})$ para $(x_1, \ldots, x_{n+1})$ fijo.)
+\end{ejercicio}
+
+\begin{dem}
+Sean $(x_1, \ldots, x_{n+1})$ coordenadas homogéneas para $P \in \mathbb{P}^n(k)$, con $F(P) = 0$. Luego, notemos que si $\lambda \in k$, $F(\lambda x_1, \ldots, \lambda x_{n+1}) = 0$, pues $(\lambda x_1, \ldots, \lambda x_{n+1})$ también son coordenadas homogéneas para $P$. Luego, para todo $\lambda \in k$,
+\[
+	G(\lambda) = \sum \lambda^i F_i(x_1, \ldots, x_{n+1}) = 0.
+\]
+Dado que $(x_1, \ldots, x_{n+1})$ está fijo, podemos ver a $G(\lambda)$ como un polinomio en $k[\lambda]$. Por lo tanto, como cada $\lambda^i$ es linealmente independiente, tenemos que $F_i(x_1, \ldots, x_{n+1}) = 0$ para todo $i \in \{1, \ldots, n+1\}$.
+\end{dem}
+
+% -------------------------------------------------------
+\medskip
+\begin{ejercicio}{4.9}
+Sea $I$ un ideal homogéneo en $k[x_1, \ldots, x_n]$ y
+\[
+  \Gamma = \frac{k[x_1, \ldots, x_{n+1}]}{I}.
+\]
+Demuestre que las formas de grado $d$ en $\Gamma$ forman un
+espacio vectorial finito dimensional sobre $k$.
+\end{ejercicio}
+
+\begin{dem}
+Notar que en $k[x_1, \ldots, x_{n+1}]$, el espacio de formas de grado $d$ está generado por los monomios de grado $d$; i.e., está generado por los polinomios de la forma $x_1^{\alpha_1} \cdots x_{n+1}^{\alpha_{n+1}}$, con $\sum \alpha_i = d$ (generado como espacio vectorial), pues las combinaciones lineales de estos polinomios sobre $k$ no cambian el grado del polinomio resultante. Así, dado que las combinaciones de los $\alpha_i$ son finitas, el espacio en $k[x_1, \ldots, x_{n+1}]$ tiene dimensión finita. \par
+Luego, para generar el espacio de formas de grado $d$ sobre $\Gamma$, basta con cocientar los elementos de la base sobre $I$. La razón por la que esto basta es porque en $\Gamma$, una forma de grado $d$ es aquella que proviene del residuo de una forma de grado $d$ en $k[x_1, \ldots, x_n]$. Es decir, al cocientar la base, estamos creando exactamente la base que generará las formas de grado $d$ en $\Gamma$. Es decir, el espacio de formas de grado $d$ en $\Gamma$ está generado como espacio vectorial por una base que además es finita, por lo que es un espacio vectorial de dimensión finita.
+\end{dem}
+
+% -------------------------------------------------------
+\medskip
+\begin{ejercicio}{4.12}
+Sean $H_1, \ldots, H_m$ hiperplanos en $\mathbb{P}^n(k)$, con $m \leq n$. Demuestre que
+\[
+  H_1 \cap \cdots \cap H_m \neq \varnothing.
+\]
+\end{ejercicio}
+
+\begin{dem}
+Dado que los $H_i$ son hiperplanos, podemos escribir $H_i = V_p(L_i)$, donde $L_i = \sum_{k=1}^{n+1} a_k^{(i)} x_k \in k[x_1, \ldots, x_{n+1}]$ para todo $i \in \{1, \ldots, m\}$. Entonces,
+\[
+  H_1 \cap \cdots \cap H_m = V_p(L_1, \ldots, L_m).
+\]
+En el Fulton se menciona que:
+\[
+  V_p(I) = \varnothing \iff V_a(I) \subseteq \{(0, \ldots, 0)\}.
+\]
+Por lo tanto, veamos que $V_a(L_1, \ldots, L_m) \not\subseteq \{(0, \ldots, 0)\}$. Para ello, notar que
+\begin{align*}
+	L_1 = \sum_{k=1}^{n+1} & a_k^{(1)} x_k = 0 \\
+	&\vdots \\
+	L_m = \sum_{k=1}^{n+1} & a_k^{(m)} x_k = 0
+\end{align*}
+nos genera un sistema de $m$ ecuaciones lineales en $n+1$ variables. \par
+Entonces, esto se reduce a un argumento de álgebra lineal. En efecto, notar que las soluciones a este sistema forman un espacio vectorial $W \subseteq k^{n+1}$. Luego, $\dim(W) \geq n+1-m$, y como $m \leq n$, entonces $\dim(W) \geq 1$. Por lo tanto, $W$ contiene al menos un vector $(x_1, \ldots, x_{n+1}) \neq (0, \ldots, 0)$, lo que claramente implica $V_a(L_1, \ldots, L_m) \not\subseteq \{(0, \ldots, 0)\}$. Es decir, $H_1 \cap \cdots \cap H_m \neq \varnothing$.
+\end{dem}
+
+% -------------------------------------------------------
+\medskip
+\noindent El siguiente problema (4.14 del Fulton) será utilizado en la resolución del ejercicio 4.16.
+
+\medskip
+\begin{ejercicio}{4.14}
+Sean $P_1, P_2, P_3$ (resp. $Q_1, Q_2, Q_3$) tres puntos en $\mathbb{P}^2$ que no se encuentran todos en una misma recta. Demuestre que existe un cambio de coordenadas proyectivo $T: \mathbb{P}^2 \to \mathbb{P}^2$ tal que $T(P_i) = Q_i$, $i = 1, 2, 3$. Extender esto a $n+1$ puntos en $\mathbb{P}^n$ que no se encuentren en un hiperplano.
+\end{ejercicio}
+
+% -------------------------------------------------------
+\medskip
+\begin{ejercicio}{4.16}
+Sean $L_1, L_2, L_3$ (resp. $M_1, M_2, M_3$) líneas en $\mathbb{P}^2(k)$ que no pasan todas por un mismo punto. Demuestre que existe un cambio de coordenadas proyectivo $T: \mathbb{P}^2 \to \mathbb{P}^2$ tal que $T(L_i) = M_i$. Extender a $n+1$ hiperplanos en $\mathbb{P}^n$ que no pasen por un mismo punto.
+\end{ejercicio}
+
+\begin{dem}
+Sean $P_1 = L_2 \cap L_3$, $P_2 = L_1 \cap L_3$, $P_3 = L_1 \cap L_2$ y $Q_1 = M_2 \cap M_3$, $Q_2 = M_1 \cap M_3$, $Q_3 = M_1 \cap M_2$. \par
+Notemos que $P_1$, $P_2$ y $P_3$ no pasan por una misma línea. En efecto, si suponemos, por el contrario, que existe $L$ en $\mathbb{P}^2$ tal que $P_1, P_2, P_3 \in L$, entonces debemos notar que como $L_1$ es la única línea que pasa por $P_2$ y $P_3$, entonces $L = L_1$, pero esto significaría que $P_1 \in L_1$. Es decir $P_1 \in L_1 \cap L_2 \cap L_3$, lo que es una contradicción. Por la misma lógica, $Q_1$, $Q_2$ y $Q_3$ no pueden ser colineales. \par
+Ahora, por el ejercicio 4.14, existe $T: \mathbb{P}^2 \to \mathbb{P}^2$ cambio de coordenadas proyectivo tal que $T(P_i) = Q_i$. Luego, notar que $L_1$ está determinada de manera única por los puntos $P_2$ y $P_3$. Entonces, $T(L_1)$ estará determinada por $T(P_2)$ y $T(P_3)$. Es decir, $T(L_1) = \overline{Q_2 Q_3} = M_1$. Similarmente, $T(L_2) = M_2$ y $T(L_3) = M_3$.
+
+Para extender esto a $n+1$ hiperplanos, sean $H_1, \ldots, H_{n+1}$ (resp. $G_1, \ldots, G_{n+1}$) hiperplanos en $\mathbb{P}^n$ que no comparten un punto en común. Definimos $P_i = \bigcap_{j \neq i} H_j$ para $i \in \{1, \ldots, n+1\}$ (resp. $Q_i = \bigcap_{j \neq i} G_j$). La intersección de estos hiperplanos es exactamente un punto en $\mathbb{P}^n$, pues si recordamos la solución del ejercicio 4.12, estos hiperplanos generan un sistema de $n$ ecuaciones independientes en $n+1$ variables sobre el e.v. $k^{n+1}$, lo que nos dejaría con que la dimensión del espacio de soluciones es $1$. Como esto es una línea en $\mathbb{A}^{n+1}$ que pasa por el origen, tenemos que es un punto en $\mathbb{P}^n$.
+
+Por un argumento similar al hecho en $\mathbb{P}^2$, podemos llegar a que los $P_i$ no se encuentran todos sobre un hiperplano, lo que nos deja utilizar el ejercicio 4.14. Es decir, sabemos que existe un cambio de coordenadas proyectivo $T: \mathbb{P}^n \to \mathbb{P}^n$ tal que $T(P_i) = Q_i$.
+
+	Por último, similar al argumento en $\mathbb{P}^2$, $H_1$ está determinado por los puntos $P_2, P_3, \ldots, P_{n+1}$, por lo que $T(H_1)$ estará determinado por los puntos $T(P_2), T(P_3), \ldots, T(P_{n+1})$, que son exactamente $Q_{2}, Q_{3}, \ldots, Q_{n+1}$; es decir, aquellos que determinan $G_1$. Por lo tanto, $T(H_1) = G_1$. Similarmente, $T(H_i) = G_i$ para todo $i \in \{1, \ldots, n+1\}$.
+\end{dem}
+
+\end{document}
+

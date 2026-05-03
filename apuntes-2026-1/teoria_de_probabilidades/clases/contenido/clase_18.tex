@@ -1,0 +1,115 @@
+\clase{18}{29 de Abril}{}
+
+\begin{align*}
+	H_{i} &\coloneq \text{ cuantos \$ apostamos en jugada $i$.} \\
+	X_{i} &\coloneq \text{ ganancia neta aculmulada hasta la jugada $i$ si apostamos \$1 en cada jugada.} \\
+	(H \cdot X)_{n} &\coloneq \text{ ganancia acumulada hasta tiempo $N$ con estrategia } (H_{i})_{i \in \N} \\
+	&= \sum_{i=1}^{n} H_{i} (X_{i} - X_{i-1}, \quad (H \cdot X)_{0} \coloneq 0.
+\end{align*}
+
+\begin{theorem}
+	Si $(X_{n})_{n \in \N}$ es una super/sub/martingala y $(H_{n})_{n \in \N}$ es predecible no negativo y acotado, entonces $(H \cdot X)$ es una super/sub/martingala.
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Vemos sólo el caso de $(X_{n})_{n \in \N}$ martingala.
+	\begin{enumerate}
+		\item $\mbb{E}(|(H \cdot X)_{n}|) < \infty$ para todo $n$ pues $X_{n} \in L^{1} \quad \forall n \in \N$ y $(H_{i})_{i \in \N}$ es acotada.
+
+		\item $(H \cdot X)_{n}$ es $\mcal{F}_{n}$-medible por ser suma y producto de $\mcal{F}_{n}$-medibles.
+
+		\item $\mbb{E}((H \cdot X)_{n+1} \ | \ \mcal{F}_{n+1} = (H \cdot X)_{n} + \mbb{E}(H_{n+1}(X_{n+1} - X_{n}) \ | \ \mcal{F}_{n}) = (H \cdot X)_{n} + H_{n+1}(\underbrace{\mbb{E}(X_{n+1} \ | \ \mcal{F}_{n}) - X_{n}}_{0}) = (H \cdot X)_{n}$. \qedhere
+	\end{enumerate}
+\end{proof}
+
+\begin{remark}
+	La condición $(H_{n})_{n \in \N}$ acotado sólo se usa para ver que $H_{n}(X_{n} - X_{n - 1}) \in L^{1}$. En particular, si $H_{n+1}, X_{n} \in L^{2} \quad \forall n \in \N_{0}$, entonces el resultado vale.
+\end{remark}
+
+\begin{definition}
+	Una variable aleatoria $T$ a valores en $\N_{0} \cup \{\infty\}$ se dice un \textit{tiempo de parada} (o "stopping time") si $\{T \leq n\} \in \mcal{F}_{n} \quad \forall n \in \N_{0}$.  
+\end{definition}
+\medskip
+\begin{eg}~
+	\begin{itemize}
+		\item $T \coloneq \inf \{n \in \N \ : \ (H \cdot X)_{n} > \$ 1000\}$ es un tiempo de parada.
+
+		\item $T \coloneq \sup \{n \in \N  \ : \ (H \cdot X)_{n} > \$ 1000\}$ \underline{NO} es un tiempo de parada. 
+	\end{itemize}
+\end{eg}
+
+\begin{property}~
+	\begin{itemize}
+		\item $T$ tiempo de parada $\iff \{T = n\} \in \mcal{F}_{n} \quad \forall n \in \N_{0}$.
+
+		\item $T \equiv m$ es tiempo de parada $\forall m \in \N_{0}$.
+
+		\item $S,T$ tiempos de parada $\implies T \wedge S, T \vee S, S + T$ tiempos de parada.
+
+		\item Si $(X_{n})_{n \in \N_{0}}$ es un proceso estocástico y $T$ es finito, entonces $X_{T}(\omega) \coloneq X_{T(\omega)}(\omega)$ es una variable aleatoria.
+	\end{itemize}
+\end{property}
+
+\begin{definition}
+	Dado un tiempo de parada $T$, definimos la \textit{$\sigma$-álgebra $\mcal{F}_{T}$ de eventos ocurridos hasta tiempo $T$} como
+	\[ \mcal{F}_{T} \coloneq \{B \in \mcal{F} \ : \ B \cap \{T \leq n\} \in \mcal{F}_{n} \quad \forall n \in \N_{0}\}. \]
+\end{definition}
+
+\begin{property}
+	Sean $S,T$ tiempos de parada.
+	\begin{enumerate}
+		\item $T$ es $\mcal{F}_{T}$-medible;
+
+		\item $A \in \mcal{F}_{T} \iff A \cap \{T = n\} \in \mcal{F}_{n} \quad \forall n \in \N_{0}$; 
+
+		\item Si $(X_{n})_{n \in \N_{0}}$ es un porceso estocástico y $T$ es finito, entonces $X_{T}$ es $\mcal{F}_{T}$-medible;
+
+		\item $\mcal{F}_{T \wedge S} = \mcal{F}_{T} \cap \mcal{F}_{S}$ y $\mcal{F}_{T \vee S} = \mcal{F}_{T} \wedge \mcal{F}_{S} \coloneq \sigma(\mcal{F}_{T} \cup \mcal{F}_{S})$.
+	\end{enumerate}
+\end{property}
+
+\begin{theorem}[Parada Opcional]
+	Si $(X_{n})_{n \in \N_{0}}$ es una super/sub/martingala y $T$ es un tiempo de parada, entonces:
+	\begin{enumerate}[i)]
+		\item El \textit{proceso parado} $(X_{T \wedge n})_{n \in \N_{0}}$ es una super/sub/martingala.
+
+		\item Si $S \leq T$ son tiempos de parada acotados, $\mbb{E}(X_{T} \ | \ \mcal{F}_{S}) = X_{S}$, donde la igualdad se reemplaza con $\leq$ en el caso de super y por $\geq$ en el caso de submartingala. \par
+		En particular, $\mbb{E}(X_{T}) = \mbb{E}(X_{S})$ y, tomando $S=0$, $\mbb{E}(X_{T}) = \mbb{E}(X_{0})$ (esto último vale $\forall $ tiempo de Parada acotado $T$.) (la igualdad se reemplaza según la misma regla anterior.)
+	\end{enumerate}
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	\begin{enumerate}[i)]
+		\item Si $H_{n} \coloneq \mathds{1}_{\{n \leq T\}}$, entonces:
+		\begin{itemize}
+			\item $(H_{n})_{n \in \N}$ es \textit{predecible}:
+			\[ \{n \leq T\} = \{T \leq n - 1\}^{c} \in \mcal{F}_{n-1} \quad \forall n \in \N; \]
+
+			\item $(H_{n})_{n \in \N}$ acotado y no negativo;
+
+			\item se tiene que:
+			\[ (H \cdot X)_{n} = \sum_{i=1}^{T \wedge n} 1 . (X_{i} - X_{i-1}) = X_{T \wedge n} - X_{0}. \]
+		\end{itemize}
+		Por resultado anterior, $(H \cdot X)$ es super/sub/martingala y $Y_{n} \coloneq X_{0}$ también lo es. Como $(X_{T \wedge n})_{n \in \N_{0}}$ resulta suma de 2 super/sub/martingalas, vale (i).
+		
+		\item Ya sabemos que $X_{S}$ es $\mcal{F}_{S}$-medible. Sólo debemos ver que
+		\[ \mbb{E}(X_{T} \mathds{1}_{A}) = \mbb{E}(X_{S} \mathds{1}_{A}) \quad \forall A \in \mcal{F}_{S}. \]
+		(con la igualdad reemplazada respectivamente.) \par
+		Dado $A \in \mcal{F}_{S}$, definimos $H_{n} \coloneq \mathds{1}_{A} . \mathds{1}_{\{S < n \leq T\}} = \mathds{1}_{A \cap \{S \leq n-1\}} . \mathds{1}_{\{n \leq T\}}$. Tenemos que:
+		\begin{itemize}
+			\item $(H_{n})_{n \in \N_{0}}$ es acotado, no negativo y predecible;
+
+			\item $X_{T}, X_{S} \in L^{1}$ ($|X_{T}| \leq \sum_{i=1}^{K} |X_{i}|$ con $T \leq K$);
+
+			\item $(H \cdot X)_{K} = \mathds{1}_{A} (X_{T} - X_{S})$ si $S,T \leq K$.
+		\end{itemize}
+		Ahora, si $(X_{n})_{n \in \N_{0}}$ es supermartingala, $(H \cdot X)$ también, y luego $\mbb{E}((H \cdot X)_{K}) \leq \mbb{E}((H \cdot X)_{0}) = 0$. Es decir, $\mbb{E}(\mathds{1}_{A} X_{T}) \leq \mbb{E}(\mathds{1}_{A} X_{S}) \quad X_{S}, X_{T} \in L^{1}$. Esto implica que
+		\[ \mbb{E}(\mathds{1}_{A} \mbb{E}(X_{T} \ | \ \mcal{F}_{S})) \leq \mbb{E}(\mathds{1}_{A} X_{S}) \quad \forall A \in \mcal{F}_{S}; \]
+		ó, equivalentemente,
+		\[ \mbb{E}(\mathds{1}_{A}(X_{S} - \mbb{E}(X_{T} \ | \ \mcal{F}_{S}))) \geq 0 \quad \forall S \in \mcal{F}_{S}. \]
+		Como $X_{S} - \mbb{E}(X_{T} \ | \ \mcal{F}_{S})$ es $\mcal{F}_{S}$-medible, esto implica que $\mbb{P}(X_{S} < \mbb{E}(X_{T} \ | \ \mcal{F}_{S})) = 0$. Multiplicando por $(-1)$ obtenemos el resultado para submartingalas y, combinando ambas, para martingalas.
+	\end{enumerate} 
+\end{proof}
+
+\begin{remark}
+	Si $(X_{n})_{n \in \N_{0}}$ es una super/sub/martingala, \underline{NO} es necesariamente cierto que $\mbb{E}(X_{T}) = \mbb{E}(X_{S})$ (con la igualdad reemplazada respectivamente con la misma regla anterior) si $T$ no es acotado. \par
+	En efecto, sea $S_{n} \coloneq -1 + \xi_{1} + \cdots + \xi_{n}$ una caminata aleatoria con $(\xi_{i})_{i \in \N}$ i.i.d., $\mbb{P}(\xi_{i} = \pm 1)$ y $T \coloneq \inf \{n \ : \ S_{n} = 0\}$. Entonces, $\mbb{E}(S_{n}) = -1 \quad \forall n \in \N$, pero $\mbb{E}(S_{T}) = \mbb{E}(0) = 0 > \mbb{E}(S_{0})$!!! (donde la primera igualdad está dada porque $T$ es finito.)
+\end{remark}

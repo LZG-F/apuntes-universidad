@@ -1,0 +1,112 @@
+\clase{15}{20 de Abril}{}
+
+\begin{property}
+	Sean $X \in L^{1}(\Omega, \mcal{F}, \mbb{P})$ y $\mcal{G} \subseteq \mcal{F}$ una $\sigma$-álgebra. Entonces, valen las siguientes:
+	\begin{enumerate}
+		\item $X$ es $\mcal{G}$-medibles $\implies \mbb{E}(X | \mcal{G}) = X$.
+
+		\item La aplicación $X \mapsto \mbb{E}(X | \mcal{G})$ es un operador lineal en $L^{1}$.
+
+		\item $\mbb{E}(\mbb{E}(X | \mcal{G})) = \mbb{E}(X)$.
+
+		\item Si $\Sigma \subseteq \mcal{G}$ es una $\sigma$-álgebra, entonces $\mbb{E}(\mbb{E}(X | \mcal{G}) | \Sigma) = \mbb{E}(X | \Sigma)$.
+
+		\item $|\mbb{E}(X | \mcal{G})| \leq \mbb{E}(|X| \big| \mcal{G})$. En particular,
+		\[ \| \mbb{E}(X | \mcal{G}) \|_{1} = \mbb{E}(|\mbb{E}(X | \mcal{G})|) \leq \mbb{E}(\mbb{E}(|X| \big| \mcal{G})) = \mbb{E}(|X|) = \| X \|_{1}. \]
+		Con lo cual, $X \mapsto \mbb{E}(X | \mcal{G})$ es un operador lineal acotado en $L^{1}$.
+
+		\item $X \leq Y \implies \mbb{E}(X | \mcal{G}) \leq \mbb{E}(Y | \mcal{G})$.
+	\end{enumerate}
+\end{property}
+\begin{proof}[Proof Other Information]
+	Ejercicio!
+\end{proof}
+
+¿Cómo extender la definición cuando $X$ es débilmente integrable?
+\par \medskip
+\noindent \underline{Caso $X \geq 0$:}
+
+\begin{itemize}
+	\item $X_{n} \coloneq X \wedge n = \min \{X,n\} \in L^{1} \quad \forall n \in \N$.
+
+	\item $Z_{n} \coloneq \mbb{E}(X_{n} | \mcal{G})$.
+
+	\item $(Z_{n})_{n \in \N}$ es $\mbb{P}$-c.s creciente por propiedad 6, pues $(X_{n})_{n \in \N}$ lo son.
+
+	\item Definimos $Z \coloneq \lim_{n \to \infty} Z_{n}$.
+\end{itemize}
+
+Notemos que:
+\begin{enumerate}[i)]
+	\item $Z$ es $\mcal{G}$-medible.
+ 
+	\item Si $A \in \mcal{G}$,
+	\begin{align*}
+		\int_{A} Z \ d\mbb{P} &= \int_{A} \lim_{n \to \infty} Z_{n} \ d\mbb{P} \\
+		\text{(T.C.M) } &= \lim_{n \to \infty} \int_{A} Z_{n} \ d\mbb{P} \\
+		&= \lim_{n \to \infty} \int_{A} X_{n} \ d\mbb{P} \\
+		\text{(T.C.M) } &= \int_{A} \lim_{n \to \infty} X_{n} \ d\mbb{P} \\
+		&= \int_{A} X \ d\mbb{P}
+	.\end{align*}
+\end{enumerate}
+Además, si $Y$ es otra variable que cumple (i) y (ii), resulta
+\[ \int_{A} Y \ d\mbb{P} = \int_{A} Z \ d\mbb{P} \quad \forall A \in \mcal{G}. \]
+En particular, tomando $A_{a,n} \coloneq \{ Z \leq a < b \leq Y \}$ con $a,b \in \Q$. Como $A_{a,b} \in \mcal{G}$, resulta
+\[ b \mbb{P}(A_{a,b}) \leq \int_{A_{a,b}} Y \ d\mbb{P} = \int_{A_{a,b}} Z \ d\mbb{P} \leq a \mbb{P}(A_{a,b}), \]
+de donde se deduce que $\mbb{P}(A_{a,b}) = 0$. Como $a < b \in \Q$ eran arbitrarios, $\mbb{P}(Z < Y) = 0$ y la otra desigualdad es análoga. \par
+Luego, existe $\mbb{P}$-c.s una única VA $Z$ que cumple (i) y (ii) de la definición de $\mbb{E}(X | \mcal{G})$.
+\par \medskip
+\noindent \underline{Caso General:} $\mbb{E}(X) = \pm \infty$.
+\begin{itemize}
+	\item Definimos $\mbb{E}(X | \mcal{G}) \coloneq \mbb{E}(X^{+} | \mcal{G}) - \mbb{E}(X^{-} | \mcal{G})$.
+
+	\item Bien definido,pues
+	\[ \begin{cases}
+		X^{+} \in L^{1} \implies \mbb{E}(X^{+} | \mcal{G}) \in L^{1} \\
+		X^{-} \in L^{1} \implies \mbb{E}(X^{-} | \mcal{G}) \in L^{1}
+	\end{cases} \]
+
+	\item Puede verificarse que cumple (i) y (ii) y que es casi seguramente única.
+\end{itemize}
+
+\begin{theorem}
+	Sean $(\Omega, \mcal{F}, \mbb{P})$ un EdP y $\mcal{G} \subseteq \mcal{F}$ una $\sigma$-álgebra. Entonces se cumplen:
+	\begin{itemize}
+		\item \textbf{Convergencia Monótona:} Si $(X_{n})_{n \in \N}$ es una sucesión creciente de VA's no negativas, entonces
+		\[ 0 \leq \mbb{E}(X_{n} | \mcal{G}) \nearrow \mbb{E}\big( \lim_{n \to \infty} X_{n} | \mcal{G} \big) \quad \text{cuando } n \to \infty. \]
+
+		\item \textbf{Lema de Fatou:} Si $(X_{n})_{n \in \N}$ son VA's no negativas, entonces
+		\[ \mbb{E}(\liminf_{n \to \infty} X_{n} | \mcal{G}) \leq \liminf_{n \to \infty} \mbb{E}(X_{n} | \mcal{G}). \]
+
+		\item \textbf{Convergencia Dominada:} Si $(X_{n})_{n \in \N}$ son VA's tal que $X_{n} \xlongrightarrow{c.s} X_{\infty}$ y $\sup_{n \in \N}|X_{n}| \leq Y \ \mbb{P}$-c.s con $Y \in L^{1}$, entonces
+		\[ \mbb{E}(X_{n} | \mcal{G}) \xlongrightarrow{c.s} \mbb{E}(X_{\infty} | \mcal{G}). \]
+
+		\item \textbf{Desigualdad de Jensen:} Si $X \in L^{1}(\Omega, \mcal{F}, \mbb{P})$ y $\varphi \colon \R \to (-\infty, \infty]$ es convexa tal que $\varphi \geq 0$ ó $\varphi(X) \in L^{1}$, entonces $\varphi(\mbb{E}(X | \mcal{G})) \leq \mbb{E}(\varphi(X) | \mcal{G})$. \par
+		En particular, para todo $1 \leq p < \infty$ vale que $\| \mbb{E}(X | \mcal{G}) \|_{p} \leq \| X \|_{p}$, con lo cual el operador lineal "esp. cond." $X \mapsto \mbb{E}(X | \mcal{G})$ es continuo en $L^{p}(\Omega, \mcal{F}, \mbb{P})$.
+	\end{itemize}
+\end{theorem}
+
+\begin{prop}
+	Sea $X$ débilmente integrable. Entonces, para cualquier $Z$ $\mcal{G}$-medible tal que $X.Z$ sea débilmente integrable, vale que
+	\begin{enumerate}[(I)]
+		\item $\mbb{E}(XZ) = \mbb{E}(Z . \mbb{E}(X | \mcal{G}))$.
+
+		\item $\mbb{E}(XZ | \mcal{G}) = Z \mbb{E}(X | \mcal{G})$.
+	\end{enumerate}
+	(se puede cambiar $\mathds{1}_{A}$ de la definición por $Z$ $\mcal{G}$-medible.)
+\end{prop}
+\begin{proof}[Proof Other Information]
+	(I) Por el argumento estándar, igual que antes. \par
+	(II) Verificamos (i) y (ii) de la definición de $\mbb{E}(XZ | \mcal{G})$.
+	\begin{enumerate}[i)]
+		\item $Z \mbb{E}(X | \mcal{G})$ es $\mcal{G}$-medible por ser producto de $\mcal{G}$-medibles;
+
+		\item Si $A \in \mcal{G}$,
+		\begin{align*}
+			\int_{A} Z \mbb{E}(X | \mcal{G}) \ d \mbb{P} &= \mbb{E}(\underbrace{Z . \mathds{1}_{A}}_{\mcal{G}\text{-medible}} . \mbb{E}(X | \mcal{G})) \\
+			\text{(I)} &= \mbb{E}(Z . \mathds{1}_{A} . X) \\
+			&= \int_{A} X . Z \ d\mbb{P}
+		.\end{align*}
+		Entonces, $Z \mbb{E}(X | \mcal{G}) = \mbb{E}(XZ | \mcal{G})$.
+	\qedhere\end{enumerate}
+\end{proof}
