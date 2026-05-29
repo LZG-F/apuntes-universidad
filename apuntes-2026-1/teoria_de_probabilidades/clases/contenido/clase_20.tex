@@ -1,0 +1,134 @@
+\clase{20}{8 de Mayo}{}
+
+\begin{theorem}[Convergencia de super/submartingalas]~
+	\begin{itemize}
+		\item Si $(X_{n})_{n \in \N_{0}}$ es una supermartingala con $\sup_{n \in \N_{0}} \mbb{E}(X_{n}^{-}) < \infty$ entonces $X_{n} \xlongrightarrow{c.s.} X_{\infty} \in L^{1}$.
+
+		\item Si $(X_{n})_{n \in \N_{0}}$ es una submartingala con $\sup_{n \in \N_{0}} \mbb{E}(X_{n}^{+}) < \infty$ entonces $X_{n} \xlongrightarrow{c.s.} X_{\infty} \in L^{1}$.
+	\end{itemize}
+\end{theorem}
+
+\begin{corollary}~
+	\begin{itemize}
+		\item Si $(X_{n})_{n \in \N_{0}}$ es supermartingala no negativa, entonces $X_{n} \xlongrightarrow{c.s.} X_{\infty} \in L^{1}$, con $\mbb{E}(X_{\infty}) \leq \mbb{E}(X_{0})$.
+
+		\item Si $(X_{n})_{n \in \N_{0}}$ es una martingala con $\sup_{n \in \N_{0}} \mbb{E}(|X_{n}|) < \infty$ entonces $X_{n} \xlongrightarrow{c.s.} X_{\infty} \in L^{1}$.
+	\end{itemize}
+\end{corollary}
+
+\subsection{Contraejemplo $(X_{n} \not\xlongrightarrow{L^{1}} X_{\infty})$}
+
+$X_{n} \coloneq S_{T \wedge n}$, donde 
+\[ S_{n} \coloneq 1 + \xi_{1} + \cdots + \xi_{n} \]
+\[ T = \inf \{n \in \N_{0} \ : \ S_{n} = 0\}, \]
+con $(\xi_{i})_{i \in \N}$ i.i.d. $\mbb{P}(\xi_{i} = \pm 1) = \frac{1}{2}$. \par
+Vimos que $(X_{n})_{n \in \N_{0}}$ es martingala no negativa, por lo tanto $X_{n} \xlongrightarrow{c.s.} X_{\infty} \in L^{1}$. Además, $X_{\infty} \in \Z$ casi seguramente.
+
+En realidad, $X_{\infty} = 0 \; \mbb{P}$-c.s. En efecto, si $X_{n}(\omega) \longrightarrow X_{\infty}(\omega)$, $(X_{n}(\omega))$ es eventualmente constante. En particular, $X_{n+1}(\omega) - X_{n}(\omega) = 0 \quad \forall n \geq n_{0}(\omega)$. Pero, como $X_{n+1}(\omega) - X_{n}(\omega) = \pm 1$ si $n < T(\omega)$, esto implica que $T(\omega) \leq n_{0}(\omega)$ y, por lo tanto, que $X_{\infty}(\omega) = X_{T(\omega)}(\omega) = S_{T(\omega)} = 0$. Pero, como $\mbb{E}(X_{n}) = \mbb{E}(S_{T \wedge n}) = \mbb{E}(S_{0}) = 1 \quad \forall n \in \N$ (donde la segunda igualdad está dada por P.O con $T \wedge n$ acotado), vemos que $\mbb{E}(X_{n}) \not\longrightarrow \mbb{E}(X_{\infty}) = 0$ y, por ende $X_{n} \xlongrightarrow{L^{1}} X_{\infty}$.
+
+\begin{remark}
+	En particular, esto muestra que $\mbb{P}(T = \infty) = 0$.
+\end{remark}
+
+\begin{comentarios}~
+	\begin{enumerate}
+		\item Si $(X_{n})_{n \in \N_{0}}$ es una (super/sub)martingala tal que $X_{n} \xlongrightarrow{c.s.} X_{\infty}$, podemos definir ahora $X_{T}$ para tiempos de parada $T$ que no sean finitos.
+		\[ X_{T}(\omega) \coloneq \begin{cases}
+			X_{n}(\omega) \quad \text{si } T(\omega) = n \\
+			X_{\infty}(\omega) \quad \text{si } T(\omega) = \infty.
+		\end{cases} \]
+
+		\item Vimos que si $(X_{n})_{n \in \N_{0}}$ es supermartingala, no es cierto en general que $\mbb{E}(X_{T}) \leq \mbb{E}(X_{0})$, a menos que $T$ sea acotado. Sin embargo, tenemos lo siguiente.
+	\end{enumerate}
+\end{comentarios}
+
+\begin{prop}
+	Si $(X_{n})_{n \in \N_{0}}$ es supermartingala no negativa y $T \in N_{0} \cup \{\infty\}$ es un tiempo de parada, entonces $\mbb{E}(X_{T}) \leq \mbb{E}(X_{0})$.
+\end{prop}
+\begin{proof}[Proof Other Information]
+	Se cumple que
+	\begin{align*}
+		\mbb{E}(X_{T}) &= \mbb{E}\big(\lim_{n \to \infty} \underbrace{X_{T \wedge n}}_{\geq 0}\big) \\
+		\text{(Fatou)} &\leq \liminf_{n \to \infty} \mbb{E}(X_{T \wedge n}) \\
+		&\leq \mbb{E}(X_{0})
+	.\end{align*}
+	(Notar que la última desigualdad está dada por: P.O. con $T \wedge n$ t.d.p. acotado)
+\end{proof}
+
+\begin{remark}
+	Si $(X_{n})_{n \in \N_{0}}$ es martingala no negativa, no valdrá que $\mbb{E}(X_{T}) = \mbb{E}(X_{0})$ (pero si $\mbb{E}(X_{T}) \leq \mbb{E}(X_{0})$).
+\end{remark}
+
+\section{Convergencia de Martingalas en $L^{p}$ ($p > 1$)}
+
+\begin{prop}[Desigualdad maximal de Doob]
+	Sea $(X_{n})_{n \in \N_{0}}$ una submartingala y definamos $X_{n}^{*} \coloneq \max_{0 \leq k \leq n} X_{k}^{+}$. Entonces, dado $\lambda > 0$,
+	\[ \lambda \mbb{P}(X_{n}^{*} \geq \lambda) \leq \mbb{E}(X_{n}^{+} \mathds{1}_{\{X_{n}^{*}) \geq \lambda\}} \leq \mbb{E}(X_{n}^{+}). \]
+\end{prop}
+\begin{proof}[Proof Other Information]
+	Sean
+	\begin{align*}
+		T &\coloneq \inf \{k \ : \ X_{k}^{+} \geq \lambda\} \wedge n \\
+		A &\coloneq \{X_{n}^{+} \geq \lambda\} 
+	.\end{align*}
+	Como $T$ es tiempo de parada acotado y $X_{T}^{+} \geq \lambda$ en $A$,
+	\[ \lambda \mbb{P}(A) \leq \lambda \mbb{P}(\{X_{T}^{+} \geq \lambda\} \cap A) \leq \mbb{E}(X_{T}^{+} \mathds{1}_{A}). \tag{$*$}\]
+	Por otro lado, como $\mbb{E}(X_{T}^{+}) \leq \mbb{E}(X_{n}^{+})$ por el Teorema de P.O. para $(X_{n}^{+})_{n \in \N_{0}}$, vale que
+	\[ \mbb{E}(X_{T}^{+} \mathds{1}_{A}) + \mbb{E}(X_{T}^{+} \mathds{1}_{A^{c}}) = \mbb{E}(X_{T}^{+}) \leq \mbb{E}(X_{n}^{+}) = \mbb{E}(X_{n}^{+} \mathds{1}_{A}) + \mbb{E}(X_{n}^{+} \mathds{1}_{A^{c}}). \]
+	Pero, como en $A^{c}$ tenemos que $X_{T}^{+} = X_{n}^{+}$, concluimos que 
+	\[ \mbb{E}(X_{T}^{+} \mathds{1}_{A}) \leq \mbb{E}(X_{n}^{+} \mathds{1}_{A}). \]
+	Juntando con $(*)$, esto prueba la desigualdad izquierda de la proposición. La otra es inmediata.
+\end{proof}
+
+\begin{theorem}[Desigualdad maximal en $L^{p}$, $p > 1$]
+	Si $(X_{n})_{n \in \N_{0}}$ es una submartingala y $p \in (1, \infty)$ entonces
+	\[ \| X_{n}^{*} \|_{p} \leq \frac{p}{p-1} \| X_{n}^{+} \|_{p}. \]
+	En particular, si $(Y_{n})_{n \in \N_{0}}$ es martingala, entonces
+	\[ \big\| \max_{0 \leq k \leq n} |Y_{k}| \big\|_{p} \leq \frac{p}{p-1} \| Y_{n} \|_{p}. \]
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Se cumple que
+	\begin{align*}
+		\mbb{E}((X_{n}^{*})^{p}) &\stackrel{\text{F-T}}{=} \int_{0}^{\infty} p \lambda^{p-1} \mbb{P}(X_{n}^{*} \geq \lambda) \; d\lambda \\
+		\text{(D.M. de Doob)} &\leq \int_{0}^{\infty} p \lambda^{p-1} \frac{1}{\lambda} \mbb{E}\big(X_{n}^{+} \mathds{1}_{\{X_{n}^{*} \geq \lambda\}}\big) \; d\lambda \\
+		\text{(F-T)} &= \mbb{E}\Big( X_{n}^{+} \int_{0}^{X_{n}^{*}} p \lambda^{p-2} \; d\lambda \Big) \\
+		&= \frac{p}{p-1} \mbb{E}(X_{n}^{+} (X_{n}^{*})^{p-1}) \\
+		\text{(Hölder)} &\leq \frac{p}{p-1} \| X_{n}^{+} \|_{p} \| X_{n}^{*} \|_{p}^{p-1}
+	.\end{align*}
+	En conclusión,
+	\[ (\| X_{n}^{*} \|_{p})^{p} \leq \frac{p}{p-1} \| X_{n}^{+} \|_{p} (\| X_{n}^{*} \|_{p})^{p-1}. \]
+	\begin{itemize}
+		\item Si $\| X_{n}^{*} \|_{p} < \infty$, pasamos dividiendo y listo.
+
+		\item Si $\| X_{n}^{*} \|_{p} = \infty$, probamos el resultado primero para $X_{n}^{*} \wedge M$, y luego, tomamos el límite con $M \longrightarrow \infty$ para obtener la desigualdad.
+	\end{itemize}
+	La afirmación para $(Y_{n})_{n \in \N_{0}}$ se obtiene aplicando lo anterior a $X_{n} \coloneq |Y_{n}|$.
+\end{proof}
+
+\begin{remark}
+	La desigualdad no vale si $p = 1$.
+\end{remark}
+
+\begin{theorem}
+	Si $(X_{n})_{n \in \N_{0}}$ es una martingala y $p \in (1, \infty)$, son equivalentes:
+	\begin{enumerate}
+		\item $(X_{n})_{n \in \N_{0}}$ es acotado en $L^{p}$; i.e., $\sup_{n \in \N_{0}} \| X_{n} \|_{p} < \infty$.
+
+		\item $X_{n} \stackbin[L^{p}]{c.s.}{\longrightarrow} X_{\infty}$.
+
+		\item $\exists Z \in L^{p}$ tal que $X_{n} = \mbb{E}(Z \ | \ \mcal{F}_{n})$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	$i) \implies ii)$ Como $\sup_{n \in \N_{0}} \| X_{n} \|_{1} \leq \sup_{n \in \N_{0}} \| X_{n} \|_{p} < \infty$, sabemos que $X_{n} \xlongrightarrow{c.s.} X_{\infty} \in L^{1}$. \par
+	Por Fatou,
+	\[ \| X_{\infty} \|_{p} \leq \liminf_{n \to \infty} \| X_{n} \|_{p} \leq \sup_{n \in \N_{0}} \| X_{n} \|_{p} < \infty \]
+	y luego $X_{\infty} \in L^{p}$. \par
+	Por otro lado, por la desigualdad maximal en $L^{p}$,
+	\[ \mbb{E} \Big( \Big( \sup_{0 \leq k \leq n} |X_{k}|^{p} \Big) \Big) \leq \Big( \frac{p}{p-1} \Big)^{p} \mbb{E}(|X_{n}|^{p}) \leq \Big( \frac{p}{p-1} \Big)^{p} \Big( \sup_{k \in \N_{0}} \| X_{k} \|_{p} \Big)^{p}, \]
+	de modo que, tomando $n \to \infty$ en esta desigualdad,
+	\[ \mbb{E} \Big( \Big( \sup_{n \in \N_{0}} |X_{n}| \Big)^{p} \Big) \leq \Big( \frac{p}{p-1} \sup_{k \in \N_{0}} \| X_{k} \|_{p} \Big)^{p} < \infty. \]
+	Entonces, como 
+	\[ |X_{n} - X_{\infty}|^{p} \leq \Big( 2 \sup_{k \in \N_{0}} |X_{k}| \Big)^{p}, \]
+	por T.C.D. $\mbb{E}(|X_{n} - X_{\infty}|^{p}) \xlongrightarrow{n \to \infty} 0$ y así, $X_{n} \xlongrightarrow{L^{p}} X_{\infty}$.
+\end{proof}

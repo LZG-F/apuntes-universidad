@@ -1,0 +1,150 @@
+\clase{21}{11 de Mayo}{}
+
+Continuamos con la demostración que quedó pendiente la clase pasada:
+
+\begin{proof}[Proof ]
+	ii) $\implies$ ii) Recordamos $\| \mbb{E}(Y \ | \ \mcal{G}) \|_{p} \leq \| Y \|_{p}$ (esperanza condicional es continua en $L^{p}$). Luego, si $X_{n} \xlongrightarrow{L^{p}} X_{\infty}$, entonces
+	\[ \mbb{E}(X_{n} \ | \ \mcal{F}) \xlongrightarrow{L^{p}} \mbb{E}(X_{\infty} \ | \ \mcal{G}) \quad \forall \mcal{G} \subseteq \mcal{F} \; \sigma\text{-álgebra}. \]
+	En particular, si fijamos $n \in \N_{0}$ y tomamos $\mcal{G} = \mcal{F}_{n}$, para $m \geq n$,
+	\[ X_{n} = \mbb{E}(X_{m} \ | \ \mcal{F}_{n}) \stackbin[m \to \infty]{L^{p}}{\longrightarrow} \mbb{E}(X_{\infty} \ | \ \mcal{F}_{\infty}). \]
+	Por lo tanto, $X_{n} = \mbb{E}(X_{\infty} \ | \ \mcal{F}_{n})$ $(Z = X_{\infty})$. \par
+	iii) $\implies$ i) Notar que por Jensen condicional,
+	\[ \| X_{n} \|_{p} = \| \mbb{E}(Z \ | \ \mcal{F}_{n}) \|_{p} \leq \| Z \|_{p}. \]
+	Con lo cual, 
+	\[ \sup_{n \in \N} \| X_{n} \|_{p} \leq \| Z \|_{p} < \infty. \]
+\end{proof}
+
+\begin{comentarios}
+	Una martingala que cumple (3) (que es la esperanza condicional de una única variable) se dice \textit{cerrada} (en $L^{p}$). A cualquier variable $Z$ que cumple (3) se la llama una "última variable" para $(X_{n})_{n \in \N_{0}}$ (porque si $m \geq n$ entonces $\mbb{E}(X_{n} \ | \ \mcal{F}_{n}) = X_{n}$ y, visto así, $Z$ vendría "después" que toda $X_{n}$). Observar que, en tal caso, vale que $X_{\infty} = \mbb{E}(Z \ | \ \mcal{F}_{\infty})$ pues:
+	\begin{itemize}
+		\item $X_{\infty} \coloneq \limsup_{n \to \infty} X_{n}$ es $\mcal{F}_{\infty}$-medible pues cada $X_{n}$ lo es,
+
+		\item Si $A \in \mcal{F}_{n}$, 
+		\begin{align*}
+			\mbb{E}(X_{\infty} \mathds{1}_{A}) &= \lim_{m \to \infty} \mbb{E}(X_{m} \mathds{1}_{A}) \tag{pues $X_{m} \xlongrightarrow{L^{1}} X_{\infty}$}\\
+			&= \mbb{E}(X_{n} \mathds{1}_{A}) \tag{pues $\mbb{E}(X_{m} \ | \ \mcal{F}_{n}) = X_{n}$ si $m \geq n$} \\
+			&= \mbb{E}(Z \mathds{1}_{A}) \tag{$X_{n} = \mbb{E}(Z \ | \ \mcal{F}_{n})$}
+		.\end{align*}
+		Es decir,
+		\[ \mbb{E}(X_{\infty} \mathds{1}_{A}) = \mbb{E}(Z \mathds{1}_{A}) \quad \forall A \in \bigcup_{n \in \N_{0}} \mcal{F}_{n}. \]
+		Como $\bigcup_{n \in \N_{0}} \mcal{F}_{n}$ es un $\pi$-sistema que genera $\mcal{F}_{\infty}$ y además contiene a $\Omega$,
+		\[ \mbb{E}(X_{\infty} \mathds{1}_{A}) = \mbb{E}(Z \mathds{1}_{A}) \quad \forall A \in \mcal{F}_{\infty}, \]
+		y luego, $X_{\infty} = \mbb{E}(Z \ | \ \mcal{F}_{\infty})$.
+	\end{itemize}
+\end{comentarios}
+
+\begin{remark}
+	La demostración prueba que, en particular, dado $p \geq 1$, si $(X_{n})_{n \in \N_{0}}$ es una martingala acotada en $L^{p}$ que satisface la desigualdad maximal en $L^{p}$ entonces $(X_{n})_{n \in \N_{0}}$ converge en $L^{p}$. \par
+	Esto nos dice que la desigualdad maximal no puede valer en $p = 1$, ya que vimos un ejemplo de martingala acotada en $L^{1}$ que no converge.
+\end{remark}
+
+\begin{definition}
+	Una colección de VA's $(X_{i})_{i \in I}$ se dice \textit{uniformemente integrable (UI)} si
+	\[ \lim_{M \to \infty} \Big( \sup_{i \in I} \int_{\{|X_{i}| > M\}} |X_{i}| \ d\mbb{P} \Big) = 0. \]
+\end{definition}
+
+\begin{remark}
+	\begin{enumerate}
+		\item $(X_{i})_{i \in I}$ UI $\implies (X_{i})_{i \in I}$ acotada en $L^{1}$.
+		\begin{align*}
+			\sup_{i \in I} \mbb{E}(|X_{i}|)) &\leq M + \sup_{i \in I} \mbb{E}(|X_{i}| \mathds{1}_{\{|X_{i} > M\}}) \\
+			&\leq M + 1 < \infty
+		.\end{align*}
+
+		\item $(X_{i})_{i \in I}$ acotada en $L^{1} \not\implies (X_{i})_{i \in I}$ UI. Por ejemplo: $U \sim \mcal{U}([0,1]),\ X_{n} \coloneq n \cdot \mathds{1}_{\{U \in [0,1 \slash n]\}}$.
+		\begin{itemize}
+			\item $(X_{n})_{n \in \N}$ acotada en $L^{1}$:
+			\[ \mbb{E}(|X_{n}|) = \mbb{E}(X_{n}) = n \cdot \mbb{P}(U \in [0, \frac{1}{n}]) = 1. \]
+
+			\item $(X_{n})_{n \in \N}$ no es UI, pues, si $n > M$,
+			\[ \mbb{E}(|X_{n}| \mathds{1}_{\{|X_{n}| > M\}}) = \mbb{E}(X_{n} \mathds{1}_{X_{n} \neq 0}) = \mbb{E}(X_{n}) = 1 \not\longrightarrow 0. \]
+		\end{itemize}
+	\end{enumerate}
+\end{remark}
+
+\begin{eg}
+	\begin{enumerate}
+		\item Si $(X_{i})_{i \in I}$ está acotada en $L^{p}$ con $o \in (1, \infty]$, entonces es UI.
+
+		\item Si $I$ es finito y $X_{i} \in L^{1} \quad \forall i \in I$, entonces $(X_{i})_{i \in I}$ es UI.
+
+		\item Si $X_{n} \xlongrightarrow{L^{1}} X_{\infty}$, entonces $(X_{n})_{n \in \N}$ es UI.
+
+		\item \textbf{Convergencia Dominada}: si existe $Y \in L^{1}$ tal que $\sup_{i \in I} |X_{i}| \leq Y$, entonces $(X_{i})_{i \in I}$ es UI.
+
+		\item Si $X \in L^{1}$, entonces
+		\[ \mscr{C} \coloneq \{\mbb{E}(X \ | \ \mcal{G}) \ : \ \mcal{G} \subseteq \mcal{F} \; \sigma\text{-álgebra}\} \]
+		es UI.
+	\end{enumerate}
+\end{eg}
+
+\begin{theorem}
+	Sea $(X_{n})_{n \in \N} \subseteq L^{1}$ tal que $X_{n} \xlongrightarrow{\mbb{P}} X$. Son equivalentes:
+	\begin{enumerate}[i)]
+		\item $(X_{n})_{n \in \N}$ es UI.
+
+		\item $X_{n} \xlongrightarrow{L^{1}} X$.
+
+		\item $\mbb{E}(|X_{n}|) \longrightarrow \mbb{E}(|X|) < \infty$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{theorem}
+	Si $(X_{n})_{n \in \N_{0}}$ es una super/sub/maringala, entonces, son equivalentes:
+	\begin{enumerate}[i)]
+		\item $(X_{n})_{n \in \N_{0}}$ es UI.
+
+		\item $X_{n} \stackbin[L^{1}]{c.s.}{\longrightarrow} X_{\infty} \in L^{1}$.
+
+		\item $X_{n} \xlongrightarrow{L^{1}} X_{\infty} \in L^{1}$.
+	\end{enumerate}
+	Además, en tal caso, vale que $\mbb{E}(X_{\infty} \ | \ \mcal{F}_{n}) = X_{n} \quad \forall n \in \N$ (reemplazando la igualdad con $\leq$ para supermartingala y con $\geq$ para submartingala).
+\end{theorem}
+\begin{proof}[Proof ]
+	Supongamos $(X_{n})_{n \in \N_{0}}$ supermartingala. \par
+	i) $\implies$ ii) Como
+	\[ \sup_{n \in \N_{0}} \mbb{E}(X_{n}^{-}) \leq \sup_{n \in \N_{0}} \| X_{n} \|_{1} < \infty, \]
+	pues $(X_{n})_{n \in \N_{0}}$ es UI, por el Teo. de Conv. de supermartingalas
+	\[ X_{n} \xlongrightarrow{c.s.} X_{\infty} \in L^{1}. \]
+	Además, como $(X_{n})_{n \in \N_{0}}$ es UI, $X_{n} \xlongrightarrow{L^{1}} X_{\infty}$. \par
+	ii) $\implies$ iii) Es inmediato. \par
+	iii) $\implies$ i) Por el Teorema anterior, pues $X_{n} \xlongrightarrow{\mbb{P}} X_{\infty}$. \par
+	\medskip
+	Por último, por la contiunidad en $L^{1}$ de $X \mapsto \mbb{E}(X \ | \ \mcal{F}_{n})$, tenemos que
+	\[ \mbb{E}(X_{\infty} \ | \ \mcal{F}_{n}) = \lim_{m \to \infty} \mbb{E}(X_{m} \ | \ \mcal{F}_{n}) \leq X_{n} \quad \text{si } m \geq n, \]
+	por ser $(X_{n})_{n \in \N_{0}}$ supermartingala.
+\end{proof}
+
+\begin{theorem}
+	Si $(X_{n})_{n \in \N_{0}}$ es una martingala, son equivalentes:
+	\begin{enumerate}[i)]
+		\item $(X_{n})_{n \in \N_{0}}$ es UI.
+
+		\item $X_{n} \stackbin[L^{1}]{c.s.}{\longrightarrow} X_{\infty} \in L^{1}$.
+
+		\item $X_{n} \xlongrightarrow{L^{1}} X_{\infty} \in L^{1}$.
+
+		\item $\exists \; Z \in L^{1}$ tal que $X_{n} = \mbb{E}(Z \ | \ \mcal{F}_{n})$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	(i) $\iff$ (ii) $\iff$ (iii) ya lo vimos. \par
+	iii) $\implies$ iv) El Teo anterior prueba que $X_{n} = \mbb{E}(X_{\infty} \ | \ \mcal{F}_{n}) \quad \forall n \in \N$. \par
+	iv) $\implies$ i) Por el ejemplo 5.
+\end{proof}
+
+\begin{theorem}
+	Si $(\mcal{F}_{n})_{n \in \N_{0}}$ es una filtración y $\mcal{F}_{\infty} \coloneq \sigma(\mcal{F}_{n} \ : \ n \in \N_{0})$, entonces, dado $p \geq 1$, para toda $Z \in L^{p}$, el proceso $(X_{n})_{n \in \N_{0}}$ dado por
+	\[ X_{n} \coloneq \mbb{E}(Z \ | \ \mcal{F}_{n}), \]
+	es una martingala UI acotada en $L^{p}$ que cumple
+	\[ X_{n} = \mbb{E}(Z \ | \ \mcal{F}_{n}) \stackbin[L^{p}]{c.s.}{\longrightarrow} \mbb{E}(Z \ | \ \mcal{F}_{\infty}) = X_{\infty}. \]
+\end{theorem}
+
+\begin{theorem}[Parada Opcional de Doob]
+	Sean $(X_{n})_{n \in \N_{0}}$ una super/sub/martingala y $S \leq T$ tiempos de parada. Si $(X_{T \wedge n})_{n \in \N_{0}}$ es UI, entonces:
+	\begin{enumerate}
+		\item Si $T < \infty$, entonces $X_{S}, X_{T} \in L^{1}$ y $\mbb{E}(X_{T} \ | \ \mcal{F}_{S}) = X_{S}$ (reemplazando la igualdad por $\leq$ para supermartingala y con $\geq$ para submartingala). En particular, $\mbb{E}(X_{T}) = \mbb{E}(X_{S})$ (reemplazando la igualdad por la misma regla anterior).
+
+		\item Si $T$ no es necesariamente finito, pero $X_{n} \xlongrightarrow{c.s.} X_{\infty}$, entonces $X_{S}, X_{T} \in L^{1}$ y $\mbb{E}(X_{T} \ | \ \mcal{F}_{S}) = X_{S}$. En particular, $\mbb{E}(X_{T}) = \mbb{E}(X_{S})$. (nuevamente, ambas igualdades las reemplazamos según la regla anterior.)
+	\end{enumerate}
+\end{theorem}

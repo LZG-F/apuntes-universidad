@@ -1,0 +1,53 @@
+\chapter{Projective Plane Curves}
+
+% --------------- % ################################################
+% 5.1 DEFINITIONS % ################################################
+% --------------- % ################################################
+\section{Definitions}
+
+% ---------------------------- % ###################################
+% 5.2 LINEAR SYSTEMS OF CURVES % ###################################
+% ---------------------------- % ###################################
+\section{Linear Systems of curves}
+
+% --------------------- % ##########################################
+% 5.3 BÉZOUTS'S THEOREM % ##########################################
+% --------------------- % ##########################################
+\section{Bezout's Theorem}
+
+% ------------------- % ############################################
+% 5.4 MULTIPLE POINTS % ############################################
+% ------------------- % ############################################
+\section{Multiple Points}
+
+% ------------------------------------- % ##########################
+% 5.5 MAX NOETHER'S FUNDAMENTAL THEOREM % ##########################
+% ------------------------------------- % ##########################
+\section{Max Noether's Fundamental Theorem}
+
+\begin{corollary}
+	If either
+	\begin{enumerate}[(1)]
+		\item $F$ and $G$ meet in $\deg(F) \deg(G)$ distinct points, and $H$ passes through these points, or
+		
+		\item All the points of $F \cap G$ are simple points of $F$, and $H \bullet F \geq G \bullet F$,
+	\end{enumerate}
+	then there is a curve $B$ such that $B \bullet F  = H \bullet F - G \bullet F$.
+\end{corollary}
+
+% ------------------------------------- % ##########################
+% 5.6 APPLICATIONS OF NOETHER'S THEOREM % ##########################
+% ------------------------------------- % ##########################
+\section{Applications of Noether's Theorem}
+
+\begin{prop}
+	Let $C$ be an irreducible cubic, $C'$, $C''$ cubics. Suppose $C' \bullet C = \sum_{i = 1}^{9} P_{i}$, where the $P_{i}$ are simple (not necessarily distinct) points on $C$, and suppose $C'' \bullet C = \sum_{i=1}^{8} P_{i} + Q$. Then $Q = P_{9}$.
+\end{prop}
+
+\begin{remark}
+	In the proof of the proposition (number 3 on Fulton's book), it's stated that when one gets $LC'' \bullet C = C' \bullet C + Q + R + S$, you can then say that there is a line $L'$ such that $L' \bullet C = Q + R + S$. Effectively, this comes from the corollary, part (2), presented in section 5.5. Indeed, if we take $F \coloneq C$, $G \coloneq C'$, and $LC'' \coloneq H$, we can first see that the points on $F \cap G = C \cap C'$ are exactly the $P_{i}$'s, all simple points of $C$. Also, because of the equality given at the beginning of the note, it's easy to see that 
+	\[ H \bullet F = LC'' \bullet C \geq C' \bullet C = G \bullet F. \]
+	Then, because of the corollary, there is a curve $B$ such that 
+	\[ B \bullet C = LC'' \bullet C - C' \bullet C = Q + R + S. \]
+	This $B$ must be a line, because $\sum_{P} I(P,\; C \cap B) = 3 = 3 \cdot \deg(B)$; i.e., $\deg(B) = 1$. So $B =: L'$ is the line that we were looking for.
+\end{remark}

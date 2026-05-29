@@ -1,0 +1,90 @@
+\clase{19}{6 de Mayo}{}
+
+Supongamos que $(X_{n})_{n \in \N_{0}}$ es una supermartingala, que representa la evolución del precio de una acción de una empresa. Queremos implementar la estrategia de "comprar barato y vender caro" para intentar sacar rédito. \par 
+Más precisamente, dados $a < b \in \R$, queremos definir la estrategia $(H_{n})_{n \in \N}$ en la que compramos una acción cada vez que su precio caiga de "a" y la vendemos apenas su valor supere "b". Para esto, usamos tiempos de parada. \par
+Definimos $(T_{k})_{k \in \N_{0}}$ como:
+\begin{itemize}
+	\item $T_{0} \equiv -1$;
+
+	\item $T_{2k - 1} \coloneq \inf \{n > T_{2k - 2} \ : \ X_{n} \leq a\} \quad (k \in \N)$;
+
+	\item $T_{2k} \coloneq \inf \{n > T_{2k - 1} \ : \ X_{n} \geq b\} \quad (k \in \N)$. 
+\end{itemize}
+Puede verificarse que $(T_{k})_{k \in \N_{0}}$ son tiempos de parada. \par
+La estrategia que buscamos es
+\[ H_{n} \coloneq \begin{cases}
+	1 \quad \text{si } T_{2k - 1} < n \leq T_{2k} \quad (k \in \N_{0}) \\
+	0 \quad \text{en caso contrario.}
+\end{cases} \]
+Observar que:
+\begin{enumerate}
+	\item Cada vez que el precio "cruza" desde "$\leq a$" a "$\geq b$", la ganancia acumulada es $\geq b - a$.
+
+	\item Si a tiempo $n$ tengo una acción y decido venderla (posiblemente antes de tiempo!), voy a perder dinero si $X_{n} \leq$ precio de la última compra ($\leq a$). En cualquier caso, lo máximo que puedo perder es $(X_{n} - a)^{-}$. \par
+	En particular, la ganancia neta a tiempo $n$ es
+	\[ (H \cdot X)_{n} \geq (b - a) U_{n}^{a,b} - (X_{n} - a)^{-} \]
+	donde $U_{n}^{a,b} \coloneq \sup \{k \ : \ T_{2k} \leq n\}$. 
+\end{enumerate}
+
+\begin{theorem}[Lema de Upcrossings de Doob]
+	Si $(X_{n})_{n \in \N_{0}}$ es una supermartingala y $a < b \in \R$, entonces
+	\[ (b - a) \mbb{E}(U_{n}^{a,b}) \leq \mbb{E}((X_{n} - a)^{-}). \]
+\end{theorem}
+
+\begin{theorem}[de convergencia de supermartingalas]
+	Si $(X_{n})_{n \in \N_{0}}$ es una supermartingala tal que $\sup_{n \in \N_{0}} \mbb{E}(X_{n}^{-}) < \infty$, entonces $X_{n} \xlongrightarrow{c.s.} X_{\infty}$, donde el límite $X_{\infty}$ cumple $\mbb{E}(|X_{\infty}|) < \infty$.
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Como $(X_{n}) - a)^{-} \leq X_{n}^{-} + |a|$, el resultado anterior implica que
+	\[ \mbb{E}(U_{n}^{a,b}) \leq \frac{|a| + \mbb{E}(X_{n}^{-})}{b - a}. \]
+	Como $U_{n}^{a,b} \nearrow U^{a,b} \coloneq$ \# cruces de $a$ hasta $b$, por TCM 
+	\[ \mbb{E}(U_{n}^{ab}) \leq \frac{|a| + \sup_{n} \mbb{E}(X_{n}^{-})}{b - a} < \infty. \]
+	En particular, $U^{a,b} < \infty$ casi seguramente. \par
+	Pero entonces,
+	\begin{align*}
+		\Lambda &\coloneq \{ \omega \in \Omega \ : \ (X_{n}(\omega))_{n \in \N} \text{ no converge en } \overline{\R} \} \\ 
+		&= \{ \omega \ : \ \liminf_{n \to \infty} X_{n}(\omega) < \limsup_{n \to \infty} X_{n}(\omega) \} \\
+		&= \bigcup_{\substack{a,b \in \Q \\ a < b}} \{ \omega \ : \ \liminf_{n \to \infty} X_{n}(\omega) < a < b < \limsup_{n \to \infty} X_{n}(\omega) \} \\
+		&\subseteq \bigcup_{a < b \in \Q} \{ \omega \ : \ U^{a,b}(\omega) = \infty \}
+	\end{align*}
+	Luego, $\mbb{P}(\Lambda) = 0$ y, por lo tanto, $X_{\infty} \coloneq \liminf_{n \to \infty} X_{n}$ cumple $X_{n} \xlongrightarrow{c.s.} X_{\infty}$. \par
+	Falta ver que $X_{\infty} \in L^{1}$.
+	\begin{align*}
+		\mbb{E}(X_{\infty}^{-} &\leq \liminf_{n \to \infty} \mbb{E}(X_{n}^{-}) \\
+		\mbb{E}(X_{\infty}^{+}) &\leq \liminf_{n \to \infty} \mbb{E}(X_{n}^{+}) \quad (\leq C) \tag{$*$}
+	\end{align*}
+	por el lema de Fatou, pues $X_{n}^{\pm} \xlongrightarrow{c.s.} X_{\infty}^{\pm}$. \par
+	Por un lado,
+	\[ \liminf_{n \to \infty} \mbb{E}(X_{n}^{-}) \leq \sup_{n \in \N_{0}} \mbb{E}(X_{n}^{-}) < \infty. \]
+	Por otro lado,
+	\begin{align*}
+		\mbb{E}(X_{n}^{+}) &= \mbb{E}(X_{n}) + \mbb{E}(X_{n}^{-}) \\
+		&\leq \mbb{E}(X_{0}) + \sup_{k \in \N_{0}} \mbb{E}(X_{k}^{-}) \eqcolon C < \infty,
+	\end{align*}
+	con lo cual
+	\[ \liminf_{n \to \infty} \mbb{E}(X_{n}^{+}) \leq C < \infty \]
+	y así $X_{\infty} \in L^{1}$.
+\end{proof}
+
+\begin{corollary}
+	Si $(X_{n})_{n \in \N_{0}}$ es una supermartingala no negativa, entonces $X_{n} \xlongrightarrow{c.s.} X_{\infty}$ y $\mbb{E}(X_{\infty}) \leq \mbb{E}(X_{0})$.
+\end{corollary}
+\begin{proof}[Proof Other Information]
+	Basta notar que $X_{n}^{-} = 0$ c.s. con lo cual $\mbb{E}(X_{n}^{-}) = 0$ y así podemos usar el Teorema anterior. Que $\mbb{E}(X_{\infty} \leq \mbb{E}(X_{0})$ se deduce de $(*)$, pues en este caso $X_{\infty}^{+} = X_{\infty}$ c.s. y $C = \mbb{E}(X_{0})$.
+\end{proof}
+
+\begin{corollary}
+	Si $(X_{n})_{n \in \N_{0}}$ es una maringala acotada en $L^{1}$ (i.e. \\ $\sup_{n \in \N} \| X_{n} \|_{1} < \infty$), entonces $X_{n} \xlongrightarrow{c.s.} X_{\infty} \in L^{1}$. (En general, no es cierto que $X_{n} \xlongrightarrow{L^{1}} X_{\infty}$.)
+\end{corollary}
+\begin{proof}[Proof Other Information]
+	$(X_{n})_{n \in \N}$ martingala. Como $(X_{n})_{n \in \N}$ es submartingala $\implies (X_{n}^{+})_{n \in \N}$ supermartingala. Dado que $\sup_{n \in \N_{0}} \mbb{E}(X_{n}^{+}) < \infty \implies X_{n}^{+} \xlongrightarrow{c.s.} X_{\infty}^{+} \in L^{1}$. \par
+	$(X_{n})_{n \in \N}$ martingala. Como $(X_{n})_{n \in \N}$ es supermartingala $\implies (X_{n}^{-})_{n \in \N}$ submartingala. Dado que $\sup_{n \in \N_{0}} \mbb{E}(X_{n}^{-}) < \infty \implies X_{n}^{-} \xlongrightarrow{c.s.} X_{\infty}^{-} \in L^{1}$.
+\end{proof}
+
+\subsection{Contraejemplo para la convergencia en $L^{1}$}
+Sea $S_{n} \coloneq 1 + \xi_{1} + \cdots + \xi_{n}$ con $(\xi_{n})_{n \in \N}$ i.i.d. $\mbb{P}(\xi_{n} = \pm 1) = \frac{1}{2}$. Definimos
+\begin{align*}
+	T &\coloneq \inf \{n \ : \ S_{n} = 0\} \\ 
+	X_{n} &\coloneq S_{T \wedge n}
+.\end{align*}
+Por el Teorema de P.O., $(X_{n})_{n \in \N_{0}}$ es una supermartingala. Como $X_{n} \geq 0 \quad \forall n \in \N$, por el Teorema de recién, $X_{n} \xlongrightarrow{c.s.} X_{\infty} \in L^{1}$. Como $X_{n} \in \Z \quad \forall n \in \N$, $X_{\infty} \in \Z$ también. De hecho, $X_{\infty} \equiv 0$ c.s. Pero, como $\mbb{E}(X_{n}) = \mbb{E}(S_{T \wedge n}) = \mbb{E}(S_{0}) = 1$ (donde la segunda igualdad está dada por P.O. con tiempo $T \wedge n$ acotado.), esto implica que $\mbb{E}(X_{n}) \longrightarrow \mbb{E}(\underbrace{X_{\infty}}_{=0}) = 0$ y, por lo tanto, $X_{n} \not\xlongrightarrow{L^{1}} X_{\infty}$.

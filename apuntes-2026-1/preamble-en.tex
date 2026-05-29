@@ -183,26 +183,26 @@
 \declaretheoremstyle[headfont=\bfseries\sffamily, bodyfont=\normalfont, numbered=no, mdframed={ nobreak, rightline=false, topline=false, bottomline=false } ]{thmexplanationbox}
 
 
-\declaretheorem[numberwithin=chapter, style=thmgreenbox, name=Definición]{definition}
-\declaretheorem[sibling=definition, style=thmredbox, name=Corolario]{corollary}
-\declaretheorem[sibling=definition, style=thmredbox, name=Proposición]{prop}
-\declaretheorem[sibling=definition, style=thmredbox, name=Teorema]{theorem}
-\declaretheorem[sibling=definition, style=thmredbox, name=Lema]{lemma}
+\declaretheorem[numberwithin=chapter, style=thmgreenbox, name=Definition]{definition}
+\declaretheorem[numberwithin=chapter, style=thmredbox, name=Corollary]{corollary}
+\declaretheorem[numberwithin=chapter, style=thmredbox, name=Proposition]{prop}
+\declaretheorem[numberwithin=chapter, style=thmredbox, name=Theorem]{theorem}
+\declaretheorem[numberwithin=chapter, style=thmredbox, name=Lemma]{lemma}
 %AGREGADO
-\declaretheorem[sibling=definition, style=thmredbox, name=Criterio]{criterio}
-\declaretheorem[sibling=definition, style=thmredbox, name=Propiedad]{property}
-\declaretheorem[sibling=definition, style=thmredbox, name=Afirmación]{af}
+\declaretheorem[numberwithin=chapter, style=thmredbox, name=Criterium]{criterio}
+\declaretheorem[numberwithin=chapter, style=thmredbox, name=Property]{property}
+\declaretheorem[numberwithin=chapter, style=thmredbox, name=Claim]{af}
 %AGREGADO
 
 
 
-\declaretheorem[numbered=no, style=thmexplanationbox, name=Demostración]{explanation}
-\declaretheorem[numbered=no, style=thmproofbox, name=Demostración]{replacementproof}
-\declaretheorem[style=thmbluebox,  numbered=no, name=Ejercicio]{ex}
-\declaretheorem[style=thmbluebox,  numbered=no, name=Ejemplo]{eg}
-\declaretheorem[style=thmblueline, numbered=no, name=Observación]{remark}
-\declaretheorem[style=thmblueline, numbered=no, name=Comentarios]{comentarios}
-\declaretheorem[style=thmblueline, numbered=no, name=Nota]{note}
+\declaretheorem[numbered=no, style=thmexplanationbox, name=Proof]{explanation}
+\declaretheorem[numbered=no, style=thmproofbox, name=Proof]{replacementproof}
+\declaretheorem[style=thmbluebox,  numbered=no, name=Excercise]{ex}
+\declaretheorem[style=thmbluebox,  numbered=no, name=Example]{eg}
+\declaretheorem[style=thmblueline, numbered=no, name=Remark]{remark}
+\declaretheorem[style=thmblueline, numbered=no, name=Comments]{comentarios}
+\declaretheorem[style=thmblueline, numbered=no, name=Note]{note}
 
 \renewenvironment{proof}[1][\proofname]{\begin{replacementproof}}{\end{replacementproof}}
 
