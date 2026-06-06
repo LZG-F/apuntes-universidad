@@ -1,0 +1,105 @@
+\clase{25}{1 de Junio}{}
+
+\begin{prop}
+	En el marco anterior,
+	\begin{enumerate}[i)]
+		\item $\mbb{P}_{\mu}$ es la distribución de la CdM con MdT $P$ y distribución inicial $\mu$.
+
+		\item $P(f)(i) = \mbb{E}_{i}(f(X_{1}))$.
+
+		\item $\mu P(j) = \mbb{P}_{\mu}(X_{1} = j)$.
+
+		\item $P_{ij}^{(n+m)} \coloneq \mbb{P}_{i}(X_{n+m} = j) = \sum_{k \in S} P_{ik}^{(m)} P_{kj}^{(n)} = (P^{(m)} \cdot P^{(n)})_{ij}$ (Chapman-Kolmogorov).
+	\end{enumerate}
+\end{prop}
+\begin{proof}[Proof Other Information]
+	\begin{enumerate}[i)]
+		\item Si $X$ tiene DI $\mu$ y MdT $P$,
+		\begin{align*}
+			\mbb{P}_{X}(A) \coloneq \mbb{P}(X \in A) &= \sum_{i \in S} \mbb{P}(X \in A \ | \ X_{0} = i) \cdot \mbb{P}(X_{0} = i) \\
+			&= \sum_{i \in S} \mbb{P}_{i}(A) \mu(i) \\
+			&= \mbb{P}_{\mu}(A)
+		.\end{align*}
+
+		\item Se tiene que:
+		\begin{align*}
+			\mbb{E}(f(X_{1})) &= \sum_{j \in S} f(j) \mbb{P}_{i}(X_{1} = j) \\
+			&= \sum f(j) \mbb{P}(X_{1} = j \ | \ X_{0} = i) \\
+			&= \sum f(i) P_{ij} \\
+			&= P(f)(i)
+		.\end{align*}
+
+		\item Se tiene que:
+		\begin{align*}
+			\mbb{P}_{\mu}(X_{1} = j) &= \sum_{i \in S} \mbb{P}_{\mu}(X_{1} = j \ | \ X_{0} = i) \mbb{P}_{\mu}(X_{0} = i) \\
+			&= \mu P(j)
+		.\end{align*}
+
+		\item Se tiene que:
+		\begin{align*}
+			\mbb{P}(X_{n+m} = j \ | \ X_{0} = i) &= \mbb{P}(X_{n+m} = j,\ X_{0} = i) \cdot \frac{1}{\mbb{P}(X_{0} = i)} \\
+			&= \sum_{k \in S} \mbb{P}(X_{n+m} = j,\ X_{m} = k,\ X_{0} = i) \cdot \frac{1}{\mbb{P}(X_{0} = i)} \\
+			&= \sum_{k \in S} \mbb{P}(X_{n+m} = j \ | \ X_{m} = k) \cdot \mbb{P}(X_{m} = k \ | \ X_{0} = i) \\
+			&= \sum_{k \in S} P_{ik}^{(m)} \cdot P_{kj}^{(n)}
+		.\end{align*}
+	\end{enumerate}
+\end{proof}
+
+\subsection{Propiedad Fuerte de Markov}
+
+Recordemos que si $(X_{n})_{n \in \N_{0}}$ es una $(\mcal{F}_{n})_{n \in \N_{0}}$-CdM entonces
+\[ \mbb{E}(f(X^{(n)}) \ | \ \mcal{F}_{n}) = \mbb{E}(f(X^{(n)}) \ | \ X_{n}) \]
+para toda $f \colon S^{\N_{0}} \to \R$ medible y acotada, donce $X^{(n)} \coloneq (X_{n+k})_{k \in \N_{0}}$. \par
+Como $S$ ahora es numerable, podemos escribir
+\[ \mbb{E}(f(X^{(n)}) \ | \ X_{n}) = \sum_{i \in S} \mbb{E}(f(X^{(n)}) \ | \ X_{n} = i) \mathds{1}_{\{X_{n} = i\}}. \]
+Además, si $X$ es homogénea, entonces resulta 
+\[ \mbb{E}(f(X^{(n)}) \ | \ X_{n} = i) = \mbb{E}(f(X^{(0)}) \ | \ X_{0} = i) = \mbb{E}(f(X) \ | \ X_{0} = i) = \mbb{E}_{i}(f(X)) \]
+de modo que
+\[ \sum_{i \in S} \mbb{E}(f(X^{(n)}) \ | \ X_{n} = i) \mathds{1}_{\{X_{n} = i\}} = \sum_{i \in S} \mbb{E}_{i}(f(X)) \mathds{1}_{\{X_{n} = i\}} = \mbb{E}_{X_{n}}(f(X)). \]
+Entonces,
+\[ \mbb{E}(f(X^{(n)}) \ | \ \mcal{F}_{n}) = \mbb{E}_{X_{n}}(f(X)) \quad \forall f \colon S^{\N_{0}} \to \R \text{ medible y acotada}. \]
+
+\begin{theorem}
+	Sean $X = (X_{n})_{n \in \N_{0}}$ una $(\mcal{F}_{n})_{n \in \N_{0}}$-CdM homogénea y $\tau$ un $(\mcal{F}_{n})_{n \in \N_{0}}$-tiempo de parada. Entonces
+	\[ \mbb{E}(f(X^{(\tau)}) \mathds{1}_{\{\tau = \infty\}} \ | \ \mcal{F}_{\tau}) = \mbb{E}_{X_{\tau}}(f(X)) \mathds{1}_{\tau < \infty} \]
+	$\forall f \colon S^{\N_{0}} \to \R \text{ medible y acotada}$, donde $(X^{(\tau)}) = (X_{\tau + k})_{k \in \N_{0}}$.
+\end{theorem}
+\begin{proof}[Proof ]
+	Basta con ver que
+	\[ \mbb{E}(f(X^{(\tau)}) \mathds{1}_{\{\tau = n\}} \ | \ \mcal{F}_{n}) = \mbb{E}_{\underbrace{X_{\tau}}_{X_{n}}} (f(X)) \mathds{1}_{\{\tau = n\}} \quad \forall n \in \N_{0}. \]
+	Por definición,
+	\begin{enumerate}
+		\item Si $\varphi \colon \R \to \R$ es medible y acotada y $Z \coloneq \varphi(X_{n}) \mathds{1}_{\{\tau = n\}}$, entonces $Z$ es $\mcal{F}_{\tau}$-medible, pues si $B \in \beta(\R)$ entonces
+		\[ \{Z \in B\} \cap \{\tau = k\} = \begin{cases}
+			\varnothing \quad \text{si } 0 \not\in B,\ k \neq n, \\
+			\{\tau = k\} \quad \text{si } 0 \in B,\ k \neq n, \\
+			\{X_{n} \in \varphi^{-1}(B)\} \cap \{\tau = k\} \quad \text{si } k = n  
+		\end{cases} \in \mcal{F}_{k}. \]
+
+		\item Si $A \in \mcal{F}_{\tau}$,
+		\begin{align*}
+			\mbb{E}(f(X^{(\tau)}) \mathds{1}_{\{\tau = n\}} \mathds{1}_{A} &= \mbb{E}(f(X^{(n)}) \mathds{1}_{\{\tau = n\} \cap A}) \\
+			&= \mbb{E}(\mbb{E}_{X_{n}}(f(X)) \mathds{1}_{\{\tau = n\} \cap A}) \tag{Prop. de Markov} \\
+			&= \mbb{E}((\mbb{E}_{X_{n}}(f(X)) \mathds{1}_{\{\tau = n\}}) \mathds{1}_{A}) \\
+		.\end{align*}
+		Entonces,
+		\[ \mbb{E}(f(X^{(n)}) \mathds{1}_{\{\tau = n\}} \ | \ \mcal{F}_{\tau}) = \mbb{E}_{X_{n}}(f(X)) \mathds{1}_{\{\tau = n\}}. \]
+	\end{enumerate}
+\end{proof}
+
+\section{Estructura de Clases}
+
+\begin{definition}
+	Sean $X$ una CdM, $i,j \in S$. Diremos que \textit{$i$ conduce a $j$} ($i \to j$) si $\mbb{P}_{i}(\exists n \in \N_{0} \ : \ X_{n} = j) > 0$. Decimos que \textit{$i$ y $j$ se comunican} ($i \leftrightarrow j$) si $i \to j$ y $j \to i$.
+\end{definition}
+
+\begin{prop}
+	Si $i \neq j \in S$, son equivalentes:
+	\begin{enumerate}[i)]
+		\item $i \to j$,
+
+		\item $\exists n \in \N,\ i_{1},\dots,i_{n-1} \in S$ tal que $p_{i, i_{1}} \cdot p_{i_{1},i_{2}} \cdot \dots \cdot p_{i_{n-1},j} > 0$,
+
+		\item $\exists n \in \N$ tal que $\mbb{P}_{i}(X_{n} = j) > 0$.
+	\end{enumerate}
+\end{prop}

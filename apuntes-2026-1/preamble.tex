@@ -50,7 +50,9 @@
 \DeclareMathOperator{\Cov}{Cov}
 \DeclareMathOperator{\Be}{Be}
 \DeclareMathOperator{\Bi}{Bi}
+\DeclareMathOperator{\mcd}{mcd}
 \newcommand{\doublearrow}[1]{\xrightarrow[]{#1}\mathrel{\mkern-14mu}\rightarrow}
+
 
 \newcommand{\bigcupd}{\mathop{\ensurestackMath{\stackinset{l}{}{c}{+.25ex}{\hspace{3pt}{\text{\tiny{D}}}}{\displaystyle{\bigcup}}}}}
 
@@ -86,6 +88,7 @@
 	}
 
 \usepackage{tikz}
+\usetikzlibrary{automata, positioning}
 \usepackage{tikz-cd}
 \usepackage{tkz-tab}
 \usepackage{caption}
@@ -103,8 +106,8 @@
     \noindent\rule[0.5ex]{\linewidth}{0.5pt}
 }
 
-%\usepackage{tikz}
 %\usepackage{tikz-cd}
+\usepackage{pst-node}
 
 % theorems
 \usepackage{thmtools}
@@ -203,6 +206,7 @@
 \declaretheorem[style=thmblueline, numbered=no, name=Observación]{remark}
 \declaretheorem[style=thmblueline, numbered=no, name=Comentarios]{comentarios}
 \declaretheorem[style=thmblueline, numbered=no, name=Nota]{note}
+\declaretheorem[style=thmblueline, numbered=no, name=Aclaración]{aclaracion}
 
 \renewenvironment{proof}[1][\proofname]{\begin{replacementproof}}{\end{replacementproof}}
 

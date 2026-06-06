@@ -1,0 +1,113 @@
+\chapter{Cadenas de Markov}
+
+\clase{23}{25 de Mayo}{}
+
+\begin{notation}
+	Si $\mcal{G} \subseteq \mcal{F}$ es una sub-$\sigma$-álgebra de $\mcal{F}$ y $A \in \mcal{F}$, definimos $\mbb{P}(A \ | \ \mcal{G}) \coloneq \mbb{E}(\mathds{1}_{A} \ | \ \mcal{G})$.
+\end{notation}
+
+\begin{definition}
+	Sean $(\Omega, \mcal{F}, \mbb{P}, (\mcal{F}_{n})_{n \in \N_{0}})$ es un espacio de probabilidad filtrado, y $X = (X_{n})_{n \in \N_{0}}$ un proceso estocástico a valores en un espacio métrico $S$ (def. en $(\Omega, \mcal{F}, \mbb{P})$). Diremos que $X$ es una \textit{cadena de Markov} con respecto a $(\mcal{F}_{n})_{n \in \N_{0}}$ (o $(\mcal{F}_{n})_{n \in \N_{0}}$-cadena de Markov) si:
+	\begin{enumerate}[(i)]
+		\item $X$ es adaptado a $(\mcal{F}_{n})_{n \in \N_{0}}$,
+
+		\item para todo $n \in \N_{0},\ B \in \beta(S)$, $\mbb{P}(X_{n+1} \in B \ | \ \mcal{F}_{n}) = \mbb{P}(X_{n+1} \in B \ | \ X_{n})$.
+	\end{enumerate}
+\end{definition}
+
+\begin{comentarios}
+	\begin{enumerate}
+		\item $S$ se dirá el \textit{espacio de estados} de $X$.
+
+		\item Si $X$ es una $(\mcal{F}_{n})_{n \in \N}$-CdM entonces también es una $(\mcal{F}_{n}^{X})_{n \in \N_{0}}$-CdM, donde $\mcal{F}_{n}^{X} \coloneq \sigma(X_{0},\dots,X_{n})$ es la filtración natural asociada a $X$. En efecto:
+		\begin{align*}
+			\mbb{P}(X_{n+1} \in B \ | \ \mcal{F}_{n}^{X}) &= \mbb{E}(\mbb{P}(X_{n+1} \in B \ | \ \mcal{F}_{n}) \ | \ \mcal{F}_{n}^{X}) \tag{$\mcal{F}_{n}^{X} \subseteq \mcal{F}_{n}$} \\
+			&= \mbb{E}(\mbb{P}(X_{n+1} \in B \ | \ X_{n}) \ | \ \mcal{F}_{n}^{X}) \tag{$\mcal{F}_{n} \text{-Markov}$}\\
+			&= \mbb{P}(X_{n+1} \in B \ | \ X_{n})
+		.\end{align*}
+	\end{enumerate}
+\end{comentarios}
+
+\begin{eg}
+	Si $(Z_{n})_{n \in \N}$ son i.i.d., entonces la caminata aleatoria $S = (S_{n})_{n \in \N_{0}}$, dada por
+	\[ \begin{cases}
+		S_{0} \coloneq 0 \\
+		S_{n} \coloneq Z_{1} + \cdots + Z_{n} \quad (n \in \N)
+	\end{cases} \]
+	es una cadena de Markov. \par
+	En efecto, $\mcal{F}_{n}^{S} = \sigma (S_{0}, S_{1}, \dots, S_{n}) = \sigma(0, Z_{1},\dots, Z_{n})$
+	\begin{align*}
+		\mbb{P}(S_{n+1} \in B \ | \ \mcal{F}_{n}^{S}) &= \mbb{P}(S_{n} + Z_{n+1} \in B \ | \ \sigma(S_{n}) \vee \mcal{F}_{n-1}^{S}) \\
+		&= \mbb{P}(S_{n} + Z_{n+1} \in B \ | \ S_{n}) \tag{$S_{n} + Z_{n+1} \text{ indep. de } \mcal{F}_{n-1}^{S}$} \\
+		&= \mbb{P}(S_{n+1} \in B \ | \ S_{n})
+	.\quad\checkmark\end{align*}
+	\[ \Big( \mbb{E}(h(S_{n} + Z_{n+1}) \mathds{1}_{A} \ | \ S_{n}) = \mbb{E}(h(S_{n} + Z_{n+1}) \ | \ S_{n}) \mbb{P}(A \ | \ S_{n}) \quad \forall A \in \mcal{F}_{n-1}^{S} \Big) \]
+	(la igualdad es por la condicionalidad a $\sigma(S_{n})$.)
+\end{eg}
+
+\begin{eg}
+	Si $(Z_{n})_{n \in \N_{0}}$ es un proceso de Galton-Watson, es una cadena de Markov, pues
+	\[ Z_{n+1} = \sum_{i=1}^{Z_{n}} X_{i}^{(n)} \]
+	con $(X_{i}^{(n)})_{i,n \in \N}$ i.i.d.
+\end{eg}
+
+\begin{theorem}
+	Sea $X = (X_{n})_{n \in \N_{0}}$ una $(\mcal{F}_{n})_{n \in \N_{0}}$-CdM. Entonces:
+	\begin{enumerate}
+		\item $\mbb{E}(f(X_{n+1} \ | \ \mcal{F}_{n}) = \mbb{E}(f(X_{n+1}) \ | \ X_{n}) \quad \forall n \in \N_{0},\ f \colon S \to \R \ \beta(S)$-medible y acotada.
+
+		\item $\mbb{E}(f(X_{n+k}) \ | \ \mcal{F}_{n}) = \mbb{E}(f(X_{n+k}) \ | \ X_{n}) \quad \forall n \in \N_{0},\ k \in \N,\ f \colon S \to \R$ medible y acotada.
+
+		\item $\mbb{E}(f(X_{n+1}, \dots, X_{n+k}) \ | \ \mcal{F}_{n}) = \mbb{E}(f(X_{n+1}, \dots, X_{n+k}) \ | \ X_{n}) \quad \forall n \in \N_{0},\ k \in \N,\ f \colon S^{k} \to \R$ medible y acotada.
+
+		\item $\mbb{E}(Z \ | \ \mcal{F}_{n}) = \mbb{E}(Z \ | \ X_{n}) = \mbb{E}(Z \ | \ \sigma(X_{n}) \vee \mcal{F}_{n-1}) \quad \forall Z$ VA $\sigma(X_{n+k} \ : \ k \in \N_{0})$-medible. \par
+		En particular, condicional a $X_{n}$, $\sigma(X_{n+k} \ : \ k \in \N)$ y $\mcal{F}_{n-1}$ son independientes.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	\begin{enumerate}
+		\item Por un argumento estándar.
+
+		\item Vale por def. si $k = 1$ y, si vale para $k$,
+		\begin{align*}
+			\mbb{E}(f(X_{n + (k + 1)}) \ | \ \mcal{F}_{n}) &= \mbb{E}(\underbrace{\mbb{E}(f(X_{n+k+1}) \ | \ \mcal{F}_{n+k})}_{\mathclap{= \mbb{E}(f(X_{n+k+1}) \ | \ X_{n+k}) = g(n+k)}} \ | \ \mcal{F}_{n}) \\
+			&= \mbb{E}(g(X_{n+k}) \ | \ \mcal{F}_{n}) \\
+			&= \mbb{E}(g(X_{n+k}) \ | \ X_{n}) \tag{H.I.} \\
+			&= \mbb{E}(\mbb{E}(f(X_{n+k+1}) \ | \ \mcal{F}_{n+k}) \ | \ X_{n}) \tag{caso $k=1$} \\
+			&= \mbb{E}(f(X_{n+k+1}) \ | \ X_{n})
+		.\end{align*}
+		(con $g$ medible y acotada.) Luego, por inducción, obtenemos (2).
+
+		\item Si $k=1$, el resultado vale por el ítem (1). Ahora, si vale para $k \in \N$, entonces dados $B_{1},\dots,B_{k+1} \in \beta(S)$, se tiene que
+		\begin{align*}
+			& \mbb{P}(X_{n+k+1} \in B_{k+1}, \dots, X_{n+1} \in B_{1} \ | \ \mcal{F}_{n}) \\
+			&= \mbb{E}\left( \mbb{E}\left( \prod_{i=1}^{k+1} \mathds{1}_{\{X_{n+i} \in B\}} \ \Big| \ \mcal{F}_{n+k} \right) \ \Big| \ \mcal{F}_{n} \right) \\
+			&= \mbb{E}\Bigg( \prod_{i=1}^{k} \mathds{1}_{\{X_{n+i} \in B_{i}\}} \underbrace{\mbb{P}(X_{n+k+1} \in B_{k+1} \ | \ \mcal{F}_{n+k})}_{g(X_{n+k})} \ \Big| \ \mcal{F}_{n} \Bigg) \\
+			&= \mbb{E}\left( \prod_{i=1}^{k} \mathds{1}_{\{X_{n+i} \in B_{i}\}} g(X_{n+k}) \ \Big| \ X_{n} \right) \\
+			&= \mbb{E}\left( \prod_{i=1}^{k} \mathds{1}_{\{X_{n+i} \in B_{i}\}} \mbb{E}(\mathds{1}_{\{X_{n+k+1} \in B_{k+1}\}} \ | \ \mcal{F}_{n+k}) \ \Big| \ X_{n} \right) \\
+			&= \mbb{E}\left( \mbb{E}\left( \prod_{i=1}^{k+1} \mathds{1}_{\{X_{n+i} \in B_{i}\}} \ \Big| \ \mcal{F}_{n+k} \right) \ \Big| \ X_{n} \right) \\
+			&= \mbb{E}\left( \prod_{i=1}^{k+1} \mathds{1}_{\{X_{n+i} \in B_{i}\}} \ \Big| \ X_{n} \right) \\
+			&= \mbb{P}(X_{n+k+1} \in B_{k+1}, \dots, X_{n+1} \in B_{1} \ | \ X_{n})
+		.\end{align*}
+		Luego, hemos probado (3) para toda $f$ de la forma $f = \mathds{1}_{R}$ con $R$ un rectángulo medible en $S^{k}$. \par
+		Por un argumento de topo $\pi - \lambda$, (3) vale para toda $f = \mathds{1}_{B}$ con $B \in \beta(S)$. \par
+		Por un argument estándar, vale (3) tal y cómo lo enunciamos.
+
+		\item Por el ítem (3), (4) vale si $Z = \mathds{1}_{A}$ con $A$ un \textit{cilindro especial}, i.e.,
+		\[ A = \{X^{(n)} \in C(\{0,\dots,k\}, B)\}, \]
+		donde 
+		\[ \begin{cases}
+			X^{(n)} \coloneq (X_{n+j})_{j \in \N_{0}} \\
+			B = B_{0} \times \cdots \times B_{k} \text{ con } B_{i} \in \beta(S),\ i = 0,\dots,k.
+		\end{cases} \]
+		Por un argumento $\pi - \lambda$ valdrá (4a) para toda $Z = \mathds{1}_{A}$ con $A = (X^{(n)})^{-1}(B)$ y $B \in \prod_{j \in \N} \beta(S)$. Pero, toda $A \in \sigma(X_{n+k} \ : \ k \in \N_{0})$ es exactamente de esta forma. Luego, vale (4a) para indicadoras. Por un argumento estándar, vale (4a) como lo enunciamos. \par
+		En particular,
+		\begin{align*}
+			&\mbb{E}(Z \ | \ \sigma(X_{n}) \vee \mcal{F}_{n-1}) \\
+			&= \mbb{E}(\mbb{E}(Z \ | \ \mcal{F}_{n}) \ | \ \sigma(X_{n}) \vee \mcal{F}_{n-1}) \tag{$\sigma(X_{n}) \vee \mcal{F}_{n-1} \subseteq \mcal{F}_{n}$} \\
+			&= \mbb{E}(\mbb{E}(Z \ | \ X_{n}) \ | \ \sigma(X_{n}) \vee \mcal{F}_{n-1}) \tag{4a} \\
+			&= \mbb{E}(Z \ | \ X_{n})
+		.\end{align*}
+	\end{enumerate}
+\end{proof}
+

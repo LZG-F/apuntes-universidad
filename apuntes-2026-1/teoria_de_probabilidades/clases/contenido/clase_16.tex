@@ -1,0 +1,110 @@
+\clase{16}{22 de Abril}{}
+
+\begin{prop}
+	Dado $(\Omega, \mcal{F}, \mbb{P})$ EdP y $\mcal{G}_{1}, \mcal{G}_{2} \subseteq \mcal{F} \ \sigma$-álgebra, entonces: $\mcal{G}_{1}, \mcal{G}_{2}$ independientes si  solo si $\forall X$ VA $\mcal{G}_{2}$-medible $\mbb{P}$-débil integrable se tiene $\mbb{E}(X \ | \ \mcal{G}_{1}) = \mbb{E}(X)$.
+\end{prop}
+\begin{proof}[Proof Other Information]
+	$\boxed{\implies}$ Si $A \in \mcal{G}_{1}$, entonces $\mathds{1}_{A}$ y $X$ son independientes,
+	\[ \mbb{E}(\mathds{1}_{A} X) = \mbb{P}(A) \mbb{E}(X) = \mbb{E}(\mathds{1}_{A} \mathds{E}(X)). \]
+	Como $\mbb{E}(X)$ es $\mcal{G}_{1}$-medible, entonces $\mbb{E}(X \ | \ \mcal{G}_{1}) = \mbb{E}(X)$. \par
+	$\boxed{\Leftarrow}$ $A \in \mcal{G}_{1},\ B \in \mcal{G}_{2}$ y $X = \mathds{1}_{B}$, entonces, como $X$ es $\mcal{G}_{2}$-medible,
+	\[ \mbb{P}(A \cap B) = \mbb{E}(\mathds{1}_{A} \cdot \mathds{1}_{B}) = \mbb{E}(\mathds{1}_{A} \cdot X) = \mbb{E}(\mathds{1}_{A} \cdot \mbb{E}(X)) = \mbb{P}(A) \mbb{P}(B). \]
+	(donde se ocupa que $\mbb{E}(X) = \mbb{E}(X \ | \ \mcal{G}_{1})$.) Luego, $A$ y $B$ son independientes.
+\end{proof}
+
+\subsection{Esperanza Condicional dada una variable aleatoria}
+
+En el caso particular en que $\mcal{G} = \sigma(Y)$, donde $Y$ es una VA, notaremos $\mbb{E}(X \ | \ \mcal{G}) \eqcolon \mbb{E}(X \ | \ Y)$. Calcularemos esto en algunos casos.
+
+\begin{lemma}
+	Dada una VA $Y$, tenemos que $Z$ es $\sigma(Y)$-medible si y solo si $\exists h \colon \R \to \R$ medible Borel tal que $Z = h(X)$.
+\end{lemma}
+\medskip
+
+Cálculo de $\mbb{E}(h(X,Y) \ | \ Y)$.
+\begin{enumerate}
+	\item \textbf{$Y$ discreta:} Si $A \in \sigma(Y)$, entonces $A = \{Y \in B\}$ con $B \in \beta(\R)$. En particular, $\mathds{1}_{A} = \mathds{1}_{\{Y \in B\}} = \mathds{1}_{B}(Y)$. Luego,
+	\begin{align*}
+		\mbb{E}(h(X,Y) \mathds{1}_{A}) &= \mbb{E}(h(X,Y) \mathds{1}_{B}(Y)) \\
+		&= \sum_{y \in \mcal{A}_{Y}} \mbb{E}(h(X,Y) \mathds{1}_{B}(Y) \mathds{1}_{\{y\}}(Y)) \\
+		&= \sum_{y \in \mcal{A}_{Y}} \mbb{E}(h(X,y) \mathds{1}_{B}(y) \mathds{1}_{y}(Y)) \\
+		&= \sum_{y \in \mcal{A}_{y}} \mathds{1}_{B}(y) \mbb{E}(h(X,y) \mathds{1}_{y}(Y)) \\
+		&= \sum_{y \in \mcal{A}_{Y}} \mathds{1}_{B}(y) \mbb{P}(Y = y) \mbb{E}(h(X,Y) \ | \ Y = y)
+	,\end{align*}
+	donde 
+	\[ \mbb{E}(h(X,Y) \ | \ Y = y) = \int h(X,y) \ d\mbb{P}( \ \cdot \ | \ Y = y) \]
+	y 
+	\[ \mbb{P}(A \ | \ Y = y) = \frac{\mbb{P}(A \cap \{Y = y\})}{\mbb{P}(Y = y)}. \]
+	Observar que
+	\[ \mbb{E}(h(X,y) \ | \ Y = y) = \frac{1}{\mbb{P}(Y = y)} \int_{\{Y = y\}} h(X,y) \ d\mbb{P} = \frac{1}{\mbb{P}(Y = y)} \mbb{E}(h(X,y) \mathds{1}_{y}(Y). \]
+	Luego, tenemos que
+	\begin{align*}
+		\sum_{y \in \mcal{A}_{Y}} \mathds{1}_{B}(y) \mbb{P}(Y = y) \mbb{E}(h(X,Y) \ | \ Y = y) &= \sum_{y \in \mcal{A}_{Y}} g_{h}(y) \mathds{1}_{B}(y) \mbb{P}(Y = y) \\
+		&= \mbb{E}(g_{h}(Y) \mathds{1}_{B}(Y)) \\
+		&= \mbb{E}(g_{h}(Y) \mathds{1}_{A})
+	,\end{align*}
+	donde $g_{h}(y) \coloneq \mbb{E}(h(X,y) \ | \ Y = Y)$. Como además, $g_{h}(Y)$ es $\sigma(Y)$-medible por el Lema, resulta
+	\[ \mbb{E}(h(X \ | \ Y) \ | \ Y) = g_{h}(Y). \]
+	\begin{note}
+		Lo mismo vale si $\mcal{G} = \sigma(A_{n} \ : \ n \in \N)$ con $(A_{n})_{n \in \N} \subseteq \mcal{F}$ partición de $\Sigma$. En el caso anterior teníamos $A_{y} = \{Y = y\}$. En este caso, se obtiene
+		\[ \mbb{E}(h(X,Y) \ | \mcal{G}) = \sum_{\substack{n \in \N \\ \mbb{P}(A_{n}) > 0}} \mathds{1}_{A_{n}} \mbb{E}(h(X,Y) \ | \ A_{n}) \]
+	\end{note}
+
+	\item \textbf{$(X,Y)$ vector discreto:} Sea $\rho_{XY}$ la función de probabilidad puntual conjunta de $(X,Y)$. Recordemos que
+	\[ \rho_{Y}(y) = \sum_{x \in \mcal{A}_{X}} \rho_{XY}(x,y). \]
+	Entonces,
+	\begin{align*}
+		g_{h}(y) &= \mbb{E}(h(X,y) \ | \ Y = y) \\
+		&= \sum_{x \in \mcal{A}_{X}} h(x,y) \mbb{P}(X = x \ | \ Y = y) \\
+		&= \sum_{x \in \mcal{A}_{X}} h(x,y) \frac{\rho_{XY}(x,y)}{\rho_{Y}(y)}
+	.\end{align*}
+	La función
+	\[ \rho_{X \ | \ Y = y}(x) \coloneq \frac{\rho_{XY}(x,y)}{\rho_{Y}(y)} \]
+	se llama la función de probabilidad puntual condicional de $X$ dado $Y = y \ (y \in \mcal{A}_{Y})$.
+
+	\item \textbf{$(X,Y)$ absolutamente continuo:} Por analogía con lo anterior, esperamos que
+	\[ \mbb{E}(h(X,Y) \ | \ Y) = g_{h}(Y) \]
+	donde
+	\[ g_{h}(y) "=" \mbb{E}(h(X,y) \ | \ Y = Y) "=" \int h(X,y) \ d\mbb{P}( \ \cdot \ | \ Y = y), \]
+	donde debemos darle sentido a $\mbb{P}( \ \cdot \ | \ Y = y)$. Para ello, recordemos que
+	\[ \mbb{P}((X,Y) \in B) = \int_{B} d\mbb{P}_{XY}(x,y) = \int_{B} f_{XY}(x,y) \ dxdy, \]
+	donde $f_{XY}$ es la densidad. Formalmente, decimos que
+	\[ d\mbb{P}_{XY}(x,y) = f_{XY}(x,y) \ dxdy = \mbb{P}_{XY}(dx,dy). \]
+	Por otro lado, $Y$ tiene densidad
+	\[ f_{Y}(y) = \int_{\R} f_{XY}(x,y) \ dx \]
+	$(\int_{B} d\mbb{P}_{Y}(y) = \mbb{P}(Y \in B) = \int_{B} f_{Y}(y) \ dy)$. Formalmente,
+	\[ d\mbb{P}_{Y}(y) = f_{y}(y) \ dy = \mbb{P}_{Y}(dy). \]
+	Con esto, podemos argumentar que
+	\begin{align*}
+		d\mbb{P}_{X}(x \ | \ Y = y) &= \mbb{P}_{X}(dx \ | \ Y = y) \approx \mbb{P}_{X}(dx \ | \ Y \in dy) = \frac{\mbb{P}(X \in dx,\ Y \in dy)}{\mbb{P}(Y \in dy)} \\
+		&= \frac{\mbb{P}_{XY}(dx,dy)}{\mbb{P}_{Y}(dy)} = \frac{f_{XY}(x,y) \ dxdy}{f_{Y}(y) \ dy} = \frac{f_{XY}(x,y)}{f_{Y}(y)}\ dx
+	.\end{align*}
+	Por lo tanto, si definimos
+	\[ \phi_{y}(x) \coloneq \begin{cases}
+		\frac{f_{XY}(x,y)}{f_{Y}(y)} \quad \text{si } f_{Y}(y) > 0 \\
+		0 \quad \text{si } f_{Y}(y) = 0
+	\end{cases} \]
+	y
+	\[ g_{h}(y) \coloneq \int h(x,y) \phi_{y}(x) \ dx, \]
+	$g_{h}(Y)$ es un candidato para $\mbb{E}(h(X,Y) \ | \ Y)$. Puede verificarse que, en efecto,
+	\[ \mbb{E}(h(X,Y) \ | \ Y) = g_{h}(Y). \]
+	La función
+	\[ f_{X \ | \ Y = y} = \frac{f_{XY}(x,y)}{f_{Y}(y)} \quad (\text{con } f_{Y}(y) > 0), \]
+	se dice la densidad condicional de $X$ dado $Y = y$.
+
+	\item \textbf{Caso general:} Si $(X,Y)$ es un vector aleatorio cualquiera, puede mostrarse que
+	\[ \mbb{E}(h(X,Y) \ | \ Y) = g_{h}(Y), \]
+	donde $g_{h}(y) \coloneq \int h(x,y) \ dQ_{y}(x) \ (*)$, para una cierta medida $Q_{y}$ que juega el rol de $\mbb{P}_{X}( \ \cdot \ | \ Y = y)$. \par
+	Como queremos que $g_{h}$ sea medible en $y$, para que $(*)$ funcione. Necesitaremos que $y \mapsto Q_{y}$ sea medible (en algún sentido apropiado). \par
+	Las familias $(Q_{y})_{y \in \R}$ que cumplen estas condiciones de medibilidad junto con $(*)$ se llaman probabilidades condicionales regulares.
+\end{enumerate}
+
+\begin{eg}
+	\begin{enumerate}
+		\item $X,Y$ discretas, $Q_{y} = \mbb{P}_{X \ | \ Y = y}$.
+
+		\item $(X,Y)$ absolutamente continuo, $dQ_{y}(x) = f_{X \ | \ Y = y} \ dx$.
+
+		e\item $X,Y$ independientes, $Q_{y} = \mbb{P}_{X} \quad \forall y$.
+	\end{enumerate}
+\end{eg}

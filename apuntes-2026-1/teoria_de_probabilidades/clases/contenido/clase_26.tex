@@ -1,0 +1,96 @@
+\clase{26}{3 de Junio}{}
+
+\begin{proof}[Proof Other Information][Proposición]
+	$(i) \iff (iii)$ Se cumple, pues:
+	\[ \mbb{P}_{i}(X_{n_{0}} = j) \stackrel{i \neq j}{\leq} \mbb{P}_{i} \Big( \bigcup_{n \in \N} \{X_{n} = j\} \Big) \leq \sum_{n \in \N} \mbb{P}_{i}(X_{n} = j). \] 
+	\par $(iii) \iff (ii)$ Sean $i_{0} = i$ e $i_{n_{0}} = j$. Entonces,
+	\begin{align*}
+		\mbb{P}_{1}(X_{n_{0}} = j) &= \sum_{\substack{i_{0},\dots,i_{n_{0}} \in S \ : \\ i_{0} = i,\ i_{n_{0}} = j}} \mbb{P}_{i}(X_{0} = i_{0},\dots,X_{n_{0}} = i_{n_{0}}) \\
+		&= \sum_{\substack{i_{0},\dots,i_{n_{0}} \in S \ : \\ i_{0} = i,\ i_{n_{0}} = j}} \prod_{k=1}^{n_{0}} p_{k-1} p_{k}
+	.\qedhere\end{align*}
+\end{proof}
+
+\begin{prop}~
+	\begin{itemize}
+		\item La relación $\to$ es reflexiva y transitiva.
+
+		\item La relación $\leftrightarrow$ es de equivalencia.
+	\end{itemize}
+\end{prop}
+\begin{proof}[Proof Other Information]
+	Solo queda por ver la transitividad. Si $i \to k$ y $k \to j$, por la Prop. anterior existen $m,n \in \N$ tal que $p_{ik}^{(m)} \cdot p_{kj}^{(n)} > 0$. Luego, por Chapman-Kolmogorov,
+	\[ p_{ij}^{m+n} = \sum_{r \in S} p_{ir}^{(m)} p_{rj}^{(n)} \geq p_{ik}^{(m)} p_{kj}^{(n)} > 0 \]
+	y luego $i \to j$ por la Proposición.
+\end{proof}
+
+\begin{definition}
+	Dado $i \in S$, la \textit{clase} $C(i)$ de $i$, es la clase de equivalencia de $i$ bajo $\leftrightarrow$. Decimos que una clase es cerrada si
+	\[ i \in C,\ i \to j \implies j \in C \ (j \to i). \]
+\end{definition}
+
+\begin{eg}
+\end{eg}
+\begin{center}
+\begin{tikzpicture}
+
+\node[state] (1) {1};
+\node[state, below=of 1] (2) {2};
+\node[state, right=of 2] (3) {3};
+\node[state, above right=of 3] (4) {4};
+\node[state, below right=of 3] (5) {5};
+\node[state, right=of 5] (6) {6};
+
+\draw[every loop, >=latex]
+(1) edge[bend left, auto=left] node {} (2)
+(2) edge[bend left, auto=left] node {} (1)
+(2) edge[bend left, auto=left] node {} (3)
+(3) edge[bend left, auto=left] node {} (2)
+(3) edge[bend left, auto=left] node {} (4)
+(3) edge[bend right, auto=left] node {} (5)
+(4) edge[loop right] node {} (4)
+(5) edge[bend left, auto=left] node {} (6)
+(6) edge[bend left, auto=left] node {} (5);
+
+\end{tikzpicture}
+\end{center}
+
+\noindent \textbf{Las clases son:} $\{1,2,3\},\ \{4\},\ \{5,6\}$ y $\{4\},\ \{5,6\}$ son las únicas cerradas.     
+
+\begin{definition}[Irreducibilidad]
+	Decimos que una CdM $X$ es \textit{irreducible} (o que su matriz de transción lo es) si $X$ tiene una única clase (que es necesariamente cerrada.)
+\end{definition}
+
+\subsection{Aperiodicidad}
+
+\begin{pregunta}
+	¿Existe $\lim_{n \to \infty} \mbb{P}_{i}(X_{n} = j)$?
+\end{pregunta}
+
+$S = \Z,\ i = 0,\ j=1,\ X=$ caminata aleatoria de saltos $\pm 1$.
+
+\begin{definition}
+	El \textit{periodo} de un estado $i \in S$ se define como
+	\[ d(i) \coloneq \mcd \{n \in \N \ : \ p_{ii}^{(n)} > 0\}. \]
+	Un estado $i \in S$ se dice \textit{aperiódico} si $d(i) = 1$.
+\end{definition}
+
+\begin{prop}~
+	\begin{enumerate}
+		\item Un estado $i$ es aperiódico si y solo si existe $N_{i} \in \N$ tal que $p_{ii}^{(n)} > 0 \quad \forall n \geq N_{i}$.
+
+		\item Si $i \leftrightarrow j$, con $i$ aperiódico, entonces $j$ también lo es.
+	\end{enumerate}
+\end{prop}
+\begin{proof}[Proof Other Information]
+	2) Por (1), existe $N_{i} \in \N$ tal que $p_{ii}^{(n)} > 0 \quad \forall n \geq N_{i}$. Como $i \leftrightarrow j$, existen $k_{1},k_{2} \in N_{0}$ tal que $p_{ji}^{(k_{1})} p_{ij}^{(k_{2})} > 0$. Entonces, 
+	\[ p_{jj}^{(k_{1} + n + k_{2})} \geq p_{ji}^{(k_{1})} p_{ii}^{(n)} p_{ij}^{(k_{2})} > 0 \quad \forall n \geq N_{i}. \]
+	Luego, $p_{ij}^{(m)} > 0 \quad \forall m \geq k_{1} + k_{2} + N_{i}$ y, por (1), resulta $d(j) = 1$. \par
+	1) Definamos $I_{i} = \{n \in \N \ : \ p_{ii}^{(n)} > 0\}$. (notar que $p_{ii}^{(2k)} \geq p_{ii}^{(k)} p_{ii}^{(k)} > 0$.) Basta demostrar que $I_{i}$ tiene dos enteros consecutivos: $k$ y $k+1$. Pues, en este caso, va a contener a $2k,\ 2k+1,\ 2k+2,\ 3k,\ 3k+1,\ 3k+2,\ 3k+3$ y con esto obtenemos a todos los demás:
+	\begin{align*}
+		k + (k-1)k,\ k + (k-1)k + 1,\dots,\ k + (k-1)k + k - 1 &= 2k + (k-1)k - 1 \\
+		2k + (k-1)k,\ 2k + (k-1)k + 1,\dots,\ 2k + (k-1)k + k - 1 &= 3k + (k-1)k - 1
+	.\end{align*}
+	Para mostrar que existe tal $k$, usamos lo siguiente: si $\mcd I_{i} = 1$, entonces existen enteros $r_{1},\dots,r_{m} \in I_{i}$ y coeficientes enteros $c_{1},\dots,c_{m}$ tal que $c_{1}r_{1} + \cdots + c_{m}r_{m} = 1$. Sean $a_{r} \coloneq c_{r}^{+},\ b_{r} \coloneq c_{r}^{-}$. Entonces la eq. anterior nos dice que
+	\[ a_{1}r_{1} + \cdots + a_{m}r_{m} = b_{1}r_{1} + \cdots + b_{m} r_{m} + 1. \]
+	Luego, $k = b_{1}r_{1} + \cdots + b_{m}r_{m}$ y $k+1 = a_{1}r_{1} + \cdots + a_{m}r_{m}$ son los buscados.
+\end{proof}

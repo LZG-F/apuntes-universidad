@@ -1,0 +1,95 @@
+\clase{24}{27 de Mayo}{}
+
+\begin{aclaracion}
+	A partir de ahora, $S$ será a lo sumo numerable. En este caso,
+	\[ \mcal{F}_{n}^{X} = \sigma(\{X_{0} = i_{0}, \dots, X_{n} = i_{n}\} \ : \ i_{0}, \dots, i_{n} \in S) \]
+	será generada por una partición numerable de $\Sigma$ y lo mismo ocurre con $\sigma(X_{n})$. \par 
+	En tal caso, vimos que, dado $B \subseteq S$,
+	\begin{align*} 
+		\mbb{P}(X_{n+1} \in B \ | \ \mcal{F}_{n}^{X}) &= \sum_{\mathclap{\substack{i_{0},\dots,i_{n} \in S \\ \mbb{P}(X_{0}=i_{0},\dots,X_{n}=i_{n}) > 0}}} \mbb{P}(X_{n+1} \in B \ | \ X_{n} = i_{n},\dots,X_{0} = i_{0}) \mathds{1}_{\{X_{0}=i_{0},\dots,X_{n}=i_{n}\}} \\
+		&= \sum_{\mathclap{\substack{i_{0},\dots,i_{n} \in S \\ \mbb{P}(X_{0}=i_{0},\dots,X_{n}=i_{n}) > 0}}} \sum_{j \in B} \mbb{P}(X_{n+1} = j \ | \ X_{n} = i_{n}) \mathds{1}_{\{X_{n} = i_{n}\}}
+	.\end{align*}
+	De manera similar,
+	\[ \mbb{P}(X_{n+1} \in B \ | \ X_{n}) = \sum_{\substack{i_{n} \in S \\ \mbb{P}(X_{n} = i_{n}) > 0}} \sum_{j \in B} \mbb{P}(X_{n+1} = j \ | \ X_{n} = i_{n}) \mathds{1}_{\{X_{n} = i_{n}\}}. \]
+\end{aclaracion}
+
+\begin{theorem}
+	$X = (X_{n})_{n \in \N_{0}}$ es una CdM si y solo si
+	\[ \mbb{P}(X_{n+1} = j \ | \ X_{n} = i_{n},\dots,X_{0} = i_{0}) = \mbb{P}(X_{n+1} = j \ | \ X_{n} = i_{n}) \]
+	$\forall j \in S,\ i_{0},\dots,i_{n} \in S$ tal que $\mbb{P}(X_{0}=i_{0}, \dots, X_{n}=i_{n}) > 0$.
+\end{theorem}
+
+\begin{definition}
+	Diremos que una CdM $X = (X_{n})_{n \in \N_{0}}$ es \textit{homogénea} si para cada $i,j \in S$, la cantidad $\mbb{P}(X_{n+1} = j \ | \ X_{n} = i)$ no depende de $n \in \N_{0}$. \par
+	En este caso, la aplicación $P \colon S \times S \to [0,1]$ donde $(i,j) \mapsto \mbb{P}(X_{n+1} = j \ | \ X_{n} = i)$ se llama \textit{matriz de transición} de $X$. Pensaremos a $P$ como una matriz (posiblemente infinita) y, por tal motivo, la denotaremos por $P = (p_{ij})_{i,j \in S}$, donde $p_{ij} \coloneq P(i,j)$ es la \textit{probabilidad de transición de $i$ a $j$}.
+\end{definition}
+\medskip
+En lo que sigue, estudiaremos \textit{exclusivamente} CdM homogéneas.
+
+\begin{definition}
+	Una matriz $P = (p_{ij})_{i,j \in S}$ (posiblemente infinita) se duce una \textit{matriz estocástica} si
+	\begin{enumerate}[(i)]
+		\item $p_{ij} \geq 0 \quad \forall i,j \in S$;
+
+		\item $\sum)_{j \in S} p_{ij} = 1 \quad \forall i \in S$ (i.e., para cada $i \in S$, la $i$-ésima fila $(p_{ij})_{j \in S}$ es un \textit{vector de probabilidad}.)
+	\end{enumerate}
+\end{definition}
+
+\begin{remark}
+	Toda matriz de transición es estocástica, puesto que $j \mapsto p_{ij} \coloneq \mbb{P}(X_{n+1} = j \ | \ X_{n} = i)$ es un vector de probabilidad $\forall i \in S$.
+\end{remark}
+
+\begin{definition}
+	Dada una CdM $X = (X_{n})_{n \in \N_{0}}$, definimos su \textit{distribución inicial} como el vector de probabilidad $\mu = (\mu_{i})_{i \in S}$ dado por $\mu_{i} \coloneq \mbb{P}(X_{0} = i)$ (i.e. $\mu = \mbb{P}_{X_{0}}$).
+\end{definition}
+
+\begin{prop}
+	Si $X$ es una CdM (homogénea) con distancia inicial $\mu$ y matriz de transición $P$, entonces $\mbb{P}(X_{0} = i_{0}, \dots, X_{n} = i_{n}) = \mu_{i_{0}} \prod_{k=1}^{n} p_{i_{k-1} i_{k}}$ para cualquier $i_{0},\dots,i_{n} \in S$ y $n \in \N_{0}$. \par
+	En particular, 2 CdM con igual distribución inicial y MdT tienen igual distribución en $S^{\N_{0}}$.
+\end{prop}
+\begin{proof}[Proof Other Information]
+	El caso $n=0$ vale por def. de $\mu$. Si vale para $n \in \N_{0}$, entonces
+	\begin{align*}
+		&\mbb{P}(X_{n+1} = i_{n+1}, X_{n} = i_{n},\dots, X_{0} = i_{0}) \\
+		&= \mbb{P}(X_{n+1} = i_{n+1} \ | \ X_{n} = i_{n}, \dots, X_{0} = i_{0}) \cdot \mbb{P}(X_{n} = i_{n},\dots, X_{0} = i_{0}) \\
+		&= \mbb{P}(X_{n+1} = i_{n+1} \ | \ X_{n} = i_{n}) \left( \prod_{k=1}^{n} p_{i_{k-1} i_{k}} \right) \mu_{i_{0}} \\
+		&= p_{i_{n} i_{n+1}} \left( \prod_{k=1}^{n} p_{i_{k-1} i_{k}} \right) \mu_{i_{0}}
+	.\quad\checkmark\end{align*}
+\end{proof}
+\medskip
+La proposición anterior nos dice que la aplicación
+\[ \theta \colon \{\mbb{P}_{X} \ : \ \text{CdM sobre } S\} \to \Big\{\substack{\text{distribuciones} \\ \text{en } S}\Big\} \times \Big\{\substack{\text{matrices} \\ \text{estocásticas} \\ \text{en } S \times S}\Big\} \]
+dada por $\theta(\mbb{P}_{X}) = \big( \mbb{P}_{X_{0}}, \frac{\mbb{P}_{X_{0}X_{1}}}{\mbb{P}_{X_{0}}} \big) = (\mu, P)$ es \textit{inyectiva}.
+
+\begin{theorem}
+	Dada una distribución $\mu$ en $S$ y una matriz estocástica $P$, existe una única distribución $\mbb{P}$ en $S^{\N_{0}}$ tal que
+	\[ \mbb{P}(\{i_{0}\} \times \cdots \times \{i_{n}\} \times S^{\N_{0}}) = \mu_{i_{0}} \prod_{k=1}^{n} p_{i_{k-1} i_{k}} \quad \forall i_{0},\dots,i_{n} \in S,\ n \in \N_{0} \]
+	(Es decir, tal que, bajo $\mbb{P}$, el proceso canónico $(\pi_{n})_{n \in \N_{0}}$ es una CdM homogénea con distribución inicial $\mu$ y MdT $P$.) En particular, $\mbb{P}$ es la distribución de la (única) CdM con distribución inicial $\mu$ y MdT $\mbb{P}$. Por lo tanto, $\theta$ es una biyección.
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Práctica 8.
+\end{proof}
+
+\begin{notation}
+	Sea $X$ una CdM con MdT $P$. Definimos:
+	\begin{enumerate}[i)]
+		\item $\mbb{P}_{i} = \mbb{P}_{X}(\ \cdot \ | \ X_{0} = i)$ (la dist. de $X$ si $\mu = \delta_{i}$), $\mbb{E}_{i} = \mbb{E}(\ \cdot \ | \ X_{0} = i)$.
+
+		\item Dada una dist. $\mu$ en $S$,
+		\begin{align*}
+			\mbb{P}_{\mu} &\coloneq \sum_{i \in S} \mu_{i} \mbb{P}_{i} \\
+			\mbb{E}_{\mu} &\coloneq \sum_{i \in S} \mu_{i} \mbb{E}_{i}
+		.\end{align*}
+
+		\item Si $f \colon S \to \R$ es acotada, $P(f) \colon S \to \R$ tal que $i \mapsto \sum_{j \in S} p_{ij} f(j)$. \par
+		Es decir, si vemos a $f$ como v. columna, entonces $P(f)$ es el v. columna que se obtiene al multiplicar $P \cdot f$ como matrices.
+
+		\item Dada $\mu$ dist. en $S$, definimos $\mu P \colon S \to [0,1]$ tal que $j \mapsto \sum_{i \in S} \mu_{i} p_{ij}$. \par
+		Es decir, si vemos a $\mu$ como v. fila, $\mu P$ es el v. fila que se obtiene del producto $\mu \cdot P$ como matrices.
+
+		\item Dada otra matriz estocástica $Q$, definimos $PQ \colon S \times S \to [0,1]$ tal que $(i,j) \mapsto \sum_{k \in S} p_{ik} q_{kj}$ \par
+		Observar que $PQ$ es también matriz estocástica y que corresponde al producto $P \cdot Q$ como matrices.
+
+		\item $P^{(n)} \coloneq (p_{ij}^{(n)})_{i,j \in S}$, donde $p_{i,j}^{(n)} \coloneq \mbb{P}(X_{n} = j \ | \ X_{0} = i)$.
+	\end{enumerate}
+\end{notation}

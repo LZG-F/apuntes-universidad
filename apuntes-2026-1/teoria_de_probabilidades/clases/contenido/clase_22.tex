@@ -1,0 +1,112 @@
+\clase{22}{13 de Mayo}{}
+
+\begin{lemma}
+	Si $(Y_{n})_{n \in \N_{0}}$ es una super/sub/martingala UI entonces $(Y_{S \wedge n})_{n \in \N}$ es UI para cualquier tiempo de parada $S$.
+\end{lemma}
+\begin{proof}[Proof Other Information]
+	Supongamos que $(Y_{n})_{n \in \N_{0}}$ es supermartingala. Entonces, $Y_{n}^{-} \coloneq (-Y_{n})^{+}$ es submartingala. Como $S \wedge n$ es tiempo de parada acotado, $\mbb{E}(Y_{S \wedge n}^{-}) \leq \mbb{E}(Y_{n}^{-})$. Luego, como $(Y_{n})_{n \in \N_{0}}$ es UI,
+	\[ \sup_{n \in \N_{0}} \mbb{E}(Y_{S \wedge n}^{-}) \leq \sup_{n \in \N_{0}} \mbb{E}(Y_{n}^{-}) \leq \sup_{n \in \N_{0}} \| Y_{n} \|_{1} < \infty \]
+	y, luego, por el Teo. de Conv. de Supermartingala (para $(Y_{S \wedge n})_{n \in \N_{0}}$ y $(Y_{n})_{n \in \N_{0}}$),
+	\[ Y_{S \wedge n} \xlongrightarrow{c.s.} Y_{S} \in L^{1}. \]
+	Con esto, tenemos que
+	\begin{align*}
+		\int_{|Y_{S \wedge n}| > M} |Y_{S \wedge n}| \ d \mbb{P} &= \int_{\{|Y_{S \wedge n}| > M,\ S < n\}} + \int_{\{|Y_{S \wedge n}| > M,\ S \geq n\}} \\
+		&= \int_{\{|Y_{S}| > M,\ S < n\}} |Y_{S}| \ d\mbb{P} + \int_{\{|Y_{n}| > M,\ S \geq n\}} |Y_{n}| \ d\mbb{P} \\
+		&\leq \int_{\{|Y_{S}| > M\}} |Y_{S}| \ d\mbb{P} + \int_{\{|Y_{n}| > M\}} |Y_{n}| \ d\mbb{P} \xlongrightarrow[M \to 0]{} 0
+	\end{align*}
+	unif. en $n \in \N_{0}$.
+\end{proof}
+
+\begin{proof}[Proof Other Information][Parada Opcional]
+	Tanto en (1) como (2), tenemos que $X_{T \wedge n} \xlongrightarrow{c.s.} X_{T}$. Como $(X_{T \wedge n})_{n \in \N_{0}}$ es UI, de hecho vale que $X_{T \wedge n} \xlongrightarrow{L^{1}} X_{T}.$. En particular, $X_{T} \in L^{1}$ y 
+	\[ \mbb{E}(X_{T} \ | \ \mcal{F}_{n}) = \lim_{m \to \infty} \mbb{E}(X_{T \wedge m} \ | \ \mcal{F}_{n}) = \mbb{E}(X_{T \wedge n}) \]
+	(la última igualdad es $\leq$ si es supermartingala). \par
+	Ahora, si definimos $Y_{n} \coloneq X_{T \wedge n}$, entonces, como $S \leq T$, tenemos que:
+	\begin{itemize}
+		\item $X_{S \wedge n} = Y_{S \wedge n}$, con lo cual, por el Lema previo, $(X_{S \wedge n})_{n \in \N_{0}}$ es UI y repitiendo lo anterior, resulta que $X_{S} \in L^{1}$.
+
+		\item Si $A \in \mcal{F}_{S}$,
+		\begin{align*}
+			\int_{A} \mbb{E}(X_{T} \ | \ \mcal{F}_{S}) &= \int_{A} X_{T} \ d\mbb{P} \\
+			(X_{T} \in L^{1}) &= \sum_{n=0}^{\infty} \int_{A \cap \{S = n\}} X_{T} \ d\mbb{P} + \underbrace{\int_{A \cap \{S = \infty\}} X_{\infty} \ d\mbb{P}}_{\text{sólo en (2)}} \\
+			&= \sum_{n=0}^{\infty} \int_{A \cap \{S = n\}} \mbb{E}(X_{T} \ | \ \mcal{F}_{n}) + \int_{A \cap \{S = \infty\}} X_{S} \ d\mbb{P} \\
+			(*) &= \sum_{n=0}^{\infty} \int_{A \cap \{S = n\}} X_{T \wedge n} \ d\mbb{P} + \int_{A \cap \{S = \infty\}} X_{S} \ d\mbb{P} \\
+			&= \sum_{n=0}^{\infty} \int_{A \cap \{S = n\}} X_{S} \ d\mbb{P} + \int_{A \cap \{S = \infty\}} X_{S} \ d\mbb{P} \\
+			&= \int_{A} X_{S} \ d\mbb{P}
+		.\end{align*}
+		(desde $(*)$ las igualdades se reemplazan $\leq$ si es super o $\geq$ si es sub.)
+	\end{itemize}
+	Finalmente, como $\mbb{E}(X_{T} \ | \ \mcal{F}_{S})$ y $X_{S}$ son $\mcal{F}_{S}$-medibles, lo anterior implica que
+	\[ \mbb{E}(X_{T} \ | \ \mcal{F}_{S}) = X_{S} \text{ casi seguramente}. \]
+	(similarmente, la igualdad se reemplaza por $\leq$ o $\geq$ en los respectivos casos.)
+\end{proof}
+
+\begin{pregunta}
+	¿Cuándo es $(X_{T \wedge n})_{n \in \N}$ UI?
+\end{pregunta}
+
+\begin{theorem}
+	Si $(X_{n})_{n \in \N_{0}}$ es una super/sub/martingala y $T$ es tiempo de parada, entonces $(X_{T \wedge n})_{n \in \N_{0}}$ es una super/sub/martingala UI en cada uno de los siguientes casos:
+	\begin{enumerate}
+		\item $(X_{n})_{n \in \N_{0}}$ es UI,
+
+		\item $T$ es acotado, i.e. $T \leq M$ para $M \in \N$,
+
+		\item $\mbb{E}(T) < \infty$ y $\exists k > 0$ tal que $\mbb{E}(|X_{n+1} - X_{n}| \ \big| \ \mcal{F}_{n}) \leq k$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Proof Other Information]
+	\begin{enumerate}
+		\item Por el Lema previo.
+
+		\item Si $T \leq M$ entonces
+		\[ |X_{T \wedge n}| \leq \sum_{i=0}^{M} |X_{i}| \quad \forall n \in \N. \]
+		Como $\sum_{i=0}^{M} |X_{i}| \in L^{1},\ (X_{T \wedge n})_{n \in \N_{0}}$ es UI por ejemplo 4 de la clase pasada.
+
+		\item Como 
+		\[ |X_{T \wedge n}| \leq |X_{0}| + \sum_{i=0}^{\infty} |X_{i+1} - X_{i}| \mathds{1}_{T > i} \quad \forall n \in \N \]
+		y
+		\begin{align*} 
+			\mbb{E}\left(\sum_{i=0}^{\infty} |X_{i+1} - X_{i}| \mathds{1}_{T > i}\right) &= \sum_{i=0}^{\infty} \mbb{E}(\mathds{1}_{T > i} \underbrace{\mbb{E}(|X_{i+1} - X_{i}| \ \big| \ \mcal{F}_{i})}_{\leq k}) \\
+			&\leq k \sum_{i=0}^{\infty} \mbb{P}(T > i) \\
+			&= k \mbb{E}(T) < \infty,
+		\end{align*}
+		resulta $(X_{n})_{n \in \N_{0}}$ es UI por el ejemplo 4.
+	\end{enumerate}
+\end{proof}
+
+\subsection{Martingalas reversas}
+
+$\mcal{W}_{n} \coloneq \sigma(X_{k} \ : \ k \geq n)$.
+
+\begin{definition}
+	Sea $\mcal{G}_{0} \supseteq \mcal{G}_{-1} \supseteq \mcal{G}_{-2} \supseteq \cdots$ una filtración \textit{reversa}. Diremos que un proces $(X_{n})_{n \in \Z_{0}^{-}}$ es una \textit{martingala reversa} si:
+	\begin{enumerate}
+		\item $X_{n} \in L^{1} \quad \forall n \in Z_{0}^{-}$,
+
+		\item $X_{n}$ es $\mcal{G}_{n}$-medible $\forall n \in \Z_{0}^{-}$,
+
+		\item $\mbb{E}(X_{n+1} \ | \ \mcal{G}_{n}) = X_{n} \quad \forall n \in \Z_{0}^{-}$.
+	\end{enumerate}
+	Si queremos reindexar la filtración reversa para que sea una filtración usual, i.e. $\mcal{W}_{n} \coloneq \mcal{G}_{n} \ (n \in \N_{0})$, entonces (3) se convierte en
+	\begin{enumerate}
+		\item[3'.] $\mbb{E}(\overline{X}_{n} \ | \ \mcal{W}_{n + 1}) = \overline{X}_{n+1} \ (n \in \N_{0})$, donde $\overline{X}_{n} \coloneq X_{n}$ es el proceso "invertido".
+	\end{enumerate}
+\end{definition}
+
+\begin{theorem}
+	Si $(X_{n})_{n \in \Z_{0}^{-}}$ es una martingala reversa, entonces
+	\[ X_{n} \xlongrightarrow[L^{1}]{c.s.} X_{-\infty} \coloneq \mbb{E}(X_{0} \ | \ \mcal{G}_{-\infty}), \]
+	donde $\mcal{G}_{-\infty} \coloneq \bigcap_{n \in \Z_{0}^{-}} \mcal{G}_{n}$. Además, si $X_{0} \in L^{p}$ entonces $X_{n} \xlongrightarrow{L^{p}} X_{-\infty}$.
+\end{theorem}
+
+\begin{idea}
+	\begin{itemize}
+		\item $(X_{n})_{n \in Z_{0}^{-}}$ es UI pues $X_{n} = \mbb{E}(X_{0} \ | \ \mcal{G}_{n})$. Además, si $X_{0} \in L^{p}$ entonces $(X_{n})_{n \in \Z_{0}^{-}}$ acot. en $L^{p}$.
+
+		\item $(X_{-m + k} \ : \ k = 0,\dots,m)$ es una martingala usual. Por lema de Doob,
+		\[ (b-a) \mbb{E}\left( \overline{U}_{n}^{a,b} \right) \leq \mbb{E}((X_{0} - a)^{-}). \]
+		Usando estos $\overline{U}^{a,b} < \infty$ c.s. y, por ende, $X_{n} \xlongrightarrow{c.s.} X_{-\infty}$.
+	\end{itemize}
+\end{idea}
