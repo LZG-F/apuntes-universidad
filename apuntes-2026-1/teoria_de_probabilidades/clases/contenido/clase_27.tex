@@ -1,0 +1,122 @@
+\clase{27}{8 de Junio}{}
+
+\begin{definition}
+	Dada una CdM $X = (X_{n})_{n \in \N_{0}}$, definimos para $i \in S$,
+	\begin{itemize}
+		\item el \textit{tiempo de retorno a $i$} $\tau_{i} = \tau_{i}(X) \coloneq \inf \{n \in \N_{\geq 1} \ : \ X_{n} = i\}$;
+
+		\item el \textit{número de visitas a $i$} $N_{i} \coloneq \sum_{n = 0}^{\infty} \mathds{1}_{\{X_{n} = i\}}$.
+	\end{itemize}
+	Para $A \subseteq S$, definimos análogamente, el \textit{itempo de retorno a $A$} como $\tau_{A} \coloneq \inf \{n \geq 1 \ : \ X_{n} \in A\}$. Vamos a decir que $i \in S$ es \textit{recurrente} si $\mbb{P}(\tau_{i} < \infty) = 1$, en otro caso decimos que es \textit{transiente}. \par
+	Análogamente, podemos definir el \textit{tiempo del $k$-ésimo retorno a $i$} (o a $A \subseteq S$), con $k \in \N$, como el tiempo de parada $\tau_{i}^{(k)}$ (ó $\tau_{A}^{(k)}$) dada por
+	\[ \tau_{i}^{(k)} \coloneq \begin{cases}
+		\tau_{i} \quad \text{si } k = 1 \\
+		\inf \{n > \tau_{i}^{(k-1)} \ : \ X_{n} = i\} = \tau_{i}(X^{(\tau_{i}^{(k-1)})}) \quad \text{si } k \geq 2 
+	\end{cases} \]
+	ó
+	\[ \tau_{A}^{(k)} \coloneq \begin{cases}
+		\tau_{A} \quad k = 1 \\
+		\tau_{A}(X^{(\tau_{A}^{(k-1)})}) \quad k \geq 2,
+	\end{cases} \]
+	respectivamente. Aquí utilizamos la conveción $\inf \varnothing = \infty$.
+\end{definition}
+
+\begin{prop}
+	Sean $i \in S$ y $\theta_{i} \coloneq \mbb{P}_{i}(\tau_{i} < \infty)$. Entonces, $N_{i} \sim G(1 - \theta_{i})$ bajo $\mbb{P}_{i}$,
+	\[ \Ge(p) \stackrel{c.s.}{=} \begin{cases}
+		1 \quad \text{si } p = 1 \\
+		\infty \quad \text{si } p = 0.
+	\end{cases} \]
+\end{prop}
+\begin{proof}[Proof Other Information]
+	Vamos a probar que $\mbb{P}_{i}(N_{i} = k) = \theta_{i}^{k-1}(1 - \theta_{i}) \quad \forall k \in \N$. Lo hacemos por inducci[on. \par
+	\underline{$k=1$}: $\mbb{P}_{i}(N_{i} = 1) = \mbb{P}_{i}(\tau_{i} = \infty) = 1 - \theta_{i}$. \checkmark \par
+	\underline{$k \implies k+1$}: Tenemos que
+	\begin{align*}
+		\mbb{P}_{i}(N_{i} = k+1) &= \mbb{P}_{i}(\tau_{i}^{(k)} < \infty = \tau_{i}^{(k+1)}) \\
+		&= \mbb{P}_{i}(\tau_{i}^{(k+1)}) = \infty) - \mbb{P}_{i}(\tau_{i}^{(k)} = \infty) \\
+		&= \mbb{P}_{i}(\tau_{i}^{(k)} < \infty) - \mbb{P}_{i}(\tau_{i}^{(k+1)} < \infty) \\
+		&\ \textcolor{blue}{=\theta_{i}^{k} - \theta_{i}^{k+1} = \theta_{i}^{k}(1 - \theta_{i})}
+	.\end{align*}
+	Luego, basta con mostrar que $\mbb{P}_{i}(\tau_{i}^{(k)} < \infty) = \theta_{i}^{k} \quad \forall k \in \N$: \par
+	\underline{$k = 1$}: $\mbb{P}_{i}(\tau_{i}^{(k)} < \infty) = \mbb{P}_{i}(\tau_{i} < \infty) = \theta_{i}$. \checkmark \par
+	\underline{$k \implies k+1$}: Tenemos que
+	\begin{align*}
+		\mbb{P}_{i}(\tau_{i}^{(k+1)} < \infty) &= \mbb{P}_{i}(\tau_{i}^{(k)} < \infty,\ \tau_{i}^{(k+1)} < \infty) \\
+		&= \mbb{E}_{i}(\mbb{E}_{i}(\mathds{1}_{\{\tau_{i}^{(k)} < \infty\}} \mathds{1}_{\{\tau_{i}^{(k+1)}\}} \ | \ \mcal{F}_{\tau_{i}^{(k)}})) \\
+		(\text{Markov fuerte en $\tau_{i}^{(k)}$}) &= \mbb{E}_{i}(\mbb{E}_{i}(\mathds{1}_{\{\tau_{i}^{(k)} < \infty\}} \mathds{1}_{\{\tau_{1}(X^{(\tau_{i}^{(k)})}) < \infty\}} \ | \ \mcal{F}_{\tau_{i}^{(k)}})) \\
+		&= \mbb{E}_{i}(\mathds{1}_{\{\tau_{i}^{(k)} < \infty\}}  \mbb{E}_{\underbrace{X_{\tau_{i}^{(k)}}}_{i}}(\mathds{1}_{\{\tau_{1} < \infty\}})) \\
+		&= \mbb{E}_{i}(\mathds{1}_{\{\tau_{i}^{(k)} < \infty\}} \mbb{P}_{i}(\tau_{1} < \infty)) \\
+		&= \theta_{i} \mbb{P}_{i}(\tau_{i}^{(k)} < \infty) = \theta_{i}^{k+1}
+	.\end{align*}
+\end{proof}
+
+\begin{theorem}
+	Sea $i \in I$. Son equivalentes:
+	\begin{enumerate}
+		\item[(R1)] $i$ es recurrente.
+
+		\item[(R2)] $N_{i} = \infty \ \mbb{P}_{i}$-c.s.
+
+		\item[(R3)] $\mbb{E}_{i}(N_{i}) = \infty$.
+
+		\item[(T1)] $i$ es transiente.
+
+		\item[(T2)] $\mbb{P}_{i}(N_{i} = \infty) = 0$.
+
+		\item[(T3)] $\mbb{E}_{i}(N_{i}) < \infty$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}[Proof Other Information]
+	Vemos sólo las (R1)-(R2)-(R3). \par
+	\underline{R1 $\implies$ R2}: $i$ es recurrente $\implies \theta_{i} = 1 \implies N_{i} \sim \Ge(1 - \theta_{i}) = \Ge(0) \implies N_{i} = \infty \ \mbb{P}_{i}$-c.s. \par
+	\underline{R2 $\implies$ R3}: \checkmark \par
+	\underline{R3 $\implies$ R1}: $\infty = \mbb{E}_{i}(N_{i}) = \frac{1}{1 - \theta_{i}}$ si convenimos que $\frac{1}{0} = \infty$. Esto es equivalente a $\theta_{i} = 1$. Lo que es equivalente a $i$ recurrente.
+\end{proof}
+
+\begin{corollary}[Criterio de Recurrencia]
+	$i$ es recurrente si y solo si
+	\[ \sum_{n=0}^{\infty} p_{ii}^{(n)} = \sum_{n=0}^{\infty} \mbb{P}_{i}(X_{n} = i) = \infty. \]
+\end{corollary}
+\begin{proof}[Proof Other Information]
+	$i$ es recurrente si y solo si (por el Teo.)
+	\[ \infty = \mbb{E}_{i}(N_{i}) = \mbb{E}_{i}\left( \sum_{n=0}^{\infty} \mathds{1}_{\{X_{n} = i\}} \right) = \sum_{n=0}^{\infty} \mbb{P}_{i}(X_{n} = i). \]
+\end{proof}
+
+\begin{prop}
+	Si $i \leftrightarrow j$, entonces $i$ recurrente $\iff j$ recurrente.
+\end{prop}
+\begin{proof}[Proof Other Information]
+	Como $i \leftrightarrow j$, existen $m,n \in \N_{0}$ tales que $p_{ij}^{(m)} \cdot p_{ji}^{(n)} > 0$. Luego, por Chapman-Kolmogorov, para todo $r \geq 0$,
+	\[ p_{ii}^{(m+n+r)} \geq p_{ij}^{(m)} p_{jj}^{(r)} p_{ji}^{(n)}. \]
+	Despenjando en $p_{jj}^{(r)}$ y sumando en $r$, obtenemos que 
+	\begin{align*}
+		\mbb{E}_{j}(N_{j}) &= \sum_{r=0}^{\infty} p_{jj}^{(r)} \\
+		&\leq \frac{1}{p_{ij}^{(m)} p_{ji}^{(n)}} \sum_{r=0}^{\infty} p_{ii}^{(m+n+r)} \\
+		&\leq \frac{1}{p_{ij}^{(m)} p_{ji}^{(n)}} \mbb{E}_{i}(N_{i})
+	,\end{align*}
+	con lo cual, si $j$ es recurrente, resulta $\mbb{E}_{i}(N_{i}) = \infty$ y así, $i$ es recurrente también. Por simetría tenemos la otra implicación.
+\end{proof}
+
+\begin{prop}
+	Vale lo siguiente:
+	\begin{enumerate}
+		\item Si $i \neq j \in S,\ i \to j,\ \mbb{P}_{i}(\tau_{j} < \infty) > 0$.
+
+		\item $\mbb{P}_{i}(N_{j} = \infty) = \mbb{P}_{i}(\tau_{j} < \infty) \mbb{P}_{j}(N_{j} = \infty)$.
+		
+		\item Si $i \to j$ e $i$ es recurrente, $\mbb{P}_{i}(\tau_{j} < \infty) = 1$.
+	\end{enumerate}
+\end{prop}
+\begin{proof}[Proof Other Information]
+	$\boxed{1.}$ Tenemos que
+	\[ \mbb{P}_{i}(\tau_{j} < \infty) = \mbb{P}_{i}(\exists n \in \N_{0} \ : \ X_{n} = j) \]
+	e
+	\[ i \to j \iff \mbb{P}_{i}(\exists n \in \N_{0} \ : \ X_{n} = j) > 0. \]
+	\par $\boxed{2.}$ Tenemos que
+	\begin{align*}
+		\mbb{P}_{i}(N_{j} = \infty) &= \mbb{P}_{i}(\tau_{j} < \infty,\ N_{j} = \infty) \\
+		&= \mbb{E}_{i}(\mbb{E}_{i}(\mathds{1}_{\{\tau_{i} < \infty\}} \mathds{1}_{\{N_{j} = \infty\}} \ | \ \mcal{F}_{\tau_{j}})) \\
+		(\text{Markov fuerte}) &= \mbb{P}_{i}(\tau_{j} < \infty) \mbb{P}_{j}(N_{j} = \infty)
+	.\end{align*}
+\end{proof}

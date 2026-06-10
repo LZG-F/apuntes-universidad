@@ -1,0 +1,99 @@
+\clase{28}{10 de Junio}{}
+
+\begin{proof}[Proof Other Information]
+	$\boxed{3.}$ Supongamos que $X_{0} = i$. Sea $V_{j}^{i}$ el número de visitas al estado $i$ antes de visitar $j$ (bien definido, pues $i$ es recurrente). \par
+	Por le mismo argumento que la clase pasada (el que mostraba $N_{i} \sim \Ge(\mbb{P}_{i}(\tau_{i} = \infty))$), vale que
+	\[ V_{j}^{i} \sim \Ge(\mbb{P}_{i}(\tau_{j} < \infty)). \]
+	Pero, como $\mbb{P}_{i}(\tau_{j} < \infty) > 0$ por (1), $V_{j}^{i} < \infty$ c.s.
+\end{proof}
+
+\begin{corollary}
+	Si $X$ es irreducible y recurrente (todo $i \in S$ es irreducible y recurrente), entonces $\mbb{P}_{i}(N_{j} = \infty \ \forall j \in S) = 1 \quad \forall i \in S$. (lo mismo vale para cualquier $\mu$ inicial.)
+\end{corollary}
+\begin{proof}[Proof Other Information]
+	Por la proposición anterior, fijado $i \in S$,
+	\[ \mbb{P}_{i}(N_{j} = \infty) = \underbrace{\mbb{P}_{i}(\tau_{j} < \infty)}_{=1 \text{ por (3)}} \overbrace{\mbb{P}_{j}(N_{j} = \infty)}^{= 1 \text{ ($j$ recurrente)}} = 1 \quad \forall  j \in S. \]
+	(y la primera igualdad está dada por (2).)
+\end{proof}
+
+\begin{prop}
+	Toda clase comunicante recurrente es cerrada ($i \to j$ + $i$ recurrente $\implies j \to i$).
+\end{prop}
+\begin{proof}[Proof Other Information]
+	Sea $C$ una clase recurrente, $i \in C$ y $j \in S$ tal que $i \to j$. Queremos ver que $j \to i$. Supongamos que no. Entonces, como $i \to j$, existe $n \in \N$ con $p_{ij}^{(n)} > 0$. Si $j \not\to i$, estando en $j$ a tiempo $n$, la cadena no puede regresar a $i$. Luego, 
+	\[ \mbb{P}_{i}(X_{n} = j,\ N_{j} < \infty) = \mbb{P}_{i}(X_{n} = j) = p_{ij}^{(n)} > 0. \]
+	Pero entonces, 
+	\[ \mbb{P}_{i}(N_{i} < \infty) \geq \mbb{P}_{i}(X_{n} = j,\ N_{j} < \infty) = p_{ij}^{(n)} > 0, \]
+	lo cual no puede pasar, pues $i$ es recurrente. Luego, $j \to i$.
+\end{proof}
+
+\begin{prop}
+	Si $j$ es transiente, entonces $\mbb{E}_{i}(N_{j}) < \infty \quad \forall i$.
+\end{prop}
+\begin{proof}[Proof Other Information]
+	Notar que
+	\begin{align*}
+		\mbb{E}_{i}(N_{j}) &= \mbb{E}_{i}(N_{j} \mathds{1}_{\{\tau_{j} < \infty\}}) \\
+		&= \underbrace{\mbb{P}_{i}(\tau_{j} < \infty)}_{\leq 1} \underbrace{\mbb{E}_{j}(N_{j})}_{< \infty} < \infty \tag{Markov fuerte}
+	.\end{align*}
+\end{proof}
+
+\begin{corollary}
+	Si $S$ es finito, existe un estado recurrente. En particular,
+	\[ S \text{ finito + } X \text{ irreducible} \implies X \text{ recurrente}. \]
+\end{corollary}
+\begin{proof}[Proof Other Information]
+	Como $S$ es finito,
+	\[ \sum_{j \in S} \lim_{n \to \infty} p_{ij}^{(n)} = \lim_{n \to \infty} \sum_{j \in S} p_{ij}^{(n)} = 1. \tag{$*$} \]
+	Si todo $j \in S$ fuese transiente, entonces, como
+	\[ p_{ij}^{(n)} \xlongrightarrow[n \to \infty]{} 0, \]
+	pues 
+	\[ \sum_{n=0}^{\infty} p_{ij}^{(n)} = \mbb{E}_{i}(N_{j}) < \infty, \]
+	la suma de la izquierda en $(*)$ daría 0, no 1. Entonces, existe al menos un estado recurrente.
+\end{proof}
+
+\begin{comentarios}
+	Si $S$ es infinito, esto NO es cierto.
+\end{comentarios}
+
+\begin{eg}
+	Caminata aleatoria en $\Z$ con saltos $X_{n}$ de media $\neq 0$ (esto es irreducible y transiente). (recordar la animación de la clase pasada.)
+\end{eg}
+
+\begin{definition}
+	Sean $P$ una matriz estocástica y $\mu$ una medida sobre $S$. Decimos que $\mu$ es una \textit{medida invariante} para $P$ (o \textit{$P$-invariante}) si $\mu P = \mu$. Si además $\mu$ es medida de probabilidad, decimos que $\mu$ es \textit{distribución invariante}.
+\end{definition}
+
+\begin{remark}
+	Si $\mu$ es medida invariante, $\lambda \cdot \mu$ es medida invariante $\forall \lambda \geq 0$.
+\end{remark}
+
+\begin{comentarios}
+	Se llama distribución invariante pues
+	\[ \mbb{P}_{\mu}(X_{n} = j) = (\mu P^{n})_{j} = \mu(j) \quad \forall n \in \N_{0}. \]
+	A veces, estas reciben el nombre de \textit{distribuciones estacionarias o de equilibrio}.
+\end{comentarios}
+
+\begin{remark}
+	Si $S$ es finito y existe $i_{0} \in S$ tal que los límites
+	\[ \pi_{j} \coloneq \lim_{n \to \infty} p_{i_{0}j}^{(n)} \]
+	existen para todo $j \in S$, entonces $\pi = (\pi_{j})_{j \in S}$ es una distribución invariante. (esto da una motivación de por qué también las llamamos estacionarias.)
+\end{remark}
+
+\begin{remark}
+	Como $P$ es matriz estocástica, $P$ tiene autovalor (a derecha) $1$ con autovector $\mathds{1} = (1,1,\dots,1)$, pues $(P \cdot \mathds{1})_{i} = \sum_{j \in S} p_{ij} = 1 \quad \forall i \in S$. \par
+	Luego, $P^{T}$ tiene autovalor (a derecha) $1$ con un cierto autovector $v$; i.e., $P^{T} \cdot v = v \iff v^{T} P = v^{T}$. O sea, que siempre existen autovectores a izquierda de $P$ de autovalor $1$ ("medida con signo invariante"). \par
+	Luego, una medida $P$-invariante es un autovector a izquierda de $P$ de autovalor $1$ (esto siempre existe) de \textbf{entradas no negativas}. Que exista una distribución invariante requiere además que dicho $v$ esté en $l_{1}(S)$.
+\end{remark}
+
+\begin{eg}~
+	\begin{enumerate}
+		\item $S = \Z$ y $\mu(n) \equiv 1$ es medida invariante para la caminata aleatoria simétrica en $\Z$.
+		\[ (\mu P)_{n} = \sum_{j \in \Z} p_{jn} = p_{n-1,n} + p_{n+1, n} = 1 = \mu(n). \]
+		Pero $\mu$ es \textbf{infinita}.
+
+		\item \textbf{Urna de Ehrenfest}: $S = \{0,1,\dots,r\}$ y $p_{k,k+1} = \frac{r-k}{r},\ p_{k,k-1} = \frac{k}{r}$. Con
+		\[ \mu(k) = \frac{1}{2^{r}} \binom{r}{k}, \]
+		$\mu \sim \Bi(r, \frac{1}{2})$.
+	\end{enumerate}
+\end{eg}
